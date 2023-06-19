@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -26,6 +27,9 @@ public class IndexController {
         UsuarioConeccion uc = new UsuarioConeccion();
         model.addAttribute("usuarioConeccion", uc);
         String tip="";
+
+        String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/gladius_autenticacion";
+        model.addAttribute("sqlURL",sqlURL);
 
         if(request.getSession().getAttribute("tiposession")==null){
             tip="0";
@@ -103,6 +107,9 @@ public class IndexController {
                         System.out.println("Company: "+uc3.getDesCia());
                         System.out.println("Email: "+uc3.getEmail());
                         System.out.println("BdClientConnection: "+uc3.getSourceDes());
+
+                        String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/gladius05";
+                        model.addAttribute("sqlURL",sqlURL);
 
                         return new ModelAndView("redirect:/api/index");
                     }else{
