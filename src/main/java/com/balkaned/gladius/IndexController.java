@@ -25,4 +25,9 @@ public class IndexController {
         return new ModelAndView("public/index");
     }
 
+    @RequestMapping("/empleadosList")
+    public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
+        return new ModelAndView("public/gladius/empleadosList");
+    }
+
 }
