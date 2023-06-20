@@ -1,3 +1,11 @@
+<%--
+    Created on : 15/06/2023, 12:20:00 PM
+    Author     : Jean Quiroz
+    Email	   : jeanp.quiroz@gmail.com
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -6,40 +14,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <jsp:include page="links.jsp"></jsp:include>
 
-    <!-- ===============================================-->
-    <!--    Document Title-->
-    <!-- ===============================================-->
-    <title>Phoenix</title>
-
-
-    <!-- ===============================================-->
-    <!--    Favicons-->
-    <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
-    <meta name="theme-color" content="#ffffff">
-    <script src="vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="vendors/simplebar/simplebar.min.js"></script>
-    <script src="assets/js/config.js"></script>
-
-
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
-    <link href="vendors/simplebar/simplebar.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href="assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
-    <link href="assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
-    <link href="assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
-    <link href="assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
     <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;
       if (phoenixIsRTL) {
@@ -55,11 +31,7 @@
         userLinkRTL.setAttribute('disabled', true);
       }
     </script>
-    <link href="vendors/leaflet/leaflet.css" rel="stylesheet">
-    <link href="vendors/leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
-    <link href="vendors/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -1693,7 +1665,7 @@
             <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
             <a class="navbar-brand me-1 me-sm-3" href="index.html">
               <div class="d-flex align-items-center">
-                <div class="d-flex align-items-center"><img src="assets/img/icons/logo.png" alt="phoenix" width="27" />
+                <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logo.png" alt="phoenix" width="27" />
                   <p class="logo-text ms-2 d-none d-sm-block">phoenix</p>
                 </div>
               </div>
@@ -1731,14 +1703,14 @@
                   <hr class="text-200 my-0" />
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Products</h6>
                   <div class="py-2"><a class="dropdown-item py-2 d-flex align-items-center" href="apps/e-commerce/landing/product-details.html">
-                      <div class="file-thumbnail me-2"><img class="h-100 w-100 fit-cover rounded-3" src="assets/img/products/60x60/3.png" alt="" /></div>
+                      <div class="file-thumbnail me-2"><img class="h-100 w-100 fit-cover rounded-3" src="resources/assets/img/products/60x60/3.png" alt="" /></div>
                       <div class="flex-1">
                         <h6 class="mb-0 text-1000 title">MacBook Air - 13″</h6>
                         <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600">8GB Memory - 1.6GHz - 128GB Storage</span></p>
                       </div>
                     </a>
                     <a class="dropdown-item py-2 d-flex align-items-center" href="apps/e-commerce/landing/product-details.html">
-                      <div class="file-thumbnail me-2"><img class="img-fluid" src="assets/img/products/60x60/3.png" alt="" /></div>
+                      <div class="file-thumbnail me-2"><img class="img-fluid" src="resources/assets/img/products/60x60/3.png" alt="" /></div>
                       <div class="flex-1">
                         <h6 class="mb-0 text-1000 title">MacBook Pro - 13″</h6>
                         <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
@@ -1788,7 +1760,7 @@
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Members</h6>
                   <div class="py-2"><a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                       <div class="avatar avatar-l status-online  me-2 text-900">
-                        <img class="rounded-circle " src="assets/img/team/40x40/10.webp" alt="" />
+                        <img class="rounded-circle " src="resources/assets/img/team/40x40/10.webp" alt="" />
 
                       </div>
                       <div class="flex-1">
@@ -1798,7 +1770,7 @@
                     </a>
                     <a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                       <div class="avatar avatar-l  me-2 text-900">
-                        <img class="rounded-circle " src="assets/img/team/40x40/12.webp" alt="" />
+                        <img class="rounded-circle " src="resources/assets/img/team/40x40/12.webp" alt="" />
 
                       </div>
                       <div class="flex-1">
@@ -1856,7 +1828,7 @@
                         <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative read border-bottom">
                           <div class="d-flex align-items-center justify-content-between position-relative">
                             <div class="d-flex">
-                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="assets/img/team/40x40/30.webp" alt="" />
+                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="resources/assets/img/team/40x40/30.webp" alt="" />
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Jessie Samson</h4>
@@ -1891,7 +1863,7 @@
                         <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
                           <div class="d-flex align-items-center justify-content-between position-relative">
                             <div class="d-flex">
-                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle avatar-placeholder" src="assets/img/team/40x40/avatar.webp" alt="" />
+                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/40x40/avatar.webp" alt="" />
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Jessie Samson</h4>
@@ -1910,7 +1882,7 @@
                         <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
                           <div class="d-flex align-items-center justify-content-between position-relative">
                             <div class="d-flex">
-                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="assets/img/team/40x40/57.webp" alt="" />
+                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="resources/assets/img/team/40x40/57.webp" alt="" />
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Kiera Anderson</h4>
@@ -1927,7 +1899,7 @@
                         <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
                           <div class="d-flex align-items-center justify-content-between position-relative">
                             <div class="d-flex">
-                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="assets/img/team/40x40/59.webp" alt="" />
+                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="resources/assets/img/team/40x40/59.webp" alt="" />
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Herman Carter</h4>
@@ -1944,7 +1916,7 @@
                         <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative read ">
                           <div class="d-flex align-items-center justify-content-between position-relative">
                             <div class="d-flex">
-                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="assets/img/team/40x40/58.webp" alt="" />
+                              <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="resources/assets/img/team/40x40/58.webp" alt="" />
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Benjamin Button</h4>
@@ -1985,46 +1957,46 @@
                 <div class="card bg-white position-relative border-0">
                   <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
                     <div class="row text-center align-items-center gx-0 gy-0">
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/behance.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/behance.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Behance</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Cloud</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/slack.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Slack</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/gitlab.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Gitlab</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">BitBucket</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/google-drive.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-drive.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Drive</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/trello.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/trello.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Trello</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/figma.webp" alt="" width="20" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/figma.webp" alt="" width="20" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Figma</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/twitter.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Twitter</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/pinterest.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Pinterest</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/ln.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Linkedin</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/google-maps.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-maps.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Maps</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/google-photos.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-photos.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Photos</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="assets/img/nav-icons/spotify.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/spotify.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Spotify</p>
                         </a></div>
                     </div>
@@ -2034,7 +2006,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-l ">
-                  <img class="rounded-circle " src="assets/img/team/40x40/57.webp" alt="" />
+                  <img class="rounded-circle " src="resources/assets/img/team/40x40/57.webp" alt="" />
 
                 </div>
               </a>
@@ -2043,7 +2015,7 @@
                   <div class="card-body p-0">
                     <div class="text-center pt-4 pb-3">
                       <div class="avatar avatar-xl ">
-                        <img class="rounded-circle " src="assets/img/team/72x72/57.webp" alt="" />
+                        <img class="rounded-circle " src="resources/assets/img/team/72x72/57.webp" alt="" />
 
                       </div>
                       <h6 class="mt-2 text-black">Jerry Seinfield</h6>
@@ -2112,14 +2084,14 @@
                       <hr class="text-200 my-0" />
                       <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Products</h6>
                       <div class="py-2"><a class="dropdown-item py-2 d-flex align-items-center" href="apps/e-commerce/landing/product-details.html">
-                          <div class="file-thumbnail me-2"><img class="h-100 w-100 fit-cover rounded-3" src="assets/img/products/60x60/3.png" alt="" /></div>
+                          <div class="file-thumbnail me-2"><img class="h-100 w-100 fit-cover rounded-3" src="resources/assets/img/products/60x60/3.png" alt="" /></div>
                           <div class="flex-1">
                             <h6 class="mb-0 text-1000 title">MacBook Air - 13″</h6>
                             <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600">8GB Memory - 1.6GHz - 128GB Storage</span></p>
                           </div>
                         </a>
                         <a class="dropdown-item py-2 d-flex align-items-center" href="apps/e-commerce/landing/product-details.html">
-                          <div class="file-thumbnail me-2"><img class="img-fluid" src="assets/img/products/60x60/3.png" alt="" /></div>
+                          <div class="file-thumbnail me-2"><img class="img-fluid" src="resources/assets/img/products/60x60/3.png" alt="" /></div>
                           <div class="flex-1">
                             <h6 class="mb-0 text-1000 title">MacBook Pro - 13″</h6>
                             <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
@@ -2169,7 +2141,7 @@
                       <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Members</h6>
                       <div class="py-2"><a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                           <div class="avatar avatar-l status-online  me-2 text-900">
-                            <img class="rounded-circle " src="assets/img/team/40x40/10.webp" alt="" />
+                            <img class="rounded-circle " src="resources/assets/img/team/40x40/10.webp" alt="" />
 
                           </div>
                           <div class="flex-1">
@@ -2179,7 +2151,7 @@
                         </a>
                         <a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                           <div class="avatar avatar-l  me-2 text-900">
-                            <img class="rounded-circle " src="assets/img/team/40x40/12.webp" alt="" />
+                            <img class="rounded-circle " src="resources/assets/img/team/40x40/12.webp" alt="" />
 
                           </div>
                           <div class="flex-1">
@@ -2226,7 +2198,7 @@
               </div>
               <div class="row align-items-center g-4">
                 <div class="col-12 col-md-auto">
-                  <div class="d-flex align-items-center"><img src="assets/img/icons/illustrations/4l.png" alt="" height="46" width="46" />
+                  <div class="d-flex align-items-center"><img src="resources/assets/img/icons/illustrations/4l.png" alt="" height="46" width="46" />
                     <div class="ms-3">
                       <h4 class="mb-0">57 new orders</h4>
                       <p class="text-800 fs--1 mb-0">Awating processing</p>
@@ -2234,7 +2206,7 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-auto">
-                  <div class="d-flex align-items-center"><img src="assets/img/icons/illustrations/3l.png" alt="" height="46" width="46" />
+                  <div class="d-flex align-items-center"><img src="resources/assets/img/icons/illustrations/3l.png" alt="" height="46" width="46" />
                     <div class="ms-3">
                       <h4 class="mb-0">5 orders</h4>
                       <p class="text-800 fs--1 mb-0">On hold</p>
@@ -2242,7 +2214,7 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-auto">
-                  <div class="d-flex align-items-center"><img src="assets/img/icons/illustrations/2l.png" alt="" height="46" width="46" />
+                  <div class="d-flex align-items-center"><img src="resources/assets/img/icons/illustrations/2l.png" alt="" height="46" width="46" />
                     <div class="ms-3">
                       <h4 class="mb-0">15 products</h4>
                       <p class="text-800 fs--1 mb-0">Out of stock</p>
@@ -2432,7 +2404,7 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/1.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/1.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Fitbit Sense Advanced Smartwatch with Tools fo...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
@@ -2474,11 +2446,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/2.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/2.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">iPhone 13 pro max-Pacific Blue-128GB storage</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/59.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/59.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Ashley Garrett</h6>
                       </a></td>
@@ -2515,11 +2487,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/3.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/3.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Apple MacBook Pro 13 inch-M1-8/256GB-space</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/58.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/58.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Woodrow Burton</h6>
                       </a></td>
@@ -2556,11 +2528,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/4.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/4.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Apple iMac 24&quot; 4K Retina Display M1 8 Core CPU...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="assets/img/team/40x40/avatar.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/40x40/avatar.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Eric McGee</h6>
                       </a></td>
@@ -2597,11 +2569,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/5.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/5.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Razer Kraken v3 x Wired 7.1 Surroung Sound Gam...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="assets/img/team/40x40/avatar.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/40x40/avatar.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Kim Carroll</h6>
                       </a></td>
@@ -2638,11 +2610,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/6.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/6.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">PlayStation 5 DualSense Wireless Controller</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/57.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/57.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Barbara Lucas</h6>
                       </a></td>
@@ -2679,11 +2651,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/7.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/7.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">2021 Apple 12.9-inch iPad Pro (Wi‑Fi, 128GB) -...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/3.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/3.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Ansolo Lazinatov</h6>
                       </a></td>
@@ -2720,11 +2692,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/8.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/8.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Amazon Basics Matte Black Wired Keyboard - US ...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/26.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/26.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Emma watson</h6>
                       </a></td>
@@ -2761,11 +2733,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/9.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/9.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Amazon Basics Mesh, Mid-Back, Swivel Office De...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/29.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/29.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Rowen Atkinson</h6>
                       </a></td>
@@ -2802,7 +2774,7 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/10.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/10.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Apple Magic Mouse (Wireless, Rechargable) - Si...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
@@ -2844,11 +2816,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/11.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/11.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Echo Dot (4th Gen) _ Smart speaker with Alexa ...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/8.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/8.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Jennifer Schramm</h6>
                       </a></td>
@@ -2885,11 +2857,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/12.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/12.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">HORI Racing Wheel Apex for PlayStation 4_3, an...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="assets/img/team/40x40/avatar.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/40x40/avatar.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Raymond Mims</h6>
                       </a></td>
@@ -2926,11 +2898,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/13.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/13.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Nintendo Switch with Neon Blue and Neon Red Jo...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/9.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/9.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Michael Jenkins</h6>
                       </a></td>
@@ -2967,11 +2939,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/14.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/14.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Oculus Rift S PC-Powered VR Gaming Headset</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="assets/img/team/40x40/avatar.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/40x40/avatar.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Kristine Cadena</h6>
                       </a></td>
@@ -3008,11 +2980,11 @@
                       </div>
                     </td>
                     <td class="align-middle product white-space-nowrap py-0">
-                      <div class="rounded-2 border"><img src="assets/img//products/60x60/15.png" alt="" width="53" /></div>
+                      <div class="rounded-2 border"><img src="resources/assets/img//products/60x60/15.png" alt="" width="53" /></div>
                     </td>
                     <td class="align-middle product white-space-nowrap"><a class="fw-semi-bold" href="apps/e-commerce/landing/product-details.html">Sony X85J 75 Inch Sony 4K Ultra HD LED Smart G...</a></td>
                     <td class="align-middle customer white-space-nowrap"><a class="d-flex align-items-center" href="#!">
-                        <div class="avatar avatar-l"><img class="rounded-circle" src="assets/img/team/40x40/24.webp" alt="" />
+                        <div class="avatar avatar-l"><img class="rounded-circle" src="resources/assets/img/team/40x40/24.webp" alt="" />
                         </div>
                         <h6 class="mb-0 ms-3 text-900">Suzanne Martinez</h6>
                       </a></td>
@@ -3096,7 +3068,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">1. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/india.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/india.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">India</p>
                             </div>
                           </a>
@@ -3119,7 +3091,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">2. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/china.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/china.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">China</p>
                             </div>
                           </a>
@@ -3142,7 +3114,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">3. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/usa.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/usa.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">USA</p>
                             </div>
                           </a>
@@ -3165,7 +3137,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">4. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/south-korea.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/south-korea.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">South Korea</p>
                             </div>
                           </a>
@@ -3188,7 +3160,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">5. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/vietnam.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/vietnam.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">Vietnam</p>
                             </div>
                           </a>
@@ -3211,7 +3183,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">6. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/russia.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/russia.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">Russia</p>
                             </div>
                           </a>
@@ -3234,7 +3206,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">7. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/australia.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/australia.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">Australia</p>
                             </div>
                           </a>
@@ -3257,7 +3229,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">8. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/england.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/england.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">England</p>
                             </div>
                           </a>
@@ -3280,7 +3252,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">9. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/indonesia.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/indonesia.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">Indonesia</p>
                             </div>
                           </a>
@@ -3303,7 +3275,7 @@
                       <td class="white-space-nowrap ps-0 country" style="width:32%">
                         <div class="d-flex align-items-center">
                           <h6 class="mb-0 me-3">10. </h6><a href="#!">
-                            <div class="d-flex align-items-center"><img src="assets/img/country/japan.png" alt="" width="24" />
+                            <div class="d-flex align-items-center"><img src="resources/assets/img/country/japan.png" alt="" width="24" />
                               <p class="mb-0 ps-3 text-primary fw-bold fs--1">Japan</p>
                             </div>
                           </a>
@@ -3413,7 +3385,7 @@
                   </a>
                 </div>
                 <div class="text-center mt-auto">
-                  <div class="avatar avatar-3xl status-online"><img class="rounded-circle border border-3 border-white" src="assets/img/team/30.webp" alt="" /></div>
+                  <div class="avatar avatar-3xl status-online"><img class="rounded-circle border border-3 border-white" src="resources/assets/img/team/30.webp" alt="" /></div>
                   <h5 class="mt-2 mb-3">Eric</h5>
                   <p class="text-center text-black mb-0">Ask us anything – we’ll get back to you here or by email within 24 hours.</p>
                 </div>
@@ -3456,11 +3428,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherLight" name="theme-color" type="radio" value="light" data-theme-control="phoenixTheme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="assets/img/generic/default-light.png" alt=""/></span><span class="label-text">Light</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="resources/assets/img/generic/default-light.png" alt=""/></span><span class="label-text">Light</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherDark" name="theme-color" type="radio" value="dark" data-theme-control="phoenixTheme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="assets/img/generic/default-dark.png" alt=""/></span><span class="label-text"> Dark</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="resources/assets/img/generic/default-dark.png" alt=""/></span><span class="label-text"> Dark</span></label>
             </div>
           </div>
         </div>
@@ -3487,19 +3459,19 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarPositionVertical" name="navigation-type" type="radio" value="vertical" data-theme-control="phoenixNavbarPosition" data-page-url="documentation/layouts/vertical-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionVertical"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/default-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/default-dark.png" alt=""/></span><span class="label-text">Vertical</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionVertical"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/default-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/default-dark.png" alt=""/></span><span class="label-text">Vertical</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionHorizontal" name="navigation-type" type="radio" value="horizontal" data-theme-control="phoenixNavbarPosition" data-page-url="documentation/layouts/horizontal-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionHorizontal"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text"> Horizontal</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionHorizontal"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text"> Horizontal</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionCombo" name="navigation-type" type="radio" value="combo" data-theme-control="phoenixNavbarPosition" data-page-url="documentation/layouts/combo-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionCombo"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/nav-combo-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/nav-combo-dark.png" alt=""/></span><span class="label-text"> Combo</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionCombo"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/nav-combo-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/nav-combo-dark.png" alt=""/></span><span class="label-text"> Combo</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionTopDouble" name="navigation-type" type="radio" value="dual-nav" data-theme-control="phoenixNavbarPosition" data-page-url="documentation/layouts/dual-nav.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionTopDouble"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/dual-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/dual-dark.png" alt=""/></span><span class="label-text"> Dual nav</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionTopDouble"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/dual-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/dual-dark.png" alt=""/></span><span class="label-text"> Dual nav</span></label>
             </div>
           </div>
         </div>
@@ -3508,11 +3480,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbar-style-default" type="radio" name="config.name" value="default" data-theme-control="phoenixNavbarVerticalStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-default"> <img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/default-light.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/default-dark.png" alt="" /><span class="label-text d-dark-none"> Default</span><span class="label-text d-light-none">Default</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-default"> <img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/default-light.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/default-dark.png" alt="" /><span class="label-text d-dark-none"> Default</span><span class="label-text d-light-none">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name" value="darker" data-theme-control="phoenixNavbarVerticalStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-dark"> <img class="img-fluid img-prototype d-dark-none" src="assets/img/generic/vertical-darker.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="assets/img/generic/vertical-lighter.png" alt="" /><span class="label-text d-dark-none"> Darker</span><span class="label-text d-light-none">Lighter</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-dark"> <img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/vertical-darker.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/vertical-lighter.png" alt="" /><span class="label-text d-dark-none"> Darker</span><span class="label-text d-light-none">Lighter</span></label>
             </div>
           </div>
         </div>
@@ -3521,11 +3493,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarShapeDefault" name="navbar-shape" type="radio" value="default" data-theme-control="phoenixNavbarTopShape" data-page-url="documentation/layouts/horizontal-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text">Default</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarShapeSlim" name="navbar-shape" type="radio" value="slim" data-theme-control="phoenixNavbarTopShape" data-page-url="documentation/layouts/vertical-navbar.html#horizontal-navbar-slim" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeSlim"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="assets/img/generic/top-slim.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="assets/img/generic/top-slim-dark.png" alt=""/></span><span class="label-text"> Slim</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeSlim"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-slim.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-slim-dark.png" alt=""/></span><span class="label-text"> Slim</span></label>
             </div>
           </div>
         </div>
@@ -3534,11 +3506,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarTopDefault" name="navbar-top-style" type="radio" value="default" data-theme-control="phoenixNavbarTopStyle" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="assets/img/generic/top-style-darker.png" alt=""/></span><span class="label-text">Default</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-style-darker.png" alt=""/></span><span class="label-text">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarTopDarker" name="navbar-top-style" type="radio" value="darker" data-theme-control="phoenixNavbarTopStyle" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDarker"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="assets/img/generic/navbar-top-style-light.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="assets/img/generic/top-style-lighter.png" alt=""/></span><span class="label-text d-dark-none">Darker</span><span class="label-text d-light-none">Lighter</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDarker"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/navbar-top-style-light.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-style-lighter.png" alt=""/></span><span class="label-text d-dark-none">Darker</span><span class="label-text d-light-none">Lighter</span></label>
             </div>
           </div>
         </div><a class="bun btn-primary d-grid mb-3 text-white dark__text-100 mt-5 btn btn-primary" href="https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/" target="_blank">Purchase template</a>
@@ -3553,29 +3525,6 @@
         </div><small class="text-uppercase text-700 fw-bold py-2 pe-2 ps-1 rounded-end">customize</small>
       </div>
     </a>
-
-
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="vendors/popper/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/anchorjs/anchor.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
-    <script src="vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/list.js/list.min.js"></script>
-    <script src="vendors/feather-icons/feather.min.js"></script>
-    <script src="vendors/dayjs/dayjs.min.js"></script>
-    <script src="assets/js/phoenix.js"></script>
-    <script src="vendors/echarts/echarts.min.js"></script>
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbaQGvhe7Af-uOMJz68NWHnO34UjjE7Lo&callback=revenueMapInit" async></script>
-    <script src="vendors/leaflet/leaflet.js"></script>
-    <script src="vendors/leaflet.markercluster/leaflet.markercluster.js"></script>
-    <script src="vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js"></script>
-    <script src="assets/js/ecommerce-dashboard.js"></script>
 
   </body>
 

@@ -11,15 +11,17 @@
 <!-- ===============================================-->
 <!--    Document Title-->
 <!-- ===============================================-->
-<title>Atuhtentication</title>
+<title>Gladius</title>
+
+<link rel="shortcut icon" href="resources/assets/img/icon1.png">
 
 <!-- ===============================================-->
 <!--    Favicons-->
 <!-- ===============================================-->
-<link rel="apple-touch-icon" sizes="180x180" href="resources/assets//img/favicons/apple-touch-icon.png">
+<!--<link rel="apple-touch-icon" sizes="180x180" href="resources/assets/img/favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="resources/assets/img/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="resources/assets/img/favicons/favicon-16x16.png">
-<link rel="shortcut icon" type="image/x-icon" href="resources/assets/img/favicons/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="resources/assets/img/favicons/favicon.ico">-->
 <link rel="manifest" href="resources/assets/img/favicons/manifest.json">
 <meta name="msapplication-TileImage" content="resources/assets/img/favicons/mstile-150x150.png">
 <meta name="theme-color" content="#ffffff">
@@ -55,3 +57,10 @@
 <script src="resources/vendors/feather-icons/feather.min.js"></script>
 <script src="resources/vendors/dayjs/dayjs.min.js"></script>
 <script src="resources/assets/js/phoenix.js"></script>
+
+<link href="resources/vendors/leaflet/leaflet.css" rel="stylesheet">
+<link href="resources/vendors/leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
+<link href="resources/vendors/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
+<!--
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>-->

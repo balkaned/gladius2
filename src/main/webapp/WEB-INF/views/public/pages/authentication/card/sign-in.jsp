@@ -60,7 +60,7 @@
 
                     <div class="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 pb-md-7">
                       <h3 class="mb-3 text-black fs-1">Gladius Authentication</h3>
-                      <p class="text-700">Le ofrecemos nuestra solución GLADIUS HR SOFTWARE para la gestión de información del trabajador, procesos de cálculo de las planillas y los procesos siguientes como integración contable, reporte a SUNAT PLAME, reporte a ministerio de trabajo, reportes de AFP Net y otros reportes.</p>
+                      <p style="font-size:12px;" class="text-700">Le ofrecemos nuestra solución GLADIUS HR SOFTWARE para la gestión de información del trabajador, procesos de cálculo de las planillas y los procesos siguientes como integración contable, reporte a SUNAT PLAME, reporte a ministerio de trabajo, reportes de AFP Net y otros reportes.</p>
                       <ul class="list-unstyled mb-0 w-max-content w-md-auto mx-auto">
                         <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Rápido</span></li>
                         <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Simple</span></li>
@@ -98,7 +98,7 @@
                           <f:input id="ippass" value="" type="password" path="pass" cssClass="form-control form-icon-input" placeholder="Ingrese Contraseña"/><span class="fas fa-key text-900 fs--1 form-icon"></span>
                         </div>
                       </div>
-                      <span style="float:left; text-align:left; font-size: 11px; height:150px; width:280px; border:0px solid green; color:#D90000;">
+                      <span style="float:left; text-align:left; font-size: 11px; height:50px; width:280px; border:0px solid green; color:#D90000;">
                               ${mensaje}
                       </span>
                       <div class="row flex-between-center mb-7">
