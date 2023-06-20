@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/authentication")
 public class IndexController {
 
     @Autowired
@@ -63,10 +63,10 @@ public class IndexController {
         return new ModelAndView("public/pages/authentication/card/sign-in");
     }
 
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public ModelAndView index(ModelMap model, HttpServletRequest request) {
         return new ModelAndView("public/index");
-    }
+    }*/
 
     @RequestMapping("/verificarLogin")
     public ModelAndView verificarLogin(ModelMap model, HttpServletRequest request,@ModelAttribute("usuarioConeccion") UsuarioConeccion uc,BindingResult result,SessionStatus status) {
@@ -76,25 +76,26 @@ public class IndexController {
         if(uc2.getUser().equals("sinbd")) {
             request.getSession().setAttribute("tiposession", "5");
 
-            return new ModelAndView("redirect:/api/login");
+            return new ModelAndView("redirect:/api/authentication/login");
         }else {
             if(uc.getUser().equals("")) {
                 System.out.println("Campos Vacios");
                 request.getSession().setAttribute("tiposession", "4");
                 //model.addAttribute("mensaje","Contraseña Erronea");
 
-                return new ModelAndView("redirect:/api/login");
+                return new ModelAndView("redirect:/api/authentication/login");
             }else {
                 if(uc2.getUser().equals("noecontrado")){
                     System.out.println("Usuario o Contraseña Incorrecta");
                     request.getSession().setAttribute("tiposession", "3");
                     //model.addAttribute("mensaje","Usuario o Contraseña Incorrecta");
 
-                    return new ModelAndView("redirect:/api/login");
+                    return new ModelAndView("redirect:/api/authentication/login");
                 }else{
                     if(uc2.getPass().equals(uc.getPass())){
 
                         UsuarioConeccion uc3=usuarioConeccionService.obtenerUsuarioConeccionById(uc2.getId_usuario());
+
                         System.out.println("ID_Usuario: "+uc2.getId_usuario());
 
                         request.getSession().setAttribute("user", uc3.getUser());
@@ -108,16 +109,23 @@ public class IndexController {
                         System.out.println("Email: "+uc3.getEmail());
                         System.out.println("BdClientConnection: "+uc3.getSourceDes());
 
-                        String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/gladius05";
-                        model.addAttribute("sqlURL",sqlURL);
+                        String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/"+uc3.getSourceDes();
+                        System.out.println("RedirectURLClient: "+sqlURL);
 
-                        return new ModelAndView("redirect:/api/index");
+                        /*####################3NUEVA CONEXION##################*/
+                        //String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/gladius05";
+                        //model.addAttribute("sqlURL",sqlURL);
+                        //System.out.println("sqlURL: "+sqlURL);
+
+                        //return new ModelAndView("redirect:/api/index");
+                        //return new ModelAndView("redirect:www.google.com");
+                        return new ModelAndView("redirect:http://www.balkaned.com/contacto");
                     }else{
                         System.out.println("Contraseña Erronea");
                         request.getSession().setAttribute("tiposession", "2");
                         //model.addAttribute("mensaje","Contraseña Erronea");
 
-                        return new ModelAndView("redirect:/api/login");
+                        return new ModelAndView("redirect:/api/authentication/login");
                     }
                 }
             }
