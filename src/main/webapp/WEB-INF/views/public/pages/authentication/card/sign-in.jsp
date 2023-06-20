@@ -44,7 +44,7 @@
     <!-- ===============================================-->
     <main class="main" id="top">
       <div class="container-fluid bg-300 dark__bg-1200">
-        <div class="bg-holder bg-auth-card-overlay" style="background-image:url(../../../assets/img/bg/37.png);">
+        <div class="bg-holder bg-auth-card-overlay" style="background-image:url(resources/assets/img/bg/37.png);">
         </div>
         <!--/.bg-holder-->
 
@@ -54,29 +54,29 @@
               <div class="card-body pe-md-0">
                 <div class="row align-items-center gx-0 gy-7">
                   <div class="col-auto bg-100 dark__bg-1100 rounded-3 position-relative overflow-hidden auth-title-box">
-                    <div class="bg-holder" style="background-image:url(../../../assets/img/bg/38.png);">
+                    <div class="bg-holder" style="background-image:url(resources/assets/img/bg/38.png);">
                     </div>
                     <!--/.bg-holder-->
 
                     <div class="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 pb-md-7">
-                      <h3 class="mb-3 text-black fs-1">Phoenix Authentication</h3>
-                      <p class="text-700">Give yourself some hassle-free development process with the uniqueness of Phoenix!</p>
+                      <h3 class="mb-3 text-black fs-1">Gladius Authentication</h3>
+                      <p class="text-700">Le ofrecemos nuestra solución GLADIUS HR SOFTWARE para la gestión de información del trabajador, procesos de cálculo de las planillas y los procesos siguientes como integración contable, reporte a SUNAT PLAME, reporte a ministerio de trabajo, reportes de AFP Net y otros reportes.</p>
                       <ul class="list-unstyled mb-0 w-max-content w-md-auto mx-auto">
-                        <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Fast</span></li>
+                        <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Rápido</span></li>
                         <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Simple</span></li>
                         <li class="d-flex align-items-center"><span class="uil uil-check-circle text-success me-2"></span><span class="text-700 fw-semi-bold">Responsive</span></li>
                       </ul>
                     </div>
-                    <div class="position-relative z-index--1 mb-6 d-none d-md-block text-center mt-md-15"><img class="auth-title-box-img d-dark-none" src="../../../assets/img/spot-illustrations/auth.png" alt="" /><img class="auth-title-box-img d-light-none" src="../../../assets/img/spot-illustrations/auth-dark.png" alt="" /></div>
+                    <div class="position-relative z-index--1 mb-6 d-none d-md-block text-center mt-md-15"><img class="auth-title-box-img d-dark-none" src="resources/assets/img/spot-illustrations/auth.png" alt="" /><img class="auth-title-box-img d-light-none" src="resources/assets/img/spot-illustrations/auth-dark.png" alt="" /></div>
                   </div>
                   <div class="col mx-auto">
                     <div class="auth-form-box">
                       <div class="text-center mb-7"><a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html">
-                          <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="../../../assets/img/icons/logo.png" alt="phoenix" width="58" />
+                          <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logo.png" alt="phoenix" width="58" />
                           </div>
                         </a>
-                        <h3 class="text-1000">Sign In</h3>
-                        <p class="text-700">Get access to your account</p>
+                        <h3 class="text-1000">Log in</h3>
+                        <p class="text-700">Obtenga acceso a su cuenta</p>
                       </div>
                       <button class="btn btn-phoenix-secondary w-100 mb-3"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
                       <button class="btn btn-phoenix-secondary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>
@@ -157,7 +157,7 @@
                   </a>
                 </div>
                 <div class="text-center mt-auto">
-                  <div class="avatar avatar-3xl status-online"><img class="rounded-circle border border-3 border-white" src="../../../assets/img/team/30.webp" alt="" /></div>
+                  <div class="avatar avatar-3xl status-online"><img class="rounded-circle border border-3 border-white" src="resources/assets/img/team/30.webp" alt="" /></div>
                   <h5 class="mt-2 mb-3">Eric</h5>
                   <p class="text-center text-black mb-0">Ask us anything – we’ll get back to you here or by email within 24 hours.</p>
                 </div>
@@ -200,11 +200,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherLight" name="theme-color" type="radio" value="light" data-theme-control="phoenixTheme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="../../../assets/img/generic/default-light.png" alt=""/></span><span class="label-text">Light</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="resources/assets/img/generic/default-light.png" alt=""/></span><span class="label-text">Light</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="themeSwitcherDark" name="theme-color" type="radio" value="dark" data-theme-control="phoenixTheme" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="../../../assets/img/generic/default-dark.png" alt=""/></span><span class="label-text"> Dark</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0" src="resources/assets/img/generic/default-dark.png" alt=""/></span><span class="label-text"> Dark</span></label>
             </div>
           </div>
         </div>
@@ -231,19 +231,19 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarPositionVertical" name="navigation-type" type="radio" value="vertical" data-theme-control="phoenixNavbarPosition" data-page-url="../../../documentation/layouts/vertical-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionVertical"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/default-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/default-dark.png" alt=""/></span><span class="label-text">Vertical</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionVertical"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/default-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/default-dark.png" alt=""/></span><span class="label-text">Vertical</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionHorizontal" name="navigation-type" type="radio" value="horizontal" data-theme-control="phoenixNavbarPosition" data-page-url="../../../documentation/layouts/horizontal-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionHorizontal"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text"> Horizontal</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionHorizontal"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text"> Horizontal</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionCombo" name="navigation-type" type="radio" value="combo" data-theme-control="phoenixNavbarPosition" data-page-url="../../../documentation/layouts/combo-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionCombo"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/nav-combo-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/nav-combo-dark.png" alt=""/></span><span class="label-text"> Combo</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionCombo"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/nav-combo-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/nav-combo-dark.png" alt=""/></span><span class="label-text"> Combo</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarPositionTopDouble" name="navigation-type" type="radio" value="dual-nav" data-theme-control="phoenixNavbarPosition" data-page-url="../../../documentation/layouts/dual-nav.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionTopDouble"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/dual-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/dual-dark.png" alt=""/></span><span class="label-text"> Dual nav</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarPositionTopDouble"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/dual-light.png" alt=""/><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/dual-dark.png" alt=""/></span><span class="label-text"> Dual nav</span></label>
             </div>
           </div>
         </div>
@@ -252,11 +252,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbar-style-default" type="radio" name="config.name" value="default" data-theme-control="phoenixNavbarVerticalStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-default"> <img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/default-light.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/default-dark.png" alt="" /><span class="label-text d-dark-none"> Default</span><span class="label-text d-light-none">Default</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-default"> <img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/default-light.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/default-dark.png" alt="" /><span class="label-text d-dark-none"> Default</span><span class="label-text d-light-none">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name" value="darker" data-theme-control="phoenixNavbarVerticalStyle" />
-              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-dark"> <img class="img-fluid img-prototype d-dark-none" src="../../../assets/img/generic/vertical-darker.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="../../../assets/img/generic/vertical-lighter.png" alt="" /><span class="label-text d-dark-none"> Darker</span><span class="label-text d-light-none">Lighter</span></label>
+              <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-dark"> <img class="img-fluid img-prototype d-dark-none" src="resources/assets/img/generic/vertical-darker.png" alt="" /><img class="img-fluid img-prototype d-light-none" src="resources/assets/img/generic/vertical-lighter.png" alt="" /><span class="label-text d-dark-none"> Darker</span><span class="label-text d-light-none">Lighter</span></label>
             </div>
           </div>
         </div>
@@ -265,11 +265,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarShapeDefault" name="navbar-shape" type="radio" value="default" data-theme-control="phoenixNavbarTopShape" data-page-url="../../../documentation/layouts/horizontal-navbar.html" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="../../../assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="../../../assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text">Default</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-default-dark.png" alt=""/></span><span class="label-text">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarShapeSlim" name="navbar-shape" type="radio" value="slim" data-theme-control="phoenixNavbarTopShape" data-page-url="../../../documentation/layouts/vertical-navbar.html#horizontal-navbar-slim" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeSlim"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="../../../assets/img/generic/top-slim.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="../../../assets/img/generic/top-slim-dark.png" alt=""/></span><span class="label-text"> Slim</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeSlim"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-slim.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-slim-dark.png" alt=""/></span><span class="label-text"> Slim</span></label>
             </div>
           </div>
         </div>
@@ -278,11 +278,11 @@
           <div class="row gx-2">
             <div class="col-6">
               <input class="btn-check" id="navbarTopDefault" name="navbar-top-style" type="radio" value="default" data-theme-control="phoenixNavbarTopStyle" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="../../../assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="../../../assets/img/generic/top-style-darker.png" alt=""/></span><span class="label-text">Default</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDefault"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/top-default.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-style-darker.png" alt=""/></span><span class="label-text">Default</span></label>
             </div>
             <div class="col-6">
               <input class="btn-check" id="navbarTopDarker" name="navbar-top-style" type="radio" value="darker" data-theme-control="phoenixNavbarTopStyle" />
-              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDarker"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="../../../assets/img/generic/navbar-top-style-light.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="../../../assets/img/generic/top-style-lighter.png" alt=""/></span><span class="label-text d-dark-none">Darker</span><span class="label-text d-light-none">Lighter</span></label>
+              <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarTopDarker"> <span class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0" src="resources/assets/img/generic/navbar-top-style-light.png" alt=""/><img class="img-fluid img-prototype d-light-none mb-0" src="resources/assets/img/generic/top-style-lighter.png" alt=""/></span><span class="label-text d-dark-none">Darker</span><span class="label-text d-light-none">Lighter</span></label>
             </div>
           </div>
         </div><a class="bun btn-primary d-grid mb-3 text-white dark__text-100 mt-5 btn btn-primary" href="https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/" target="_blank">Purchase template</a>

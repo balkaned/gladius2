@@ -3,6 +3,9 @@
     Author     : Jean Quiroz
     Email	   : jeanp.quiroz@gmail.com
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 

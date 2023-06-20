@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/authentication")
 public class IndexController {
 
     @Autowired
@@ -27,9 +26,6 @@ public class IndexController {
         UsuarioConeccion uc = new UsuarioConeccion();
         model.addAttribute("usuarioConeccion", uc);
         String tip="";
-
-        String sqlURL = "jdbc:postgresql://ec2-18-191-189-102.us-east-2.compute.amazonaws.com:5432/gladius_autenticacion";
-        model.addAttribute("sqlURL",sqlURL);
 
         if(request.getSession().getAttribute("tiposession")==null){
             tip="0";
@@ -49,7 +45,7 @@ public class IndexController {
 
             if(request.getSession().getAttribute("tiposession").equals("5")) {
                 model.addAttribute("mensaje","Alerta!, Hemos detectado que no es el Admnistrador de la aplicación. "
-                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2019 Balkaned www.balkaned.com Todos los derechos reservados. Derechos de autor. Todos los contenidos de este Sitio No se va a poder "
+                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2023 Balkaned www.balkaned.com Todos los derechos reservados. Derechos de autor. Todos los contenidos de este Sitio No se va a poder "
                         + "instalar puede conectar con Base de Datos Postgres(por defecto), Mysql, SQl Server, revise que los parámetros de conexión en la aplicación "
                         + "para el archivo de configuración application.properties coincidan con la configuración del motor de base Datos, "
                         + "puede que la base de datos no este aún restaurada o el proceso de restauración falló, "
@@ -76,21 +72,21 @@ public class IndexController {
         if(uc2.getUser().equals("sinbd")) {
             request.getSession().setAttribute("tiposession", "5");
 
-            return new ModelAndView("redirect:/api/authentication/login");
+            return new ModelAndView("redirect:/login");
         }else {
             if(uc.getUser().equals("")) {
                 System.out.println("Campos Vacios");
                 request.getSession().setAttribute("tiposession", "4");
                 //model.addAttribute("mensaje","Contraseña Erronea");
 
-                return new ModelAndView("redirect:/api/authentication/login");
+                return new ModelAndView("redirect:/login");
             }else {
                 if(uc2.getUser().equals("noecontrado")){
                     System.out.println("Usuario o Contraseña Incorrecta");
                     request.getSession().setAttribute("tiposession", "3");
                     //model.addAttribute("mensaje","Usuario o Contraseña Incorrecta");
 
-                    return new ModelAndView("redirect:/api/authentication/login");
+                    return new ModelAndView("redirect:/login");
                 }else{
                     if(uc2.getPass().equals(uc.getPass())){
 
@@ -119,13 +115,13 @@ public class IndexController {
 
                         //return new ModelAndView("redirect:/api/index");
                         //return new ModelAndView("redirect:www.google.com");
-                        return new ModelAndView("redirect:http://www.balkaned.com/contacto");
+                        return new ModelAndView("redirect:http://www.balkaned.com");
                     }else{
                         System.out.println("Contraseña Erronea");
                         request.getSession().setAttribute("tiposession", "2");
                         //model.addAttribute("mensaje","Contraseña Erronea");
 
-                        return new ModelAndView("redirect:/api/authentication/login");
+                        return new ModelAndView("redirect:/login");
                     }
                 }
             }
