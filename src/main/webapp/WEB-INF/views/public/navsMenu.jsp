@@ -66,6 +66,19 @@
     color:white!important;
     }
 
+    .card-body.d-flex.align-items-center.px-2.py-1{
+    background-color:#111827 !important;
+    color:white !important;
+    border-radius:17px 17px 0px 0px;
+    }
+
+    .icon-spin.position-absolute.all-0.d-flex.flex-center svg{
+    color:white !important;
+    }
+
+    .text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end{
+    color:white!important;
+    }
 </style>
 
 <nav class="navbar navbar-vertical navbar-expand-lg">
@@ -81,6 +94,12 @@
         <ul class="navbar-nav flex-column" id="navbarVerticalNav">
           <li class="nav-item">
             <!-- parent pages-->
+            <div>
+                <img src="resources/assets/img/userpanel.png"></img>
+                <span>Enrique Baldeon</span
+                <span>ebaldeon@gmail.com</span
+            </div>
+
             <p class="navbar-vertical-label">Home</p>
             <p class="navbar-vertical-label-under">Apps Principales</p>
             <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#home" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="home">
