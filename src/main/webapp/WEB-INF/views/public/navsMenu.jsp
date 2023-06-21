@@ -79,6 +79,47 @@
     .text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end{
     color:white!important;
     }
+
+    #usermenu{
+    float:left;
+    border:0px solid red;
+    height:200px;
+    width:100%;
+    }
+
+    #span1{
+    float:left;
+    width:93px;
+    height:90px;
+    margin-left:80px;
+    border:0px solid green;
+    font-size:65px;
+    font-weight:600;
+    padding:0px 0px 0px 25px;
+    background-color:orange;
+    color:white;
+    border-radius:130px;
+    }
+
+    #span2{
+    float:left;
+    text-align:center;
+    margin-top:30px;
+    width:100%;
+    font-size:15px;
+    color:white;
+    border:0px solid blue;
+    }
+
+    #span3{
+    float:left;
+    text-align:center;
+    width:100%;
+    font-size:14px;
+    color:#8C969C;
+    font-weight:700;
+    border:0px solid yellow;
+    }
 </style>
 
 <nav class="navbar navbar-vertical navbar-expand-lg">
@@ -94,10 +135,10 @@
         <ul class="navbar-nav flex-column" id="navbarVerticalNav">
           <li class="nav-item">
             <!-- parent pages-->
-            <div>
-                <img src="resources/assets/img/userpanel.png"></img>
-                <span>Enrique Baldeon</span
-                <span>ebaldeon@gmail.com</span
+            <div id="usermenu">
+                <span id="span1">E</span>
+                <span id="span2">Enrique Baldeon</span>
+                <span id="span3">ebaldeon@gmail.com</span>
             </div>
 
             <p class="navbar-vertical-label">Home</p>
