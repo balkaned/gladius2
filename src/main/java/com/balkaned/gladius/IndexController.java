@@ -20,15 +20,14 @@ public class IndexController {
    /* @Autowired
     UsuarioConeccionService usuarioConeccionService;*/
 
-    @RequestMapping("/home")
-    public ModelAndView home(ModelMap model, HttpServletRequest request) {
-        return new ModelAndView("public/index");
-    }
-
-
     @RequestMapping("/empleadosList")
     public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
         return new ModelAndView("public/gladius/empleadosList");
+    }
+
+    @RequestMapping("/home")
+    public ModelAndView home(ModelMap model, HttpServletRequest request) {
+        return new ModelAndView("public/index");
     }
 
 }
