@@ -56,7 +56,7 @@
     }
 
     .navbar-vertical-footer{
-    background-color:#1E283D;
+    background-color:#1E283D !important;
     color:white;
     border-top:1px solid #373E53 !important;
     }
@@ -129,6 +129,23 @@
     border:0px solid yellow;
     }
 
+    .navbar-vertical-label-under{
+    font-size:0px !important;
+    }
+
+    .navbar.navbar-vertical.navbar-expand-lg{
+        background-color:#111827 !important;
+    }
+
+    .collapse.navbar-collapse div ul li div #span1{
+        /*width:0px !important;
+        height:0px !important;*/
+    }
+
+    .collapse.navbar-collapse div ul li div{
+        /*width:0px !important;
+        height:20px !important;*/
+    }
 </style>
 
 <nav class="navbar navbar-vertical navbar-expand-lg">

@@ -36,7 +36,7 @@
         <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
         <a class="navbar-brand me-1 me-sm-3" href="index.html">
           <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logo.png" alt="phoenix" width="27" />
+            <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast.png" alt="phoenix" width="27" />
               <p class="logo-text ms-2 d-none d-sm-block">gladius</p>
             </div>
           </div>
@@ -178,8 +178,8 @@
         <li class="nav-item">
           <div class="theme-control-toggle fa-icon-wait px-2">
             <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox" data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
-            <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch theme"><span class="icon" data-feather="moon"></span></label>
-            <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch theme"><span class="icon" data-feather="sun"></span></label>
+            <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon" data-feather="moon"></span></label>
+            <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon" data-feather="sun"></span></label>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -389,7 +389,7 @@
                     <img class="rounded-circle " src="resources/assets/img/team/72x72/57.webp" alt="" />
 
                   </div>
-                  <h6 class="mt-2 text-black">Jerry Seinfield</h6>
+                  <h6 class="mt-2 text-black">${usuario}</h6>
                 </div>
                 <div class="mb-3 mx-3">
                   <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
@@ -397,20 +397,20 @@
               </div>
               <div class="overflow-auto scrollbar" style="height: 10rem;">
                 <ul class="nav d-flex flex-column mb-2 pb-1">
-                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Profile</span></a></li>
-                  <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="pie-chart"></span>Dashboard</a></li>
-                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
+                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Perfil</span></a></li>
+                  <li class="nav-item"><a class="nav-link px-3" href="selcompanias@${idusuario}"><span class="me-2 text-900" data-feather="pie-chart"></span>Cambiar Instancia</a></li>
+                  <!--<li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="help-circle"></span>Help Center</a></li>
-                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="globe"></span>Language</a></li>
+                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="globe"></span>Language</a></li>-->
                 </ul>
               </div>
               <div class="card-footer p-0 border-top">
                 <ul class="nav d-flex flex-column my-3">
-                  <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user-plus"></span>Add another account</a></li>
+                  <!--<li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user-plus"></span>Add another account</a></li>-->
                 </ul>
                 <hr />
-                <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!"> <span class="me-2" data-feather="log-out"> </span>Sign out</a></div>
+                <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="logoff"> <span class="me-2" data-feather="log-out"> </span>Log out</a></div>
                 <div class="my-2 text-center fw-bold fs--2 text-600"><a class="text-600 me-1" href="#!">Privacy policy</a>&bull;<a class="text-600 mx-1" href="#!">Terms</a>&bull;<a class="text-600 ms-1" href="#!">Cookies</a></div>
               </div>
             </div>
