@@ -61,7 +61,7 @@ public class IndexController {
             }
         }
 
-        return new ModelAndView("public/login2");
+        return new ModelAndView("public/login2a");
     }
 
     @RequestMapping("/verificarLogin2")
@@ -94,9 +94,19 @@ public class IndexController {
 
                         logger.info("ID_Usuario: "+uc2.getId_usuario());
 
+                        char firstCharacter = uc3.getUser().charAt(0);
+                        char char1UpperCase = Character.toUpperCase(firstCharacter);
+                        String cast1= String.valueOf(char1UpperCase);
+
+                        String nombre = uc3.getUser();
+                        String resultado = nombre.toUpperCase().charAt(0) + nombre.substring(1, nombre.length()).toLowerCase();
+
                         //###### SETEAMOS VARIABLES DE SESION###########
-                        request.getSession().setAttribute("user", uc3.getUser());
+                        request.getSession().setAttribute("user", resultado);
                         request.getSession().setAttribute("idUser", uc3.getId_usuario());
+                        request.getSession().setAttribute("email", uc3.getEmail());
+                        request.getSession().setAttribute("firstCharacter", cast1);
+                        request.getSession().setAttribute("idCompania", uc3.getCodCia());
                         request.getSession().setAttribute("tiposession", "1");
 
                         logger.info("User: "+uc3.getUser());
@@ -137,11 +147,33 @@ public class IndexController {
     public ModelAndView logoff(ModelMap model, HttpServletRequest request){
 
         //model.addAttribute("usuario", new Usuario());
+
         request.getSession().setAttribute("user", null);
         request.getSession().setAttribute("idUser", null);
-        request.getSession().setAttribute("iconMenu", null);
+        request.getSession().setAttribute("email", null);
+        request.getSession().setAttribute("firstCharacter", null);
+        request.getSession().setAttribute("idCompania", null);
 
         return new ModelAndView("redirect:/login2");
+    }
+
+    @RequestMapping("/home@{idComp}@{idUser}")
+    public ModelAndView home(ModelMap model, HttpServletRequest request,@PathVariable String idComp,@PathVariable String idUser) {
+
+        logger.info("idComp: "+idComp);
+        logger.info("idUser: "+idUser);
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+
+        return new ModelAndView("public/home");
     }
 
 }

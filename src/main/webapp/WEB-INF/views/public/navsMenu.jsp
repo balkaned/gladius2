@@ -39,11 +39,6 @@
     margin-top:-8px;
     }
 
-    .btn.btn-primary{
-    border-radius:30px !important;
-    background-color:#4F46E5 !important;
-    }
-
     .form-control.search-input.search{
     border-radius:30px !important;
     }
@@ -95,7 +90,7 @@
     width:100%;
     }
 
-    #span1{
+    /*#span1{
     float:left;
     width:93px;
     height:90px;
@@ -107,6 +102,20 @@
     background-color:orange;
     color:white;
     border-radius:130px;
+    }*/
+
+    #span1{
+        float:left;
+        width:93px;
+        height:90px;
+        margin-left:80px;
+        border:0px solid #FFB628;
+        font-size:65px;
+        font-weight:600;
+        padding:0px 0px 0px 0px;
+        background-color:orange;
+        color:white;
+        border-radius:130px;
     }
 
     #span2{
@@ -162,9 +171,9 @@
           <li class="nav-item">
             <!-- parent pages-->
             <div id="usermenu">
-                <span id="span1">E</span>
-                <span id="span2">Enrique Baldeon</span>
-                <span id="span3">ebaldeon@gmail.com</span>
+                <img id="span1" src="resources/assets/img/user.png"></img>
+                <span id="span2">${usuario}</span>
+                <span id="span3">${email}</span>
             </div>
 
             <p class="navbar-vertical-label">Home</p>
@@ -340,7 +349,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="empleadoList@${comp.id_companias}@${comp.id_usuario}" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Trabajadores</span></div>
               </a>
             </li>
