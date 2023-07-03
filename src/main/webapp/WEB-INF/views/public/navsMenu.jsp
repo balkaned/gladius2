@@ -9,14 +9,14 @@
 <!DOCTYPE html>
 <style>
     .navbar-vertical-label{
-    color:#818CE4 !important;
-    font-size:12px !important;
+        color:#818CE4 !important;
+        font-size:12px !important;
     }
 
     .nav-link-text{
-    color:#B8BABF !important;
-    font-size:14px !important;
-    margin-left:10px !important;
+        color:#B8BABF !important;
+        font-size:14px !important;
+        margin-left:10px !important;
     }
 
     .nav-link-text:hover{
@@ -24,84 +24,83 @@
     }
 
     .nav-link.dropdown-indicator.label-1:hover{
-     color:#111827 !important;
+         color:#111827 !important;
     }
 
     .nav-link-icon{
-    color:#B8BABF !important;
-
+        color:#B8BABF !important;
     }
 
     .navbar-vertical-label-under{
-    color:#B8BABF !important;
-    font-size:12px;
-    margin-left:32px;
-    margin-top:-8px;
+        color:#B8BABF !important;
+        font-size:12px;
+        margin-left:32px;
+        margin-top:-8px;
     }
 
     .form-control.search-input.search{
-    border-radius:30px !important;
+        border-radius:30px !important;
     }
 
     .list{
     }
 
     .content{
-    /*background-color:#F1F5F9;*/
+        /*background-color:#F1F5F9;*/
     }
 
     .navbar-vertical-footer{
-    background-color:#1E283D !important;
-    color:white;
-    border-top:1px solid #373E53 !important;
+        background-color:#1E283D !important;
+        color:white;
+        border-top:1px solid #373E53 !important;
     }
 
     .btn.p-0.border.border-200.btn-support-chat{
-    background-color:#EF5350 !important;
-    color:white !important;
+        background-color:#EF5350 !important;
+        color:white !important;
     }
 
     .btn.p-0.border.border-200.btn-support-chat span{
-    color:white !important;
+        color:white !important;
     }
 
     .svg-inline--fa.fa-circle.text-success.fs--1.ms-2{
-    color:white!important;
+        color:white!important;
     }
 
     .card-body.d-flex.align-items-center.px-2.py-1{
-    background-color:#111827 !important;
-    color:white !important;
-    border-radius:17px 17px 0px 0px;
+        background-color:#111827 !important;
+        color:white !important;
+        border-radius:17px 17px 0px 0px;
     }
 
     .icon-spin.position-absolute.all-0.d-flex.flex-center svg{
-    color:white !important;
+        color:white !important;
     }
 
     .text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end{
-    color:white!important;
+        color:white!important;
     }
 
     #usermenu{
-    float:left;
-    border:0px solid red;
-    height:200px;
-    width:100%;
+        float:left;
+        border:0px solid red;
+        height:200px;
+        width:100%;
     }
 
     /*#span1{
-    float:left;
-    width:93px;
-    height:90px;
-    margin-left:80px;
-    border:0px solid #FFB628;
-    font-size:65px;
-    font-weight:600;
-    padding:0px 0px 0px 25px;
-    background-color:orange;
-    color:white;
-    border-radius:130px;
+        float:left;
+        width:93px;
+        height:90px;
+        margin-left:80px;
+        border:0px solid #FFB628;
+        font-size:65px;
+        font-weight:600;
+        padding:0px 0px 0px 25px;
+        background-color:orange;
+        color:white;
+        border-radius:130px;
     }*/
 
     #span1{
@@ -119,27 +118,27 @@
     }
 
     #span2{
-    float:left;
-    text-align:center;
-    margin-top:30px;
-    width:100%;
-    font-size:15px;
-    color:white;
-    border:0px solid blue;
+        float:left;
+        text-align:center;
+        margin-top:30px;
+        width:100%;
+        font-size:15px;
+        color:white;
+        border:0px solid blue;
     }
 
     #span3{
-    float:left;
-    text-align:center;
-    width:100%;
-    font-size:14px;
-    color:#8C969C;
-    font-weight:700;
-    border:0px solid yellow;
+        float:left;
+        text-align:center;
+        width:100%;
+        font-size:14px;
+        color:#8C969C;
+        font-weight:700;
+        border:0px solid yellow;
     }
 
     .navbar-vertical-label-under{
-    font-size:0px !important;
+        font-size:0px !important;
     }
 
     .navbar.navbar-vertical.navbar-expand-lg{
@@ -154,6 +153,11 @@
     .collapse.navbar-collapse div ul li div{
         /*width:0px !important;
         height:20px !important;*/
+    }
+
+    .btn.btn-primary{
+        border-radius:30px !important;
+        background-color:#4F46E5 !important;
     }
 </style>
 
@@ -349,7 +353,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="empleadoList@${comp.id_companias}@${comp.id_usuario}" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="empleadosList@${idCompania}@${idUser}" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Trabajadores</span></div>
               </a>
             </li>

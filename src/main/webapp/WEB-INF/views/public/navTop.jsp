@@ -390,6 +390,7 @@
 
                   </div>
                   <h6 class="mt-2 text-black">${usuario}</h6>
+                  <span>${email}</span>
                 </div>
                 <div class="mb-3 mx-3">
                   <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />

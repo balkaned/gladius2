@@ -631,9 +631,9 @@
         <button class="btn p-0 border border-200 btn-support-chat"><span class="fs-0 btn-text text-primary text-nowrap">Chat demo</span><span class="fa-solid fa-circle text-success fs--1 ms-2"></span><span class="fa-solid fa-chevron-down text-primary fs-1"></span></button>
       </div>
     </main>
-    <!-- ===============================================-->
+    <!--===============================================-->
     <!--    End of Main Content-->
-    <!-- ===============================================-->
+    <!--===============================================-->
 
 
     <div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1" aria-labelledby="settings-offcanvas">
