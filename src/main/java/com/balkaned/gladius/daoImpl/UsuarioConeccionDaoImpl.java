@@ -37,7 +37,8 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 "us.iexemail, " +
                 "comp.iexcodcia, " +
                 "comp.iexdescia, " +
-                "comp.iexsourcedes " +
+                "comp.iexsourcedes, " +
+                "comp.iexnroruc " +
                 "from iexusuario us " +
                 "inner join iexusuxcia ucia on ucia.iexcodusu=us.iexcodusu " +
                 "inner join iexcompania comp on comp.iexcodcia=ucia.iexcodcia " +
@@ -54,6 +55,7 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     uc.setCodCia(rs.getString("iexcodcia"));
                     uc.setDesCia(rs.getString("iexdescia"));
                     uc.setSourceDes(rs.getString("iexsourcedes"));
+                    uc.setRuccia(rs.getString("iexnroruc"));
                 }
                 return uc;
             }
@@ -94,7 +96,8 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 "cp.iexcodcia, " +
                 "cp.iexdescia, " +
                 "cp.iexnroruc, " +
-                "cp.iexdireccion " +
+                "cp.iexdireccion, " +
+                "cp.iexreplogo " +
                 "from iexcompania cp " +
                 "inner join iexusuxcia uc on uc.iexcodcia=cp.iexcodcia " +
                 "inner join iexusuario us on us.iexcodusu=uc.iexcodusu " +
@@ -111,7 +114,7 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     comp.setNombre(rs.getString("iexdescia"));
                     comp.setRuc(rs.getString("iexnroruc"));
                     comp.setDireccion(rs.getString("iexdireccion"));
-
+                    comp.setUrlLogo(rs.getString("iexreplogo"));
 
                     list.add(comp);
                 }

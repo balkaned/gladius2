@@ -223,6 +223,9 @@ public class Empleado {
     String direccion1;
     String direccion2;
 
+    String letraIni;
+    String nomCompactoUpper;
+
 
 
 
@@ -1555,5 +1558,19 @@ public class Empleado {
         this.direccion2 = direccion2;
     }
 
+    public String getLetraIni() {
+        return letraIni;
+    }
 
+    public void setLetraIni(String letraIni) {
+        this.letraIni = letraIni;
+    }
+
+    public String getNomCompactoUpper() {
+        return nomCompactoUpper;
+    }
+
+    public void setNomCompactoUpper(String nomCompactoUpper) {
+        this.nomCompactoUpper = nomCompactoUpper;
+    }
 }

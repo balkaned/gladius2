@@ -399,7 +399,7 @@
               <div class="overflow-auto scrollbar" style="height: 10rem;">
                 <ul class="nav d-flex flex-column mb-2 pb-1">
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Perfil</span></a></li>
-                  <li class="nav-item"><a class="nav-link px-3" href="selcompanias@${idusuario}"><span class="me-2 text-900" data-feather="pie-chart"></span>Cambiar Instancia</a></li>
+                  <li class="nav-item"><a class="nav-link px-3" href="selcompaniasChange@${idusuario}"><span class="me-2 text-900" data-feather="pie-chart"></span>Cambiar Instancia</a></li>
                   <!--<li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="help-circle"></span>Help Center</a></li>

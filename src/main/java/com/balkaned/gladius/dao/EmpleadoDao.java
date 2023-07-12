@@ -1,15 +1,15 @@
 package com.balkaned.gladius.dao;
 
 import com.balkaned.gladius.beans.Empleado;
-
 import java.util.List;
 
 public interface EmpleadoDao {
 
     public List<Empleado> listarEmpCabecera(Empleado empleado);
-    /*public List<Empleado> listarEmpleado(Empleado empleado);
+    public List<Empleado> listarEmpleado(Empleado empleado);
+    public Empleado recuperarCabecera(Integer ciaid, Integer codtra);
 
-    public List<Empleado> listarEmpleadoActivos(Integer codcia);
+    /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
 
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
 

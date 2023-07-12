@@ -87,28 +87,15 @@
         border:0px solid red;
         height:200px;
         width:100%;
+        margin-bottom:60px;
     }
-
-    /*#span1{
-        float:left;
-        width:93px;
-        height:90px;
-        margin-left:80px;
-        border:0px solid #FFB628;
-        font-size:65px;
-        font-weight:600;
-        padding:0px 0px 0px 25px;
-        background-color:orange;
-        color:white;
-        border-radius:130px;
-    }*/
 
     #span1{
         float:left;
         width:93px;
         height:90px;
         margin-left:80px;
-        border:0px solid #FFB628;
+        border:3px solid white;
         font-size:65px;
         font-weight:600;
         padding:0px 0px 0px 0px;
@@ -159,6 +146,48 @@
         border-radius:30px !important;
         background-color:#4F46E5 !important;
     }
+
+    #span4{
+    float:left;
+    border:0px solid red;
+    color:#8C969C;
+    width:100%;
+    text-align:center;
+    margin-left:0px;
+    font-weight:800;
+    font-size:12px;
+    }
+
+    #span5{
+        float:left;
+        border:0px solid red;
+        color:#8C969C;
+        text-align:center;
+        font-weight:800;
+        width:100%;
+        margin-left:0px;
+        font-size:12px;
+    }
+
+    #span6{
+        float:left;
+        width:100%;
+        border:0px solid green;
+        color:#8C969C;
+        text-align:center;
+        font-weight:800;
+        margin-left:0px;
+        font-size:12px;
+        }
+
+    #h2top{
+        margin-top:30px;
+    }
+
+    .nav-item a{
+    font-size:13px !important;
+    }
+
 </style>
 
 <nav class="navbar navbar-vertical navbar-expand-lg">
@@ -178,49 +207,11 @@
                 <img id="span1" src="resources/assets/img/user.png"></img>
                 <span id="span2">${usuario}</span>
                 <span id="span3">${email}</span>
+                <span id="span4">${nombreComp}</span>
+                <span id="span5">Ruc: ${rucComp}</span>
+                <span id="span6">Rol: Admin</span>
             </div>
 
-            <p class="navbar-vertical-label">Home</p>
-            <p class="navbar-vertical-label-under">Apps Principales</p>
-            <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#home" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="home">
-                <div class="d-flex align-items-center">
-
-                  <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="home"></span></span><span class="nav-link-text">Home</span>
-                </div>
-              </a>
-              <div class="parent-wrapper label-1">
-
-                <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="home">
-
-                  <li class="collapsed-nav-item-title d-none">Home
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
-                      <div class="d-flex align-items-center"><span class="nav-link-text">E commerce</span>
-                      </div>
-                    </a>
-                    <!-- more inner pages-->
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="dashboard/project-management.html" data-bs-toggle="" aria-expanded="false">
-                      <div class="d-flex align-items-center"><span class="nav-link-text">Project management</span>
-                      </div>
-                    </a>
-                    <!-- more inner pages-->
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="dashboard/crm.html" data-bs-toggle="" aria-expanded="false">
-                      <div class="d-flex align-items-center"><span class="nav-link-text">CRM</span><span class="badge ms-2 badge badge-phoenix badge-phoenix-info ">New</span>
-                      </div>
-                    </a>
-                    <!-- more inner pages-->
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="apps/social/feed.html" data-bs-toggle="" aria-expanded="false">
-                      <div class="d-flex align-items-center"><span class="nav-link-text">Social feed</span>
-                      </div>
-                    </a>
-                    <!-- more inner pages-->
-                  </li>
-                </ul>
-              </div>
-            </div>
 
 
 
@@ -238,45 +229,45 @@
 
                 <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="conf">
 
-                  <li class="collapsed-nav-item-title d-none">Home</li>
+                  <li class="collapsed-nav-item-title d-none">Configuración</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Tablas Genericas</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text">Parametros</span></div>
                       </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Usuarios</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text">Compañias</span></div>
                       </a>
                   </li>
                   <li class="nav-item">
-                        <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Roles</span></div>
                         </a>
                   </li>
                   <li class="nav-item">
-                          <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                          <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-text">Opciones</span></div>
                           </a>
                   </li>
                   <li class="nav-item">
-                        <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Secciones</span></div>
                         </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text">Sistemas</span></div>
                       </a>
                   </li>
@@ -296,20 +287,20 @@
 
                 <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="plan">
 
-                  <li class="collapsed-nav-item-title d-none">Home</li>
+                  <li class="collapsed-nav-item-title d-none">Conf. Planillas</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Conceptos</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                         <div class="d-flex align-items-center"><span class="nav-link-text">Procesos y Form</span></div>
                       </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">C. Contables</span></div>
                     </a>
                   </li>
@@ -330,35 +321,35 @@
 
               <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="empl">
 
-                <li class="collapsed-nav-item-title d-none">Home</li>
+                <li class="collapsed-nav-item-title d-none">Organización</li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Areas</span></div>
                   </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Puestos</span></div>
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">C. Costos</span></div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Bancos</span></div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="empleadosList@${idCompania}@${idUser}" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="empleadosList" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Trabajadores</span></div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Locales</span></div>
               </a>
             </li>
@@ -378,25 +369,25 @@
 
             <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="tiemp">
 
-              <li class="collapsed-nav-item-title d-none">Home</li>
+              <li class="collapsed-nav-item-title d-none">Gestion de Tiempos</li>
 
               <li class="nav-item">
-                <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Asistencia</span></div>
                 </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Gestions de Turno</span></div>
               </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+            <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center"><span class="nav-link-text">Gestion de Vacaciones</span></div>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+            <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center"><span class="nav-link-text">Gestion de Ausentismo</span></div>
             </a>
           </li>
@@ -404,7 +395,7 @@
       </div>
     </div>
 
-    <p class="navbar-vertical-label">Gestion de Planillas</p>
+    <p class="navbar-vertical-label">Gestión de Planillas</p>
           <p class="navbar-vertical-label-under">Afp, liquidaciones y reportes</p>
             <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#rep" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="rep">
                 <div class="d-flex align-items-center">
@@ -416,85 +407,85 @@
 
                 <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="rep">
 
-                  <li class="collapsed-nav-item-title d-none">Home</li>
+                  <li class="collapsed-nav-item-title d-none">Gestión de Planillas</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">AFP</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Planillas</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Liquidaciones</span></div>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Provisiones</span></div>
                 </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Provisiones</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Reporte 5ta Nomina</span></div>
                     </a>
                </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Reporte de Planillas</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Adelantos</span></div>
                     </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Adelantos</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Adelantos</span></div>
                     </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Gratificaciones</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Cts</span></div>
                     </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Utilidades</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Planilla General</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Reporte Planilla x Concepto</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Reporte Nomina x Persona</span></div>
                     </a>
               </li>
@@ -502,7 +493,7 @@
           </div>
         </div>
 
-        <p class="navbar-vertical-label">Gestion de Procesos Externos</p>
+        <p class="navbar-vertical-label">Gestión de Procesos Externos</p>
           <p class="navbar-vertical-label-under">Plame y AfpNet</p>
             <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#ext" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="ext">
                 <div class="d-flex align-items-center">
@@ -514,20 +505,20 @@
 
                 <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="ext">
 
-                  <li class="collapsed-nav-item-title d-none">Home</li>
+                  <li class="collapsed-nav-item-title d-none">Gestión de Procesos Externos</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Plame</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Afp Net</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Asientos Contables</span></div>
                 </a>
               </li>
@@ -548,30 +539,30 @@
 
                         <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="alq">
 
-                          <li class="collapsed-nav-item-title d-none">Home</li>
+                          <li class="collapsed-nav-item-title d-none">Alquileres</li>
 
                           <li class="nav-item">
-                            <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                            <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                               <div class="d-flex align-items-center"><span class="nav-link-text">Gestión de Clientes</span></div>
                             </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-text">Gestión de Prodcutos</span></div>
                           </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Contrato Alquileres</span></div>
                         </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                          <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-text">Generar Recibos</span></div>
                           </a>
                         </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="index.html" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Reporte de Recibos</span></div>
                         </a>
                       </li>

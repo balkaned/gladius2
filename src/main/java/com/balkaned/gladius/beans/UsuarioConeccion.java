@@ -10,6 +10,7 @@ public class UsuarioConeccion {
     private String codCia;
     private String desCia;
     private String sourceDes;
+    private String ruccia;
 
     public UsuarioConeccion(String id_usuario, String user, String pass, String descripcion, String email, String codCia, String desCia, String sourceDes) {
         this.id_usuario = id_usuario;
@@ -88,5 +89,13 @@ public class UsuarioConeccion {
 
     public void setSourceDes(String sourceDes) {
         this.sourceDes = sourceDes;
+    }
+
+    public String getRuccia() {
+        return ruccia;
+    }
+
+    public void setRuccia(String ruccia) {
+        this.ruccia = ruccia;
     }
 }
