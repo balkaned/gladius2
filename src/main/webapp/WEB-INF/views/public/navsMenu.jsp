@@ -87,7 +87,7 @@
         border:0px solid red;
         height:200px;
         width:100%;
-        margin-bottom:60px;
+        margin-bottom:0px;
     }
 
     #span1{
@@ -95,11 +95,11 @@
         width:93px;
         height:90px;
         margin-left:80px;
-        border:3px solid white;
+        border:0px solid white;
         font-size:65px;
         font-weight:600;
         padding:0px 0px 0px 0px;
-        background-color:orange;
+        background-color:black;
         color:white;
         border-radius:130px;
     }
@@ -125,7 +125,7 @@
     }
 
     .navbar-vertical-label-under{
-        font-size:0px !important;
+        font-size:12px !important;
     }
 
     .navbar.navbar-vertical.navbar-expand-lg{
@@ -147,47 +147,32 @@
         background-color:#4F46E5 !important;
     }
 
-    #span4{
-    float:left;
-    border:0px solid red;
-    color:#8C969C;
-    width:100%;
-    text-align:center;
-    margin-left:0px;
-    font-weight:800;
-    font-size:12px;
-    }
 
-    #span5{
-        float:left;
-        border:0px solid red;
-        color:#8C969C;
-        text-align:center;
-        font-weight:800;
-        width:100%;
-        margin-left:0px;
-        font-size:12px;
-    }
-
-    #span6{
-        float:left;
-        width:100%;
-        border:0px solid green;
-        color:#8C969C;
-        text-align:center;
-        font-weight:800;
-        margin-left:0px;
-        font-size:12px;
-        }
 
     #h2top{
-        margin-top:30px;
+        margin-top:50px;
     }
 
     .nav-item a{
     font-size:13px !important;
     }
 
+    .fw-bolder.mb-2{
+        font-size:17px;
+    }
+
+    .fw-bold{
+        font-size:12px;
+    }
+
+    #otropciones{
+        margin-top:50px;
+    }
+
+    /*.d-flex.align-items-center span{
+        color:#31374A;
+        font-size:14px;
+    }*/
 </style>
 
 <nav class="navbar navbar-vertical navbar-expand-lg">
@@ -204,18 +189,10 @@
           <li class="nav-item">
             <!-- parent pages-->
             <div id="usermenu">
-                <img id="span1" src="resources/assets/img/user.png"></img>
+                <img id="span1" src="verFoto@LOGO@${idComp}@${urlLogo}"></img>
                 <span id="span2">${usuario}</span>
                 <span id="span3">${email}</span>
-                <span id="span4">${nombreComp}</span>
-                <span id="span5">Ruc: ${rucComp}</span>
-                <span id="span6">Rol: Admin</span>
             </div>
-
-
-
-
-
 
             <p class="navbar-vertical-label">Configuración</p>
             <p class="navbar-vertical-label-under">Menus de Configuración</p>

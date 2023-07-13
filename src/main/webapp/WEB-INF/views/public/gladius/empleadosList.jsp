@@ -293,7 +293,7 @@
                               <div class="avatar avatar-m">
                                 <div class="avatar-name rounded-circle"><span>${empl.letraIni}</span></div>
                               </div>
-                              <h6 class="mb-0 ms-3 text-900">${empl.iexnomtra} ${empl.iexapepat} ${empl.iexapemat}</h6>
+                              <h6 class="mb-0 ms-3 text-900">${empl.nomCompactoUpper}</h6>
                             </a>
                           </td>
                           <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexcodsex}</td>

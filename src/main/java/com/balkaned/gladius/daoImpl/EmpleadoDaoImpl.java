@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.dao.EmpleadoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -81,6 +82,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
                 while(rs.next()) {
                     Empleado p = new Empleado();
+                    CapitalizarCadena cap = new CapitalizarCadena();
+
                     p.setIexcodcia(rs.getInt("iexcodcia")) ;
                     p.setIexcodtra(rs.getInt("iexcodtra")) ;
                     p.setIexnomtra(rs.getString("iexnomtra")) ;
@@ -108,7 +111,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexfeccmod(rs.getString("iexfecmod"));
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexusumod(rs.getString("iexusumod"));
-
 
                     p.setDestipcese(rs.getString("destipcese"));
                     p.setDessex(rs.getString("dessex"));
@@ -219,6 +221,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
                 while(rs.next()) {
                     Empleado p = new Empleado();
+                    CapitalizarCadena cap = new CapitalizarCadena();
+
                     p.setIexcodcia(rs.getInt("iexcodcia")) ;
                     p.setIexcodtra(rs.getInt("iexcodtra")) ;
                     p.setIexnomtra(rs.getString("iexnomtra")) ;
@@ -230,7 +234,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexfecing(rs.getString("iexfecing")) ;
                     p.setIextipcese(rs.getString("iextipcese")) ;
                     p.setIexfecret(rs.getString("iexfecret")) ;
-                    p.setIexcodsex(rs.getString("dessex")) ;
+                    p.setIexcodsex(cap.letras(rs.getString("dessex"))) ;
                     p.setIexpaisemisor(rs.getString("iexpaisemisor")) ;
                     p.setIexflgest(rs.getString("iexflgest")) ;
                     p.setIexcodant(rs.getString("iexcodant"));
@@ -252,13 +256,16 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setDespaisemisor(rs.getString("despaisemisor"));
                     p.setDesestado(rs.getString("desestado"));
                     p.setDestiptra(rs.getString("destiptra"));
-                    p.setIexpuesto(rs.getString("despuesto"));
+                    p.setIexpuesto(cap.letras(rs.getString("despuesto")));
 
                     char firstCharacter = p.getIexnomtra().charAt(0);
                     char char1UpperCase = Character.toUpperCase(firstCharacter);
                     String cast1= String.valueOf(char1UpperCase);
 
                     p.setLetraIni(cast1);
+
+                    String nombrecompleto=cap.letras(p.getIexnomtra())+" "+cap.letras(p.getIexapemat())+" "+cap.letras(p.getIexapemat());
+                    p.setNomCompactoUpper(nombrecompleto);
 
                     lista.add(p);
                 }
@@ -319,6 +326,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
                 while(rs.next()) {
+                    CapitalizarCadena cap = new CapitalizarCadena();
+
                     p.setIexcodcia(rs.getInt("iexcodcia")) ;
                     p.setIexcodtra(rs.getInt("iexcodtra")) ;
                     p.setIexnomtra(rs.getString("iexnomtra")) ;
@@ -347,7 +356,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexusumod(rs.getString("iexusumod"));
 
-
                     p.setDestipcese(rs.getString("destipcese"));
                     p.setDessex(rs.getString("dessex"));
                     p.setDespaisemisor(rs.getString("despaisemisor"));
@@ -363,7 +371,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexgrdinstruccion(rs.getString("iexgrdinstruccion"));
                     p.setDescentroform(rs.getString("descentroform"));
 
-
                     p.setIexcodlardist(rs.getString("iexcodlardist"));
                     p.setIexnrotelf(rs.getString("iexnrotelf"));
                     p.setIexemail(rs.getString("iexemail"));
@@ -375,8 +382,10 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
                     p.setDireccion1(rs.getString("direccion"));
 
-                    p.setDespuesto(rs.getString("despuesto"));
+                    p.setDespuesto(cap.letras(rs.getString("despuesto")));
 
+                    String nombrecompleto=cap.letras(p.getIexnomtra())+" "+cap.letras(p.getIexapemat())+" "+cap.letras(p.getIexapemat());
+                    p.setNomCompactoUpper(nombrecompleto);
                 }
                 return p;
             }

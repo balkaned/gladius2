@@ -33,6 +33,16 @@ border-radius:30px;
 .badge.badge-phoenix.fs--2.mb-4.badge-phoenix-success{
 margin-top:23px;
 }
+
+#imgcompany{
+    border:0px solid red;
+    width:80px;
+    margin-left:250px;
+}
+
+.mt-lg-3.mt-xl-0{
+margin-top:10px !important;
+}
 </style>
       <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
@@ -90,7 +100,7 @@ margin-top:23px;
                     <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
                   </div>
                 </div><span class="badge badge-phoenix fs--2 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
-                    <img src="verFoto@${comp.id_companias}@${comp.urlLogo}" class="avatar" alt="Avatar">
+                    <img id="imgcompany" src="verFoto@LOGO@${comp.id_companias}@${comp.urlLogo}" class="avatar" alt="Avatar" width="100">
                 <div class="d-flex align-items-center mb-2"><span class="fa-solid fa-user me-2 text-700 fs--1 fw-extra-bold"></span>
                   <p class="fw-bold mb-0 text-truncate lh-1">RUC : <span class="fw-semi-bold text-primary ms-1">${comp.ruc}</span></p>
                 </div>

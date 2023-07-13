@@ -211,9 +211,12 @@ public class IndexController {
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
 
         request.getSession().setAttribute("idCompania", comp1.getIdCodcia());
+        request.getSession().setAttribute("urlLogo", comp1.getUrlLogo());
         request.getSession().setAttribute("nombrecomp", comp1.getDescCia());
         request.getSession().setAttribute("ruccomp", comp1.getNroRuc());
 
+        model.addAttribute("idComp",idComp);
+        model.addAttribute("urlLogo",comp1.getUrlLogo());
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
         model.addAttribute("email",email);
@@ -224,10 +227,11 @@ public class IndexController {
         return new ModelAndView("public/home");
     }
 
-    @RequestMapping("/verFoto@{idComp}@{urlLogo}")
+    @RequestMapping("/verFoto@{logo}@{idComp}@{urlLogo}")
     public ModelAndView verFoto(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String logo, @PathVariable String idComp, @PathVariable String urlLogo) throws IOException {
 
-        String accion="LOGO";
+        logger.info("logo: "+logo);
+        String accion=logo;
         String codciax=idComp;
         String fileurl=urlLogo;
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
@@ -306,6 +310,11 @@ public class IndexController {
                 key_name =ciainfo.getIexususource().trim();
                 passPhrase = ciainfo.getIexpasssource().trim();
                 // Regionname = ciainfo.getIexregiondes().trim();
+
+                logger.info("clientRegion: "+clientRegion);
+                logger.info("bucket_name: "+bucket_name);
+                logger.info("key_name: "+clientRegion);
+                logger.info("passPhrase: "+passPhrase);
 
                 credentials = new BasicAWSCredentials(key_name, passPhrase);
                 s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();

@@ -39,6 +39,7 @@ public class EmpleadoController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
         logger.info("usuario: "+usuario);
         logger.info("idusuario: "+idusuario);
@@ -54,6 +55,8 @@ public class EmpleadoController {
         model.addAttribute("firstCharacter",firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
         model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
 
         Empleado emp = new Empleado();
         emp.setIexcodcia(idCompania);
@@ -74,6 +77,9 @@ public class EmpleadoController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idCompaniaXXXX: "+idCompania);
 
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
@@ -85,7 +91,7 @@ public class EmpleadoController {
         Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
 
         model.addAttribute("empleado", emp);
-        model.addAttribute("nombrecompl",emp.getIexnomtra()+" "+emp.getIexapemat()+" "+emp.getIexapemat());
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -93,8 +99,8 @@ public class EmpleadoController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getDesestado());
-
-
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
 
         /*TipoDoc td = new TipoDoc();
         List<TipoDoc> listTipoDoc=tipoDocService.listarTipoDocs(td);

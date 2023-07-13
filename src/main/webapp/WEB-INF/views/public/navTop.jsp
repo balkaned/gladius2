@@ -10,8 +10,8 @@
 
 <style>
     .navbar.navbar-top.fixed-top.navbar-expand{
-    background-color:#111827 !important;
-    border:0px solid;
+        background-color:#111827 !important;
+        border:0px solid;
     }
 
     .logo-text.ms-2.d-none.d-sm-block{
@@ -19,24 +19,69 @@
     }
 
     .nav-link{
-    color:#9FA6BC;
+        color:#9FA6BC;
     }
 
     .form-control.search-input.fuzzy-search.rounded-pill.form-control-sm{
-    background-color:#0F111A;
-    border: 2px solid #373E53;
-    border-radius:30px !important;
+        background-color:#0F111A;
+        border: 2px solid #373E53;
+        border-radius:30px !important;
     }
 
+    #span6a{
+        float:left;
+        width:100%;
+        border:0px solid green;
+        color:#8C969C;
+        text-align:center;
+        font-weight:600;
+        margin-left:0px;
+        font-size:12px;
+        border:0px solid red;
+        margin-bottom:20px;
+    }
+
+    #span4{
+        float:left;
+        border:0px solid red;
+        color:#848B9D;
+        width:100%;
+        text-align:center;
+        margin-left:0px;
+        font-weight:600;
+        font-size:12px;
+    }
+
+    #span5{
+        float:left;
+        border:0px solid red;
+        color:#848B9D;
+        text-align:center;
+        font-weight:600;
+        width:100%;
+        margin-left:0px;
+        font-size:12px;
+    }
+
+    #span6{
+        float:left;
+        width:100%;
+        border:0px solid green;
+        color:#848B9D;
+        text-align:center;
+        font-weight:600;
+        margin-left:0px;
+        font-size:12px;
+    }
 </style>
 <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
     <div class="collapse navbar-collapse justify-content-between">
       <div class="navbar-logo">
 
         <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-        <a class="navbar-brand me-1 me-sm-3" href="index.html">
+        <a class="navbar-brand me-1 me-sm-3" href="#">
           <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast.png" alt="phoenix" width="27" />
+            <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast2.png" alt="phoenix" width="27" />
               <p class="logo-text ms-2 d-none d-sm-block">gladius</p>
             </div>
           </div>
@@ -391,12 +436,15 @@
                   </div>
                   <h6 class="mt-2 text-black">${usuario}</h6>
                   <span>${email}</span>
+                  <span id="span4">${nombreComp}</span>
+                  <span id="span5">Ruc: ${rucComp}</span>
+                  <span id="span6a">Rol: Admin</span>
                 </div>
                 <div class="mb-3 mx-3">
                   <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
                 </div>
               </div>
-              <div class="overflow-auto scrollbar" style="height: 10rem;">
+              <div class="overflow-auto scrollbar" style="height: 6rem;">
                 <ul class="nav d-flex flex-column mb-2 pb-1">
                   <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="user"></span><span>Perfil</span></a></li>
                   <li class="nav-item"><a class="nav-link px-3" href="selcompaniasChange@${idusuario}"><span class="me-2 text-900" data-feather="pie-chart"></span>Cambiar Instancia</a></li>
