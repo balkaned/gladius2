@@ -184,13 +184,12 @@
         </div>
       </div>
       <div class="content">
-        <!--<nav class="mb-2" aria-label="breadcrumb">
+        <nav class="mb-2" aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-            <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+            <li class="breadcrumb-item"><a href="#!">Page</a></li>
             <li class="breadcrumb-item active">Default</li>
           </ol>
-        </nav>-->
+        </nav>
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
@@ -250,7 +249,7 @@
                 </div>
                 <div class="col-auto">
                   <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                  <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add Emplead</button>
+                  <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add Empleado</button>
                 </div>
               </div>
             </div>

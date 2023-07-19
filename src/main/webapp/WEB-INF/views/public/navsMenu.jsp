@@ -42,9 +42,6 @@
         border-radius:30px !important;
     }
 
-    .list{
-    }
-
     .content{
         /*background-color:#F1F5F9;*/
     }
@@ -144,17 +141,25 @@
 
     .btn.btn-primary{
         border-radius:30px !important;
-        background-color:#4F46E5 !important;
+        /*background-color:#4F46E5 !important;*/
     }
 
 
 
     #h2top{
-        margin-top:50px;
+        margin-top:10px;
     }
 
     .nav-item a{
-    font-size:13px !important;
+    /*font-size:13px !important;*/
+    }
+
+    .nav-link{
+        color:#3874ff !important;
+    }
+
+    .nav-link:hover{
+        text-decoration: underline;
     }
 
     .fw-bolder.mb-2{

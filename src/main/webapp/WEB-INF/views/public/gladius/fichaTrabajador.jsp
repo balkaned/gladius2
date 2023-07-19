@@ -49,7 +49,7 @@
                   <div class="col-12">
                     <div class="row align-items-center justify-content-between g-3 mb-3">
                       <div class="col-12 col-md-auto">
-                        <h2 id="h2top" class="mb-0">Ficha del Trabajador</h2>
+                        <h2 id="h2top" class="mb-0"></h2>
                       </div>
                       <div class="col-12 col-md-auto">
                         <div class="d-flex">
@@ -78,6 +78,41 @@
                           <h3 class="mb-0">Lead Details</h3>
                           <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-1"></span></button>
                         </div>
+
+                        <div class="card mb-5">
+                            <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 130px; ">
+                              <div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">
+                                <input class="d-none" id="upload-feed-cover-image" type="file" />
+                                <label class="cover-image-file-input" for="upload-feed-cover-image"></label>
+                                <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white"><span class="fa-solid fa-camera me-2 overlay-icon"> </span></div>
+                              </div>
+                              <input class="d-none" id="upload-feed-porfile-picture" type="file" />
+                              <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/team/59.webp" width="200" alt="" /></label>
+                            </div>
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="d-flex flex-wrap mb-3 align-items-center">
+                                    <h3 class="me-2">${nombrecompl}</h3><span class="fw-normal fs-0">${puesto}</span>
+                                  </div>
+                                  <div class="mb-3">
+                                    <div class="d-flex align-items-center flex-wrap">
+                                      <div class="d-flex me-4 mb-2"><span class="fa-solid fa-user-group fs--2 me-2 me-lg-1 me-xl-2"></span>
+                                        <h6 class="d-inline-block mb-0">1297 <span class="fw-semi-bold">Followers</span></h6>
+                                      </div>
+                                      <div class="d-flex mb-2"><span class="fa-solid fa-user-check fs--2 me-2 me-lg-1 me-xl-2"></span>
+                                        <h6 class="d-block d-xl-inline-block mb-0">
+                                          3971 <span class="fw-semi-bold">Following</span></h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p class="fw-semi-bold mb-0">Empresa<a href="#!"><span class="fa-solid fa-pencil fs--2 text-500 ms-3"></span></a></p>
+                                  <p class="text-700 mb-0">${nombreComp} </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                         <div class="card mb-3">
                           <div class="card-body">
                             <div class="row align-items-center g-3 text-center text-xxl-start">
