@@ -49,7 +49,6 @@ public class EmpleadoController {
         logger.info("nombreComp: "+nombreComp);
         logger.info("rucComp: "+rucComp);
 
-
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
         model.addAttribute("email",email);
