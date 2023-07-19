@@ -112,25 +112,10 @@
                               </div>
                             </div>
                         </div>
-
-                        <div class="card mb-3">
-                          <div class="card-body">
-                            <div class="row align-items-center g-3 text-center text-xxl-start">
-                              <div class="col-12 col-xxl-auto">
-                                <div class="avatar avatar-5xl"><img class="rounded-circle" src="resources/assets/img/team/33.webp" alt="" /></div>
-                              </div>
-                              <div class="col-12 col-sm-auto flex-1">
-                                <h3 class="fw-bolder mb-2">${nombrecompl}</h3>
-                                <p class="mb-0">${puesto}</p><a class="fw-bold" href="#!">${nombreComp}</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <div class="card mb-3">
                           <div class="card-body">
                             <div class="d-flex align-items-center mb-5">
                               <h3>Acerca de</h3>
-
                             </div>
                             <div class="mb-4">
                               <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-envelope-alt">  </span>
@@ -254,7 +239,7 @@
                           <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyDeals">Datos Laborales</a></li>
                           <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyEmails">Información de Pago</a></li>
                           <li class="nav-item"><a class="nav-link" href="#scrollspyAttachments">Seguridad Social</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#scrollspyAttachments">Datos Domicilio</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#scrollspyDomic">Datos Domicilio</a></li>
                         </ul>
                       </nav>
 
@@ -262,14 +247,67 @@
                         <div class="mb-8">
                               <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyTask">
                                 <h2 class="mb-0">Datos Personales</h2>
-
                               </div>
+                              <form class="row g-3 mb-9">
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Street</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectCity">
+                                          <option selected="selected"> Neo centrola</option>
+                                          <option value="1">London</option>
+                                          <option value="2">New York </option>
+                                        </select>
+                                        <label for="floatingSelectCity">City</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectState">
+                                          <option selected="selected"> Qualimando</option>
+                                          <option value="1">Sovereign</option>
+                                          <option value="2">Northeastern United States</option>
+                                        </select>
+                                        <label for="floatingSelectState">State</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectCountry">
+                                          <option selected="selected"> United Empire of Brekania</option>
+                                          <option value="1">UK</option>
+                                          <option value="2">USA</option>
+                                        </select>
+                                        <label for="floatingSelectCountry">Country</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputZipcode" type="text" placeholder="zip code" />
+                                        <label for="floatingInputZipcode">zip code</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="flatpickr-input-container">
+                                        <div class="form-floating">
+                                          <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                          <label class="ps-6" for="floatingInputStartDate">Start date</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                             </form>
 
-                              <div class="card">
-                                <div class="card-body">
+
+
+
+
+
                                   <div class="row g-3">
                                     <div class="col-12">
-
                                       <div class="col-3">
                                           <div class="d-flex flex-wrap justify-content-between mb-3">
                                               <div class="d-flex flex-wrap justify-content-between mb-2">
@@ -537,8 +575,6 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div>
 
                         </div>
 
