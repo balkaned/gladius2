@@ -42,6 +42,8 @@
 <link href="resources/assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
 <link href="resources/assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
 
+<link href="resources/assets/css/stylesgladius.css" type="text/css" rel="stylesheet" id="user-style-default">
+
 
 <!-- ===============================================-->
 <!--    JavaScripts-->

@@ -235,296 +235,173 @@
                     <div class="lead-details-container">
                       <nav class="navbar pb-4 px-0 sticky-top bg-soft nav-underline-scrollspy" id="navbar-deals-detail">
                         <ul class="nav nav-underline">
-                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyTask">Datos Personales</a></li>
-                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyDeals">Datos Laborales</a></li>
-                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyEmails">Información de Pago</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#scrollspyAttachments">Seguridad Social</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#scrollspyDomic">Datos Domicilio</a></li>
+                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyDatosPers">Datos Personales</a></li>
+                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyDatosLab">Datos Laborales</a></li>
+                          <li class="nav-item"><a class="nav-link pe-3" href="#scrollspyInform">Información de Pago</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#scrollspySeguridad">Seguridad Social</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#scrollspyDomicilio">Datos Domicilio</a></li>
                         </ul>
                       </nav>
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
                         <div class="mb-8">
-                              <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyTask">
-                                <h2 class="mb-0">Datos Personales</h2>
+                              <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosPers">
+                                <h2 class="mb-0">Datos personales</h2>
                               </div>
                               <form class="row g-3 mb-9">
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                        <label for="floatingInputStreet">Street</label>
+                                        <label for="floatingInputStreet">Codigo Empleado</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
                                         <select class="form-select" id="floatingSelectCity">
-                                          <option selected="selected"> Neo centrola</option>
-                                          <option value="1">London</option>
-                                          <option value="2">New York </option>
+                                          <option selected="selected">Seleccionar</option>
+                                          <option value="1">Valor1</option>
                                         </select>
-                                        <label for="floatingSelectCity">City</label>
+                                        <label for="floatingSelectCity">Tipo de Empleado</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                        <select class="form-select" id="floatingSelectState">
-                                          <option selected="selected"> Qualimando</option>
-                                          <option value="1">Sovereign</option>
-                                          <option value="2">Northeastern United States</option>
-                                        </select>
-                                        <label for="floatingSelectState">State</label>
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Activo</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Estado</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nro Documento</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Codigo Anterior</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6">
                                       <div class="form-floating">
-                                        <select class="form-select" id="floatingSelectCountry">
-                                          <option selected="selected"> United Empire of Brekania</option>
-                                          <option value="1">UK</option>
-                                          <option value="2">USA</option>
-                                        </select>
-                                        <label for="floatingSelectCountry">Country</label>
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Apellido Paterno</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6">
                                       <div class="form-floating">
-                                        <input class="form-control" id="floatingInputZipcode" type="text" placeholder="zip code" />
-                                        <label for="floatingInputZipcode">zip code</label>
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Apellido Materno</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nombres</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="flatpickr-input-container">
                                         <div class="form-floating">
                                           <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                          <label class="ps-6" for="floatingInputStartDate">Start date</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                          <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         </div>
                                       </div>
                                     </div>
-                             </form>
-
-
-
-
-
-
-                                  <div class="row g-3">
-                                    <div class="col-12">
-                                      <div class="col-3">
-                                          <div class="d-flex flex-wrap justify-content-between mb-3">
-                                              <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                <h5 class="mb-0 text-1000 me-2">Codigo Empleado</h5>
-                                              </div>
-                                              <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                          </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Masculino</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Sexo(*)[TT50]</label>
                                       </div>
-                                      <div class="col-8">
-                                            <h5 class="mb-0 text-1000 mb-2">Tipo Documento</h5>
-                                            <select class="form-select mb-3" aria-label="priority">
-                                              <option value="low">Low</option>
-                                              <option value="high">High</option>
-                                              <option value="medium">Medium</option>
-                                              <option value="urgent">Urgent</option>
-                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Estado Civil (*) [TT68]</label>
                                       </div>
-                                      <div class="col-8">
-                                            <h5 class="mb-0 text-1000 mb-2">Estado</h5>
-                                            <select class="form-select mb-3" aria-label="stage">
-                                              <option value="new">New</option>
-                                              <option value="in-progress">In Progress</option>
-                                              <option value="pending">Pending</option>
-                                              <option value="canceled">Canceled</option>
-                                              <option value="completed">Completed</option>
-                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Modalidad Formativa [TT18]</label>
                                       </div>
-                                      <div class="col-5">
-                                            <div class="d-flex flex-wrap justify-content-between mb-3">
-                                                <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                  <h5 class="mb-0 text-1000 me-2">Nro Documento</h5>
-                                                </div>
-                                                <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Nacionalidad Origen (*) [TT4]</label>
                                       </div>
-                                      <div class="col-5">
-                                           <div class="d-flex flex-wrap justify-content-between mb-3">
-                                               <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                 <h5 class="mb-0 text-1000 me-2">Codigo Anterior</h5>
-                                               </div>
-                                               <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                           </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Pais Emisor (*) [TT26]</label>
                                       </div>
-                                      <div class="col-8">
-                                             <div class="d-flex flex-wrap justify-content-between mb-3">
-                                                 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                   <h5 class="mb-0 text-1000 me-2">Apellido Paterno</h5>
-                                                 </div>
-                                                 <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                             </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Departamento</label>
                                       </div>
-                                      <div class="col-8">
-                                           <div class="d-flex flex-wrap justify-content-between mb-3">
-                                               <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                 <h5 class="mb-0 text-1000 me-2">Apellido Materno</h5>
-                                               </div>
-                                               <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                           </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Provincia</label>
                                       </div>
-                                      <div class="col-8">
-                                          <div class="d-flex flex-wrap justify-content-between mb-3">
-                                              <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                <h5 class="mb-0 text-1000 me-2">Nombres</h5>
-                                              </div>
-                                              <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Distrito (*)</label>
                                       </div>
-
-                                      <div class="col-8">
-                                           <div class="d-flex flex-wrap justify-content-between mb-3">
-                                               <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                 <h5 class="mb-0 text-1000 me-2">Fecha de Nacimiento</h5>
-                                               </div>
-                                               <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                           </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Grado Instruccion (*) [TT9]</label>
                                       </div>
-                                      <div class="col-8">
-                                          <div class="d-flex flex-wrap justify-content-between mb-3">
-                                             <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                <h5 class="mb-0 text-1000 mb-2">Sexo(*)[TT50]</h5>
-                                             </div>
-                                              <select class="form-select mb-3" aria-label="stage">
-                                                <option value="new">New</option>
-                                                <option value="in-progress">In Progress</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="canceled">Canceled</option>
-                                                <option value="completed">Completed</option>
-                                              </select>
-                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Centro de Formacion [TT51]</label>
                                       </div>
-                                      <div class="col-8">
-                                            <div class="d-flex flex-wrap justify-content-between mb-3">
-                                               <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                  <h5 class="mb-0 text-1000 mb-2">Estado Civil (*) [TT68]</h5>
-                                               </div>
-                                                <select class="form-select mb-3" aria-label="stage">
-                                                  <option value="new">New</option>
-                                                  <option value="in-progress">In Progress</option>
-                                                  <option value="pending">Pending</option>
-                                                  <option value="canceled">Canceled</option>
-                                                  <option value="completed">Completed</option>
-                                                </select>
-                                            </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Modalidad Formativa [TT18]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Nacionalidad Origen (*) [TT4]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Pais Emisor (*) [TT26]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Departamento</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Provincia</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Distrito (*)</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Grado Instruccion (*) [TT9]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Centro de Formacion [TT51]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-5">
+                                    </div>
+                                    <div class="col-5">
                                          <div class="d-flex flex-wrap justify-content-between mb-3">
                                              <div class="d-flex flex-wrap justify-content-between mb-2">
                                                   <div class="form-check form-switch">
@@ -533,250 +410,236 @@
                                                   </div>
                                               </div>
                                          </div>
-                                      </div>
-
-                                      <div class="col-8">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                      	 <div class="d-flex flex-wrap justify-content-between mb-2">
-                                      		<h5 class="mb-0 text-1000 mb-2">Codigo de Larga Distancia [TT29]</h5>
-                                      	 </div>
-                                      	  <select class="form-select mb-3" aria-label="stage">
-                                      		<option value="new">New</option>
-                                      		<option value="in-progress">In Progress</option>
-                                      		<option value="pending">Pending</option>
-                                      		<option value="canceled">Canceled</option>
-                                      		<option value="completed">Completed</option>
-                                      	  </select>
-                                        </div>
-                                      </div>
-                                      <div class="col-5">
-                                        <div class="d-flex flex-wrap justify-content-between mb-3">
-                                            <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <h5 class="mb-0 text-1000 me-2">Nro de Telefono</h5>
-                                            </div>
-                                            <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                        </div>
-                                      </div>
-                                      <div class="col-8">
-                                          <div class="d-flex flex-wrap justify-content-between mb-3">
-                                              <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                <h5 class="mb-0 text-1000 me-2">Email</h5>
-                                              </div>
-                                              <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                          </div>
-                                      </div>
-                                      <div class="col-8">
-                                           <div class="d-flex flex-wrap justify-content-between mb-3">
-                                               <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                 <h5 class="mb-0 text-1000 me-2">Email Coorp</h5>
-                                               </div>
-                                               <input class="form-control form-icon-input mb-3" id="firstName" type="text" placeholder="First Name" />
-                                           </div>
-                                      </div>
                                     </div>
-                                  </div>
-
+                                    <div class="col-sm-7">
+                                       <div class="form-floating">
+                                           <select class="form-select" id="floatingSelectCountry">
+                                             <option selected="selected">Seleccionar</option>
+                                             <option value="1">Femenino</option>
+                                           </select>
+                                           <label for="floatingSelectCountry">Codigo de Larga Distancia [TT29]</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Nro de Telefono</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Email</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Email Coorp</label>
+                                       </div>
+                                    </div>
+                             </form>
                         </div>
-
-
-
+                      </div>
 
                         <div class="mb-8">
-                          <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                            <h2 class="mb-0">Deals</h2>
-                            <button class="btn btn-primary btn-sm"><span class="fa-solid fa-plus me-2"></span>Add Deals</button>
+                          <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosLab">
+                            <h2 class="mb-0">Datos laborales</h2>
                           </div>
-                          <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
-                            <div class="table-responsive scrollbar mx-n1 px-1">
-                              <table class="table fs--1 mb-0">
-                                <thead>
-                                  <tr>
-                                    <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select='{"body":"lead-details-table-body"}' />
+                                <form class="row g-3 mb-9">
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Codigo Empleado</label>
                                       </div>
-                                    </th>
-                                    <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" style="width:15%; min-width:200px">Deal name</th>
-                                    <th class="sort align-middle pe-6 text-uppercase text-end" scope="col" data-sort="amount" style="width:15%; min-width:100px">Amount</th>
-                                    <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="stage" style="width:20%; min-width:200px">Stage</th>
-                                    <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="probability" style="width:20%; min-width:100px">Probability</th>
-                                    <th class="sort align-middle ps-0 text-end text-uppercase" scope="col" data-sort="date" style="width:15%; min-width:120px">Closing Date</th>
-                                    <th class="sort align-middle text-end text-uppercase" scope="col" data-sort="type" style="width:15%; min-width:140px">Type</th>
-                                    <th class="align-middle pe-0 text-end" scope="col" style="width:15%;"> </th>
-                                  </tr>
-                                </thead>
-                                <tbody class="list" id="lead-details-table-body">
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectCity">
+                                          <option selected="selected">Seleccionar</option>
+                                          <option value="1">Valor1</option>
+                                        </select>
+                                        <label for="floatingSelectCity">Tipo de Empleado</label>
                                       </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">Mocking Bird</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$6,800,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-success">won deal</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">67%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-info" style="width: 46.206896551724135%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Activo</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Estado</label>
                                       </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">Dec 29, 2021</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-info">warm</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nro Documento</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Codigo Anterior</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Apellido Paterno</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Apellido Materno</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nombres</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="flatpickr-input-container">
+                                        <div class="form-floating">
+                                          <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                          <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         </div>
                                       </div>
-                                    </td>
-                                  </tr>
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Airbender","active":true,"amount":"$89,090,000","stage_status":{"label":"new Deal","type":"badge-phoenix-primary"},"progress":{"min":"34","max":"145","color":"bg-warning"},"date":"Mar 27, 2021","type_status":{"label":"hot","type":"badge-phoenix-danger"}}' />
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Masculino</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Sexo(*)[TT50]</label>
                                       </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">Airbender</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$89,090,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-primary">new Deal</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">34%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-warning" style="width: 23.448275862068964%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Estado Civil (*) [TT68]</label>
                                       </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">Mar 27, 2021</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-danger">hot</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Modalidad Formativa [TT18]</label>
                                       </div>
-                                    </td>
-                                  </tr>
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Showmen","active":true,"amount":"$78,650,000","stage_status":{"label":"Canceled","type":"badge-phoenix-secondary"},"progress":{"min":"89","max":"145","color":"bg-success"},"date":"Jun 24, 2021","type_status":{"label":"cold","type":"badge-phoenix-warning"}}' />
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Nacionalidad Origen (*) [TT4]</label>
                                       </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">Showmen</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$78,650,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">Canceled</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">89%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-success" style="width: 61.37931034482759%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Pais Emisor (*) [TT26]</label>
                                       </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">Jun 24, 2021</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-warning">cold</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Departamento</label>
                                       </div>
-                                    </td>
-                                  </tr>
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Tarakihi","active":true,"amount":"$1,200,000","stage_status":{"label":"In Progress","type":"badge-phoenix-info"},"progress":{"min":"90","max":"145","color":"bg-success"},"date":"May 19, 2024","type_status":{"label":"hot","type":"badge-phoenix-danger"}}' />
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Provincia</label>
                                       </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">Tarakihi</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$1,200,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-info">In Progress</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">90%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-success" style="width: 62.06896551724138%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Distrito (*)</label>
                                       </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">May 19, 2024</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-danger">hot</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Grado Instruccion (*) [TT9]</label>
                                       </div>
-                                    </td>
-                                  </tr>
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Ponce d’leon","active":true,"amount":"$46,000","stage_status":{"label":"won Deal","type":"badge-phoenix-success"},"progress":{"min":"97","max":"145","color":"bg-success"},"date":"Aug 19, 2024","type_status":{"label":"cold","type":"badge-phoenix-warning"}}' />
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Centro de Formacion [TT51]</label>
                                       </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">Ponce d’leon</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$46,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-success">won Deal</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">97%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-success" style="width: 66.89655172413794%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">Aug 19, 2024</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-warning">cold</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="fs--1 align-middle px-0 py-3">
-                                      <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"leon","active":true,"amount":"$66,000","stage_status":{"label":"IN PROGRESS","type":"badge-phoenix-info"},"progress":{"min":"88","max":"145","color":"bg-success"},"date":"Aug 19, 2024","type_status":{"label":"cold","type":"badge-phoenix-warning"}}' />
-                                      </div>
-                                    </td>
-                                    <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">leon</a></td>
-                                    <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">$66,000</td>
-                                    <td class="stage align-middle white-space-nowrap text-900 py-2"><span class="badge badge-phoenix fs--2 badge-phoenix-info">IN PROGRESS</span></td>
-                                    <td class="probability align-middle white-space-nowrap">
-                                      <p class="text-800 fs--2 mb-0">88%</p>
-                                      <div class="progress bg-primary-100" style="height:3px;" role="progressbar">
-                                        <div class="progress-bar bg-success" style="width: 60.689655172413794%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </td>
-                                    <td class="date align-middle text-700 text-center py-2">Aug 19, 2024</td>
-                                    <td class="type align-middle fw-semi-bold py-2 text-end"><span class="badge badge-phoenix fs--2 badge-phoenix-warning">cold</span></td>
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
-                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                          <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
-                              <div class="col-auto d-flex">
-                                <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
-                              </div>
-                              <div class="col-auto d-flex">
-                                <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                                <ul class="mb-0 pagination"></ul>
-                                <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
-                              </div>
-                            </div>
+                                    </div>
+                                    <div class="col-5">
+                                         <div class="d-flex flex-wrap justify-content-between mb-3">
+                                             <div class="d-flex flex-wrap justify-content-between mb-2">
+                                                  <div class="form-check form-switch">
+                                                      <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
+                                                      <label class="form-check-label fs-0" for="showPhone">Es Domiciliado?</label>
+                                                  </div>
+                                              </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                       <div class="form-floating">
+                                           <select class="form-select" id="floatingSelectCountry">
+                                             <option selected="selected">Seleccionar</option>
+                                             <option value="1">Femenino</option>
+                                           </select>
+                                           <label for="floatingSelectCountry">Codigo de Larga Distancia [TT29]</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Nro de Telefono</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Email</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Email Coorporativo</label>
+                                       </div>
+                                    </div>
+                                </form>
                           </div>
                         </div>
+
                         <div class="mb-8">
                           <h2 class="mb-2" id="scrollspyEmails">Emails</h2>
                           <div>
