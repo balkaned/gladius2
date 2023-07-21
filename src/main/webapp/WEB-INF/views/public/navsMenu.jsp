@@ -118,7 +118,6 @@
               </div>
             </div>
 
-
           <p class="navbar-vertical-label">Organización</p>
           <p class="navbar-vertical-label-under">Gestión de Empleados</p>
           <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#empl" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="empl">
@@ -129,18 +128,18 @@
             </a>
             <div class="parent-wrapper label-1">
 
-              <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="empl">
+            <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="empl">
 
-                <li class="collapsed-nav-item-title d-none">Organización</li>
+            <li class="collapsed-nav-item-title d-none">Organización</li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text">Areas</span></div>
-                  </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
-                  <div class="d-flex align-items-center"><span class="nav-link-text">Puestos</span></div>
+            <li class="nav-item">
+              <a class="nav-link" href="listAreas" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center"><span class="nav-link-text">Areas</span></div>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listPuestos" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text">Puestos</span></div>
                 </a>
             </li>
             <li class="nav-item">
@@ -154,7 +153,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="empleadosList" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="listEmpleados" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Trabajadores</span></div>
               </a>
             </li>

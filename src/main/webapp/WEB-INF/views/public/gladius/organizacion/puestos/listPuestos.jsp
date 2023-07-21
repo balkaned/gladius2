@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <jsp:include page="../links.jsp"></jsp:include>
+    <jsp:include page="../../../links.jsp"></jsp:include>
 
     <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;
@@ -40,8 +40,8 @@
     <!-- ===============================================-->
     <main class="main" id="top">
 
-    <jsp:include page="../navsMenu.jsp"></jsp:include>
-    <jsp:include page="../navTop.jsp"></jsp:include>
+    <jsp:include page="../../../navsMenu.jsp"></jsp:include>
+    <jsp:include page="../../../navTop.jsp"></jsp:include>
 
       <div class="modal fade" id="searchBoxModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true" data-phoenix-modal="data-phoenix-modal" style="--phoenix-backdrop-opacity: 1;">
         <div class="modal-dialog">
@@ -193,7 +193,7 @@
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
-              <h2 id="h2top" class="mb-0">Gestión de Empleados</h2>
+              <h2 id="h2top" class="mb-0">Puestos</h2>
             </div>
           </div>
           <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
@@ -210,7 +210,7 @@
                 <div class="col-auto">
                   <div class="search-box">
                     <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                      <input class="form-control search-input search" type="search" placeholder="Search empleados" aria-label="Search" />
+                      <input class="form-control search-input search" type="search" placeholder="Search areas" aria-label="Search" />
                       <span class="fas fa-search search-box-icon"></span>
 
                     </form>
@@ -249,7 +249,7 @@
                 </div>
                 <div class="col-auto">
                   <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                  <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add Empleado</button>
+                  <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add new Puesto</button>
                 </div>
               </div>
             </div>
@@ -264,50 +264,28 @@
                         </div>
                       </th>
                       <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">TIPO DOC</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">NRO DOC</th>
-                      <th class="sort align-middle ps-8" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">SEXO</th>
-                      <th class="sort align-middle ps-8" scope="col" data-sort="date">PUESTO</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">TIPO TRAB</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">ESTADO</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECINI</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECFIN</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" >FICHA</th>
+                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">PUESTOS</th>
+                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">CATEGORIA</th>
+                      <th class="sort align-middle ps-8" scope="col" data-sort="date">ACCION</th>
                     </tr>
                   </thead>
                   <tbody class="list" id="order-table-body">
-                      <c:forEach var="empl" items="${requestScope.empleadoList}">
+                      <c:forEach var="puest" items="${requestScope.puestoList}">
                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                           <td class="fs--1 align-middle px-0 py-3">
                             <div class="form-check mb-0 fs-0">
                               <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                             </div>
                           </td>
-                          <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${empl.iexcodtra}</a></td>
-                          <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iextipdocid}</td>
-                          <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iexnrodoc}</td>
-                          <td class="customer align-middle white-space-nowrap ps-8">
-                            <a class="d-flex align-items-center" href="#!">
-                              <div class="avatar avatar-m">
-                                <div class="avatar-name rounded-circle"><span>${empl.letraIni}</span></div>
-                              </div>
-                              <h6 class="mb-0 ms-3 text-900">${empl.nomCompactoUpper}</h6>
-                            </a>
-                          </td>
-                          <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexcodsex}</td>
-                          <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="x" style="height:12.8px;width:12.8px;"></span></span></td>
-                          <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
-
-                            <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                             <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                          <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexfecing}</td>
-                          <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
+                          <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${puest.iexpuesto}</a></td>
+                          <td class="total align-middle text-end fw-semi-bold text-1000">${puest.iexdespuesto}</td>
+                          <td class="total align-middle text-end fw-semi-bold text-1000">${puest.descodcat}</td>
+                          <td class="total align-middle text-end fw-semi-bold text-1000"></td>
                           <td class="align-middle text-end white-space-nowrap pe-0 action">
                              <div class="font-sans-serif btn-reveal-trigger position-static">
                                <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                <div class="dropdown-menu dropdown-menu-end py-2">
-                                    <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver Detalle</a>
+                                    <a class="dropdown-item" href="detallearea">Ver Detalle</a>
                                     <a class="dropdown-item" href="#!">Ficha</a>
                                  <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                              </div>
@@ -342,7 +320,6 @@
           </div>
         </footer>
       </div>
-    <jsp:include page="../plugins.jsp"></jsp:include>
+    <jsp:include page="../../../plugins.jsp"></jsp:include>
   </body>
-
 </html>

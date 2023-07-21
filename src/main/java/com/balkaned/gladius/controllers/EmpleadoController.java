@@ -29,7 +29,7 @@ public class EmpleadoController {
     @Autowired
     CompaniaService companiaService;
 
-    @RequestMapping("/empleadosList")
+    @RequestMapping("/listEmpleados")
     public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
 
         String usuario = (String) request.getSession().getAttribute("user");
@@ -64,7 +64,7 @@ public class EmpleadoController {
         List<Empleado> empleadoList=empleadoService.listarEmpleado(emp);
         model.addAttribute("empleadoList",empleadoList);
 
-        return new ModelAndView("public/gladius/empleadosList");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleados");
     }
 
     @RequestMapping("/detalleEmpl@{idTrab}")
@@ -106,7 +106,7 @@ public class EmpleadoController {
         List<TipoDoc> listTipoDoc=tipoDocService.listarTipoDocs(td);
         model.addAttribute("listTipoDocs",listTipoDoc);*/
 
-        return new ModelAndView("public/gladius/fichaTrabajador");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
     }
 }
 
