@@ -193,7 +193,7 @@
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
-              <h2 id="h2top" class="mb-0">Gestión de Empleados</h2>
+              <h2 id="h2top" class="mb-0">Trabajadores</h2>
             </div>
           </div>
           <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
@@ -268,8 +268,8 @@
                       <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">NRO DOC</th>
                       <th class="sort align-middle ps-8" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
                       <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">SEXO</th>
-                      <th class="sort align-middle ps-8" scope="col" data-sort="date">PUESTO</th>
-                      <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">TIPO TRAB</th>
+                      <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PUESTO</th>
+                      <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO TRAB</th>
                       <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">ESTADO</th>
                       <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECINI</th>
                       <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECFIN</th>
@@ -285,7 +285,7 @@
                             </div>
                           </td>
                           <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${empl.iexcodtra}</a></td>
-                          <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iextipdocid}</td>
+                          <td class="total align-middle text-center fw-semi-bold text-1000">${empl.iextipdocid}</td>
                           <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iexnrodoc}</td>
                           <td class="customer align-middle white-space-nowrap ps-8">
                             <a class="d-flex align-items-center" href="#!">
@@ -296,8 +296,8 @@
                             </a>
                           </td>
                           <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexcodsex}</td>
-                          <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="x" style="height:12.8px;width:12.8px;"></span></span></td>
-                          <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
+                          <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
+                          <td class="delivery_type align-middle text-center white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
                             <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                              <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                           <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexfecing}</td>

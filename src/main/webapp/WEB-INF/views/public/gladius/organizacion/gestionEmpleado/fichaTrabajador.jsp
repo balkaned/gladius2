@@ -75,7 +75,7 @@
                     <div class="sticky-leads-sidebar">
                       <div class="lead-details-offcanvas bg-soft scrollbar phoenix-offcanvas phoenix-offcanvas-fixed" id="productFilterColumn">
                         <div class="d-flex justify-content-between align-items-center mb-2 d-md-none">
-                          <h3 class="mb-0">Lead Details</h3>
+                          <h3 class="mb-0">Ficha trabajador</h3>
                           <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-1"></span></button>
                         </div>
 

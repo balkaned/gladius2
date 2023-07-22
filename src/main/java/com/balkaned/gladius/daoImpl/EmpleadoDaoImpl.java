@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -263,7 +264,13 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
                     p.setLetraIni(cast1);
 
-                    String nombrecompleto=cap.letras(p.getIexnomtra())+" "+cap.letras(p.getIexapemat())+" "+cap.letras(p.getIexapemat());
+                    String strMain = p.getIexnomtra();
+                    String[] arrSplit = strMain.split(" ");
+                    //for (int i = 0; i & lt; arrSplit.length; i++)    {
+                        //System.out.println(arrSplit[i]);
+                    //}
+
+                    String nombrecompleto=cap.letras(arrSplit[0])+" "+cap.letras(p.getIexapemat());
                     p.setNomCompactoUpper(nombrecompleto);
 
                     lista.add(p);

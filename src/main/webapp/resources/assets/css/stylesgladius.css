@@ -29,7 +29,7 @@
 }
 
 .form-control.search-input.search{
-    border-radius:30px !important;
+    /*border-radius:30px !important;*/
 }
 
 .content{
@@ -130,12 +130,12 @@
 }
 
 .btn.btn-primary{
-    border-radius:30px !important;
+    /*border-radius:30px !important;*/
     /*background-color:#4F46E5 !important;*/
 }
 
 #h2top{
-    margin-top:10px;
+    margin-top:0px;
 }
 
 .nav-item a{
@@ -143,11 +143,11 @@
 }
 
 .nav-link{
-    color:#3874ff !important;
+    /*color:#3874ff !important;*/
 }
 
 .nav-link:hover{
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .fw-bolder.mb-2{
@@ -175,7 +175,7 @@
     margin-top:-30px;
     border:0px solid red;
 }
-
+/*
 .nav-link.pe-3{
     color:black !important;
 }
@@ -183,3 +183,7 @@
 .nav-link.pe-3:hover{
     color:#3874ff !important;
 }
+
+.nav-link.pe-3:focus{
+    color:#3874ff !important;
+}*/
