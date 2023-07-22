@@ -158,7 +158,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+              <a class="nav-link" href="listLocales" data-bs-toggle="" aria-expanded="false">
                 <div class="d-flex align-items-center"><span class="nav-link-text">Locales</span></div>
               </a>
             </li>
