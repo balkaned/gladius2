@@ -73,11 +73,37 @@
         margin-left:0px;
         font-size:12px;
     }
+
+    @media (max-width:990px){
+        #span1{
+            width:0px;
+            height:0px;
+        }
+
+        #span2{
+            width:0px;
+            height:0px;
+            font-size:0px;
+        }
+
+        #span3{
+           width:0px;
+           height:0px;
+           font-size:0px;
+        }
+
+        #usermenu{
+            height:0px;
+        }
+    }
 </style>
+
+<jsp:include page="navsMenu.jsp"></jsp:include>
+
 <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
     <div class="collapse navbar-collapse justify-content-between">
-      <div class="navbar-logo">
 
+      <div class="navbar-logo">
         <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
         <a class="navbar-brand me-1 me-sm-3" href="#">
           <div class="d-flex align-items-center">
@@ -87,6 +113,7 @@
           </div>
         </a>
       </div>
+
       <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:25rem;">
         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
           <input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
