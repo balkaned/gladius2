@@ -147,7 +147,7 @@
 }
 
 .nav-link:hover{
-    /*text-decoration: underline;*/
+    text-decoration: underline;
 }
 
 .fw-bolder.mb-2{
@@ -187,3 +187,98 @@
 .nav-link.pe-3:focus{
     color:#3874ff !important;
 }*/
+
+
+
+
+
+
+.navbar.navbar-top.fixed-top.navbar-expand{
+        background-color:#111827 !important;
+        border:0px solid;
+}
+
+.logo-text.ms-2.d-none.d-sm-block{
+    color:white;
+}
+
+.nav-link{
+    /*color:#9FA6BC;*/
+}
+
+.form-control.search-input.fuzzy-search.rounded-pill.form-control-sm{
+    background-color:#0F111A;
+    border: 2px solid #373E53;
+    border-radius:30px !important;
+}
+
+#span6a{
+    float:left;
+    width:100%;
+    border:0px solid green;
+    color:#8C969C;
+    text-align:center;
+    font-weight:600;
+    margin-left:0px;
+    font-size:12px;
+    border:0px solid red;
+    margin-bottom:20px;
+}
+
+#span4{
+    float:left;
+    border:0px solid red;
+    color:#848B9D;
+    width:100%;
+    text-align:center;
+    margin-left:0px;
+    font-weight:600;
+    font-size:12px;
+}
+
+#span5{
+    float:left;
+    border:0px solid red;
+    color:#848B9D;
+    text-align:center;
+    font-weight:600;
+    width:100%;
+    margin-left:0px;
+    font-size:12px;
+}
+
+#span6{
+    float:left;
+    width:100%;
+    border:0px solid green;
+    color:#848B9D;
+    text-align:center;
+    font-weight:600;
+    margin-left:0px;
+    font-size:12px;
+}
+
+
+
+@media (max-width:990px){
+    #span1{
+        width:0px;
+        height:0px;
+    }
+
+    #span2{
+        width:0px;
+        height:0px;
+        font-size:0px;
+    }
+
+    #span3{
+       width:0px;
+       height:0px;
+       font-size:0px;
+    }
+
+    #usermenu{
+        height:0px;
+    }
+}

@@ -8,29 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <jsp:include page="../../../links.jsp"></jsp:include>
-
-    <script>
-      var phoenixIsRTL = window.config.config.phoenixIsRTL;
-      if (phoenixIsRTL) {
-        var linkDefault = document.getElementById('style-default');
-        var userLinkDefault = document.getElementById('user-style-default');
-        linkDefault.setAttribute('disabled', true);
-        userLinkDefault.setAttribute('disabled', true);
-        document.querySelector('html').setAttribute('dir', 'rtl');
-      } else {
-        var linkRTL = document.getElementById('style-rtl');
-        var userLinkRTL = document.getElementById('user-style-rtl');
-        linkRTL.setAttribute('disabled', true);
-        userLinkRTL.setAttribute('disabled', true);
-      }
-    </script>
   </head>
 
 
@@ -39,11 +18,11 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
+          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../modalFade.jsp"></jsp:include>
 
-        <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-        <jsp:include page="../../../navTop.jsp"></jsp:include>
-
-      <div class="content">
+          <div class="content">
               <div class="pb-9">
                 <div class="row">
                   <div class="col-12">
@@ -930,10 +909,15 @@
                   </div>
                 </div>
               </div>
-      </div>
+          </div>
+
+          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+
     </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
 
-    <jsp:include page="../../../plugins.jsp"></jsp:include>
+    <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
-
 </html>

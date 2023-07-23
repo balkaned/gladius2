@@ -1,12 +1,6 @@
-<%--
-    Created on : 15/06/2023, 12:20:00 PM
-    Author     : Jean Quiroz
-    Email	   : jeanp.quiroz@gmail.com
---%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- ===============================================-->
 <!--    Document Title-->
@@ -63,3 +57,19 @@
 <link href="resources/vendors/leaflet/leaflet.css" rel="stylesheet">
 <link href="resources/vendors/leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
 <link href="resources/vendors/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
+
+<script>
+      var phoenixIsRTL = window.config.config.phoenixIsRTL;
+      if (phoenixIsRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+      }
+</script>
