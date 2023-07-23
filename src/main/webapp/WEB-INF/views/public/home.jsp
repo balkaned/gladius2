@@ -12,7 +12,6 @@
     <jsp:include page="links.jsp"></jsp:include>
   </head>
 
-
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->

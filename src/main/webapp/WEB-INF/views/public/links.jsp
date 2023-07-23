@@ -61,6 +61,10 @@
 <link href="resources/vendors/leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
 <link href="resources/vendors/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
 
+<script type="text/javascript" src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;
       if (phoenixIsRTL) {
