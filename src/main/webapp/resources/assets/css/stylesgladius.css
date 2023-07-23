@@ -258,6 +258,10 @@
     font-size:12px;
 }
 
+navbar-vertical-collapsed span1{
+
+}
+
 
 
 @media (max-width:990px){
@@ -282,3 +286,5 @@
         height:0px;
     }
 }
+
+
