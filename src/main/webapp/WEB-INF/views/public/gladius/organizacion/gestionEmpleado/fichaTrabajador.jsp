@@ -222,7 +222,7 @@
                       </nav>
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
-                        <div class="mb-8">
+                        <div class="mb-18">
                               <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosPers">
                                 <h2 class="mb-0">Datos personales</h2>
                               </div>
@@ -902,7 +902,14 @@
                                 <h2 class="mb-0">Domicilio</h2>
                           </div>
                             <form class="row g-3 mb-9">
-
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="flatpickr-input-container">
+                                      <div class="form-floating">
+                                        <input class="form-control datetimepicker" id="floatingInputerere" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                        <label class="ps-6" >Start date</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                      </div>
+                                    </div>
+                                </div>
                             </form>
                       </div>
                     </div>

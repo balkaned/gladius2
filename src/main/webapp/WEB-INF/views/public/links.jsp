@@ -38,6 +38,9 @@
 
 <link href="resources/assets/css/stylesgladius.css" type="text/css" rel="stylesheet" id="user-style-default">
 
+<link href="resources/vendors/choices/choices.min.css" rel="stylesheet">
+<link href="resources/vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
+
 
 <!-- ===============================================-->
 <!--    JavaScripts-->
