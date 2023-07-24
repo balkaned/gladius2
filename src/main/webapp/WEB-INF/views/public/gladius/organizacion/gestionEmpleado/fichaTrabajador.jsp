@@ -138,72 +138,72 @@
                           </div>
                         </div>
 
+                        <div id="otropciones" class="email-content scrollbar-overlay">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Otras opciones</p>
+                            <button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>
+                          </div>
+                          <ul class="nav flex-column border-top fs--1 vertical-nav mb-4">
+                            <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="../../apps/email/inbox.html">
+                                <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-inbox"></span><span class="flex-1">Datos Personales</span><span class="nav-item-count"></span>
+                                </div>
+                              </a></li>
+                            <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none active" aria-current="page" href="#!">
+                                <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-bill"></span><span class="flex-1">Sueldos Fijos</span><span class="nav-item-count"></span>
+                                </div>
+                              </a></li>
+                            <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-dollar-alt"></span><span class="flex-1">Sueldos Variables</span>
+                                </div>
+                              </a></li>
+                            <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-exclamation-circle"></span><span class="flex-1">Vacaciones</span>
+                                </div>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-assistive-listening-systems"></span><span class="flex-1">Ausentismo</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-clipboard"></span><span class="flex-1">Contrato</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-chat-bubble-user"></span><span class="flex-1">Derecho Habientes</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-balance-scale"></span><span class="flex-1">Retencion Judicial</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-file-contract-dollar"></span><span class="flex-1">Prestamos</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-align-center-h"></span><span class="flex-1">Acumulado</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-clock"></span><span class="flex-1">Gestion de Tiempo</span></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
+                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-analysis"></span><span class="flex-1">Legajo</span></div>
+                                </a>
+                            </li>
+                          </ul>
+                        </div>
 
-                            <div id="otropciones" class="email-content scrollbar-overlay">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Otras opciones</p>
-                                <button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>
-                              </div>
-                              <ul class="nav flex-column border-top fs--1 vertical-nav mb-4">
-                                <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="../../apps/email/inbox.html">
-                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-inbox"></span><span class="flex-1">Datos Personales</span><span class="nav-item-count"></span>
-                                    </div>
-                                  </a></li>
-                                <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none active" aria-current="page" href="#!">
-                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-bill"></span><span class="flex-1">Sueldos Fijos</span><span class="nav-item-count"></span>
-                                    </div>
-                                  </a></li>
-                                <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-dollar-alt"></span><span class="flex-1">Sueldos Variables</span>
-                                    </div>
-                                  </a></li>
-                                <li class="nav-item"><a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                    <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-exclamation-circle"></span><span class="flex-1">Vacaciones</span>
-                                    </div>
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-assistive-listening-systems"></span><span class="flex-1">Ausentismo</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-clipboard"></span><span class="flex-1">Contrato</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-chat-bubble-user"></span><span class="flex-1">Derecho Habientes</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-balance-scale"></span><span class="flex-1">Retencion Judicial</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-file-contract-dollar"></span><span class="flex-1">Prestamos</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-align-center-h"></span><span class="flex-1">Acumulado</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-clock"></span><span class="flex-1">Gestion de Tiempo</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="#!">
-                                        <div class="d-flex align-items-center"><span class="me-2 nav-icons uil uil-analysis"></span><span class="flex-1">Legajo</span></div>
-                                    </a>
-                                </li>
-                              </ul>
-                            </div>
                       </div>
                       <div class="phoenix-offcanvas-backdrop d-lg-none top-0" data-phoenix-backdrop="data-phoenix-backdrop"></div>
                     </div>
@@ -222,60 +222,62 @@
                       </nav>
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
-                        <div class="mb-18">
-                              <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosPers">
-                                <h2 class="mb-0">Datos personales</h2>
-                              </div>
-                              <form class="row g-3 mb-9">
+                        <div class="mb-8">
+                            <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosPers">
+                            <h4 class="fs-1 mt-5">Datos personales</h4>
+                        </div>
+                        <div class="row g-5">
+                             <div class="col-xl-12">
+                               <div class="row gx-3 gy-4">
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                        <label for="floatingInputStreet">Codigo Empleado</label>
+                                        <input class="form-control" id="floatingEventInput" type="text" placeholder="Event title" />
+                                        <label for="floatingEventInput">Codigo Empleado</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                        <select class="form-select" id="floatingSelectCity">
+                                        <select class="form-select" id="floatingSelectTask">
                                           <option selected="selected">Seleccionar</option>
-                                          <option value="1">Valor1</option>
+                                          <option value="1">Opcion</option>
                                         </select>
-                                        <label for="floatingSelectCity">Tipo de Empleado</label>
+                                        <label for="floatingSelectTask">Tipo de Empleado</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                          <select class="form-select" id="floatingSelectCountry">
-                                            <option selected="selected">Activo</option>
-                                            <option value="1">Inactivo</option>
-                                          </select>
-                                          <label for="floatingSelectCountry">Estado</label>
+                                        <select class="form-select" id="floatingSelectTask">
+                                          <option selected="selected">Seleccionar</option>
+                                          <option value="1">Opcion</option>
+                                        </select>
+                                        <label for="floatingSelectTask">Estado</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                         <label for="floatingInputStreet">Nro Documento</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                         <label for="floatingInputStreet">Codigo Anterior</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                         <label for="floatingInputStreet">Apellido Paterno</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                         <label for="floatingInputStreet">Apellido Materno</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-8">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                         <label for="floatingInputStreet">Nombres</label>
@@ -289,7 +291,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Masculino</option>
@@ -298,7 +300,7 @@
                                           <label for="floatingSelectCountry">Sexo(*)[TT50]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -307,7 +309,7 @@
                                           <label for="floatingSelectCountry">Estado Civil (*) [TT68]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -316,7 +318,7 @@
                                           <label for="floatingSelectCountry">Modalidad Formativa [TT18]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -325,7 +327,7 @@
                                           <label for="floatingSelectCountry">Nacionalidad Origen (*) [TT4]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -334,7 +336,7 @@
                                           <label for="floatingSelectCountry">Pais Emisor (*) [TT26]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -343,7 +345,7 @@
                                           <label for="floatingSelectCountry">Departamento</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -352,7 +354,7 @@
                                           <label for="floatingSelectCountry">Provincia</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -361,7 +363,7 @@
                                           <label for="floatingSelectCountry">Distrito (*)</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -370,7 +372,7 @@
                                           <label for="floatingSelectCountry">Grado Instruccion (*) [TT9]</label>
                                       </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                           <select class="form-select" id="floatingSelectCountry">
                                             <option selected="selected">Seleccionar</option>
@@ -379,17 +381,13 @@
                                           <label for="floatingSelectCountry">Centro de Formacion [TT51]</label>
                                       </div>
                                     </div>
-                                    <div class="col-5">
-                                         <div class="d-flex flex-wrap justify-content-between mb-3">
-                                             <div class="d-flex flex-wrap justify-content-between mb-2">
-                                                  <div class="form-check form-switch">
-                                                      <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                      <label class="form-check-label fs-0" for="showPhone">Es Domiciliado?</label>
-                                                  </div>
-                                              </div>
+                                    <div class="col-sm-6 col-md-6">
+                                         <div class="form-check">
+                                           <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                           <label class="form-check-label fs-0 mb-5" for="flexChecked">Es domiciliado?</label>
                                          </div>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-6 col-md-6">
                                        <div class="form-floating">
                                            <select class="form-select" id="floatingSelectCountry">
                                              <option selected="selected">Seleccionar</option>
@@ -398,508 +396,457 @@
                                            <label for="floatingSelectCountry">Codigo de Larga Distancia [TT29]</label>
                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                        <div class="form-floating">
                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                          <label for="floatingInputStreet">Nro de Telefono</label>
                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                        <div class="form-floating">
                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                          <label for="floatingInputStreet">Email</label>
                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-md-6">
                                        <div class="form-floating">
                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
                                          <label for="floatingInputStreet">Email Coorp</label>
                                        </div>
                                     </div>
-                             </form>
+                               </div>
+                             </div>
                         </div>
                       </div>
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
-                            <div class="mb-8">
-                                  <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosLab">
-                                  <h2 class="mb-0">Datos laborales</h2>
-                            </div>
-                            <form class="row g-3 mb-9">
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                    <select class="form-select" id="floatingSelectCity">
-                                      <option selected="selected">Seleccionar</option>
-                                      <option value="1">Valor1</option>
-                                    </select>
-                                    <label for="floatingSelectCity">Regimen Laboral (*) [TT33]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Tipo de Trabajador (*) [TT8]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Categoria Trabajador [TT24] (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Situacion del Pensionista [TT15] (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fecha de Retiro</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Tipo de Contrato [TT12] (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fec Ini Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fec Fin Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Pliego [TT31]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Situacion Especial [TT35](*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Ocupacion Reg. Publico [TT10]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Ocupacion Reg. Privado [TT30]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Area (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Puesto (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Centro de Costos(*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Ubicación (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Turno</label>
-                                  </div>
-                                </div>
-                            </form>
-                      </div>
-
-                      <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
-                            <div class="mb-8">
-                                  <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyInform">
-                                  <h2 class="mb-0">Información de pago</h2>
-                            </div>
-                            <form class="row g-3 mb-9">
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                    <select class="form-select" id="floatingSelectCity">
-                                      <option selected="selected">Seleccionar</option>
-                                      <option value="1">Valor1</option>
-                                    </select>
-                                    <label for="floatingSelectCity">Tipo de pago (*) [TT19]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Periodo Remuneracion (*) [TT13]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Banco de Haberes (*) [TT36]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Tipo de Cuenta de Haberes (*) [TT53]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Moneda de Haberes [TT52] (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Es interbancario?</label>
-                                              </div>
+                        <div class="mb-8">
+                            <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDatosLab">
+                            <h4 class="fs-1 mt-5">Datos laborales</h4>
+                        </div>
+                            <div class="row g-5">
+                                 <div class="col-xl-12">
+                                   <div class="row gx-3 gy-4">
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCity">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Valor1</option>
+                                            </select>
+                                            <label for="floatingSelectCity">Regimen Laboral (*) [TT33]</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                    <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                    <label for="floatingInputStreet">Nro de Cuenta de Bancos (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Banco de CTS (*) [TT36]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Tipo de Banco Cts (*) [TT53]</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Inactivo</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Moneda de Cts (*) [TT52]</label>
-                                  </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Es interbancario?</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Tipo de Trabajador (*) [TT8]</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-7">
-                                  <div class="form-floating">
-                                    <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                    <label for="floatingInputStreet">Nro Cta Cts (*)</label>
-                                  </div>
-                                </div>
-                            </form>
-                      </div>
-
-                      <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
-                            <div class="mb-8">
-                                  <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspySeguridad">
-                                  <h2 class="mb-0">Seguridad social</h2>
-                            </div>
-                            <form class="row g-3 mb-9">
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Es Jubilado?</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Categoria Trabajador [TT24] (*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-7">
-                                  <div class="form-floating">
-                                    <select class="form-select" id="floatingSelectCity">
-                                      <option selected="selected">Seleccionar</option>
-                                      <option value="1">Valor1</option>
-                                    </select>
-                                    <label for="floatingSelectCity">Fondo Pensiones (*) [TT11]</label>
-                                  </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Comision Mixta?</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Situacion del Pensionista [TT15] (*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fecha Inicio Fondo Pensiones (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                    <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                    <label for="floatingInputStreet">Cussp (*)</label>
-                                  </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Femenino</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Essalud (*) [TT32]</label>
-                                  </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Senati</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="flatpickr-input-container">
+                                            <div class="form-floating">
+                                              <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                              <label class="ps-6" for="floatingInputStartDate">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            </div>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Tiene Eps</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="flatpickr-input-container">
+                                            <div class="form-floating">
+                                              <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                              <label class="ps-6" for="floatingInputStartDate">Fecha de Retiro</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            </div>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-6">
-                                  <div class="form-floating">
-                                      <select class="form-select" id="floatingSelectCountry">
-                                        <option selected="selected">Seleccionar</option>
-                                        <option value="1">Femenino</option>
-                                      </select>
-                                      <label for="floatingSelectCountry">Indica Proveedor de Eps (*) [TT14]</label>
-                                  </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Mas vida</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-8">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Tipo de Contrato [TT12] (*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Convenio para evitar Doble tributacion</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                          <div class="flatpickr-input-container">
+                                            <div class="form-floating">
+                                              <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                              <label class="ps-6" for="floatingInputStartDate">Fec Ini Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            </div>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Discapacidad</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                          <div class="flatpickr-input-container">
+                                            <div class="form-floating">
+                                              <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                              <label class="ps-6" for="floatingInputStartDate">Fec Fin Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            </div>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Reg. alternativo</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-8">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Pliego [TT31]</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Sctr Pensionv</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Situacion Especial [TT35](*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Jornada Maxima</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Ocupacion Reg. Publico [TT10]</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Horario Nocturno</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Ocupacion Reg. Privado [TT30]</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Sindicalizado</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Area (*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Exoneracion 5ta</label>
-                                              </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Puesto (*)</label>
                                           </div>
-                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                   <div class="form-floating">
-                                     <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
-                                     <label for="floatingInputStreet">Nro de Ruc Cas</label>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Centro de Costos(*)</label>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Ubicación (*)</label>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Turno</label>
+                                          </div>
+                                        </div>
                                    </div>
-                                </div>
-                                <div class="col-5">
-                                     <div class="d-flex flex-wrap justify-content-between mb-3">
-                                         <div class="d-flex flex-wrap justify-content-between mb-2">
-                                              <div class="form-check form-switch">
-                                                  <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
-                                                  <label class="form-check-label fs-0" for="showPhone">Madre de responsaibilidad Limitada</label>
-                                              </div>
-                                          </div>
-                                     </div>
-                                </div>
-                            </form>
+                                 </div>
+                            </div>
+                      </div>
+
+                      <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+                        <div class="mb-8">
+                            <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyInform">
+                            <h4 class="fs-1 mt-5">Información de pago</h4>
+                        </div>
+                        <div class="row g-5">
+                             <div class="col-xl-12">
+                               <div class="row gx-3 gy-4">
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectCity">
+                                          <option selected="selected">Seleccionar</option>
+                                          <option value="1">Valor1</option>
+                                        </select>
+                                        <label for="floatingSelectCity">Tipo de pago (*) [TT19]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Periodo Remuneracion (*) [TT13]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Banco de Haberes (*) [TT36]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Tipo de Cuenta de Haberes (*) [TT53]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Moneda de Haberes [TT52] (*)</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Es interbancario?</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nro de Cuenta de Bancos (*)</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Banco de CTS (*) [TT36]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Tipo de Banco Cts (*) [TT53]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Inactivo</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Moneda de Cts (*) [TT52]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Es interbancario?</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Nro Cta Cts (*)</label>
+                                      </div>
+                                    </div>
+                               </div>
+                             </div>
+                        </div>
+                      </div>
+
+                      <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+                        <div class="mb-8">
+                            <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspySeguridad">
+                            <h4 class="fs-1 mt-5">Seguridad social</h4>
+                        </div>
+                        <div class="row g-5">
+                             <div class="col-xl-12">
+                               <div class="row gx-3 gy-4">
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Es jubilado?</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                        <select class="form-select" id="floatingSelectCity">
+                                          <option selected="selected">Seleccionar</option>
+                                          <option value="1">Valor1</option>
+                                        </select>
+                                        <label for="floatingSelectCity">Fondo Pensiones (*) [TT11]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                         <div class="form-check">
+                                           <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                           <label class="form-check-label fs-0 mb-5" for="flexChecked">Comisión Mixta?</label>
+                                         </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="flatpickr-input-container">
+                                        <div class="form-floating">
+                                          <input class="form-control datetimepicker" id="floatingInputStartDate" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                          <label class="ps-6" for="floatingInputStartDate">Fecha Inicio Fondo Pensiones (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                        <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                        <label for="floatingInputStreet">Cussp (*)</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Essalud (*) [TT32]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Senati</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Tiene Eps</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                      <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCountry">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Femenino</option>
+                                          </select>
+                                          <label for="floatingSelectCountry">Indica Proveedor de Eps (*) [TT14]</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Mas vida</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                         <div class="form-check">
+                                           <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                           <label class="form-check-label fs-0 mb-5" for="flexChecked">Convenio para evitar doble tributación</label>
+                                         </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Discapacidad</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Reg. Alternativo</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Sctr Pensionv</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Jornada Maxima</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Horario Nocturno</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Sindicalizado</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Exoneracion 5ta</label>
+                                    	 </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                       <div class="form-floating">
+                                         <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                         <label for="floatingInputStreet">Nro de Ruc Cas</label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                    	 <div class="form-check">
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Madre de responsaibilidad Limitada</label>
+                                    	 </div>
+                                    </div>
+                               </div>
+                             </div>
+                        </div>
                       </div>
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
                           <div class="mb-8">
                                 <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDomi">
-                                <h2 class="mb-0">Domicilio</h2>
+                                <h2 class="mt-5">Domicilio</h2>
                           </div>
                             <form class="row g-3 mb-9">
                                 <div class="col-sm-6 col-md-4">
