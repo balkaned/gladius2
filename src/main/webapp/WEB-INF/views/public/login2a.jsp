@@ -40,16 +40,20 @@
       <div class="container">
         <div class="row flex-center min-vh-100 py-5">
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
-              <!--<div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logoLast.png" alt="phoenix" width="58" />
-              </div>-->
+              <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logoLast.png" alt="phoenix" width="58" />
+              </div>
             </a>
             <div class="text-center mb-7">
               <h3 class="text-1000">Login</h3>
-              <p class="text-700">Login interno para validar el usuario de manera local</p>
+              <p class="text-700">Login interno local</p>
             </div>
+
+            <button class="btn btn-phoenix-secondary w-100 mb-3"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
+            <button class="btn btn-phoenix-secondary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>
 
             <div class="position-relative">
               <hr class="bg-200 mt-5 mb-4" />
+              <div class="divider-content-center">or use email</div>
             </div>
             <div class="mb-3 text-start">
               <label class="form-label" for="email">Usuario</label>
@@ -72,9 +76,10 @@
                   <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
                 </div>
               </div>
-
+              <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
             </div>
             <button type="submit" class="btn btn-primary w-100 mb-3">Acceder</button>
+            <div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>
             <span style="float:left; text-align:left; font-size: 11px; height:50px; width:280px; border:0px solid green; color:#D90000;">
                  ${mensaje}
            </span>

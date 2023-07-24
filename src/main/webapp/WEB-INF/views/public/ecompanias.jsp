@@ -12,9 +12,8 @@
 
 <style>
 .btn.btn-primary{
-    border-radius:30px !important;
-    background-color:#4F46E5 !important;
-    }
+
+}
 
 .d-flex.align-items-center h4{
 margin-left:50px !important;
@@ -31,13 +30,15 @@ border-radius:30px;
 }
 
 .badge.badge-phoenix.fs--2.mb-4.badge-phoenix-success{
-margin-top:23px;
+margin-top:3px;
 }
 
 #imgcompany{
     border:0px solid red;
     width:80px;
+    height:80px;
     margin-left:250px;
+    border-radius:50px;
 }
 
 .mt-lg-3.mt-xl-0{
