@@ -159,6 +159,7 @@ public class IndexController {
         List<Compania> companiaList=usuarioConeccionService.listarCompaniasBycodUsu(idUser);
 
         model.addAttribute("compList",companiaList);
+        model.addAttribute("schema","dark");
 
         return new ModelAndView("public/ecompanias");
     }
@@ -170,6 +171,7 @@ public class IndexController {
         List<Compania> companiaList=usuarioConeccionService.listarCompaniasBycodUsu(idUser);
 
         model.addAttribute("compList",companiaList);
+        model.addAttribute("schema","dark");
 
         request.getSession().setAttribute("email", null);
         request.getSession().setAttribute("firstCharacter", null);
@@ -214,6 +216,7 @@ public class IndexController {
         request.getSession().setAttribute("urlLogo", comp1.getUrlLogo());
         request.getSession().setAttribute("nombrecomp", comp1.getDescCia());
         request.getSession().setAttribute("ruccomp", comp1.getNroRuc());
+        request.getSession().setAttribute("schema", comp1.getSchema());
 
         model.addAttribute("idComp",idComp);
         model.addAttribute("urlLogo",comp1.getUrlLogo());
@@ -223,6 +226,7 @@ public class IndexController {
         model.addAttribute("firstCharacter",firstCharacter);
         model.addAttribute("nombreComp", comp1.getDescCia());
         model.addAttribute("rucComp",comp1.getNroRuc());
+        model.addAttribute("schema",comp1.getSchema());
 
         return new ModelAndView("public/home");
     }

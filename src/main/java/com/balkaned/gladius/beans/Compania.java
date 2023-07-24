@@ -49,4 +49,5 @@ public class Compania {
     String iexsourcedes;
     String iexregiondes;
     String iexdesobservacion;
+    String schema;
 }

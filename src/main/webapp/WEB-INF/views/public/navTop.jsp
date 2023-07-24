@@ -1,5 +1,5 @@
 
-    <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
+    <nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">
         <div class="collapse navbar-collapse justify-content-between">
 
           <div class="navbar-logo">
@@ -15,7 +15,7 @@
 
           <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:25rem;">
             <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-              <input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
+              <input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />
               <span class="fas fa-search search-box-icon"></span>
 
             </form>

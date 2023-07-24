@@ -97,7 +97,8 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 "cp.iexdescia, " +
                 "cp.iexnroruc, " +
                 "cp.iexdireccion, " +
-                "cp.iexreplogo " +
+                "cp.iexreplogo, " +
+                "cp.iexschema " +
                 "from iexcompania cp " +
                 "inner join iexusuxcia uc on uc.iexcodcia=cp.iexcodcia " +
                 "inner join iexusuario us on us.iexcodusu=uc.iexcodusu " +
@@ -115,6 +116,7 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     comp.setRuc(rs.getString("iexnroruc"));
                     comp.setDireccion(rs.getString("iexdireccion"));
                     comp.setUrlLogo(rs.getString("iexreplogo"));
+                    comp.setSchema(rs.getString("iexschema"));
 
                     list.add(comp);
                 }

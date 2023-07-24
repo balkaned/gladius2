@@ -192,12 +192,14 @@
 
 
 
-
+#navbarDefault{
+border-bottom:0px solid black !important;
+}
 
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-        background-color:#111827 !important;
-        border:0px solid;
+        /*background-color:#111827 !important;
+        border:0px solid;*/
 }
 
 .logo-text.ms-2.d-none.d-sm-block{
@@ -209,9 +211,9 @@
 }
 
 .form-control.search-input.fuzzy-search.rounded-pill.form-control-sm{
-    background-color:#0F111A;
-    border: 2px solid #373E53;
-    border-radius:30px !important;
+    /*background-color:#0F111A;*/
+    /*border: 1px solid #373E53;
+    border-radius:30px !important;*/
 }
 
 #span6a{
@@ -264,6 +266,14 @@
 width:0px !important;
 height:0px !important;
 font-size:0px !important;
+}
+
+.expandedmenu{
+width:254px !important;
+}
+
+.resizemenu{
+width:54px !important;
 }
 
 

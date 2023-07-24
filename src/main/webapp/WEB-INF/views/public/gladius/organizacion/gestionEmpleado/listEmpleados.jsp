@@ -103,16 +103,16 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">TIPO DOC</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">NRO DOC</th>
-                          <th class="sort align-middle ps-8" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">SEXO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO DOC</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">NRO DOC</th>
+                          <th class="sort align-middle text-center ps-8" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">SEXO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PUESTO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO TRAB</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">ESTADO</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECINI</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">FECFIN</th>
-                          <th class="sort align-middle text-end pe-0" scope="col" >FICHA</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ESTADO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">FECINI</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">FECFIN</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" >FICHA</th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -138,7 +138,7 @@
                               <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
                               <td class="delivery_type align-middle text-center white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">

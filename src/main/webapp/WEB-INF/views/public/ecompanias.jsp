@@ -53,7 +53,7 @@ margin-top:10px !important;
         </nav>
         <div class="row gx-6 gy-3 mb-4 align-items-center">
           <div class="col-auto">
-            <h2 class="mb-0">Seleccionar Compañia<span class="fw-normal text-700 ms-3"></span></h2>
+            <h2 class="mb-0">Seleccionar compañia<span class="fw-normal text-700 ms-3"></span></h2>
           </div>
           <div class="col-auto"><a class="btn btn-primary px-5" href="../../apps/project-management/create-new.html"><i class="fa-solid fa-plus me-2"></i>Agregar Nueva Compañia</a></div>
         </div>
@@ -113,7 +113,7 @@ margin-top:10px !important;
                   <p class="mb-2 text-1100">100%</p>
                 </div>
                 <div class="progress bg-success-100">
-                  <div class="progress-bar rounded bg-success" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar rounded bg-${comp.schema}" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="d-flex align-items-center mt-4">
                   <p class="mb-0 fw-bold fs--1">Started :<span class="fw-semi-bold text-600 ms-1">	17th Nov. 2020</span></p>

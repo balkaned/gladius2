@@ -56,7 +56,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 " c.iexportsource, "+
                 " c.iexsourcedes , "+
                 " c.iexregiondes , "+
-                " c.iexdesobservacion "+
+                " c.iexdesobservacion," +
+                " c.iexschema "+
                 "from iexcompania c  " +
                 " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia="+codcia+" ";
 
@@ -92,6 +93,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                     cia.setIexportsource(rs.getString("iexportsource"));
                     cia.setIexregiondes(rs.getString("iexregiondes"));
                     cia.setIexdesobservacion(rs.getString("iexdesobservacion"));
+                    cia.setSchema(rs.getString("iexschema"));
                 }
                 return cia;
             }
