@@ -9,14 +9,19 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Local {
+public class BancoPro {
 
     Integer iexcodcia;
-    String iexubicod;
-    String iexubides ;
+    String iexcodban;
+    String desban;
+    Integer iexcodpro;
+    String despro;
+    String iextipcta;
+    String destipcta;
+    String iexctaban;
     String iexusucrea;
-    String iexusumod;
     String iexfeccrea;
+    String iexusumod;
     String iexfecmod;
 
 }

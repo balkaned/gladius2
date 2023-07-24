@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Compania {
+
     private String id_companias;
     private String nombre;
     private String ruc;

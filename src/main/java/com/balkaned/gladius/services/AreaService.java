@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface AreaService {
 
-    public List<Area> listarArea(Integer codcia, String text);
+    List<Area> listarArea(Integer codcia, String text);
     public Area getArea(Integer codcia, String codarea);
 }

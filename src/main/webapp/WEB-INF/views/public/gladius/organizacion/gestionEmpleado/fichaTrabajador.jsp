@@ -229,6 +229,7 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
+                                 <form class="row g-4 mb-0">
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
                                         <input class="form-control" id="floatingEventInput" type="text" placeholder="Event title" />
@@ -414,6 +415,10 @@
                                          <label for="floatingInputStreet">Email Coorp</label>
                                        </div>
                                     </div>
+                                    <div class="col-12 d-flex justify-content-end mt-6">
+                                        <button class="btn btn-primary">Guardar</button>
+                                    </div>
+                                 </form>
                                </div>
                              </div>
                         </div>
@@ -427,6 +432,7 @@
                             <div class="row g-5">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
+                                      <form class="row g-4 mb-0">
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
                                             <select class="form-select" id="floatingSelectCity">
@@ -585,6 +591,10 @@
                                               <label for="floatingSelectCountry">Turno</label>
                                           </div>
                                         </div>
+                                        <div class="col-12 d-flex justify-content-end mt-6">
+                                            <button class="btn btn-primary">Guardar</button>
+                                        </div>
+                                      </form>
                                    </div>
                                  </div>
                             </div>
@@ -598,6 +608,7 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
+                                  <form class="row g-4 mb-0">
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
                                         <select class="form-select" id="floatingSelectCity">
@@ -694,6 +705,10 @@
                                         <label for="floatingInputStreet">Nro Cta Cts (*)</label>
                                       </div>
                                     </div>
+                                    <div class="col-12 d-flex justify-content-end mt-6">
+                                        <button class="btn btn-primary">Guardar</button>
+                                    </div>
+                                  </form>
                                </div>
                              </div>
                         </div>
@@ -707,6 +722,7 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
+                                 <form class="row g-4 mb-0">
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
                                     	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
@@ -838,6 +854,10 @@
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Madre de responsaibilidad Limitada</label>
                                     	 </div>
                                     </div>
+                                    <div class="col-12 d-flex justify-content-end mt-6">
+                                        <button class="btn btn-primary">Guardar</button>
+                                    </div>
+                                 </form>
                                </div>
                              </div>
                         </div>
@@ -845,20 +865,253 @@
 
                       <div class="scrollspy-example bg-body-tertiary rounded-2" data-bs-spy="scroll" data-bs-offset="0" data-bs-target="#navbar-deals-detail" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
                           <div class="mb-8">
-                                <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDomi">
-                                <h2 class="mt-5">Domicilio</h2>
+                              <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDomicilio">
+                              <h4 class="fs-1 mt-5">Datos domicilio</h4>
                           </div>
-                            <form class="row g-3 mb-9">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="flatpickr-input-container">
-                                      <div class="form-floating">
-                                        <input class="form-control datetimepicker" id="floatingInputerere" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                        <label class="ps-6" >Start date</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                          <div class="row g-5">
+                               <div class="col-xl-12">
+                                 <div class="row gx-3 gy-4">
+                                    <form class="row g-4 mb-0">
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                          <select class="form-select" id="floatingSelectCity">
+                                            <option selected="selected">Seleccionar</option>
+                                            <option value="1">Valor1</option>
+                                          </select>
+                                          <label for="floatingSelectCity">Tipo de Via (*)</label>
+                                        </div>
                                       </div>
-                                    </div>
-                                </div>
-                            </form>
+                                      <div class="col-sm-6 col-md-5">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Nom. Via (*)</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-3">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Nro Via (*)</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-3">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Nro Dept</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-3">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Interior</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Manzana domicilio 1</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Nro de Lote</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Kilometro de Referencia</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                          <label for="floatingInputStreet">Etapa dom1</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCountry">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Inactivo</option>
+                                            </select>
+                                            <label for="floatingSelectCountry">Tipo de zona dom1 (*)</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Referencia dom1 (*)</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCountry">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Inactivo</option>
+                                            </select>
+                                            <label for="floatingSelectCountry">Pais Emisor (*) [TT26]</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCountry">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Inactivo</option>
+                                            </select>
+                                            <label for="floatingSelectCountry">Departamento</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCountry">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Inactivo</option>
+                                            </select>
+                                            <label for="floatingSelectCountry">Provincia</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Distrito (*)</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelectCountry">
+                                                  <option selected="selected">Seleccionar</option>
+                                                  <option value="1">Inactivo</option>
+                                                </select>
+                                                <label for="floatingSelectCountry">Tipo Via</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-5">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Nom. Via 2</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-3">
+                                              <div class="form-floating">
+                                                <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                                <label for="floatingInputStreet">Nro Via 2</label>
+                                              </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Nro Dept 2</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Interior 2</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Manzana domicilio 2</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Nro de Lote 2</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                          <label for="floatingInputStreet">Kilometro de Referencia 2</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                          <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                          <label for="floatingInputStreet">Nro de Bloque 2</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                              <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                              <label for="floatingInputStreet">Etapa dom 2</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Tipo de zona dom 2</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                          <div class="form-floating">
+                                            <input class="form-control" id="floatingInputStreet" type="text" placeholder="street" />
+                                            <label for="floatingInputStreet">Referencia dom 2</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelectCountry">
+                                                  <option selected="selected">Seleccionar</option>
+                                                  <option value="1">Inactivo</option>
+                                                </select>
+                                                <label for="floatingSelectCountry">Pais Emisor (*) [TT26]</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelectCountry">
+                                                  <option selected="selected">Seleccionar</option>
+                                                  <option value="1">Inactivo</option>
+                                                </select>
+                                                <label for="floatingSelectCountry">Departamento</label>
+                                            </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-4">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelectCountry">
+                                              <option selected="selected">Seleccionar</option>
+                                              <option value="1">Inactivo</option>
+                                            </select>
+                                            <label for="floatingSelectCountry">Provincia</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Distrito (*)</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-md-6">
+                                          <div class="form-floating">
+                                              <select class="form-select" id="floatingSelectCountry">
+                                                <option selected="selected">Seleccionar</option>
+                                                <option value="1">Inactivo</option>
+                                              </select>
+                                              <label for="floatingSelectCountry">Domicilio (*)</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-12 d-flex justify-content-end mt-6">
+                                          <button class="btn btn-primary">Guardar</button>
+                                      </div>
+                                    </form>
+                                 </div>
+                               </div>
+                          </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
