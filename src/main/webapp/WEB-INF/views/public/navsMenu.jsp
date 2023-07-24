@@ -165,7 +165,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" href="litsCcostos" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">C. Costos</span></div>
                   </a>
                 </li>

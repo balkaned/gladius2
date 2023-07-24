@@ -109,7 +109,7 @@ margin-top:10px !important;
                   <p class="fw-bold mb-0 lh-1">Dirección : <span class="ms-1 text-1100">${comp.direccion}</span></p>
                 </div>
                 <div class="d-flex justify-content-between text-700 fw-semi-bold">
-                  <p class="mb-2"> Progress</p>
+                  <p class="mb-2"> Schema</p>
                   <p class="mb-2 text-1100">100%</p>
                 </div>
                 <div class="progress bg-success-100">
