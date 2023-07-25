@@ -775,7 +775,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" />
+                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" checked="checked" required="true"/>
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Tiene Eps</label>
                                     	 </div>
                                     </div>
@@ -855,7 +855,7 @@
                                     	 </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end mt-6">
-                                        <button class="btn btn-primary">Guardar</button>
+                                        <button class="btn btn-primary" type="submit" >Guardar</button>
                                     </div>
                                  </form>
                                </div>
