@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+    <!--<nav class="navbar navbar-vertical navbar-expand-lg bg-${schema}">-->
     <nav class="navbar navbar-vertical navbar-expand-lg">
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
@@ -46,7 +47,7 @@
                 <!-- parent pages-->
                 <div id="usermenu">
                     <img id="span1" src="verFoto@LOGO@${idComp}@${urlLogo}"></img>
-                    <span class="mt-2 text-black" id="span2">${usuario}</span>
+                    <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>
 

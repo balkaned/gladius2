@@ -240,9 +240,11 @@
                                       <div class="form-floating">
                                         <select class="form-select" id="floatingSelectTask">
                                           <option selected="selected">Seleccionar</option>
-                                          <option value="1">Opcion</option>
+                                          <c:forEach var="lovTipdoc" items="${lovTipdoc}">
+                                              <option value="${lovTipdoc.idLov}"   ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovTipdoc.desLov}</option>
+                                          </c:forEach>
                                         </select>
-                                        <label for="floatingSelectTask">Tipo de Empleado</label>
+                                        <label for="floatingSelectTask">Tipo de Documento (*)</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -251,7 +253,7 @@
                                           <option selected="selected">Seleccionar</option>
                                           <option value="1">Opcion</option>
                                         </select>
-                                        <label for="floatingSelectTask">Estado</label>
+                                        <label for="floatingSelectTask">Estado [TT54]</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">

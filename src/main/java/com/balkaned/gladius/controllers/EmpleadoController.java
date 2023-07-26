@@ -5,6 +5,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
+import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class EmpleadoController {
 
     @Autowired
     CompaniaService companiaService;
+
+    @Autowired
+    LovsService lovsService;
 
     @RequestMapping("/listEmpleados")
     public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
@@ -90,7 +94,7 @@ public class EmpleadoController {
 
         Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
 
-        model.addAttribute("empleado", emp);
+        model.addAttribute("emp", emp);
         model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
@@ -102,9 +106,20 @@ public class EmpleadoController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        /*TipoDoc td = new TipoDoc();
-        List<TipoDoc> listTipoDoc=tipoDocService.listarTipoDocs(td);
-        model.addAttribute("listTipoDocs",listTipoDoc);*/
+        model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
+        /*model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
+        model.addAttribute("lovModForm",lovsService.getLovs("18","%"));
+        model.addAttribute("lovPaisEmisor",lovsService.getLovs("26","%"));
+        model.addAttribute("lovNacionalidad",lovsService.getLovs("4","%"));
+        model.addAttribute("lovGrdInstruccion",lovsService.getLovs("9","%"));
+        model.addAttribute("lovCenForm",lovsService.getLovs("51","%"));
+        model.addAttribute("lovEstados",lovsService.getLovs("54","%"));
+        model.addAttribute("lovLarDistancia",lovsService.getLovs("29","%"));
+        model.addAttribute("lovEstcivil",lovsService.getLovs("68","%"));
+
+        model.addAttribute("lovDept_origen",lovsService.getLovsDept("",emp.getIexpaisemisor() ));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen",lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen",lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss*/
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
     }
