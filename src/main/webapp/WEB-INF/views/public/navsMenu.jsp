@@ -40,13 +40,13 @@
         </script>
         <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
           <!-- scrollbar removed-->
-          <div class="navbar-vertical-content" style="background-color:#111827;">
+          <div class="navbar-vertical-content">
             <ul class="navbar-nav flex-column" id="navbarVerticalNav">
               <li class="nav-item">
                 <!-- parent pages-->
                 <div id="usermenu">
                     <img id="span1" src="verFoto@LOGO@${idComp}@${urlLogo}"></img>
-                    <span id="span2">${usuario}</span>
+                    <span class="mt-2 text-black" id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>
 
@@ -406,6 +406,6 @@
           </div>
         </div>
         <div class="navbar-vertical-footer">
-          <a id="btnMenuCollapse" class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center"><span class="uil uil-left-arrow-to-left fs-0" style="color:white;"></span><span class="uil uil-arrow-from-right fs-0" style="color:white;"></span><span class="navbar-vertical-footer-text ms-2" style="color:white;">Collapsed View</span></a>
+          <a id="btnMenuCollapse" class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center"><span class="uil uil-left-arrow-to-left fs-0"></span><span class="uil uil-arrow-from-right fs-0"></span><span class="navbar-vertical-footer-text ms-2">Collapsed View</span></a>
         </div>
     </nav>

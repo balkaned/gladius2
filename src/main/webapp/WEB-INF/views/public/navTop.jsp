@@ -1,5 +1,6 @@
 
-    <nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">
+    <!--<nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">-->
+    <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
         <div class="collapse navbar-collapse justify-content-between">
 
           <div class="navbar-logo">
@@ -15,7 +16,8 @@
 
           <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:25rem;">
             <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-              <input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />
+              <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
+              <input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
               <span class="fas fa-search search-box-icon"></span>
 
             </form>
@@ -361,10 +363,10 @@
 
                       </div>
                       <h6 class="mt-2 text-black">${usuario}</h6>
-                      <span>${email}</span>
-                      <span id="span4">${nombreComp}</span>
-                      <span id="span5">Ruc: ${rucComp}</span>
-                      <span id="span6a">Rol: Admin</span>
+                      <span class="mt-2 text-black">${email}</span>
+                      <span class="mt-2 text-black" id="span4">${nombreComp}</span>
+                      <span class="mt-2 text-black" id="span5">Ruc: ${rucComp}</span>
+                      <span class="mt-2 text-black" id="span6a">Rol: Admin</span>
                     </div>
                     <div class="mb-3 mx-3">
                       <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
