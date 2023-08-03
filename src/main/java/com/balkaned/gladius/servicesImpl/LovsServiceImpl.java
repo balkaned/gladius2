@@ -1,7 +1,8 @@
-package com.balkaned.gladius.services;
+package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.LovsDao;
+import com.balkaned.gladius.services.LovsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.dao.CompaniaDao;
 import com.balkaned.gladius.dao.EmpleadoDao;
-import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +23,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public Empleado recuperarCabecera(Integer ciaid, Integer codtra){
         return dao.recuperarCabecera(ciaid,codtra);
     }
+    public Empleado recuperarLaboral(Integer ciaid , Integer codtra){return dao.recuperarLaboral(ciaid,codtra);}
+    public Empleado recuperarPagos(Integer ciaid , Integer codtra){return dao.recuperarPagos(ciaid,codtra);}
+    public Empleado recuperarSegSocial(Integer ciaid , Integer codtra){return dao.recuperarSegSocial(ciaid,codtra);}
+    public Empleado recuperarDireccion(Integer ciaid , Integer codtra){return dao.recuperarDireccion(ciaid,codtra);}
+    public void  actualizarCabecera(Empleado empleado){dao.actualizarCabecera(empleado);}
+
+
 }

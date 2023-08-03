@@ -1,8 +1,6 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.LovsService;
@@ -14,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -34,7 +31,7 @@ public class EmpleadoController {
     LovsService lovsService;
 
     @RequestMapping("/listEmpleados")
-    public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
+    public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -84,7 +81,6 @@ public class EmpleadoController {
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
         logger.info("idCompaniaXXXX: "+idCompania);
-
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
         model.addAttribute("email",email);
@@ -92,8 +88,10 @@ public class EmpleadoController {
         model.addAttribute("nombreComp", nombreComp);
         model.addAttribute("rucComp",rucComp);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado",empleado);
 
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
         model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
@@ -107,7 +105,7 @@ public class EmpleadoController {
         model.addAttribute("urlLogo",urlLogo);
 
         model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
-        /*model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
+        model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
         model.addAttribute("lovModForm",lovsService.getLovs("18","%"));
         model.addAttribute("lovPaisEmisor",lovsService.getLovs("26","%"));
         model.addAttribute("lovNacionalidad",lovsService.getLovs("4","%"));
@@ -116,12 +114,78 @@ public class EmpleadoController {
         model.addAttribute("lovEstados",lovsService.getLovs("54","%"));
         model.addAttribute("lovLarDistancia",lovsService.getLovs("29","%"));
         model.addAttribute("lovEstcivil",lovsService.getLovs("68","%"));
-
         model.addAttribute("lovDept_origen",lovsService.getLovsDept("",emp.getIexpaisemisor() ));  // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovProvin_origen",lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen",lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss*/
+        model.addAttribute("lovDist_origen",lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss
+
+        Empleado emp2=empleadoService.recuperarLaboral(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp2",emp2);
+        model.addAttribute("lovSitPen",lovsService.getLovs("15","%"));
+        model.addAttribute("lovTipCont",lovsService.getLovs("12","%"));
+        model.addAttribute("lovPliego",lovsService.getLovs("31","%"));
+        model.addAttribute("lovSituesp",lovsService.getLovs("35","%"));
+        model.addAttribute("lovOcupRegPub",lovsService.getLovs("10","%"));
+        model.addAttribute("lovOcupRegPrv",lovsService.getLovs("30","%"));
+        model.addAttribute("lovPuesto",lovsService.getPuestoCia(idCompania));
+        model.addAttribute("lovCcosto",lovsService.getCCostoCia(idCompania));
+        model.addAttribute("lovArea",lovsService.getAreaCia(idCompania));
+        model.addAttribute("lovUbicacion",lovsService.getUbicacionCia(idCompania));
+        model.addAttribute("lovCateTra",lovsService.getLovs("24","%"));
+        model.addAttribute("lovRegLab",lovsService.getLovs("33","%"));
+        model.addAttribute("lovTipTra",lovsService.getLovs("8","%"));
+
+        Empleado emp3=empleadoService.recuperarPagos(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp3",emp3);
+        model.addAttribute("lovBancoHab",lovsService.getLovs("36","%"));
+        model.addAttribute("lovMonedaHab",lovsService.getLovs("52","%"));
+        model.addAttribute("lovTipCtaHab",lovsService.getLovs("53","%"));
+        model.addAttribute("lovBancoCts",lovsService.getLovs("36","%"));
+        model.addAttribute("lovMonedaCts",lovsService.getLovs("52","%"));
+        model.addAttribute("lovTipCtaCts",lovsService.getLovs("53","%"));
+        model.addAttribute("lovTipPago",lovsService.getLovs("16","%"));
+        model.addAttribute("lovPerRem",lovsService.getLovs("13","%"));
+
+        Empleado emp4=empleadoService.recuperarSegSocial(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp4",emp4);
+        model.addAttribute("lovEssalud",lovsService.getLovs("32","%"));
+        model.addAttribute("lovProvEps",lovsService.getLovs("14","%"));
+        model.addAttribute("lovTipCenEdu",lovsService.getLovs("51","%"));
+        model.addAttribute("lovCodAfp",lovsService.getLovs("11","%"));
+
+        Empleado emp5=empleadoService.recuperarDireccion(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp5",emp5);
+        model.addAttribute("lovTipVia",lovsService.getLovs("5","%"));
+        model.addAttribute("lovTipZona",lovsService.getLovs("6","%"));
+        model.addAttribute("lovTipVia2",lovsService.getLovs("5","%"));
+        model.addAttribute("lovTipZona2",lovsService.getLovs("6","%"));
+        model.addAttribute("lovDept_origen1",lovsService.getLovsDept ("", emp5.getIexnacion_origen1()));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen1",lovsService.getLovsProv("", emp5.getIexdepart_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen1",lovsService.getLovsDist("", emp5.getIexprovin_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDept_origen2",lovsService.getLovsDept("", emp5.getIexnacion_origen2()  ));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen2",lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2",lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
+    }
+
+    @RequestMapping(value="/updateEmplDarPers",method=RequestMethod.POST)
+    public ModelAndView updateEmplDarPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        logger.info("ep.getIexapepat(): "+ep.getIexapepat());
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/");
+        }
+
+        String idUsSession = (String) request.getSession().getAttribute("idUser");
+        System.out.println("idUsSession: "+idUsSession);
+
+        Integer idTrab=ep.getIexcodtra();
+        empleadoService.actualizarCabecera(ep);
+
+        return new ModelAndView("redirect:/detalleEmpl@"+idTrab);
     }
 }
 

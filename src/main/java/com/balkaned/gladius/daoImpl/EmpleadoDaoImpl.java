@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -74,7 +73,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "from iexempleado where iexcodcia="+empleado.getIexcodcia()+" and iexcodtra="+empleado.getIexcodtra()+" ";
 
 
-        System.out.println(sql);
+       //System.out.println(sql);
         return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
 
             public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException{
@@ -214,7 +213,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
         sql = sql + " order by iexapepat, iexapemat , iexnomtra asc";
 
-        System.out.println(sql);
+        //System.out.println(sql);
         return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
             public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException{
                 List<Empleado> lista = new ArrayList<Empleado>();
@@ -327,7 +326,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " ( select   p.iexdespuesto from iexpuesto p where p.iexcodcia= e.iexcodcia  and p.iexpuesto = e.iexpuesto    ) despuesto "+
                 "from iexempleado e where e.iexcodcia="+ciaid+" and e.iexcodtra="+codtra+" ";
 
-        logger.info(sql);
+        //System.out.println(sql);
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
@@ -385,17 +384,292 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexestcivil(rs.getString("iexestcivil"));
 
                     p.setIexreglab(rs.getString("iexreglab"));
-
                     p.setDireccion1(rs.getString("direccion"));
-
                     p.setDespuesto(cap.letras(rs.getString("despuesto")));
 
-                    String nombrecompleto=cap.letras(p.getIexnomtra())+" "+cap.letras(p.getIexapemat())+" "+cap.letras(p.getIexapemat());
+                    String nombrecompleto=cap.letras(p.getIexnomtra())+" "+cap.letras(p.getIexapepat())+" "+cap.letras(p.getIexapemat());
                     p.setNomCompactoUpper(nombrecompleto);
                 }
                 return p;
             }
         });
+    }
+
+    public Empleado recuperarLaboral(Integer ciaid , Integer codtra){
+
+        Empleado p = null;
+
+        List<Empleado> lista = null;
+
+        String sql = " select " +
+                " iexcodcia, iexcodtra,  "
+                + "iextiptra,   iexsituapen  , to_char(iexfecing,'DD/MM/YYYY') iexfecing ,   TO_CHAR(iexfecret,'DD/MM/YYYY') iexfecret ,               iextipcont     ,     to_char(iexfecini_cont,'DD/MM/YYYY') iexfecini_cont,  " +
+                " TO_CHAR(iexfecfin_cont,'DD/MM/YYYY') iexfecfin_cont ,      iexpliego,         iexsituaesp,         iexocupacion_pub, " +
+                " iexocupacion_priv,   iexpuesto,         iexccosto,           iexarea, " +
+                " iexubilocal ,        iexcateg_trabajador,  iexreglab , to_char(iexfecmodlab,'dd/mm/yyyy hh24:mi:ss') iexfecmodlab , iexusumodlab   "+
+                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
+
+        //System.out.println(sql);
+
+        return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
+            public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Empleado p = new Empleado();
+                while(rs.next()) {
+
+                    p.setIexcodcia(rs.getInt("iexcodcia")) ;
+                    p.setIexcodtra(rs.getInt("iexcodtra")) ;
+                    p.setIextiptra(rs.getString("iextiptra")) ;
+                    p.setIexsituapen(rs.getString("iexsituapen")) ;
+                    p.setIexfecing(rs.getString("iexfecing")) ;
+                    p.setIexfecret(rs.getString("iexfecret")) ;
+                    p.setIextipcont(rs.getString("iextipcont")) ;
+                    p.setIexfecini_cont(rs.getString("iexfecini_cont")) ;
+                    p.setIexfecfin_cont(rs.getString("iexfecfin_cont")) ;
+                    p.setIexpliego(rs.getString("iexpliego")) ;
+                    p.setIexsituaesp(rs.getString("iexsituaesp")) ;
+                    p.setIexocupacion_pub(rs.getString("iexocupacion_pub")) ;
+                    p.setIexocupacion_priv(rs.getString("iexocupacion_priv")) ;
+                    p.setIexarea(rs.getString("iexarea")) ;
+                    p.setIexpuesto(rs.getString("iexpuesto")) ;
+                    p.setIexccosto(rs.getString("iexccosto")) ;
+                    p.setIexubilocal(rs.getString("iexubilocal")) ;
+                    p.setIexcateg_trabajador(rs.getString("iexcateg_trabajador")) ;
+                    p.setIexreglab(rs.getString("iexreglab")) ;
+                    p.setIexusumodlab(rs.getString("iexusumodlab"));
+                    p.setIexfecmodlab(rs.getString("iexfecmodlab"));
+
+                }
+                return p;
+            }
+        });
+    }
+
+    public Empleado recuperarPagos(Integer ciaid, Integer codtra){
+
+        Empleado p = null;
+
+        List<Empleado> lista = null;
+        String sql = " select " +
+                "    iexcodcia , iexcodtra, iextippago, iexperrem, coalesce(iexmontorem,0) as iexmontorem, "
+                + " iexcodban_hab ," +
+                " iextipban_hab,  " +
+                " iexcodmon_hab,  " +
+                "iexflgbancci_hab, " +
+                "iexnrocta_hab,  " +
+                "iextipban_cts,  " +
+                "iexcodban_cts,  " +
+                "iexcodmon_cts,  " +
+                "iexflgbancci_cts,  " +
+                "iexnrocta_cts , to_char(iexfecmodpag,'dd/mm/yyyy hh24:mi:ss') iexfecmodpag , iexusumodpag   "+
+                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
+
+        //System.out.println(sql);
+
+        return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
+            public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Empleado p = new Empleado();
+                while(rs.next()) {
+
+                    p.setIexcodcia(rs.getInt("iexcodcia")) ;
+                    p.setIexcodtra(rs.getInt("iexcodtra")) ;
+                    p.setIextippago(rs.getString("iextippago")) ;
+                    p.setIexperrem(rs.getString("iexperrem")) ;
+                    p.setIexmontorem(Double.parseDouble(rs.getString("iexmontorem"))) ;
+                    p.setIexcodban_hab(rs.getString("iexcodban_hab")) ;
+                    p.setIexflgbancci_hab(rs.getString("iexflgbancci_hab")) ;
+                    p.setIexcodmon_hab(rs.getString("iexcodmon_hab")) ;
+                    p.setIextipban_hab(rs.getString("iextipban_hab")) ;
+                    p.setIexnrocta_hab(rs.getString("iexnrocta_hab")) ;
+                    p.setIexcodban_cts(rs.getString("iexcodban_cts")) ;
+                    p.setIexflgbancci_cts(rs.getString("iexflgbancci_cts")) ;
+                    p.setIexcodmon_cts(rs.getString("iexcodmon_cts")) ;
+                    p.setIextipban_cts(rs.getString("iextipban_cts")) ;
+                    p.setIexnrocta_cts(rs.getString("iexnrocta_cts")) ;
+                    p.setIexusumodpag(rs.getString("iexusumodpag"));
+                    p.setIexfecmodpag(rs.getString("iexfecmodpag"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public Empleado recuperarSegSocial(Integer ciaid, Integer codtra){
+
+        Empleado p = null;
+
+        List<Empleado> lista = null;
+
+        String sql = " select " +
+                "iexcodcia, iexcodtra, iexcodafp, to_char(iexfecafp,'DD/MM/YYYY') iexfecafp , iexcussp, "
+                + "iexessalud  ," +
+                "iexsenati,  " +
+                "iexflgeps,  " +
+                "iexcodeps,  " +
+                "iexconvdobtrib, " +
+                "iexdiscapacidad,  " +
+                "iexsctrpension,   " +
+                "iexregalter,  " +
+                "iexjornmax,  " +
+                "iexhornocturno,  " +
+                "iexsindicalizado,  " +
+                "iexexon5ta ,  " +
+                "iexnroruc_cas, " +
+                "iexmadreresp,  " +
+                "iextipocentoedu,  " +
+                " iexflgcomi_mix,  "+
+                "  iexflgjubil ,"+
+                "   iexflgmas_vida , to_char(iexfecmodseg,'dd/mm/yyyy hh24:mi:ss') iexfecmodseg , iexusumodseg "+
+                "from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
+
+        //System.out.println(sql);
+        return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
+            public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Empleado p = new Empleado();
+                while(rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setIexcodafp(rs.getString("iexcodafp"));
+                    p.setIexfecafp(rs.getString("iexfecafp"));
+                    p.setIexcussp(rs.getString("iexcussp"));
+
+                    p.setIexessalud(rs.getString("iexessalud")) ;
+                    p.setIexsenati(rs.getString("iexsenati")) ;
+                    p.setIexflgeps(rs.getString("iexflgeps")) ;
+                    p.setIexcodeps(rs.getString("iexcodeps")) ;
+                    p.setIexconvdobtrib(rs.getString("iexconvdobtrib")) ;
+                    p.setIexdiscapacidad(rs.getString("iexdiscapacidad")) ;
+                    p.setIexsctrpension(rs.getString("iexsctrpension")) ;
+                    p.setIexregalter(rs.getString("iexregalter")) ;
+                    p.setIexjornmax(rs.getString("iexjornmax")) ;
+                    p.setIexhornocturno(rs.getString("iexhornocturno")) ;
+                    p.setIexsindicalizado(rs.getString("iexsindicalizado")) ;
+                    p.setIexexon5ta(rs.getString("iexexon5ta")) ;
+                    p.setIexnroruc_cas(rs.getString("iexnroruc_cas")) ;
+                    p.setIexmadreresp(rs.getString("iexmadreresp")) ;
+                    p.setIextipocentoedu(rs.getString("iextipocentoedu")) ;
+                    p.setIexflgcomi_mix(rs.getString("iexflgcomi_mix"));
+                    p.setIexflgjubil(rs.getString("iexflgjubil"));
+                    p.setIexflgmas_vida(rs.getString("iexflgmas_vida"));
+
+                    p.setIexusumodseg(rs.getString("iexusumodseg"));
+                    p.setIexfecmodseg(rs.getString("iexfecmodseg"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public Empleado recuperarDireccion(Integer ciaid , Integer codtra){
+
+        Empleado p = null;
+
+        String sql = " select  iexcodcia, iexcodtra, " +
+                " iextipvia_dom1,        iexnomvia_dom1,             iexnrovia_dom1,     		 iexdeptin_dom1, " +
+                " iexinterior_dom1,      iexmanzana_dom1,  		   iexlote_dom1,  			  iexkilometro_dom1,  " +
+                " iexblock_dom1,         iexetapa_dom1,   		   iextipzona_dom1,   		  iexnomzona_dom1, " +
+                " iexreferencia_dom1,    iexubigeo_dom1,             iextipvia_dom2,   		  iexnomvia_dom2, " +
+                " iexnrovia_dom2,        iexdeptin_dom2,             iexinterior_dom2,          iexmanzana_dom2, " +
+                " iexlote_dom2,          iexkilometro_dom2,          iexblock_dom2,             iexetapa_dom2, " +
+                " iextipzona_dom2,       iexnomzona_dom2,    		   iexreferencia_dom2,        iexubigeo_dom2, " +
+                " iexflgdomicilio , to_char(iexfecmoddom,'dd/mm/yyyy hh24:mi:ss') iexfecmoddom , iexusumoddom ," +
+                "  iexnacion_origen1,  "+
+                "   iexdepart_origen1 , "+
+                "   iexprovin_origen1 , "+
+                "   iexnacion_origen2 , "+
+                "   iexdepart_origen2 , "+
+                "   iexprovin_origen2   "+
+                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
+
+        //System.out.println(sql);
+        return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
+            public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Empleado p = new Empleado();
+                while(rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIextipvia_dom1(rs.getString("iextipvia_dom1")) ;
+                    p.setIexnomvia_dom1(rs.getString("iexnomvia_dom1")) ;
+                    p.setIexnrovia_dom1(rs.getString("iexnrovia_dom1")) ;
+                    p.setIexdeptin_dom1(rs.getString("iexdeptin_dom1")) ;
+                    p.setIexinterior_dom1(rs.getString("iexinterior_dom1")) ;
+                    p.setIexmanzana_dom1(rs.getString("iexmanzana_dom1")) ;
+                    p.setIexlote_dom1(rs.getString("iexlote_dom1")) ;
+                    p.setIexkilometro_dom1(rs.getString("iexkilometro_dom1")) ;
+                    p.setIexblock_dom1(rs.getString("iexblock_dom1")) ;
+                    p.setIexetapa_dom1(rs.getString("iexetapa_dom1")) ;
+                    p.setIextipzona_dom1(rs.getString("iextipzona_dom1")) ;
+                    p.setIexnomzona_dom1(rs.getString("iexnomzona_dom1")) ;
+                    p.setIexreferencia_dom1(rs.getString("iexreferencia_dom1")) ;
+                    p.setIexubigeo_dom1(rs.getString("iexubigeo_dom1")) ;
+                    p.setIextipvia_dom2(rs.getString("iextipvia_dom2")) ;
+                    p.setIexnomvia_dom2(rs.getString("iexnomvia_dom2")) ;
+                    p.setIexnrovia_dom2(rs.getString("iexnrovia_dom2")) ;
+                    p.setIexdeptin_dom2(rs.getString("iexdeptin_dom2")) ;
+                    p.setIexinterior_dom2(rs.getString("iexinterior_dom2")) ;
+                    p.setIexmanzana_dom2(rs.getString("iexmanzana_dom2")) ;
+                    p.setIexlote_dom2(rs.getString("iexlote_dom2")) ;
+                    p.setIexkilometro_dom2(rs.getString("iexkilometro_dom2")) ;
+                    p.setIexblock_dom2(rs.getString("iexblock_dom2")) ;
+                    p.setIexetapa_dom2(rs.getString("iexetapa_dom2")) ;
+                    p.setIextipzona_dom2(rs.getString("iextipzona_dom2")) ;
+                    p.setIexnomzona_dom2(rs.getString("iexnomzona_dom2")) ;
+                    p.setIexreferencia_dom2(rs.getString("iexreferencia_dom2")) ;
+                    p.setIexubigeo_dom2(rs.getString("iexubigeo_dom2")) ;
+                    p.setIexflgdomicilio(rs.getString("iexflgdomicilio")) ;
+                    p.setIexusumoddom(rs.getString("iexusumoddom"));
+                    p.setIexfecmoddom(rs.getString("iexfecmoddom"));
+                    p.setIexnacion_origen1(rs.getString("iexnacion_origen1"));
+                    p.setIexdepart_origen1(rs.getString("iexdepart_origen1"));
+                    p.setIexprovin_origen1(rs.getString("iexprovin_origen1"));
+                    p.setIexnacion_origen2(rs.getString("iexnacion_origen2"));
+                    p.setIexdepart_origen2(rs.getString("iexdepart_origen2"));
+                    p.setIexprovin_origen2(rs.getString("iexprovin_origen2"));
+                }
+                return p;
+            }
+        });
+    }
+
+
+    public void  actualizarCabecera(Empleado empleado){
+        logger.info("empleado.getIexapepat(): "+empleado.getIexapepat());
+
+        template.update(" update  iexempleado set "+
+                " iexnomtra=?,     iexapepat=?,    iexapemat=?, " +
+                //" iextipdocid=?,   iexnrodoc=?,         iexfecnac=to_date(?,'DD/MM/YYYY'), " +
+                 " iextipdocid=?,   iexnrodoc=?,         " +
+                " iexcodsex=?,     iexpaisemisor=?,     iexflgest=?,     iexcodant=?, " +
+                " iexmodform=?,    iexnacion_origen=?,  iexdepart_origen=?,  iexprovin_origen=?, " +
+                " iexdistri_origen=?,   iexgrdinstruccion=?,  iexcentroform=?,  iexflgdomicil=?, " +
+                " iexfeccmod=CURRENT_TIMESTAMP,     iexcodlardist=?, iexnrotelf=?, iexemail=? , iexemail_coorp=? , iexusumod=? , iexestcivil=?  where  iexcodcia=?   and  iexcodtra=? ",
+
+                empleado.getIexnomtra(),
+                empleado.getIexapepat(),
+                empleado.getIexapemat(),
+                empleado.getIextipdocid(),
+                empleado.getIexnrodoc(),
+                //empleado.getIexfecnac(),
+                empleado.getIexcodsex(),
+                empleado.getIexpaisemisor(),
+                empleado.getIexflgest(),
+                empleado.getIexcodant(),
+                empleado.getIexmodform(),
+                empleado.getIexnacion_origen(),
+                empleado.getIexdepart_origen(),
+                empleado.getIexprovin_origen(),
+                empleado.getIexdistri_origen(),
+                empleado.getIexgrdinstruccion(),
+                empleado.getIexcentroform(),
+                empleado.getIexflgdomicil(),
+                empleado.getIexcodlardist(),
+                empleado.getIexnrotelf(),
+                empleado.getIexemail(),
+                empleado.getIexemail_coorp(),
+                empleado.getIexusumod(),
+                empleado.getIexestcivil(),
+                empleado.getIexcodcia(),
+                empleado.getIexcodtra());
     }
 
     /*
@@ -807,84 +1081,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
 
 
-    public void  actualizarCabecera(Empleado Empleado) throws DAOException  {
 
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(" update  iexempleado set  "+
-                "    iexnomtra=?,     iexapepat=?,    iexapemat=?, " +
-                " iextipdocid=?,   iexnrodoc=?,         iexfecnac=to_date(?,'DD/MM/YYYY'),         " +
-                " iexcodsex=?,     iexpaisemisor=?,     iexflgest=?,     iexcodant=?,    " +
-                " iexmodform=?,    iexnacion_origen=?,  iexdepart_origen=?,  iexprovin_origen=?,    " +
-                " iexdistri_origen=?,   iexgrdinstruccion=?,  iexcentroform=?,  iexflgdomicil=?,    " +
-                " iexfeccmod=CURRENT_TIMESTAMP,     iexcodlardist=?, iexnrotelf=?, iexemail=? , iexemail_coorp=? , iexusumod=? , iexestcivil=?  where  iexcodcia=?   and  iexcodtra=?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-
-            pst.setString(1, Empleado.getIexnomtra());
-            pst.setString(2, Empleado.getIexapepat());
-            pst.setString(3, Empleado.getIexapemat());
-
-            pst.setString(4, Empleado.getIextipdocid());
-            pst.setString(5, Empleado.getIexnrodoc());
-            pst.setString(6, Empleado.getIexfecnac());
-
-
-
-            pst.setString(7, Empleado.getIexcodsex());
-            pst.setString(8, Empleado.getIexpaisemisor());
-            pst.setString(9, Empleado.getIexflgest());
-            pst.setString(10, Empleado.getIexcodant());
-            //  pst.setString(11, Empleado.getIextiptra());
-
-            pst.setString(11, Empleado.getIexmodform());
-            pst.setString(12, Empleado.getIexnacion_origen());
-            pst.setString(13, Empleado.getIexdepart_origen());
-            pst.setString(14, Empleado.getIexprovin_origen());
-
-
-
-            pst.setString(15, Empleado.getIexdistri_origen());
-            pst.setString(16, Empleado.getIexgrdinstruccion());
-            pst.setString(17, Empleado.getIexcentroform());
-            pst.setString(18, Empleado.getIexflgdomicil());
-
-
-            pst.setString(19,Empleado.getIexcodlardist());
-            pst.setString(20,Empleado.getIexnrotelf());
-            pst.setString(21,Empleado.getIexemail());
-            pst.setString(22,Empleado.getIexemail_coorp());
-            pst.setString(23, Empleado.getIexusumod());
-            pst.setString(24, Empleado.getIexestcivil());
-
-
-
-            pst.setInt(25, Empleado.getIexcodcia());
-            pst.setInt(26, Empleado.getIexcodtra());
-
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }
 
     public void  actualizarLaboral(Empleado Empleado) throws DAOException  {
 
@@ -1437,308 +1634,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
 
-    public Empleado recuperarLaboral(Integer ciaid , Integer codtra) throws DAOException {
 
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-        String sql = " select " +
-                " iexcodcia, iexcodtra,  "
-                + "iextiptra,   iexsituapen  , to_char(iexfecing,'DD/MM/YYYY') iexfecing ,   TO_CHAR(iexfecret,'DD/MM/YYYY') iexfecret ,               iextipcont     ,     to_char(iexfecini_cont,'DD/MM/YYYY') iexfecini_cont,  " +
-                " TO_CHAR(iexfecfin_cont,'DD/MM/YYYY') iexfecfin_cont ,      iexpliego,         iexsituaesp,         iexocupacion_pub, " +
-                " iexocupacion_priv,   iexpuesto,         iexccosto,           iexarea, " +
-                " iexubilocal ,        iexcateg_trabajador,  iexreglab , to_char(iexfecmodlab,'dd/mm/yyyy hh24:mi:ss') iexfecmodlab , iexusumodlab   "+
-                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            if (rs.next()) {
-                p = new Empleado();
-
-                p.setIexcodcia(rs.getInt("iexcodcia")) ;
-                p.setIexcodtra(rs.getInt("iexcodtra")) ;
-                p.setIextiptra(rs.getString("iextiptra")) ;
-                p.setIexsituapen(rs.getString("iexsituapen")) ;
-                p.setIexfecing(rs.getString("iexfecing")) ; p.setIexfecret(rs.getString("iexfecret")) ;
-                p.setIextipcont(rs.getString("iextipcont")) ;
-                p.setIexfecini_cont(rs.getString("iexfecini_cont")) ;             p.setIexfecfin_cont(rs.getString("iexfecfin_cont")) ;
-                p.setIexpliego(rs.getString("iexpliego")) ;
-                p.setIexsituaesp(rs.getString("iexsituaesp")) ;
-                p.setIexocupacion_pub(rs.getString("iexocupacion_pub")) ;
-                p.setIexocupacion_priv(rs.getString("iexocupacion_priv")) ;
-                p.setIexarea(rs.getString("iexarea")) ;
-                p.setIexpuesto(rs.getString("iexpuesto")) ;
-                p.setIexccosto(rs.getString("iexccosto")) ;
-                p.setIexubilocal(rs.getString("iexubilocal")) ;
-                p.setIexcateg_trabajador(rs.getString("iexcateg_trabajador")) ;
-                p.setIexreglab(rs.getString("iexreglab")) ;
-
-                p.setIexusumodlab(rs.getString("iexusumodlab"));
-                p.setIexfecmodlab(rs.getString("iexfecmodlab"));
-
-
-
-                //lista.add(p);
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return p;
-    }
-
-    public Empleado recuperarPagos(Integer ciaid , Integer codtra) throws DAOException {
-
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-        String sql = " select " +
-                "    iexcodcia , iexcodtra, iextippago, iexperrem, coalesce(iexmontorem,0) as iexmontorem, "
-                + " iexcodban_hab ," +
-                " iextipban_hab,  " +
-                " iexcodmon_hab,  " +
-                "iexflgbancci_hab, " +
-                "iexnrocta_hab,  " +
-                "iextipban_cts,  " +
-                "iexcodban_cts,  " +
-                "iexcodmon_cts,  " +
-                "iexflgbancci_cts,  " +
-                "iexnrocta_cts , to_char(iexfecmodpag,'dd/mm/yyyy hh24:mi:ss') iexfecmodpag , iexusumodpag   "+
-                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            if (rs.next()) {
-                p = new Empleado();
-
-                p.setIexcodcia(rs.getInt("iexcodcia")) ;
-                p.setIexcodtra(rs.getInt("iexcodtra")) ;
-                p.setIextippago(rs.getString("iextippago")) ;
-                p.setIexperrem(rs.getString("iexperrem")) ;
-                p.setIexmontorem(Double.parseDouble(rs.getString("iexmontorem"))) ;
-                p.setIexcodban_hab(rs.getString("iexcodban_hab")) ;           p.setIexflgbancci_hab(rs.getString("iexflgbancci_hab")) ;     p.setIexcodmon_hab(rs.getString("iexcodmon_hab")) ;     p.setIextipban_hab(rs.getString("iextipban_hab")) ;
-                p.setIexnrocta_hab(rs.getString("iexnrocta_hab")) ;      p.setIexcodban_cts(rs.getString("iexcodban_cts")) ;        p.setIexflgbancci_cts(rs.getString("iexflgbancci_cts")) ;        p.setIexcodmon_cts(rs.getString("iexcodmon_cts")) ;
-                p.setIextipban_cts(rs.getString("iextipban_cts")) ;   p.setIexnrocta_cts(rs.getString("iexnrocta_cts")) ;
-
-                p.setIexusumodpag(rs.getString("iexusumodpag"));
-                p.setIexfecmodpag(rs.getString("iexfecmodpag"));
-                //lista.add(p);
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return p;
-    }
-
-    public Empleado recuperarSegSocial(Integer ciaid , Integer codtra) throws DAOException {
-
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-        String sql = " select " +
-                "iexcodcia, iexcodtra, iexcodafp, to_char(iexfecafp,'DD/MM/YYYY') iexfecafp , iexcussp, "
-                + "iexessalud  ," +
-                "iexsenati,  " +
-                "iexflgeps,  " +
-                "iexcodeps,  " +
-                "iexconvdobtrib, " +
-                "iexdiscapacidad,  " +
-                "iexsctrpension,   " +
-                "iexregalter,  " +
-                "iexjornmax,  " +
-                "iexhornocturno,  " +
-                "iexsindicalizado,  " +
-                "iexexon5ta ,  " +
-                "iexnroruc_cas, " +
-                "iexmadreresp,  " +
-                "iextipocentoedu,  " +
-                " iexflgcomi_mix,  "+
-                "  iexflgjubil ,"+
-                "   iexflgmas_vida , to_char(iexfecmodseg,'dd/mm/yyyy hh24:mi:ss') iexfecmodseg , iexusumodseg "+
-                "from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            if (rs.next()) {
-                p = new Empleado();
-                p.setIexcodcia(rs.getInt("iexcodcia"));
-                p.setIexcodtra(rs.getInt("iexcodtra"));
-
-                p.setIexcodafp(rs.getString("iexcodafp"));
-                p.setIexfecafp(rs.getString("iexfecafp"));
-                p.setIexcussp(rs.getString("iexcussp"));
-
-                p.setIexessalud(rs.getString("iexessalud")) ;           p.setIexsenati(rs.getString("iexsenati")) ;     p.setIexflgeps(rs.getString("iexflgeps")) ;     p.setIexcodeps(rs.getString("iexcodeps")) ;
-                p.setIexconvdobtrib(rs.getString("iexconvdobtrib")) ;      p.setIexdiscapacidad(rs.getString("iexdiscapacidad")) ;        p.setIexsctrpension(rs.getString("iexsctrpension")) ;        p.setIexregalter(rs.getString("iexregalter")) ;
-                p.setIexjornmax(rs.getString("iexjornmax")) ;   p.setIexhornocturno(rs.getString("iexhornocturno")) ;
-                p.setIexsindicalizado(rs.getString("iexsindicalizado")) ;   p.setIexexon5ta(rs.getString("iexexon5ta")) ;
-                p.setIexnroruc_cas(rs.getString("iexnroruc_cas")) ;   p.setIexmadreresp(rs.getString("iexmadreresp")) ;
-                p.setIextipocentoedu(rs.getString("iextipocentoedu")) ;
-                p.setIexflgcomi_mix(rs.getString("iexflgcomi_mix"));
-                p.setIexflgjubil(rs.getString("iexflgjubil"));
-                p.setIexflgmas_vida(rs.getString("iexflgmas_vida"));
-
-                p.setIexusumodseg(rs.getString("iexusumodseg"));
-                p.setIexfecmodseg(rs.getString("iexfecmodseg"));
-
-
-                //lista.add(p);
-
-
-                //lista.add(p);
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return p;
-    }
-
-    public Empleado recuperarOtros(Integer ciaid , Integer codtra) throws DAOException {
-
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-        String sql = "  "+
-                "from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            if (rs.next()) {
-                p = new Empleado();
-
-
-
-                //lista.add(p);
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return p;
-    }
-
-    public Empleado recuperarDireccion(Integer ciaid , Integer codtra) throws DAOException {
-
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-        String sql = " select  iexcodcia, iexcodtra, " +
-                " iextipvia_dom1,        iexnomvia_dom1,             iexnrovia_dom1,     		 iexdeptin_dom1, " +
-                " iexinterior_dom1,      iexmanzana_dom1,  		   iexlote_dom1,  			  iexkilometro_dom1,  " +
-                " iexblock_dom1,         iexetapa_dom1,   		   iextipzona_dom1,   		  iexnomzona_dom1, " +
-                " iexreferencia_dom1,    iexubigeo_dom1,             iextipvia_dom2,   		  iexnomvia_dom2, " +
-                " iexnrovia_dom2,        iexdeptin_dom2,             iexinterior_dom2,          iexmanzana_dom2, " +
-                " iexlote_dom2,          iexkilometro_dom2,          iexblock_dom2,             iexetapa_dom2, " +
-                " iextipzona_dom2,       iexnomzona_dom2,    		   iexreferencia_dom2,        iexubigeo_dom2, " +
-                " iexflgdomicilio , to_char(iexfecmoddom,'dd/mm/yyyy hh24:mi:ss') iexfecmoddom , iexusumoddom ," +
-                "  iexnacion_origen1,  "+
-                "   iexdepart_origen1 , "+
-                "   iexprovin_origen1 , "+
-                "   iexnacion_origen2 , "+
-                "   iexdepart_origen2 , "+
-                "   iexprovin_origen2   "+
-                " from iexempleado where iexcodcia="+ciaid+" and iexcodtra="+codtra+" ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            if (rs.next()) {
-                p = new Empleado();
-                p.setIexcodcia(rs.getInt("iexcodcia"));
-                p.setIexcodtra(rs.getInt("iexcodtra"));
-                p.setIextipvia_dom1(rs.getString("iextipvia_dom1")) ;           p.setIexnomvia_dom1(rs.getString("iexnomvia_dom1")) ;     p.setIexnrovia_dom1(rs.getString("iexnrovia_dom1")) ;     p.setIexdeptin_dom1(rs.getString("iexdeptin_dom1")) ;
-                p.setIexinterior_dom1(rs.getString("iexinterior_dom1")) ;      p.setIexmanzana_dom1(rs.getString("iexmanzana_dom1")) ;        p.setIexlote_dom1(rs.getString("iexlote_dom1")) ;        p.setIexkilometro_dom1(rs.getString("iexkilometro_dom1")) ;
-                p.setIexblock_dom1(rs.getString("iexblock_dom1")) ;           p.setIexetapa_dom1(rs.getString("iexetapa_dom1")) ;     p.setIextipzona_dom1(rs.getString("iextipzona_dom1")) ;     p.setIexnomzona_dom1(rs.getString("iexnomzona_dom1")) ;
-                p.setIexreferencia_dom1(rs.getString("iexreferencia_dom1")) ;      p.setIexubigeo_dom1(rs.getString("iexubigeo_dom1")) ;        p.setIextipvia_dom2(rs.getString("iextipvia_dom2")) ;        p.setIexnomvia_dom2(rs.getString("iexnomvia_dom2")) ;
-                p.setIexnrovia_dom2(rs.getString("iexnrovia_dom2")) ;           p.setIexdeptin_dom2(rs.getString("iexdeptin_dom2")) ;     p.setIexinterior_dom2(rs.getString("iexinterior_dom2")) ;     p.setIexmanzana_dom2(rs.getString("iexmanzana_dom2")) ;
-                p.setIexlote_dom2(rs.getString("iexlote_dom2")) ;      p.setIexkilometro_dom2(rs.getString("iexkilometro_dom2")) ;        p.setIexblock_dom2(rs.getString("iexblock_dom2")) ;        p.setIexetapa_dom2(rs.getString("iexetapa_dom2")) ;
-                p.setIextipzona_dom2(rs.getString("iextipzona_dom2")) ;           p.setIexnomzona_dom2(rs.getString("iexnomzona_dom2")) ;     p.setIexreferencia_dom2(rs.getString("iexreferencia_dom2")) ;     p.setIexubigeo_dom2(rs.getString("iexubigeo_dom2")) ;
-                p.setIexflgdomicilio(rs.getString("iexflgdomicilio")) ;
-
-                p.setIexusumoddom(rs.getString("iexusumoddom"));
-                p.setIexfecmoddom(rs.getString("iexfecmoddom"));
-
-                p.setIexnacion_origen1(rs.getString("iexnacion_origen1"));
-                p.setIexdepart_origen1(rs.getString("iexdepart_origen1"));
-                p.setIexprovin_origen1(rs.getString("iexprovin_origen1"));
-
-
-                p.setIexnacion_origen2(rs.getString("iexnacion_origen2"));
-                p.setIexdepart_origen2(rs.getString("iexdepart_origen2"));
-                p.setIexprovin_origen2(rs.getString("iexprovin_origen2"));
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return p;
-    }
 
 
     public void  cesarEmpleado(Empleado Empleado) throws DAOException  {
@@ -2195,9 +2091,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         } catch (NamingException ex) {
             Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
         return codnew ;
     }*/
 
