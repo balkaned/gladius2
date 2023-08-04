@@ -173,19 +173,74 @@ public class EmpleadoController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        logger.info("ep.getIexapepat(): "+ep.getIexapepat());
-
         if(request.getSession().getAttribute("user")==null) {
             return new ModelAndView("redirect:/");
         }
+        Empleado p = new Empleado();
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        String iexcodtra = request.getParameter("iexcodtra");
 
-        String idUsSession = (String) request.getSession().getAttribute("idUser");
-        System.out.println("idUsSession: "+idUsSession);
+        logger.info("iexcodcia: "+iexcodcia);
+        logger.info("iexcodtra: "+iexcodtra);
 
-        Integer idTrab=ep.getIexcodtra();
-        empleadoService.actualizarCabecera(ep);
+        String iextipdocid = request.getParameter("iextipdocid");
+        String iexnrodoc = request.getParameter("iexnrodocid");
+        String iexnomtra = request.getParameter("iexnomtra");
+        String iexapepat= request.getParameter("iexapepat");
+        String iexapemat = request.getParameter("iexapemat");
+        String iexfecnac = request.getParameter("iexfecnac");
+        String iexcodsex = request.getParameter("iexcodsex");
+        String iextiptra = request.getParameter("iextiptra");
+        String iexfecing = request.getParameter("iexfecing");
+        String iexmodform = request.getParameter("iexmodform");
+        String iexpaisemisor = request.getParameter("iexpaisemisor");
+        String iexnacion_origen = request.getParameter("iexnacion_origen");
+        String iexdepart_origen = request.getParameter("iexdepart_origen");
+        String iexprovin_origen = request.getParameter("iexprovin_origen");
+        String iexdistri_origen = request.getParameter("iexdistri_origen");
+        String iexgrdinstruccion = request.getParameter("iexgrdinstruccion");
+        String iexcentroform = request.getParameter("iexcentroform");
+        String iexflgdomicil = request.getParameter("iexflgdomicil");
+        String iexcodant = request.getParameter("iexcodant");
+        String iexflgest  = request.getParameter("iexflgest");
+        String iexlardist = request.getParameter("iexcodlardist");
+        String iexnrotelf = request.getParameter("iexnrotelf");
+        String iexemail = request.getParameter("iexemail");
+        String iexemail_coorp = request.getParameter("iexemail_coorp");
+        String iexestcivil =  request.getParameter("iexestcivil");
 
-        return new ModelAndView("redirect:/detalleEmpl@"+idTrab);
+        p.setIexcodcia(iexcodcia);
+        p.setIexcodtra(Integer.valueOf(iexcodtra));
+        p.setIexnomtra(iexnomtra);
+        p.setIexapepat(iexapepat);
+        p.setIexapemat(iexapemat);
+        p.setIextipdocid(iextipdocid);
+        p.setIexnrodoc(iexnrodoc);
+        p.setIexfecnac(iexfecnac);
+        p.setIexfecing(iexfecing);
+        p.setIexcodsex(iexcodsex);
+        p.setIexpaisemisor(iexpaisemisor);
+        p.setIexflgest(iexflgest);
+        p.setIexcodant(iexcodant);
+        p.setIextiptra(iextiptra);
+        p.setIexmodform(iexmodform);
+        p.setIexnacion_origen(iexnacion_origen);
+        p.setIexdepart_origen(iexdepart_origen);
+        p.setIexprovin_origen(iexprovin_origen);
+        p.setIexdistri_origen(iexdistri_origen);
+        p.setIexcentroform(iexcentroform);
+        p.setIexflgdomicil(iexflgdomicil);
+        p.setIexusumod(user);
+        p.setIexgrdinstruccion(iexgrdinstruccion);
+        p.setIexcodlardist(iexlardist);
+        p.setIexnrotelf(iexnrotelf);
+        p.setIexemail(iexemail);
+        p.setIexemail_coorp(iexemail_coorp);
+        p.setIexestcivil(iexestcivil);
+
+        empleadoService.actualizarCabecera(p);
+
+        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
     }
 }
 

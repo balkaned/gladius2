@@ -1,6 +1,8 @@
 
     <!--<nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">-->
+
     <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
+
         <div class="collapse navbar-collapse justify-content-between">
 
           <div class="navbar-logo">
@@ -8,7 +10,8 @@
             <a class="navbar-brand me-1 me-sm-3" href="#">
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast2.png" alt="phoenix" width="27" />
-                  <p class="logo-text ms-2 d-none d-sm-block"></p>
+                  <p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
+                  <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>
                 </div>
               </div>
             </a>
@@ -19,7 +22,6 @@
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
               <input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
               <span class="fas fa-search search-box-icon"></span>
-
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
               <button class="btn btn-link btn-close-falcon p-0" aria-label="Close"></button>
@@ -32,7 +34,6 @@
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Recently Searched </h6>
                   <div class="py-2"><a class="dropdown-item" href="apps/e-commerce/landing/product-details.html">
                       <div class="d-flex align-items-center">
-
                         <div class="fw-normal text-1000 title"><span class="fa-solid fa-clock-rotate-left" data-fa-transform="shrink-2"></span> Store Macbook</div>
                       </div>
                     </a>
@@ -42,7 +43,6 @@
                         <div class="fw-normal text-1000 title"> <span class="fa-solid fa-clock-rotate-left" data-fa-transform="shrink-2"></span> MacBook Air - 13″</div>
                       </div>
                     </a>
-
                   </div>
                   <hr class="text-200 my-0" />
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Products</h6>
@@ -60,13 +60,11 @@
                         <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
                       </div>
                     </a>
-
                   </div>
                   <hr class="text-200 my-0" />
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Quick Links</h6>
                   <div class="py-2"><a class="dropdown-item" href="apps/e-commerce/landing/product-details.html">
                       <div class="d-flex align-items-center">
-
                         <div class="fw-normal text-1000 title"><span class="fa-solid fa-link text-900" data-fa-transform="shrink-2"></span> Support MacBook House</div>
                       </div>
                     </a>
@@ -76,13 +74,11 @@
                         <div class="fw-normal text-1000 title"> <span class="fa-solid fa-link text-900" data-fa-transform="shrink-2"></span> Store MacBook″</div>
                       </div>
                     </a>
-
                   </div>
                   <hr class="text-200 my-0" />
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Files</h6>
                   <div class="py-2"><a class="dropdown-item" href="apps/e-commerce/landing/product-details.html">
                       <div class="d-flex align-items-center">
-
                         <div class="fw-normal text-1000 title"><span class="fa-solid fa-file-zipper text-900" data-fa-transform="shrink-2"></span> Library MacBook folder.rar</div>
                       </div>
                     </a>
@@ -98,14 +94,12 @@
                         <div class="fw-normal text-1000 title"> <span class="fa-solid fa-image text-900" data-fa-transform="shrink-2"></span> MacBook Pro_13.jpg</div>
                       </div>
                     </a>
-
                   </div>
                   <hr class="text-200 my-0" />
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Members</h6>
                   <div class="py-2"><a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                       <div class="avatar avatar-l status-online  me-2 text-900">
                         <img class="rounded-circle " src="resources/assets/img/team/40x40/10.webp" alt="" />
-
                       </div>
                       <div class="flex-1">
                         <h6 class="mb-0 text-1000 title">Carry Anna</h6>
@@ -115,7 +109,6 @@
                     <a class="dropdown-item py-2 d-flex align-items-center" href="pages/members.html">
                       <div class="avatar avatar-l  me-2 text-900">
                         <img class="rounded-circle " src="resources/assets/img/team/40x40/12.webp" alt="" />
-
                       </div>
                       <div class="flex-1">
                         <h6 class="mb-0 text-1000 title">John Smith</h6>
@@ -128,13 +121,11 @@
                   <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Related Searches</h6>
                   <div class="py-2"><a class="dropdown-item" href="apps/e-commerce/landing/product-details.html">
                       <div class="d-flex align-items-center">
-
                         <div class="fw-normal text-1000 title"><span class="fa-brands fa-firefox-browser text-900" data-fa-transform="shrink-2"></span> Search in the Web MacBook</div>
                       </div>
                     </a>
                     <a class="dropdown-item" href="apps/e-commerce/landing/product-details.html">
                       <div class="d-flex align-items-center">
-
                         <div class="fw-normal text-1000 title"> <span class="fa-brands fa-chrome text-900" data-fa-transform="shrink-2"></span> Store MacBook″</div>
                       </div>
                     </a>
@@ -295,7 +286,8 @@
                   <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
                   <circle cx="8" cy="2" r="2" fill="currentColor"></circle>
                   <circle cx="14" cy="2" r="2" fill="currentColor"></circle>
-                </svg></a>
+                </svg>
+              </a>
 
               <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nide-dots shadow border border-300" aria-labelledby="navbarDropdownNindeDots">
                 <div class="card bg-white position-relative border-0">
