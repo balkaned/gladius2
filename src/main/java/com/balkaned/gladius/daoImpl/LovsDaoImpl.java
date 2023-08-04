@@ -38,7 +38,7 @@ public class LovsDaoImpl implements LovsDao {
                 "trim(substring(desdet,1,40)) des " +
                 "from iexttabled where iexcodtab='"+id_table+"'  and '%'||desdet||'%' like '%'||'"+text+"'||'%' ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 
@@ -100,7 +100,7 @@ public class LovsDaoImpl implements LovsDao {
                 " where "+
                 " procodpro="+id_proc+" ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
 
@@ -129,7 +129,7 @@ public class LovsDaoImpl implements LovsDao {
         List<Area> lista = null;
         String sql = " select iexcodcia, iexcodarea, iexdesarea from iexarea where iexcodcia="+id_cia+"";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Area>>() {
 
@@ -155,7 +155,7 @@ public class LovsDaoImpl implements LovsDao {
         List<Puesto> lista = null;
         String sql = " select  iexcodcia, iexpuesto, iexdespuesto from iexpuesto  where iexcodcia="+id_cia+"";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Puesto>>() {
 
@@ -181,7 +181,7 @@ public class LovsDaoImpl implements LovsDao {
         List<CentroCosto> lista = null;
         String sql = " select iexcodcia, iexccosto, iexdesccosto from iexccosto where iexcodcia="+id_cia+"";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
 
@@ -207,7 +207,7 @@ public class LovsDaoImpl implements LovsDao {
         List<Local> lista = null;
         String sql = " select iexcodcia, iexubicod, iexubides from iexubicacion where iexcodcia="+id_cia+"";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Local>>() {
 
@@ -242,7 +242,7 @@ public class LovsDaoImpl implements LovsDao {
                 "substring(f.iexkey,1,4) = p.idprov and " +
                 "IEXCODTAB='28' and '%'||d.iddep||'%'||p.idprov||'%'||iexkey||'%'||d.desdep||'%'||p.desprov||'%'||desdet||'%' like '%'||'"+text_buscar+"'||'%' ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Ubigeo>>() {
 
@@ -276,7 +276,7 @@ public class LovsDaoImpl implements LovsDao {
                 "  select procodregimenlab from iexprocesos " +
                 ")";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 
@@ -304,7 +304,7 @@ public class LovsDaoImpl implements LovsDao {
                 " prodespro " +
                 " from iexprocesos where procodregimenlab='"+regimen+"' order by 2 asc ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
 
@@ -330,7 +330,7 @@ public class LovsDaoImpl implements LovsDao {
         //String sql = " select iexnroper, iexpermes, iexfecini, iexfecfin from iexproperiodo where iexcodcia="+codcia+" and iexcodpro="+proceso+" and flgestado not in ('3') order by iexnroper asc  ";
         String sql = " select iexnroper, iexpermes, iexfecini, iexfecfin from iexproperiodo where iexcodcia="+codcia+" and iexcodpro="+proceso+"   order by iexnroper asc  ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<ProcesoPeriodo>>() {
 
@@ -359,7 +359,7 @@ public class LovsDaoImpl implements LovsDao {
                 "  select procodregimenlab from iexprocesos where progrppro ='"+grppla+"' " +
                 ")";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 
@@ -387,7 +387,7 @@ public class LovsDaoImpl implements LovsDao {
                 " prodespro " +
                 " from iexprocesos where procodregimenlab='"+regimen+"' and progrppro='"+grppla+"' order by 2 asc ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
 
@@ -418,7 +418,7 @@ public class LovsDaoImpl implements LovsDao {
                 " COODESCRIPCION  "+
                 " from  iexconcepto  ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
 
@@ -449,7 +449,7 @@ public class LovsDaoImpl implements LovsDao {
                 "trim(substring(desdet,1,40)) des " +
                 "from iexttabled where iexcodtab='48'  and des1det='"+id_pais+"' ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 
@@ -477,7 +477,7 @@ public class LovsDaoImpl implements LovsDao {
                 "trim(substring(desdet,1,40)) des " +
                 "from iexttabled where iexcodtab='49'  and des1det='"+id_dept+"' ";
 
-        System.out.println(sql);
+       //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 
@@ -505,7 +505,7 @@ public class LovsDaoImpl implements LovsDao {
                 "trim(substring(desdet,1,40)) des " +
                 "from iexttabled where iexcodtab='28'  and des2det='"+id_prov+"' ";
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
 

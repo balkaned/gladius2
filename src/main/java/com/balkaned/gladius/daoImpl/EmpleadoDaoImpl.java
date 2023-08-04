@@ -257,20 +257,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setDestiptra(rs.getString("destiptra"));
                     p.setIexpuesto(cap.letras(rs.getString("despuesto")));
 
-                    char firstCharacter = p.getIexnomtra().charAt(0);
-                    char char1UpperCase = Character.toUpperCase(firstCharacter);
-                    String cast1= String.valueOf(char1UpperCase);
+                    if(p.getIexnomtra()!=null){
+                        char firstCharacter = p.getIexnomtra().charAt(0);
+                        char char1UpperCase = Character.toUpperCase(firstCharacter);
+                        String cast1= String.valueOf(char1UpperCase);
 
-                    p.setLetraIni(cast1);
+                        p.setLetraIni(cast1);
 
-                    String strMain = p.getIexnomtra();
-                    String[] arrSplit = strMain.split(" ");
-                    //for (int i = 0; i & lt; arrSplit.length; i++)    {
-                        //System.out.println(arrSplit[i]);
-                    //}
+                        String strMain = p.getIexnomtra();
+                        String[] arrSplit = strMain.split(" ");
 
-                    String nombrecompleto=cap.letras(arrSplit[0])+" "+cap.letras(p.getIexapemat());
-                    p.setNomCompactoUpper(nombrecompleto);
+                        String nombrecompleto=cap.letras(arrSplit[0])+" "+cap.letras(p.getIexapemat());
+                        p.setNomCompactoUpper(nombrecompleto);
+                    }
 
                     lista.add(p);
                 }
@@ -633,7 +632,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
 
     public void  actualizarCabecera(Empleado empleado){
-        logger.info("empleado.getIexapepat(): "+empleado.getIexapepat());
 
         template.update(" update  iexempleado set "+
                 " iexnomtra=?,     iexapepat=?,    iexapemat=?, " +
@@ -670,6 +668,63 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIexestcivil(),
                 empleado.getIexcodcia(),
                 empleado.getIexcodtra());
+    }
+
+    public void  actualizarLaboral(Empleado empleado){
+
+        if(empleado.getIexfecret().isEmpty()){
+            empleado.setIexfecret(null);
+        }else{
+            empleado.setIexfecret(empleado.getIexfecret());
+        }
+
+        if(empleado.getIexfecini_cont().isEmpty()){
+            empleado.setIexfecini_cont(null);
+        }else{
+            empleado.setIexfecini_cont(empleado.getIexfecini_cont());
+        }
+
+        if(empleado.getIexfecfin_cont().isEmpty()){
+            empleado.setIexfecfin_cont(null);
+        }else{
+            empleado.setIexfecfin_cont(empleado.getIexfecfin_cont());
+        }
+
+        template.update(" update  iexempleado set "
+                + "iextiptra=?, iexsituapen =?,"
+                //+ " iexfecing=TO_DATE(?,'DD/MM/YYYY'),  "+
+                //" iexfecret=TO_DATE(?,'DD/MM/YYYY'),  "
+                + " iextipcont  =?   ,    "
+                //+ " iexfecini_cont =TO_DATE(?,'DD/MM/YYYY'),    iexfecfin_cont =TO_DATE(?,'DD/MM/YYYY'),  "
+                + "    iexpliego =?,         iexsituaesp =?,       "
+                + "  iexocupacion_pub =?, "+
+                " iexocupacion_priv =?,   "
+                + "iexpuesto =?,         iexccosto =?,           iexarea =?, "+
+                " iexubilocal =?,        iexcateg_trabajador =?,  iexreglab =?,          "+
+                " iexusumodlab=?, iexfecmodlab=CURRENT_TIMESTAMP "+
+                " where  iexcodcia=?   and  iexcodtra=?  ",
+
+                empleado.getIextiptra(),
+                empleado.getIexsituapen(),
+                //empleado.getIexfecing(),
+                //empleado.getIexfecret(),
+                empleado.getIextipcont(),
+                //empleado.getIexfecini_cont(),
+                //empleado.getIexfecfin_cont(),
+                empleado.getIexpliego(),
+                empleado.getIexsituaesp(),
+                empleado.getIexocupacion_pub(),
+                empleado.getIexocupacion_priv(),
+                empleado.getIexpuesto(),
+                empleado.getIexccosto(),
+                empleado.getIexarea(),
+                empleado.getIexubilocal(),
+                empleado.getIexcateg_trabajador(),
+                empleado.getIexreglab(),
+                empleado.getIexusumod(),
+                empleado.getIexcodcia(),
+                empleado.getIexcodtra());
+
     }
 
     /*
@@ -1083,97 +1138,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
 
 
-    public void  actualizarLaboral(Empleado Empleado) throws DAOException  {
 
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(" update  iexempleado set "
-                + "iextiptra=?, iexsituapen =?,"
-                + " iexfecing=TO_DATE(?,'DD/MM/YYYY'),  "+
-                " iexfecret=TO_DATE(?,'DD/MM/YYYY'),  "
-                + " iextipcont  =?   ,    "
-                + " iexfecini_cont =TO_DATE(?,'DD/MM/YYYY'),    iexfecfin_cont =TO_DATE(?,'DD/MM/YYYY'),  "
-                + "    iexpliego =?,         iexsituaesp =?,       "
-                + "  iexocupacion_pub =?, "+
-                " iexocupacion_priv =?,   "
-                + "iexpuesto =?,         iexccosto =?,           iexarea =?, "+
-                " iexubilocal =?,        iexcateg_trabajador =?,  iexreglab =?,          "+
-                " iexusumodlab=?, iexfecmodlab=CURRENT_TIMESTAMP "+
-                " where  iexcodcia=?   and  iexcodtra=?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-            pst.setString(1, Empleado.getIextiptra());
-            pst.setString(2, Empleado.getIexsituapen());
-            pst.setString(3, Empleado.getIexfecing());
-            if(Empleado.getIexfecret().isEmpty()){
-                pst.setString(4, null);
-            }else{
-                pst.setString(4, Empleado.getIexfecret());
-            }
-
-
-            pst.setString(5, Empleado.getIextipcont());
-
-
-
-            if(Empleado.getIexfecini_cont().isEmpty()){
-                pst.setString(6, null);
-            }else{
-                pst.setString(6, Empleado.getIexfecini_cont());
-            }
-
-
-            pst.setString(7, Empleado.getIexfecfin_cont());
-
-            if(Empleado.getIexfecfin_cont().isEmpty()){
-                pst.setString(7, null);
-            }else{
-                pst.setString(7, Empleado.getIexfecfin_cont());
-            }
-
-
-
-            pst.setString(8, Empleado.getIexpliego());
-            pst.setString(9, Empleado.getIexsituaesp());
-            pst.setString(10, Empleado.getIexocupacion_pub());
-
-            pst.setString(11, Empleado.getIexocupacion_priv());
-            pst.setString(12, Empleado.getIexpuesto());
-            pst.setString(13, Empleado.getIexccosto());
-            pst.setString(14, Empleado.getIexarea());
-
-
-            pst.setString(15, Empleado.getIexubilocal());
-            pst.setString(16, Empleado.getIexcateg_trabajador());
-            pst.setString(17, Empleado.getIexreglab());
-            pst.setString(18, Empleado.getIexusumod());
-            pst.setInt(19, Empleado.getIexcodcia());
-            pst.setInt(20, Empleado.getIexcodtra());
-
-
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-
-            result = e.getMessage();
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 
 
     public void  actualizarPagos(Empleado Empleado) throws DAOException  {

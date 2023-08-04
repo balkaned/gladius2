@@ -13,5 +13,6 @@ public interface EmpleadoService {
     public Empleado recuperarSegSocial(Integer ciaid, Integer codtra);
     public Empleado recuperarDireccion(Integer ciaid, Integer codtra);
     public void  actualizarCabecera(Empleado empleado);
+    public void  actualizarLaboral(Empleado empleado);
 
 }

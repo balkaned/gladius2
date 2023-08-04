@@ -70,6 +70,7 @@ public class EmpleadoController {
 
     @RequestMapping("/detalleEmpl@{idTrab}")
     public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request,@PathVariable String idTrab) {
+        logger.info("/detalleEmpl@{idTrab}");
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -81,6 +82,8 @@ public class EmpleadoController {
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
         logger.info("idCompaniaXXXX: "+idCompania);
+        logger.info("idTraXXXXXb: "+idTrab);
+
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
         model.addAttribute("email",email);
@@ -168,13 +171,13 @@ public class EmpleadoController {
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
     }
 
-    @RequestMapping(value="/updateEmplDarPers",method=RequestMethod.POST)
-    public ModelAndView updateEmplDarPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
-
+    @RequestMapping(value="/updateEmplDatPers",method=RequestMethod.POST)
+    public ModelAndView updateEmplDatPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+        logger.info("/updateEmplDatPers");
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/login2");
         }
         Empleado p = new Empleado();
         Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
@@ -184,7 +187,7 @@ public class EmpleadoController {
         logger.info("iexcodtra: "+iexcodtra);
 
         String iextipdocid = request.getParameter("iextipdocid");
-        String iexnrodoc = request.getParameter("iexnrodocid");
+        String iexnrodoc = request.getParameter("iexnrodoc");
         String iexnomtra = request.getParameter("iexnomtra");
         String iexapepat= request.getParameter("iexapepat");
         String iexapemat = request.getParameter("iexapemat");
@@ -239,6 +242,132 @@ public class EmpleadoController {
         p.setIexestcivil(iexestcivil);
 
         empleadoService.actualizarCabecera(p);
+
+        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+    }
+
+    @RequestMapping(value="/updateEmplDatLab",method=RequestMethod.POST)
+    public ModelAndView updateEmplDatLab(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+        logger.info("/updateEmplDatLab");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Empleado p = new Empleado();
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        logger.info("iexcodcia: "+iexcodcia);
+        logger.info("iexcodtra: "+iexcodtra);
+
+        String iextiptra = request.getParameter("iextiptra");
+        String iexsituapen = request.getParameter("iexsituapen");
+        String iexfecing = request.getParameter("iexfecing");
+        String iexfecret = request.getParameter("iexfecret");
+        String iextipcont = request.getParameter("iextipcont");
+        String iexfecini_cont = request.getParameter("iexfecini_cont");
+        String iexfecfin_cont = request.getParameter("iexfecfin_cont");
+        String iexpliego = request.getParameter("iexpliego");
+        String iexsituaesp = request.getParameter("iexsituaesp");
+        String iexocupacion_pub = request.getParameter("iexocupacion_pub");
+        String iexocupacion_priv = request.getParameter("iexocupacion_priv");
+        String iexarea = request.getParameter("iexarea");
+        String iexpuesto = request.getParameter("iexpuesto");
+        String iexccosto = request.getParameter("iexccosto");
+        String iexlocal = request.getParameter("iexubilocal");
+        String iexcateg_trabajador = request.getParameter("iexcateg_trabajador");
+        String iexreglab = request.getParameter("iexreglab");
+
+        p.setIexcodcia(iexcodcia);
+        p.setIexcodtra(Integer.valueOf(iexcodtra.trim()));
+        p.setIextiptra(iextiptra);
+        p.setIexsituapen(iexsituapen);
+        p.setIexfecing(iexfecing);
+        p.setIexfecret(iexfecret);
+        p.setIextipcont(iextipcont);
+        p.setIexfecini_cont(iexfecini_cont);
+        p.setIexfecfin_cont(iexfecfin_cont);
+        p.setIexpliego(iexpliego);
+        p.setIexsituaesp(iexsituaesp);
+        p.setIexocupacion_pub(iexocupacion_pub);
+        p.setIexocupacion_priv(iexocupacion_priv);
+        p.setIexarea(iexarea);
+        p.setIexpuesto(iexpuesto);
+        p.setIexccosto(iexccosto);
+        p.setIexubilocal(iexlocal);
+        p.setIexcateg_trabajador(iexcateg_trabajador);
+        p.setIexreglab(iexreglab);
+        p.setIexusumod(user);
+
+        System.out.println("p:" + p);
+
+        empleadoService.actualizarLaboral(p);
+
+        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+    }
+
+    @RequestMapping(value="/updateInfoPago",method=RequestMethod.POST)
+    public ModelAndView updateInfoPago(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+        logger.info("/updateInfoPago");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Empleado p = new Empleado();
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        logger.info("iexcodcia: "+iexcodcia);
+        logger.info("iexcodtra: "+iexcodtra);
+/*
+        String iextiptra = request.getParameter("iextiptra");
+        String iexsituapen = request.getParameter("iexsituapen");
+        String iexfecing = request.getParameter("iexfecing");
+        String iexfecret = request.getParameter("iexfecret");
+        String iextipcont = request.getParameter("iextipcont");
+        String iexfecini_cont = request.getParameter("iexfecini_cont");
+        String iexfecfin_cont = request.getParameter("iexfecfin_cont");
+        String iexpliego = request.getParameter("iexpliego");
+        String iexsituaesp = request.getParameter("iexsituaesp");
+        String iexocupacion_pub = request.getParameter("iexocupacion_pub");
+        String iexocupacion_priv = request.getParameter("iexocupacion_priv");
+        String iexarea = request.getParameter("iexarea");
+        String iexpuesto = request.getParameter("iexpuesto");
+        String iexccosto = request.getParameter("iexccosto");
+        String iexlocal = request.getParameter("iexubilocal");
+        String iexcateg_trabajador = request.getParameter("iexcateg_trabajador");
+        String iexreglab = request.getParameter("iexreglab");
+
+        p.setIexcodcia(iexcodcia);
+        p.setIexcodtra(Integer.valueOf(iexcodtra.trim()));
+        p.setIextiptra(iextiptra);
+        p.setIexsituapen(iexsituapen);
+        p.setIexfecing(iexfecing);
+        p.setIexfecret(iexfecret);
+        p.setIextipcont(iextipcont);
+        p.setIexfecini_cont(iexfecini_cont);
+        p.setIexfecfin_cont(iexfecfin_cont);
+        p.setIexpliego(iexpliego);
+        p.setIexsituaesp(iexsituaesp);
+        p.setIexocupacion_pub(iexocupacion_pub);
+        p.setIexocupacion_priv(iexocupacion_priv);
+        p.setIexarea(iexarea);
+        p.setIexpuesto(iexpuesto);
+        p.setIexccosto(iexccosto);
+        p.setIexubilocal(iexlocal);
+        p.setIexcateg_trabajador(iexcateg_trabajador);
+        p.setIexreglab(iexreglab);
+        p.setIexusumod(user);*/
+
+        //System.out.println("p:" + p);
+
+        //empleadoService.actualizarLaboral(p);
 
         return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
     }

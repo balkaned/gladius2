@@ -51,7 +51,7 @@ public class AreaDaoImpl implements AreaDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='62' ) d  on a.iexcodcat = d.iexkey " +
                 " where a.iexcodcia="+codcia+"  order by a.iexcodcia, a.iexcodarea asc  "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Area>>() {
 
@@ -105,7 +105,7 @@ public class AreaDaoImpl implements AreaDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='12' ) d  on a.iexcodcat = d.iexkey " +
                 "where a.iexcodcia="+codcia+"  and a.iexcodarea='"+codarea+"' "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return (Area) template.query(sql, new ResultSetExtractor<Area>() {
             public Area extractData(ResultSet rs) throws SQLException, DataAccessException {

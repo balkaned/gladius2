@@ -44,7 +44,7 @@ public class PuestoDaoImpl implements PuestoDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d  on a.iexcodcat = d.iexkey " +
                 "where a.iexcodcia="+codcia+"  "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Puesto>>() {
 
@@ -91,7 +91,7 @@ public class PuestoDaoImpl implements PuestoDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d  on a.iexcodcat = d.iexkey " +
                 "where a.iexcodcia="+codcia+"  and a.iexpuesto='"+codpuesto+"' "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return (Puesto) template.query(sql, new ResultSetExtractor<Puesto>() {
             public Puesto extractData(ResultSet rs) throws SQLException, DataAccessException {

@@ -40,7 +40,7 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfecmod "+
                 "from iexubicacion a  where a.iexcodcia="+codcia+"  "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Local>>() {
 
@@ -80,7 +80,7 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfecmod "+
                 "from iexubicacion a  where a.iexcodcia="+codcia+" and iexubicod ='"+codubicacion+"'  "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return (Local) template.query(sql, new ResultSetExtractor<Local>() {
             public Local extractData(ResultSet rs) throws SQLException, DataAccessException {

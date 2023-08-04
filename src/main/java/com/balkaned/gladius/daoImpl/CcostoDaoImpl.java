@@ -49,7 +49,7 @@ public class CcostoDaoImpl implements CcostoDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64' ) d  on a.iexcodcat = d.iexkey " +
                 "where iexcodcia="+codcia+" "  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
 
@@ -97,7 +97,7 @@ public class CcostoDaoImpl implements CcostoDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64' ) d  on a.iexcodcat = d.iexkey " +
                 "where iexcodcia="+codcia+" and a.iexccosto='"+codccosto+"'"  ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return (CentroCosto) template.query(sql, new ResultSetExtractor<CentroCosto>() {
             public CentroCosto extractData(ResultSet rs) throws SQLException, DataAccessException {

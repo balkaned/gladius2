@@ -53,7 +53,7 @@ public class BancoProDaoImpl implements BancoProDao {
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
                 "where iexcodcia="+codcia+"  " ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<BancoPro>>() {
 
@@ -108,7 +108,7 @@ public class BancoProDaoImpl implements BancoProDao {
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
                 "where iexcodcia="+codcia+"  " ;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         return (BancoPro) template.query(sql, new ResultSetExtractor<BancoPro>() {
             public BancoPro extractData(ResultSet rs) throws SQLException, DataAccessException {

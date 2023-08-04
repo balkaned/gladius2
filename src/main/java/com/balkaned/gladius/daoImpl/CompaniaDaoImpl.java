@@ -61,7 +61,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "from iexcompania c  " +
                 " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia="+codcia+" ";
 
-        logger.info(sql);
+        //logger.info(sql);
         return (Compania) template.query(sql, new ResultSetExtractor<Compania>() {
             public Compania extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Compania cia = new Compania();

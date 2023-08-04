@@ -9,23 +9,18 @@ public interface EmpleadoDao {
     public List<Empleado> listarEmpleado(Empleado empleado);
     public Empleado recuperarCabecera(Integer ciaid, Integer codtra);
     public void   actualizarCabecera(Empleado empleado);
+    public void  actualizarLaboral(Empleado empleado);
 
     /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
-
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
-
     public List<Empleado>  validarCabecera(Empleado Empleado);
     public Integer obtieneIdEmpleado(Empleado Empleado);
     public void insertarCabecera(Empleado Empleado);
-
-
-    public void  actualizarLaboral(Empleado Empleado);
     public void  actualizarPagos(Empleado Empleado);
     public void  actualizarSegSocial(Empleado Empleado);
     public void actualizarOtros(Empleado Empleado);
     public void  actualizarDireccion(Empleado Empleado);
     public void  actualizarTurnos(Empleado Empleado) ;*/
-
     public Empleado recuperarLaboral(Integer ciaid , Integer codtra);
     public Empleado recuperarPagos(Integer ciaid , Integer codtra);
     public Empleado recuperarSegSocial(Integer ciaid , Integer codtra);
