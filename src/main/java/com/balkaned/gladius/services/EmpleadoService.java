@@ -12,7 +12,9 @@ public interface EmpleadoService {
     public Empleado recuperarPagos(Integer ciaid, Integer codtra);
     public Empleado recuperarSegSocial(Integer ciaid, Integer codtra);
     public Empleado recuperarDireccion(Integer ciaid, Integer codtra);
-    public void  actualizarCabecera(Empleado empleado);
-    public void  actualizarLaboral(Empleado empleado);
+    public void actualizarCabecera(Empleado empleado);
+    public void actualizarLaboral(Empleado empleado);
+    public void actualizarPagos(Empleado empleado);
+    public void actualizarSegSocial(Empleado empleado);
 
 }

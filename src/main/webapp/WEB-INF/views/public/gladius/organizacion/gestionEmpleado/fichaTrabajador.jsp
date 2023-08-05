@@ -130,6 +130,16 @@
                 $("#alerts").hide(6000);
             }, 3000);
      }
+
+     function mostrarAlert4(){
+                 //alert("se grabo exitosamente");
+                 var div=document.getElementById('alert4');
+                 div.style.display = '';
+
+                 setTimeout(function() {
+                     $("#alerts").hide(6000);
+                 }, 3000);
+     }
   </script>
 
   <body>
@@ -350,17 +360,17 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
-                                 <form class="row g-4 mb-0" method="POST" action="updateEmplDatPers">
+                                 <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate>
                                     <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" />
+                                        <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" required/>
                                         <label for="floatingEventInput">Codigo Empleado</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                          <select name="iextipdocid" class="form-select" required="true" >
+                                          <select name="iextipdocid" class="form-select" required >
                                               <option value="" selected > -- Seleccionar -- </option>
                                               <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                                   <option value="${lovTipdoc.idLov}"  ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovTipdoc.desLov}</option>
@@ -371,7 +381,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">
-                                        <select name="iexflgest" class="form-select" required="true" >
+                                        <select name="iexflgest" class="form-select" required>
                                               <option value="" selected > -- Seleccionar -- </option>
                                               <c:forEach var="lovEstados" items="${lovEstados}">
                                                   <option value="${lovEstados.idLov}"  ${lovEstados.idLov == requestScope.emp.iexflgest ? 'selected' : ''}   >${lovEstados.desLov}</option>
@@ -382,7 +392,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexnrodoc" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required="true"/>
+                                        <input class="form-control" name="iexnrodoc" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
                                         <label>Nro Documento</label>
                                       </div>
                                     </div>
@@ -394,33 +404,33 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required="true"/>
-                                        <label>Apellido Paterno</label>
+                                        <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required/>
+                                        <label>Apellido Paterno (*)</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required="true" />
-                                        <label>Apellido Materno</label>
+                                        <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required />
+                                        <label>Apellido Materno (*)</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-8">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required="true" />
-                                        <labelNombres</label>
+                                        <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required />
+                                        <label>Nombres (*)</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                       <div class="flatpickr-input-container">
                                         <div class="form-floating">
-                                          <input class="form-control datetimepicker" name="iexfecnac" id="floatingInputStartDate" value="${requestScope.emp.iexfecnac}" type="text" placeholder="end date" data-options='{"disableMobile":true}' required="true" />
+                                          <input class="form-control datetimepicker" name="iexfecnac" id="floatingInputStartDate" value="${requestScope.emp.iexfecnac}" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
                                           <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         </div>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexcodsex" class="form-select" required="true" >
+                                          <select name="iexcodsex" class="form-select" required >
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovSexo" items="${lovSexo}">
                                                     <option value="${lovSexo.idLov}"  ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}   >${lovSexo.desLov}</option>
@@ -431,7 +441,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexestcivil" class="form-select" required="true" >
+                                          <select name="iexestcivil" class="form-select" required >
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovEstcivil" items="${lovEstcivil}">
                                                     <option value="${lovEstcivil.idLov}"  ${lovEstcivil.idLov == requestScope.emp.iexestcivil ? 'selected' : ''}   >${lovEstcivil.desLov}</option>
@@ -453,7 +463,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexnacion_origen" class="form-select" required="true" >
+                                          <select name="iexnacion_origen" class="form-select" required >
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovNacionalidad" items="${lovNacionalidad}">
                                                     <option value="${lovNacionalidad.idLov}"  ${lovNacionalidad.idLov == requestScope.emp.iexnacion_origen ? 'selected' : ''}   >${lovNacionalidad.desLov}</option>
@@ -497,7 +507,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexdistri_origen" class="form-select" required="true" >
+                                          <select name="iexdistri_origen" class="form-select" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                     <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>
@@ -508,7 +518,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexgrdinstruccion" class="form-select" required="true" >
+                                          <select name="iexgrdinstruccion" class="form-select" required >
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovGrdInstruccion" items="${lovGrdInstruccion}">
                                                     <option value="${lovGrdInstruccion.idLov}"  ${lovGrdInstruccion.idLov == requestScope.emp.iexgrdinstruccion ? 'selected' : ''}   >${lovGrdInstruccion.desLov}</option>
@@ -567,14 +577,10 @@
                                     <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                         Se grabó exitosamente los cambios.
                                     </div>
-                                    <div class="alert alert-warning" role="alert" id="alert" style="display:none;">
-                                        Debe completar todos los campos obligatorios primero para poder seguir.
-                                    </div>
-
                                     <div class="col-12 d-flex justify-content-end mt-6">
                                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                     </div>
-                                    <div class="modal fade" id="confirmModal" tabindex="-1">
+                                    <div class="modal fade" id="confirmModal" tabindex="-1">s
                                         <div class="modal-dialog modal-dialog-centered">
                                           <div class="modal-content border">
                                             <form id="addEventForm" autocomplete="off">
@@ -609,12 +615,12 @@
                             <div class="row g-5">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
-                                      <form class="row g-4 mb-0" method="POST" action="updateEmplDatLab">
+                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatLab" novalidate>
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                            <select class="form-select" name="iexreglab" required="true">
+                                            <select class="form-select" name="iexreglab" required>
                                               <option value="" selected > -- Seleccionar -- </option>
                                               <c:forEach var="lovRegLab" items="${lovRegLab}">
                                                   <option value="${lovRegLab.idLov}" ${lovRegLab.idLov == requestScope.emp2.iexreglab ? 'selected' : ''}  >${lovRegLab.desLov}</option>
@@ -625,8 +631,8 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iextiptra" required="true">
-                                                <option>Seleccionar</option>
+                                              <select class="form-select" name="iextiptra" required>
+                                                <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovTipTra" items="${lovTipTra}">
                                                     <option value="${lovTipTra.idLov}"   ${lovTipTra.idLov == requestScope.emp2.iextiptra ? 'selected' : ''}    >${lovTipTra.desLov}  </option>
                                                 </c:forEach>
@@ -636,7 +642,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexcateg_trabajador" required="true">
+                                              <select class="form-select" name="iexcateg_trabajador" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovCateTra" items="${lovCateTra}">
                                                     <option value="${lovCateTra.idLov}"  ${lovCateTra.idLov == requestScope.emp2.iexcateg_trabajador ? 'selected' : ''}    > ${lovCateTra.desLov}</option>
@@ -647,7 +653,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexsituapen" required="true">
+                                              <select class="form-select" name="iexsituapen" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovSitPen" items="${lovSitPen}">
                                                     <option value="${lovSitPen.idLov}"   ${lovSitPen.idLov == requestScope.emp2.iexsituapen ? 'selected' : ''}    > ${lovSitPen.desLov} </option>
@@ -674,7 +680,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-8">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iextipcont" required="true">
+                                              <select class="form-select" name="iextipcont" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovTipCont" items="${lovTipCont}">
                                                     <option value="${lovTipCont.idLov}"  ${lovTipCont.idLov == requestScope.emp2.iextipcont ? 'selected' : ''}   >${lovTipCont.desLov}</option>
@@ -712,7 +718,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexsituaesp" required="true">
+                                              <select class="form-select" name="iexsituaesp" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovSituesp" items="${lovSituesp}">
                                                     <option value="${lovSituesp.idLov}"   ${lovSituesp.idLov == requestScope.emp2.iexsituaesp ? 'selected' : ''}  >${lovSituesp.desLov}</option>
@@ -745,7 +751,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexarea" required="true">
+                                              <select class="form-select" name="iexarea" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovArea" items="${lovArea}">
                                                     <option value="${lovArea.iexcodarea}" ${lovArea.iexcodarea == requestScope.emp2.iexarea ? 'selected' : ''}     >${lovArea.iexdesarea}</option>
@@ -756,7 +762,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexpuesto" required="true">
+                                              <select class="form-select" name="iexpuesto" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovPuesto" items="${lovPuesto}"  >
                                                     <option value="${lovPuesto.iexpuesto}" ${lovPuesto.iexpuesto == requestScope.emp2.iexpuesto ? 'selected' : ''}  >${lovPuesto.iexdespuesto}</option>
@@ -767,7 +773,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexccosto" required="true">
+                                              <select class="form-select" name="iexccosto" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovCcosto" items="${lovCcosto}">
                                                     <option value="${lovCcosto.iexccosto}"   ${lovCcosto.iexccosto == requestScope.emp2.iexccosto ? 'selected' : ''}   >${lovCcosto.iexdesccosto}</option>
@@ -778,7 +784,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexubilocal" required="true">
+                                              <select class="form-select" name="iexubilocal" required>
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovUbicacion" items="${lovUbicacion}">
                                                     <option value="${lovUbicacion.iexubicod}"  ${lovUbicacion.iexubicod == requestScope.emp2.iexubilocal ? 'selected' : ''}  >  ${lovUbicacion.iexubides}  </option>
@@ -791,10 +797,6 @@
                                         <div class="alert alert-success" role="alert" id="alert2" style="display:none;">
                                             Se grabó exitosamente los cambios.
                                         </div>
-                                        <div class="alert alert-warning" role="alert" id="alert2" style="display:none;">
-                                            Debe completar todos los campos obligatorios primero para poder seguir.
-                                        </div>
-
                                         <div class="col-12 d-flex justify-content-end mt-6">
                                             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal2" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                         </div>
@@ -833,7 +835,7 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
-                                  <form class="row g-4 mb-0" method="POST" action="updateInfoPago">
+                                  <form class="row g-4 mb-0 needs-validation" method="POST" action="updateInfoPago" novalidate>
                                     <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                     <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                     <div class="col-sm-6 col-md-6">
@@ -893,13 +895,13 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" name="iexflgbancci_hab" id="flexChecked" value="1" ${requestScope.EmpleadoPagos.iexflgbancci_hab=='1' ? 'checked=true' : ''}  type="checkbox"/>
+                                    	   <input class="form-check-input" name="iexflgbancci_hab" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_hab=='1' ? 'checked=true' : ''}  type="checkbox"/>
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Es interbancario?</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexnrocta_hab" id="floatingInputStreet" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="street" required/>
+                                        <input class="form-control" name="iexnrocta_hab" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="street" required="true"/>
                                         <label>Nro de Cuenta de Bancos (*)</label>
                                       </div>
                                     </div>
@@ -944,7 +946,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" type="text" placeholder="street" required/>
+                                        <input id="validationCustom01" class="form-control" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" type="text" placeholder="street" required="true" />
                                         <label>Nro Cta Cts (*)</label>
                                       </div>
                                     </div>
@@ -953,10 +955,6 @@
                                     <div class="alert alert-success" role="alert" id="alert3" style="display:none;">
                                         Se grabó exitosamente los cambios.
                                     </div>
-                                    <div class="alert alert-warning" role="alert" id="alert3" style="display:none;">
-                                        Debe completar todos los campos obligatorios primero para poder seguir.
-                                    </div>
-
                                     <div class="col-12 d-flex justify-content-end mt-6">
                                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal3" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                     </div>
@@ -995,146 +993,173 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
-                                 <form class="row g-4 mb-0">
+                                 <form class="row g-4 mb-0 needs-validation" method="POST" action="updateSegurSocial" novalidate >
+                                    <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
+                                    <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexflgjubil=='1' ? 'checked=true' : ''} type="checkbox"/>
+                                    	   <input class="form-check-input" name="iexflgjubil" id="flexChecked" value="1" ${requestScope.emp4.iexflgjubil=='1' ? 'checked=true' : ''} type="checkbox"/>
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Es jubilado?</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <select class="form-select" id="floatingSelectCity">
-                                          <option>Seleccionar</option>
+                                        <select class="form-select" name="iexcodafp" required>
+                                          <option value="" selected > -- Seleccionar -- </option>
                                           <c:forEach var="lovCodAfp" items="${lovCodAfp}">
                                               <option value="${lovCodAfp.idLov}"  ${lovCodAfp.idLov == requestScope.emp4.iexcodafp ? 'selected' : ''}      >${lovCodAfp.desLov}</option>
                                           </c:forEach>
                                         </select>
-                                        <label for="floatingSelectCity">Fondo Pensiones (*) [TT11]</label>
+                                        <label>Fondo Pensiones (*) [TT11]</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                          <div class="form-check">
-                                           <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexflgcomi_mix=='1' ? 'checked=true' : ''} type="checkbox" />
+                                           <input class="form-check-input" name="iexflgcomi_mix" id="flexChecked" value="1" ${requestScope.emp4.iexflgcomi_mix=='1' ? 'checked=true' : ''} type="checkbox" />
                                            <label class="form-check-label fs-0 mb-5" for="flexChecked">Comisión Mixta?</label>
                                          </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="flatpickr-input-container">
                                         <div class="form-floating">
-                                          <input class="form-control datetimepicker" id="floatingInputStartDate" value="${requestScope.emp4.iexfecafp}" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
+                                          <input class="form-control datetimepicker" name="iexfecafp" id="floatingInputStartDate" value="${requestScope.emp4.iexfecafp}" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
                                           <label class="ps-6" for="floatingInputStartDate">Fecha Inicio Fondo Pensiones (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         </div>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                        <input class="form-control" id="floatingInputStreet" value="${requestScope.emp4.iexcussp}" type="text" placeholder="street" />
+                                        <input class="form-control" id="floatingInputStreet" name="iexcussp" value="${requestScope.emp4.iexcussp}" type="text" placeholder="street" required/>
                                         <label for="floatingInputStreet">Cussp (*)</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select class="form-select" id="floatingSelectCountry">
-                                            <option>Seleccionar</option>
+                                          <select class="form-select" name="iexessalud" required>
+                                            <option value="" selected > -- Seleccionar -- </option>
                                             <c:forEach var="lovEssalud" items="${lovEssalud}">
                                                 <option value="${lovEssalud.idLov}"  ${lovEssalud.idLov == requestScope.emp4.iexessalud ? 'selected' : ''} >${lovEssalud.desLov}</option>
                                             </c:forEach>
                                           </select>
-                                          <label for="floatingSelectCountry">Essalud (*) [TT32]</label>
+                                          <label>Essalud (*) [TT32]</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexsenati=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexsenati" id="flexChecked" value="1" ${requestScope.emp4.iexsenati=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Senati</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" ${requestScope.emp4.iexflgeps=='1' ? 'checked=true' : ''} required="true"/>
+                                    	   <input class="form-check-input" name="iexflgeps" id="flexChecked" type="checkbox" value="1" ${requestScope.emp4.iexflgeps=='1' ? 'checked=true' : ''} />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Tiene Eps</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select class="form-select" id="floatingSelectCountry">
-                                            <option selected="selected">Seleccionar</option>
+                                          <select class="form-select" name="iexcodeps" required >
+                                            <option value="" selected > -- Seleccionar -- </option>
                                             <c:forEach var="lovProvEps" items="${requestScope.lovProvEps}">
                                                 <option value="${lovProvEps.idLov}" ${lovProvEps.idLov == requestScope.emp4.iexcodeps ? 'selected' : ''}   >${lovProvEps.desLov}</option>
                                             </c:forEach>
                                           </select>
-                                          <label for="floatingSelectCountry">Indica Proveedor de Eps (*) [TT14]</label>
+                                          <label>Indica Proveedor de Eps (*) [TT14]</label>
                                       </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexflgmas_vida=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexflgmas_vida" id="flexChecked" value="1" ${requestScope.emp4.iexflgmas_vida=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Mas vida</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                          <div class="form-check">
-                                           <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexconvdobtrib=='1' ? 'checked=true' : ''} type="checkbox" />
+                                           <input class="form-check-input" name="iexconvdobtrib" id="flexChecked" value="1" ${requestScope.emp4.iexconvdobtrib=='1' ? 'checked=true' : ''} type="checkbox" />
                                            <label class="form-check-label fs-0 mb-5" for="flexChecked">Convenio para evitar doble tributación</label>
                                          </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexdiscapacidad=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexdiscapacidad" id="flexChecked" value="1" ${requestScope.emp4.iexdiscapacidad=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Discapacidad</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexregalter=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexregalter" id="flexChecked" value="1" ${requestScope.emp4.iexregalter=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Reg. Alternativo</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexsctrpension=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexsctrpension" id="flexChecked" value="1" ${requestScope.emp4.iexsctrpension=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Sctr Pensionv</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexjornmax=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexjornmax" id="flexChecked" value="1" ${requestScope.emp4.iexjornmax=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Jornada Maxima</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexhornocturno=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexhornocturno" id="flexChecked" value="1" ${requestScope.emp4.iexhornocturno=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Horario Nocturno</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexsindicalizado=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexsindicalizado" id="flexChecked" value="1" ${requestScope.emp4.iexsindicalizado=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Sindicalizado</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" ${requestScope.emp4.iexexon5ta=='1' ? 'checked=true' : ''} type="checkbox" />
+                                    	   <input class="form-check-input" name="iexexon5ta" id="flexChecked" value="1" ${requestScope.emp4.iexexon5ta=='1' ? 'checked=true' : ''} type="checkbox" />
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Exoneracion 5ta</label>
                                     	 </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                        <div class="form-floating">
-                                         <input class="form-control" id="floatingInputStreet" value="${requestScope.emp4.iexnroruc_cas}" type="text" placeholder="street" />
+                                         <input class="form-control" name="iexnroruc_cas" id="floatingInputStreet" value="${requestScope.emp4.iexnroruc_cas}" type="text" placeholder="street" />
                                          <label for="floatingInputStreet">Nro de Ruc Cas</label>
                                        </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                     	 <div class="form-check">
-                                    	   <input class="form-check-input" id="flexChecked" type="checkbox" ${requestScope.emp4.iexmadreresp=='1' ? 'checked=true' : ''}/>
+                                    	   <input class="form-check-input" name="iexmadreresp" id="flexChecked" type="checkbox" value="1" ${requestScope.emp4.iexmadreresp=='1' ? 'checked=true' : ''}/>
                                     	   <label class="form-check-label fs-0 mb-5" for="flexChecked">Madre de responsaibilidad Limitada</label>
                                     	 </div>
                                     </div>
+
+                                    <div class="alert alert-success" role="alert" id="alert4" style="display:none;">
+                                        Se grabó exitosamente los cambios.
+                                    </div>
                                     <div class="col-12 d-flex justify-content-end mt-6">
-                                        <button class="btn btn-primary" type="submit" >Guardar</button>
+                                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal4" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                    </div>
+                                    <div class="modal fade" id="confirmModal4" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content border">
+                                            <form id="addEventForm" autocomplete="off">
+                                              <div class="modal-header border-200 p-4">
+                                                <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                                                <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                              </div>
+                                              <div class="modal-body pt-4 pb-2 px-4">
+                                                <div class="mb-3">
+                                                  <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                                                </div>
+                                              </div>
+                                            </form>
+                                            <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
+                                                <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                                <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert4();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            </div>
+                                          </div>
+                                        </div>
                                     </div>
                                  </form>
                                </div>

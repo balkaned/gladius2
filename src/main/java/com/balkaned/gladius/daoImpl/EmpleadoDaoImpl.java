@@ -727,6 +727,87 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     }
 
+    public void actualizarPagos(Empleado empleado) {
+
+        template.update(" update  iexempleado set  "+
+                " iextippago=? , iexperrem=?,   iexmontorem=?,   "
+                + " iexcodban_hab=?,            iexflgbancci_hab=?,         iexcodmon_hab =?, " +
+                "  iextipban_hab=?,            iexnrocta_hab=?,            iexcodban_cts=?  , " +
+                " iexflgbancci_cts =?,         iexcodmon_cts =?,            iextipban_cts=?  ," +
+                "  iexnrocta_cts=?,   " +
+                " iexfecmodpag=CURRENT_TIMESTAMP,  iexusumodpag=?  where  iexcodcia=?   and  iexcodtra=?  ",
+
+                empleado.getIextippago(),
+            empleado.getIexperrem(),
+            0.0,
+            empleado.getIexcodban_hab(),
+            empleado.getIexflgbancci_hab(),
+            empleado.getIexcodmon_hab(),
+            empleado.getIextipban_hab(),
+            empleado.getIexnrocta_hab(),
+            empleado.getIexcodban_cts(),
+            empleado.getIexflgbancci_cts(),
+            empleado.getIexcodmon_cts(),
+            empleado.getIextipban_cts(),
+            empleado.getIexnrocta_cts(),
+            empleado.getIexusumod(),
+            empleado.getIexcodcia(),
+            empleado.getIexcodtra());
+    }
+
+    public void actualizarSegSocial(Empleado empleado){
+
+        template.update(" update  iexempleado set  "+
+                " iexcodafp = ?  , "+
+                //" iexfecafp = to_date(?,'DD/MM/YYYY'), "+
+                " iexcussp = ?  , "+
+                " iexessalud =?," +
+                " iexsenati =?   , " +
+                " iexflgeps =?  , " +
+                " iexcodeps  =?  ,  " +
+                " iexconvdobtrib =?  ,  " +
+                " iexdiscapacidad =?  ,  " +
+                " iexsctrpension =? ,  " +
+                " iexregalter  =?  ,  " +
+                " iexjornmax  =?  ,   " +
+                " iexhornocturno  =?  ,  " +
+                " iexsindicalizado  =?  , " +
+                " iexexon5ta  =?,  " +
+                " iexnroruc_cas  =?,  " +
+                " iexmadreresp  =?,  " +
+                " iextipocentoedu=?,    " +
+                " iexflgcomi_mix = ? , " +
+                " iexflgmas_vida = ? , " +
+                " iexflgjubil = ?  , " +
+                " iexfecmodseg=CURRENT_TIMESTAMP,  iexusumodseg=?  where  iexcodcia=?   and  iexcodtra=?  ",
+
+                empleado.getIexcodafp(),
+                //empleado.getIexfecafp(),
+                empleado.getIexcussp(),
+                empleado.getIexessalud(),
+                empleado.getIexsenati(),
+                empleado.getIexflgeps(),
+                empleado.getIexcodeps(),
+                empleado.getIexconvdobtrib(),
+                empleado.getIexdiscapacidad(),
+                empleado.getIexsctrpension(),
+                empleado.getIexregalter(),
+                empleado.getIexjornmax(),
+                empleado.getIexhornocturno(),
+                empleado.getIexsindicalizado(),
+                empleado.getIexexon5ta(),
+                empleado.getIexnroruc_cas(),
+                empleado.getIexmadreresp(),
+                empleado.getIextipocentoedu(),
+                empleado.getIexflgcomi_mix(),
+                empleado.getIexflgmas_vida(),
+                empleado.getIexflgjubil(),
+                empleado.getIexusumod(),
+                empleado.getIexcodcia(),
+                empleado.getIexcodtra());
+
+    }
+
     /*
     public List<Empleado> listarEmpleadoActivos(Integer codcia) throws DAOException {
 
@@ -1132,160 +1213,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
 
-
-
-
-
-
-
-
-
-
-    public void  actualizarPagos(Empleado Empleado) throws DAOException  {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(" update  iexempleado set  "+
-                " iextippago=? , iexperrem=?,   iexmontorem=?,   "
-                + " iexcodban_hab=?,            iexflgbancci_hab=?,         iexcodmon_hab =?, " +
-                "  iextipban_hab=?,            iexnrocta_hab=?,            iexcodban_cts=?  , " +
-                " iexflgbancci_cts =?,         iexcodmon_cts =?,            iextipban_cts=?  ," +
-                "  iexnrocta_cts=?,   " +
-                " iexfecmodpag=CURRENT_TIMESTAMP,  iexusumodpag=?  where  iexcodcia=?   and  iexcodtra=?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-            pst.setString(1, Empleado.getIextippago());
-            pst.setString(2, Empleado.getIexperrem());
-            pst.setDouble(3, 0.0);
-
-            pst.setString(4, Empleado.getIexcodban_hab());
-            pst.setString(5, Empleado.getIexflgbancci_hab());
-            pst.setString(6, Empleado.getIexcodmon_hab());
-            pst.setString(7, Empleado.getIextipban_hab());
-            pst.setString(8, Empleado.getIexnrocta_hab());
-
-
-            pst.setString(9, Empleado.getIexcodban_cts());
-            pst.setString(10, Empleado.getIexflgbancci_cts());
-            pst.setString(11, Empleado.getIexcodmon_cts());
-
-            pst.setString(12, Empleado.getIextipban_cts());
-            pst.setString(13, Empleado.getIexnrocta_cts());
-
-
-            pst.setString(14, Empleado.getIexusumod());
-
-            pst.setInt(15, Empleado.getIexcodcia());
-            pst.setInt(16, Empleado.getIexcodtra());
-
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            result = e.getMessage();
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void  actualizarSegSocial(Empleado Empleado) throws DAOException  {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(" update  iexempleado set  "+
-                " iexcodafp = ?  , "+
-                " iexfecafp = to_date(?,'DD/MM/YYYY'), "+
-                " iexcussp = ?  , "+
-                " iexessalud =?," +
-                " iexsenati =?   , " +
-                " iexflgeps =?  , " +
-                " iexcodeps  =?  ,  " +
-                " iexconvdobtrib =?  ,  " +
-                " iexdiscapacidad =?  ,  " +
-                " iexsctrpension =? ,  " +
-                " iexregalter  =?  ,  " +
-                " iexjornmax  =?  ,   " +
-                " iexhornocturno  =?  ,  " +
-                " iexsindicalizado  =?  , " +
-                " iexexon5ta  =?,  " +
-                " iexnroruc_cas  =?,  " +
-                " iexmadreresp  =?,  " +
-                " iextipocentoedu=?,    " +
-                " iexflgcomi_mix = ? , " +
-                " iexflgmas_vida = ? , " +
-                " iexflgjubil = ?  , " +
-                " iexfecmodseg=CURRENT_TIMESTAMP,  iexusumodseg=?  where  iexcodcia=?   and  iexcodtra=?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-            pst.setString(1, Empleado.getIexcodafp());
-            pst.setString(2, Empleado.getIexfecafp());
-            pst.setString(3, Empleado.getIexcussp());
-
-
-            pst.setString(4, Empleado.getIexessalud());
-            pst.setString(5, Empleado.getIexsenati());
-            pst.setString(6, Empleado.getIexflgeps());
-
-            pst.setString(7, Empleado.getIexcodeps());
-            pst.setString(8, Empleado.getIexconvdobtrib());
-            pst.setString(9, Empleado.getIexdiscapacidad());
-            pst.setString(10, Empleado.getIexsctrpension());
-            pst.setString(11, Empleado.getIexregalter());
-
-            pst.setString(12, Empleado.getIexjornmax());
-            pst.setString(13, Empleado.getIexhornocturno());
-            pst.setString(14, Empleado.getIexsindicalizado());
-            pst.setString(15, Empleado.getIexexon5ta());
-            pst.setString(16, Empleado.getIexnroruc_cas());
-            pst.setString(17, Empleado.getIexmadreresp());
-            pst.setString(18, Empleado.getIextipocentoedu());
-            pst.setString(19, Empleado.getIexflgcomi_mix());
-
-            pst.setString(20, Empleado.getIexflgmas_vida());
-            pst.setString(21, Empleado.getIexflgjubil());
-
-            pst.setString(22, Empleado.getIexusumod());
-
-            pst.setInt(23, Empleado.getIexcodcia());
-            pst.setInt(24, Empleado.getIexcodtra());
-
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-
-
-            result = e.getMessage();
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 
 
     public void  actualizarOtros(Empleado Empleado) throws DAOException  {

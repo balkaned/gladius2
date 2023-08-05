@@ -29,6 +29,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public Empleado recuperarDireccion(Integer ciaid , Integer codtra){return dao.recuperarDireccion(ciaid,codtra);}
     public void  actualizarCabecera(Empleado empleado){dao.actualizarCabecera(empleado);}
     public void  actualizarLaboral(Empleado empleado){dao.actualizarLaboral(empleado);}
+    public void  actualizarPagos(Empleado empleado){dao.actualizarPagos(empleado);}
+    public void actualizarSegSocial(Empleado empleado){dao.actualizarSegSocial(empleado);}
 
 
 }

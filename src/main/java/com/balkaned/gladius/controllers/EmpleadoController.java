@@ -325,49 +325,108 @@ public class EmpleadoController {
 
         logger.info("iexcodcia: "+iexcodcia);
         logger.info("iexcodtra: "+iexcodtra);
-/*
-        String iextiptra = request.getParameter("iextiptra");
-        String iexsituapen = request.getParameter("iexsituapen");
-        String iexfecing = request.getParameter("iexfecing");
-        String iexfecret = request.getParameter("iexfecret");
-        String iextipcont = request.getParameter("iextipcont");
-        String iexfecini_cont = request.getParameter("iexfecini_cont");
-        String iexfecfin_cont = request.getParameter("iexfecfin_cont");
-        String iexpliego = request.getParameter("iexpliego");
-        String iexsituaesp = request.getParameter("iexsituaesp");
-        String iexocupacion_pub = request.getParameter("iexocupacion_pub");
-        String iexocupacion_priv = request.getParameter("iexocupacion_priv");
-        String iexarea = request.getParameter("iexarea");
-        String iexpuesto = request.getParameter("iexpuesto");
-        String iexccosto = request.getParameter("iexccosto");
-        String iexlocal = request.getParameter("iexubilocal");
-        String iexcateg_trabajador = request.getParameter("iexcateg_trabajador");
-        String iexreglab = request.getParameter("iexreglab");
+
+        String iextippago = request.getParameter("iextippago");
+        String iexperrem = request.getParameter("iexperrem");
+        //Double iexmontorem = Double.parseDouble(request.getParameter("iexmontorem"));
+        String iexcodban_hab = request.getParameter("iexcodban_hab");
+        String iextipban_hab = request.getParameter("iextipban_hab");
+        String iexcodmon_hab = request.getParameter("iexcodmon_hab");
+        String iexnrocta_hab = request.getParameter("iexnrocta_hab");
+        String iexflgbancci_hab = request.getParameter("iexflgbancci_hab");
+        String iextipban_cts= request.getParameter("iextipban_cts");
+        String iexcodban_cts = request.getParameter("iexcodban_cts");
+        String iexcodmon_cts = request.getParameter("iexcodmon_cts");
+        String iexflgbancci_cts = request.getParameter("iexflgbancci_cts");
+        String iexnrocta_cts = request.getParameter("iexnrocta_cts");
 
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.valueOf(iexcodtra.trim()));
-        p.setIextiptra(iextiptra);
-        p.setIexsituapen(iexsituapen);
-        p.setIexfecing(iexfecing);
-        p.setIexfecret(iexfecret);
-        p.setIextipcont(iextipcont);
-        p.setIexfecini_cont(iexfecini_cont);
-        p.setIexfecfin_cont(iexfecfin_cont);
-        p.setIexpliego(iexpliego);
-        p.setIexsituaesp(iexsituaesp);
-        p.setIexocupacion_pub(iexocupacion_pub);
-        p.setIexocupacion_priv(iexocupacion_priv);
-        p.setIexarea(iexarea);
-        p.setIexpuesto(iexpuesto);
-        p.setIexccosto(iexccosto);
-        p.setIexubilocal(iexlocal);
-        p.setIexcateg_trabajador(iexcateg_trabajador);
-        p.setIexreglab(iexreglab);
-        p.setIexusumod(user);*/
+        p.setIextippago(iextippago);
+        p.setIexperrem(iexperrem);
+        // p.setIexmontorem(iexmontorem);
+        p.setIexcodban_hab(iexcodban_hab);
+        p.setIexflgbancci_hab(iexflgbancci_hab);
+        p.setIexcodmon_hab(iexcodmon_hab);
+        p.setIextipban_hab(iextipban_hab);
+        p.setIexnrocta_hab(iexnrocta_hab);
+        p.setIexcodban_cts(iexcodban_cts);
+        p.setIexflgbancci_cts(iexflgbancci_cts);
+        p.setIexcodmon_cts(iexcodmon_cts);
+        p.setIextipban_cts(iextipban_cts);
+        p.setIexnrocta_cts(iexnrocta_cts);
+        p.setIexusumod(user);
 
-        //System.out.println("p:" + p);
+        empleadoService.actualizarPagos(p);
 
-        //empleadoService.actualizarLaboral(p);
+        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+    }
+
+    @RequestMapping(value="/updateSegurSocial",method=RequestMethod.POST)
+    public ModelAndView updateSegurSocial(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+        logger.info("/updateSegurSocial");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Empleado p = new Empleado();
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        logger.info("iexcodcia: "+iexcodcia);
+        logger.info("iexcodtra: "+iexcodtra);
+
+        String iexcodafp = request.getParameter("iexcodafp");
+        String iexflgcomi_mix = request.getParameter("iexflgcomi_mix");
+        String iexfecafp = request.getParameter("iexfecafp");
+        String iexcussp = request.getParameter("iexcussp");
+        String iexessalud = request.getParameter("iexessalud");
+        String iexsenati = request.getParameter("iexsenati");
+        String iexflgeps = request.getParameter("iexflgeps");
+        String iexcodeps = request.getParameter("iexcodeps");
+        String iexconvdobtrib = request.getParameter("iexconvdobtrib");
+        String iexdiscapacidad = request.getParameter("iexdiscapacidad");
+        String iexsctrpension= request.getParameter("iexsctrpension");
+        String iexregalter = request.getParameter("iexregalter");
+        String iexjornmax = request.getParameter("iexjornmax");
+        String iexhornocturno = request.getParameter("iexhornocturno");
+        String iexsindicalizado = request.getParameter("iexsindicalizado");
+        String iexexon5ta = request.getParameter("iexexon5ta");
+        String iexnroruc_cas= request.getParameter("iexnroruc_cas");
+        String iexmadreresp = request.getParameter("iexmadreresp");
+        String iextipocentoedu = request.getParameter("iextipocentoedu");
+        String iexmasvida = request.getParameter("iexflgmas_vida");
+        String iexflgjubil = request.getParameter("iexflgjubil");
+
+        p.setIexcodcia(iexcodcia);
+        p.setIexcodtra(Integer.parseInt(iexcodtra.trim()));
+        p.setIexcodafp(iexcodafp);
+        p.setIexflgcomi_mix(iexflgcomi_mix);
+        p.setIexfecafp(iexfecafp);
+        p.setIexcussp(iexcussp);
+        p.setIexessalud(iexessalud);
+        p.setIexsenati(iexsenati);
+        p.setIexflgeps(iexflgeps);
+        p.setIexcodeps(iexcodeps);
+        p.setIexconvdobtrib(iexconvdobtrib);
+        p.setIexdiscapacidad(iexdiscapacidad);
+        p.setIexsctrpension(iexsctrpension);
+        p.setIexregalter(iexregalter);
+        p.setIexjornmax(iexjornmax);
+        p.setIexhornocturno(iexhornocturno);
+        p.setIexsindicalizado(iexsindicalizado);
+        p.setIexexon5ta(iexexon5ta);
+        p.setIexnroruc_cas(iexnroruc_cas);
+        p.setIexmadreresp(iexmadreresp);
+        p.setIextipocentoedu(iextipocentoedu);
+        p.setIexflgmas_vida(iexmasvida);
+        p.setIexflgjubil(iexflgjubil);
+        p.setIexusumod(user);
+
+        empleadoService.actualizarSegSocial(p);
 
         return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
     }
