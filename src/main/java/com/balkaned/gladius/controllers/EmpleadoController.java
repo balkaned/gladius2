@@ -430,5 +430,102 @@ public class EmpleadoController {
 
         return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
     }
+
+    @RequestMapping(value="/updateEmplDatDomic",method=RequestMethod.POST)
+    public ModelAndView updateEmplDatDomic(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+        logger.info("/updateEmplDatDomic");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Empleado p = new Empleado();
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        logger.info("iexcodcia: "+iexcodcia);
+        logger.info("iexcodtra: "+iexcodtra);
+
+        String iextipvia_dom1 = request.getParameter("iextipvia_dom1");
+        String iexnomvia_dom1 = request.getParameter("iexnomvia_dom1");
+        String iexnrovia_dom1 = request.getParameter("iexnrovia_dom1");
+        String iexdeptin_dom1 = request.getParameter("iexdeptin_dom1");
+        String iexinterior_dom1 = request.getParameter("iexinterior_dom1");
+        String iexmanzana_dom1 = request.getParameter("iexmanzana_dom1");
+        String iexlote_dom1 = request.getParameter("iexlote_dom1");
+        String iexkilometro_dom1 = request.getParameter("iexkilometro_dom1");
+        String iexblock_dom1  = request.getParameter("iexblock_dom1");
+        String iexetapa_dom1 = request.getParameter("iexetapa_dom1");
+        String iextipzona_dom1 = request.getParameter("iextipzona_dom1");
+        String iexnomzona_dom1 = request.getParameter("iexnomzona_dom1");
+        String iexreferencia_dom1 = request.getParameter("iexreferencia_dom1");
+        String iexubigeo_dom1 = request.getParameter("iexubigeo_dom1");
+        String iextipvia_dom2 = request.getParameter("iextipvia_dom2");
+        String iexnomvia_dom2 = request.getParameter("iexnomvia_dom2");
+        String iexnrovia_dom2 = request.getParameter("iexnrovia_dom2");
+        String iexdeptin_dom2 = request.getParameter("iexdeptin_dom2");
+        String iexinterior_dom2 = request.getParameter("iexinterior_dom2");
+        String iexmanzana_dom2 = request.getParameter("iexmanzana_dom2");
+        String iexlote_dom2 = request.getParameter("iexlote_dom2");
+        String iexkilometro_dom2 = request.getParameter("iexkilometro_dom2");
+        String iexblock_dom2 = request.getParameter("iexblock_dom2");
+        String iexetapa_dom2 = request.getParameter("iexetapa_dom2");
+        String iextipzona_dom2 = request.getParameter("iextipzona_dom2");
+        String iexnomzona_dom2= request.getParameter("iexnomzona_dom2");
+        String iexreferencia_dom2 = request.getParameter("iexreferencia_dom2");
+        String iexubigeo_dom2 = request.getParameter("iexubigeo_dom2");
+        String iexflgdomicilio  = request.getParameter("iexflgdomicilio");
+        String iexnacion_origen1 = request.getParameter("iexpaisemisor1");
+        String iexdepart_origen1 = request.getParameter("iexdepart_origen1");
+        String iexprovin_origen1 = request.getParameter("iexprovin_origen1");
+        String iexnacion_origen2 = request.getParameter("iexpaisemisor2");
+        String iexdepart_origen2 = request.getParameter("iexdepart_origen2");
+        String iexprovin_origen2 = request.getParameter("iexprovin_origen2");
+
+        p.setIexcodcia(iexcodcia);
+        p.setIexcodtra(Integer.parseInt(iexcodtra.trim()));
+        p.setIextipvia_dom1(iextipvia_dom1);
+        p.setIexnomvia_dom1(iexnomvia_dom1);
+        p.setIexnrovia_dom1(iexnrovia_dom1);
+        p.setIexdeptin_dom1(iexdeptin_dom1);
+        p.setIexinterior_dom1(iexinterior_dom1);
+        p.setIexmanzana_dom1(iexmanzana_dom1);
+        p.setIexlote_dom1(iexlote_dom1);
+        p.setIexkilometro_dom1(iexkilometro_dom1);
+        p.setIexblock_dom1(iexblock_dom1);
+        p.setIexetapa_dom1(iexetapa_dom1);
+        p.setIextipzona_dom1(iextipzona_dom1);
+        p.setIexnomzona_dom1(iexnomzona_dom1);
+        p.setIexreferencia_dom1(iexreferencia_dom1);
+        p.setIexubigeo_dom1(iexubigeo_dom1);
+        p.setIextipvia_dom2(iextipvia_dom2);
+        p.setIexnomvia_dom2(iexnomvia_dom2);
+        p.setIexnrovia_dom2(iexnrovia_dom2);
+        p.setIexdeptin_dom2(iexdeptin_dom2);
+        p.setIexinterior_dom2(iexinterior_dom2);
+        p.setIexmanzana_dom2(iexmanzana_dom2);
+        p.setIexlote_dom2(iexlote_dom2);
+        p.setIexkilometro_dom2(iexkilometro_dom2);
+        p.setIexblock_dom2(iexblock_dom2);
+        p.setIexetapa_dom2(iexetapa_dom2);
+        p.setIextipzona_dom2(iextipzona_dom2);
+        p.setIexnomzona_dom2(iexnomzona_dom2);
+        p.setIexreferencia_dom2(iexreferencia_dom2);
+        p.setIexubigeo_dom2(iexubigeo_dom2);
+        p.setIexflgdomicilio(iexflgdomicilio);
+        p.setIexusumod(user);
+        p.setIexnacion_origen1(iexnacion_origen1);
+        p.setIexdepart_origen1(iexdepart_origen1);
+        p.setIexprovin_origen1(iexprovin_origen1);
+        p.setIexnacion_origen2(iexnacion_origen2);
+        p.setIexdepart_origen2(iexdepart_origen2);
+        p.setIexprovin_origen2(iexprovin_origen2);
+
+        empleadoService.actualizarDireccion(p);
+
+        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+    }
 }
 

@@ -757,7 +757,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public void actualizarSegSocial(Empleado empleado){
 
-        template.update(" update  iexempleado set  "+
+        template.update(" update iexempleado set  "+
                 " iexcodafp = ?  , "+
                 //" iexfecafp = to_date(?,'DD/MM/YYYY'), "+
                 " iexcussp = ?  , "+
@@ -779,7 +779,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " iexflgcomi_mix = ? , " +
                 " iexflgmas_vida = ? , " +
                 " iexflgjubil = ?  , " +
-                " iexfecmodseg=CURRENT_TIMESTAMP,  iexusumodseg=?  where  iexcodcia=?   and  iexcodtra=?  ",
+                " iexfecmodseg=CURRENT_TIMESTAMP,  iexusumodseg=?  where  iexcodcia=?   and  iexcodtra=? ",
 
                 empleado.getIexcodafp(),
                 //empleado.getIexfecafp(),
@@ -805,6 +805,67 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIexusumod(),
                 empleado.getIexcodcia(),
                 empleado.getIexcodtra());
+
+    }
+
+    public void actualizarDireccion(Empleado empleado){
+
+        template.update(" update  iexempleado set  "+
+                " iextipvia_dom1=?,        iexnomvia_dom1 =?,             iexnrovia_dom1 =?,     		 iexdeptin_dom1 =?, " +
+                " iexinterior_dom1=?,      iexmanzana_dom1 =?,  		   iexlote_dom1 =?,  			  iexkilometro_dom1 =?, " +
+                " iexblock_dom1 =?,         iexetapa_dom1 =?,   		   iextipzona_dom1 =?,   		  iexnomzona_dom1 =?,  " +
+                " iexreferencia_dom1 =?,    iexubigeo_dom1 =?,             iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
+                " iexnrovia_dom2 =?,        iexdeptin_dom2 =?,             iexinterior_dom2 =?,          iexmanzana_dom2 =?,  " +
+                " iexlote_dom2  =?,          iexkilometro_dom2  =?,          iexblock_dom2  =?,             iexetapa_dom2 =? , " +
+                " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?,        iexubigeo_dom2 =? ," +
+                " iexflgdomicilio =? , " +
+                " iexfecmoddom=CURRENT_TIMESTAMP,  iexusumoddom=?  , "+
+                " iexnacion_origen1 =?  ,   "+
+                " iexdepart_origen1 =?  , "+
+                " iexprovin_origen1 =?  , "+
+                " iexnacion_origen2 =?  , "+
+                " iexdepart_origen2  =? ,  "+
+                " iexprovin_origen2 =?  "+
+                " where  iexcodcia=?   and  iexcodtra=?  ",
+
+            empleado.getIextipvia_dom1(),
+            empleado.getIexnomvia_dom1(),
+            empleado.getIexnrovia_dom1(),
+            empleado.getIexdeptin_dom1(),
+            empleado.getIexinterior_dom1(),
+            empleado.getIexmanzana_dom1(),
+            empleado.getIexlote_dom1(),
+            empleado.getIexkilometro_dom1(),
+            empleado.getIexblock_dom1(),
+            empleado.getIexetapa_dom1(),
+            empleado.getIextipzona_dom1(),
+            empleado.getIexnomzona_dom1(),
+            empleado.getIexreferencia_dom1(),
+            empleado.getIexubigeo_dom1(),
+            empleado.getIextipvia_dom2(),
+            empleado.getIexnomvia_dom2(),
+            empleado.getIexnrovia_dom2(),
+            empleado.getIexdeptin_dom2(),
+            empleado.getIexinterior_dom2(),
+            empleado.getIexmanzana_dom2(),
+            empleado.getIexlote_dom2(),
+            empleado.getIexkilometro_dom2(),
+            empleado.getIexblock_dom2(),
+            empleado.getIexetapa_dom2 (),
+            empleado.getIextipzona_dom2(),
+            empleado.getIexnomzona_dom2(),
+            empleado.getIexreferencia_dom2(),
+            empleado.getIexubigeo_dom2(),
+            empleado.getIexflgdomicilio(),
+            empleado.getIexusumod(),
+            empleado.getIexnacion_origen1(),
+            empleado.getIexdepart_origen1(),
+            empleado.getIexprovin_origen1(),
+            empleado.getIexnacion_origen2(),
+            empleado.getIexdepart_origen2(),
+            empleado.getIexprovin_origen2(),
+            empleado.getIexcodcia(),
+            empleado.getIexcodtra());
 
     }
 
@@ -1283,111 +1344,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-    public void  actualizarDireccion(Empleado Empleado) throws DAOException  {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        sql.append(" update  iexempleado set  "+
-                "   iextipvia_dom1=?,        iexnomvia_dom1 =?,             iexnrovia_dom1 =?,     		 iexdeptin_dom1 =?, " +
-                "  iexinterior_dom1=?,      iexmanzana_dom1 =?,  		   iexlote_dom1 =?,  			  iexkilometro_dom1 =?, " +
-                " iexblock_dom1 =?,         iexetapa_dom1 =?,   		   iextipzona_dom1 =?,   		  iexnomzona_dom1 =?,  " +
-                " iexreferencia_dom1 =?,    iexubigeo_dom1 =?,             iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
-                " iexnrovia_dom2 =?,        iexdeptin_dom2 =?,             iexinterior_dom2 =?,          iexmanzana_dom2 =?,  " +
-                " iexlote_dom2  =?,          iexkilometro_dom2  =?,          iexblock_dom2  =?,             iexetapa_dom2 =? , " +
-                " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?,        iexubigeo_dom2 =? ," +
-                " iexflgdomicilio =? , " +
-                " iexfecmoddom=CURRENT_TIMESTAMP,  iexusumoddom=?  , "+
-                " iexnacion_origen1 =?  ,   "+
-                "  iexdepart_origen1 =?  , "+
-                "  iexprovin_origen1 =?  , "+
-                "  iexnacion_origen2 =?  , "+
-                "  iexdepart_origen2  =? ,  "+
-                "  iexprovin_origen2 =?  "+
-                "  where  iexcodcia=?   and  iexcodtra=?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-            pst.setString(1, Empleado.getIextipvia_dom1());
-            pst.setString(2, Empleado.getIexnomvia_dom1());
-            pst.setString(3, Empleado.getIexnrovia_dom1());
-            pst.setString(4, Empleado.getIexdeptin_dom1());
-
-            pst.setString(5, Empleado.getIexinterior_dom1());
-            pst.setString(6, Empleado.getIexmanzana_dom1());
-            pst.setString(7, Empleado.getIexlote_dom1());
-            pst.setString(8, Empleado.getIexkilometro_dom1());
-
-            pst.setString(9, Empleado.getIexblock_dom1());
-            pst.setString(10, Empleado.getIexetapa_dom1());
-            pst.setString(11, Empleado.getIextipzona_dom1());
-            pst.setString(12, Empleado.getIexnomzona_dom1());
-
-            pst.setString(13, Empleado.getIexreferencia_dom1());
-            pst.setString(14, Empleado.getIexubigeo_dom1());
-            pst.setString(15, Empleado.getIextipvia_dom2());
-            pst.setString(16, Empleado.getIexnomvia_dom2());
-
-            pst.setString(17, Empleado.getIexnrovia_dom2());
-            pst.setString(18, Empleado.getIexdeptin_dom2());
-            pst.setString(19, Empleado.getIexinterior_dom2());
-            pst.setString(20, Empleado.getIexmanzana_dom2());
-
-            pst.setString(21, Empleado.getIexlote_dom2());
-            pst.setString(22, Empleado.getIexkilometro_dom2());
-            pst.setString(23, Empleado.getIexblock_dom2());
-            pst.setString(24, Empleado.getIexetapa_dom2 ());
-
-            pst.setString(25, Empleado.getIextipzona_dom2());
-            pst.setString(26, Empleado.getIexnomzona_dom2());
-            pst.setString(27, Empleado.getIexreferencia_dom2());
-            pst.setString(28, Empleado.getIexubigeo_dom2());
-
-            pst.setString(29, Empleado.getIexflgdomicilio());
-
-            pst.setString(30, Empleado.getIexusumod());
-
-
-            pst.setString(31, Empleado.getIexnacion_origen1());
-            pst.setString(32, Empleado.getIexdepart_origen1());
-            pst.setString(33, Empleado.getIexprovin_origen1());
-
-            pst.setString(34, Empleado.getIexnacion_origen2());
-            pst.setString(35, Empleado.getIexdepart_origen2());
-            pst.setString(36, Empleado.getIexprovin_origen2());
-
-            pst.setInt(37, Empleado.getIexcodcia());
-            pst.setInt(38, Empleado.getIexcodtra());
-
-
-
-
-
-
-
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            result = e.getMessage();
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
 
     public Empleado recuperarCabecera(Integer ciaid, Integer codtra) throws DAOException {
 

@@ -31,6 +31,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public void  actualizarLaboral(Empleado empleado){dao.actualizarLaboral(empleado);}
     public void  actualizarPagos(Empleado empleado){dao.actualizarPagos(empleado);}
     public void actualizarSegSocial(Empleado empleado){dao.actualizarSegSocial(empleado);}
+    public void actualizarDireccion(Empleado empleado){dao.actualizarDireccion(empleado);}
 
 
 }

@@ -16,5 +16,6 @@ public interface EmpleadoService {
     public void actualizarLaboral(Empleado empleado);
     public void actualizarPagos(Empleado empleado);
     public void actualizarSegSocial(Empleado empleado);
+    public void actualizarDireccion(Empleado empleado);
 
 }

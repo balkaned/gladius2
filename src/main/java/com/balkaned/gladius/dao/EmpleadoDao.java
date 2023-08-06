@@ -15,6 +15,7 @@ public interface EmpleadoDao {
     public Empleado recuperarSegSocial(Integer ciaid , Integer codtra);
     public Empleado recuperarDireccion(Integer ciaid , Integer codtra);
     public void actualizarSegSocial(Empleado empleado);
+    public void actualizarDireccion(Empleado empleado);
 
     /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
@@ -22,7 +23,6 @@ public interface EmpleadoDao {
     public Integer obtieneIdEmpleado(Empleado Empleado);
     public void insertarCabecera(Empleado Empleado);
     public void actualizarOtros(Empleado Empleado);
-    public void  actualizarDireccion(Empleado Empleado);
     public void  actualizarTurnos(Empleado Empleado) ;*/
     /*public String listarEmpleadoDyn(Integer ciaid, String destra);
     public Empleado recuperarTurnos(Integer ciaid , Integer codtra);
