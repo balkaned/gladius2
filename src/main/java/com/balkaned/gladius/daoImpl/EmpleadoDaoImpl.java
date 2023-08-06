@@ -814,10 +814,12 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " iextipvia_dom1=?,        iexnomvia_dom1 =?,             iexnrovia_dom1 =?,     		 iexdeptin_dom1 =?, " +
                 " iexinterior_dom1=?,      iexmanzana_dom1 =?,  		   iexlote_dom1 =?,  			  iexkilometro_dom1 =?, " +
                 " iexblock_dom1 =?,         iexetapa_dom1 =?,   		   iextipzona_dom1 =?,   		  iexnomzona_dom1 =?,  " +
-                " iexreferencia_dom1 =?,    iexubigeo_dom1 =?,             iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
+                //" iexreferencia_dom1 =?,    iexubigeo_dom1 =?,             iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
+                " iexreferencia_dom1 =?,    iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
                 " iexnrovia_dom2 =?,        iexdeptin_dom2 =?,             iexinterior_dom2 =?,          iexmanzana_dom2 =?,  " +
                 " iexlote_dom2  =?,          iexkilometro_dom2  =?,          iexblock_dom2  =?,             iexetapa_dom2 =? , " +
-                " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?,        iexubigeo_dom2 =? ," +
+                //" iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?,        iexubigeo_dom2 =? ," +
+                " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?, " +
                 " iexflgdomicilio =? , " +
                 " iexfecmoddom=CURRENT_TIMESTAMP,  iexusumoddom=?  , "+
                 " iexnacion_origen1 =?  ,   "+
@@ -841,7 +843,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             empleado.getIextipzona_dom1(),
             empleado.getIexnomzona_dom1(),
             empleado.getIexreferencia_dom1(),
-            empleado.getIexubigeo_dom1(),
+            //empleado.getIexubigeo_dom1(),
             empleado.getIextipvia_dom2(),
             empleado.getIexnomvia_dom2(),
             empleado.getIexnrovia_dom2(),
@@ -855,7 +857,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             empleado.getIextipzona_dom2(),
             empleado.getIexnomzona_dom2(),
             empleado.getIexreferencia_dom2(),
-            empleado.getIexubigeo_dom2(),
+            //empleado.getIexubigeo_dom2(),
             empleado.getIexflgdomicilio(),
             empleado.getIexusumod(),
             empleado.getIexnacion_origen1(),

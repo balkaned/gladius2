@@ -475,14 +475,18 @@ public class EmpleadoController {
         String iextipzona_dom2 = request.getParameter("iextipzona_dom2");
         String iexnomzona_dom2= request.getParameter("iexnomzona_dom2");
         String iexreferencia_dom2 = request.getParameter("iexreferencia_dom2");
-        String iexubigeo_dom2 = request.getParameter("iexubigeo_dom2");
+        //String iexubigeo_dom2 = request.getParameter("iexubigeo_dom2");
         String iexflgdomicilio  = request.getParameter("iexflgdomicilio");
-        String iexnacion_origen1 = request.getParameter("iexpaisemisor1");
+
+        String iexnacion_origen1 = request.getParameter("iexnacion_origen1");
         String iexdepart_origen1 = request.getParameter("iexdepart_origen1");
         String iexprovin_origen1 = request.getParameter("iexprovin_origen1");
-        String iexnacion_origen2 = request.getParameter("iexpaisemisor2");
+        //String iexdistri_origen1 = request.getParameter("iexdistri_origen1");
+
+        String iexnacion_origen2 = request.getParameter("iexnacion_origen2");
         String iexdepart_origen2 = request.getParameter("iexdepart_origen2");
         String iexprovin_origen2 = request.getParameter("iexprovin_origen2");
+        //String iexdistri_origen2 = request.getParameter("iexdistri_origen2");
 
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.parseInt(iexcodtra.trim()));
@@ -513,12 +517,14 @@ public class EmpleadoController {
         p.setIextipzona_dom2(iextipzona_dom2);
         p.setIexnomzona_dom2(iexnomzona_dom2);
         p.setIexreferencia_dom2(iexreferencia_dom2);
-        p.setIexubigeo_dom2(iexubigeo_dom2);
+        //p.setIexubigeo_dom2(iexubigeo_dom2);
         p.setIexflgdomicilio(iexflgdomicilio);
         p.setIexusumod(user);
+
         p.setIexnacion_origen1(iexnacion_origen1);
         p.setIexdepart_origen1(iexdepart_origen1);
         p.setIexprovin_origen1(iexprovin_origen1);
+
         p.setIexnacion_origen2(iexnacion_origen2);
         p.setIexdepart_origen2(iexdepart_origen2);
         p.setIexprovin_origen2(iexprovin_origen2);
