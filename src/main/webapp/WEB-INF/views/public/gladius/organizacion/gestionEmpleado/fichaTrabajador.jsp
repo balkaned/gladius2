@@ -283,15 +283,23 @@
                           <div class="flex-1 d-md-none">
                             <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
                           </div>
-                          <button class="btn btn-primary me-2"><span class="fa-solid fas fa-camera-retro me-2"></span><span>Subir Foto</span></button>
-                          <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
+                          <form method="post" action="fileUploadServlet" enctype="multipart/form-data" >
+                              <input type="hidden" name="accion" value="FOTOEMP" >
+                              <input type="hidden" name="idimg" value="${nrodoc}" >
+                              <input type="hidden" name="codciax" value="${idComp}" >
+                              <input type="hidden" name="idTrab" value="${idTrab}" >
+                              <input type="file" name="uploadFile" class="form-control col-md-6"/>
+                              <button class="btn btn-primary me-2" type="submit" ><span class="fa-solid fas fa-camera-retro me-2"></span><span>Subir Foto</span></button>
+                          </form>
+
+                          <!--<button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
                           <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
                           <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
                             <li><a class="dropdown-item" href="#!">View profile</a></li>
                             <li><a class="dropdown-item" href="#!">Report</a></li>
                             <li><a class="dropdown-item" href="#!">Manage notifications</a></li>
                             <li><a class="dropdown-item text-danger" href="#!">Delete Lead</a></li>
-                          </ul>
+                          </ul>-->
                         </div>
                       </div>
                     </div>
@@ -314,7 +322,12 @@
                                 <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white"><span class="fa-solid fa-camera me-2 overlay-icon"> </span></div>
                               </div>
                               <input class="d-none" id="upload-feed-porfile-picture" type="file" />
-                              <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/team/59.webp" width="200" alt="" /></label>
+                              <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture">
+                                <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/team/59.webp" width="200" alt="" />-->
+                                <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" />-->
+                                <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" /></c:if>
+                                <c:if test="${iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user.png" width="200" alt="" /></c:if>
+                              </label>
                             </div>
                             <div class="card-body">
                               <div class="row">
@@ -479,7 +492,7 @@
                         <div class="row g-5">
                              <div class="col-xl-12">
                                <div class="row gx-3 gy-4">
-                                 <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate>
+                                 <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate >
                                     <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                     <div class="col-sm-6 col-md-4">
                                       <div class="form-floating">

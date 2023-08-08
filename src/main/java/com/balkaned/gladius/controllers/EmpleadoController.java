@@ -90,6 +90,7 @@ public class EmpleadoController {
         model.addAttribute("firstCharacter",firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
         model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idTrab",idTrab);
 
         Empleado empleado = new Empleado();
         model.addAttribute("empleado",empleado);
@@ -105,7 +106,10 @@ public class EmpleadoController {
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getDesestado());
         model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
+
+        logger.info("iexlogo: "+emp.getIexlogo());
 
         model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
         model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
