@@ -5,7 +5,6 @@ import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -32,6 +31,9 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public void  actualizarPagos(Empleado empleado){dao.actualizarPagos(empleado);}
     public void actualizarSegSocial(Empleado empleado){dao.actualizarSegSocial(empleado);}
     public void actualizarDireccion(Empleado empleado){dao.actualizarDireccion(empleado);}
+    public List<Empleado> validarCabecera(Empleado empleado){return dao.validarCabecera(empleado);}
+    public Integer obtieneIdEmpleado(Empleado empleado){return dao.obtieneIdEmpleado(empleado);}
+    public void insertarCabecera(Empleado empleado){dao.insertarCabecera(empleado);}
 
 
 }

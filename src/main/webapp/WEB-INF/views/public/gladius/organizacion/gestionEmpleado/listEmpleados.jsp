@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add Empleado</button>
+                      <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                     </div>
                   </div>
                 </div>

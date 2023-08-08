@@ -871,6 +871,125 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     }
 
+    public List<Empleado> validarCabecera(Empleado empleado){
+
+        List<Empleado> lista = null;
+
+        String sql = " select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexnomtra, " +
+                "iexapepat, " +
+                "iexapemat, " +
+                "iextipdocid, " +
+                "iexnrodoc, " +
+                "iexfecnac, " +
+                "iexfecing, " +
+                "iextipcese, " +
+                "'' as destipcese, " +
+                "iexcodsex, " +
+                "'' dessex, " +
+                "iexpaisemisor, " +
+                "'' as despaisemisor, " +
+                "iexflgest, " +
+                "'' desestado, " +
+                "iexcodant, " +
+                "iextiptra, " +
+                "'' destiptra, " +
+                "iexmodform, " +
+                "'' desmodform, " +
+                "iexnacion_origen, " +
+                "'' desnacion_origen, " +
+                "iexdepart_origen, " +
+                "'' desdepart_origen, " +
+                "iexprovin_origen, " +
+                "'' desprovin_origen, " +
+                "iexdistri_origen, " +
+                "'' desdistri_origen, " +
+                "iexgrdinstruccion, " +
+                "'' desinstruccion, " +
+                "iexcentroform, " +
+                "'' descentroform, " +
+                "iexflgdomicil, " +
+                "iexfeccrea, " +
+                "iexfeccmod, " +
+                "iexusucrea, " +
+                "iexusumod " +
+                "from iexempleado where iexcodcia = "+empleado.getIexcodcia()+"  and  iextipdocid='"+empleado.getIextipdocid()+"' and iexnrodoc='"+empleado.getIexnrodoc()+"' and iexflgest='1'  ";
+        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException{
+                List<Empleado> lista = new ArrayList<Empleado>();
+
+                while(rs.next()) {
+                    Empleado p = new Empleado();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    p.setIextipdocid(rs.getString("iextipdocid"));
+                    p.setIexnrodoc(rs.getString("iexnrodoc"));
+                    p.setIexfecnac(rs.getString("iexfecnac"));
+                    p.setIexfecing(rs.getString("iexfecing"));
+                    p.setIextipcese(rs.getString("iextipcese"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public Integer obtieneIdEmpleado(Empleado empleado){
+
+        //StringBuilder sql = new StringBuilder();
+        final Integer[] idcont = {0};
+        final String[] result = new String[1];
+
+        String sql=" SELECT coalesce(max(iexcodtra),0)+1 idcont  FROM IEXEMPLEADO WHERE IEXCODCIA="+empleado.getIexcodcia();
+
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+                public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                    while(rs.next()) {
+                        idcont[0] = rs.getInt("idcont");
+                        logger.info("idcont: "+idcont[0]);
+                    }
+                    return idcont[0];
+                }
+        });
+    }
+
+    public void  insertarCabecera(Empleado empleado){
+
+        String result = null;
+        StringBuilder sql = new StringBuilder();
+
+        template.update(" insert into iexempleado(   "+
+                " iexcodcia,     iexcodtra,         iexnomtra,     iexapepat,    iexapemat, " +
+                //" iextipdocid,   iexnrodoc,         iexfecnac,     iexfecing,     " +
+                " iextipdocid,   iexnrodoc, " +
+                " iexcodsex,      iexflgest,     iexcodant,    iextiptra, " +
+                " iexfeccrea,                 iexusucrea ) values "+
+                //"  ( ?,?,?,?,?,   ?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),    ?,?,?,?,  current_date,? )",
+                " ( ?,?,?,?,?,?,?,?,?,?,?,current_date,? )",
+
+            empleado.getIexcodcia(),
+            empleado.getIexcodtra(),
+            empleado.getIexnomtra(),
+            empleado.getIexapepat(),
+            empleado.getIexapemat(),
+            empleado.getIextipdocid(),
+            empleado.getIexnrodoc(),
+            //empleado.getIexfecnac(),
+            //empleado.getIexfecing(),
+            empleado.getIexcodsex(),
+            1,
+            empleado.getIexcodant(),
+            empleado.getIextiptra(),
+            empleado.getIexusucrea());
+    }
+
     /*
     public List<Empleado> listarEmpleadoActivos(Integer codcia) throws DAOException {
 
@@ -1091,191 +1210,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
         return lista;
     }
-
-
-    public List<Empleado>  validarCabecera(Empleado Empleado) throws DAOException {
-
-        List<Empleado> lista = null;
-        String sql = " select " +
-                "iexcodcia, " +
-                "iexcodtra, " +
-                "iexnomtra, " +
-                "iexapepat, " +
-                "iexapemat, " +
-                "iextipdocid, " +
-                "iexnrodoc, " +
-                "iexfecnac, " +
-                "iexfecing, " +
-                "iextipcese, " +
-                "'' as destipcese, " +
-                "iexcodsex, " +
-                "'' dessex, " +
-                "iexpaisemisor, " +
-                "'' as despaisemisor, " +
-                "iexflgest, " +
-                "'' desestado, " +
-                "iexcodant, " +
-                "iextiptra, " +
-                "'' destiptra, " +
-                "iexmodform, " +
-                "'' desmodform, " +
-                "iexnacion_origen, " +
-                "'' desnacion_origen, " +
-                "iexdepart_origen, " +
-                "'' desdepart_origen, " +
-                "iexprovin_origen, " +
-                "'' desprovin_origen, " +
-                "iexdistri_origen, " +
-                "'' desdistri_origen, " +
-                "iexgrdinstruccion, " +
-                "'' desinstruccion, " +
-                "iexcentroform, " +
-                "'' descentroform, " +
-                "iexflgdomicil, " +
-                "iexfeccrea, " +
-                "iexfeccmod, " +
-                "iexusucrea, " +
-                "iexusumod " +
-                "from iexempleado where iexcodcia = "+Empleado.getIexcodcia()+"  and  iextipdocid='"+Empleado.getIextipdocid()+"' and iexnrodoc='"+Empleado.getIexnrodoc()+"' and iexflgest='1'  ";
-
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                Statement st = cn.createStatement();
-
-
-                ResultSet rs = st.executeQuery(sql);) {
-
-            lista = new ArrayList<>();
-            while (rs.next()) {
-                Empleado p = new Empleado();
-
-                p.setIexcodcia(rs.getInt("iexcodcia")) ;
-                p.setIexcodtra(rs.getInt("iexcodtra")) ;
-                p.setIexnomtra(rs.getString("iexnomtra")) ;
-                p.setIexapepat(rs.getString("iexapepat")) ;
-                p.setIexapemat(rs.getString("iexapemat")) ;
-                p.setIextipdocid(rs.getString("iextipdocid")) ;
-                p.setIexnrodoc(rs.getString("iexnrodoc")) ;
-                p.setIexfecnac(rs.getString("iexfecnac")) ;
-                p.setIexfecing(rs.getString("iexfecing")) ;
-                p.setIextipcese(rs.getString("iextipcese")) ;
-
-
-                lista.add(p);
-
-                //System.out.println("proceso: "+rs.getString("prodespro"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOEmpleadoImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println("Termino validar Cabecera ");
-
-        return lista;
-
-
-    }
-
-    public Integer obtieneIdEmpleado(Empleado Empleado) throws DAOException {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-        Integer idcont =0;
-
-
-        sql.append(" SELECT coalesce(max(iexcodtra),0)+1 idcont  FROM IEXEMPLEADO WHERE IEXCODCIA="+Empleado.getIexcodcia()+"  ");
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                PreparedStatement pst = cn.prepareStatement(sql.toString());
-                ResultSet rs = pst.executeQuery();
-        ) {
-            // Statement st = cn.createStatement();
-            if (rs.next()) {
-                idcont= Integer.valueOf(rs.getString("idcont"));
-            }
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            idcont=-1;
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-        return idcont ;
-
-    }
-
-
-    public void  insertarCabecera(Empleado Empleado) throws DAOException {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        System.out.println("Insertar cabecera");
-
-        sql.append(" insert into iexempleado(   "+
-                " iexcodcia,     iexcodtra,         iexnomtra,     iexapepat,    iexapemat, " +
-                " iextipdocid,   iexnrodoc,         iexfecnac,     iexfecing,     " +
-                " iexcodsex,      iexflgest,     iexcodant,    iextiptra, " +
-                " iexfeccrea,                 iexusucrea ) values "+
-                "  ( ?,?,?,?,?,   ?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),    ?,?,?,?,  current_date,? )");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-            pst.setInt(1, Empleado.getIexcodcia());
-            pst.setInt(2, Empleado.getIexcodtra());
-            pst.setString(3, Empleado.getIexnomtra());
-            pst.setString(4, Empleado.getIexapepat());
-            pst.setString(5, Empleado.getIexapemat());
-
-            pst.setString(6, Empleado.getIextipdocid());
-            pst.setString(7, Empleado.getIexnrodoc());
-            pst.setString(8, Empleado.getIexfecnac());
-            pst.setString(9, Empleado.getIexfecing());
-
-            pst.setString(10, Empleado.getIexcodsex());
-            pst.setString(11, "1");
-            pst.setString(12, Empleado.getIexcodant());
-            pst.setString(13, Empleado.getIextiptra());
-
-            pst.setString(14, "usuario");
-
-            System.out.println(sql);
-
-            pst.execute();
-
-
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            System.out.println("Error en insertar cabecera"+e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-
 
 
     public void  actualizarOtros(Empleado Empleado) throws DAOException  {

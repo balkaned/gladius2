@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -41,14 +43,6 @@ public class EmpleadoController {
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        logger.info("usuario: "+usuario);
-        logger.info("idusuario: "+idusuario);
-        logger.info("email: "+email);
-        logger.info("firstCharacter: "+firstCharacter);
-        logger.info("idCompania: "+idCompania);
-        logger.info("nombreComp: "+nombreComp);
-        logger.info("rucComp: "+rucComp);
 
         model.addAttribute("usuario",usuario);
         model.addAttribute("idusuario",idusuario);
@@ -536,6 +530,185 @@ public class EmpleadoController {
         empleadoService.actualizarDireccion(p);
 
         return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+    }
+
+    @RequestMapping("/valRegEmpleado")
+    public ModelAndView valRegEmpleado(ModelMap model, HttpServletRequest request) {
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/valRegEmpleado");
+    }
+
+    @RequestMapping("/validarNroDoc")
+    public ModelAndView validarNroDoc(ModelMap model, HttpServletRequest request) {
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        String iextipdocid = request.getParameter("iextipdocid");
+        String iexnrodocid = request.getParameter("iexnrodocid");
+
+        String resultado="";
+        String Msg_form_global="";
+
+        Empleado empleado = new Empleado();
+        empleado.setIexcodcia(idCompania);
+        empleado.setIextipdocid(iextipdocid);
+        empleado.setIexnrodoc(iexnrodocid);
+
+        List<Empleado> lista =empleadoService.validarCabecera(empleado);
+
+        /*request.setAttribute("iextipdocid", iextipdocid);
+        request.setAttribute("iexnrodocid", iexnrodocid );*/
+
+        Integer val=0;
+        model.addAttribute("LstPerRegistrada", lista);
+
+        Iterator<Empleado> it = lista.iterator();
+        // mientras al iterador queda proximo juego
+        while(it.hasNext()){
+            val++;
+            it.next();
+        }
+
+        if(val==0) {
+            Msg_form_global="OK"; //Verifica si la lista esta llena. De esta vacio significa que el registro a validar seria nuevo
+        }else{
+            Msg_form_global="Error";
+            model.addAttribute("msg", "Existen registros activos con el mismo numero de documento. Contactar con el Administrador" );
+        }
+        logger.info("ValidadEmpleado --> Mensaje global:"+Msg_form_global+" , cantidad de items="+val);
+
+        if (Msg_form_global=="OK"){
+            return new ModelAndView("redirect:/nuevoEmpleado");
+        }
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/valRegEmpleado");
+    }
+
+    @RequestMapping("/nuevoEmpleado")
+    public ModelAndView nuevoEmpleado(ModelMap model, HttpServletRequest request) {
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
+        model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
+        model.addAttribute("lovTipTra",lovsService.getLovs("8","%"));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoEmpleado");
+    }
+
+    @RequestMapping("/insertarEmpleado")
+    public ModelAndView insertarEmpleado(ModelMap model, HttpServletRequest request) {
+
+        Integer idempleado=0;
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        String iextipdocid = request.getParameter("iextipdocid");
+        String iexnrodocid = request.getParameter("iexnrodocid");
+        String iexnomtra = request.getParameter("iexnomtra");
+        String iexapepat= request.getParameter("iexapepat");
+        String iexapemat = request.getParameter("iexapemat");
+        //String iexfecnac = request.getParameter("iexfecnac");
+        String iexcodsex = request.getParameter("iexcodsex");
+        String iextiptra = request.getParameter("iextiptra");
+        //String iexfecing = request.getParameter("iexfecing");
+        String iexcodant = request.getParameter("iexcodant");
+
+        Empleado emp = new Empleado();
+
+        emp.setIexcodcia(idCompania);
+        emp.setIexnomtra(iexnomtra);
+        emp.setIexapepat(iexapepat);
+        emp.setIexapemat(iexapemat);
+        emp.setIextipdocid(iextipdocid);
+        emp.setIexnrodoc(iexnrodocid);
+        //emp.setIexfecnac(iexfecnac);
+        emp.setIexcodsex(iexcodsex);
+        emp.setIextiptra(iextiptra);
+        //emp.setIexfecing(iexfecing);
+        emp.setIexcodant(iexcodant);
+        emp.setIexusucrea(usuario);
+
+
+        idempleado=empleadoService.obtieneIdEmpleado(emp);
+        logger.info("Obtiene Id empleado :"+idempleado );
+
+        if(idempleado>0){
+            emp.setIexcodtra(idempleado);
+            empleadoService.insertarCabecera(emp);
+
+            //id_new_emp=  idempleado;
+        }else{
+            idempleado=0;
+        }
+
+        return new ModelAndView("redirect:/detalleEmpl@"+idempleado);
     }
 }
 

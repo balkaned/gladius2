@@ -17,5 +17,8 @@ public interface EmpleadoService {
     public void actualizarPagos(Empleado empleado);
     public void actualizarSegSocial(Empleado empleado);
     public void actualizarDireccion(Empleado empleado);
+    public List<Empleado> validarCabecera(Empleado empleado);
+    public Integer obtieneIdEmpleado(Empleado empleado);
+    public void insertarCabecera(Empleado empleado);
 
 }

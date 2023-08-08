@@ -16,12 +16,12 @@ public interface EmpleadoDao {
     public Empleado recuperarDireccion(Integer ciaid , Integer codtra);
     public void actualizarSegSocial(Empleado empleado);
     public void actualizarDireccion(Empleado empleado);
+    public List<Empleado> validarCabecera(Empleado empleado);
+    public Integer obtieneIdEmpleado(Empleado empleado);
+    public void insertarCabecera(Empleado empleado);
 
     /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
-    public List<Empleado>  validarCabecera(Empleado Empleado);
-    public Integer obtieneIdEmpleado(Empleado Empleado);
-    public void insertarCabecera(Empleado Empleado);
     public void actualizarOtros(Empleado Empleado);
     public void  actualizarTurnos(Empleado Empleado) ;*/
     /*public String listarEmpleadoDyn(Integer ciaid, String destra);
