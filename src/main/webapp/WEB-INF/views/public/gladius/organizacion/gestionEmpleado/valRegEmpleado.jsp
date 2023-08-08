@@ -45,7 +45,7 @@
                             <div class="form-floating">
                                 <select name="iextipdocid" class="form-select" required >
                                     <option value="01">DNI</option>
-                                    <option value="02">Ruc</option>
+                                    <option value="02">RUC</option>
                                     <option value="04">CE</option>
                                 </select>
                                 <label>Tipo Documento (*)</label>
@@ -62,25 +62,28 @@
                               <button class="btn btn-primary" type="submit" >Validar</button>
                           </div>
 
-                          <div align="center" class="navy">
-                              <table>
-                                  <tr>
-                                      <td><span style="font-size:14px;">${requestScope.msg}</span></td>
-                                  </tr>
-                                    <c:forEach var="LstPerRegistrada" items="${requestScope.LstPerRegistrada}">
-                                      <tr>
-                                          <td><span style="font-size:14px;">Trabajador: ${LstPerRegistrada.iexcodtra}  - ${LstPerRegistrada.iexapepat} ${LstPerRegistrada.iexapemat}  ${LstPerRegistrada.iexnomtra}</span></td>
-                                      </tr>
-                                    </c:forEach>
-                              </table>
-                          </div>
+                          <c:forEach var="LstPerRegistrada" items="${requestScope.LstPerRegistrada}">
+                              <div class="border-bottom py-4">
+                                  <div class="d-flex">
+                                    <div class="d-flex bg-primary-100 rounded-circle flex-center me-3 bg-primary-100" style="width:25px; height:25px"><span class="fa-solid text-primary-600 dark__text-primary-300 fs--1 fa-clipboard text-primary-600 dark__text-primary-300"></span></div>
+                                    <div class="flex-1">
+                                      <div class="d-flex justify-content-between flex-column flex-xl-row mb-2 mb-sm-0">
+                                        <div class="flex-1 me-2">
+                                          <h5 class="text-1000 lh-sm">${msg}</h5>
+                                          <p class="fs--1 mb-0">${LstPerRegistrada.iexcodtra}<a class="ms-1" href="#!">Trabajador</a><span style="margin-left:10px;margin-bottom:6px;" class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Documento En uso</span><span class="ms-1" data-feather="x" style="height:12.8px;width:12.8px;"></span></span></p>
+                                        </div>
+                                        <!--<div class="fs--1"><span class="fa-regular fa-calendar-days text-primary me-2"></span><span class="fw-semi-bold">22 September, 2022, 4:33 PM</span></div>-->
+                                      </div>
+                                      <p class="fs--1 mb-0">${LstPerRegistrada.iexapepat} ${LstPerRegistrada.iexapemat}  ${LstPerRegistrada.iexnomtra}</p>
+                                    </div>
+                                  </div>
+                              </div>
+                          </c:forEach>
                        </form>
                      </div>
                    </div>
               </div>
-
             </div>
-
           </div>
 
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>

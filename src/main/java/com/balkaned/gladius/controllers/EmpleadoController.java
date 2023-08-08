@@ -104,7 +104,6 @@ public class EmpleadoController {
         model.addAttribute("urlLogo",urlLogo);
 
         logger.info("iexlogo: "+emp.getIexlogo());
-
         model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
         model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
         model.addAttribute("lovModForm",lovsService.getLovs("18","%"));
@@ -177,6 +176,7 @@ public class EmpleadoController {
         if(request.getSession().getAttribute("user")==null) {
             return new ModelAndView("redirect:/login2");
         }
+
         Empleado p = new Empleado();
         Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
         String iexcodtra = request.getParameter("iexcodtra");
@@ -299,8 +299,6 @@ public class EmpleadoController {
         p.setIexcateg_trabajador(iexcateg_trabajador);
         p.setIexreglab(iexreglab);
         p.setIexusumod(user);
-
-        System.out.println("p:" + p);
 
         empleadoService.actualizarLaboral(p);
 
@@ -522,7 +520,6 @@ public class EmpleadoController {
         p.setIexnacion_origen1(iexnacion_origen1);
         p.setIexdepart_origen1(iexdepart_origen1);
         p.setIexprovin_origen1(iexprovin_origen1);
-
         p.setIexnacion_origen2(iexnacion_origen2);
         p.setIexdepart_origen2(iexdepart_origen2);
         p.setIexprovin_origen2(iexprovin_origen2);
