@@ -17,6 +17,7 @@ public class Compania {
     private String direccion;
     private String rol;
     private String id_usuario;
+
     Integer idCodcia;
     String descCia;
     String nroRuc;

@@ -17,4 +17,6 @@ public class CompaniaServiceImpl implements CompaniaService {
     public Compania getCompaniaAll(Integer id) {
         return dao.getCompaniaAll(id);
     }
+
+    public void logoCompania(Compania com){dao.logoCompania(com);}
 }

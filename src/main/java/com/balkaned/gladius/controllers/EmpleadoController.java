@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -64,7 +63,13 @@ public class EmpleadoController {
 
     @RequestMapping("/detalleEmpl@{idTrab}")
     public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request,@PathVariable String idTrab) {
-        logger.info("/detalleEmpl@{idTrab}");
+        logger.info("/detalleEmpl");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -102,6 +107,17 @@ public class EmpleadoController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
+        if(emp.getIexcodsex()==null){
+            sexo="NA";
+        }else{
+            sexo=emp.getIexcodsex();
+        }
+
+        logger.info("sexo: "+sexo);
+        model.addAttribute("sexo",sexo);
 
         logger.info("iexlogo: "+emp.getIexlogo());
         model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
@@ -531,6 +547,12 @@ public class EmpleadoController {
 
     @RequestMapping("/valRegEmpleado")
     public ModelAndView valRegEmpleado(ModelMap model, HttpServletRequest request) {
+        logger.info("/valRegEmpleado");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -555,6 +577,12 @@ public class EmpleadoController {
 
     @RequestMapping("/validarNroDoc")
     public ModelAndView validarNroDoc(ModelMap model, HttpServletRequest request) {
+        logger.info("/validarNroDoc");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -617,6 +645,12 @@ public class EmpleadoController {
 
     @RequestMapping("/nuevoEmpleado")
     public ModelAndView nuevoEmpleado(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevoEmpleado");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -645,6 +679,12 @@ public class EmpleadoController {
 
     @RequestMapping("/insertarEmpleado")
     public ModelAndView insertarEmpleado(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarEmpleado");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         Integer idempleado=0;
 
@@ -691,7 +731,6 @@ public class EmpleadoController {
         //emp.setIexfecing(iexfecing);
         emp.setIexcodant(iexcodant);
         emp.setIexusucrea(usuario);
-
 
         idempleado=empleadoService.obtieneIdEmpleado(emp);
         logger.info("Obtiene Id empleado :"+idempleado );

@@ -990,6 +990,17 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             empleado.getIexusucrea());
     }
 
+    public void actualizarFoto(Empleado empleado){
+
+        template.update("update  iexempleado set  "+
+                "    iexlogo=? where  iexcodcia=?   and  iexcodtra=?  ",
+
+            empleado.getIexlogo(),
+            empleado.getIexcodcia(),
+            empleado.getIexcodtra());
+
+    }
+
     /*
     public List<Empleado> listarEmpleadoActivos(Integer codcia) throws DAOException {
 

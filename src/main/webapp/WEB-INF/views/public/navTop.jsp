@@ -10,8 +10,11 @@
             <a class="navbar-brand me-1 me-sm-3" href="#">
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast2.png" alt="phoenix" width="27" />
-                  <p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
-                  <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>
+                  <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
+                  <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>-->
+
+                  <p style="color:white !important;font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
+                  <p style="color:white !important;font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>
                 </div>
               </div>
             </a>

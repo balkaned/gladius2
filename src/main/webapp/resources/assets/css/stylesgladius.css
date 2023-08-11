@@ -39,9 +39,9 @@
 }
 
 .navbar-vertical-footer{
-    /*background-color:#1E283D !important;
+    background-color:#1E283D !important;
     color:white;
-    border-top:1px solid #373E53 !important;*/
+    border-top:1px solid #373E53 !important;
 }
 
 .btn.p-0.border.border-200.btn-support-chat{
@@ -118,7 +118,7 @@
 }
 
 .navbar.navbar-vertical.navbar-expand-lg{
-    /*background-color:#111827 !important;*/
+    background-color:#111827 !important;
 }
 
 .collapse.navbar-collapse div ul li div #span1{
@@ -221,8 +221,8 @@
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-    /*background-color:#111827 !important;
-    border:0px solid black;*/
+    background-color:#111827 !important;
+    border:0px solid black;
 }
 
 .logo-text.ms-2.d-none.d-sm-block{
@@ -234,9 +234,9 @@
 }
 
 .form-control.search-input.fuzzy-search.rounded-pill.form-control-sm{
-    /*background-color:#0F111A;
+    background-color:#0F111A;
     border: 1px solid #373E53;
-    border-radius:30px !important;*/
+    border-radius:30px !important;
 }
 
 #span6a{
@@ -323,7 +323,7 @@
 }
 
 .navbar-vertical-content{
-    /*background-color:#111827;*/
+    background-color:#111827;
 }
 
 .alert{

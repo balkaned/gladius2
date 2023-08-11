@@ -19,6 +19,7 @@ public interface EmpleadoDao {
     public List<Empleado> validarCabecera(Empleado empleado);
     public Integer obtieneIdEmpleado(Empleado empleado);
     public void insertarCabecera(Empleado empleado);
+    public void actualizarFoto(Empleado empleado);
 
     /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
@@ -28,7 +29,6 @@ public interface EmpleadoDao {
     public Empleado recuperarTurnos(Integer ciaid , Integer codtra);
     public void  cesarEmpleado(Empleado empleado);
     public void  eliminarEmpleado(Integer ciaid , Integer codtra);
-    public void   actualizarFoto(Empleado Empleado);
     public void insertarTraMas(List<Empleado> Empleado);
     public Integer  reingresarEmpleado(Integer ciaid, Integer codtrareing , String fechaing,  String desusu);*/
 }

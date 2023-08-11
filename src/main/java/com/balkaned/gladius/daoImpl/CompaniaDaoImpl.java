@@ -99,4 +99,13 @@ public class CompaniaDaoImpl implements CompaniaDao {
             }
         });
     }
+
+    public void logoCompania(Compania com){
+
+        template.update("update  iexcompania set   iexreplogo=?  where iexcodcia = ? ",
+
+        com.getUrlLogo(),
+        com.getIdCodcia());
+    }
+
 }

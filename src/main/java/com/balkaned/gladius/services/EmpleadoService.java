@@ -20,5 +20,6 @@ public interface EmpleadoService {
     public List<Empleado> validarCabecera(Empleado empleado);
     public Integer obtieneIdEmpleado(Empleado empleado);
     public void insertarCabecera(Empleado empleado);
+    public void actualizarFoto(Empleado empleado);
 
 }

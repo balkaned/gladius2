@@ -47,7 +47,8 @@
                 <!-- parent pages-->
                 <div id="usermenu">
                     <img id="span1" src="verFoto@LOGO@${idComp}@${urlLogo}"></img>
-                    <span id="span2" class="mt-2 text-black">${usuario}</span>
+                    <!--<span id="span2" class="mt-2 text-black">${usuario}</span>-->
+                    <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>
 

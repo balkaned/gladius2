@@ -275,32 +275,25 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="row align-items-center justify-content-between g-3 mb-3">
-                      <div class="col-12 col-md-auto">
-                        <h2 id="h2top" class="mb-0"></h2>
+                      <div class="col-6 col-md-6">
+                        <h2 id="h2top" class="mb-0">Ficha de trabajador</h2>
                       </div>
-                      <div class="col-12 col-md-auto">
-                        <div class="d-flex">
-                          <div class="flex-1 d-md-none">
-                            <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
-                          </div>
+
+                      <div class="col-12 col-md-12">
                           <form method="post" action="fileUploadServlet" enctype="multipart/form-data" >
                               <input type="hidden" name="accion" value="FOTOEMP" >
                               <input type="hidden" name="idimg" value="${nrodoc}" >
                               <input type="hidden" name="codciax" value="${idComp}" >
                               <input type="hidden" name="idTrab" value="${idTrab}" >
-                              <input type="file" name="uploadFile" class="form-control col-md-6"/>
-                              <button class="btn btn-primary me-2" type="submit" ><span class="fa-solid fas fa-camera-retro me-2"></span><span>Subir Foto</span></button>
+                              <div class="col-sm-6 col-md-4">
+                                  <input class="form-control" name="uploadFile" type="file" value="" />
+                              </div>
+                              <div class="col-sm-6 col-md-4 mt-2">
+                                <div class="form-floating">
+                                    <button class="btn btn-primary me-2 " type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                                </div>
+                              </div>
                           </form>
-
-                          <!--<button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
-                          <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
-                            <li><a class="dropdown-item" href="#!">View profile</a></li>
-                            <li><a class="dropdown-item" href="#!">Report</a></li>
-                            <li><a class="dropdown-item" href="#!">Manage notifications</a></li>
-                            <li><a class="dropdown-item text-danger" href="#!">Delete Lead</a></li>
-                          </ul>-->
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -326,7 +319,8 @@
                                 <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/team/59.webp" width="200" alt="" />-->
                                 <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" />-->
                                 <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" /></c:if>
-                                <c:if test="${iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user.png" width="200" alt="" /></c:if>
+                                <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>
+                                <c:if test="${iexlogo==null && sexo.equals('F')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/woman_user.jpg" width="200" alt="" /></c:if>
                               </label>
                             </div>
                             <div class="card-body">
@@ -639,7 +633,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                       <div class="form-floating">
-                                          <select name="iexdistri_origen" class="form-select" required>
+                                          <select name="iexdistri_origen" class="form-select">
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                     <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>

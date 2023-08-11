@@ -34,6 +34,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public List<Empleado> validarCabecera(Empleado empleado){return dao.validarCabecera(empleado);}
     public Integer obtieneIdEmpleado(Empleado empleado){return dao.obtieneIdEmpleado(empleado);}
     public void insertarCabecera(Empleado empleado){dao.insertarCabecera(empleado);}
+    public void actualizarFoto(Empleado empleado){dao.actualizarFoto(empleado);}
 
 
 }
