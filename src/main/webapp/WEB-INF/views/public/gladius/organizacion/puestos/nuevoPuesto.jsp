@@ -43,56 +43,39 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Area</h2>
+                  <h2 id="h2top" class="mb-0">Insertar Puesto</h2>
                 </div>
               </div>
 
               <div class="row g-5">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarArea" novalidate >
-                          <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
+                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPuesto" novalidate >
+                              <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                              <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
+                              <input class="form-control" name="iexpuesto2" type="hidden" value="${idx}" />
                               <div class="col-sm-6 col-md-6">
                                      <div class="form-floating">
-                                       <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="street" readonly disabled/>
-                                       <label>Codigo de Area (*)</label>
+                                       <input class="form-control" name="iexpuesto" type="text" value="${idx}" placeholder="street" readonly disabled/>
+                                       <label>ID (*)</label>
                                      </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexdesarea" type="text" value="" placeholder="street" required/>
-                                     <label>Area (*)</label>
-                                   </div>
                               </div>
                               <div class="col-sm-6 col-md-12">
                                      <div class="form-floating">
-                                       <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="street" required/>
-                                       <label>Descripcion (*)</label>
+                                       <input class="form-control" name="iexdespuesto" type="text" value="" placeholder="street" required/>
+                                       <label>Descripcion del Puesto(*)</label>
                                      </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
                                 <div class="form-floating">
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected > -- Seleccionar -- </option>
-                                    <c:forEach var="lovCatArea" items="${lovCatArea}">
-                                        <option value="${lovCatArea.idLov}" >${lovCatArea.desLov}</option>
+                                    <c:forEach var="lovCatPuesto" items="${lovCatPuesto}">
+                                        <option value="${lovCatPuesto.idLov}" >${lovCatPuesto.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Categoria de Area (*)</label>
+                                  <label>Categoria Puesto(*)</label>
                                 </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
-                                    <select class="form-select" name="iexareapadre" required >
-                                      <option value="" selected > -- Ninguno -- </option>
-                                      <c:forEach var="lovArea" items="${lovArea}">
-                                          <option value="${lovArea.iexcodarea}" >${lovArea.iexdesarea}</option>
-                                      </c:forEach>
-                                    </select>
-                                    <label>Categoria de Area (*)</label>
-                                  </div>
                               </div>
 
 
@@ -102,10 +85,10 @@
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
+                                      <a class="btn btn-phoenix-primary px-5" href="listPuestos">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Area</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Puesto</button>
                                     </div>
                                   </div>
                               </div>

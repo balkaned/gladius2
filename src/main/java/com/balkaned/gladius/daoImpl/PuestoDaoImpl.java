@@ -91,8 +91,6 @@ public class PuestoDaoImpl implements PuestoDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d  on a.iexcodcat = d.iexkey " +
                 "where a.iexcodcia="+codcia+"  and a.iexpuesto='"+codpuesto+"' "  ;
 
-        //System.out.println(sql);
-
         return (Puesto) template.query(sql, new ResultSetExtractor<Puesto>() {
             public Puesto extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Puesto p = new Puesto();
@@ -115,83 +113,42 @@ public class PuestoDaoImpl implements PuestoDao {
         });
     }
 
-/*
-   public Integer  getIdPuesto(Integer codcia ) throws DAOException {
+    public Integer getIdPuesto(Integer codcia){
 
-         String result = null;
-        StringBuilder sql = new StringBuilder();
-        Integer idcont =0;
+        final Integer[] idcont = {0};
 
-
-        sql.append(" select  coalesce(max(cast(iexpuesto as integer)),0)+1  idcont from iexpuesto where iexcodcia ="+codcia+" ");
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                PreparedStatement pst = cn.prepareStatement(sql.toString());
-                ResultSet rs = pst.executeQuery();
-                ) {
-              // Statement st = cn.createStatement();
-                if (rs.next()) {
-              idcont= Integer.valueOf(rs.getString("idcont"));
+        String sql=" select  coalesce(max(cast(iexpuesto as integer)),0)+1  idcont from iexpuesto where iexcodcia ="+codcia;
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
                 }
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            idcont=-1;
-             System.out.println(e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-        return idcont ;
+                return idcont[0];
+            }
+        });
     }
-    public void  insertarPuesto(Puesto puesto) throws DAOException {
 
+    public void insertarPuesto(Puesto puesto){
 
-          String result = null;
-        StringBuilder sql = new StringBuilder();
+        template.update("  insert into iexpuesto( " +
+                " iexcodcia,       iexpuesto,    iexdespuesto  ,iexcodcat ," +
+                " iexusucrea,      iexfeccrea " +
+                " ) values ( " +
+                "  ? ,   ?    ,   ?   , ?, "+
+                "  ? ,   current_date "+
+                ")  ",
 
-         System.out.println("Insertar cabecera");
-
-        sql.append("  insert into iexpuesto( " +
-                        " iexcodcia,       iexpuesto,    iexdespuesto  ,iexcodcat ," +
-                        " iexusucrea,      iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   , ?, "+
-                        "  ? ,   current_date "+
-                        ")  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-                 pst.setInt(1, puesto.getIexcodcia());
-                 pst.setString(2, puesto.getIexpuesto());
-                 pst.setString(3, puesto.getIexdespuesto());
-                 pst.setString(4, puesto.getIexcodcat());
-                 pst.setString(5, puesto.getIexusucrea());
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            puesto.getIexcodcia(),
+            puesto.getIexpuesto(),
+            puesto.getIexdespuesto(),
+            puesto.getIexcodcat(),
+            puesto.getIexusucrea());
 
     }
+
+/*
+
+
     public void  actualizarPuesto(Puesto puesto) throws DAOException  {
 
         String result = null;

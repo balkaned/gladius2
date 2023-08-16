@@ -147,52 +147,26 @@ public class AreaDaoImpl implements AreaDao {
         });
     }
 
-/*
+    public void insertarArea(Area area){
 
-    public void  insertarArea(Area area) throws DAOException {
-
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-        System.out.println("Insertar cabecera");
-
-        sql.append("  insert into iexarea( " +
+        template.update("  insert into iexarea( " +
                 " iexcodcia,     iexcodarea,    iexdesarea,       iexdesarea_descripcion, " +
                 " iexusucrea,    iexfeccrea,    iexcodcat,        iexareapadre " +
                 " ) values ( " +
                 "  ? ,   ?    ,   ?   ,   ?  ,"+
                 "  ? ,   current_date  ,   ?   ,   ?  "+
-                ")  ");
+                ")  ",
 
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-            pst.setInt(1, area.getIexcodcia());
-            pst.setString(2, area.getIexcodarea());
-            pst.setString(3, area.getIexdesarea());
-            pst.setString(4, area.getIexdesarea_descripcion());
-
-
-            pst.setString(5, area.getIexusucrea());
-            pst.setString(6, area.getIexcodcat());
-            pst.setString(7, area.getIexareapadre());
-
-            System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            System.out.println("Error en insertar cabecera"+e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+            area.getIexcodcia(),
+            area.getIexcodarea(),
+            area.getIexdesarea(),
+            area.getIexdesarea_descripcion(),
+            area.getIexusucrea(),
+            area.getIexcodcat(),
+            area.getIexareapadre());
     }
+
+/*
     public void  actualizarArea(Area area) throws DAOException {
 
         String result = null;

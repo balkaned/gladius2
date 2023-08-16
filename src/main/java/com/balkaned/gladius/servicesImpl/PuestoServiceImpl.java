@@ -16,9 +16,10 @@ public class PuestoServiceImpl implements PuestoService {
     public List<Puesto> listarPuesto(Integer codcia, String text){
         return dao.listarPuesto(codcia,text);
     }
-
     public Puesto getPuesto(Integer codcia, String codarea){
         return dao.getPuesto(codcia,codarea);
     }
+    public Integer getIdPuesto(Integer codcia){return dao.getIdPuesto(codcia);};
+    public void insertarPuesto(Puesto puesto){dao.insertarPuesto(puesto);};
 
 }

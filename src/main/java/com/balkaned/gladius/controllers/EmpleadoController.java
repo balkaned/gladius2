@@ -618,9 +618,6 @@ public class EmpleadoController {
 
         List<Empleado> lista =empleadoService.validarCabecera(empleado);
 
-        /*request.setAttribute("iextipdocid", iextipdocid);
-        request.setAttribute("iexnrodocid", iexnrodocid );*/
-
         Integer val=0;
         model.addAttribute("LstPerRegistrada", lista);
 

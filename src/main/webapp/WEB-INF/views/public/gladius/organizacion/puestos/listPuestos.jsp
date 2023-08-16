@@ -36,12 +36,7 @@
                 </div>
               </div>
               <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="#">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Consultar Todos<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
-                <!--<li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
+
               </ul>
               <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                 <div class="mb-4">
@@ -88,7 +83,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add new Puesto</button>
+                      <a class="btn btn-primary" href="nuevoPuesto"><span class="fas fa-plus me-2"></span>Add new Puesto</a>
                     </div>
                   </div>
                 </div>
@@ -123,8 +118,7 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="detallearea">Ver Detalle</a>
-                                        <a class="dropdown-item" href="#!">Ficha</a>
+
                                      <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                                  </div>
                                </td>
