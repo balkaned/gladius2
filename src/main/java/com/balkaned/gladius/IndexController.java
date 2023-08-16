@@ -16,11 +16,7 @@ import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import lombok.SneakyThrows;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.util.JRLoader;
@@ -38,6 +34,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
@@ -184,7 +184,7 @@ public class IndexController {
     }
 
     @RequestMapping(value="/selcompaniasChange@{idUser}",method=RequestMethod.GET)
-    public ModelAndView selcompaniasChange(ModelMap model, HttpServletRequest request,@PathVariable String idUser) {
+    public ModelAndView selcompaniasChange(ModelMap model, HttpServletRequest request, @PathVariable String idUser) {
 
         logger.info("idUser: "+idUser);
         List<Compania> companiaList=usuarioConeccionService.listarCompaniasBycodUsu(idUser);
@@ -695,17 +695,21 @@ public class IndexController {
         return null;
     }
 
-    @RequestMapping("/fileUploadServlet@{logo}@{idComp}@{urlLogo}")
-    public ModelAndView fileUploadServlet(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String logo, @PathVariable String idComp, @PathVariable String urlLogo) throws IOException, ServletException {
+    @SneakyThrows
+    @RequestMapping("/fileUploadServlet")
+    public ModelAndView fileUploadServlet(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
         logger.info("/fileUploadServlet");
 
-        String idimg = (String) request.getSession().getAttribute("idimg");
-        String codciax = (String) request.getSession().getAttribute("codciax");
-        String idTrab = (String) request.getSession().getAttribute("idTrab");
+        String idimg = request.getParameter("idimg");
+        String codciax = request.getParameter("codciax");
+        String idTrab2 = request.getParameter("idTrab");
+        String accion = request.getParameter("accion");
 
-        Empleado emp = empleadoService.recuperarCabecera(Integer.parseInt(codciax),Integer.parseInt(idTrab));
+        logger.info("idTrab2: "+idTrab2);
 
-        String accion = "";
+        Empleado emp = empleadoService.recuperarCabecera(Integer.parseInt(codciax),Integer.parseInt(idTrab2));
+
+        //String accion = "";
         //String idimg = "";
         String filePath ="";
         String filelink ="";
@@ -714,14 +718,14 @@ public class IndexController {
         System.out.println("Accion :"+accion);
         // checks if the request actually contains upload file
 
-//        if (!ServletFileUpload.isMultipartContent((RequestContext) request)) {
-//            // if not, we stop here
-//            PrintWriter writer = response.getWriter();
-//            writer.println("Error: Form must has enctype=multipart/form-data.");
-//            System.out.println("No es multipart");
-//            writer.flush();
-//            return null;
-//        }
+        if (!ServletFileUpload.isMultipartContent(request)) {
+           // if not, we stop here
+            PrintWriter writer = response.getWriter();
+            writer.println("Error: Form must has enctype=multipart/form-data.");
+            System.out.println("No es multipart");
+            writer.flush();
+           return null;
+        }
 
         // configures upload settings
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -768,7 +772,7 @@ public class IndexController {
         // fin de variables de Amazon s3
         // creates the directory if it does not exist
         /*no
-        File uploadDir = new File(uploadPath);
+         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
              System.out.println("No existe direccion");
             uploadDir.mkdir();
@@ -983,7 +987,7 @@ public class IndexController {
         }
 
         // redirects client to message page
-        request.getServletContext().getRequestDispatcher(target).forward(request, response);
+        //request.getServletContext().getRequestDispatcher(target).forward(request, response);
 
         return null;
     }

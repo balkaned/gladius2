@@ -22,5 +22,6 @@ public class AreaServiceImpl implements AreaService {
     public Area getArea(Integer codcia, String codarea){
         return dao.getArea(codcia,codarea);
     }
+    public Integer getIdArea(Integer codcia){return dao.getIdArea(codcia);}
 
 }

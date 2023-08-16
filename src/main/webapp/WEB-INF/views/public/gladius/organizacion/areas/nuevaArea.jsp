@@ -43,7 +43,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar trabajador</h2>
+                  <h2 id="h2top" class="mb-0">Insertar Area</h2>
                 </div>
               </div>
 
@@ -54,83 +54,44 @@
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <div class="col-sm-6 col-md-6">
+                                     <div class="form-floating">
+                                       <input class="form-control" name="iexcodarea" type="text" value="" placeholder="street" readonly/>
+                                       <label>Codigo de Area (*)</label>
+                                     </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6">
+                                   <div class="form-floating">
+                                     <input class="form-control" name="iexdesarea" type="text" value="" placeholder="street" required/>
+                                     <label>Area (*)</label>
+                                   </div>
+                              </div>
+                              <div class="col-sm-6 col-md-12">
+                                     <div class="form-floating">
+                                       <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="street" required/>
+                                       <label>Descripcion (*)</label>
+                                     </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6">
                                 <div class="form-floating">
-                                  <select class="form-select" name="iextipdocid" required >
+                                  <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected > -- Seleccionar -- </option>
-                                    <c:forEach var="lovTipdoc" items="${lovTipdoc}">
-                                        <option value="${lovTipdoc.idLov}" ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}  >${lovTipdoc.desLov}</option>
+                                    <c:forEach var="lovCatArea" items="${lovCatArea}">
+                                        <option value="${lovCatArea.idLov}" ${lovCatArea.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}  >${lovCatArea.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Tipo Documento (*)</label>
+                                  <label>Categoria de Area (*)</label>
                                 </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                 <div class="form-floating">
-                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="street" required/>
-                                   <label>Nro de Documento (*)</label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexapepat" type="text" value="" placeholder="street" required/>
-                                     <label>Apellido Paterno (*)</label>
-                                   </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
-                                 <div class="form-floating">
-                                   <input class="form-control" name="iexapemat" type="text" value="" placeholder="street" required/>
-                                   <label>Apellido Materno (*)</label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6 col-md-8">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexnomtra" type="text" value="" placeholder="street" required/>
-                                     <label>Nombres (*)</label>
-                                   </div>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" name="iexfecnac" id="floatingInputStartDate" value="" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
                                   <div class="form-floating">
-                                    <select class="form-select" name="iexcodsex" required>
-                                      <option value="" selected > -- Seleccionar -- </option>
-                                      <c:forEach var="lovSexo" items="${lovSexo}">
-                                          <option value="${lovSexo.idLov}" ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}  >${lovSexo.desLov}</option>
+                                    <select class="form-select" name="iexareapadre" required >
+                                      <option value="" selected > -- Ninguno -- </option>
+                                      <c:forEach var="lovArea" items="${lovArea}">
+                                          <option value="${lovArea.idLov}" ${lovArea.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}  >${lovArea.desLov}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Sexo (*)</label>
+                                    <label>Categoria de Area (*)</label>
                                   </div>
-                              </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <div class="form-floating">
-                                      <select class="form-select" name="iextiptra" required>
-                                        <option value="" selected > -- Seleccionar -- </option>
-                                        <c:forEach var="lovTipTra" items="${lovTipTra}">
-                                            <option value="${lovTipTra.idLov}" ${lovTipTra.idLov == requestScope.emp.iextiptra ? 'selected' : ''}  >${lovTipTra.desLov}</option>
-                                        </c:forEach>
-                                      </select>
-                                      <label>Tipo de Trabajador (*)</label>
-                                    </div>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                    <div class="flatpickr-input-container">
-                                      <div class="form-floating">
-                                        <input class="form-control datetimepicker" name="iexfecing" id="floatingInputStartDate" value="" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                        <label class="ps-6" for="floatingInputStartDate">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                      </div>
-                                    </div>
-                              </div>
-                              <div class="col-sm-6 col-md-5">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexcodant" type="text" value="" placeholder="street" />
-                                       <label>Codigo Anterior</label>
-                                     </div>
                               </div>
 
 
@@ -143,7 +104,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Trabajador</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Area</button>
                                     </div>
                                   </div>
                               </div>
@@ -172,18 +133,13 @@
                      </div>
                    </div>
               </div>
-
             </div>
-
           </div>
-
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>
-
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
-
     <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
 </html>

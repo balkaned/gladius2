@@ -5,13 +5,16 @@ import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -194,7 +197,7 @@ public class EmpleadoController {
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));
         String iexcodtra = request.getParameter("iexcodtra");
 
         logger.info("iexcodcia: "+iexcodcia);
@@ -745,6 +748,170 @@ public class EmpleadoController {
         }
 
         return new ModelAndView("redirect:/detalleEmpl@"+idempleado);
+    }
+
+    @RequestMapping("/verFicha@{idTrab}")
+    public ModelAndView verFicha(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String idTrab) throws UnsupportedEncodingException {
+        /*logger.info("/verFicha");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/pdf;charset=UTF-8");
+
+        String path="";
+        String reportejasp;
+
+        //  path = request.getServletContext().getRealPath("/reportes/BoletaEmpTra.jasper");
+        path = (String)session.getAttribute("GLADIUS_REP")+"FichaTrabajador.jasper";
+
+        String v_idproceso = "";
+        String v_idperiodo = "";
+        Integer v_codcia = (Integer) session.getAttribute("codcia");
+
+        String iexcodtra =request.getParameter("iexcodtra");
+        String logo ="";
+        String fotoemp ="";
+
+        Compania ciainfo= daocia.getCompaniaAll(v_codcia);
+
+        Regions clientRegion = Regions.US_EAST_2;
+        String bucket_name = "gladiusfileserver";
+        String key_name ="AKIAQWQ2VFTRCSCFOZW5";
+        String passPhrase = "2QUcAxspuoSXonhItKr5SGntESeh2qymzm0aCQVE";
+        String fileName = "";
+        AWSCredentials credentials =null;
+
+        System.out.println("codcia:"+v_codcia);
+        System.out.println("codtra: "+iexcodtra);
+
+        Empleado empleado =  new Empleado();
+        empleado = dao.recuperarCabecera((Integer) session.getAttribute("codcia"),Integer.valueOf(iexcodtra.trim()) );
+
+        Compania cia  =(Compania)session.getAttribute("ciades");
+
+        if(cia.getUrlLogo()==null || cia.getUrlLogo().equals("")){
+            logo ="cia.jpg";
+        }else{
+            logo=cia.getUrlLogo() ;
+        }
+
+        if(empleado.getIexlogo()==null || empleado.getIexlogo().equals("")){
+            fotoemp ="fotoemp.png";
+        }else{
+            fotoemp=empleado.getIexlogo() ;
+        }
+
+        //InputStream inputStream =o.getObjectContent();
+        InputStream inputStreamfotoemp =null;
+        InputStream inputStreamlogo =null;
+        InputStream inputStreamRep =null;
+
+        if(ciainfo.getUrlflgsource().equals("1")) {
+            clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+            bucket_name = ciainfo.getIexsourcedes().trim();
+            key_name =ciainfo.getIexususource().trim();
+            passPhrase = ciainfo.getIexpasssource().trim();
+
+            fileName = (Integer)session.getAttribute("codcia")+"/fotoemp/"+fotoemp;
+            credentials = new BasicAWSCredentials(key_name, passPhrase);
+
+            AmazonS3 s3 = null;
+            S3Object o =null;
+            s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+            o = s3.getObject(bucket_name, fileName);
+            inputStreamfotoemp = o.getObjectContent();
+
+            System.out.println("logo: "+logo);
+
+            AmazonS3 s4 = null;
+            S3Object o2 =null;
+            fileName="img/"+logo;
+            s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+            o2 = s4.getObject(bucket_name, fileName);
+            inputStreamlogo =  o2.getObjectContent();
+
+            AmazonS3 s5 = null;
+            S3Object o3 =null;
+            fileName="";
+            s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+            fileName = "reportes/FichaTrabajador.jasper";
+            o3 = s5.getObject(bucket_name, fileName);
+            inputStreamRep = o3.getObjectContent();
+
+            Map parametros = new HashMap();
+            //parametros.put("REPORT_CONNECTION",conn);
+            //parametros.put("SUBREPORT_DIR","");
+            parametros.put("P_CODCIA",  v_codcia);
+            parametros.put("P_CODTRA",  Integer.parseInt(iexcodtra) );
+            parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+            parametros.put("P_LOGO", inputStreamlogo);
+            // parametros.put("P_LOGO", null);
+            // parametros.put("P_FOTO", (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fotoemp);
+            parametros.put("P_FOTO", inputStreamfotoemp);
+            //    parametros.put("P_FOTO", null);
+
+            //	OutputStream out = response.getOutputStream();
+
+            System.out.println(" ruta reporte:"+path);
+
+            try (
+                // Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gladius", "gladius", "gladius");
+                Connection conn = ConnectionFactory.getInstance().getConnection();
+                OutputStream out = response.getOutputStream()) {
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(inputStreamRep);
+                byte[] bytes = JasperRunManager.runReportToPdf( reporte ,parametros, conn);
+
+                int len = bytes.length;
+                response.setContentLength(len);
+                out.write(bytes, 0, len);
+                out.flush();
+
+            } catch (Exception e) {
+                System.out.println("Error Reporte :"+e.getMessage());
+            }
+
+
+        }else if(ciainfo.getUrlflgsource().equals("2")){
+
+            inputStreamfotoemp = new FileInputStream(ciainfo.getIexurlfileserver()+(Integer)session.getAttribute("codcia")+"/fotoemp/"+fotoemp);
+            inputStreamlogo = new FileInputStream(ciainfo.getIexurlfileserver()+"/img/"+logo);
+            inputStreamRep = new FileInputStream(ciainfo.getIexurlfileserver()+"reportes/FichaTrabajador.jasper");
+
+            Map parametros = new HashMap();
+            //parametros.put("REPORT_CONNECTION",conn);
+            //parametros.put("SUBREPORT_DIR","");
+            parametros.put("P_CODCIA",  v_codcia);
+            parametros.put("P_CODTRA",  Integer.parseInt(iexcodtra) );
+            parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+            parametros.put("P_LOGO", inputStreamlogo);
+            parametros.put("P_FOTO", inputStreamfotoemp);
+
+            //	OutputStream out = response.getOutputStream();
+
+            System.out.println(" ruta reporte:"+path);
+
+            try (
+                // Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gladius", "gladius", "gladius");
+                Connection conn = ConnectionFactory.getInstance().getConnection();
+                OutputStream out = response.getOutputStream()) {
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(new File(path));
+                byte[] bytes = JasperRunManager.runReportToPdf(inputStreamRep,parametros, conn);
+
+                int len = bytes.length;
+                response.setContentLength(len);
+                out.write(bytes, 0, len);
+                out.flush();
+
+            } catch (Exception e) {
+                System.out.println("Error Reporte :"+e.getMessage());
+        }*/
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
     }
 }
 

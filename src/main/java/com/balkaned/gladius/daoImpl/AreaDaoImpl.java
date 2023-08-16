@@ -132,45 +132,23 @@ public class AreaDaoImpl implements AreaDao {
         });
     }
 
-/*
-    public Integer  getIdArea(Integer codcia ) throws DAOException {
+    public Integer getIdArea(Integer codcia){
 
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-        Integer idcont =0;
+        final Integer[] idcont = {0};
 
-
-        sql.append(" select  coalesce(max(cast(iexcodarea as integer)),0)+1 idcont from iexarea where iexcodcia ="+codcia+" ");
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                PreparedStatement pst = cn.prepareStatement(sql.toString());
-                ResultSet rs = pst.executeQuery();
-        ) {
-            // Statement st = cn.createStatement();
-            if (rs.next()) {
-                idcont= Integer.valueOf(rs.getString("idcont"));
+        String sql=" select  coalesce(max(cast(iexcodarea as integer)),0)+1 idcont from iexarea where iexcodcia ="+codcia;
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
+                }
+                return idcont[0];
             }
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            idcont=-1;
-            System.out.println(e.getMessage());
-        } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-        return idcont ;
-
-
+        });
     }
+
+/*
+
     public void  insertarArea(Area area) throws DAOException {
 
 

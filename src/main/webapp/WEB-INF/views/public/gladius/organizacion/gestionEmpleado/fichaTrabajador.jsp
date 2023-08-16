@@ -286,7 +286,7 @@
                               <input type="hidden" name="codciax" value="${idComp}" >
                               <input type="hidden" name="idTrab" value="${idTrab}" >
                               <div class="col-sm-6 col-md-4">
-                                  <input class="form-control" name="uploadFile" type="file" value="" />
+                                    <input class="form-control" name="uploadFile" type="file" value="" />
                               </div>
                               <div class="col-sm-6 col-md-4 mt-2">
                                 <div class="form-floating">
@@ -706,7 +706,7 @@
                                     <div class="col-12 d-flex justify-content-end mt-6">
                                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                     </div>
-                                    <div class="modal fade" id="confirmModal" tabindex="-1">s
+                                    <div class="modal fade" id="confirmModal" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
                                           <div class="modal-content border">
                                             <form id="addEventForm" autocomplete="off">
@@ -844,7 +844,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                              <select class="form-select" name="iexsituaesp" required>
+                                              <select class="form-select" name="iexsituaesp" required >
                                                 <option value="" selected > -- Seleccionar -- </option>
                                                 <c:forEach var="lovSituesp" items="${lovSituesp}">
                                                     <option value="${lovSituesp.idLov}"   ${lovSituesp.idLov == requestScope.emp2.iexsituaesp ? 'selected' : ''}  >${lovSituesp.desLov}</option>
