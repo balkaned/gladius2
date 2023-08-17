@@ -11,20 +11,21 @@
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast2.png" alt="phoenix" width="27" />
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
-                  <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>-->
+                  <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->
 
                   <p style="color:white !important;font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
-                  <p style="color:white !important;font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black">balkaned</p>
+                  <p style="color:white !important;font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                 </div>
               </div>
             </a>
           </div>
 
-          <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:25rem;">
+          <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:30rem;">
             <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
-              <input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
-              <span class="fas fa-search search-box-icon"></span>
+              <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
+              <span class="text-white">${nombreComp} </span><span class="text-white" style="margin-left:20px;">RUC: ${rucComp} </span>
+              <!--<span class="fas fa-search search-box-icon"></span>-->
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
               <button class="btn btn-link btn-close-falcon p-0" aria-label="Close"></button>
@@ -345,7 +346,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-l ">
-                  <img class="rounded-circle " src="resources/assets/img/team/40x40/57.webp" alt="" />
+                  <img class="rounded-circle " src="verFoto@LOGO@${idComp}@${urlLogo}" alt="" />
 
                 </div>
               </a>
@@ -354,7 +355,7 @@
                   <div class="card-body p-0">
                     <div class="text-center pt-4 pb-3">
                       <div class="avatar avatar-xl ">
-                        <img class="rounded-circle " src="resources/assets/img/team/72x72/57.webp" alt="" />
+                        <img class="rounded-circle " src="verFoto@LOGO@${idComp}@${urlLogo}" alt="" />
 
                       </div>
                       <h6 class="mt-2 text-black">${usuario}</h6>

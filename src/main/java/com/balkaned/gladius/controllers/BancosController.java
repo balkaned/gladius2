@@ -94,7 +94,7 @@ public class BancosController {
         model.addAttribute("lovBancos",lovsService.getLovs("36","%"));
         model.addAttribute("lovProcesos",procesoPlanillaService.listar("%"));
 
-        return new ModelAndView("public/gladius/organizacion/puestos/nuevoBanco");
+        return new ModelAndView("public/gladius/organizacion/bancosPro/nuevoBancoPro");
     }
 
     @RequestMapping("/insertarBanco")
@@ -125,21 +125,23 @@ public class BancosController {
         model.addAttribute("urlLogo",urlLogo);
 
         Integer iexcodcia = idCompania;
-        String iexpuesto = request.getParameter("iexpuesto2");
-        String iexdespuesto = request.getParameter("iexdespuesto");
-        String iexcodcat  = request.getParameter("iexcodcat");
+        String iexcodban = request.getParameter("iexcodban");
+        String iexcodpro = request.getParameter("iexcodpro");
+        String iextipcta = request.getParameter("iextipcta");
+        String iexctaban  = request.getParameter("iexctaban");
         String iexusucrea   =  usuario;
 
-        Puesto puesto = new Puesto();
-        puesto.setIexcodcia(iexcodcia);
-        puesto.setIexpuesto(iexpuesto);
-        puesto.setIexdespuesto(iexdespuesto);
-        puesto.setIexcodcat(iexcodcat);
-        puesto.setIexusucrea(iexusucrea);
+        BancoPro  banpro = new BancoPro();
+        banpro.setIexcodcia(iexcodcia);
+        banpro.setIexcodban(iexcodban);
+        banpro.setIexcodpro(Integer.parseInt(iexcodpro));
+        banpro.setIextipcta(iextipcta);
+        banpro.setIexctaban(iexctaban);
+        banpro.setIexusucrea(iexusucrea);
 
-        //puestoService.insertarPuesto(puesto);
+        bancoProService.insertarBancoPro(banpro);
 
-        return new ModelAndView("redirect:/listPuestos");
+        return new ModelAndView("redirect:/listBancos");
     }
 
 }

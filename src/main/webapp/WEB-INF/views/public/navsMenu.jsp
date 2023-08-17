@@ -45,12 +45,11 @@
             <ul class="navbar-nav flex-column" id="navbarVerticalNav">
               <li class="nav-item">
                 <!-- parent pages-->
-                <div id="usermenu">
+                <!--<div id="usermenu">
                     <img id="span1" src="verFoto@LOGO@${idComp}@${urlLogo}"></img>
-                    <!--<span id="span2" class="mt-2 text-black">${usuario}</span>-->
                     <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
-                </div>
+                </div>-->
 
                 <p class="navbar-vertical-label">Configuración</p>
                 <p id="p2" class="navbar-vertical-label">Menus de Configuración</p>

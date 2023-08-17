@@ -17,12 +17,7 @@ import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import lombok.SneakyThrows;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
-import net.sf.jasperreports.engine.util.JRLoader;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
@@ -32,7 +27,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -42,11 +36,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
-
 import static java.lang.System.out;
 
 @RestController
@@ -734,7 +725,8 @@ public class IndexController {
         // sets temporary location to store files
         factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
-        ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
+        //ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
+        ServletFileUpload upload = new ServletFileUpload(factory);
 
         // sets maximum size of upload file
         upload.setFileSizeMax(MAX_FILE_SIZE);

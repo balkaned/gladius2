@@ -20,5 +20,6 @@ public class BancoProServiceImpl implements BancoProService {
     public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco){
         return dao.getBancoPro(codcia,codpro,banco);
     }
+    public void insertarBancoPro(BancoPro bancopro){dao.insertarBancoPro(bancopro);}
 
 }
