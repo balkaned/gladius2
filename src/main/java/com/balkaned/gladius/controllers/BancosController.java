@@ -1,10 +1,8 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.BancoPro;
-import com.balkaned.gladius.services.AreaService;
-import com.balkaned.gladius.services.BancoProService;
-import com.balkaned.gladius.services.CompaniaService;
-import com.balkaned.gladius.services.UsuarioConeccionService;
+import com.balkaned.gladius.beans.Puesto;
+import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +24,12 @@ public class BancosController {
 
     @Autowired
     CompaniaService companiaService;
+
+    @Autowired
+    LovsService lovsService;
+
+    @Autowired
+    ProcesoPlanillaService procesoPlanillaService;
 
     @RequestMapping("/listBancos")
     public ModelAndView listBancos(ModelMap model, HttpServletRequest request) {
@@ -57,6 +61,85 @@ public class BancosController {
         model.addAttribute("bancoProList",bancoProList);
 
         return new ModelAndView("public/gladius/organizacion/bancosPro/listBancosPro");
+    }
+
+    @RequestMapping("/nuevoBanco")
+    public ModelAndView nuevoBanco(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevoBanco");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("lovTipCta",lovsService.getLovs("66","%"));
+        model.addAttribute("lovBancos",lovsService.getLovs("36","%"));
+        model.addAttribute("lovProcesos",procesoPlanillaService.listar("%"));
+
+        return new ModelAndView("public/gladius/organizacion/puestos/nuevoBanco");
+    }
+
+    @RequestMapping("/insertarBanco")
+    public ModelAndView insertarBanco(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarBanco");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Integer iexcodcia = idCompania;
+        String iexpuesto = request.getParameter("iexpuesto2");
+        String iexdespuesto = request.getParameter("iexdespuesto");
+        String iexcodcat  = request.getParameter("iexcodcat");
+        String iexusucrea   =  usuario;
+
+        Puesto puesto = new Puesto();
+        puesto.setIexcodcia(iexcodcia);
+        puesto.setIexpuesto(iexpuesto);
+        puesto.setIexdespuesto(iexdespuesto);
+        puesto.setIexcodcat(iexcodcat);
+        puesto.setIexusucrea(iexusucrea);
+
+        //puestoService.insertarPuesto(puesto);
+
+        return new ModelAndView("redirect:/listPuestos");
     }
 
 }

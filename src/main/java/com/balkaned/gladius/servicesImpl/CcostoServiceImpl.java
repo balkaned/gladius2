@@ -20,5 +20,6 @@ public class CcostoServiceImpl implements CcostoService {
     public CentroCosto getCentroCosto(Integer codcia, String codccosto){
         return dao.getCentroCosto(codcia,codccosto);
     }
-
+    public Integer getIdCentroCosto(Integer codcia){return dao.getIdCentroCosto(codcia);}
+    public void insertarCentroCosto(CentroCosto ccosto){dao.insertarCentroCosto(ccosto);}
 }

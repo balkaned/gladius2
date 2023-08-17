@@ -121,86 +121,44 @@ public class CcostoDaoImpl implements CcostoDao {
         });
     }
 
-/*
-   public Integer  getIdCentroCosto(Integer codcia ) throws DAOException {
+    public Integer getIdCentroCosto(Integer codcia){
 
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-        Integer idcont =0;
+        final Integer[] idcont = {0};
 
-
-        sql.append(" select coalesce(max(cast(iexccosto as integer)),0)+1 idcont  from iexccosto where iexcodcia ="+codcia+" ");
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                PreparedStatement pst = cn.prepareStatement(sql.toString());
-                ResultSet rs = pst.executeQuery();
-                ) {
-              // Statement st = cn.createStatement();
-                if (rs.next()) {
-              idcont= Integer.valueOf(rs.getString("idcont"));
+        String sql=" select coalesce(max(cast(iexccosto as integer)),0)+1 idcont  from iexccosto where iexcodcia ="+codcia;
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
                 }
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            idcont=-1;
-             System.out.println(e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-        return idcont ;
+                return idcont[0];
+            }
+        });
     }
-    public void  insertarCentroCosto(CentroCosto ccosto) throws DAOException {
 
+    public void insertarCentroCosto(CentroCosto ccosto){
 
-
-          String result = null;
         StringBuilder sql = new StringBuilder();
 
-         System.out.println("Insertar cabecera");
+        template.update("  insert into iexccosto( " +
+                " iexcodcia,       iexccosto,    iexdesccosto  ,iexcodcat ," +
+                " iexusucrea,      iexfeccrea " +
+                " ) values ( " +
+                "  ? ,   ?    ,   ?   ,  ?  ,  "+
+                "  ? ,   current_date "+
+                ")  ",
 
-        sql.append("  insert into iexccosto( " +
-                        " iexcodcia,       iexccosto,    iexdesccosto  ,iexcodcat ," +
-                        " iexusucrea,      iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,  ?  ,  "+
-                        "  ? ,   current_date "+
-                        ")  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-                 pst.setInt(1, ccosto.getIexcodcia());
-                 pst.setString(2, ccosto.getIexccosto());
-                 pst.setString(3, ccosto.getIexdesccosto());
-                 pst.setString(4, ccosto.getIexcodcat());
-                 pst.setString(5, "1");
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+            ccosto.getIexcodcia(),
+            ccosto.getIexccosto(),
+            ccosto.getIexdesccosto(),
+            ccosto.getIexcodcat(),
+            "1");
 
     }
+
+/*
+
+
     public void  actualizarCentroCosto(CentroCosto ccosto) throws DAOException  {
 
 
