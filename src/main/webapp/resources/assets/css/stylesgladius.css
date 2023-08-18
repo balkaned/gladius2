@@ -215,14 +215,14 @@
 }*/
 
 #navbarDefault{
-    /*border-top:4px solid #F48225 !important;*/
+    border-top:4px solid #F48225 !important;
     height:10px !important;
-    /*border-bottom:1px solid #3B4045;*/
+    border-bottom:1px solid #3B4045;
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-    /*background-color:#111827 !important;
-    border:0px solid black;*/
+    background-color:#111827 !important;
+    border:0px solid black;
 }
 
 .logo-text.ms-2.d-none.d-sm-block{

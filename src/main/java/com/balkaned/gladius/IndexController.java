@@ -18,14 +18,19 @@ import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import lombok.SneakyThrows;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -36,7 +41,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import static java.lang.System.out;
 
@@ -687,21 +694,31 @@ public class IndexController {
     }
 
     @SneakyThrows
-    @RequestMapping("/fileUploadServlet")
-    public ModelAndView fileUploadServlet(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/fileUploadServlet@{idTrab}@{idComp}", method = RequestMethod.POST)
+    public ModelAndView fileUploadServlet(
+          ModelMap model,
+          HttpServletRequest request,
+          HttpServletResponse response,
+          @PathVariable String idTrab,
+          @PathVariable String idComp,
+          @RequestParam("uploadFile") MultipartFile uploadFile
+    ) {
         logger.info("/fileUploadServlet");
 
         String idimg = request.getParameter("idimg");
         String codciax = request.getParameter("codciax");
         String idTrab2 = request.getParameter("idTrab");
         String accion = request.getParameter("accion");
+        logger.info("idTrab: "+idTrab);
+        logger.info("idComp: "+idComp);
 
-        logger.info("idTrab2: "+idTrab2);
+        Integer codciaxRecup = Integer.valueOf(idComp);
+//      String codciax= String.valueOf(codciaxRecup);
 
-        Empleado emp = empleadoService.recuperarCabecera(Integer.parseInt(codciax),Integer.parseInt(idTrab2));
+        Empleado emp = empleadoService.recuperarCabecera(codciaxRecup,Integer.parseInt(idTrab));
 
-        //String accion = "";
-        //String idimg = "";
+//      String accion = "";
+//      String idimg = "";
         String filePath ="";
         String filelink ="";
         String target="";
@@ -709,46 +726,40 @@ public class IndexController {
         System.out.println("Accion :"+accion);
         // checks if the request actually contains upload file
 
-        if (!ServletFileUpload.isMultipartContent(request)) {
+        String server = "ftp.balkaned.com";
+        int port = 21;
+        String user = "ebaldeon@balkaned.com";
+        String pass = "@Kekereke1984";
+
+        /*if (!ServletFileUpload.isMultipartContent(request)) {
            // if not, we stop here
             PrintWriter writer = response.getWriter();
             writer.println("Error: Form must has enctype=multipart/form-data.");
             System.out.println("No es multipart");
             writer.flush();
            return null;
-        }
+        }*/
 
         // configures upload settings
-        DiskFileItemFactory factory = new DiskFileItemFactory();
+        //DiskFileItemFactory factory = new DiskFileItemFactory();
         // sets memory threshold - beyond which files are stored in disk
-        factory.setSizeThreshold(MEMORY_THRESHOLD);
+        //factory.setSizeThreshold(MEMORY_THRESHOLD);
         // sets temporary location to store files
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
+        //factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
         //ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
-        ServletFileUpload upload = new ServletFileUpload(factory);
-
+        //ServletFileUpload upload = new ServletFileUpload(factory);
         // sets maximum size of upload file
-        upload.setFileSizeMax(MAX_FILE_SIZE);
-
+        //upload.setFileSizeMax(MAX_FILE_SIZE);
         // sets maximum size of request (include file + form data)
-        upload.setSizeMax(MAX_REQUEST_SIZE);
+        //upload.setSizeMax(MAX_REQUEST_SIZE);
 
         // constructs the directory path to store upload file
         // this path is relative to application's directory
         /* String uploadPath = getServletContext().getRealPath("")
-                + File.separator + UPLOAD_DIRECTORY;  */
-
+        + File.separator + UPLOAD_DIRECTORY;  */
         String uploadPath = "";
 
         //  amazon s3...
-
-        /*  Regions clientRegion = Regions.US_EAST_2;
-            String bucket_name = "gladiusfileserver";
-            String key_name ="AKIAQWQ2VFTRCSCFOZW5";
-            String passPhrase = "2QUcAxspuoSXonhItKr5SGntESeh2qymzm0aCQVE";
-        */
-
         Regions clientRegion = null;
         String bucket_name = "";
         String key_name ="";
@@ -771,217 +782,68 @@ public class IndexController {
         }
         */
         System.out.println("Direccion existe");
-        try {
+
             // parses the request's content to extract file data
-            @SuppressWarnings("unchecked")
+            //@SuppressWarnings("unchecked")
 
-            List<FileItem> formItems = upload.parseRequest(request);
-            System.out.println("Existen Items");
-            if (formItems != null && formItems.size() > 0) {
-                /*****************/
-                /*****************/
+            System.out.println("request: "+request);
+            logger.info("request: "+request);
 
-                for (FileItem item : formItems) {
-                    System.out.println("Entro al while");
-                    // processes only fields that are not form fields
+//          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) uploadFile;
+//          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) request.getPart("uploadFile");
+            //var file = uploadFile;
+            //List<FileItem> formItems = upload.parseRequest(request);
 
-                    //  System.out.println("item="+item.getFieldName()+", valor="+item.getString()+"");
-                    if(item.getFieldName().equals("accion")) {
-                        System.out.println("item="+item.getFieldName()+", valor="+item.getString()+"");
-                        accion = item.getString();
-                    }
+            //System.out.println("formItems: "+formItems);
+            //logger.info("formItems: "+formItems);
+            //if (formItems != null && formItems.size() > 0) {
 
-                    if(item.getFieldName().equals("idimg")) {
-                        System.out.println("item="+item.getFieldName()+", valor="+item.getString()+"");
-                        idimg = item.getString();
-                    }
+            Compania ciainfo=null;
 
-                    if(item.getFieldName().equals("codciax")) {
-                        System.out.println("item="+item.getFieldName()+", valor="+item.getString()+"");
-                        codciax = item.getString();
-                    }
+            ciainfo = companiaService.getCompaniaAll(Integer.parseInt(codciax));
+
+            clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+            bucket_name = ciainfo.getIexsourcedes().trim();
+            key_name =ciainfo.getIexususource().trim();
+            passPhrase = ciainfo.getIexpasssource().trim();
+
+                try {
+
+                    //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                    //nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                    nomeArquivo=codciax+"/fotoemp/"+idimg+"."+"jpg";
+
+                    credentials = new BasicAWSCredentials(key_name, passPhrase);
+                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                    //s3.putObject(bucket_name, nomeArquivo, item.getName());
+                    s3.putObject(bucket_name, nomeArquivo, nomeArquivo);
+
+                    //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
+//                      InputStream in=item.getInputStream();
+                    InputStream in = uploadFile.getInputStream();
+                    File tmp = null;
+                    tmp = File.createTempFile("s3test", ".jpeg");
+                    Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo,tmp );
+
+                    ObjectMetadata metadata = new ObjectMetadata();
+                    //metadata.setContentType(item.getContentType());
+                    metadata.setContentType(uploadFile.getContentType());
+                    //metadata.addUserMetadata("title", "someTitle");
+                    request2.setMetadata(metadata);
+                    s3.putObject(request2);
+
+                    System.out.println("Arquivo escrito: " + nomeArquivo);
+                    //emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
+                    emp.setIexlogo(idimg+"."+"jpg");
+                    //dao.actualizarFoto(emp);
+                    empleadoService.actualizarFoto(emp);
+                } catch (final Exception e) {
+                    System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
                 }
 
-                /******************************/
-                /******************************/
-
-                Compania ciainfo=null;
-                //try {
-                //ciainfo = daocia.getCompaniaAll(Integer.parseInt(codciax));
-                ciainfo = companiaService.getCompaniaAll(Integer.parseInt(codciax));
-                //} catch (Exception ex) {
-                //Logger.getLogger(FileUploadServlet.class.getName()).log(Level.SEVERE, null, ex);
-                //}
-
-                clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
-                bucket_name = ciainfo.getIexsourcedes().trim();
-                key_name =ciainfo.getIexususource().trim();
-                passPhrase = ciainfo.getIexpasssource().trim();
-
-                /*************************************/
-                /*************************************/
-
-                // iterates over form's fields
-                for (FileItem item : formItems) {
-
-                    System.out.println("Entro al while");
-                    // processes only fields that are not form fields
-                    //  System.out.println("item="+item.getFieldName()+", valor="+item.getString()+"");
-
-                    if (!item.isFormField()) {
-                        System.out.println("item="+item.getName());
-                        System.out.println("Extension:"+ FilenameUtils.getExtension(item.getName()));
-                        // String fileName = new File(item.getName()).getName();
-                        String fileName = "";
-
-                        //   filePath = uploadPath + File.separator + fileName;
-                        //File storeFile = new File(filePath);
-                        //  File storeFile =  new File("c:\\gladius\\"+fileName);
-
-                        if(accion.equals("LOGO")) {
-
-                        /*
-                            DAOCompania daocia = new DAOCompaniaImpl(ConnectionFactory.getInstance());
-                            System.out.println("guarda logo");
-                            filelink = (String)session.getAttribute("GLADIUS_IMG")+idimg+"."+FilenameUtils.getExtension(item.getName());
-                            System.out.println("filelink:"+filelink);
-                            Compania cia = new Compania();
-                            cia.setIdCodcia(Integer.parseInt(idimg));
-                            cia.setUrlLogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                            daocia.logoCompania(cia);
-                            File storeFile =  new File(filelink);
-
-                            System.out.println("filepath="+storeFile);
-                            //System.out.println(  "c:\\gladius\\"+fileName);
-                            //saves the file on disk
-                            item.write(storeFile);
-                        */
-                            if(ciainfo.getUrlflgsource().equals("1")) {
-                                try {
-                                    nomeArquivo="img/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-
-                                    credentials = new BasicAWSCredentials(key_name, passPhrase);
-                                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                    s3.putObject(bucket_name, nomeArquivo, item.getName());
-
-                                    //  PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
-                                    InputStream in=item.getInputStream() ;
-                                    File tmp = null;
-                                    tmp = File.createTempFile("s3test", ".jpeg");
-                                    Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                                    PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo,tmp );
-
-                                    ObjectMetadata metadata = new ObjectMetadata();
-                                    metadata.setContentType(item.getContentType());
-                                    //metadata.addUserMetadata("title", "someTitle");
-                                    request2.setMetadata(metadata);
-                                    s3.putObject(request2);
-
-                                    //DAOCompania daocia = new DAOCompaniaImpl(ConnectionFactory.getInstance());
-                                    System.out.println("Arquivo escrito: " + nomeArquivo);
-                                    Compania cia = new Compania();
-                                    cia.setIdCodcia(Integer.parseInt(idimg));
-                                    cia.setUrlLogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                                    //daocia.logoCompania(cia);
-                                    companiaService.logoCompania(cia);
-
-                                } catch (final Exception e) {
-                                    System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
-                                }
-                            }else if(ciainfo.getUrlflgsource().equals("2")) {
-                                System.out.println("guarda logo");
-                                //filelink = (String)session.getAttribute("GLADIUS_IMG")+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                filelink = ciainfo.getIexurlfileimg()+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                System.out.println("filelink:"+filelink);
-                                Compania cia = new Compania();
-                                cia.setIdCodcia(Integer.parseInt(idimg));
-                                cia.setUrlLogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                                //daocia.logoCompania(cia);
-                                companiaService.logoCompania(cia);
-
-                                File storeFile =  new File(filelink);
-
-                                System.out.println("filepath="+storeFile);
-                                //      System.out.println(  "c:\\gladius\\"+fileName);
-                                // saves the file on disk
-                                item.write(storeFile);
-                            }
-                        }else  if(accion.equals("FOTOEMP")){
-                            // System.out.println("guarda fotoemp");
-                            //   emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-
-                            if(ciainfo.getUrlflgsource().equals("1")) {
-                                try {
-                                    //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                    nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-
-                                    credentials = new BasicAWSCredentials(key_name, passPhrase);
-                                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                    s3.putObject(bucket_name, nomeArquivo, item.getName());
-
-                                    //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
-                                    InputStream in=item.getInputStream();
-                                    File tmp = null;
-                                    tmp = File.createTempFile("s3test", ".jpeg");
-                                    Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                                    PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo,tmp );
-
-                                    ObjectMetadata metadata = new ObjectMetadata();
-                                    metadata.setContentType(item.getContentType());
-                                    //metadata.addUserMetadata("title", "someTitle");
-                                    request2.setMetadata(metadata);
-                                    s3.putObject(request2);
-
-                                    /*
-                                      InputStream conteudoArquivo = item.getInputStream();
-                                      ObjectMetadata metadata = new ObjectMetadata();
-                                                  metadata.setContentType(item.getContentType());
-                                      metadata.setContentLength(item.getSize());
-                                      PutObjectRequest por = new PutObjectRequest(bucket_name, nomeArquivo, conteudoArquivo, metadata);
-                                       PutObjectResult result = s3.putObject(por);
-                                     */
-
-                                    System.out.println("Arquivo escrito: " + nomeArquivo);
-                                    emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                                    //dao.actualizarFoto(emp);
-                                    empleadoService.actualizarFoto(emp);
-                                } catch (final Exception e) {
-                                    System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
-                                }
-                            }else if(ciainfo.getUrlflgsource().equals("2")) {
-                                System.out.println("guarda fotoemp");
-                                emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                                //  filelink=(String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                //filelink=ciainfo.getIexurlfileserver()+(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                filelink=ciainfo.getIexurlfileserver()+codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                                System.out.println("filelink 2:"+filelink);
-                                //dao.actualizarFoto(emp);
-                                empleadoService.actualizarFoto(emp);
-
-                                File storeFile =  new File(filelink);
-
-                                System.out.println("filepath="+storeFile);
-                                //      System.out.println(  "c:\\gladius\\"+fileName);
-                                // saves the file on disk
-                                item.write(storeFile);
-                            }
-                        }
-
-                        request.setAttribute("message", "Upload has been done successfully!");
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            request.setAttribute("message",
-                    "There was an error: " + ex.getMessage());
-        }
-
-        // redirects client to message page
-        //request.getServletContext().getRequestDispatcher(target).forward(request, response);
-
-        return null;
+        return new ModelAndView("redirect:/detalleEmpl@"+idTrab);
     }
 
 }
