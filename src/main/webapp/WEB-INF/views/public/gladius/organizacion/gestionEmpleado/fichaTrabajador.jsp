@@ -294,7 +294,9 @@
 
                         <div class="card mb-5">
                             <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 130px; ">
-                              <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">
+                                <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">-->
+                                <!--<div class="bg-holder rounded-top" style="background-color:#e6ebf7; !important">-->
+                                <div class="bg-holder rounded-top bg-100 #f6f7f8">
                                 <input class="d-none" id="upload-feed-cover-image" type="file" />
                                 <label class="cover-image-file-input" for="upload-feed-cover-image"></label>
                                 <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white"><span class="fa-solid fa-camera me-2 overlay-icon"> </span></div>
@@ -303,7 +305,7 @@
                               <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture">
                                 <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/team/59.webp" width="200" alt="" />-->
                                 <!--<img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" />-->
-                                <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="VerFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" /></c:if>
+                                <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="verFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" /></c:if>
                                 <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>
                                 <c:if test="${iexlogo==null && sexo.equals('F')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/woman_user.jpg" width="200" alt="" /></c:if>
                               </label>
@@ -342,7 +344,7 @@
 
                                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                                     <div class="form-floating">
-                                        <button class="btn btn-primary me-2 col-12" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                                        <button class="btn btn-primary justify-content-end me-2 col-6" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
                                     </div>
                                   </div>
                               </form>

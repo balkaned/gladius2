@@ -248,12 +248,12 @@ public class IndexController {
         return new ModelAndView("public/home");
     }
 
-    @RequestMapping("/verFoto@{logo}@{idComp}@{urlLogo}")
-    public ModelAndView verFoto(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String logo, @PathVariable String idComp, @PathVariable String urlLogo) throws IOException {
+    @RequestMapping("/verFoto@{accion2}@{idComp}@{urlLogo}")
+    public ModelAndView verFoto(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String accion2, @PathVariable String idComp, @PathVariable String urlLogo) throws IOException {
         logger.info("/verFoto");
 
-        logger.info("logo: "+logo);
-        String accion=logo;
+        logger.info("accion2: "+accion2);
+        String accion=accion2;
         String codciax=idComp;
         String fileurl=urlLogo;
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
@@ -400,7 +400,9 @@ public class IndexController {
 
             // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
             outrep=0;
-            pathfile = (Integer)session.getAttribute("codcia")+"/fotoemp/"+fileurl;
+            pathfile = codciax+"/fotoemp/"+fileurl;
+
+            logger.info("######LECTOR URL IMG:####### :"+pathfile);
 
             if(ciainfo.getUrlflgsource().equals("1")) {
 
@@ -451,7 +453,7 @@ public class IndexController {
                 String path_img=ciainfo.getIexurlfileserver();
 
                 //pathfile = (String)session.getAttribute("GLADIUS_IMG")+fileurl;
-                pathfile = path_img+(Integer)session.getAttribute("codcia")+"/fotoemp/"+fileurl;
+                pathfile = path_img+codciax+"/fotoemp/"+fileurl;
 
                 // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
 
@@ -507,7 +509,7 @@ public class IndexController {
             System.out.format("posicion pdf : "+pos);
 
             outrep=0;
-            pathfile = (Integer)session.getAttribute("codcia")+"/legajo/"+fileurl;
+            pathfile = codciax+"/legajo/"+fileurl;
 
             if(ciainfo.getUrlflgsource().equals("1")) {
 
@@ -666,7 +668,7 @@ public class IndexController {
                 String path_img=ciainfo.getIexurlfileserver();
 
                 //pathfile = (String)session.getAttribute("GLADIUS_IMG")+fileurl;
-                pathfile = path_img+(Integer)session.getAttribute("codcia")+"/fotoemp/"+fileurl;
+                pathfile = path_img+codciax+"/fotoemp/"+fileurl;
 
                 // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
 
@@ -807,11 +809,13 @@ public class IndexController {
             key_name =ciainfo.getIexususource().trim();
             passPhrase = ciainfo.getIexpasssource().trim();
 
-                try {
+            logger.info("ciainfo.getIexsourcedes().trim(): "+ciainfo.getIexsourcedes().trim());
 
+                try {
                     //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
                     //nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
                     nomeArquivo=codciax+"/fotoemp/"+idimg+"."+"jpg";
+                    logger.info("nomeArquivo: "+nomeArquivo);
 
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
                     s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -819,7 +823,7 @@ public class IndexController {
                     s3.putObject(bucket_name, nomeArquivo, nomeArquivo);
 
                     //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
-//                      InputStream in=item.getInputStream();
+                    //InputStream in=item.getInputStream();
                     InputStream in = uploadFile.getInputStream();
                     File tmp = null;
                     tmp = File.createTempFile("s3test", ".jpeg");

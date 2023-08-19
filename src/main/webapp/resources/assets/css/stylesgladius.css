@@ -4,8 +4,8 @@
 }
 
 .nav-link-text{
-    /*color:#63666e !important;
-    font-size:13px !important;
+    /*color:white !important;*/
+    /*font-size:13px !important;
     margin-left:10px !important;*/
 }
 
@@ -19,10 +19,12 @@
 
 .nav-link-icon{
     /*color:#B8BABF !important;*/
+    color:white !important;
 }
 
 #p2{
     color:#525B75 !important;
+    /*color:white !important;*/
     font-size:14px;
     margin-left:0px;
     margin-top:-8px;
