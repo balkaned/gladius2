@@ -1,6 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Local;
+import com.balkaned.gladius.beans.Puesto;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.LocalService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
@@ -56,6 +57,81 @@ public class LocalesController {
         model.addAttribute("localesList",localesList);
 
         return new ModelAndView("public/gladius/organizacion/locales/listLocales");
+    }
+
+    @RequestMapping("/nuevoLocal")
+    public ModelAndView nuevoLocal(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevoLocal");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("idx",localService.getIdUbicaion(idCompania));
+
+        return new ModelAndView("public/gladius/organizacion/locales/nuevoLocal");
+    }
+
+    @RequestMapping("/insertarLocal")
+    public ModelAndView insertarLocal(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarLocal");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Integer iexcodcia = idCompania;
+        String iexcodubi = request.getParameter("iexubicod2");
+        String iexdesubi = request.getParameter("iexubides");
+        String iexusucrea   =  usuario;
+
+        Local  ubic = new Local();
+        ubic.setIexcodcia(iexcodcia);
+        ubic.setIexubicod(iexcodubi);
+        ubic.setIexubides(iexdesubi);
+        ubic.setIexusucrea(iexusucrea);
+
+        localService.insertarUbicacion(ubic);
+
+        return new ModelAndView("redirect:/listLocales");
     }
 
 }

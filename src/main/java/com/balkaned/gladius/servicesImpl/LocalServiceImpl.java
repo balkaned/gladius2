@@ -18,5 +18,7 @@ public class LocalServiceImpl implements LocalService {
     public Local getLocales(Integer codcia, String codarea){
         return dao.getLocales(codcia,codarea);
     }
+    public Integer getIdUbicaion(Integer codcia){return dao.getIdUbicaion(codcia);}
+    public void insertarUbicacion(Local ubic){dao.insertarUbicacion(ubic);};
 
 }

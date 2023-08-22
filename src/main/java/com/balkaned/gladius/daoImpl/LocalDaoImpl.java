@@ -102,84 +102,38 @@ public class LocalDaoImpl implements LocalDao {
         });
     }
 
-/*
+    public Integer getIdUbicaion(Integer codcia){
 
-    public Integer  getIdUbicaion(Integer codcia ) throws DAOException {
+        final Integer[] idcont = {0};
 
-      String result = null;
-        StringBuilder sql = new StringBuilder();
-        Integer idcont =0;
+        String sql=" select  coalesce(max(cast(iexubicod as integer)),0)+1  idcont  from iexubicacion  where iexcodcia ="+codcia;
 
-
-        sql.append(" select  coalesce(max(cast(iexubicod as integer)),0)+1  idcont  from iexubicacion  where iexcodcia ="+codcia+" ");
-
-        System.out.println(sql);
-        try (
-                Connection cn = cf.getConnection();
-                PreparedStatement pst = cn.prepareStatement(sql.toString());
-                ResultSet rs = pst.executeQuery();
-                ) {
-              // Statement st = cn.createStatement();
-                if (rs.next()) {
-              idcont= Integer.valueOf(rs.getString("idcont"));
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
                 }
-
-
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-            idcont=-1;
-             System.out.println(e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-        return idcont ;
+                return idcont[0];
+            }
+        });
     }
-    public void  insertarUbicacion(Ubicacion ubic) throws DAOException {
+    public void insertarUbicacion(Local ubic){
 
-         String result = null;
-        StringBuilder sql = new StringBuilder();
-
-         System.out.println("Insertar cabecera");
-
-        sql.append("  insert into iexubicacion( " +
+        template.update("  insert into iexubicacion( " +
                         " iexcodcia,     iexubicod,    iexubides,       " +
                         " iexusucrea,    iexfeccrea  " +
                         " ) values ( " +
                         "  ? ,   ?    ,   ?   ,  "+
                         "  ? ,   current_date   "+
-                        ")  ");
+                        ")  ",
 
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-                 pst.setInt(1,  ubic.getIexcodcia());
-                 pst.setString(2,  ubic.getIexubicod());
-                 pst.setString(3,  ubic.getIexubides());
-                 pst.setString(4, ubic.getIexusucrea());
-
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+                 ubic.getIexcodcia(),
+                 ubic.getIexubicod(),
+                 ubic.getIexubides(),
+                 ubic.getIexusucrea());
     }
-    public void  actualizarUbicaion(Ubicacion ubic) throws DAOException {
+
+    /*public void  actualizarUbicaion(Ubicacion ubic) throws DAOException {
 
         String result = null;
         StringBuilder sql = new StringBuilder();

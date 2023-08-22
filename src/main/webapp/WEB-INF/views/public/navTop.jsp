@@ -12,7 +12,6 @@
                 <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast2.png" alt="phoenix" width="27" />
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
                   <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->
-
                   <p style="color:white !important;font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black">gladius</p>
                   <p style="color:white !important;font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                 </div>
@@ -24,7 +23,7 @@
             <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
-              <span class="text-white">${nombreComp} </span><span class="text-white" style="margin-left:20px;">RUC: ${rucComp} </span>
+              <span id="spntop" class="text-white">${nombreComp} </span><span id="spntop" class="text-white" style="margin-left:20px;">RUC: ${rucComp} </span>
               <!--<span class="fas fa-search search-box-icon"></span>-->
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">

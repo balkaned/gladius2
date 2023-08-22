@@ -1,17 +1,14 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.services.CompaniaService;
-import com.balkaned.gladius.services.EmpleadoService;
-import com.balkaned.gladius.services.LovsService;
-import com.balkaned.gladius.services.UsuarioConeccionService;
+import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -33,6 +30,9 @@ public class EmpleadoController {
 
     @Autowired
     LovsService lovsService;
+
+    @Autowired
+    SueldoService sueldoService;
 
     @RequestMapping("/listEmpleados")
     public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
@@ -909,6 +909,166 @@ public class EmpleadoController {
         }*/
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
+    }
+
+    @RequestMapping("/sueldoFijo@{idTrab}")
+    public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+        logger.info("/sueldoFijo");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idCompaniaXXXX: "+idCompania);
+        logger.info("idTraXXXXXb: "+idTrab);
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idTrab",idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado",empleado);
+
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
+
+        empleado.setIexcodcia(idCompania);
+        empleado.setIexcodtra(Integer.valueOf(idTrab));
+
+        model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldoFijo");
+    }
+
+    @RequestMapping("/nuevoSueldoFijo@{idTrab}")
+    public ModelAndView nuevoSueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+        logger.info("/nuevoSueldoFijo");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idCompaniaXXXX: "+idCompania);
+        logger.info("idTraXXXXXb: "+idTrab);
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idTrab",idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado",empleado);
+
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
+        model.addAttribute("lovConcepSue",sueldoService.ListConceptos(idCompania, "1"));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoSueldoFijo");
+    }
+
+    @RequestMapping("/insertarSueldoFijo")
+    public ModelAndView insertarSueldoFijo(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarSueldoFijo");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idempleado=0;
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        String concepto = request.getParameter("iexcodcon");
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        Double valcon  = 0.0;
+
+        if(request.getParameter("iexvalcon")==null) {
+            valcon  = 0.0;
+        }else {
+            valcon  = Double.parseDouble(request.getParameter("iexvalcon"));
+        };
+
+        EmpSueldo sueldo = new EmpSueldo();
+        sueldo.setIexcodcia(iexcodcia);
+        sueldo.setIexcodtra(iexcodtra);
+        sueldo.setIexcodcon(concepto);
+        sueldo.setIexvalcon(valcon);
+        sueldo.setIexflgest("1");
+
+        sueldoService.insertarEmpSueldo(sueldo);
+
+        return new ModelAndView("redirect:/sueldoFijo@"+iexcodtra);
     }
 }
 

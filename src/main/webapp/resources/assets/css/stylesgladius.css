@@ -195,6 +195,10 @@
     font-size:14px;*/
 }
 
+#navsOpcionesEmpl{
+    padding-left:12px;
+}
+
 .d-flex.align-items-center span:hover{
     /*color:#3874ff;*/
 }
@@ -368,6 +372,10 @@
 /*background-color:#F1F2F3 !important;
 border-radius:0px !important;*/
 /*border-right:3px solid #F48225 !important;*/
+}
+
+#spntop{
+font-size:11px;
 }
 
 

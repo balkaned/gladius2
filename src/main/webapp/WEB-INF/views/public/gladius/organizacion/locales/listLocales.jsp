@@ -36,12 +36,6 @@
                 </div>
               </div>
               <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="#">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Consultar Todos<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
-                <!--<li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
               </ul>
               <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                 <div class="mb-4">
@@ -51,7 +45,6 @@
                         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                           <input class="form-control search-input search" type="search" placeholder="Search locales" aria-label="Search" />
                           <span class="fas fa-search search-box-icon"></span>
-
                         </form>
                       </div>
                     </div>
@@ -88,7 +81,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <button class="btn btn-primary"><span class="fas fa-plus me-2"></span>Add new Local</button>
+                      <a class="btn btn-primary" href="nuevoLocal"><span class="fas fa-plus me-2"></span>Add new Local</a>
                     </div>
                   </div>
                 </div>
@@ -96,7 +89,7 @@
                   <div class="table-responsive scrollbar mx-n1 px-1">
                     <table class="table table-sm fs--1 mb-0">
                       <thead>
-                        <tr >
+                        <tr>
                           <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
                             <div class="form-check mb-0 fs-0">
                               <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
@@ -121,8 +114,6 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="detallearea">Ver Detalle</a>
-                                        <a class="dropdown-item" href="#!">Ficha</a>
                                      <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                                  </div>
                                </td>
