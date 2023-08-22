@@ -410,6 +410,12 @@
                                       <a class="btn btn-primary btn-sm" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>
                                   </div>
                                 </div>
+                                <div class="search-box w-100 mb-3">
+                                  <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                    <input class="form-control search-input search" type="search" placeholder="Search..." aria-label="Search" />
+                                    <span class="fas fa-search search-box-icon"></span>
+                                  </form>
+                                </div>
                                 <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
                                   <div class="table-responsive scrollbar mx-n1 px-1">
                                     <table class="table fs--1 mb-0">

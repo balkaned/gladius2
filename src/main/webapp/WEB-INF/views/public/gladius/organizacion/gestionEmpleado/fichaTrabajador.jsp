@@ -422,13 +422,13 @@
                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate >
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                        <div class="col-sm-6 col-md-4">
+                                        <div class="col-sm-6 col-md-3">
                                           <div class="form-floating">
                                             <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" required disabled />
                                             <label for="floatingEventInput">Codigo Empleado</label>
                                           </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-4">
+                                        <div class="col-sm-6 col-md-5">
                                           <div class="form-floating">
                                               <select name="iextipdocid" class="form-select" required >
                                                   <option value="" selected > -- Seleccionar -- </option>
@@ -638,7 +638,10 @@
                                             Se grabó exitosamente los cambios.
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-6">
-                                            <button class="btn btn-primary col-6" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                            <div class="col-6">
+                                                <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
+                                                <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                            </div>
                                         </div>
                                         <div class="modal fade" id="confirmModal" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -857,7 +860,10 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <button class="btn btn-primary col-6" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal2" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                <div class="col-6">
+                                                    <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
+                                                    <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal2" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                </div>
                                             </div>
                                             <div class="modal fade" id="confirmModal2" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -1014,7 +1020,10 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <button class="btn btn-primary col-6" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal3" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                <div class="col-6">
+                                                    <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
+                                                    <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal3" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                </div>
                                             </div>
                                             <div class="modal fade" id="confirmModal3" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -1195,7 +1204,10 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <button class="btn btn-primary col-6" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal4" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                <div class="col-6">
+                                                    <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
+                                                    <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal4" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                </div>
                                             </div>
                                             <div class="modal fade" id="confirmModal4" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -1495,7 +1507,10 @@
                                                 Se grabó exitosamente los cambios.
                                           </div>
                                           <div class="col-12 d-flex justify-content-end mt-6">
-                                                <button class="btn btn-primary col-6" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal5" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                <div class="col-6">
+                                                    <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
+                                                    <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal5" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                </div>
                                           </div>
                                           <div class="modal fade" id="confirmModal5" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">

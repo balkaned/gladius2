@@ -182,7 +182,7 @@
 
 .nav.flex-column.border-top.fs--1.vertical-nav.mb-4 li a{
     border:0px solid red !important;
-    height:34px;
+    height:38px;
 }
 
 .nav.flex-column.border-top.fs--1.vertical-nav.mb-4 li a:hover{
@@ -196,7 +196,17 @@
 }
 
 #navsOpcionesEmpl{
-    padding-left:12px;
+    border:0px solid red !important;
+    padding-left:10px !important;
+}
+
+#linav{
+    border:0px solid green !important;
+}
+
+#anavs{
+    border:0px solid blue !important;
+    padding-left:10px !important;
 }
 
 .d-flex.align-items-center span:hover{
