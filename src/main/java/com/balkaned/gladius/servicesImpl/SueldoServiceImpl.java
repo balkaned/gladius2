@@ -1,6 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.Concepto;
+import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.dao.SueldoDao;
@@ -17,5 +18,7 @@ public class SueldoServiceImpl implements SueldoService {
     public List<EmpSueldo> obtenerEmpSueldo(Empleado empleado){return dao.obtenerEmpSueldo(empleado);}
     public List<Concepto> ListConceptos(Integer codcia, String Tipo){return dao.ListConceptos(codcia,Tipo);}
     public void insertarEmpSueldo(EmpSueldo empsueldo){dao.insertarEmpSueldo(empsueldo);}
+    public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl){return dao.obtenerEmpDatvar(cia,codpro,nroper,codtra,correl);}
+    public void insertarEmpDatvar(EmpDatvar empdatvar){dao.insertarEmpDatvar(empdatvar);}
 
 }

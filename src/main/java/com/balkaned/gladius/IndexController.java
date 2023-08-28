@@ -16,6 +16,7 @@ import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
+import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.RequestContext;
@@ -849,5 +850,6 @@ public class IndexController {
 
         return new ModelAndView("redirect:/detalleEmpl@"+idTrab);
     }
+    
 
 }

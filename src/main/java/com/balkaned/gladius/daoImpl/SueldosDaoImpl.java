@@ -2,11 +2,10 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Concepto;
+import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Local;
 import com.balkaned.gladius.dao.SueldoDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -106,5 +105,65 @@ public class SueldosDaoImpl implements SueldoDao {
         empsueldo.getIexcodcon(),
         empsueldo.getIexvalcon(),
         empsueldo.getIexflgest());
+    }
+
+    public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl){
+
+        String sql =  " select  " +
+                "v.iexcodcia," +
+                "v.iexcodpro, " +
+                "v.iexnroper, " +
+                "v.iexcorrel, " +
+                "v.iexcodtra, " +
+                "v.iexcodcon, " +
+                "c.coodescon, " +
+                "v.iexvalcon, " +
+                "v.iexflgest, " +
+                "v.iexusucrea, " +
+                "v.iexfeccrea, " +
+                "v.iexusumod, " +
+                "v.iexfecmod " +
+                "from iexconcepto c , iexdatavar v " +
+                "where " +
+                "v.iexcodcia = "+cia+" and  " +
+                "v.iexcodpro= "+codpro+"  and " +
+                "v.iexnroper = '"+nroper+"' and " +
+                "v.iexcorrel = "+correl+"  and " +
+                "v.iexcodtra = "+codtra+"  and v.iexcodcon = c.coocodcon ";
+
+        return template.query(sql, new ResultSetExtractor<List<EmpDatvar>>() {
+            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException{
+                List<EmpDatvar> lista = new ArrayList<EmpDatvar>();
+
+                while(rs.next()) {
+                    EmpDatvar con = new EmpDatvar();
+
+                    con.setIexcodcia(rs.getInt("iexcodcia"));
+                    con.setIexcodpro(rs.getInt("iexcodpro"));
+                    con.setIexnroper(rs.getString("iexnroper"));
+                    con.setIexcodtra(rs.getInt("iexcodtra"));
+                    con.setIexcorrel(rs.getInt("iexcorrel"));
+                    con.setIexcodcon(rs.getString("iexcodcon"));
+                    con.setCoodescon(rs.getString("coodescon"));
+                    con.setIexvalcon(rs.getDouble("iexvalcon"));
+
+                    lista.add(con);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public void insertarEmpDatvar(EmpDatvar empdatvar){
+
+        template.update("INSERT INTO  iexdatavar (iexcodcia, iexcodpro, iexnroper,  iexcorrel, iexcodtra, iexcodcon,  iexvalcon,  iexflgest )  VALUES (?, ?, ?, ?, ?,?,?,? )",
+            empdatvar.getIexcodcia(),
+            empdatvar.getIexcodpro(),
+            empdatvar.getIexnroper(),
+            empdatvar.getIexcorrel(),
+            empdatvar.getIexcodtra(),
+            empdatvar.getIexcodcon(),
+            empdatvar.getIexvalcon(),
+            empdatvar.getIexflgest());
     }
 }

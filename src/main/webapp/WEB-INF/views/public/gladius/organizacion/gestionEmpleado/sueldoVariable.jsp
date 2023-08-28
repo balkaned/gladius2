@@ -12,253 +12,41 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
   <script>
-      $(document).ready(function() {
-          $('#iexpaisemisor').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "DEPX",
-                      "codpais": $("#iexpaisemisor").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value='' > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
 
-                      $("#iexdepart_origen").html(opt);
-                      $("#iexprovin_origen").html("<option value='' > -- Selecciona -- </option>");
-                      $("#iexdistri_origen").html("<option value='' > -- Selecciona -- </option>");
+  function regimen(){
+       $.ajax({
+         url: "getlovsPROXCON",
+         data: {"accion": "PROXCON",
+             "iexcodreg": $("#iexcodreg").val()},
+         success: function (data) {
+             var opt = "";
+                  opt += "<option value=0 > -- Selecciona -- </option>";
+                  for (var i in data) {
+                   opt += "<option value="+data[i].idProceso+" > "+data[i].desProceso+" </option> ";
                   }
-              });
-          });
 
-           $('#iexdepart_origen').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "PROVX",
-                      "coddept": $("#iexdepart_origen").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value='' > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
+             $("#iexcodpro").html(opt);
+         }
+       });
+  }
 
-                      $("#iexprovin_origen").html(opt);
-                      $("#iexdistri_origen").html("<option value='' > -- Selecciona -- </option>");
-                  }
-              });
-          });
+  function procesoplanilla(){
+         $.ajax({
+          url: "getlovsPERX",
+          data: {"accion": "PERX",
+              "iexcodpro": $("#iexcodpro").val()},
+          success: function (data) {
+              var opt = "";
+                    opt += "<option value=0 > -- Selecciona -- </option>";
+                   for (var i in data) {
+                    opt += "<option value="+data[i].iexnroper+" > "+data[i].iexnroper+" </option> ";
+                   }
 
-          $('#iexprovin_origen').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "DISTX",
-                      "codprov": $("#iexprovin_origen").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value=0 > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
-
-                      $("#iexdistri_origen").html(opt);
-                  }
-              });
-          });
-
-          $('#iexpaisemisor1').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DEPX",
-                              "codpais": $("#iexpaisemisor1").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexdepart_origen1").html(opt);
-                              $("#iexprovin_origen1").html("<option value='' > -- Selecciona -- </option>");
-                              $("#iexubigeo_dom1").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
-          });
-
-          $('#iexdepart_origen1').change(function(event){
-               $.ajaxSetup({cache:false});
-                    $.ajax({
-                      url: "getlovs",
-                      data: {"accion": "PROVX",
-                          "coddept": $("#iexdepart_origen1").val()},
-                      success: function (data) {
-                          var opt = "";
-                               opt += "<option value='' > -- Selecciona -- </option>";
-                               for (var i in data) {
-                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                               }
-
-                          $("#iexprovin_origen1").html(opt);
-                          $("#iexubigeo_dom1").html("<option value='' > -- Selecciona -- </option>");
-                      }
-               });
-          });
-
-          $('#iexprovin_origen1').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DISTX",
-                              "codprov": $("#iexprovin_origen1").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value=0 > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexubigeo_dom1").html(opt);
-                          }
-                   });
-          });
-
-          $('#iexpaisemisor2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DEPX",
-                              "codpais": $("#iexpaisemisor2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexdepart_origen2").html(opt);
-                              $("#iexprovin_origen2").html("<option value='' > -- Selecciona -- </option>");
-                              $("#iexubigeo_dom2").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
-          });
-
-          $('#iexdepart_origen2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "PROVX",
-                              "coddept": $("#iexdepart_origen2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexprovin_origen2").html(opt);
-                              $("#iexubigeo_dom2").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
-          });
-
-          $('#iexprovin_origen2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DISTX",
-                              "codprov": $("#iexprovin_origen2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value=0 > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexubigeo_dom2").html(opt);
-                          }
-                      });
-                  });
-          });
+              $("#iexperiodo").html(opt);
+          }
       });
+    }
 
-      /*Calendar.setup({
-      inputField     :    "iexfecing",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador"     // el id del botón que lanzará el calendario
-          });
-
-     Calendar.setup2({
-      inputField     :    "iexfecret",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador2"     // el id del botón que lanzará el calendario
-          });
-
-      Calendar.setup3({
-      inputField     :    "iexfecini_cont",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador3"     // el id del botón que lanzará el calendario
-          });
-
-      Calendar.setup4({
-      inputField     :    "iexfecfin_cont",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador4"     // el id del botón que lanzará el calendario
-          });*/
-
-      function mostrarAlert(){
-        //alert("se grabo exitosamente");
-        var div=document.getElementById('alert');
-        div.style.display = '';
-
-        setTimeout(function() {
-            $("#alerts").hide(6000);
-        }, 3000);
-      }
-
-      function mostrarAlert2(){
-          //alert("se grabo exitosamente");
-          var div=document.getElementById('alert2');
-          div.style.display = '';
-
-          setTimeout(function() {
-              $("#alerts").hide(6000);
-          }, 3000);
-      }
-
-      function mostrarAlert3(){
-        //alert("se grabo exitosamente");
-        var div=document.getElementById('alert3');
-        div.style.display = '';
-
-        setTimeout(function() {
-            $("#alerts").hide(6000);
-        }, 3000);
-     }
-
-     function mostrarAlert4(){
-         //alert("se grabo exitosamente");
-         var div=document.getElementById('alert4');
-         div.style.display = '';
-
-         setTimeout(function() {
-             $("#alerts").hide(6000);
-         }, 3000);
-     }
-
-     function mostrarAlert5(){
-          //alert("se grabo exitosamente");
-          var div=document.getElementById('alert5');
-          div.style.display = '';
-
-          setTimeout(function() {
-              $("#alerts").hide(6000);
-          }, 3000);
-     }
   </script>
 
   <body>
@@ -410,43 +198,51 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar Sueldo Fijo</h2>
+                                <h2 id="h2top" class="mb-0">Conceptos Variables</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarSueldoFijo" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="verDataSueldoVar@${idTrab}" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
-                                                <select class="form-select" name="iexcodcon" required >
+                                                <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                                   <option value="" selected > -- Seleccionar -- </option>
-                                                  <c:forEach var="lovConcepSue" items="${lovConcepSue}">
-                                                      <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>
+                                                  <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
+                                                      <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Concepto (*)</label>
+                                                <label>Regimen Laboral (*)</label>
                                               </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexvalcon" maxlength="18" type="text" value="" placeholder="street" required/>
-                                                     <label>Valor (*)</label>
-                                                   </div>
+                                              <div class="form-floating">
+                                                <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
+                                                </select>
+                                                <label>Proceso de Planilla (*)</label>
+                                              </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-12">
+                                              <div class="form-floating">
+                                                <select class="form-select" name="iexperiodo" id="iexperiodo" required >
+                                                </select>
+                                                <label>Periodo (*)</label>
+                                              </div>
                                             </div>
 
 
-                                            <div class="alert alert-success" role="alert" id="alert" style="display:none;">
+                                            <!--<div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.
-                                            </div>
+                                            </div>-->
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="sueldoFijo@${idTrab}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Sueldo Fijo</button>
+                                                    <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Cancel</a>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Ver Data</button>
                                                   </div>
                                                 </div>
                                             </div>
