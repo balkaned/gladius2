@@ -403,10 +403,16 @@
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
+                               <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
+                                      <h2 class="mb-0">Conceptos variables</h2>
+                                      <div class="col-auto">
+                                          <a class="btn btn-phoenix-primary px-5" href="sueldoVariable@${idTrab}">Cancel</a>
+                                          <a class="btn btn-primary btn-sm" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add Concepto</a>
+                                      </div>
+                                </div>
                                 <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
                                      <div class="row gx-4 gy-6 g-xl-7 justify-content-sm-center justify-content-xl-start">
                                          <div class="col-12 col-sm-auto">
-                                           <h2 id="h2top" class="mb-5">Conceptos Variables</h2>
                                            <div class="row g-4 flex-sm-column">
                                              <div class="col-6 col-sm-12">
                                                <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="user" style="stroke-width:2.5;"></span>
@@ -422,19 +428,14 @@
                                          </div>
                                      </div>
                                 </div>
-                                <div class="row g-3 justify-content-end mb-3">
-                                    <div class="col-auto">
-                                          <a class="btn btn-phoenix-primary px-5" href="sueldoVariable@${idTrab}">Cancel</a>
-                                          <a class="btn btn-primary btn-sm" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add</a>
-                                    </div>
-                                </div>
+
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                                     <input class="form-control search-input search" type="search" placeholder="Search..." aria-label="Search" />
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
-                                <div class="border-top border-bottom bg-white border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
+                                <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
                                   <div class="table-responsive scrollbar mx-n1 px-1">
                                     <table class="table fs--1 mb-0">
                                       <thead>
