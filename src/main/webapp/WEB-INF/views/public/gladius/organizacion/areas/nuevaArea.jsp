@@ -75,7 +75,7 @@
                               <div class="col-sm-6 col-md-6">
                                 <div class="form-floating">
                                   <select class="form-select" name="iexcodcat" required >
-                                    <option value="" selected > -- Seleccionar -- </option>
+                                    <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatArea" items="${lovCatArea}">
                                         <option value="${lovCatArea.idLov}" >${lovCatArea.desLov}</option>
                                     </c:forEach>
@@ -86,7 +86,7 @@
                               <div class="col-sm-6 col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" name="iexareapadre" required >
-                                      <option value="" selected > -- Ninguno -- </option>
+                                      <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">
                                           <option value="${lovArea.iexcodarea}" >${lovArea.iexdesarea}</option>
                                       </c:forEach>

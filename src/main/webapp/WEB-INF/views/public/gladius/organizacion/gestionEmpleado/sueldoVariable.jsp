@@ -12,7 +12,6 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
   <script>
-
   function regimen(){
        $.ajax({
          url: "getlovsPROXCON",
@@ -46,7 +45,6 @@
           }
       });
     }
-
   </script>
 
   <body>
@@ -95,7 +93,7 @@
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
                                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
-                                                  <option value="" selected > -- Seleccionar -- </option>
+                                                  <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
                                                       <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
                                                   </c:forEach>

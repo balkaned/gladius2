@@ -111,49 +111,31 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevas vacaciones</h2>
+                                <h2 id="h2top" class="mb-0">Insertar nuevo ausentismo</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarVacaciones" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarAusentismo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
-                                                <select class="form-select" name="iextipvac" required >
+                                                <select class="form-select" name="iextipaus" required >
                                                   <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovTipvaca" items="${lovTipvaca}">
-                                                      <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.iextipvac ? 'selected' : ''}  >  ${lovTipvaca.desLov} </option>
+                                                  <c:forEach var="lovTipaus" items="${lovTipaus}">
+                                                      <option value="${lovTipaus.idLov}"   ${lovTipaus.idLov == requestScope.iextipaus ? 'selected' : ''}  >  ${lovTipaus.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Vacaciones(*)</label>
+                                                <label>Tipo de Ausentismo(*)</label>
                                               </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexpermesini" maxlength="18" type="text" value="${perini}" placeholder="street" readonly disabled/>
-                                                     <label>Periodo Inicial (*)</label>
-                                                   </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexpermesfin" maxlength="18" type="text" value="${perfin}" placeholder="street" readonly disabled/>
-                                                     <label>Periodo Final (*)</label>
-                                                   </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="saldo" maxlength="18" type="text" value="${saldo}" placeholder="street" readonly disabled/>
-                                                     <label>Saldo (*)</label>
-                                                   </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                               <div class="flatpickr-input-container">
                                                 <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" type="text" onchange="calcularDias();" placeholder="end date" data-options='{"disableMobile":true}' required />
                                                   <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 </div>
                                               </div>
@@ -168,7 +150,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                    <div class="form-floating">
-                                                     <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="street" required disabled readonly/>
+                                                     <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" placeholder="street" required readonly disabled/>
                                                      <label>Numero de Dias(*)</label>
                                                    </div>
                                             </div>
@@ -178,13 +160,6 @@
                                                      <label>Glosa</label>
                                                    </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                 <div class="form-check">
-                                                   <input class="form-check-input" name="iexflgnosaldo" id="flexChecked" value="1" type="checkbox"/>
-                                                   <label class="form-check-label fs-0 mb-5" for="flexChecked">No considerar saldo?</label>
-                                                 </div>
-                                            </div>
-
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.
@@ -192,8 +167,8 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="sueldoFijo@${idTrab}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                    <a class="btn btn-phoenix-primary" href="ausentismo@${idTrab}">Cancel</a>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Ausentismo</button>
                                                   </div>
                                                 </div>
                                             </div>

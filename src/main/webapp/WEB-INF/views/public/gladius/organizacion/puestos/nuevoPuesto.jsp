@@ -69,7 +69,7 @@
                               <div class="col-sm-6 col-md-6">
                                 <div class="form-floating">
                                   <select class="form-select" name="iexcodcat" required >
-                                    <option value="" selected > -- Seleccionar -- </option>
+                                    <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatPuesto" items="${lovCatPuesto}">
                                         <option value="${lovCatPuesto.idLov}" >${lovCatPuesto.desLov}</option>
                                     </c:forEach>

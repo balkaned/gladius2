@@ -57,7 +57,7 @@
                               <div class="col-sm-6 col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" name="iexcodban" required >
-                                      <option value="" selected > -- Seleccionar -- </option>
+                                      <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovBancos" items="${lovBancos}">
                                           <option value="${lovBancos.idLov}" >${lovBancos.desLov}</option>
                                       </c:forEach>
@@ -68,7 +68,7 @@
                               <div class="col-sm-6 col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" name="iexcodpro" required >
-                                      <option value="" selected > -- Seleccionar -- </option>
+                                      <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovProcesos" items="${lovProcesos}">
                                           <option value="${lovProcesos.idProceso}" >${lovProcesos.desProceso}</option>
                                       </c:forEach>
@@ -79,7 +79,7 @@
                               <div class="col-sm-6 col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" name="iextipcta" required >
-                                      <option value="" selected > -- Seleccionar -- </option>
+                                      <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovTipCta" items="${lovTipCta}">
                                           <option value="${lovTipCta.idLov}" >${lovTipCta.desLov}</option>
                                       </c:forEach>

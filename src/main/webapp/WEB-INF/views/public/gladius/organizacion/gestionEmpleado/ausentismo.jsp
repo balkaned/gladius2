@@ -41,10 +41,10 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
                                 <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                  <h2 class="mb-0">Sueldo fijo</h2>
+                                  <h2 class="mb-0">Ausentismo</h2>
                                   <div class="col-auto">
                                       <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary btn-sm" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>
+                                      <a class="btn btn-primary btn-sm" href="nuevoAusentismo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Ausentismo</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -64,25 +64,27 @@
                                             </div>
                                           </th>
                                           <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" >ID</th>
-                                          <th class="sort align-middle pe-6 text-uppercase text-end" scope="col" data-sort="amount" >Descripcion Concepto</th>
-                                          <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="stage" >Valor</th>
-                                          <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="probability" >Estado</th>
-                                          <th class="align-middle pe-0 text-end" scope="col"></th>
+                                          <th class="sort align-middle pe-6 text-uppercase text-center" scope="col" data-sort="amount" >Tipo de Ausentismo</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="stage" >Fecha Inicio</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Fecha Fin</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Nro de Dias</th>
+                                          <th class="align-middle pe-0 text-center" scope="col"></th>
                                         </tr>
                                       </thead>
                                       <tbody class="list" id="lead-details-table-body">
-                                        <c:forEach var="fsueldox" items="${requestScope.fsueldox}">
+                                        <c:forEach var="LstAusentismoDet" items="${requestScope.LstAusentismoDet}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="fs--1 align-middle px-0 py-3">
                                                 <div class="form-check mb-0 fs-0">
                                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
                                                 </div>
                                               </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexcodcon}</a></td>
-                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${fsueldox.descon}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexvalcon}</a></td>
-                                                <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                                <c:if test="${fsueldox.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${LstAusentismoDet.iexcorrel}</a></td>
+                                              <td class="amount align-middle white-space-nowrap text-center fw-bold text-700 py-2 pe-6">${LstAusentismoDet.destipaus}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexfecini}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexfecfin}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexnrodias}</td>
+
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
