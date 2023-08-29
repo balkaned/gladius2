@@ -20,7 +20,7 @@
           </div>
 
           <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:30rem;">
-            <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+            <form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
               <span id="spntop" class="text-white">${nombreComp} </span><span id="spntop" class="text-white" style="margin-left:20px;">RUC: ${rucComp} </span>

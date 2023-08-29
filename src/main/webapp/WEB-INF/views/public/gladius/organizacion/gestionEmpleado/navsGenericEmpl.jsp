@@ -16,7 +16,7 @@
         </div>
 
         <div class="card mb-5">
-            <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 130px; ">
+            <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 90px; ">
                 <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">-->
                 <!--<div class="bg-holder rounded-top" style="background-color:#e6ebf7; !important">-->
                 <div class="bg-holder rounded-top bg-100 #f6f7f8">
@@ -116,7 +116,7 @@
             <div>
               <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-check-circle"></span>
                 <h5 class="text-1000 mb-0">Estado</h5>
-              </div><span class="badge badge-phoenix badge-phoenix-primary">Activo</span>
+              </div><span class="badge badge-phoenix badge-phoenix-success">Activo</span>
             </div>
           </div>
         </div>
