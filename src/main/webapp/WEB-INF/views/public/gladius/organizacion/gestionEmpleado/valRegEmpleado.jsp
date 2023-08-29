@@ -59,8 +59,11 @@
                           </div>
 
                           <div class="col-12 d-flex justify-content-end mt-6">
-                              <button class="btn btn-primary" type="submit" >Validar</button>
-                          </div>
+                              <div class="col-auto">
+                                    <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Atras</a>
+                                    <button class="btn btn-primary" type="submit"><span></span>Validar</a>
+                              </div>
+                           </div>
 
                           <c:forEach var="LstPerRegistrada" items="${requestScope.LstPerRegistrada}">
                               <div class="border-bottom py-4">

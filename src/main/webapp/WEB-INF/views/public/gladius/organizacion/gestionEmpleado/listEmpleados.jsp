@@ -110,8 +110,8 @@
                           <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">PUESTO</th>
                           <th class="sort align-middle text-start pe-0" scope="col" data-sort="date">TIPO TRAB</th>
                           <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">ESTADO</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">FECINI</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">FECFIN</th>
+                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI</th>
+                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN</th>
                           <th class="sort align-middle text-center pe-0" scope="col" >FICHA</th>
                         </tr>
                       </thead>

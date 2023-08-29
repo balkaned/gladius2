@@ -288,18 +288,24 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
                                 <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                  <h2 class="mb-0">Sueldo fijo</h2>
+                                  <h2 class="mb-0">Tabla de vacaciones</h2>
                                   <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary btn-sm" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>
+                                      <a class="btn btn-phoenix-primary px-5" href="vacaciones@${idTrab}">Atras</a>
+                                      <a class="btn btn-primary btn-sm" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
                                   </div>
                                 </div>
+                                <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
+                                     <div class="alert alert-danger alert-dismissible " role="alert">
+                                        <strong>Error!</strong> ${requestScope.msgErrorSaldoVac}
+                                     </div>
+                                </c:if>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                                     <input class="form-control search-input search" type="search" placeholder="Search..." aria-label="Search" />
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
+                                <span class="badge badge-phoenix fs--2 badge-phoenix-warning mb-3"><span class="badge-label">Año : ${perini} - ${perfin}</span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span>
                                 <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
                                   <div class="table-responsive scrollbar mx-n1 px-1">
                                     <table class="table fs--1 mb-0">
@@ -311,25 +317,30 @@
                                             </div>
                                           </th>
                                           <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" >ID</th>
-                                          <th class="sort align-middle pe-6 text-uppercase text-end" scope="col" data-sort="amount" >Descripcion Concepto</th>
-                                          <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="stage" >Valor</th>
-                                          <th class="sort align-middle text-start text-uppercase" scope="col" data-sort="probability" >Estado</th>
+                                          <th class="sort align-middle pe-6 text-uppercase text-center" scope="col" data-sort="amount" >Año Ini</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="stage" >Año Fin</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Fecha Inicio</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Fecha Fin</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Nro Dias</th>
+                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Tipo de Vacacion</th>
                                           <th class="align-middle pe-0 text-end" scope="col"></th>
                                         </tr>
                                       </thead>
                                       <tbody class="list" id="lead-details-table-body">
-                                        <c:forEach var="fsueldox" items="${requestScope.fsueldox}">
+                                        <c:forEach var="LstVacacionesPer" items="${requestScope.LstVacacionesPer}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="fs--1 align-middle px-0 py-3">
                                                 <div class="form-check mb-0 fs-0">
                                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
                                                 </div>
                                               </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexcodcon}</a></td>
-                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${fsueldox.descon}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexvalcon}</a></td>
-                                                <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                                <c:if test="${fsueldox.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${LstVacacionesPer.iexcorrel}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0">${LstVacacionesPer.iexpermesini}</td>
+                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${LstVacacionesPer.iexpermesfin}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexfecini}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexfecfin}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexnrodias}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.destipvac}</td>
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>

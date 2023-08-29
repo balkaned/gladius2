@@ -113,12 +113,7 @@ public class EmpleadoController {
 
         String sexo;
         logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){
-            sexo="NA";
-        }else{
-            sexo=emp.getIexcodsex();
-        }
-
+        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
         logger.info("sexo: "+sexo);
         model.addAttribute("sexo",sexo);
 
