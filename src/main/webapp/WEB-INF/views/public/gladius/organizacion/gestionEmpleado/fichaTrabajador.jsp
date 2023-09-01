@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                           <div class="form-floating">
-                                            <input class="form-control" name="iexnrodoc" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
+                                            <input class="form-control" name="iexnrodoc" maxlength="20" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
                                             <label>Nro Documento</label>
                                           </div>
                                         </div>

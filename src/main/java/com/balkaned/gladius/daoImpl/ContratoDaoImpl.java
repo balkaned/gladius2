@@ -75,8 +75,6 @@ public class ContratoDaoImpl implements ContratoDao {
                     p.setIexfecmod(rs.getString("iexfecmod"));
                     p.setIexestado(rs.getString("iexestado"));
 
-                    System.out.println("p.getDestipcont(): "+p.getDestipcont());
-
                     lista.add(p);
                 }
                 return lista;
