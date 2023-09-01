@@ -359,7 +359,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexfeccmod(rs.getString("iexfeccmod"));
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexusumod(rs.getString("iexusumod"));
-
                     p.setDestipcese(rs.getString("destipcese"));
                     p.setDessex(rs.getString("dessex"));
                     p.setDespaisemisor(rs.getString("despaisemisor"));
@@ -370,18 +369,15 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setDesdepart_origen(rs.getString("desdepart_origen"));
                     p.setDesprovin_origen(rs.getString("desprovin_origen"));
                     p.setDesdistri_origen(rs.getString("desdistri_origen"));
-
                     p.setDesinstruccion(rs.getString("desinstruccion"));
                     p.setIexgrdinstruccion(rs.getString("iexgrdinstruccion"));
                     p.setDescentroform(rs.getString("descentroform"));
-
                     p.setIexcodlardist(rs.getString("iexcodlardist"));
                     p.setIexnrotelf(rs.getString("iexnrotelf"));
                     p.setIexemail(rs.getString("iexemail"));
                     p.setIexemail_coorp(rs.getString("iexemail_coorp"));
                     p.setIexlogo(rs.getString("iexlogo"));
                     p.setIexestcivil(rs.getString("iexestcivil"));
-
                     p.setIexreglab(rs.getString("iexreglab"));
                     p.setDireccion1(rs.getString("direccion"));
                     p.setDespuesto(cap.letras(rs.getString("despuesto")));

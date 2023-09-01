@@ -39,7 +39,6 @@ public class SueldosController {
     @RequestMapping("/sueldoFijo@{idTrab}")
     public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/sueldoFijo");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -78,7 +77,7 @@ public class SueldosController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -100,7 +99,6 @@ public class SueldosController {
     @RequestMapping("/nuevoSueldoFijo@{idTrab}")
     public ModelAndView nuevoSueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/nuevoSueldoFijo");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -139,7 +137,7 @@ public class SueldosController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -211,7 +209,6 @@ public class SueldosController {
     @RequestMapping("/sueldoVariable@{idTrab}")
     public ModelAndView sueldoVariable(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/sueldoVariable");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -250,7 +247,7 @@ public class SueldosController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -303,7 +300,7 @@ public class SueldosController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
 
@@ -366,7 +363,7 @@ public class SueldosController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
 
@@ -380,8 +377,6 @@ public class SueldosController {
         model.addAttribute("lovConcepVar",sueldoService.ListConceptos(idCompania, "2"));
         request.setAttribute("iexcodpro", codpro);
         request.setAttribute("iexperiodo", nroper);
-
-
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoSueldoVar");
     }
@@ -415,8 +410,8 @@ public class SueldosController {
 
         Integer iexcodcia  = Integer.valueOf(request.getParameter("iexcodcia"));
         Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro2"));
-        String periodo  =   request.getParameter("iexperiodo2");
+        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro"));
+        String periodo  =   request.getParameter("iexperiodo");
         String concepto = request.getParameter("iexcodcon");
         Double valcon  = 0.0;
 

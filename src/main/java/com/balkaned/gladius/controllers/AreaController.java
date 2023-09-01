@@ -28,7 +28,14 @@ public class AreaController {
     LovsService lovsService;
 
     @RequestMapping("/listAreas")
-    public ModelAndView empleadosList(ModelMap model, HttpServletRequest request) {
+    public ModelAndView listAreas(ModelMap model, HttpServletRequest request) {
+        logger.info("/listAreas");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");

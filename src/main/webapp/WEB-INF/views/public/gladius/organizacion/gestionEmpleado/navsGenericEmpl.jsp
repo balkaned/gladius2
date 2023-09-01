@@ -114,9 +114,12 @@
             </div>
 
             <div>
-              <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-check-circle"></span>
+              <div class="d-flex align-items-center mb-1">
+                <span class="me-2 uil uil-check-circle"></span>
                 <h5 class="text-1000 mb-0">Estado</h5>
-              </div><span class="badge badge-phoenix badge-phoenix-success">Activo</span>
+              </div>
+              <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix badge-phoenix-success">Activo</span></c:if>
+              <c:if test="${estado.equals('0')}"><span class="badge badge-phoenix badge-phoenix-danger">Inactivo</span></c:if>
             </div>
           </div>
         </div>

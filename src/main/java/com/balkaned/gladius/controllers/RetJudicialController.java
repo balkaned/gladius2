@@ -38,7 +38,6 @@ public class RetJudicialController {
     @RequestMapping("/retencionJud@{idTrab}")
     public ModelAndView retencionJud(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/retencionJud");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -76,7 +75,7 @@ public class RetJudicialController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -95,7 +94,6 @@ public class RetJudicialController {
    @RequestMapping("/nuevaRetencion@{idTrab}")
     public ModelAndView nuevaRetencion(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/nuevaRetencion");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -134,7 +132,7 @@ public class RetJudicialController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);

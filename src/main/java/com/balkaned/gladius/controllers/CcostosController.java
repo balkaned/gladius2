@@ -31,6 +31,13 @@ public class CcostosController {
 
     @RequestMapping("/listCcostos")
     public ModelAndView litsCcostos(ModelMap model, HttpServletRequest request) {
+        logger.info("/litsCcostos");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -89,8 +96,6 @@ public class CcostosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        //model.addAttribute("idx",puestoService.getIdPuesto(idCompania));
-        //model.addAttribute("lovCatPuesto",lovsService.getLovs("63","%"));
         model.addAttribute("lovCatCencos",lovsService.getLovs("64","%"));
         model.addAttribute("idx",ccostoService.getIdCentroCosto(idCompania));
 

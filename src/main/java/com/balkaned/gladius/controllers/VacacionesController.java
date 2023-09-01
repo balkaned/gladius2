@@ -1,7 +1,6 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.EmpDatvar;
-import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,6 @@ public class VacacionesController {
     @RequestMapping("/vacaciones@{idTrab}")
     public ModelAndView vacaciones(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/vacaciones");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -73,7 +71,7 @@ public class VacacionesController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -98,7 +96,6 @@ public class VacacionesController {
         @PathVariable String perMesIni,
         @PathVariable String perMesFin){
         logger.info("/verDetalleVac");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -137,7 +134,7 @@ public class VacacionesController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -188,7 +185,6 @@ public class VacacionesController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-
         Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
         model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
@@ -198,7 +194,7 @@ public class VacacionesController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -234,7 +230,6 @@ public class VacacionesController {
         @PathVariable String perfin,
         @PathVariable String saldo){
         logger.info("/nuevasVacacionesIns");
-
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -273,7 +268,7 @@ public class VacacionesController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);

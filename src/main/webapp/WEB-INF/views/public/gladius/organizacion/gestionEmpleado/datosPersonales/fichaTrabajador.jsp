@@ -249,7 +249,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                            <div class="form-floating">
-                                             <input class="form-control" name="iexnrotelf" type="text" value="${requestScope.emp.iexnrotelf}" placeholder="street" />
+                                             <input class="form-control" name="iexnrotelf" maxlength="20" type="text" value="${requestScope.emp.iexnrotelf}" placeholder="street" />
                                              <label>Nro de Telefono</label>
                                            </div>
                                         </div>
@@ -597,7 +597,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexnrocta_hab" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="street" required="true"/>
+                                                <input class="form-control" name="iexnrocta_hab" maxlength="50" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="street" required="true"/>
                                                 <label>Nro de Cuenta de Bancos (*)</label>
                                               </div>
                                             </div>
@@ -821,7 +821,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                <div class="form-floating">
-                                                 <input class="form-control" name="iexnroruc_cas" id="floatingInputStreet" maxlength="11" value="${requestScope.emp4.iexnroruc_cas}" type="text" placeholder="street" />
+                                                 <input class="form-control" name="iexnroruc_cas" maxlength="20" id="floatingInputStreet" maxlength="11" value="${requestScope.emp4.iexnroruc_cas}" type="text" placeholder="street" />
                                                  <label for="floatingInputStreet">Nro de Ruc Cas</label>
                                                </div>
                                             </div>
@@ -891,49 +891,49 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="20" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="street" required />
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="50" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="street" required />
                                                 <label>Nom. Via (*)</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexnrovia_dom1" maxlength="4" value="${requestScope.emp5.iexnrovia_dom1}" type="text" placeholder="street" required />
+                                                  <input class="form-control" name="iexnrovia_dom1" maxlength="6" value="${requestScope.emp5.iexnrovia_dom1}" type="text" placeholder="street" required />
                                                   <label>Nro Via (*)</label>
                                                 </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexdeptin_dom1" maxlength="4" value="${requestScope.emp5.iexdeptin_dom1}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexdeptin_dom1" maxlength="6" value="${requestScope.emp5.iexdeptin_dom1}" type="text" placeholder="street" />
                                                 <label>Nro Dept</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexinterior_dom1" maxlength="4" value="${requestScope.emp5.iexinterior_dom1}" type="text" placeholder="street" />
+                                                  <input class="form-control" name="iexinterior_dom1" maxlength="6" value="${requestScope.emp5.iexinterior_dom1}" type="text" placeholder="street" />
                                                   <label>Interior</label>
                                                 </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexmanzana_dom1" maxlength="4" value="${requestScope.emp5.iexmanzana_dom1}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexmanzana_dom1" maxlength="6" value="${requestScope.emp5.iexmanzana_dom1}" type="text" placeholder="street" />
                                                 <label>Manzana domicilio 1</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexlote_dom1" maxlength="4" value="${requestScope.emp5.iexlote_dom1}" type="text" placeholder="street" />
+                                                  <input class="form-control" name="iexlote_dom1" maxlength="6" value="${requestScope.emp5.iexlote_dom1}" type="text" placeholder="street" />
                                                   <label>Nro de Lote</label>
                                                 </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexkilometro_dom1" maxlength="4" value="${requestScope.emp5.iexkilometro_dom1}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexkilometro_dom1" maxlength="6" value="${requestScope.emp5.iexkilometro_dom1}" type="text" placeholder="street" />
                                                 <label>Kilometro de Referencia</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                             <div class="form-floating">
-                                              <input class="form-control" name="iexetapa_dom1" maxlength="4" value="${requestScope.emp5.iexetapa_dom1}" type="text" placeholder="street" />
+                                              <input class="form-control" name="iexetapa_dom1" maxlength="6" value="${requestScope.emp5.iexetapa_dom1}" type="text" placeholder="street" />
                                               <label>Etapa dom1</label>
                                             </div>
                                           </div>
@@ -1011,55 +1011,55 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexnomvia_dom2" maxlength="20" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="street" />
+                                                  <input class="form-control" name="iexnomvia_dom2" maxlength="50" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="street" />
                                                   <label>Nom. Via 2</label>
                                                 </div>
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                   <div class="form-floating">
-                                                    <input class="form-control" name="iexnrovia_dom2" maxlength="4" value="${requestScope.emp5.iexnrovia_dom2}" type="text" placeholder="street" />
+                                                    <input class="form-control" name="iexnrovia_dom2" maxlength="6" value="${requestScope.emp5.iexnrovia_dom2}" type="text" placeholder="street" />
                                                     <label>Nro Via 2</label>
                                                   </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexdeptin_dom2" maxlength="4" value="${requestScope.emp5.iexdeptin_dom2}" type="text" placeholder="street" />
+                                                  <input class="form-control" name="iexdeptin_dom2" maxlength="6" value="${requestScope.emp5.iexdeptin_dom2}" type="text" placeholder="street" />
                                                   <label>Nro Dept 2</label>
                                                 </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexinterior_dom2" maxlength="4" value="${requestScope.emp5.iexinterior_dom2}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexinterior_dom2" maxlength="6" value="${requestScope.emp5.iexinterior_dom2}" type="text" placeholder="street" />
                                                 <label>Interior 2</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexmanzana_dom2" maxlength="4" value="${requestScope.emp5.iexmanzana_dom2}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexmanzana_dom2" maxlength="6" value="${requestScope.emp5.iexmanzana_dom2}" type="text" placeholder="street" />
                                                 <label>Manzana domicilio 2</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexlote_dom2" maxlength="4" value="${requestScope.emp5.iexlote_dom2}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexlote_dom2" maxlength="6" value="${requestScope.emp5.iexlote_dom2}" type="text" placeholder="street" />
                                                 <label>Nro de Lote 2</label>
                                               </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                             <div class="form-floating">
-                                              <input class="form-control" name="iexkilometro_dom2" maxlength="4" value="${requestScope.emp5.iexkilometro_dom2}" type="text" placeholder="street" />
+                                              <input class="form-control" name="iexkilometro_dom2" maxlength="6" value="${requestScope.emp5.iexkilometro_dom2}" type="text" placeholder="street" />
                                               <label>Kilometro de Referencia 2</label>
                                             </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                             <div class="form-floating">
-                                              <input class="form-control" name="iexblock_dom2" maxlength="4" type="text" value="${requestScope.emp5.iexblock_dom2}" placeholder="street" />
+                                              <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexblock_dom2}" placeholder="street" />
                                               <label>Nro de Bloque 2</label>
                                             </div>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <div class="form-floating">
-                                                  <input class="form-control" name="iexetapa_dom2" maxlength="4" type="text" value="${requestScope.emp5.iexetapa_dom2}" placeholder="street" />
+                                                  <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexetapa_dom2}" placeholder="street" />
                                                   <label>Etapa dom 2</label>
                                                 </div>
                                           </div>
@@ -1076,7 +1076,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <div class="form-floating">
-                                                <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="street" />
+                                                <input class="form-control" name="iexreferencia_dom2" maxlength="100" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="street" />
                                                 <label>Referencia dom 2</label>
                                               </div>
                                           </div>

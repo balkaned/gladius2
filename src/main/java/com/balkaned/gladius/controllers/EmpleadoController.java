@@ -36,6 +36,13 @@ public class EmpleadoController {
 
     @RequestMapping("/listEmpleados")
     public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
+        logger.info("/listEmpleados");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -106,10 +113,11 @@ public class EmpleadoController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
+        logger.info("estadoFlag: "+emp.getIexflgest());
 
         String sexo;
         logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());

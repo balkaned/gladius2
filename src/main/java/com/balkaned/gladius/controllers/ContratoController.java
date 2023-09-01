@@ -71,7 +71,7 @@ public class ContratoController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);
@@ -129,7 +129,7 @@ public class ContratoController {
         model.addAttribute("nrodoc", emp.getIexnrodoc());
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
-        model.addAttribute("estado", emp.getDesestado());
+        model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp",idCompania);
         model.addAttribute("iexlogo",emp.getIexlogo());
         model.addAttribute("urlLogo",urlLogo);

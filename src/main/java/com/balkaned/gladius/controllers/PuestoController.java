@@ -1,6 +1,5 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Puesto;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
@@ -30,6 +28,12 @@ public class PuestoController {
 
     @RequestMapping("/listPuestos")
     public ModelAndView listPuestos(ModelMap model, HttpServletRequest request) {
+        logger.info("/listPuestos");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");

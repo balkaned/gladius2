@@ -39,6 +39,11 @@ public class LovsController {
     @RequestMapping(value="/getlovsPROXCON",method= {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView getlovsPROXCON(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("/getlovsPROXCON");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String iexcodreg=request.getParameter("iexcodreg");
 
@@ -55,6 +60,11 @@ public class LovsController {
     @RequestMapping(value="/getlovsPERX",method= {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView getlovsPERX(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("/getlovsPERX");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String proceso = request.getParameter("iexcodpro");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

@@ -47,22 +47,36 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar Sueldo Fijo</h2>
+                                <h2 id="h2top" class="mb-0">Insertar Sueldo Variable</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarSueldoFijo" novalidate >
-                                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                            <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarConceptoVar" novalidate >
+                                            <input class="form-control" name="iexcodcia" type="hidden" value="${idCompania}" />
+                                            <input class="form-control" name="iexcodtra" type="hidden" value="${idTrab}" />
+                                            <input class="form-control" name="iexcodpro2" type="hidden" value="${iexcodpro}" />
+                                            <input class="form-control" name="iexperiodo2" type="hidden" value="${iexperiodo}" />
+                                            <div class="col-sm-6 col-md-6">
+                                                   <div class="form-floating">
+                                                     <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
+                                                     <label>Proceso de Planilla (*)</label>
+                                                   </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                   <div class="form-floating">
+                                                     <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
+                                                     <label>Periodo (*)</label>
+                                                   </div>
+                                            </div>
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
                                                 <select class="form-select" name="iexcodcon" required >
-                                                  <option value="" selected > -- Seleccionar -- </option>
-                                                  <c:forEach var="lovConcepSue" items="${lovConcepSue}">
-                                                      <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>
+                                                  <option value="" selected >Seleccionar</option>
+                                                  <c:forEach var="lovConcepVar" items="${lovConcepVar}">
+                                                      <option value="${lovConcepVar.codConcepto}" >${lovConcepVar.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
                                                 <label>Concepto (*)</label>
@@ -70,11 +84,10 @@
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                    <div class="form-floating">
-                                                     <input class="form-control" name="iexvalcon" maxlength="18" type="text" value="" placeholder="street" required/>
-                                                     <label>Valor (*)</label>
+                                                     <input class="form-control" name="iexvalcon" maxlength="10" type="number" value="" placeholder="street" required/>
+                                                     <label>Concepto (*)</label>
                                                    </div>
                                             </div>
-
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.
@@ -82,8 +95,8 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="sueldoFijo@${idTrab}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Sueldo Fijo</button>
+                                                    <a class="btn btn-phoenix-primary" href="verDataSueldoVar@${idTrab}">Cancel</a>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Concepto</button>
                                                   </div>
                                                 </div>
                                             </div>
