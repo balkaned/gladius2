@@ -86,7 +86,7 @@ public class AusentismoController {
 
         model.addAttribute("LstAusentismoDet",ausentismoService.listarAusentismoPrg(empleado));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/ausentismo");
     }
 
    @RequestMapping("/nuevoAusentismo@{idTrab}")
@@ -144,7 +144,7 @@ public class AusentismoController {
 
         model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoAusentismo");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/nuevoAusentismo");
     }
 
 }

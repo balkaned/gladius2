@@ -9,19 +9,19 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    <jsp:include page="../../../links.jsp"></jsp:include>
+    <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
   
-  <jsp:include page="scriptsEmpl.jsp"></jsp:include>
+  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-          <jsp:include page="../../../navTop.jsp"></jsp:include>
-          <jsp:include page="../../../modalFade.jsp"></jsp:include>
+          <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
               <div class="pb-9">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row g-0 g-md-4 g-xl-6">
 
-                  <jsp:include page="navsGenericEmpl.jsp"></jsp:include>
+                  <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
@@ -41,7 +41,7 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
                                 <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                  <h2 class="mb-0">Gestión de retención judicial</h2>
+                                  <h2 class="mb-0">Retención judicial</h2>
                                   <div class="col-auto">
                                       <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
                                       <a class="btn btn-primary btn-sm" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
@@ -126,12 +126,12 @@
               </div>
           </div>
 
-          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+          <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
-    <jsp:include page="../../../customize.jsp"></jsp:include>
+    <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
 </html>

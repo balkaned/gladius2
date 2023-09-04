@@ -9,19 +9,19 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    <jsp:include page="../../../links.jsp"></jsp:include>
+    <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
   
-  <jsp:include page="scriptsEmpl.jsp"></jsp:include>
+  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-          <jsp:include page="../../../navTop.jsp"></jsp:include>
-          <jsp:include page="../../../modalFade.jsp"></jsp:include>
+          <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
               <div class="pb-9">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row g-0 g-md-4 g-xl-6">
 
-                  <jsp:include page="navsGenericEmpl.jsp"></jsp:include>
+                  <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
@@ -81,8 +81,8 @@
                                               <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexcodcon}</a></td>
                                               <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${fsueldox.descon}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexvalcon}</a></td>
-                                                <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                                <c:if test="${fsueldox.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                                <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                                <c:if test="${fsueldox.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
@@ -116,12 +116,12 @@
               </div>
           </div>
 
-          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+          <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
-    <jsp:include page="../../../customize.jsp"></jsp:include>
+    <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
 </html>

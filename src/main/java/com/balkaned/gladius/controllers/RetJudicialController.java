@@ -88,7 +88,7 @@ public class RetJudicialController {
 
         model.addAttribute("LstRetencionDet",retencionJudService.listarRetencionJudicial(emp));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/retencionJud");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/retencionJudicial/retencionJud");
     }
 
    @RequestMapping("/nuevaRetencion@{idTrab}")
@@ -146,7 +146,7 @@ public class RetJudicialController {
         model.addAttribute("lovTipretj",lovsService.getLovs("58","%"));
         model.addAttribute("lovProcesos",procesoPlanillaService.listar("%"));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevaRetencion");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/retencionJudicial/nuevaRetencion");
     }
 
     @RequestMapping("/insertarRetencion")

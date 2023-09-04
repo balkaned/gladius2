@@ -187,7 +187,7 @@ public class EmpleadoController {
         model.addAttribute("lovProvin_origen2",lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovDist_origen2",lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
     }
 
     @RequestMapping(value="/updateEmplDatPers",method=RequestMethod.POST)

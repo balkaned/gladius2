@@ -93,7 +93,7 @@ public class SueldosController {
 
         model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldoFijo");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosFijos/sueldoFijo");
     }
 
     @RequestMapping("/nuevoSueldoFijo@{idTrab}")
@@ -151,7 +151,7 @@ public class SueldosController {
         model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
         model.addAttribute("lovConcepSue",sueldoService.ListConceptos(idCompania, "1"));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoSueldoFijo");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosFijos/nuevoSueldoFijo");
     }
 
     @RequestMapping("/insertarSueldoFijo")
@@ -260,7 +260,7 @@ public class SueldosController {
 
         model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldoVariable");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/sueldoVariable");
     }
 
     @RequestMapping("/verDataSueldoVar@{idTrab}")
@@ -319,7 +319,7 @@ public class SueldosController {
 
         model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(iexcodtra),1));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/verDataSueldoVar");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");
     }
 
     @RequestMapping("/nuevoSueldoVar@{idTrab}@{codpro}@{nroper}")
@@ -378,7 +378,7 @@ public class SueldosController {
         request.setAttribute("iexcodpro", codpro);
         request.setAttribute("iexperiodo", nroper);
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoSueldoVar");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/nuevoSueldoVar");
     }
 
     @RequestMapping("/insertarConceptoVar")
@@ -410,8 +410,8 @@ public class SueldosController {
 
         Integer iexcodcia  = Integer.valueOf(request.getParameter("iexcodcia"));
         Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro"));
-        String periodo  =   request.getParameter("iexperiodo");
+        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro2"));
+        String periodo  =   request.getParameter("iexperiodo2");
         String concepto = request.getParameter("iexcodcon");
         Double valcon  = 0.0;
 

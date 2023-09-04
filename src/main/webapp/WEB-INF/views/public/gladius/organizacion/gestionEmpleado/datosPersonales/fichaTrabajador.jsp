@@ -9,19 +9,19 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    <jsp:include page="../../../links.jsp"></jsp:include>
+    <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
 
-  <jsp:include page="scriptsEmpl.jsp"></jsp:include>
+  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-          <jsp:include page="../../../navTop.jsp"></jsp:include>
-          <jsp:include page="../../../modalFade.jsp"></jsp:include>
+          <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
               <div class="pb-9">
@@ -33,16 +33,16 @@
                 </div>
                 <div class="row g-0 g-md-4 g-xl-6">
 
-                  <jsp:include page="navsGenericEmpl.jsp"></jsp:include>
+                  <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
                        <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-6" id="myTab" role="tablist" style="overflow-y: hidden;">
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-chart-line me-2 tab-icon-color"></span>Datos Personales</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos Personales</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-clipboard me-2 tab-icon-color"></span>Datos Laborales</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-video me-2 tab-icon-color"></span>Información de Pago</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fa-square-check me-2 tab-icon-color"></span>Seguridad Social</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-phone me-2 tab-icon-color"></span>Datos Domicilio</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de Pago</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fa-plus-square me-2 tab-icon-color"></span>Seguridad Social</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos Domicilio</a></li>
                        </ul>
 
                       <div class="tab-content" id="myTabContent">
@@ -1177,13 +1177,13 @@
               </div>
           </div>
 
-          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+          <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
 
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
-    <jsp:include page="../../../customize.jsp"></jsp:include>
+    <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
 </html>

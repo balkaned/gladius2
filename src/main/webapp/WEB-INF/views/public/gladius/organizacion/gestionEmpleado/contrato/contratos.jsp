@@ -9,19 +9,19 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    <jsp:include page="../../../links.jsp"></jsp:include>
+    <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
   
-  <jsp:include page="scriptsEmpl.jsp"></jsp:include>
+  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-          <jsp:include page="../../../navTop.jsp"></jsp:include>
-          <jsp:include page="../../../modalFade.jsp"></jsp:include>
+          <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
               <div class="pb-9">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row g-0 g-md-4 g-xl-6">
 
-                  <jsp:include page="navsGenericEmpl.jsp"></jsp:include>
+                  <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
@@ -121,12 +121,12 @@
               </div>
           </div>
 
-          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+          <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
-    <jsp:include page="../../../customize.jsp"></jsp:include>
+    <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
 </html>

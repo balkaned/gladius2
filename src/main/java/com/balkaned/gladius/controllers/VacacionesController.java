@@ -87,7 +87,7 @@ public class VacacionesController {
 
         model.addAttribute("LstVacacionesCtl",vacacionesService.listarVacacionesCtl(empleado));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listVacaciones");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
     }
 
     @RequestMapping("/verDetalleVac@{idTrab}@{perMesIni}@{perMesFin}")
@@ -150,7 +150,7 @@ public class VacacionesController {
 
         model.addAttribute("LstVacacionesPer",vacacionesService.listarVacacionesPer(empleado,perMesIni, perMesFin));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/verDetalleVac");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
     }
 
     @RequestMapping("/nuevasVacacionesValidacion@{idTrab}@{perMesIni}@{perMesFin}")
@@ -219,7 +219,7 @@ public class VacacionesController {
             model.addAttribute("msgErrorSaldoVac","No cuenta con saldo de dias para programar vacaciones");
         }
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/verDetalleVac");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
     }
 
 
@@ -284,7 +284,7 @@ public class VacacionesController {
         model.addAttribute("perini",perini);
         model.addAttribute("perfin",perfin);
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevasVacacionesIns");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/nuevasVacacionesIns");
     }
 
     @RequestMapping("/insertarVacaciones")

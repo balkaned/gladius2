@@ -84,7 +84,7 @@ public class ContratoController {
 
         model.addAttribute("LstContratoDet",contratoService.listarContratoEmp(emp));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contratos");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/contratos");
     }
 
    @RequestMapping("/nuevoContrato@{idTrab}")
@@ -142,7 +142,7 @@ public class ContratoController {
 
         model.addAttribute("lovTipcont",lovsService.getLovs("12","%"));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoContrato");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/nuevoContrato");
     }
 
     @RequestMapping("/insertarContrato")
