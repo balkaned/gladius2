@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -148,7 +149,7 @@ public class VacacionesController {
         logger.info("sexo: "+sexo);
         model.addAttribute("sexo",sexo);
 
-        model.addAttribute("LstVacacionesPer",vacacionesService.listarVacacionesPer(empleado,perMesIni, perMesFin));
+        model.addAttribute("LstVacacionesPer",vacacionesService.listarVacacionesPer(emp,perMesIni, perMesFin));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
     }
@@ -314,32 +315,97 @@ public class VacacionesController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        Integer iexcodcia  = Integer.valueOf(request.getParameter("iexcodcia"));
-        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro2"));
-        String periodo  =   request.getParameter("iexperiodo2");
-        String concepto = request.getParameter("iexcodcon");
-        Double valcon  = 0.0;
+        String iexcodtra = request.getParameter("iexcodtra");
 
-        if(request.getParameter("iexvalcon")==null) {
-            valcon  = 0.0;
-        }else {
-            valcon  = Double.parseDouble(request.getParameter("iexvalcon"));
-        };
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(iexcodtra));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
 
-        EmpDatvar Datvar = new EmpDatvar();
-        Datvar.setIexcodcia(iexcodcia);
-        Datvar.setIexcodtra(iexcodtra);
-        Datvar.setIexcodpro(v_codpro);
-        Datvar.setIexnroper(periodo);
-        Datvar.setIexcodcon(concepto);
-        Datvar.setIexvalcon(valcon);
-        Datvar.setIexflgest("1");
-        Datvar.setIexcorrel(1);
+        String sexo;
+        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
+        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
+        logger.info("sexo: "+sexo);
+        model.addAttribute("sexo",sexo);
 
-        //sueldoService.insertarEmpDatvar(Datvar);
+        String perini2 = request.getParameter("perini2");
+        String perfin2 = request.getParameter("perfin2");
+        String saldo = request.getParameter("saldo2");
 
-        return new ModelAndView("redirect:/verDataSueldoVar@"+iexcodtra);
+        String iexcodcia = request.getParameter("iexcodcia");
+        String iexfecini = request.getParameter("iexfecini");
+        String iexfecfin = request.getParameter("iexfecfin");
+
+        String Msg_form_global ="" ;
+        String resultado ="Error";
+
+        Integer codcorrel =0;
+        Empleado empleado = new Empleado();
+        Integer validador =0;
+
+        validador= vacacionesService.validaVac(Integer.valueOf(iexcodcia), Integer.valueOf(iexcodtra), iexfecini, iexfecfin);
+
+        if(validador==0){
+            VacacionProgramacion vacprg = new VacacionProgramacion();
+            vacprg.setIexcodcia(Integer.valueOf(iexcodcia));
+            vacprg.setIexcodtra(Integer.valueOf(iexcodtra));
+
+            codcorrel = vacacionesService.getIdVacacionPrg(vacprg);
+            logger.info("codcorrelVAc: "+codcorrel);
+
+            if(codcorrel>0) {
+
+                String iexpermesini2 = request.getParameter("iexpermesini2");
+
+                logger.info("iexpermesini2: "+iexpermesini2);
+                Integer mesfinal= Integer.valueOf(iexpermesini2)+1;
+
+                vacprg.setIexcorrel(codcorrel);
+                vacprg.setIextipvac(request.getParameter("iextipvac"));
+                vacprg.setIexfecini(request.getParameter("iexfecini"));
+                vacprg.setIexfecfin(request.getParameter("iexfecfin"));
+                vacprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
+                vacprg.setIexglosa(request.getParameter("iexglosa"));
+                vacprg.setIexusucrea("1");
+                vacprg.setIexpermesini(iexpermesini2);
+                vacprg.setIexpermesfin(String.valueOf(mesfinal));
+
+                vacacionesService.insertarVacacionPrg(vacprg);
+                Msg_form_global="OK";
+            }
+        }else{
+
+            Msg_form_global="Error";
+        }
+
+        resultado=Msg_form_global;
+
+        if(resultado.equals("OK")){
+            Empleado emp2 = new Empleado();
+            emp2.setIexcodtra(Integer.valueOf(iexcodtra));
+            emp2.setIexcodcia(Integer.valueOf(iexcodcia));
+
+            vacacionesService.procesaVacacionCtl(emp2);
+            return new ModelAndView("redirect:/verDetalleVac@"+iexcodtra+"@"+perini2+"@"+perfin2);
+
+        }else{
+            model.addAttribute("saldo",saldo);
+            model.addAttribute("lovTipvaca",lovsService.getLovs("56","%"));
+            model.addAttribute("perini",perini2);
+            model.addAttribute("perfin",perfin2);
+            model.addAttribute("msg","Las fechas se cruzan con programaciones anteriores");
+        }
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/nuevasVacacionesIns");
     }
 }
 

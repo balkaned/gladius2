@@ -80,7 +80,7 @@
                                               </td>
                                               <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexcodcon}</a></td>
                                               <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${fsueldox.descon}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fsueldox.iexvalcon}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${fsueldox.iexvalcon}</td>
                                                 <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                                 <c:if test="${fsueldox.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">

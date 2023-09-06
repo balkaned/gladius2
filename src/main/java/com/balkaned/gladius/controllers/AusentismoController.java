@@ -1,8 +1,6 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.EmpDatvar;
-import com.balkaned.gladius.beans.EmpSueldo;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -84,7 +82,7 @@ public class AusentismoController {
         logger.info("sexo: "+sexo);
         model.addAttribute("sexo",sexo);
 
-        model.addAttribute("LstAusentismoDet",ausentismoService.listarAusentismoPrg(empleado));
+        model.addAttribute("LstAusentismoDet",ausentismoService.listarAusentismoPrg(emp));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/ausentismo");
     }
@@ -143,6 +141,94 @@ public class AusentismoController {
         model.addAttribute("sexo",sexo);
 
         model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/nuevoAusentismo");
+    }
+
+    @RequestMapping("/insertarAusentismo")
+    public ModelAndView insertarAusentismo(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarAusentismo");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(iexcodtra));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
+        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
+        logger.info("sexo: "+sexo);
+        model.addAttribute("sexo",sexo);
+
+        Integer codcorrel = 0;
+        Integer validador =0;
+        String Msg_form_global="";
+
+        String iexfecini = request.getParameter("iexfecini");
+        String iexfecfin = request.getParameter("iexfecfin");
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+        ausprg.setIexcodcia(emp.getIexcodcia());
+        ausprg.setIexcodtra(emp.getIexcodtra());
+
+        codcorrel = ausentismoService.getIdAusentismoPrg(ausprg);
+        logger.info("codcorrel: "+codcorrel);
+        validador= ausentismoService.validaAus(emp.getIexcodcia(), emp.getIexcodtra(), iexfecini,iexfecfin,0);
+        logger.info("validador: "+validador);
+
+        if(validador==0){
+            //if(codcorrel >0) {
+                ausprg.setIexcorrel(codcorrel);
+                ausprg.setIexfecini(iexfecini);
+                ausprg.setIexfecfin(iexfecfin);
+                ausprg.setIextipaus(request.getParameter("iextipaus") );
+                ausprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
+                ausprg.setIexglosa(request.getParameter("iexglosa"));
+                ausprg.setIexusucrea("1");
+
+                ausentismoService.insertarAusentismoPrg(ausprg);
+                Msg_form_global="OK";
+                return new ModelAndView("redirect:/ausentismo@"+iexcodtra);
+            //}
+        }else{
+            Msg_form_global="Error";
+            model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
+            model.addAttribute("msg","Error Las fechas se cruzan con programaciones anteriores");
+        }
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/nuevoAusentismo");
     }

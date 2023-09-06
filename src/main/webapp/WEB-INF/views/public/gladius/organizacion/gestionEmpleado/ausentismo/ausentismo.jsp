@@ -79,11 +79,11 @@
                                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
                                                 </div>
                                               </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${LstAusentismoDet.iexcorrel}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">#${LstAusentismoDet.iexcorrel}</a></td>
                                               <td class="amount align-middle white-space-nowrap text-center fw-bold text-700 py-2 pe-6">${LstAusentismoDet.destipaus}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexfecini}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexfecfin}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAusentismoDet.iexnrodias}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><span class="badge badge-phoenix badge-phoenix-info">${LstAusentismoDet.iexnrodias} dias</span></td>
 
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">

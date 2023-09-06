@@ -84,8 +84,8 @@
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                    <div class="form-floating">
-                                                     <input class="form-control" name="iexvalcon" maxlength="10" type="number" value="" placeholder="street" required/>
-                                                     <label>Concepto (*)</label>
+                                                     <input class="form-control" name="iexvalcon" maxlength="70" type="number" value="" placeholder="street" required/>
+                                                     <label>Valor Concepto (*)</label>
                                                    </div>
                                             </div>
 

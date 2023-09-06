@@ -128,4 +128,82 @@ public class VacacionesDaoImpl implements VacacionesDao {
         });
     }
 
+    public Integer validaVac(Integer codcia, Integer codtra, String fecini, String fecfin){
+
+        final Integer[] valor = {0};
+
+        String sql= "  select " +
+                "	sum(e.dias) dias " +
+                "  from (  " +
+                "	 select coalesce(count(iexcorrel),0) dias from iexvacprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  >= iexfecini  and  to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecfin  " +
+                "	  union " +
+                "	  select coalesce(count(iexcorrel),0) dias from iexvacprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  <= iexfecfin " +
+                "  union "+
+                " select coalesce(count(iexcorrel),0) dias from iexvacprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecini "+
+                " union   "+
+                " select coalesce(count(iexcorrel),0) dias from iexvacprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecfin  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecfin  "+
+                " union  "+
+                " select coalesce(count(iexcorrel),0) dias from iexvacprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecfin  "+
+                "																  ) e";
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    valor[0] = rs.getInt("dias");
+                }
+                return valor[0];
+            }
+        });
+    }
+
+    public Integer getIdVacacionPrg(VacacionProgramacion vacprg){
+
+        final Integer[] idfinal = {0};
+
+        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexvacprg where iexcodcia="+vacprg.getIexcodcia()+" and iexcodtra="+vacprg.getIexcodtra()+" " ;
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] =rs.getInt("idex");
+                }
+                return idfinal[0];
+            }
+        });
+    }
+
+    public void insertarVacacionPrg(VacacionProgramacion vacprg){
+
+        template.update("  insert into iexvacprg ( " +
+                "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
+                "iextipvac , iexglosa,  " +
+                "iexpermesini, iexpermesfin, iexusucrea, iexfeccrea " +
+                ") values ( " +
+                "  ?,   ? ,  ?,  to_date(?,'DD/MM/YYYY'),  to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
+                "  ?,   ? ,   "+
+                "  ?,   ? ,  ? ,  current_date "+
+                ")  ",
+
+                vacprg.getIexcodcia(),
+                vacprg.getIexcodtra(),
+                vacprg.getIexcorrel(),
+                vacprg.getIexfecini(),
+                vacprg.getIexfecfin(),
+                vacprg.getIexnrodias(),
+                vacprg.getIextipvac(),
+                vacprg.getIexglosa(),
+                vacprg.getIexpermesini(),
+                vacprg.getIexpermesfin(),
+                vacprg.getIexusucrea());
+    }
+
+    public void procesaVacacionCtl(Empleado empleado){
+
+        template.update("  call pl_empleado_vacsal(?,?)  ",
+
+                empleado.getIexcodcia(),
+                empleado.getIexcodtra());
+
+    }
+
+
+
 }

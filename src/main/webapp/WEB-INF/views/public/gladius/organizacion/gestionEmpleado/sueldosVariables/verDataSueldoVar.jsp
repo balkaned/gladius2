@@ -54,7 +54,7 @@
                                              <div class="col-6 col-sm-12">
                                                <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="user" style="stroke-width:2.5;"></span>
                                                  <h6 class="mb-0">Planilla</h6>
-                                               </div><a class="fs--1 ms-4" href="#">${iexcodpro}</a>
+                                               </div><a class="fs--1 ms-4" href="#">#${iexcodpro}</a>
                                              </div>
                                              <div class="col-6 col-sm-12">
                                                <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="calendar" style="stroke-width:2.5;"></span>
@@ -96,9 +96,9 @@
                                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
                                                 </div>
                                               </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fdatavar.iexcodpro}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">#${fdatavar.iexcodpro}</a></td>
                                               <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 pe-6">${fdatavar.coodescon}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${fdatavar.iexvalcon}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${fdatavar.iexvalcon}</td>
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>

@@ -172,30 +172,6 @@
                   });
       });
 
-      /*Calendar.setup({
-      inputField     :    "iexfecing",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador"     // el id del botón que lanzará el calendario
-          });
-
-     Calendar.setup2({
-      inputField     :    "iexfecret",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador2"     // el id del botón que lanzará el calendario
-          });
-
-      Calendar.setup3({
-      inputField     :    "iexfecini_cont",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador3"     // el id del botón que lanzará el calendario
-          });
-
-      Calendar.setup4({
-      inputField     :    "iexfecfin_cont",     // id del campo de texto
-      ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-      button     :    "lanzador4"     // el id del botón que lanzará el calendario
-          });*/
-
       function mostrarAlert(){
         //alert("se grabo exitosamente");
         var div=document.getElementById('alert');

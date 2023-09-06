@@ -13,70 +13,143 @@
   </head>
 
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
-
 <script>
-     function calcularDias(){
-     		var fechaInicial=document.getElementById("iexfecini").value;
-     		var fechaFinal=document.getElementById("iexfecfin").value;
-     		var resultado="";
-     		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-     		{
-     			inicial=fechaInicial.split("/");
-     			final=fechaFinal.split("/");
-     			// obtenemos las fechas en milisegundos
-     			var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
-                 var dateEnd=new Date(final[2],(final[1]-1),final[0]);
-                 if(dateStart<=dateEnd)
-                 {
-     				// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
-     				// que tiene un dia, y posteriormente entre 1000 ya que estamos
-     				// trabajando con milisegundos.
-     				//resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
-                                     resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
-     			}else{
-     				resultado="La fecha inicial es posterior a la fecha final";
-     			}
-     		}else{
-     			if(!validate_fecha(fechaInicial))
-     				//resultado="La fecha inicial es incorrecta";
-                                         resultado="0";
-     			if(!validate_fecha(fechaFinal))
-     				//resultado="La fecha final es incorrecta";
-                                          resultado="0";
-     		}
-     		document.getElementById("iexnrodias").value=Number(resultado)+1;
-     }
 
-     jQuery.datepicker.regional['eu'] = {
-      closeText: 'Egina',
-      prevText: '<Aur',
-      nextText: 'Hur>',
-      currentText: 'Gaur',
-      changeYear: true,
-     yearRange: "1900:+5",
-      showButtonPanel: true,
-      keyboardNavigation: true,
-      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-      'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'],
-      monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-      'Jul','Ago','Set','Oct','Nov','Dic'],
-      dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
-      dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
-      dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
-      dateFormat: 'dd/mm/yy', firstDay: 1,
-      isRTL: false};
-      $.datepicker.setDefaults($.datepicker.regional['eu']);
-     $(function () {
-     $("#iexfecini").datepicker();
-     $("#iexfecfin").datepicker();
-     });
+function formatearFecha1(){
+    var fechaSeleccionada = $('#iexfecini').val();
 
-     Calendar.setup4({
-       inputField     :    "iexfecini",     // id del campo de texto
-       ifFormat     :     "%d/%m/%Y",     // formato de la fecha que se escriba en el campo de texto
-       button     :    "lanzador4"     // el id del botón que lanzará el calendario
-     });
-  </script>
+    var anio=fechaSeleccionada.substring(0, 4);
+    var mes=fechaSeleccionada.substring(5, 7);
+    var dia=fechaSeleccionada.substring(8, 10);
+
+    var fechaFormat=dia+"/"+mes+"/"+anio;
+    $("#iexfecini").val(fechaFormat);
+}
+
+function formatearFecha2(){
+    var fechaSeleccionada = $('#iexfecfin').val();
+
+    var anio=fechaSeleccionada.substring(0, 4);
+    var mes=fechaSeleccionada.substring(5, 7);
+    var dia=fechaSeleccionada.substring(8, 10);
+
+    var fechaFormat=dia+"/"+mes+"/"+anio;
+    $("#iexfecfin").val(fechaFormat);
+}
+
+function isValidDate(day,month,year){
+		var dteDate;
+		month=month-1;
+		dteDate=new Date(year,month,day);
+		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+}
+
+function validate_fecha(fecha){
+		var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
+
+		if(fecha.search(patron)==0)
+		{
+			var values=fecha.split("/");
+			if(isValidDate(values[0],values[1],values[2]))
+			{
+				return true;
+			}
+		}
+		return false;
+}
+
+function calcularDias(){
+        formatearFecha2();
+
+		var fechaInicial=document.getElementById("iexfecini").value;
+		var fechaFinal=document.getElementById("iexfecfin").value;
+		var resultado="";
+		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
+		{
+			inicial=fechaInicial.split("/");
+			final=fechaFinal.split("/");
+			// obtenemos las fechas en milisegundos
+			var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
+            var dateEnd=new Date(final[2],(final[1]-1),final[0]);
+            if(dateStart<=dateEnd)
+            {
+				// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+				// que tiene un dia, y posteriormente entre 1000 ya que estamos
+				// trabajando con milisegundos.
+				//resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+                                resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
+			}else{
+				resultado="La fecha inicial es posterior a la fecha final";
+			}
+		}else{
+			if(!validate_fecha(fechaInicial))
+				//resultado="La fecha inicial es incorrecta";
+                                    resultado="0";
+			if(!validate_fecha(fechaFinal))
+				//resultado="La fecha final es incorrecta";
+                                     resultado="0";
+		}
+
+		document.getElementById("iexnrodias").value=Number(resultado)+1;
+}
+
+function diasVacaciones(){
+    alert("entro");
+}
+
+function enviaForm(variable){
+    //document.getElementById("frmplaserv").submit();
+
+    var fechaInicial=document.getElementById("iexfecini").value;
+    var fechaFinal=document.getElementById("iexfecfin").value;
+    var tipvac=document.getElementById("iextipvac").value;
+    var resultado="";
+
+    if(fechaInicial!== null && fechaFinal!== null &&  tipvac!== "" ){
+        if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
+            inicial=fechaInicial.split("/");
+            final=fechaFinal.split("/");
+            // obtenemos las fechas en milisegundos
+            var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
+            var dateEnd=new Date(final[2],(final[1]-1),final[0]);
+
+            if(dateStart<=dateEnd){
+                // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+                // que tiene un dia, y posteriormente entre 1000 ya que estamos
+                // trabajando con milisegundos.
+                //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+                resultado=(((dateEnd-dateStart)/86400)/1000)+1;
+
+                /*
+                if(document.getElementById("saldo").value >= resultado){
+                        document.getElementById("accion").value="INSVAC";
+                        document.getElementById("formvacaciones").submit();
+                        mostrarAlert()
+                }else{
+                    if(document.getElementById("iexflgnosaldo").checked ){
+                        document.getElementById("accion").value="INSVAC";
+                        document.getElementById("formvacaciones").submit();
+                        mostrarAlert()
+                     }else{
+                    alert("Numero de Dias Programados es superior al Saldo de Dias");
+                     }
+                }*/
+
+                 document.getElementById("accion").value="INSVAC";
+                 document.getElementById("formvacaciones").submit();
+            }else{
+                alert("La fecha inicial es posterior a la fecha final");
+            }
+        }
+        else{
+            alert("Formatos de Fechas no son consistentes");
+        }
+    }else {
+        alert("Debe ingresar correctamente el Tipo de Vacaciones, Fecha de Inicio y Fecha de Fin de la programacion vacacional");
+    }
+}
+
+</script>
 
   <body>
     <!-- ===============================================-->
@@ -114,13 +187,22 @@
                                 <h2 id="h2top" class="mb-0">Insertar nuevas vacaciones</h2>
                               </div>
                             </div>
+                            <c:if test="${msg!=null}">
+                                 <div class="alert alert-danger alert-dismissible " role="alert">
+                                    <strong>Error!</strong> ${msg}
+                                 </div>
+                            </c:if>
 
                             <div class="row g-5">
-                                 <div class="col-xl-8">
+                                 <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarVacaciones" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertarVacaciones" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                                            <input class="form-control" name="perini2" type="hidden" value="${perini}" />
+                                            <input class="form-control" name="perfin2" type="hidden" value="${perfin}" />
+                                            <input class="form-control" name="saldo2" type="hidden" value="${saldo}" />
+                                            <input class="form-control" name="iexpermesini2" type="hidden" value="${perini}" />
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
                                                 <select class="form-select" name="iextipvac" required >
@@ -132,19 +214,19 @@
                                                 <label>Tipo de Vacaciones(*)</label>
                                               </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                    <div class="form-floating">
                                                      <input class="form-control" name="iexpermesini" maxlength="18" type="text" value="${perini}" placeholder="street" readonly disabled/>
                                                      <label>Periodo Inicial (*)</label>
                                                    </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                    <div class="form-floating">
                                                      <input class="form-control" name="iexpermesfin" maxlength="18" type="text" value="${perfin}" placeholder="street" readonly disabled/>
                                                      <label>Periodo Final (*)</label>
                                                    </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-4">
                                                    <div class="form-floating">
                                                      <input class="form-control" name="saldo" maxlength="18" type="text" value="${saldo}" placeholder="street" readonly disabled/>
                                                      <label>Saldo (*)</label>
@@ -153,7 +235,7 @@
                                             <div class="col-sm-6 col-md-6">
                                               <div class="flatpickr-input-container">
                                                 <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
                                                   <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 </div>
                                               </div>
@@ -166,13 +248,13 @@
                                                 </div>
                                               </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-3">
                                                    <div class="form-floating">
-                                                     <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="street" required disabled readonly/>
-                                                     <label>Numero de Dias(*)</label>
+                                                     <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="street" required readonly/>
+                                                     <label>N° de Dias(*)</label>
                                                    </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-9">
                                                    <div class="form-floating">
                                                      <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="street" />
                                                      <label>Glosa</label>
@@ -192,7 +274,7 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="sueldoFijo@${idTrab}">Cancel</a>
+                                                    <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
                                                   </div>
                                                 </div>
@@ -213,7 +295,7 @@
                                                     </form>
                                                     <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
                                                         <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                                        <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                                        <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="enviaForm('1')" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                                     </div>
                                                   </div>
                                                 </div>

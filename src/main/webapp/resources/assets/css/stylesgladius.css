@@ -343,8 +343,10 @@
 }
 
 .alert{
-    padding-top:15px;
-    height:55px;
+    padding-top:10px;
+    height:43px;
+    color:white;
+    font-size:14px;
 }
 
 #topdiv{

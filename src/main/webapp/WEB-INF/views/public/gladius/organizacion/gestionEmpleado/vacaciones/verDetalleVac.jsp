@@ -52,13 +52,19 @@
                                         <strong>Error!</strong> ${requestScope.msgErrorSaldoVac}
                                      </div>
                                 </c:if>
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
+                                      <h5 class="mb-0">Año</h5>
+                                    </div>
+                                    <p class="mb-0 text-800"><span class="badge badge-phoenix badge-phoenix-warning"><span class="badge-label">${perini} - ${perfin}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
+                                </div>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                                     <input class="form-control search-input search" type="search" placeholder="Search..." aria-label="Search" />
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
-                                <span class="badge badge-phoenix fs--2 badge-phoenix-warning mb-3"><span class="badge-label">Año : ${perini} - ${perfin}</span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span>
+
                                 <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
                                   <div class="table-responsive scrollbar mx-n1 px-1">
                                     <table class="table fs--1 mb-0">
@@ -87,12 +93,12 @@
                                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
                                                 </div>
                                               </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${LstVacacionesPer.iexcorrel}</a></td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0">${LstVacacionesPer.iexpermesini}</td>
-                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 text-end pe-6">${LstVacacionesPer.iexpermesfin}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">#${LstVacacionesPer.iexcorrel}</a></td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexpermesini}</td>
+                                              <td class="amount align-middle white-space-nowrap text-center fw-bold text-700 py-2 pe-6">${LstVacacionesPer.iexpermesfin}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexfecini}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexfecfin}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.iexnrodias}</td>
+                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0"><span class="badge badge-phoenix badge-phoenix-info">${LstVacacionesPer.iexnrodias} dias</span></td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesPer.destipvac}</td>
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">

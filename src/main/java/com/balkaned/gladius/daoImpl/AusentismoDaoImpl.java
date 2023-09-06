@@ -74,4 +74,67 @@ public class AusentismoDaoImpl implements AusentismoDao {
         });
     }
 
+    public Integer getIdAusentismoPrg(AusentismoProgramacion ausprg){
+
+        final Integer[] idfinal = {0};
+
+        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexausprg where iexcodcia="+ausprg.getIexcodcia()+" and iexcodtra="+ausprg.getIexcodtra()+" " ;
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] =rs.getInt("idex");
+                }
+                return idfinal[0];
+            }
+        });
+    }
+
+    public Integer validaAus(Integer codcia, Integer codtra, String fecini, String fecfin , Integer iexcorrel){
+
+        final Integer[] valor = {0};
+
+        String sql= "  select " +
+                "	sum(e.dias) dias " +
+                "  from (  " +
+                "	 select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  >= iexfecini  and  to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecfin and iexcorrel<>"+iexcorrel+" " +
+                "	  union " +
+                "	  select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  <= iexfecfin and iexcorrel<>"+iexcorrel+" " +
+                "  union "+
+                " select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecini  and iexcorrel<>"+iexcorrel+"  "+
+                " union   "+
+                " select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecfin  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecfin  and iexcorrel<>"+iexcorrel+"  "+
+                " union  "+
+                " select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia="+codcia+" and iexcodtra="+codtra+" and to_date('"+fecini+"','dd/mm/yyyy')  <= iexfecini  and  to_date('"+fecfin+"','dd/mm/yyyy')  >= iexfecfin   and iexcorrel<>"+iexcorrel+"  "+
+                "																  ) e";
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    valor[0] =rs.getInt("dias");
+                }
+                return valor[0];
+            }
+        });
+    }
+
+    public void insertarAusentismoPrg(AusentismoProgramacion ausprg){
+
+        template.update("  insert into iexausprg ( " +
+                "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
+                "iextipaus , iexglosa, iexusucrea, iexfeccrea " +
+                ") values ( " +
+                "  ?,   ? ,  ?,    to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
+                "  ?,   ? ,  ?,  current_date "+
+                ")  ",
+
+                ausprg.getIexcodcia(),
+                ausprg.getIexcodtra(),
+                ausprg.getIexcorrel(),
+                ausprg.getIexfecini(),
+                ausprg.getIexfecfin(),
+                ausprg.getIexnrodias(),
+                ausprg.getIextipaus(),
+                ausprg.getIexglosa(),
+                ausprg.getIexusucrea());
+    }
+
 }
