@@ -188,8 +188,8 @@ public class PrestamoController {
         prestcab.setIextippres(request.getParameter("iextipprestamo"));
         prestcab.setIextipinteres(request.getParameter("iextipinteres"));
         prestcab.setIexfrecuencia(request.getParameter("iexfrecuencia"));
-        //prestcab.setIexfecpres(request.getParameter("iexfecpres"));
-        //prestcab.setIexfecinivig(request.getParameter("iexfecinivig"));
+        prestcab.setIexfecpres(request.getParameter("iexfecpres"));
+        prestcab.setIexfecinivig(request.getParameter("iexfecinivig"));
         prestcab.setIexnrocuotas(Double.parseDouble(request.getParameter("iexnrocuota")));
         prestcab.setIeximpbru(Double.parseDouble(request.getParameter("ieximpbruto")));
         prestcab.setIexinteres(Double.parseDouble(request.getParameter("iexinteres")));

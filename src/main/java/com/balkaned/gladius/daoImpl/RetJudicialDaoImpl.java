@@ -108,13 +108,11 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
 
         template.update("  insert into iexretjudic( " +
                 "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
-                //"iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
-                "iextipretjud,    iexresolucion, " +
+                "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
                 "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
                 " ) values ( " +
                 "  ?,   ? ,  ?,   ?,  "+
-                //"  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,"+
-                "  ?,   ? ,"+
+                "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,"+
                 "  ?  ,  ?,   ? ,  current_date "+
                 ")  ",
 
@@ -124,8 +122,8 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 retjud.getIexcodpro(),
                 retjud.getIextipretjud(),
                 retjud.getIexresolucion(),
-                //retjud.getIexfecini(),
-                //retjud.getIexfecfin(),
+                retjud.getIexfecini(),
+                retjud.getIexfecfin(),
                 retjud.getIexpordesct(),
                 retjud.getIeximpfijo(),
                 "1");

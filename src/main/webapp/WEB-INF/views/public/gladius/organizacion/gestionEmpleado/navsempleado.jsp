@@ -17,7 +17,7 @@
         </div>
       </a></li>
     <li class="nav-item" id="linav"><a id="anvavs" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="vacaciones@${idTrab}">
-        <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-exclamation-circle"></span><span class="flex-1">Vacaciones</span>
+        <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-calendar-alt"></span><span class="flex-1">Vacaciones</span>
         </div>
       </a>
     </li>

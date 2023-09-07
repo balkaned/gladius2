@@ -15,7 +15,27 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
+function formatearFecha1(){
+    var fechaSeleccionada = $('#iexfecini').val();
 
+    var anio=fechaSeleccionada.substring(0, 4);
+    var mes=fechaSeleccionada.substring(5, 7);
+    var dia=fechaSeleccionada.substring(8, 10);
+
+    var fechaFormat=dia+"/"+mes+"/"+anio;
+    $("#iexfecini").val(fechaFormat);
+}
+
+function formatearFecha2(){
+    var fechaSeleccionada = $('#iexfecfin').val();
+
+    var anio=fechaSeleccionada.substring(0, 4);
+    var mes=fechaSeleccionada.substring(5, 7);
+    var dia=fechaSeleccionada.substring(8, 10);
+
+    var fechaFormat=dia+"/"+mes+"/"+anio;
+    $("#iexfecfin").val(fechaFormat);
+}
 </script>
 
   <body>
@@ -56,7 +76,7 @@
                             </div>
 
                             <div class="row g-5">
-                                 <div class="col-xl-8">
+                                 <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarContrato" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
@@ -75,7 +95,7 @@
                                             <div class="col-sm-6 col-md-6">
                                               <div class="flatpickr-input-container">
                                                 <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
                                                   <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 </div>
                                               </div>
@@ -83,7 +103,7 @@
                                             <div class="col-sm-6 col-md-6">
                                               <div class="flatpickr-input-container">
                                                 <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
                                                   <label class="ps-6" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 </div>
                                               </div>

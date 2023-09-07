@@ -60,7 +60,7 @@
                                             <div class="col-sm-6 col-md-12">
                                               <div class="form-floating">
                                                 <select class="form-select" name="iexcodcon" required >
-                                                  <option value="" selected > -- Seleccionar -- </option>
+                                                  <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
                                                       <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>
                                                   </c:forEach>

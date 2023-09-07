@@ -53,16 +53,12 @@
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
-                                <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
-                                  <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table fs--1 mb-0">
+                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
+                                  <div class="table-responsive scrollbar">
+                                    <table class="table table-sm fs--1 mb-0">
                                       <thead>
                                         <tr>
-                                          <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
-                                            <div class="form-check mb-0 fs-0">
-                                              <input class="form-check-input" type="checkbox" data-bulk-select='{"body":"lead-details-table-body"}' />
-                                            </div>
-                                          </th>
+
                                           <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" >Per. Inicio</th>
                                           <th class="sort align-middle pe-4 text-uppercase text-center" scope="col" data-sort="amount" >Per. Fin</th>
                                           <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="stage" >Fecha Inicio</th>
@@ -74,28 +70,24 @@
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" >Ver</th>
                                         </tr>
                                       </thead>
-                                      <tbody class="list" id="lead-details-table-body">
+                                      <tbody class="list" id="customer-order-table-body">
                                         <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                              <td class="fs--1 align-middle px-0 py-3">
-                                                <div class="form-check mb-0 fs-0">
-                                                  <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
-                                                </div>
-                                              </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">${LstVacacionesCtl.iexpermesini}</a></td>
-                                              <td class="amount align-middle white-space-nowrap text-center fw-bold text-700 py-2 pe-6">${LstVacacionesCtl.iexpermesfin}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexfecini}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexfecfin}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexdiasgan}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexdiasgoz}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexdiasven}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstVacacionesCtl.iexdiassaldo}</td>
+                                              <td class="order align-middle white-space-nowrap ps-0 text-center"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesini}</a></td>
+                                              <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesfin}</a></td>
+                                              <td class="align-middle white-space-nowrap text-center ps-3 pe-3 text-700">${LstVacacionesCtl.iexfecini}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexfecfin}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
+                                              <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--4 badge-phoenix-danger"><span class="badge-label">${LstVacacionesCtl.iexdiasven}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 "><span class="badge badge-phoenix fs--4 badge-phoenix-info"><span class="badge-label">${LstVacacionesCtl.iexdiassaldo}</span></td>
 
-                                              <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
+                                              <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                                     <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}">Ver Detalle</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-primary" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}">Ver Detalle</a>
                                                   </div>
                                                 </div>
                                               </td>

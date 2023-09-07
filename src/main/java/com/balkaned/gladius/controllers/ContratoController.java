@@ -185,8 +185,8 @@ public class ContratoController {
 
         if(codcorrel >0) {
             ausprg.setIexcorrel(codcorrel);
-            //ausprg.setIexfecini(request.getParameter("iexfecini"));
-            //ausprg.setIexfecfin(request.getParameter("iexfecfin"));
+            ausprg.setIexfecini(request.getParameter("iexfecini"));
+            ausprg.setIexfecfin(request.getParameter("iexfecfin"));
             ausprg.setIextipcont(request.getParameter("iextipcont"));
             ausprg.setIexmodcont(request.getParameter("iexmodcont"));
             ausprg.setIexestado(request.getParameter("iexestado"));

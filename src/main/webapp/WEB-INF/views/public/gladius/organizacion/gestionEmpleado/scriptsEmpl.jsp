@@ -178,7 +178,7 @@
         div.style.display = '';
 
         setTimeout(function() {
-            $("#alerts").hide(6000);
+            $("#alert").hide(6000);
         }, 3000);
       }
 
@@ -188,7 +188,7 @@
           div.style.display = '';
 
           setTimeout(function() {
-              $("#alerts").hide(6000);
+              $("#alert").hide(6000);
           }, 3000);
       }
 
@@ -198,7 +198,7 @@
         div.style.display = '';
 
         setTimeout(function() {
-            $("#alerts").hide(6000);
+            $("#alert").hide(6000);
         }, 3000);
      }
 
@@ -208,7 +208,7 @@
          div.style.display = '';
 
          setTimeout(function() {
-             $("#alerts").hide(6000);
+             $("#alert").hide(6000);
          }, 3000);
      }
 

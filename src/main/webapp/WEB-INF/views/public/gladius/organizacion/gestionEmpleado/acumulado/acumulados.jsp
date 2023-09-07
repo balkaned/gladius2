@@ -78,7 +78,7 @@
                                                 </div>
                                               </td>
                                               <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">#${LstAcumEmp.iexaniotrib}</a></td>
-                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 pe-6">${LstAcumEmp.iexremafec5ta_otrcia}</td>
+                                              <td class="amount align-middle white-space-nowrap text-center fw-bold text-700 py-2 pe-6">${LstAcumEmp.iexremafec5ta_otrcia}</td>
                                               <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstAcumEmp.iexrent5ta_otrcia}</td>
 
                                               <td class="align-middle text-end white-space-nowrap pe-0 action py-2">

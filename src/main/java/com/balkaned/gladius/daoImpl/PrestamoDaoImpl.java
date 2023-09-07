@@ -118,14 +118,12 @@ public class PrestamoDaoImpl implements PrestamoDao {
 
         template.update("  insert into iexprestamocab( " +
                 " iexcodcia	    ,    iexcodtra	,      iexcorrel	,       iextippres	,"+
-                //" iextipinteres	,    iexfrecuencia	,  iexfecpres	,       iexfecinivig , " +
-                " iextipinteres	,    iexfrecuencia	, " +
+                " iextipinteres	,    iexfrecuencia	,  iexfecpres	,       iexfecinivig , " +
                 " iexnrocuotas	,    ieximpbru	,      iexinteres	,       ieximptotal	," +
                 " iexglosa  ,        iexestado	,        iexusucrea	,      iexfeccrea		" +
                 " ) values ( " +
                 "  ?,   ? ,  ?,   ?,  "+
-                //"   ?,   ? ,  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY'),  "+
-                "   ?,   ? ,  "+
+                "   ?,   ? ,  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY'),  "+
                 "   ?,   ? ,  ?,   ?,  "+
                 "   ?,   ? ,  ?,   current_date "+
                 " )  ",
@@ -136,8 +134,8 @@ public class PrestamoDaoImpl implements PrestamoDao {
                 prestcab.getIextippres(),
                 prestcab.getIextipinteres(),
                 prestcab.getIexfrecuencia(),
-                //prestcab.getIexfecpres(),
-                //prestcab.getIexfecinivig(),
+                prestcab.getIexfecpres(),
+                prestcab.getIexfecinivig(),
                 prestcab.getIexnrocuotas(),
                 prestcab.getIeximpbru(),
                 prestcab.getIexinteres(),

@@ -191,8 +191,8 @@ public class RetJudicialController {
             ausprg.setIextipretjud(request.getParameter("iextipretjud"));
             ausprg.setIexresolucion(request.getParameter("iexresolucion"));
             ausprg.setIexcodpro(Integer.parseInt(request.getParameter("iexcodpro")));
-            //ausprg.setIexfecini(request.getParameter("iexfecini"));
-            //ausprg.setIexfecfin(request.getParameter("iexfecfin"));
+            ausprg.setIexfecini(request.getParameter("iexfecini"));
+            ausprg.setIexfecfin(request.getParameter("iexfecfin"));
             ausprg.setIexpordesct(Double.parseDouble(request.getParameter("iexpordesct")));
             ausprg.setIeximpfijo(Double.parseDouble(request.getParameter("ieximpfijo")));
             ausprg.setIexusucrea("1");

@@ -53,53 +53,38 @@
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
-                                <div class="border-top border-bottom border-200" id="leadDetailsTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
-                                  <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table fs--1 mb-0">
+
+                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                  <div class="table-responsive scrollbar">
+                                    <table class="table table-sm fs--1 mb-0">
                                       <thead>
                                         <tr>
-                                          <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
-                                            <div class="form-check mb-0 fs-0">
-                                              <input class="form-check-input" type="checkbox" data-bulk-select='{"body":"lead-details-table-body"}' />
-                                            </div>
-                                          </th>
-                                          <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" >ID</th>
-                                          <th class="sort align-middle pe-6 text-uppercase text-center" scope="col" data-sort="amount" >Tipo de Prestamo</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="stage" >Importe Bruto</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Nro Cuota</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Interes</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Imp. Total</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Saldo</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Glosa</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Est.</th>
-                                          <th class="sort align-middle text-center text-uppercase" scope="col" data-sort="probability" >Eli</th>
-                                          <th class="align-middle pe-0 text-center" scope="col"></th>
+                                          <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order">ID</th>
+                                          <th class="sort align-middle text-center pe-5 text-uppercase" scope="col" data-sort="total">Tipo de Prestamo</th>
+                                          <th class="sort align-middle text-center white-space-nowrap pe-3 text-uppercase" scope="col" data-sort="payment_status">Importe Bruto</th>
+                                          <th class="sort align-middle text-center white-space-nowrap text-start pe-3 text-uppercase" scope="col" data-sort="fulfilment_status">Nro Cuota</th>
+                                          <th class="sort align-middle white-space-nowrap text-center text-uppercase pe-4" scope="col" data-sort="delivery_type">Interes</th>
+                                          <th class="sort align-middle text-center pe-0 text-uppercase" scope="col" data-sort="date">Imp. Total</th>
+                                          <th class="sort align-middle text-center pe-0 text-uppercase" scope="col" data-sort="date">Glosa</th>
+                                          <th class="sort text-end text-center align-middle pe-0 ps-5 text-uppercase" scope="col"></th>
                                         </tr>
                                       </thead>
-                                      <tbody class="list" id="lead-details-table-body">
+                                      <tbody class="list" id="customer-order-table-body">
                                         <c:forEach var="LstPrestCab" items="${requestScope.LstPrestCab}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                              <td class="fs--1 align-middle px-0 py-3">
-                                                <div class="form-check mb-0 fs-0">
-                                                  <input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealName":"Mocking Bird","active":true,"amount":"$6,800,000","stage_status":{"label":"won deal","type":"badge-phoenix-success"},"progress":{"min":"67","max":"145","color":"bg-info"},"date":"Dec 29, 2021","type_status":{"label":"warm","type":"badge-phoenix-info"}}' />
-                                                </div>
-                                              </td>
-                                              <td class="dealName align-middle white-space-nowrap py-2 ps-0"><a class="fw-semi-bold text-primary" href="#!">#${LstPrestCab.iexcorrel}</a></td>
-                                              <td class="amount align-middle white-space-nowrap text-start fw-bold text-700 py-2 pe-6">${LstPrestCab.destippres}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.ieximpbru}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.iexnrocuotas}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.iexinteres}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.ieximptotal}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.ieximptotal}</td>
-                                              <td class="dealName align-middle white-space-nowrap text-center py-2 ps-0">${LstPrestCab.iexglosa}</td>
-                                                <c:if test="${LstPrestCab.iexestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                                <c:if test="${LstPrestCab.iexestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-
-                                              <td class="align-middle text-end white-space-nowrap pe-0 action py-2">
+                                              <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstPrestCab.iexcorrel}</a></td>
+                                              <td class="total align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${LstPrestCab.destippres}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.ieximpbru}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.iexnrocuotas}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--4 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>
+                                              <td class="date align-middle white-space-nowrap fs--1 fw-bold text-1000 text-center pe-4">${LstPrestCab.ieximptotal}</td>
+                                              <td class="align-middle white-space-nowrap text-start text-700">${LstPrestCab.iexglosa}</td>
+                                              <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                                     <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-warning" href="#!">Remove</a>
                                                   </div>
                                                 </div>
                                               </td>
@@ -109,15 +94,15 @@
                                     </table>
                                   </div>
                                   <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
-                                    <div class="col-auto d-flex">
-                                      <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                      <div class="col-auto d-flex">
+                                        <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                      </div>
+                                      <div class="col-auto d-flex">
+                                        <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                        <ul class="mb-0 pagination"></ul>
+                                        <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                      </div>
                                     </div>
-                                    <div class="col-auto d-flex">
-                                      <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                                      <ul class="mb-0 pagination"></ul>
-                                      <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>

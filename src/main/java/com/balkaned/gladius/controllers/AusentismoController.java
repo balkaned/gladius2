@@ -226,6 +226,7 @@ public class AusentismoController {
             //}
         }else{
             Msg_form_global="Error";
+            model.addAttribute("idTrab",iexcodtra);
             model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
             model.addAttribute("msg","Error Las fechas se cruzan con programaciones anteriores");
         }

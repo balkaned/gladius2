@@ -101,13 +101,11 @@ public class ContratoDaoImpl implements ContratoDao {
 
         template.update("  insert into iexcontctl( " +
                 "iexcodcia,   iexcodtra,     iexcorrel,      iextipcont, " +
-                //"iexfecini,   iexfecfin,     iexmodcont,     iexusucrea, iexestado, " +
-                "iexmodcont,     iexusucrea, iexestado, " +
+                "iexfecini,   iexfecfin,     iexmodcont,     iexusucrea, iexestado, " +
                 "   iexfeccrea " +
                 " ) values ( " +
                 "  ?,   ? ,  ?,   ?,  "
-                //+ "  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,  ?,  ? , " +
-                + "  ?  ,  ?,  ? , " +
+                + "  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,  ?,  ? , " +
                 " current_date  "+
                 ")  ",
 
@@ -115,8 +113,8 @@ public class ContratoDaoImpl implements ContratoDao {
             contemp.getIexcodtra(),
             contemp.getIexcorrel(),
             contemp.getIextipcont(),
-            //contemp.getIexfecini(),
-            //contemp.getIexfecfin(),
+            contemp.getIexfecini(),
+            contemp.getIexfecfin(),
             contemp.getIexmodcont(),
             contemp.getIexusucrea(),
             contemp.getIexestado());
