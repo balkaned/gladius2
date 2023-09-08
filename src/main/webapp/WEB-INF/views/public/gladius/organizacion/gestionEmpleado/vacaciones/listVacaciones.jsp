@@ -44,7 +44,7 @@
                                   <h2 class="mb-0">Vacaciones</h2>
                                   <div class="col-auto">
                                       <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <!--<a class="btn btn-primary btn-sm" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>-->
+                                      <a class="btn btn-primary btn-sm" href="#"><span class="fa-solid fab fa-whmcs me-2"></span>Actualizar</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -58,7 +58,6 @@
                                     <table class="table table-sm fs--1 mb-0">
                                       <thead>
                                         <tr>
-
                                           <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="dealName" >Per. Inicio</th>
                                           <th class="sort align-middle pe-4 text-uppercase text-center" scope="col" data-sort="amount" >Per. Fin</th>
                                           <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="stage" >Fecha Inicio</th>
