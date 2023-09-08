@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RetJudicialImpl implements RetJudicialService {
+public class RetJudicialServiceImpl implements RetJudicialService {
 
     @Autowired
     RetJudicialDao dao;
