@@ -63,7 +63,7 @@
                   <input type="hidden" name="codciax" value="${idComp}" >
                   <input type="hidden" name="idTrab" value="${idTrab}" >
                   <div class="mb-3">
-                        <label class="form-label">Subir Image</label>
+                        <label class="form-label">Subir Imagen</label>
                         <input class="form-control" name="uploadFile" type="file" />
                   </div>
 

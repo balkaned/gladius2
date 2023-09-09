@@ -123,7 +123,7 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${empl.iexcodtra}</a></td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${empl.iextipdocid}</td>
                               <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iexnrodoc}</td>
                               <td class="customer align-middle white-space-nowrap ps-8">

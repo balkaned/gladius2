@@ -19,5 +19,7 @@ public class LegajoServiceImpl implements LegajoService {
     @Autowired
     LegajoDao dao;
     public List<Grpfile> listarGrpfile(Integer codcia, Integer codtra, String grpfile){return dao.listarGrpfile(codcia,codtra,grpfile);}
+    public Integer obtieneIdGrpFile(Grpfile grpfile){return dao.obtieneIdGrpFile(grpfile);}
+    public void insertarGrpFile(Grpfile grpfile){dao.insertarGrpFile(grpfile);}
 
 }

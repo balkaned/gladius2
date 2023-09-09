@@ -79,12 +79,12 @@
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Cancel</a>
-                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="#" >Agregar Grupo</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
+                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="nuevoGrupo@${idTrab}" >Agregar Grupo</a>
+                                                    <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
                                                   </div>
                                                 </div>
                                             </div>
-                                            <div class="modal fade" id="confirmModal" tabindex="-1">
+                                            <!--<div class="modal fade" id="confirmModal" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                   <div class="modal-content border">
                                                     <form id="addEventForm" autocomplete="off">
@@ -104,7 +104,7 @@
                                                     </div>
                                                   </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                      </form>
                                    </div>
                                  </div>
@@ -137,7 +137,7 @@
                                                  <div class="col-auto">
                                                    <a class="btn btn-phoenix-primary" href="eliminarLegajo@${idTrab}">Eliminar</a>
                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="actualizarLegajo@${idTrab}" >Actualizar</a>
-                                                   <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-plus me-2"></span>Ingresar Imagen</button>
+                                                   <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}"><span class="fa-solid fas fa-cloud-upload-alt me-2"></span>Ingresar Imagen</a>
                                                  </div>
                                                </div>
                                            </div>
@@ -164,7 +164,7 @@
                                                             <div class="font-sans-serif btn-reveal-trigger position-static">
                                                               <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                               <div class="dropdown-menu dropdown-menu-end py-2">
-                                                                <a class="dropdown-item" href="#">Descargar</a>
+                                                                <a class="dropdown-item" href="#">Descargar PDF</a>
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item text-warning" href="#!">Remove</a>
                                                               </div>

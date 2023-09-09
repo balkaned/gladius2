@@ -77,45 +77,42 @@ public class LegajoDaoImpl implements LegajoDao {
             }
         });
     }
-/*
-    public Integer getIdRetencionJudicial(RetencionJudicial retjud){
+
+    public Integer obtieneIdGrpFile(Grpfile grpfile){
 
         final Integer[] idfinal = {0};
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexretjudic where iexcodcia="+retjud.getIexcodcia()+" and iexcodtra="+retjud.getIexcodtra()+" " ;
+        String sql = " SELECT coalesce(max(iexcodgrpfile),0)+1 idcont  FROM iexgrpfile WHERE IEXCODCIA="+grpfile.getIexcodcia()+"  ";
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
             public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
                 while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
+                    idfinal[0] =rs.getInt("idcont");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertarRetencionJudicial(RetencionJudicial retjud){
+    public void insertarGrpFile(Grpfile grpfile){
 
-        template.update("  insert into iexretjudic( " +
-                "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
-                "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
-                "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
-                " ) values ( " +
-                "  ?,   ? ,  ?,   ?,  "+
-                "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,"+
-                "  ?  ,  ?,   ? ,  current_date "+
-                ")  ",
+        template.update("insert into iexgrpfile(   "+
+                        " iexcodcia, " +
+                        "iexcodgrpfile, " +
+                        "iexcodtra, " +
+                        "iexgrpfile, " +
+                        "iexdesgrpfile, " +
+                        "iexestado, " +
+                        "iexusucrea, " +
+                        "iexfeccrea  ) values "+
+                        "  ( ?,?,?,?,?,   ?,?,   CURRENT_TIMESTAMP  ) ",
 
-                retjud.getIexcodcia(),
-                retjud.getIexcodtra(),
-                retjud.getIexcorrel(),
-                retjud.getIexcodpro(),
-                retjud.getIextipretjud(),
-                retjud.getIexresolucion(),
-                retjud.getIexfecini(),
-                retjud.getIexfecfin(),
-                retjud.getIexpordesct(),
-                retjud.getIeximpfijo(),
-                "1");
-    }*/
+                        grpfile.getIexcodcia(),
+                        grpfile.getIexcodgrpfile(),
+                        grpfile.getIexcodtra(),
+                        grpfile.getIexgrpfile(),
+                        grpfile.getIexdesgrpfile(),
+                        grpfile.getIexestado(),
+                        grpfile.getIexusucrea());
+    }
 
 }

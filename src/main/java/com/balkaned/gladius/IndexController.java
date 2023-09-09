@@ -246,7 +246,7 @@ public class IndexController {
         model.addAttribute("rucComp",comp1.getNroRuc());
         model.addAttribute("schema",comp1.getSchema());
 
-        return new ModelAndView("public/home");
+        return new ModelAndView("public/kanban");
     }
 
     @RequestMapping("/verFoto@{accion2}@{idComp}@{urlLogo}")
