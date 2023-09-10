@@ -61,27 +61,21 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <input class="form-control" name="iexcodgrpfile2" type="hidden" value="${iexcodgrpfile}" />
-                                            <div class="col-sm-6 col-md-5">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required disabled readonly />
-                                                  <label>ID</label>
-                                                </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">ID</label>
+                                                <input class="form-control" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required disabled readonly />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label">Subir Imagen</label>
+                                            <div class="col-sm-6 col-md-9">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Subir Imagen</label>
                                                 <input class="form-control" name="filepath" type="file" />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="urlimagen" type="text" required />
-                                                  <label>Url Imagen</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Url Imagen</label>
+                                                <input class="form-control" name="urlimagen" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="desimagen" type="text" required />
-                                                  <label>Descripcion Imagen</label>
-                                                </div>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Descripcion Imagen</label>
+                                                 <input class="form-control" name="desimagen" type="text" required />
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

@@ -60,33 +60,25 @@
                                             <input class="form-control" name="iexcodpro2" type="hidden" value="${iexcodpro}" />
                                             <input class="form-control" name="iexperiodo2" type="hidden" value="${iexperiodo}" />
                                             <div class="col-sm-6 col-md-6">
-                                                   <div class="form-floating">
+                                                     <label class="form-label fs-0 text-1000 ps-0 text-none">Proceso de Planilla (*)</label>
                                                      <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
-                                                     <label>Proceso de Planilla (*)</label>
-                                                   </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
-                                                     <label>Periodo (*)</label>
-                                                   </div>
+                                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo (*)</label>
+                                                    <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Concepto (*)</label>
                                                 <select class="form-select" name="iexcodcon" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepVar" items="${lovConcepVar}">
                                                       <option value="${lovConcepVar.codConcepto}" >${lovConcepVar.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Concepto (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexvalcon" maxlength="70" type="number" value="" placeholder="street" required/>
-                                                     <label>Valor Concepto (*)</label>
-                                                   </div>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Valor Concepto (*)</label>
+                                                 <input class="form-control" name="iexvalcon" maxlength="70" type="number" value="" placeholder="0.00" required/>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

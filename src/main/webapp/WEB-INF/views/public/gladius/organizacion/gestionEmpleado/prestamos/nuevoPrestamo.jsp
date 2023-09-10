@@ -82,83 +82,59 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Prestamo(*)</label>
                                                 <select class="form-select" name="iextipprestamo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovTippres" items="${lovTippres}">
                                                       <option value="${lovTippres.idLov}" >${lovTippres.desLov}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Prestamo(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="ieximpbruto" maxlength="10" type="number" required />
-                                                  <label>Importe Bruto</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Importe Bruto</label>
+                                                <input class="form-control" name="ieximpbruto" maxlength="10" type="number" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnrocuota" maxlength="2" type="text" required />
-                                                  <label>Nro Cuotas</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro Cuotas</label>
+                                                <input class="form-control" name="iexnrocuota" maxlength="2" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo Interes(*)</label>
                                                 <select class="form-select" name="iextipinteres" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovTipInteres" items="${lovTipInteres}">
                                                       <option value="${lovTipInteres.idLov}" >${lovTipInteres.desLov}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo Interes(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexinteres" maxlength="4" type="text" required />
-                                                  <label>Interes</label>
-                                                </div>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Interes</label>
+                                                 <input class="form-control" name="iexinteres" maxlength="4" type="text" required placeholder="%"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="ieximptotal" maxlength="15" type="number" required />
-                                                  <label>Importe Total</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Importe Total</label>
+                                                <input class="form-control" name="ieximptotal" maxlength="15" type="number" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexglosa" maxlength="50" type="text" />
-                                                  <label>Glosa</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Glosa</label>
+                                                <input class="form-control" name="iexglosa" maxlength="50" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha de Prestamo (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha de Prestamo (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha Ini Vigencia (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha Ini Vigencia (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Frecuencia Prestamo (*)</label>
                                                 <select class="form-select" name="iexfrecuencia" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
                                                       <option value="${lovFrecPrestamo.idLov}" >${lovFrecPrestamo.desLov}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Frecuencia Prestamo (*)</label>
-                                              </div>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

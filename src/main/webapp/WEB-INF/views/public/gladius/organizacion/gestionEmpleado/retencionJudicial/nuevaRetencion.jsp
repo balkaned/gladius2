@@ -82,60 +82,42 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Retencion(*)</label>
                                                 <select class="form-select" name="iextipretjud" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipretj" items="${lovTipretj}">
                                                       <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov == requestScope.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Retencion(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexresolucion" maxlength="50" type="text" required />
-                                                  <label>Resolucion</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Resolucion</label>
+                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                  <div class="form-floating">
-                                                    <select class="form-select" name="iexcodpro" required >
-                                                      <option value="" selected >Seleccionar</option>
-                                                      <c:forEach var="lovProcesos" items="${lovProcesos}">
-                                                          <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
-                                                      </c:forEach>
-                                                    </select>
-                                                    <label>Proceso Planilla(*)</label>
-                                                  </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Proceso Planilla(*)</label>
+                                                <select class="form-select" name="iexcodpro" required >
+                                                  <option value="" selected >Seleccionar</option>
+                                                  <c:forEach var="lovProcesos" items="${lovProcesos}">
+                                                      <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
+                                                  </c:forEach>
+                                                </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexpordesct" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Porcentaje</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Porcentaje</label>
+                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="ieximpfijo" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Imp. Fijo</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Imp. Fijo</label>
+                                                <input class="form-control" name="ieximpfijo" maxlength="10" type="number" value="0.0" required />
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

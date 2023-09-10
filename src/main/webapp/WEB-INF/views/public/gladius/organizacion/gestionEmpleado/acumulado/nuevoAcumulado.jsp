@@ -62,66 +62,45 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-4">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexaniotrib" maxlength="6" type="text" required />
-                                                  <label>Periodo Anual</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo Anual</label>
+                                                <input class="form-control" name="iexaniotrib" maxlength="6" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrem_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Remu. Acum Anterior (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. Acum Anterior (Desuso)</label>
+                                                <input class="form-control" name="iexrem_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Remu 5ta Afect Acum Anterior (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu 5ta Afect Acum Anterior (Desuso)</label>
+                                                <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Renta 5ta Acum Anterior (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Renta 5ta Acum Anterior (Desuso)</label>
+                                                <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Rem Afect 5ta Otro Cia</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Rem Afect 5ta Otro Cia</label>
+                                                <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Desct. 5ta Otra Cia</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Desct. 5ta Otra Cia</label>
+                                                <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Remu. 4ta Acum (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. 4ta Acum (Desuso)</label>
+                                                <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Desc 4ta Acum (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Desc 4ta Acum (Desuso)</label>
+                                                <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Remu. Otra Cia (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. Otra Cia (Desuso)</label>
+                                                <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" value="0.0" required />
-                                                  <label>Dscto. Otra Cia (Desuso)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Dscto. Otra Cia (Desuso)</label>
+                                                <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
-
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.

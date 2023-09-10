@@ -204,69 +204,46 @@ function enviaForm(variable){
                                             <input class="form-control" name="saldo2" type="hidden" value="${saldo}" />
                                             <input class="form-control" name="iexpermesini2" type="hidden" value="${perini}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Vacaciones(*)</label>
                                                 <select class="form-select" name="iextipvac" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipvaca" items="${lovTipvaca}">
                                                       <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.iextipvac ? 'selected' : ''}  >  ${lovTipvaca.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Vacaciones(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexpermesini" maxlength="18" type="text" value="${perini}" placeholder="street" readonly disabled/>
-                                                     <label>Periodo Inicial (*)</label>
-                                                   </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo Inicial (*)</label>
+                                                <input class="form-control" name="iexpermesini" maxlength="18" type="text" value="${perini}" placeholder="street" readonly disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexpermesfin" maxlength="18" type="text" value="${perfin}" placeholder="street" readonly disabled/>
-                                                     <label>Periodo Final (*)</label>
-                                                   </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo Final (*)</label>
+                                                <input class="form-control" name="iexpermesfin" maxlength="18" type="text" value="${perfin}" placeholder="street" readonly disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="saldo" maxlength="18" type="text" value="${saldo}" placeholder="street" readonly disabled/>
-                                                     <label>Saldo (*)</label>
-                                                   </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Saldo (*)</label>
+                                                <input class="form-control" name="saldo" maxlength="18" type="text" value="${saldo}" placeholder="street" readonly disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none" >Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="street" required readonly/>
-                                                     <label>N° de Dias(*)</label>
-                                                   </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">N° de Dias(*)</label>
+                                                <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="0" required readonly/>
                                             </div>
                                             <div class="col-sm-6 col-md-9">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="street" />
-                                                     <label>Glosa</label>
-                                                   </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Glosa</label>
+                                                <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                 <div class="form-check">
-                                                   <input class="form-check-input" name="iexflgnosaldo" id="flexChecked" value="1" type="checkbox"/>
-                                                   <label class="form-check-label fs-0 mb-5" for="flexChecked">No considerar saldo?</label>
-                                                 </div>
+                                                <label class="form-check-label fs-0 mb-5" for="flexChecked">No considerar saldo?</label>
+                                                <input class="form-check-input" name="iexflgnosaldo" id="flexChecked" value="1" type="checkbox"/>
                                             </div>
-
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.

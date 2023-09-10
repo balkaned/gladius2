@@ -87,370 +87,272 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Documento(*)</label>
                                                 <select class="form-select" name="iextipnroiddep" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                                       <option value="${lovTipdoc.idLov}"   ${lovTipdoc.idLov == requestScope.iextipnroiddep ? 'selected' : ''}  >  ${lovTipdoc.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Documento(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnroiddep" maxlength="15" type="text" required />
-                                                  <label>Nro Doc (*)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro Doc (*)</label>
+                                                <input class="form-control" name="iexnroiddep" maxlength="15" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Pais Emisor(*)</label>
                                                 <select class="form-select" name="iexpaisemisor" id="iexpaisemisor" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor.idLov}"   ${lovPaisEmisor.idLov == requestScope.iexpaisemisor ? 'selected' : ''}  >  ${lovPaisEmisor.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Pais Emisor(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexapepatdep" maxlength="100" type="text" required />
-                                                  <label>Apellido Paterno (*)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Apellido Paterno (*)</label>
+                                                <input class="form-control" name="iexapepatdep" maxlength="100" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexapematdep" maxlength="100" type="text" required />
-                                                  <label>Apellido Materno (*)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Apellido Materno (*)</label>
+                                                <input class="form-control" name="iexapematdep" maxlength="100" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnomdep" maxlength="100" type="text" required />
-                                                  <label>Nombres (*)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nombres (*)</label>
+                                                <input class="form-control" name="iexnomdep" maxlength="100" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha de Nacimiento (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Sexo (*)</label>
                                                 <select class="form-select" name="iexsexo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovSexo" items="${lovSexo}">
                                                       <option value="${lovSexo.idLov}"   ${lovSexo.idLov == requestScope.iexsexo ? 'selected' : ''}  >  ${lovSexo.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Sexo (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Vinculo (*)</label>
                                                 <select class="form-select" name="iextipvinculo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovVincul" items="${lovVincul}">
                                                       <option value="${lovVincul.idLov}"   ${lovVincul.idLov == requestScope.iexsexo ? 'selected' : ''}  >  ${lovVincul.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Vinculo (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo Documento Acredito Vinculo (*)</label>
                                                 <select class="form-select" name="iextipdocacredit" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovAcredVincul" items="${lovAcredVincul}">
                                                       <option value="${lovAcredVincul.idLov}"   ${lovAcredVincul.idLov == requestScope.iexsexo ? 'selected' : ''}  >  ${lovAcredVincul.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo Documento Acredito Vinculo (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" required />
-                                                  <label>Nro de Doc Acredito Vinculo (*)</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Doc Acredito Vinculo (*)</label>
+                                                <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexmesconcep" maxlength="50" type="text" />
-                                                  <label>Mes de Concepcion</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Mes de Concepcion</label>
+                                                <input class="form-control" name="iexmesconcep" maxlength="50" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Larga Distancia</label>
                                                 <select class="form-select" name="iexcodlar">
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovLarDistancia" items="${lovLarDistancia}">
                                                       <option value="${lovLarDistancia.idLov}"   ${lovLarDistancia.idLov == requestScope.iexcodlar ? 'selected' : ''}  >  ${lovLarDistancia.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Larga Distancia</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnrotelf" maxlength="50" type="text" />
-                                                  <label>Nro de Telefono</label>
-                                                </div>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Telefono</label>
+                                                 <input class="form-control" name="iexnrotelf" maxlength="50" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexemail" maxlength="50" type="text" />
-                                                  <label>Email</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Email</label>
+                                                <input class="form-control" name="iexemail" maxlength="50" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Via (*)</label>
                                                 <select class="form-select" name="iextipvia_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipVia" items="${lovTipVia}">
                                                       <option value="${lovTipVia.idLov}"   ${lovTipVia.idLov == requestScope.iextipvia_dom1 ? 'selected' : ''}  >  ${lovTipVia.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Via (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnomvia_dom1" maxlength="150" type="text" required/>
-                                                  <label>Nom. Via</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nom. Via</label>
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="150" type="text" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" />
-                                                  <label>Nro de Via</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Via</label>
+                                                <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexdeptin_dom1" maxlength="5" type="text" />
-                                                  <label>Nro de Depto</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Depto</label>
+                                                <input class="form-control" name="iexdeptin_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexinterior_dom1" maxlength="5" type="text" />
-                                                  <label>Interior Domicilio</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Interior Domicilio</label>
+                                                <input class="form-control" name="iexinterior_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexmanzana_dom1" maxlength="5" type="text" />
-                                                  <label>Manzana</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Manzana</label>
+                                                <input class="form-control" name="iexmanzana_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexlote_dom1" maxlength="5" type="text" />
-                                                  <label>Nro de Lote</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Lote</label>
+                                                <input class="form-control" name="iexlote_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexkilometro_dom1" maxlength="5" type="text" />
-                                                  <label>Km Referencia</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Km Referencia</label>
+                                                <input class="form-control" name="iexkilometro_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Bloqueo</label>
                                                   <input class="form-control" name="iexblock_dom1" maxlength="5" type="text" />
-                                                  <label>Nro de Bloqueo</label>
-                                                </div>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" />
-                                                  <label>Etapa Del Domicilio</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Etapa Del Domicilio</label>
+                                                <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de zona dom1 (*)</label>
                                                 <select class="form-select" name="iextipzona_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona" items="${lovTipZona}">
                                                       <option value="${lovTipZona.idLov}"   ${lovTipZona.idLov == requestScope.iextipzona_dom1 ? 'selected' : ''}  >  ${lovTipZona.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de zona dom1 (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" required/>
-                                                  <label>Referencia dom1 (*)</label>
-                                                </div>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Referencia dom1 (*)</label>
+                                                 <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Pais Emisor (*) [TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor1" id="iexpaisemisor1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor1" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor1.idLov}"   ${lovPaisEmisor1.idLov == requestScope.iexnacion_origen1 ? 'selected' : ''}  >  ${lovPaisEmisor1.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Pais Emisor (*) [TT26]</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Departamento</label>
                                                 <select class="form-select" name="iexdepart_origen1" id="iexdepart_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Departamento</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Provincia</label>
                                                 <select class="form-select" name="iexprovin_origen1" id="iexprovin_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Provincia</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Ubigeo</label>
                                                 <select class="form-select" name="iexubigeo_dom1" id="iexubigeo_dom1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Ubigeo</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo Via 2</label>
                                                 <select class="form-select" name="iextipvia_dom2" id="iextipvia_dom2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipVia2" items="${lovTipVia2}">
                                                       <option value="${lovTipVia2.idLov}"   ${lovTipVia2.idLov == requestScope.iextipvia_dom2 ? 'selected' : ''}  >  ${lovTipVia2.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo Via 2</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnomvia_dom2" maxlength="100" type="text" />
-                                                  <label>Nom Via 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nom Via 2</label>
+                                                <input class="form-control" name="iexnomvia_dom2" maxlength="100" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexnrovia_dom2" maxlength="6" type="text" />
-                                                  <label>Nro Via 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro Via 2</label>
+                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexdeptin_dom2" maxlength="6" type="text" />
-                                                  <label>Nro Dept 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro Dept 2</label>
+                                                <input class="form-control" name="iexdeptin_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexinterior_dom2" maxlength="6" type="text" />
-                                                  <label>Interior 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Interior 2</label>
+                                                <input class="form-control" name="iexinterior_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexmanzana_dom2" maxlength="6" type="text" />
-                                                  <label>Manzana Domicilio 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Manzana Domicilio 2</label>
+                                                <input class="form-control" name="iexmanzana_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexlote_dom2" maxlength="6" type="text" />
-                                                  <label>Nro de Lote 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Lote 2</label>
+                                                <input class="form-control" name="iexlote_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexkilometro_dom2" maxlength="6" type="text" />
-                                                  <label>Kilometro de Referencia 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Kilometro de Referencia 2</label>
+                                                <input class="form-control" name="iexkilometro_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" />
-                                                  <label>Nro de Bloque 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro de Bloque 2</label>
+                                                <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" />
-                                                  <label>Etapa Domicilio 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Etapa Domicilio 2</label>
+                                                <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de zona dom 2</label>
                                                 <select class="form-select" name="iextipzona_dom2" id="iextipzona_dom2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona2" items="${lovTipZona2}">
                                                       <option value="${lovTipZona2.idLov}"   ${lovTipZona2.idLov == requestScope.iextipzona_dom2 ? 'selected' : ''}  >  ${lovTipZona2.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de zona dom 2</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                <div class="form-floating">
-                                                  <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" />
-                                                  <label>Referencia Dom 2</label>
-                                                </div>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Referencia Dom 2</label>
+                                                <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Pais Emisor (*) [TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor2" id="iexpaisemisor2" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor2" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor2.idLov}"   ${lovPaisEmisor2.idLov == requestScope.iexnacion_origen2 ? 'selected' : ''}  >  ${lovPaisEmisor2.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Pais Emisor (*) [TT26]</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Departamento</label>
                                                 <select class="form-select" name="iexdepart_origen2" id="iexdepart_origen2">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Departamento</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Provincia</label>
                                                 <select class="form-select" name="iexprovin_origen2" id="iexprovin_origen2">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Provincia</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Ubigeo 2</label>
                                                 <select class="form-select" name="iexubigeo_dom2" id="iexubigeo_dom2">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
-                                                <label>Ubigeo 2</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Domicilio</label>
                                                 <select class="form-select" name="iexcenasis" id="iexcenasis">
                                                   <option value="" selected >Seleccionar</option>
                                                   <option value="1" >Direccion Principal</option>
                                                   <option value="2" >Direccion Secundaria</option>
                                                 </select>
-                                                <label>Domicilio</label>
-                                              </div>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

@@ -304,7 +304,5 @@ public class LegajoController {
 
         return new ModelAndView("redirect:/legajo@"+iexcodtra);
     }
-
-
 }
 

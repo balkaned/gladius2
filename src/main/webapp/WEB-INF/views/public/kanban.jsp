@@ -22,12 +22,12 @@
           <jsp:include page="modalFade.jsp"></jsp:include>
 
 
-          <div id="kanban" class="content kanban-content mt-2" >
+          <div class="content" id="kanban">
                   <div class="kanban-header">
                     <div class="row gx-0 justify-content-between justify-content-md-start">
                       <div class="col-auto">
                         <div class="dropdown">
-                          <button class="btn btn-link text-decoration-none text-1100 fs-0 ps-4" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="fs-1 me-2">Bienvenido</span><span class="fas fa-angle-down text-500 d-inline-block" data-fa-transform="up-2" style="min-width: 12px"></span></button>
+                          <button class="btn btn-link text-decoration-none text-1100 fs-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="fs-1 me-2">Bienvenido</span><span class="fas fa-angle-down text-500 d-inline-block" data-fa-transform="up-2" style="min-width: 12px"></span></button>
                           <div class="dropdown-menu py-0"> <a class="dropdown-item" href="#!">Sparrow</a><a class="dropdown-item" href="#!">Boreas</a><a class="dropdown-item" href="#!">Erebus</a></div>
                         </div>
                       </div>

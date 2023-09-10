@@ -58,21 +58,17 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Concepto (*)</label>
                                                 <select class="form-select" name="iexcodcon" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
                                                       <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Concepto (*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                   <div class="form-floating">
-                                                     <input class="form-control" name="iexvalcon" maxlength="18" type="number" value="" placeholder="street" required/>
-                                                     <label>Valor (*)</label>
-                                                   </div>
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none">Valor (*)</label>
+                                                   <input class="form-control" name="iexvalcon" maxlength="18" type="number" value="" placeholder="0.00" required/>
                                             </div>
 
 

@@ -82,50 +82,36 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Contrato(*)</label>
                                                 <select class="form-select" name="iextipcont" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipcont" items="${lovTipcont}">
                                                       <option value="${lovTipcont.idLov}"   ${lovTipcont.idLov == requestScope.iextipcont ? 'selected' : ''}  >  ${lovTipcont.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Tipo de Contrato(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                              <div class="flatpickr-input-container">
-                                                <div class="form-floating">
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                                  <label class="ps-6" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                </div>
-                                              </div>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Modelo Contrato(*)</label>
                                                 <select class="form-select" name="iexmodcont" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <option value="1"> Modelo 1</option>
                                                   <option value="2"> Modelo 2</option>
                                                 </select>
-                                                <label>Modelo Contrato(*)</label>
-                                              </div>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Estado(*)</label>
                                                 <select class="form-select" name="iexestado" required >
                                                   <option value="1">Activo</option>
                                                   <option value="0">Inactivo</option>
                                                 </select>
-                                                <label>Estado(*)</label>
-                                              </div>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

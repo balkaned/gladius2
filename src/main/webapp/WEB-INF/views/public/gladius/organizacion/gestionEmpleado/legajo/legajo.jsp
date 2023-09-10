@@ -61,15 +61,13 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                              <div class="form-floating">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Grupo de Archivos(*)</label>
                                                 <select class="form-select" name="codgrpfile" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
                                                       <option value="${lovGrpFile.idLov}"   ${lovGrpFile.idLov == requestScope.codgrpfile ? 'selected' : ''}  >  ${lovGrpFile.desLov} </option>
                                                   </c:forEach>
                                                 </select>
-                                                <label>Grupo de Archivos(*)</label>
-                                              </div>
                                             </div>
 
                                             <!--<div class="alert alert-success" role="alert" id="alert" style="display:none;">

@@ -397,6 +397,14 @@ border:1px solid red;
 
 #kanban{
 border:0px solid red;
+margin-top:-20px;
+}
+
+.kanban-container.scrollbar{
+border:0px solid green;
+width:107%;
+margin-left:-40px;
+height:470px;
 }
 
 
