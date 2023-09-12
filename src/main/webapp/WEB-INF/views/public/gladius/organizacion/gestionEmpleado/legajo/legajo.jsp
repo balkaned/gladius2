@@ -156,7 +156,7 @@
                                                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                           <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${listGrpFile.iexcodimage}</a></td>
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${listGrpFile.iexurlimage}</td>
-                                                          <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">Aprobar</span></td>
+                                                          <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">Aprobar</span></td>
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span></td>
                                                           <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                             <div class="font-sans-serif btn-reveal-trigger position-static">

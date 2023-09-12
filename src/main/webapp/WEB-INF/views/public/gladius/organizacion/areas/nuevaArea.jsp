@@ -13,13 +13,13 @@
   </head>
   <script>
       function mostrarAlert(){
-              //alert("se grabo exitosamente");
-              var div=document.getElementById('alert');
-              div.style.display = '';
+          //alert("se grabo exitosamente");
+          var div=document.getElementById('alert');
+          div.style.display = '';
 
-              setTimeout(function() {
-                  $("#alerts").hide(6000);
-              }, 3000);
+          setTimeout(function() {
+              $("#alerts").hide(6000);
+          }, 3000);
       }
   </script>
 
@@ -48,51 +48,41 @@
               </div>
 
               <div class="row g-5">
-                   <div class="col-xl-8">
+                   <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarArea" novalidate >
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-6">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="street" readonly disabled/>
-                                       <label>Codigo de Area (*)</label>
-                                     </div>
+                              <div class="col-sm-6 col-md-4">
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none">Codigo de Area (*)</label>
+                                     <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexdesarea" type="text" value="" placeholder="street" required/>
-                                     <label>Area (*)</label>
-                                   </div>
+                              <div class="col-sm-6 col-md-8">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Area (*)</label>
+                                    <input class="form-control" name="iexdesarea" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="street" required/>
-                                       <label>Descripcion (*)</label>
-                                     </div>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none">Descripcion (*)</label>
+                                     <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                <div class="form-floating">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Categoria de Area (*)</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatArea" items="${lovCatArea}">
                                         <option value="${lovCatArea.idLov}" >${lovCatArea.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Categoria de Area (*)</label>
-                                </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Categoria de Area (*)</label>
                                     <select class="form-select" name="iexareapadre" required >
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">
                                           <option value="${lovArea.iexcodarea}" >${lovArea.iexdesarea}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Categoria de Area (*)</label>
-                                  </div>
                               </div>
 
 

@@ -72,7 +72,7 @@
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LovDerhab.iexcoddep}</a></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--4 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.iexfecnac}</td>

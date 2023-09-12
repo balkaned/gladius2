@@ -55,46 +55,36 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <!--<input class="form-control" name="iexccosto2" type="hidden" value="${idx}" />-->
                               <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Banco(*)</label>
                                     <select class="form-select" name="iexcodban" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovBancos" items="${lovBancos}">
                                           <option value="${lovBancos.idLov}" >${lovBancos.desLov}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Banco(*)</label>
-                                  </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Proceso(*)</label>
                                     <select class="form-select" name="iexcodpro" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovProcesos" items="${lovProcesos}">
                                           <option value="${lovProcesos.idProceso}" >${lovProcesos.desProceso}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Proceso(*)</label>
-                                  </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de Cuenta(*)</label>
                                     <select class="form-select" name="iextipcta" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovTipCta" items="${lovTipCta}">
                                           <option value="${lovTipCta.idLov}" >${lovTipCta.desLov}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Tipo de Cuenta(*)</label>
-                                  </div>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexctaban" type="text" value="" placeholder="street" required/>
-                                       <label>Numero de Cuenta (*)</label>
-                                     </div>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none">Numero de Cuenta (*)</label>
+                                   <input class="form-control" name="iexctaban" maxlength="20" type="text" value="" placeholder="#" required/>
                               </div>
-
-
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                   Se grabó exitosamente los cambios.
@@ -102,7 +92,7 @@
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="litsBancos">Cancel</a>
+                                      <a class="btn btn-phoenix-primary px-5" href="listBancos">Cancel</a>
                                     </div>
                                     <div class="col-auto">
                                       <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Banco</button>

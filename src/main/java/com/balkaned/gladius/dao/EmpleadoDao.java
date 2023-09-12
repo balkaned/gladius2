@@ -20,15 +20,6 @@ public interface EmpleadoDao {
     public Integer obtieneIdEmpleado(Empleado empleado);
     public void insertarCabecera(Empleado empleado);
     public void actualizarFoto(Empleado empleado);
+    public Empleado recuperarTurnos(Integer ciaid, Integer codtra);
 
-    /*public List<Empleado> listarEmpleadoActivos(Integer codcia);
-    public List<Empleado> listarEmpleadoInactivos(Integer codcia);
-    public void actualizarOtros(Empleado Empleado);
-    public void  actualizarTurnos(Empleado Empleado) ;*/
-    /*public String listarEmpleadoDyn(Integer ciaid, String destra);
-    public Empleado recuperarTurnos(Integer ciaid , Integer codtra);
-    public void  cesarEmpleado(Empleado empleado);
-    public void  eliminarEmpleado(Integer ciaid , Integer codtra);
-    public void insertarTraMas(List<Empleado> Empleado);
-    public Integer  reingresarEmpleado(Integer ciaid, Integer codtrareing , String fechaing,  String desusu);*/
 }

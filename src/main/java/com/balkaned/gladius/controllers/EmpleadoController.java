@@ -1,6 +1,5 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -70,7 +70,7 @@
                                 			<c:forEach var="LstAusentismoDet" items="${requestScope.LstAusentismoDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstAusentismoDet.iexcorrel}</a></td>
-                                				  <td class="align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${LstAusentismoDet.destipaus}</span></td>
+                                				  <td class="align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstAusentismoDet.destipaus}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstAusentismoDet.iexfecini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstAusentismoDet.iexfecfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000">${LstAusentismoDet.iexnrodias} dias</td>

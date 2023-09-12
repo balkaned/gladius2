@@ -73,12 +73,12 @@
                                 			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
-                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
+                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexresolucion}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.descodpro}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexfecini}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LstRetencionDet.iexfecfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--4 badge-phoenix-info"><span class="badge-label">${LstRetencionDet.iexpordesct} %</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstRetencionDet.iexpordesct} %</span></td>
                                 				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000">${LstRetencionDet.ieximpfijo}</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">

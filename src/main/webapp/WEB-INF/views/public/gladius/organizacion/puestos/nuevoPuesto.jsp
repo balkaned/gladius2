@@ -43,41 +43,34 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Puesto</h2>
+                  <h2 id="h2top" class="mb-0">Insertar puesto</h2>
                 </div>
               </div>
 
               <div class="row g-5">
-                   <div class="col-xl-8">
+                   <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPuesto" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexpuesto2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-6">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexpuesto" type="text" value="${idx}" placeholder="street" readonly disabled/>
-                                       <label>ID (*)</label>
-                                     </div>
+                              <div class="col-sm-6 col-md-3">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">ID (*)</label>
+                                    <input class="form-control" name="iexpuesto" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexdespuesto" type="text" value="" placeholder="street" required/>
-                                       <label>Descripcion del Puesto(*)</label>
-                                     </div>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Descripcion del Puesto(*)</label>
+                                    <input class="form-control" name="iexdespuesto" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                <div class="form-floating">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Categoria Puesto(*)</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatPuesto" items="${lovCatPuesto}">
                                         <option value="${lovCatPuesto.idLov}" >${lovCatPuesto.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Categoria Puesto(*)</label>
-                                </div>
                               </div>
-
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                   Se grabó exitosamente los cambios.

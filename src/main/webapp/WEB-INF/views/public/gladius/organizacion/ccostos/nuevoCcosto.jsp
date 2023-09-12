@@ -48,34 +48,28 @@
               </div>
 
               <div class="row g-5">
-                   <div class="col-xl-8">
+                   <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarCcosto" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexccosto2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-6">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexccosto" type="text" value="${idx}" placeholder="street" readonly disabled/>
-                                       <label>ID (*)</label>
-                                     </div>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">ID (*)</label>
+                                    <input class="form-control" name="iexccosto" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexdesccosto" type="text" value="" placeholder="street" required/>
-                                       <label>Descripcion (*)</label>
-                                     </div>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none">Descripcion (*)</label>
+                                    <input class="form-control" name="iexdesccosto" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                <div class="form-floating">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Categoria Centro de Costos(*)</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatCencos" items="${lovCatCencos}">
                                         <option value="${lovCatCencos.idLov}" >${lovCatCencos.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Categoria Centro de Costos(*)</label>
-                                </div>
                               </div>
 
 
@@ -85,7 +79,7 @@
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="litsCcostos">Cancel</a>
+                                      <a class="btn btn-phoenix-primary px-5" href="listCcostos">Cancel</a>
                                     </div>
                                     <div class="col-auto">
                                       <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Ccosto</button>

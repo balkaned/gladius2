@@ -61,9 +61,9 @@
                                    <div class="col-12 col-sm-auto">
                                      <div class="row g-4 flex-sm-column">
                                        <div class="col-6 col-sm-12">
-                                         <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="mail" style="stroke-width:2.5;">  </span>
+                                         <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="calendar" style="stroke-width:2.5;">  </span>
                                            <h6 class="mb-0">Periodo pendiente</h6>
-                                         </div><a class="fs--1 ms-4" href="mailto:shatinon@jeemail.com:">${iexperiodo}</a>
+                                         </div><a class="fs--1 ms-4" href="!">${iexperiodo}</a>
                                        </div>
                                      </div>
                                    </div>
