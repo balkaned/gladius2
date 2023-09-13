@@ -22,5 +22,6 @@ public interface EmpleadoService {
     public void insertarCabecera(Empleado empleado);
     public void actualizarFoto(Empleado empleado);
     public Empleado recuperarTurnos(Integer ciaid, Integer codtra);
+    public void actualizarTurnos(Empleado empleado);
 
 }

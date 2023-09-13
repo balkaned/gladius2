@@ -1044,5 +1044,47 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
+    public void actualizarTurnos(Empleado empleado){
+
+        template.update("update  iexempleado set  "+
+                "iextipturno=? , " +
+                "iexlunes=? , " +
+                "iexmartes=? , " +
+                "iexmiercoles =? , " +
+                "iexjueves=? , " +
+                "iexviernes=? , " +
+                "iexsabado=? , " +
+                "iexdomingo=? , " +
+                "iexturlun=?, " +
+                "iexturmar=?, " +
+                "iexturmie=?, " +
+                "iexturjue=?, " +
+                "iexturvie=?, " +
+                "iextursab=?, " +
+                "iexturdom=?  , iexctlasipag = ? "+
+                "  where  iexcodcia=?   and  iexcodtra=?  ",
+
+                empleado.getIextipturno(),
+                empleado.getIexlunes(),
+                empleado.getIexmartes(),
+                empleado.getIexmiercoles(),
+                empleado.getIexjueves(),
+                empleado.getIexviernes(),
+                empleado.getIexsabado(),
+                empleado.getIexdomingo(),
+                empleado.getIexturlun(),
+                empleado.getIexturmar(),
+                empleado.getIexturmie(),
+                empleado.getIexturjue(),
+                empleado.getIexturvie(),
+                empleado.getIextursab(),
+                empleado.getIexturdom(),
+                empleado.getIexctlasipag(),
+                //pst.setString(14, "usuario");
+                empleado.getIexcodcia(),
+                empleado.getIexcodtra());
+
+    }
+
 
 }

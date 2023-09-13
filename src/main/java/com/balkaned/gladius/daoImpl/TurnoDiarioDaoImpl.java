@@ -71,46 +71,6 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         });
     }
 
-    /*public Integer getIdRetencionJudicial(RetencionJudicial retjud){
-
-        final Integer[] idfinal = {0};
-
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexretjudic where iexcodcia="+retjud.getIexcodcia()+" and iexcodtra="+retjud.getIexcodtra()+" " ;
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
-                }
-                return idfinal[0];
-            }
-        });
-    }
-
-    public void insertarRetencionJudicial(RetencionJudicial retjud){
-
-        template.update("  insert into iexretjudic( " +
-                "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
-                "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
-                "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
-                " ) values ( " +
-                "  ?,   ? ,  ?,   ?,  "+
-                "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,"+
-                "  ?  ,  ?,   ? ,  current_date "+
-                ")  ",
-
-                retjud.getIexcodcia(),
-                retjud.getIexcodtra(),
-                retjud.getIexcorrel(),
-                retjud.getIexcodpro(),
-                retjud.getIextipretjud(),
-                retjud.getIexresolucion(),
-                retjud.getIexfecini(),
-                retjud.getIexfecfin(),
-                retjud.getIexpordesct(),
-                retjud.getIeximpfijo(),
-                "1");
-    }*/
-
     public List<Turnodiario> listarTurnoDia(Integer codcia, Integer codtra, String fecini, String fecfin){
 
         String sql = " select	" +

@@ -92,15 +92,14 @@ public class GestionTiemposController {
 
         if (v_fecini!= null && v_fecfin!= null )  {
             model.addAttribute("LstTurnoDiario", turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(idTrab), v_fecini, v_fecfin));
-
         }
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/gestionTiempo/gestionTiempo");
     }
 
-  /* @RequestMapping("/nuevoAusentismo@{idTrab}")
-    public ModelAndView nuevoAusentismo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
-        logger.info("/nuevoAusentismo");
+  @RequestMapping("/grabarTurno@{idTrab}")
+    public ModelAndView grabarTurno(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+        logger.info("/grabarTurno");
 
         String user = (String) request.getSession().getAttribute("user");
 
@@ -151,11 +150,111 @@ public class GestionTiemposController {
         logger.info("sexo: "+sexo);
         model.addAttribute("sexo",sexo);
 
-        model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
+        Integer v_codcia = idCompania;
+        //v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),v_desfecdia , (String)session.getAttribute("desusu")
+        String tipturno = request.getParameter("slc_tipturno");
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/nuevoAusentismo");
+        String lunes = request.getParameter("iexlunes");
+        String martes = request.getParameter("iexmartes");
+        String miercoles = request.getParameter("iexmiercoles");
+        String jueves = request.getParameter("iexjueves");
+        String viernes = request.getParameter("iexviernes");
+        String sabado = request.getParameter("iexsabado");
+        String domingo = request.getParameter("iexdomingo");
+        String flagasipag = request.getParameter("iexctlasipag");
+
+        Integer turlunes = 999;
+        Integer turmartes = 999;
+        Integer turmiercoles = 999;
+        Integer turjueves = 999;
+        Integer turviernes = 999;
+        Integer tursabado = 999;
+        Integer turdomingo = 999;
+
+        if(request.getParameter("iexlunes")==null ){
+          lunes ="0";
+        }
+
+        if(request.getParameter("iexmartes")==null ){
+          martes ="0";
+        }
+
+        if(request.getParameter("iexmiercoles")==null ){
+          miercoles ="0";
+        }
+
+        if(request.getParameter("iexjueves")==null ){
+          jueves ="0";
+        }
+
+        if(request.getParameter("iexviernes")==null ){
+          viernes ="0";
+        }
+
+        if(request.getParameter("iexsabado")==null ){
+          sabado ="0";
+        }
+
+        if(request.getParameter("iexdomingo")==null ){
+          domingo ="0";
+        }
+
+        if(request.getParameter("iexturlun")!=null ){
+              turlunes = Integer.parseInt(request.getParameter("iexturlun").trim());
+        }else{
+          turlunes=999;
+        }
+
+        if(request.getParameter("iexturmar")!=null ){
+          turmartes = Integer.parseInt(request.getParameter("iexturmar").trim());
+        }
+
+        if(request.getParameter("iexturmie")!=null ){
+          turmiercoles = Integer.parseInt(request.getParameter("iexturmie").trim());
+        }
+
+        if(request.getParameter("iexturjue")!=null ){
+          turjueves = Integer.parseInt(request.getParameter("iexturjue").trim());
+        }
+
+        if(request.getParameter("iexturvie")!=null ){
+          turviernes = Integer.parseInt(request.getParameter("iexturvie").trim());
+        }
+
+        if(request.getParameter("iextursab")!=null ){
+          tursabado = Integer.parseInt(request.getParameter("iextursab").trim());
+        }
+
+        if(request.getParameter("iexturdom")!=null ){
+          turdomingo = Integer.parseInt(request.getParameter("iexturdom").trim());
+        }
+
+        Empleado emp2 = new Empleado();
+
+        emp2.setIextipturno(tipturno);
+        emp2.setIexlunes(lunes);
+        emp2.setIexmartes(martes);
+        emp2.setIexmiercoles(miercoles);
+        emp2.setIexjueves(jueves);
+        emp2.setIexviernes(viernes);
+        emp2.setIexsabado(sabado);
+        emp2.setIexdomingo(domingo);
+        emp2.setIexturlun(turlunes);
+        emp2.setIexturmar(turmartes);
+        emp2.setIexturmie(turmiercoles);
+        emp2.setIexturjue(turjueves);
+        emp2.setIexturvie(turviernes);
+        emp2.setIextursab(tursabado);
+        emp2.setIexturdom(turdomingo);
+        emp2.setIexctlasipag(flagasipag);
+        emp2.setIexcodcia(v_codcia);
+        emp2.setIexcodtra(Integer.valueOf(idTrab));
+
+        empleadoService.actualizarTurnos(emp2);
+
+      return new ModelAndView("redirect:/gestionTiempo@"+idCompania);
     }
-
+/*
     @RequestMapping("/insertarAusentismo")
     public ModelAndView insertarAusentismo(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarAusentismo");

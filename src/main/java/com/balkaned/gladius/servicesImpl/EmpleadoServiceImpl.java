@@ -36,6 +36,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public void insertarCabecera(Empleado empleado){dao.insertarCabecera(empleado);}
     public void actualizarFoto(Empleado empleado){dao.actualizarFoto(empleado);}
     public Empleado recuperarTurnos(Integer ciaid, Integer codtra){return dao.recuperarTurnos(ciaid,codtra);}
+    public void actualizarTurnos(Empleado empleado){dao.actualizarTurnos(empleado);}
 
 
 }
