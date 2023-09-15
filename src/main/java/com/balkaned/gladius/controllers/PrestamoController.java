@@ -203,5 +203,74 @@ public class PrestamoController {
         return new ModelAndView("redirect:/prestamos@"+iexcodtra);
     }
 
+    @RequestMapping("/detalleCron@{idTrab}@{iexcorrel}")
+    public ModelAndView detalleCron(ModelMap model, HttpServletRequest request,
+                                    @PathVariable String idTrab,
+                                    @PathVariable String iexcorrel){
+        logger.info("/detalleCron");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idCompaniaXXXX: "+idCompania);
+        logger.info("idTraXXXXXb: "+idTrab);
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idTrab",idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado",empleado);
+
+        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
+        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
+        logger.info("sexo: "+sexo);
+        model.addAttribute("sexo",sexo);
+
+        model.addAttribute("lovTippres",lovsService.getLovs("59","%"));
+        model.addAttribute("lovTipInteres",lovsService.getLovs("60","%"));
+        model.addAttribute("lovFrecPrestamo",lovsService.getLovs("61","%"));
+
+        PrestamoCab prestcab = new PrestamoCab();
+        prestcab.setIexcodcia(empleado.getIexcodcia());
+        prestcab.setIexcodtra(empleado.getIexcodtra());
+        prestcab.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        model.addAttribute("xPrestCab",prestamoService.getPrestamoCab(prestcab));
+        model.addAttribute("xPrestDet",prestamoService.listarPrestamoDet(prestcab));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/detallePrestamo");
+    }
+
 }
 

@@ -56,49 +56,49 @@
                             </div>
 
                             <div class="row g-5">
-                                 <div class="col-xl-10">
+                                 <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarAcumulado" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo Anual</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Anual</label>
                                                 <input class="form-control" name="iexaniotrib" maxlength="6" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. Acum Anterior (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. Acum Anterior (Desuso)</label>
                                                 <input class="form-control" name="iexrem_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu 5ta Afect Acum Anterior (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu 5ta Afect Acum Anterior (Desuso)</label>
                                                 <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Renta 5ta Acum Anterior (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Renta 5ta Acum Anterior (Desuso)</label>
                                                 <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Rem Afect 5ta Otro Cia</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rem Afect 5ta Otro Cia</label>
                                                 <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Desct. 5ta Otra Cia</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desct. 5ta Otra Cia</label>
                                                 <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. 4ta Acum (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. 4ta Acum (Desuso)</label>
                                                 <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Desc 4ta Acum (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desc 4ta Acum (Desuso)</label>
                                                 <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Remu. Otra Cia (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. Otra Cia (Desuso)</label>
                                                 <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Dscto. Otra Cia (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dscto. Otra Cia (Desuso)</label>
                                                 <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" value="0.0" required />
                                             </div>
 

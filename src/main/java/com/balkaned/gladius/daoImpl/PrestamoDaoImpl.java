@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PrestamoCab;
+import com.balkaned.gladius.beans.PrestamoDet;
 import com.balkaned.gladius.dao.PrestamoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -156,6 +157,127 @@ public class PrestamoDaoImpl implements PrestamoDao {
         prestcab.getIexcodtra(),
         prestcab.getIexcorrel());
 
+    }
+
+    public PrestamoCab getPrestamoCab(PrestamoCab prestcab){
+
+        String sql = " select " +
+                "c.iexcodcia	," +
+                "c.iexcodtra	," +
+                "c.iexcorrel	," +
+                "c.iextippres	," +
+                "i.desdet destippres," +
+                "c.iextipinteres	," +
+                "j.desdet destipinteres," +
+                "c.iexfrecuencia	," +
+                "j.desdet desfrecuencia," +
+                " to_char(c.iexfecpres,'DD/MM/YYYY') iexfecpres	," +
+                " to_char(c.iexfecinivig,'DD/MM/YYYY') iexfecinivig, " +
+                "c.iexnrocuotas	," +
+                "c.ieximpbru	," +
+                "c.iexinteres	," +
+                "c.ieximptotal	," +
+                "c.iexglosa	," +
+                "c.iexusucrea	," +
+                "to_char(c.iexfeccrea,'DD/MM/YYYY') iexfeccrea	," +
+                "c.iexusumod	," +
+                "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod	," +
+                "c.iexestado" +
+                "  from  " +
+                "iexprestamocab c , " +
+                "( select  iexkey, desdet from iexttabled where iexcodtab='59'  )  i, " +
+                "( select  iexkey, desdet from iexttabled where iexcodtab='60'  )  j, " +
+                "( select  iexkey, desdet from iexttabled where iexcodtab='61'  )  h " +
+                "where "+
+                "c.iextippres =  i.iexkey and  " +
+                "c.iextipinteres = j.iexkey and " +
+                "c.iexfrecuencia =  h.iexkey and  iexcodcia="+prestcab.getIexcodcia()+" and iexcodtra="+prestcab.getIexcodtra()+" and iexcorrel= "+prestcab.getIexcorrel()+" "  ;
+
+        return template.query(sql, new ResultSetExtractor<PrestamoCab>() {
+
+            public PrestamoCab extractData(ResultSet rs) throws SQLException, DataAccessException {
+                PrestamoCab p = new PrestamoCab();
+                while(rs.next()) {
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcorrel(rs.getInt("iexcorrel"));
+                    p.setIextippres(rs.getString("iextippres"));
+                    p.setDestippres(rs.getString("destippres"));
+                    p.setDestipinteres(rs.getString("destipinteres"));
+                    p.setDestipfrecuencia(rs.getString("desfrecuencia"));
+                    p.setIextipinteres(rs.getString("iextipinteres"));
+                    p.setIexfrecuencia(rs.getString("iexfrecuencia"));
+                    p.setIexfecpres(rs.getString("iexfecpres"));
+                    p.setIexfecinivig(rs.getString("iexfecinivig"));
+                    p.setIexnrocuotas(rs.getDouble("iexnrocuotas"));
+                    p.setIeximpbru(rs.getDouble("ieximpbru"));
+                    p.setIexinteres(rs.getDouble("iexinteres"));
+                    p.setIeximptotal(rs.getDouble("ieximptotal"));
+                    p.setIexglosa(rs.getString("iexglosa"));
+                    p.setIexestado(rs.getString("iexestado"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public List<PrestamoDet> listarPrestamoDet(PrestamoCab prestcab){
+
+        String sql = "  select  " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexcorrel, " +
+                "iexidcuota, " +
+                "to_char(iexfecpre,'DD/MM/YYYY') iexfecpre , " +
+                "ieximpbru , " +
+                "iexinteres , " +
+                "ieximptotal , " +
+                "iexusucrea	, " +
+                "to_char(iexfeccrea,'DD/MM/YYYY') iexfeccrea, " +
+                "iexusumod	, " +
+                "to_char(iexfecmod,'DD/MM/YYYY')	 iexfecmod, " +
+                "iexflgest	, " +
+                "iexcodpropla , " +
+                "iexcodconpla ," +
+                "ieximportepla	, " +
+                "iexglosa  " +
+                "from  " +
+                "iexprestamodet where iexcodcia="+prestcab.getIexcodcia()+" and iexcodtra="+prestcab.getIexcodtra()+" and iexcorrel = "+prestcab.getIexcorrel()+" ";
+        return template.query(sql, new ResultSetExtractor<List<PrestamoDet>>() {
+            public List<PrestamoDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<PrestamoDet> lista = new ArrayList<PrestamoDet>();
+
+                while(rs.next()) {
+                    PrestamoDet p = new PrestamoDet();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcorrel(rs.getInt("iexcorrel"));
+                    p.setIexidcuota(rs.getInt("iexidcuota"));
+                    p.setIexfecpre(rs.getString("iexfecpre"));
+                    p.setIeximpbru(rs.getDouble("ieximpbru"));
+                    p.setIexinteres(rs.getDouble("iexinteres"));
+                    p.setIeximptotal(rs.getDouble("ieximptotal"));
+                    p.setIexflgest(rs.getString("iexflgest"));
+                    p.setIexcodpropla(rs.getInt("iexflgest"));
+                    p.setIexcodconpla(rs.getString("iexcodconpla"));
+                    p.setIeximportepla(rs.getDouble("ieximportepla"));
+                    p.setIexglosa(rs.getString("iexglosa"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
     }
 
 }

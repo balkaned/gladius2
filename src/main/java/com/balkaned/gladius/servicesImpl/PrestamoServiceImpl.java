@@ -3,6 +3,7 @@ package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PrestamoCab;
+import com.balkaned.gladius.beans.PrestamoDet;
 import com.balkaned.gladius.dao.PrestamoDao;
 import com.balkaned.gladius.services.PrestamoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,7 @@ public class PrestamoServiceImpl implements PrestamoService {
     public Integer getIdPrestamoCab(PrestamoCab prestcab){return dao.getIdPrestamoCab(prestcab);}
     public void insertarPrestamoCab(PrestamoCab prestcab){dao.insertarPrestamoCab(prestcab);}
     public void generacuotasPrestamoCab(PrestamoCab prestcab){dao.generacuotasPrestamoCab(prestcab);}
+    public PrestamoCab getPrestamoCab(PrestamoCab prestcab){return dao.getPrestamoCab(prestcab);}
+    public List<PrestamoDet> listarPrestamoDet(PrestamoCab prestcab){return dao.listarPrestamoDet(prestcab);}
 
 }

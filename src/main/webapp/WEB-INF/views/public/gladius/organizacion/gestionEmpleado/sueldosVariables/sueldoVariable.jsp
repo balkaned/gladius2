@@ -91,7 +91,7 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Regimen Laboral (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen Laboral (*)</label>
                                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
@@ -100,12 +100,12 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Proceso de Planilla (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de Planilla (*)</label>
                                                 <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Periodo (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo (*)</label>
                                                 <select class="form-select" name="iexperiodo" id="iexperiodo" required >
                                                 </select>
 

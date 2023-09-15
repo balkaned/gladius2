@@ -62,19 +62,19 @@
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <input class="form-control" name="iexcodgrpfile2" type="hidden" value="${iexcodgrpfile}" />
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">ID</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
                                                 <input class="form-control" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required disabled readonly />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Subir Imagen</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir Imagen</label>
                                                 <input class="form-control" name="filepath" type="file" />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Url Imagen</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Imagen</label>
                                                 <input class="form-control" name="urlimagen" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Descripcion Imagen</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Imagen</label>
                                                  <input class="form-control" name="desimagen" type="text" required />
                                             </div>
 
