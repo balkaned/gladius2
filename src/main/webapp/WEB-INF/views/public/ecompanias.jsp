@@ -89,53 +89,47 @@ margin-top:10px !important;
           </div>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-9">
+            <c:forEach var="comp" items="${requestScope.compList}">
+              <div class="col" style="width:380px;">
+                <div class="card h-100 hover-actions-trigger">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">${comp.nombre}</h4>
+                      <div class="hover-actions top-0 end-0 mt-4 me-4">
+                        <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
+                      </div>
+                    </div><span class="badge badge-phoenix fs--2 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
+                        <img id="imgcompany" src="verFoto@LOGO@${comp.id_companias}@${comp.urlLogo}" class="avatar" alt="Avatar" width="100">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="fa-solid far fa-newspaper me-2 text-700 fs--1 fw-extra-bold"></span>
+                        <p class="fw-bold mb-0 text-truncate lh-1">RUC : <span class="fw-semi-bold text-primary ms-1">${comp.ruc}</span></p>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <span class="fa-solid fas fa-bus me-2 text-700 fs--1 fw-extra-bold"></span>
+                        <p class="fw-bold mb-0 lh-1">Dirección: <span class="ms-1 text-1100">${comp.direccion}</span></p>
+                    </div>
+                    <div class="d-flex justify-content-between text-700 fw-semi-bold">
+                      <p class="mb-2"> Schema</p>
+                      <p class="mb-2 text-1100">100%</p>
+                    </div>
+                    <div class="progress bg-success-100">
+                      <div class="progress-bar rounded bg-${comp.schema}" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center mt-4">
+                      <p class="mb-0 fw-bold fs--1">Started:<span class="fw-semi-bold text-600 ms-1">	17th Nov. 2020</span></p>
+                    </div>
+                    <div class="d-flex align-items-center mt-2">
+                      <p class="mb-0 fw-bold fs--1">Deadline: <span class="fw-semi-bold text-600 ms-1">	21st May 2028</span></p>
+                    </div>
 
-
-          <c:forEach var="comp" items="${requestScope.compList}">
-          <div class="col">
-            <div class="card h-100 hover-actions-trigger">
-              <div class="card-body">
-                <div class="d-flex align-items-center">
-                  <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">${comp.nombre}</h4>
-                  <div class="hover-actions top-0 end-0 mt-4 me-4">
-                    <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
+                    <div class="mt-lg-3 mt-xl-0"> <i class="fa-solid fa-list-check me-1"></i>
+                        <p class="d-inline-block fw-bold mb-0">287<span class="fw-normal">	Task</span></p>
+                    </div>
                   </div>
-                </div><span class="badge badge-phoenix fs--2 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
-                    <img id="imgcompany" src="verFoto@LOGO@${comp.id_companias}@${comp.urlLogo}" class="avatar" alt="Avatar" width="100">
-                <div class="d-flex align-items-center mb-2"><span class="fa-solid fa-user me-2 text-700 fs--1 fw-extra-bold"></span>
-                  <p class="fw-bold mb-0 text-truncate lh-1">RUC : <span class="fw-semi-bold text-primary ms-1">${comp.ruc}</span></p>
                 </div>
-                <div class="d-flex align-items-center mb-4"><span class="fa-solid fa-credit-card me-2 text-700 fs--1 fw-extra-bold"></span>
-                  <p class="fw-bold mb-0 lh-1">Dirección : <span class="ms-1 text-1100">${comp.direccion}</span></p>
-                </div>
-                <div class="d-flex justify-content-between text-700 fw-semi-bold">
-                  <p class="mb-2"> Schema</p>
-                  <p class="mb-2 text-1100">100%</p>
-                </div>
-                <div class="progress bg-success-100">
-                  <div class="progress-bar rounded bg-${comp.schema}" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="d-flex align-items-center mt-4">
-                  <p class="mb-0 fw-bold fs--1">Started :<span class="fw-semi-bold text-600 ms-1">	17th Nov. 2020</span></p>
-                </div>
-                <div class="d-flex align-items-center mt-2">
-                  <p class="mb-0 fw-bold fs--1">Deadline : <span class="fw-semi-bold text-600 ms-1">	21st May 2028</span></p>
-                </div>
-
-
-                  <div class="mt-lg-3 mt-xl-0"> <i class="fa-solid fa-list-check me-1"></i>
-                    <p class="d-inline-block fw-bold mb-0">287<span class="fw-normal">	Task</span></p>
-                  </div>
-
-                </div>
-
               </div>
-
-            </div>
             </c:forEach>
           </div>
-
-
         </div>
       </div>
 

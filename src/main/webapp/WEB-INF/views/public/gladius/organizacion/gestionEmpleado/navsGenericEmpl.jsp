@@ -29,8 +29,9 @@
               </div>
               <input class="d-none" id="upload-feed-porfile-picture" type="file" />
               <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture">
-                <c:if test="${sexo.equals('MA')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user_blank.jpg" width="200" alt="" /></c:if>
+                <c:if test="${sexo.equals('MA') && iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user_blank.jpg" width="200" alt="" /></c:if>
                 <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="verFoto@FOTOEMP@${idComp}@${iexlogo}" width="200" alt="" /></c:if>
+
                 <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>
                 <c:if test="${iexlogo==null && sexo.equals('F')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/woman_user.jpg" width="200" alt="" /></c:if>
               </label>
@@ -40,7 +41,7 @@
                 <div class="col-12">
                   <div class="d-flex flex-wrap mb-3 align-items-center">
                     <h3 id="nombreFichaTrab" class="me-2" >${nombrecompl}</h3>
-                    <span class="fw-normal fs-0">${puesto}</span>
+                    <span class="fw-normal fs-0 col-12">${puesto}</span>
                     <a href="#!" class="fs--1" data-bs-toggle="modal" data-bs-target="#reportsFilterModal" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Informacion de contacto</a>
                     <div class="col-12 mt-2">
                         <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix badge-phoenix-success">Activo</span></c:if>

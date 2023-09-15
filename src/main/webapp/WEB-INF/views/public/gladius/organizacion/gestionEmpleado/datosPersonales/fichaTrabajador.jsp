@@ -288,7 +288,7 @@
                                             Se grabó exitosamente los cambios.
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-6">
-                                            <div class="col-6">
+                                            <div class="col-sm-6 col-md-6">
                                                 <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
                                                 <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                             </div>
@@ -468,7 +468,7 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <div class="col-6">
+                                                <div class="col-sm-6 col-md-6">
                                                     <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
                                                     <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal2" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                                 </div>
@@ -604,7 +604,7 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <div class="col-6">
+                                                <div class="col-sm-6 col-md-6">
                                                     <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
                                                     <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal3" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                                 </div>
@@ -746,7 +746,7 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
-                                                <div class="col-6">
+                                                <div class="col-sm-6 col-md-6">
                                                     <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
                                                     <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal4" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                                 </div>
@@ -985,7 +985,7 @@
                                                 Se grabó exitosamente los cambios.
                                           </div>
                                           <div class="col-12 d-flex justify-content-end mt-6">
-                                                <div class="col-6">
+                                                <div class="col-sm-6 col-md-6">
                                                     <a class="btn btn-phoenix-primary" href="listEmpleados">Cancel</a>
                                                     <button class="btn btn-primary col-8" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal5" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
                                                 </div>
