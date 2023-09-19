@@ -402,6 +402,7 @@ public class VacacionesController {
             model.addAttribute("lovTipvaca",lovsService.getLovs("56","%"));
             model.addAttribute("perini",perini2);
             model.addAttribute("perfin",perfin2);
+            model.addAttribute("idTrab",iexcodtra);
             model.addAttribute("msg","Las fechas se cruzan con programaciones anteriores");
         }
 

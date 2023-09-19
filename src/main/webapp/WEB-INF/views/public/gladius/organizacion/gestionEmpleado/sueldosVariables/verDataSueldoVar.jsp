@@ -90,7 +90,7 @@
                                			<c:forEach var="fdatavar" items="${requestScope.fdatavar}">
                                				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                				  <td class="order align-middle white-space-nowrap ps-3 pe-3 text-start"><a class="fw-semi-bold" href="#!">#${fdatavar.iexcodpro}</a></td>
-                               				  <td class="total align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${fdatavar.coodescon}</span></td>
+                               				  <td class="total align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${fdatavar.coodescon}</span></td>
                                				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ps-3 pe-3">${fdatavar.iexvalcon}</td>
 
                                				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">

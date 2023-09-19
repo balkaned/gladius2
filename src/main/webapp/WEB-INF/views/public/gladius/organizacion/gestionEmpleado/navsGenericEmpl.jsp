@@ -15,7 +15,7 @@
           <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-1"></span></button>
         </div>
 
-        <div class="card mb-2">
+        <div class="card mb-2" style="height:275px;">
             <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 70px; ">
                 <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">-->
                 <!--<div class="bg-holder rounded-top" style="background-color:#e6ebf7; !important">-->
@@ -82,44 +82,44 @@
           <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
         </div>
         <div class="modal-body pt-4 pb-2 px-4">
-            <div class="ps-3">
-              <div class="mb-3">
+            <div class="ps-3" style="font-size:13px;">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-envelope-alt">  </span>
-                  <h5 class="text-1000 mb-0">Email</h5>
+                  <span class="text-1000 mb-0">Email</span>
                 </div><a href="mailto:shatinon@jeemail.com:">${email}</a>
               </div>
-              <div class="mb-3">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-phone"> </span>
-                  <h5 class="text-1000 mb-0">Telefono</h5>
+                  <span class="text-1000 mb-0">Telefono</span>
                 </div><a href="tel:+1234567890">+${telefono}</a>
               </div>
-              <div class="mb-3">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-directions"></span>
-                  <h5 class="text-1000 mb-0">Dirección</h5>
+                  <span class="text-1000 mb-0">Dirección</span>
                 </div><a href="#!">${direccion}</a>
               </div>
-              <div class="mb-3">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-postcard"></span>
-                  <h5 class="text-1000 mb-0">Nro Documento</h5>
+                  <span class="text-1000 mb-0">Nro Documento</span>
                 </div>
                 <p class="mb-0 text-800">${nrodoc}</p>
               </div>
-              <div class="mb-3">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 fa-solid fas fa-graduation-cap"></span>
-                  <h5 class="text-1000 mb-0">Puesto</h5>
+                  <span class="text-1000 mb-0">Puesto</span>
                 </div>
                 <p class="mb-0 text-800">${puesto}</p>
               </div>
-              <div class="mb-3">
+              <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 fa-solid far fa-save"></span>
-                  <h5 class="text-1000 mb-0">Ult. Actualización</h5>
+                  <span class="text-1000 mb-0">Ult. Actualización</span>
                 </div>
                 <p class="mb-0 text-800">${fechaMod}</p>
               </div>
               <div>
                 <div class="d-flex align-items-center mb-1">
                   <span class="me-2 uil uil-check-circle"></span>
-                  <h5 class="text-1000 mb-0">Estado</h5>
+                  <span class="text-1000 mb-0">Estado</span>
                 </div>
                 <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix badge-phoenix-success">Activo</span></c:if>
                 <c:if test="${estado.equals('0')}"><span class="badge badge-phoenix badge-phoenix-danger">Inactivo</span></c:if>
