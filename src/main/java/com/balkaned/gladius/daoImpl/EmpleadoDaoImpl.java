@@ -962,12 +962,10 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
         template.update(" insert into iexempleado(   "+
                 " iexcodcia,     iexcodtra,         iexnomtra,     iexapepat,    iexapemat, " +
-                //" iextipdocid,   iexnrodoc,         iexfecnac,     iexfecing,     " +
-                " iextipdocid,   iexnrodoc, " +
+                " iextipdocid,   iexnrodoc,         iexfecnac,     iexfecing,     " +
                 " iexcodsex,      iexflgest,     iexcodant,    iextiptra, " +
                 " iexfeccrea,                 iexusucrea ) values "+
-                //"  ( ?,?,?,?,?,   ?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),    ?,?,?,?,  current_date,? )",
-                " ( ?,?,?,?,?,?,?,?,?,?,?,current_date,? )",
+                "  ( ?,?,?,?,?,   ?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),    ?,?,?,?,  current_date,? )",
 
             empleado.getIexcodcia(),
             empleado.getIexcodtra(),
@@ -976,8 +974,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             empleado.getIexapemat(),
             empleado.getIextipdocid(),
             empleado.getIexnrodoc(),
-            //empleado.getIexfecnac(),
-            //empleado.getIexfecing(),
+            empleado.getIexfecnac(),
+            empleado.getIexfecing(),
             empleado.getIexcodsex(),
             1,
             empleado.getIexcodant(),

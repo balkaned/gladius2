@@ -70,7 +70,7 @@ public class EmpleadoController {
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleados");
     }
 
-    @RequestMapping("/detalleEmpl@{idTrab}")
+    @RequestMapping("detalleEmpl@{idTrab}")
     public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request,@PathVariable String idTrab) {
         logger.info("/detalleEmpl");
 
@@ -104,6 +104,8 @@ public class EmpleadoController {
         model.addAttribute("empleado",empleado);
 
         Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        logger.info("fecha nac: "+emp.getIexfecnac());
+        model.addAttribute("fecnacIEX", emp.getIexfecnac());
         model.addAttribute("emp", emp);
         model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
@@ -713,10 +715,10 @@ public class EmpleadoController {
         String iexnomtra = request.getParameter("iexnomtra");
         String iexapepat= request.getParameter("iexapepat");
         String iexapemat = request.getParameter("iexapemat");
-        //String iexfecnac = request.getParameter("iexfecnac");
+        String iexfecnac = request.getParameter("iexfecnac");
         String iexcodsex = request.getParameter("iexcodsex");
         String iextiptra = request.getParameter("iextiptra");
-        //String iexfecing = request.getParameter("iexfecing");
+        String iexfecing = request.getParameter("iexfecing");
         String iexcodant = request.getParameter("iexcodant");
 
         Empleado emp = new Empleado();
@@ -727,10 +729,10 @@ public class EmpleadoController {
         emp.setIexapemat(iexapemat);
         emp.setIextipdocid(iextipdocid);
         emp.setIexnrodoc(iexnrodocid);
-        //emp.setIexfecnac(iexfecnac);
+        emp.setIexfecnac(iexfecnac);
         emp.setIexcodsex(iexcodsex);
         emp.setIextiptra(iextiptra);
-        //emp.setIexfecing(iexfecing);
+        emp.setIexfecing(iexfecing);
         emp.setIexcodant(iexcodant);
         emp.setIexusucrea(usuario);
 

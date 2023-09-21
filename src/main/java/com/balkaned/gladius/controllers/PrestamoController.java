@@ -262,8 +262,8 @@ public class PrestamoController {
         model.addAttribute("lovFrecPrestamo",lovsService.getLovs("61","%"));
 
         PrestamoCab prestcab = new PrestamoCab();
-        prestcab.setIexcodcia(empleado.getIexcodcia());
-        prestcab.setIexcodtra(empleado.getIexcodtra());
+        prestcab.setIexcodcia(idCompania);
+        prestcab.setIexcodtra(Integer.valueOf(idTrab));
         prestcab.setIexcorrel(Integer.valueOf(iexcorrel));
 
         model.addAttribute("xPrestCab",prestamoService.getPrestamoCab(prestcab));

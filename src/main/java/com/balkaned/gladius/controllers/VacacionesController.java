@@ -408,5 +408,64 @@ public class VacacionesController {
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/nuevasVacacionesIns");
     }
+
+    @RequestMapping("/actualizar@{idTrab}")
+    public ModelAndView actualizar(ModelMap model, HttpServletRequest request,
+                                   @PathVariable String idTrab) {
+        logger.info("/actualizar");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Empleado emp=empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("iexlogo",emp.getIexlogo());
+        model.addAttribute("urlLogo",urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
+        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
+        logger.info("sexo: "+sexo);
+        model.addAttribute("sexo",sexo);
+
+        Empleado emp2 = new Empleado();
+        emp2.setIexcodtra(Integer.valueOf(idTrab));
+        emp2.setIexcodcia(idCompania);
+
+        vacacionesService.procesaVacacionCtl(emp2);
+        //request.setAttribute("LstVacacionesDet",dao.listarVacacionesPrg(empleado) );
+        model.addAttribute("LstVacacionesCtl",vacacionesService.listarVacacionesCtl(emp2));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
+    }
 }
 

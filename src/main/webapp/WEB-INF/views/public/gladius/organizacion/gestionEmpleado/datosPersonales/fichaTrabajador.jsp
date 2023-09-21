@@ -164,9 +164,10 @@
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres (*)</label>
                                             <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required />
                                         </div>
+
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${requestScope.emp.iexfecnac}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" required />
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo(*) [TT50]</label>

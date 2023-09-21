@@ -42,20 +42,16 @@
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="validarNroDoc" novalidate >
                           <input class="form-control" name="accion" type="hidden" value="VAL" />
                           <div class="col-sm-6 col-md-12">
-                            <div class="form-floating">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento (*)</label>
                                 <select name="iextipdocid" class="form-select" required >
                                     <option value="01">DNI</option>
                                     <option value="02">RUC</option>
                                     <option value="04">CE</option>
                                 </select>
-                                <label>Tipo Documento (*)</label>
-                            </div>
                           </div>
                           <div class="col-sm-6 col-md-12">
-                            <div class="form-floating">
-                              <input class="form-control" name="iexnrodocid" maxlength="15" type="text" value="" placeholder="street" required/>
-                              <label>Nro de Documento</label>
-                            </div>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento</label>
+                              <input class="form-control" name="iexnrodocid" maxlength="15" type="text" value="" placeholder="#" required/>
                           </div>
 
                           <div class="col-12 d-flex justify-content-end mt-6">
@@ -68,7 +64,7 @@
                           <c:forEach var="LstPerRegistrada" items="${requestScope.LstPerRegistrada}">
                               <div class="border-bottom py-4">
                                   <div class="d-flex">
-                                    <div class="d-flex bg-primary-100 rounded-circle flex-center me-3 bg-primary-100" style="width:25px; height:25px"><span class="fa-solid text-primary-600 dark__text-primary-300 fs--1 fa-clipboard text-primary-600 dark__text-primary-300"></span></div>
+                                    <div class="d-flex bg-primary-100 rounded-circle flex-center me-3 bg-primary-100" style="width:25px; height:25px"><span class="fa-solid text-primary-600 dark__text-primary-300 fs--1 fas fa-universal-access text-primary-600 dark__text-primary-300"></span></div>
                                     <div class="flex-1">
                                       <div class="d-flex justify-content-between flex-column flex-xl-row mb-2 mb-sm-0">
                                         <div class="flex-1 me-2">

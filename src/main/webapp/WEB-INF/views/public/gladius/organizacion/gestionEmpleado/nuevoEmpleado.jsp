@@ -13,13 +13,35 @@
   </head>
   <script>
       function mostrarAlert(){
-              //alert("se grabo exitosamente");
-              var div=document.getElementById('alert');
-              div.style.display = '';
+          //alert("se grabo exitosamente");
+          var div=document.getElementById('alert');
+          div.style.display = '';
 
-              setTimeout(function() {
-                  $("#alerts").hide(6000);
-              }, 3000);
+          setTimeout(function() {
+              $("#alerts").hide(6000);
+          }, 3000);
+      }
+
+      function formatearFecha1(){
+          var fechaSeleccionada = $('#iexfecnac').val();
+
+          var anio=fechaSeleccionada.substring(0, 4);
+          var mes=fechaSeleccionada.substring(5, 7);
+          var dia=fechaSeleccionada.substring(8, 10);
+
+          var fechaFormat=dia+"/"+mes+"/"+anio;
+          $("#iexfecnac").val(fechaFormat);
+      }
+
+      function formatearFecha2(){
+          var fechaSeleccionada = $('#iexfecing').val();
+
+          var anio=fechaSeleccionada.substring(0, 4);
+          var mes=fechaSeleccionada.substring(5, 7);
+          var dia=fechaSeleccionada.substring(8, 10);
+
+          var fechaFormat=dia+"/"+mes+"/"+anio;
+          $("#iexfecing").val(fechaFormat);
       }
   </script>
 
@@ -54,85 +76,60 @@
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <div class="col-sm-6 col-md-6">
-                                <div class="form-floating">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento (*)</label>
                                   <select class="form-select" name="iextipdocid" required >
-                                    <option value="" selected > -- Seleccionar -- </option>
+                                    <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                         <option value="${lovTipdoc.idLov}" ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}  >${lovTipdoc.desLov}</option>
                                     </c:forEach>
                                   </select>
-                                  <label>Tipo Documento (*)</label>
-                                </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                 <div class="form-floating">
-                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="street" required/>
-                                   <label>Nro de Documento (*)</label>
-                                 </div>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento (*)</label>
+                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexapepat" type="text" value="" placeholder="street" required/>
-                                     <label>Apellido Paterno (*)</label>
-                                   </div>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Paterno (*)</label>
+                                   <input class="form-control" name="iexapepat" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                 <div class="form-floating">
-                                   <input class="form-control" name="iexapemat" type="text" value="" placeholder="street" required/>
-                                   <label>Apellido Materno (*)</label>
-                                 </div>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Materno (*)</label>
+                                   <input class="form-control" name="iexapemat" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <div class="form-floating">
-                                     <input class="form-control" name="iexnomtra" type="text" value="" placeholder="street" required/>
-                                     <label>Nombres (*)</label>
-                                   </div>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres (*)</label>
+                                   <input class="form-control" name="iexnomtra" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                  <div class="flatpickr-input-container">
-                                    <div class="form-floating">
-                                      <input class="form-control datetimepicker" name="iexfecnac" id="floatingInputStartDate" value="" type="text" placeholder="end date" data-options='{"disableMobile":true}' />
-                                      <label class="ps-6" for="floatingInputStartDate">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    </div>
-                                  </div>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <div class="form-floating">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo (*)</label>
                                     <select class="form-select" name="iexcodsex" required>
-                                      <option value="" selected > -- Seleccionar -- </option>
+                                      <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovSexo" items="${lovSexo}">
                                           <option value="${lovSexo.idLov}" ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}  >${lovSexo.desLov}</option>
                                       </c:forEach>
                                     </select>
-                                    <label>Sexo (*)</label>
-                                  </div>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <div class="form-floating">
-                                      <select class="form-select" name="iextiptra" required>
-                                        <option value="" selected > -- Seleccionar -- </option>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Trabajador (*)</label>
+                                     <select class="form-select" name="iextiptra" required>
+                                        <option value="" selected >Seleccionar</option>
                                         <c:forEach var="lovTipTra" items="${lovTipTra}">
                                             <option value="${lovTipTra.idLov}" ${lovTipTra.idLov == requestScope.emp.iextiptra ? 'selected' : ''}  >${lovTipTra.desLov}</option>
                                         </c:forEach>
-                                      </select>
-                                      <label>Tipo de Trabajador (*)</label>
-                                    </div>
+                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <div class="flatpickr-input-container">
-                                      <div class="form-floating">
-                                        <input class="form-control datetimepicker" name="iexfecing" id="floatingInputStartDate" value="" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
-                                        <label class="ps-6" for="floatingInputStartDate">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                      </div>
-                                    </div>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <input class="form-control datetimepicker" name="iexfecing" id="iexfecing" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                               </div>
                               <div class="col-sm-6 col-md-5">
-                                     <div class="form-floating">
-                                       <input class="form-control" name="iexcodant" type="text" value="" placeholder="street" />
-                                       <label>Codigo Anterior</label>
-                                     </div>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo Anterior</label>
+                                    <input class="form-control" name="iexcodant" type="text" value="" placeholder="#" />
                               </div>
-
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                   Se grabó exitosamente los cambios.
@@ -143,7 +140,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Trabajador</button>
+                                      <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Trabajador</button>
                                     </div>
                                   </div>
                               </div>
