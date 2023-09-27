@@ -1,5 +1,6 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
-public class ParametrosController {
-    static Logger logger = Logger.getLogger(ParametrosController.class.getName());
+public class CompaniasController {
+    static Logger logger = Logger.getLogger(CompaniasController.class.getName());
     @Autowired
     ParametroService parametroService;
 
@@ -28,9 +29,9 @@ public class ParametrosController {
     @Autowired
     ConceptoService conceptoService;
 
-    @RequestMapping("/listParametros")
-    public ModelAndView listParametros(ModelMap model, HttpServletRequest request) {
-        logger.info("/listParametros");
+    @RequestMapping("/listCompanias")
+    public ModelAndView listCompanias(ModelMap model, HttpServletRequest request) {
+        logger.info("/listCompanias");
 
         String user = (String) request.getSession().getAttribute("user");
 
@@ -58,14 +59,14 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        model.addAttribute("LstParametro",parametroService.listarParametrosGen());
+        model.addAttribute("LstCompania",companiaService.listarTodo());
 
-        return new ModelAndView("public/gladius/configuracion/parametros/listParametros");
+        return new ModelAndView("public/gladius/configuracion/companias/listCompanias");
     }
 
-    @RequestMapping("/nuevoParametro")
-    public ModelAndView nuevoParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoParametro");
+    @RequestMapping("/nuevaCompania")
+    public ModelAndView nuevaCompania(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevaCompania");
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -90,15 +91,14 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        model.addAttribute("lovConcepto",conceptoService.listardet());
-        model.addAttribute("lovTippar",lovsService.getLovs("67","%"));
+        model.addAttribute("lovTipAct",lovsService.getLovs("1","%"));
 
-        return new ModelAndView("public/gladius/configuracion/parametros/nuevoParametro");
+        return new ModelAndView("public/gladius/configuracion/companias/nuevaCompania");
     }
 
-    @RequestMapping("/insertarParametro")
-    public ModelAndView insertarParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarParametro");
+    @RequestMapping("/insertarCompania")
+    public ModelAndView insertarCompania(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarCompania");
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -123,18 +123,29 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        ParametrosGen par  = new ParametrosGen();
+        Compania cia =  new Compania();
 
-        par.setIexcodcon(request.getParameter("iexcodcon"));
-        par.setIextippar(request.getParameter("iextippar"));
-        par.setIexvalcon(Double.parseDouble(request.getParameter("iexvalcon")));
-        par.setIexdesobs(request.getParameter("iexdesobs"));
-        par.setIexusucrea(usuario);
+        cia.setIdCodcia(Integer.parseInt(request.getParameter("iexcodcia")));
+        cia.setDescCia(request.getParameter("iexdescia"));
+        cia.setDescCiaCorto(request.getParameter("iexdescorto"));
+        cia.setNroRuc(request.getParameter("iexnroruc"));
+        cia.setDireccionCia(request.getParameter("iexdireccion"));
+        cia.setNroTelfCia(request.getParameter("iexnrotelf"));
+        cia.setIdActividadCia(request.getParameter("iexcodact"));
+        cia.setNomRepesentante(request.getParameter("iexrepnombre"));
+        cia.setDesCargoRep(request.getParameter("iexrepcargo"));
+        cia.setNroDocuRep(request.getParameter("iexrepdocid"));
+        cia.setUrlLogo(request.getParameter("iexreplogo"));
+        cia.setUsuCrea(usuario);
+        cia.setIexurlfileserver(request.getParameter("iexurlfileserver"));
+        cia.setIexurlfilereport(request.getParameter("iexurlfilereport"));
 
-        parametroService.insertarParametrosGen(par);
+        companiaService.insertarCompania(cia);
 
-        return new ModelAndView("redirect:/listParametros");
+        return new ModelAndView("redirect:/listCompanias");
     }
+
+
 
 }
 

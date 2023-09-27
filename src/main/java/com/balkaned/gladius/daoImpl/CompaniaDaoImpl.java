@@ -2,8 +2,6 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Compania;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.dao.CompaniaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -106,6 +104,70 @@ public class CompaniaDaoImpl implements CompaniaDao {
 
         com.getUrlLogo(),
         com.getIdCodcia());
+    }
+
+    public List<Compania> listarTodo(){
+
+        String sql =  "select " +
+                "c.iexcodcia    codcia, " +
+                "c.iexdescia    descia, " +
+                "c.iexnroruc    nroruc, " +
+                "c.iexdescorto  descorto, " +
+                "c.iexdireccion direccion," +
+                "c.iexnrotelf   telefono, " +
+                "c.iexcodact    codactividad, " +
+                "c.iexrepnombre nombreRepresentante, " +
+                "c.iexrepcargo  cargoRepresentante, " +
+                "c.iexrepdocid  nrodocRepresentante, " +
+                "c.iexreplogo   urllogo " +
+                "from iexcompania c ";
+        return template.query(sql, new ResultSetExtractor<List<Compania>>() {
+            public List<Compania> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Compania> lista = new ArrayList<Compania>();
+
+                while(rs.next()) {
+                    Compania cia = new Compania();
+
+                    cia.setIdCodcia(rs.getInt("codcia"));
+                    cia.setDescCia(rs.getString("descia"));
+                    cia.setDescCiaCorto(rs.getString("descorto"));
+                    cia.setNroRuc(rs.getString("nroruc"));
+
+                    lista.add(cia);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public void insertarCompania(Compania com){
+
+        template.update("  insert into  iexcompania ( " +
+                        "iexcodcia,        iexdescia,               iexnroruc,              iexdescorto, " +
+                        "iexdireccion,     iexnrotelf,              iexcodact,              iexrepnombre, " +
+                        "iexrepcargo,      iexrepdocid,             iexreplogo,             iexusucre, " +
+                        "iexfeccre,        iexurlfileserver,        iexurlfilereport " +
+                        " ) values ( " +
+                        "  ? ,        ?    ,     ?   ,        ?  ,"+
+                        "  ? ,        ?    ,     ?   ,        ?  ,"+
+                        "  ? ,        ?    ,     ?   ,        ?  ,"+
+                        " current_date  ,   ?   ,   ?  "+
+                        ")  ",
+
+                com.getIdCodcia(),
+                com.getDescCia(),
+                com.getNroRuc(),
+                com.getDescCiaCorto(),
+                com.getDireccionCia(),
+                com.getNroTelfCia(),
+                com.getIdActividadCia(),
+                com.getNomRepesentante(),
+                com.getDesCargoRep(),
+                com.getNroDocuRep(),
+                com.getUrlLogo(),
+                com.getUsuCrea(),
+                com.getIexurlfileserver(),
+                com.getIexurlfilereport());
     }
 
 }

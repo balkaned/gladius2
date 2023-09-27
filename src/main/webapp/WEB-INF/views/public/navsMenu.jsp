@@ -76,12 +76,12 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="listUsuarios" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Usuarios</span></div>
                         </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                          <a class="nav-link" href="listCompanias" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-text">Compañias</span></div>
                           </a>
                       </li>

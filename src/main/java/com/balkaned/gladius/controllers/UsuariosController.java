@@ -1,18 +1,23 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.ParametrosGen;
+import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
-public class ParametrosController {
-    static Logger logger = Logger.getLogger(ParametrosController.class.getName());
+public class UsuariosController {
+    static Logger logger = Logger.getLogger(UsuariosController.class.getName());
     @Autowired
     ParametroService parametroService;
 
@@ -26,11 +31,11 @@ public class ParametrosController {
     LovsService lovsService;
 
     @Autowired
-    ConceptoService conceptoService;
+    UsuarioService usuarioService;
 
-    @RequestMapping("/listParametros")
-    public ModelAndView listParametros(ModelMap model, HttpServletRequest request) {
-        logger.info("/listParametros");
+    @RequestMapping("/listUsuarios")
+    public ModelAndView listUsuarios(ModelMap model, HttpServletRequest request) {
+        logger.info("/listUsuarios");
 
         String user = (String) request.getSession().getAttribute("user");
 
@@ -58,14 +63,18 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        model.addAttribute("LstParametro",parametroService.listarParametrosGen());
+        Integer pagina = 1;
+        Integer numRegs = 15;
+        String txtbuscar = "%";
 
-        return new ModelAndView("public/gladius/configuracion/parametros/listParametros");
+        model.addAttribute("LstUsuario",usuarioService.listar("%",1,15));
+
+        return new ModelAndView("public/gladius/configuracion/usuarios/listUsuarios");
     }
 
-    @RequestMapping("/nuevoParametro")
-    public ModelAndView nuevoParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoParametro");
+    @RequestMapping("/nuevoUsuario")
+    public ModelAndView nuevoUsuario(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevoUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -90,15 +99,12 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        model.addAttribute("lovConcepto",conceptoService.listardet());
-        model.addAttribute("lovTippar",lovsService.getLovs("67","%"));
-
-        return new ModelAndView("public/gladius/configuracion/parametros/nuevoParametro");
+        return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
     }
 
-    @RequestMapping("/insertarParametro")
-    public ModelAndView insertarParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarParametro");
+    @RequestMapping("/insertarUsuario")
+    public ModelAndView insertarUsuario(ModelMap model, HttpServletRequest request) {
+        logger.info("/insertarUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
@@ -123,17 +129,71 @@ public class ParametrosController {
         model.addAttribute("idComp",idCompania);
         model.addAttribute("urlLogo",urlLogo);
 
-        ParametrosGen par  = new ParametrosGen();
+        String Msg_form_global ="";
+        String ret;
+        String msg="";
 
-        par.setIexcodcon(request.getParameter("iexcodcon"));
-        par.setIextippar(request.getParameter("iextippar"));
-        par.setIexvalcon(Double.parseDouble(request.getParameter("iexvalcon")));
-        par.setIexdesobs(request.getParameter("iexdesobs"));
-        par.setIexusucrea(usuario);
+        String usuario2 = request.getParameter("txt_usuario");
+        String password = request.getParameter("txt_password");
+        String password2 = request.getParameter("txt_password2");
+        String email2 = request.getParameter("txt_email");
+        String estado = request.getParameter("lov_estado");
 
-        parametroService.insertarParametrosGen(par);
+        String msg_txtusuario="";
+        String msg_txtpassword="";
+        String msg_txtemail="";
+        String msg_lovestado="Correcto";
+        String msg_frmstatus="";
+        int cont=0;
 
-        return new ModelAndView("redirect:/listParametros");
+        if(password.equals(password2)) {
+            msg_txtpassword="Correcto";
+            cont++;
+        }else{
+            msg="El password de confirmación no es igual";
+        }
+
+        if(esEmailValida(email)==true){
+            cont++;
+            msg_txtemail ="Correcto";
+        }else{
+            msg ="El formato de email no es correcto";
+        }
+
+        if(cont==2){
+            logger.info("contadorOK: "+cont);
+            String foto = "";
+            Integer codusumat = 1;
+
+            Usuario p = new Usuario();
+            p.setUsuario(usuario);
+            p.setPassword(password);
+            p.setEstado(estado);
+            p.setEmail(email);
+            p.setUrlfoto(foto);
+            p.setIdUsuMat(codusumat);
+
+            usuarioService.insertar(p);
+
+            return new ModelAndView("redirect:/listUsuarios");
+        }else{
+            model.addAttribute("msg", msg);
+        }
+
+        return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
+    }
+
+    protected static boolean esEmailValida(String email) {
+
+        boolean valido = false;
+
+        Pattern patronEmail = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
+
+        Matcher mEmail = patronEmail.matcher(email.toLowerCase());
+        if (mEmail.matches()){
+            valido = true;
+        }
+        return valido;
     }
 
 }
