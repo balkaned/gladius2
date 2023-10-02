@@ -31,7 +31,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Parametros</h2>
+                  <h2 id="h2top" class="mb-0">Sistemas</h2>
                 </div>
               </div>
 
@@ -41,7 +41,7 @@
                     <div class="col-auto">
                       <div class="search-box">
                         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                          <input class="form-control search-input search" type="search" placeholder="Search parametros" aria-label="Search" />
+                          <input class="form-control search-input search" type="search" placeholder="Search sistemas" aria-label="Search" />
                           <span class="fas fa-search search-box-icon"></span>
                         </form>
                       </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary" href="nuevoParametro" ><span class="fas fa-plus me-2"></span>Add Parametro</a>
+                      <a class="btn btn-primary" href="nuevoSistema"><span class="fas fa-plus me-2"></span>Add Sistema</a>
                     </div>
                   </div>
                 </div>
@@ -94,25 +94,20 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">CONCEPTO</th>
-                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">TIPO PARAMETROS</th>
-                          <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">VALOR</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESCRIPCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col"></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
-                          <c:forEach var="par" items="${requestScope.LstParametro}">
+                          <c:forEach var="LstSistema" items="${requestScope.LstSistema}">
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${par.iexcodcon}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${par.descon}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${par.destippar}</span></td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${par.iexvalcon}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">${par.iexdesobs}</td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${LstSistema.iexcodsys}</a></td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5 pe-5">${LstSistema.iexdessys}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>

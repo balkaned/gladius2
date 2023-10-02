@@ -91,17 +91,17 @@
                             </a>
                       </li>
                       <li class="nav-item">
-                              <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                              <a class="nav-link" href="listOpciones" data-bs-toggle="" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-text">Opciones</span></div>
                               </a>
                       </li>
                       <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                            <a class="nav-link" href="listSecciones" data-bs-toggle="" aria-expanded="false">
                               <div class="d-flex align-items-center"><span class="nav-link-text">Secciones</span></div>
                             </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                          <a class="nav-link" href="listSistemas" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center"><span class="nav-link-text">Sistemas</span></div>
                           </a>
                       </li>
