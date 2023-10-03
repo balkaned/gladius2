@@ -249,14 +249,20 @@ public class IndexController {
         return new ModelAndView("public/kanban");
     }
 
-    @RequestMapping("/verFoto@{accion2}@{idComp}@{urlLogo}")
-    public ModelAndView verFoto(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String accion2, @PathVariable String idComp, @PathVariable String urlLogo) throws IOException {
+    @RequestMapping("/verFoto@{accion2}@{idComp}@{urlLogo}@{idDer}")
+    public ModelAndView verFoto(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+                                @PathVariable String accion2,
+                                @PathVariable String idComp,
+                                @PathVariable String urlLogo,
+                                @PathVariable String idDer) throws IOException {
         logger.info("/verFoto");
 
         logger.info("accion2: "+accion2);
         String accion=accion2;
         String codciax=idComp;
         String fileurl=urlLogo;
+        String idDer2=idDer;
+
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         // response.setContentType("application/octet-stream");
 
@@ -455,6 +461,86 @@ public class IndexController {
 
                 //pathfile = (String)session.getAttribute("GLADIUS_IMG")+fileurl;
                 pathfile = path_img+codciax+"/fotoemp/"+fileurl;
+
+                // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
+
+                ServletOutputStream out;
+                out = response.getOutputStream();
+                // FileInputStream fin = new FileInputStream("c:\\test\\java.jpg");
+                FileInputStream fin = new FileInputStream(pathfile);
+
+                BufferedInputStream bin = new BufferedInputStream(fin);
+                BufferedOutputStream bout = new BufferedOutputStream(out);
+                int ch =0; ;
+                while((ch=bin.read())!=-1)
+                {
+                    bout.write(ch);
+                }
+
+                bin.close();
+                fin.close();
+                bout.close();
+                out.close();
+
+            }
+        }else if(accion.equals("FOTODER")){
+
+            // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
+            outrep=0;
+            pathfile = codciax+"/fotoderhab/"+idDer2+"/"+fileurl;
+
+            logger.info("######LECTOR URL IMG:####### :"+pathfile);
+
+            if(ciainfo.getUrlflgsource().equals("1")) {
+
+                clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+
+                System.out.format("Entro a la CIAINFO");
+                bucket_name = ciainfo.getIexsourcedes().trim();
+                key_name =ciainfo.getIexususource().trim();
+                passPhrase = ciainfo.getIexpasssource().trim();
+                // Regionname = ciainfo.getIexregiondes().trim();
+
+                fileName = pathfile;
+                credentials = new BasicAWSCredentials(key_name, passPhrase);
+                s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+
+                Integer pospoint = fileurl.indexOf(".");
+                String extension = fileurl.substring(pospoint);
+                String extension2 = fileurl.substring(pospoint+1);
+                System.out.println("Fileurl ="+fileurl);
+                System.out.println("Extension file ="+extension);
+
+                S3Object o = s3.getObject(bucket_name, fileName);
+                S3ObjectInputStream s3is = o.getObjectContent();
+
+                tmp = File.createTempFile("s3test", extension);
+                Files.copy(s3is, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
+
+                try {
+                    BufferedImage image = ImageIO.read(tmp);
+                    ImageIO.write(image, extension2, jpegOutputStream);
+                } catch (IllegalArgumentException e) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
+                tmp.delete();
+                byte[] imgByte = jpegOutputStream.toByteArray();
+
+                response.setHeader("Cache-Control", "no-store");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                response.setContentType("image/"+extension2);
+                ServletOutputStream responseOutputStream = response.getOutputStream();
+                responseOutputStream.write(imgByte);
+                responseOutputStream.flush();
+                responseOutputStream.close();
+            }else if(ciainfo.getUrlflgsource().equals("2")){
+
+                String path_img=ciainfo.getIexurlfileserver();
+
+                //pathfile = (String)session.getAttribute("GLADIUS_IMG")+fileurl;
+                pathfile = path_img+codciax+"/fotoderhab/"+idDer2+"/"+fileurl;
 
                 // pathfile = (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fileurl;
 
@@ -712,88 +798,92 @@ public class IndexController {
         String codciax = request.getParameter("codciax");
         String idTrab2 = request.getParameter("idTrab");
         String accion = request.getParameter("accion");
+        String idDer = request.getParameter("idDer");
         logger.info("idTrab: "+idTrab);
         logger.info("idComp: "+idComp);
 
-        Integer codciaxRecup = Integer.valueOf(idComp);
-//      String codciax= String.valueOf(codciaxRecup);
+        if(accion.equals("FOTOEMP")) {
+            logger.info("Accion: FOTOEMP");
 
-        Empleado emp = empleadoService.recuperarCabecera(codciaxRecup,Integer.parseInt(idTrab));
+            Integer codciaxRecup = Integer.valueOf(idComp);
+            //      String codciax= String.valueOf(codciaxRecup);
 
-//      String accion = "";
-//      String idimg = "";
-        String filePath ="";
-        String filelink ="";
-        String target="";
+            Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
 
-        System.out.println("Accion :"+accion);
-        // checks if the request actually contains upload file
+            //      String accion = "";
+            //      String idimg = "";
+            String filePath = "";
+            String filelink = "";
+            String target = "";
 
-        String server = "ftp.balkaned.com";
-        int port = 21;
-        String user = "ebaldeon@balkaned.com";
-        String pass = "@Kekereke1984";
+            System.out.println("Accion :" + accion);
+            // checks if the request actually contains upload file
 
-        /*if (!ServletFileUpload.isMultipartContent(request)) {
-           // if not, we stop here
-            PrintWriter writer = response.getWriter();
-            writer.println("Error: Form must has enctype=multipart/form-data.");
-            System.out.println("No es multipart");
-            writer.flush();
-           return null;
-        }*/
+            String server = "ftp.balkaned.com";
+            int port = 21;
+            String user = "ebaldeon@balkaned.com";
+            String pass = "@Kekereke1984";
 
-        // configures upload settings
-        //DiskFileItemFactory factory = new DiskFileItemFactory();
-        // sets memory threshold - beyond which files are stored in disk
-        //factory.setSizeThreshold(MEMORY_THRESHOLD);
-        // sets temporary location to store files
-        //factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-        //ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
-        //ServletFileUpload upload = new ServletFileUpload(factory);
-        // sets maximum size of upload file
-        //upload.setFileSizeMax(MAX_FILE_SIZE);
-        // sets maximum size of request (include file + form data)
-        //upload.setSizeMax(MAX_REQUEST_SIZE);
+            /*if (!ServletFileUpload.isMultipartContent(request)) {
+               // if not, we stop here
+                PrintWriter writer = response.getWriter();
+                writer.println("Error: Form must has enctype=multipart/form-data.");
+                System.out.println("No es multipart");
+                writer.flush();
+               return null;
+            }*/
 
-        // constructs the directory path to store upload file
-        // this path is relative to application's directory
-        /* String uploadPath = getServletContext().getRealPath("")
-        + File.separator + UPLOAD_DIRECTORY;  */
-        String uploadPath = "";
+            // configures upload settings
+            //DiskFileItemFactory factory = new DiskFileItemFactory();
+            // sets memory threshold - beyond which files are stored in disk
+            //factory.setSizeThreshold(MEMORY_THRESHOLD);
+            // sets temporary location to store files
+            //factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+            //ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
+            //ServletFileUpload upload = new ServletFileUpload(factory);
+            // sets maximum size of upload file
+            //upload.setFileSizeMax(MAX_FILE_SIZE);
+            // sets maximum size of request (include file + form data)
+            //upload.setSizeMax(MAX_REQUEST_SIZE);
 
-        //  amazon s3...
-        Regions clientRegion = null;
-        String bucket_name = "";
-        String key_name ="";
-        String passPhrase = "";
+            // constructs the directory path to store upload file
+            // this path is relative to application's directory
+            /* String uploadPath = getServletContext().getRealPath("")
+            + File.separator + UPLOAD_DIRECTORY;  */
+            String uploadPath = "";
 
-        AWSCredentials credentials =null;
-        AmazonS3 s3 = null;
-        S3Object o =null;
-        String nomeArquivo = "";
-        String fileName2 = "";
-        //String codciax ="";
+            //  amazon s3...
+            Regions clientRegion = null;
+            String bucket_name = "";
+            String key_name = "";
+            String passPhrase = "";
 
-        // fin de variables de Amazon s3
-        // creates the directory if it does not exist
-        /*no
-         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-             System.out.println("No existe direccion");
-            uploadDir.mkdir();
-        }
-        */
-        System.out.println("Direccion existe");
+            AWSCredentials credentials = null;
+            AmazonS3 s3 = null;
+            S3Object o = null;
+            String nomeArquivo = "";
+            String fileName2 = "";
+            //String codciax ="";
+
+            // fin de variables de Amazon s3
+            // creates the directory if it does not exist
+            /*no
+             File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                 System.out.println("No existe direccion");
+                uploadDir.mkdir();
+            }
+            */
+            System.out.println("Direccion existe");
 
             // parses the request's content to extract file data
             //@SuppressWarnings("unchecked")
 
-            System.out.println("request: "+request);
-            logger.info("request: "+request);
+            System.out.println("request: " + request);
+            logger.info("request: " + request);
 
-//          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) uploadFile;
-//          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) request.getPart("uploadFile");
+            //          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) uploadFile;
+            //          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) request.getPart("uploadFile");
             //var file = uploadFile;
             //List<FileItem> formItems = upload.parseRequest(request);
 
@@ -801,52 +891,187 @@ public class IndexController {
             //logger.info("formItems: "+formItems);
             //if (formItems != null && formItems.size() > 0) {
 
-            Compania ciainfo=null;
+            Compania ciainfo = null;
 
             ciainfo = companiaService.getCompaniaAll(Integer.parseInt(codciax));
 
             clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
             bucket_name = ciainfo.getIexsourcedes().trim();
-            key_name =ciainfo.getIexususource().trim();
+            key_name = ciainfo.getIexususource().trim();
             passPhrase = ciainfo.getIexpasssource().trim();
 
-            logger.info("ciainfo.getIexsourcedes().trim(): "+ciainfo.getIexsourcedes().trim());
+            logger.info("ciainfo.getIexsourcedes().trim(): " + ciainfo.getIexsourcedes().trim());
 
-                try {
-                    //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                    //nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
-                    nomeArquivo=codciax+"/fotoemp/"+idimg+"."+"jpg";
-                    logger.info("nomeArquivo: "+nomeArquivo);
+            try {
+                //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                //nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                nomeArquivo = codciax + "/fotoemp/" + idimg + "." + "jpg";
+                logger.info("nomeArquivo: " + nomeArquivo);
 
-                    credentials = new BasicAWSCredentials(key_name, passPhrase);
-                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                    //s3.putObject(bucket_name, nomeArquivo, item.getName());
-                    s3.putObject(bucket_name, nomeArquivo, nomeArquivo);
+                credentials = new BasicAWSCredentials(key_name, passPhrase);
+                s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                //s3.putObject(bucket_name, nomeArquivo, item.getName());
+                s3.putObject(bucket_name, nomeArquivo, nomeArquivo);
 
-                    //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
-                    //InputStream in=item.getInputStream();
-                    InputStream in = uploadFile.getInputStream();
-                    File tmp = null;
-                    tmp = File.createTempFile("s3test", ".jpeg");
-                    Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
+                //InputStream in=item.getInputStream();
+                InputStream in = uploadFile.getInputStream();
+                File tmp = null;
+                tmp = File.createTempFile("s3test", ".jpeg");
+                Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                    PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo,tmp );
+                PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, tmp);
 
-                    ObjectMetadata metadata = new ObjectMetadata();
-                    //metadata.setContentType(item.getContentType());
-                    metadata.setContentType(uploadFile.getContentType());
-                    //metadata.addUserMetadata("title", "someTitle");
-                    request2.setMetadata(metadata);
-                    s3.putObject(request2);
+                ObjectMetadata metadata = new ObjectMetadata();
+                //metadata.setContentType(item.getContentType());
+                metadata.setContentType(uploadFile.getContentType());
+                //metadata.addUserMetadata("title", "someTitle");
+                request2.setMetadata(metadata);
+                s3.putObject(request2);
 
-                    System.out.println("Arquivo escrito: " + nomeArquivo);
-                    //emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
-                    emp.setIexlogo(idimg+"."+"jpg");
-                    //dao.actualizarFoto(emp);
-                    empleadoService.actualizarFoto(emp);
-                } catch (final Exception e) {
-                    System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
-                }
+                System.out.println("Arquivo escrito: " + nomeArquivo);
+                //emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
+                emp.setIexlogo(idimg + "." + "jpg");
+                //dao.actualizarFoto(emp);
+                empleadoService.actualizarFoto(emp);
+            } catch (final Exception e) {
+                System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
+            }
+        }else if (accion.equals("FOTODER")){
+            logger.info("Accion: FOTODER");
+            Integer codciaxRecup = Integer.valueOf(idComp);
+            //      String codciax= String.valueOf(codciaxRecup);
+
+            Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
+
+            //      String accion = "";
+            //      String idimg = "";
+            String filePath = "";
+            String filelink = "";
+            String target = "";
+
+            System.out.println("Accion :" + accion);
+            // checks if the request actually contains upload file
+
+            String server = "ftp.balkaned.com";
+            int port = 21;
+            String user = "ebaldeon@balkaned.com";
+            String pass = "@Kekereke1984";
+
+            /*if (!ServletFileUpload.isMultipartContent(request)) {
+               // if not, we stop here
+                PrintWriter writer = response.getWriter();
+                writer.println("Error: Form must has enctype=multipart/form-data.");
+                System.out.println("No es multipart");
+                writer.flush();
+               return null;
+            }*/
+
+            // configures upload settings
+            //DiskFileItemFactory factory = new DiskFileItemFactory();
+            // sets memory threshold - beyond which files are stored in disk
+            //factory.setSizeThreshold(MEMORY_THRESHOLD);
+            // sets temporary location to store files
+            //factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+            //ServletFileUpload upload = new ServletFileUpload((FileItemFactory) factory);
+            //ServletFileUpload upload = new ServletFileUpload(factory);
+            // sets maximum size of upload file
+            //upload.setFileSizeMax(MAX_FILE_SIZE);
+            // sets maximum size of request (include file + form data)
+            //upload.setSizeMax(MAX_REQUEST_SIZE);
+
+            // constructs the directory path to store upload file
+            // this path is relative to application's directory
+            /* String uploadPath = getServletContext().getRealPath("")
+            + File.separator + UPLOAD_DIRECTORY;  */
+            String uploadPath = "";
+
+            //  amazon s3...
+            Regions clientRegion = null;
+            String bucket_name = "";
+            String key_name = "";
+            String passPhrase = "";
+
+            AWSCredentials credentials = null;
+            AmazonS3 s3 = null;
+            S3Object o = null;
+            String nomeArquivo = "";
+            String fileName2 = "";
+            //String codciax ="";
+
+            // fin de variables de Amazon s3
+            // creates the directory if it does not exist
+            /*no
+             File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                 System.out.println("No existe direccion");
+                uploadDir.mkdir();
+            }
+            */
+            System.out.println("Direccion existe");
+
+            // parses the request's content to extract file data
+            //@SuppressWarnings("unchecked")
+
+            System.out.println("request: " + request);
+            logger.info("request: " + request);
+
+            //          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) uploadFile;
+            //          final CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) request.getPart("uploadFile");
+            //var file = uploadFile;
+            //List<FileItem> formItems = upload.parseRequest(request);
+
+            //System.out.println("formItems: "+formItems);
+            //logger.info("formItems: "+formItems);
+            //if (formItems != null && formItems.size() > 0) {
+
+            Compania ciainfo = null;
+
+            ciainfo = companiaService.getCompaniaAll(Integer.parseInt(codciax));
+
+            clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+            bucket_name = ciainfo.getIexsourcedes().trim();
+            key_name = ciainfo.getIexususource().trim();
+            passPhrase = ciainfo.getIexpasssource().trim();
+
+            logger.info("ciainfo.getIexsourcedes().trim(): " + ciainfo.getIexsourcedes().trim());
+
+            try {
+                //nomeArquivo=(Integer)session.getAttribute("codcia")+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                //nomeArquivo=codciax+"/fotoemp/"+idimg+"."+FilenameUtils.getExtension(item.getName());
+                nomeArquivo = codciax+"/fotoderhab/"+idDer+"/"+idimg+"."+"jpg";
+                logger.info("nomeArquivo: "+nomeArquivo);
+
+                credentials = new BasicAWSCredentials(key_name, passPhrase);
+                s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                //s3.putObject(bucket_name, nomeArquivo, item.getName());
+                s3.putObject(bucket_name, nomeArquivo, nomeArquivo);
+
+                //PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, new File(item.getName()));
+                //InputStream in=item.getInputStream();
+                InputStream in = uploadFile.getInputStream();
+                File tmp = null;
+                tmp = File.createTempFile("s3test", ".jpeg");
+                Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                PutObjectRequest request2 = new PutObjectRequest(bucket_name, nomeArquivo, tmp);
+
+                ObjectMetadata metadata = new ObjectMetadata();
+                //metadata.setContentType(item.getContentType());
+                metadata.setContentType(uploadFile.getContentType());
+                //metadata.addUserMetadata("title", "someTitle");
+                request2.setMetadata(metadata);
+                s3.putObject(request2);
+
+                System.out.println("Arquivo escrito: " + nomeArquivo);
+                //emp.setIexlogo(idimg+"."+FilenameUtils.getExtension(item.getName()));
+                emp.setIexlogo(idimg + "." + "jpg");
+                //dao.actualizarFoto(emp);
+                empleadoService.actualizarFoto(emp);
+            } catch (final Exception e) {
+                System.out.println("You failed to upload " + nomeArquivo + " => " + e.getMessage());
+            }
+        }
 
         return new ModelAndView("redirect:/detalleEmpl@"+idTrab);
     }

@@ -215,7 +215,7 @@ public class FlgSourceController {
 
                 try {
                     nombreArchivo=codciax+"/fotoemp/"+idimg+"."+"jpg";
-                    logger.info("nomeArquivo: "+nombreArchivo);
+                    logger.info("nomeArchivo: "+nombreArchivo);
 
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
                     s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();

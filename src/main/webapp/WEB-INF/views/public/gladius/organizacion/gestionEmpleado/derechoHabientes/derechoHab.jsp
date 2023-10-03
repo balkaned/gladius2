@@ -71,7 +71,14 @@
                                 			<c:forEach var="LovDerhab" items="${requestScope.LovDerhab}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LovDerhab.iexcoddep}</a></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</td>
+                                				  <td class="customer align-middle white-space-nowrap pe-5 ps-5">
+                                                    <a class="d-flex align-items-center text-900" href="#">
+                                                        <div class="avatar avatar-m">
+                                                            <img class="rounded-circle" src="verFoto@FOTODER@${idComp}@${iexlogo}@${LovDerhab.iexcoddep}" alt="" />
+                                                        </div>
+                                                        <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</h6>
+                                                      </a>
+                                                  </td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
@@ -81,12 +88,50 @@
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
                                 					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                 					  <div class="dropdown-menu dropdown-menu-end py-2">
+                                					    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Agregar Foto</a>
                                 						<div class="dropdown-divider"></div>
                                 						<a class="dropdown-item text-warning" href="#!">Remove</a>
                                 					  </div>
                                 					</div>
                                 				  </td>
                                 				</tr>
+
+                                				<div class="modal fade" id="subirDerechoHabFoto${LovDerhab.iexcoddep}" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                      <div class="modal-content border">
+                                                          <div class="modal-header border-200 p-4">
+                                                            <h5 class="modal-title text-1000 fs-2 lh-sm">Subir Imagen</h5>
+                                                            <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
+                                                          </div>
+                                                          <div class="modal-body pt-4 pb-2 px-4">
+                                                              <div class="col-12 col-md-12">
+                                                                <form method="post" action="fileUploadServlet@${idTrab}@${idComp}" enctype="multipart/form-data" >
+                                                                    <input type="hidden" name="accion" value="FOTODER" >
+                                                                    <input type="hidden" name="idimg" value="${nrodoc}" >
+                                                                    <input type="hidden" name="codciax" value="${idComp}" >
+                                                                    <input type="hidden" name="idTrab" value="${idTrab}" >
+                                                                    <input type="hidden" name="idDer" value="${LovDerhab.iexcoddep}" >
+                                                                    <div class="mb-3">
+                                                                          <label class="form-label">Subir Imagen</label>
+                                                                          <input class="form-control" name="uploadFile" type="file" />
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 col-md-12 mt-2 mb-4">
+                                                                      <div class="form-floating">
+                                                                          <button class="btn btn-primary justify-content-end me-2 col-6" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                                                                      </div>
+                                                                    </div>
+                                                                </form>
+                                                              </div>
+
+                                                          </div>
+                                                          <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
+                                                            <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
+                                                            <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
                                 			</c:forEach>
                                 		  </tbody>
                                 		</table>
@@ -110,6 +155,8 @@
                 </div>
               </div>
           </div>
+
+
 
           <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
     </main>
