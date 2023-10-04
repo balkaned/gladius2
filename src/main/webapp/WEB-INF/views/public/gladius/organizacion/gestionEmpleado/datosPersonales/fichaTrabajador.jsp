@@ -1,5 +1,5 @@
 <%--
-    Created on : 15/06/2023, 12:20:00 PM
+    Created on : 15/06/2023, 4:20:00 PM
     Author     : Jean Quiroz
     Email	   : jeanp.quiroz@gmail.com
 --%>
@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor (*) [TT26]</label>
-                                            <select name="iexpaisemisor" class="form-select" required="true" >
+                                            <select name="iexpaisemisor" id="iexpaisemisor" class="form-select" required="true" >
                                                 <option value="" selected >Seleccionar</option>
                                                 <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
                                                     <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp.iexpaisemisor ? 'selected' : ''}   >${lovPaisEmisor.desLov}</option>
@@ -216,7 +216,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento</label>
-                                            <select name="iexdepart_origen" class="form-select" >
+                                            <select name="iexdepart_origen" id="iexdepart_origen" class="form-select" >
                                                 <option value="" selected >Seleccionar</option>
                                                 <c:forEach var="lovDept_origen" items="${lovDept_origen}">
                                                     <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp.iexdepart_origen ? 'selected' : ''}   >${lovDept_origen.desLov}</option>
@@ -225,7 +225,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
-                                              <select name="iexprovin_origen" class="form-select">
+                                              <select name="iexprovin_origen" id="iexprovin_origen" class="form-select">
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
                                                         <option value="${lovProvin_origen.idLov}"  ${lovProvin_origen.idLov == requestScope.emp.iexprovin_origen ? 'selected' : ''}   >${lovProvin_origen.desLov}</option>
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito (*)</label>
-                                            <select name="iexdistri_origen" class="form-select">
+                                            <select name="iexdistri_origen" id="iexdistri_origen" class="form-select">
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                         <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>
@@ -872,7 +872,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1 (*)</label>
-                                                <select class="form-select" name="iexdistri_origen1" required>
+                                                <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                       <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
@@ -966,7 +966,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2 (*)</label>
-                                                <select class="form-select" name="iexdistri_origen2" required >
+                                                <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                       <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>

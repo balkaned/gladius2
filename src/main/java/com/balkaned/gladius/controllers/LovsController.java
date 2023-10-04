@@ -1,16 +1,13 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.Lovs;
 import com.balkaned.gladius.beans.ProcesoPeriodo;
 import com.balkaned.gladius.beans.ProcesoPlanilla;
-import com.balkaned.gladius.beans.Puesto;
-import com.balkaned.gladius.beans.RegimenLaboral;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.LovsService;
-import com.balkaned.gladius.services.PuestoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +21,6 @@ import java.util.logging.Logger;
 @RestController
 public class LovsController {
     static Logger logger = Logger.getLogger(LovsController.class.getName());
-    @Autowired
-    PuestoService puestoService;
 
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
@@ -35,6 +30,72 @@ public class LovsController {
 
     @Autowired
     LovsService lovsService;
+
+    @RequestMapping(value="/getlovsDEPX", method={RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getlovsDEPX(HttpServletRequest request, HttpServletResponse response) throws  IOException{
+        logger.info("/getlovsDEPX");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String codpais=request.getParameter("codpais");
+        logger.info("codpais: "+codpais);
+
+        List<Lovs> listLovs=lovsService.getLovsDept("",codpais);
+
+        String json = new Gson().toJson(listLovs);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value="/getlovsPROVX", method={RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getlovsPROVX(HttpServletRequest request, HttpServletResponse response) throws  IOException{
+        logger.info("/getlovsPROVX");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String coddept=request.getParameter("coddept");
+        logger.info("coddept: "+coddept);
+
+        List<Lovs> listLovs=lovsService.getLovsProv("",coddept);
+
+        String json = new Gson().toJson(listLovs);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value="/getlovsDISTX", method={RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getlovsDISTX(HttpServletRequest request, HttpServletResponse response) throws  IOException{
+        logger.info("/getlovsDISTX");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String codprov=request.getParameter("codprov");
+        logger.info("codprov: "+codprov);
+
+        List<Lovs> listLovs=lovsService.getLovsDist("",codprov);
+
+        String json = new Gson().toJson(listLovs);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
 
     @RequestMapping(value="/getlovsPROXCON",method= {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView getlovsPROXCON(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -1,175 +1,166 @@
 <script>
       $(document).ready(function() {
           $('#iexpaisemisor').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "DEPX",
-                      "codpais": $("#iexpaisemisor").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value='' > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
-
-                      $("#iexdepart_origen").html(opt);
-                      $("#iexprovin_origen").html("<option value='' > -- Selecciona -- </option>");
-                      $("#iexdistri_origen").html("<option value='' > -- Selecciona -- </option>");
-                  }
-              });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDEPX",
+                      data: {"accion": "DEPX",
+                          "codpais": $("#iexpaisemisor").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value='' >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexdepart_origen").html(opt);
+                          $("#iexprovin_origen").html("<option value='' >Seleccionar</option>");
+                          $("#iexdistri_origen").html("<option value='' >Seleccionar</option>");
+                      }
+               });
           });
 
-           $('#iexdepart_origen').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "PROVX",
-                      "coddept": $("#iexdepart_origen").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value='' > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
-
-                      $("#iexprovin_origen").html(opt);
-                      $("#iexdistri_origen").html("<option value='' > -- Selecciona -- </option>");
-                  }
-              });
+          $('#iexdepart_origen').change(function(event){
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsPROVX",
+                      data: {"accion": "PROVX",
+                          "coddept": $("#iexdepart_origen").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value='' >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexprovin_origen").html(opt);
+                          $("#iexdistri_origen").html("<option value='' >Seleccionar</option>");
+                      }
+               });
           });
 
           $('#iexprovin_origen').change(function(event){
-           $.ajaxSetup({cache:false});
-                $.ajax({
-                  url: "getlovs",
-                  data: {"accion": "DISTX",
-                      "codprov": $("#iexprovin_origen").val()},
-                  success: function (data) {
-                      var opt = "";
-                           opt += "<option value=0 > -- Selecciona -- </option>";
-                           for (var i in data) {
-                            opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                           }
-
-                      $("#iexdistri_origen").html(opt);
-                  }
-              });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDISTX",
+                      data: {"accion": "DISTX",
+                          "codprov": $("#iexprovin_origen").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value=0 >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexdistri_origen").html(opt);
+                      }
+               });
           });
 
           $('#iexpaisemisor1').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DEPX",
-                              "codpais": $("#iexpaisemisor1").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexdepart_origen1").html(opt);
-                              $("#iexprovin_origen1").html("<option value='' > -- Selecciona -- </option>");
-                              $("#iexubigeo_dom1").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDEPX",
+                      data: {"accion": "DEPX",
+                          "codpais": $("#iexpaisemisor1").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value='' >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexdepart_origen1").html(opt);
+                          $("#iexprovin_origen1").html("<option value='' >Seleccionar</option>");
+                          $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
+                      }
+               });
           });
 
           $('#iexdepart_origen1').change(function(event){
                $.ajaxSetup({cache:false});
                     $.ajax({
-                      url: "getlovs",
+                      url: "getlovsPROVX",
                       data: {"accion": "PROVX",
                           "coddept": $("#iexdepart_origen1").val()},
                       success: function (data) {
                           var opt = "";
-                               opt += "<option value='' > -- Selecciona -- </option>";
+                               opt += "<option value='' >Seleccionar</option>";
                                for (var i in data) {
                                 opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
                                }
-
                           $("#iexprovin_origen1").html(opt);
-                          $("#iexubigeo_dom1").html("<option value='' > -- Selecciona -- </option>");
+                          $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
                       }
                });
           });
 
           $('#iexprovin_origen1').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DISTX",
-                              "codprov": $("#iexprovin_origen1").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value=0 > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexubigeo_dom1").html(opt);
-                          }
-                   });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDISTX",
+                      data: {"accion": "DISTX",
+                          "codprov": $("#iexprovin_origen1").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value=0 >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("iexdistri_origen1").html(opt);
+                      }
+               });
           });
 
           $('#iexpaisemisor2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DEPX",
-                              "codpais": $("#iexpaisemisor2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexdepart_origen2").html(opt);
-                              $("#iexprovin_origen2").html("<option value='' > -- Selecciona -- </option>");
-                              $("#iexubigeo_dom2").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDEPX",
+                      data: {"accion": "DEPX",
+                          "codpais": $("#iexpaisemisor2").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value='' >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexdepart_origen2").html(opt);
+                          $("#iexprovin_origen2").html("<option value='' >Seleccionar</option>");
+                          $("#iexubigeo_dom2").html("<option value='' >Seleccionar</option>");
+                      }
+               });
           });
 
           $('#iexdepart_origen2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "PROVX",
-                              "coddept": $("#iexdepart_origen2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value='' > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexprovin_origen2").html(opt);
-                              $("#iexubigeo_dom2").html("<option value='' > -- Selecciona -- </option>");
-                          }
-                   });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsPROVX",
+                      data: {"accion": "PROVX",
+                          "coddept": $("#iexdepart_origen2").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value='' >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexprovin_origen2").html(opt);
+                          $("#iexubigeo_dom2").html("<option value='' >Seleccionar</option>");
+                      }
+               });
           });
 
           $('#iexprovin_origen2').change(function(event){
-                   $.ajaxSetup({cache:false});
-                        $.ajax({
-                          url: "getlovs",
-                          data: {"accion": "DISTX",
-                              "codprov": $("#iexprovin_origen2").val()},
-                          success: function (data) {
-                              var opt = "";
-                                   opt += "<option value=0 > -- Selecciona -- </option>";
-                                   for (var i in data) {
-                                    opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
-                                   }
-
-                              $("#iexubigeo_dom2").html(opt);
-                          }
-                      });
-                  });
+               $.ajaxSetup({cache:false});
+                    $.ajax({
+                      url: "getlovsDISTX",
+                      data: {"accion": "DISTX",
+                          "codprov": $("#iexprovin_origen2").val()},
+                      success: function (data) {
+                          var opt = "";
+                               opt += "<option value=0 >Seleccionar</option>";
+                               for (var i in data) {
+                                opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
+                               }
+                          $("#iexdistri_origen2").html(opt);
+                    }
+               });
+          });
       });
 
       function mostrarAlert(){
