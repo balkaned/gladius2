@@ -37,7 +37,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "j.desdet destipnroiddep, " +
                 "d.iexnroiddep, " +
                 "d.iexpaisemisor, " +
-                "d.iexfecnac, " +
+                "to_char(d.iexfecnac,'dd/mm/yyyy') iexfecnac, " +
                 "d.iexapepatdep, " +
                 "d.iexapematdep, " +
                 "d.iexnomdep, " +
@@ -150,6 +150,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                     p.setIexcodlar(rs.getString("iexcodlar"));
                     p.setIexnrotelf(rs.getString("iexnrotelf"));
                     p.setIexemail(rs.getString("iexemail"));
+
+                    logger.info("Iexfecnac: "+p.getIexfecnac());
 
                     lista.add(p);
                 }
