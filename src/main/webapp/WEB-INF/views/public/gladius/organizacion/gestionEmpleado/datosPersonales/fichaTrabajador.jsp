@@ -871,8 +871,8 @@
                                                 </select>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1 (*)</label>
-                                                <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1" required>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
+                                                <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                       <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
@@ -965,8 +965,8 @@
                                                 </select>
                                           </div>
                                           <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2 (*)</label>
-                                                <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" required >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
+                                                <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                       <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>

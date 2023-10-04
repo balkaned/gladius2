@@ -103,7 +103,7 @@
                                for (var i in data) {
                                 opt += "<option value="+data[i].idLov+" > "+data[i].desLov+" </option> ";
                                }
-                          $("iexdistri_origen1").html(opt);
+                          $("#iexdistri_origen1").html(opt);
                       }
                });
           });
