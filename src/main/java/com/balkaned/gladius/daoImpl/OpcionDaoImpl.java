@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Opciones;
+import com.balkaned.gladius.beans.Rolesxopciones;
 import com.balkaned.gladius.dao.OpcionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

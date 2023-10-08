@@ -232,13 +232,13 @@
 }*/
 
 #navbarDefault{
-    border-top:4px solid #F48225 !important;
+    border-top:4px solid #648CE4 !important;
     height:10px !important;
     border-bottom:1px solid #3B4045;
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-    background-color:#111827 !important;
+    background-color:#053055 !important;
     border:0px solid black;
 }
 

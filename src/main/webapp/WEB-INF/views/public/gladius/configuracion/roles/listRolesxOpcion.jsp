@@ -31,7 +31,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Roles</h2>
+                  <h2 id="h2top" class="mb-0">Roles x opcion</h2>
                 </div>
               </div>
 
@@ -79,7 +79,8 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary" href="nuevoRol" ><span class="fas fa-plus me-2"></span>Add Rol</a>
+                      <a class="btn btn-phoenix-primary px-5" href="listRoles">Atras</a>
+                      <a class="btn btn-primary" href="nuevoRolxOpcion@${idRol}" ><span class="fas fa-plus me-2"></span>Add RolxOpcion</a>
                     </div>
                   </div>
                 </div>
@@ -94,27 +95,47 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ROLES</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SISTEMAS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SECCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OPCIONES</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">CONS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">REG</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">MOD</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ELI</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">REP</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">EXP</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">EST</th>
                           <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
-                          <c:forEach var="LstRole" items="${requestScope.LstRole}">
+                          <c:forEach var="xRolxopc" items="${requestScope.xRolxopc}">
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcion@${LstRole.idRole}">#${LstRole.idRole}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstRole.desRole}</td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${xRolxopc.iexcodopc}</a></td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${xRolxopc.dessys}</span></td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_consultar}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_registrar}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_modificar}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_eliminar}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_xls}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_pdf}</td>
+                                <c:if test="${xRolxopc.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                <c:if test="${xRolxopc.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                <c:if test="${xRolxopc.iexflgest=='0'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="editarOpcion@${LstRole.idRole}">Editar</a>
-                                        <a class="dropdown-item" href="verOpcion@${LstRole.idRole}">Ver Opciones</a>
+                                        <a class="dropdown-item" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">Editar</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>
                                    </div>

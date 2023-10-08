@@ -55,7 +55,7 @@ margin-top:10px !important;
           <div class="col-auto">
             <h2 class="mb-0">Seleccionar compañia<span class="fw-normal text-700 ms-3"></span></h2>
           </div>
-          <div class="col-auto"><a class="btn btn-primary px-5" href="nuevaCompania"><i class="fa-solid fa-plus me-2"></i>Add compañia</a></div>
+          <div class="col-auto"><a class="btn btn-primary px-5" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a></div>
         </div>
         <div class="row justify-content-between align-items-end mb-4 g-3">
 
