@@ -15,5 +15,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     public List<Usuario> listar(String text, Integer pag, Integer numregs){return dao.listar(text,pag,numregs);}
     public void insertar(Usuario usuario){dao.insertar(usuario);}
+    public Usuario recuperar(Integer id){return dao.recuperar(id);}
+    public void actualizar(Usuario usuario){dao.actualizar(usuario);}
 
 }

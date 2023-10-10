@@ -98,6 +98,7 @@
                           <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">TIPO PARAMETROS</th>
                           <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">VALOR</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESCRIPCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -108,16 +109,16 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${par.iexcodcon}</a></td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarParametro@${par.iexcodcon}">#${par.iexcodcon}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${par.descon}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${par.destippar}</span></td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${par.iexvalcon}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">${par.iexdesobs}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${par.iexdesobs}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="#">Editar</a>
+                                        <a class="dropdown-item" href="editarParametro@${par.iexcodcon}">Editar</a>
                                      <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                                  </div>
                                </td>

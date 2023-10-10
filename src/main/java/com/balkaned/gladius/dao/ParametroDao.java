@@ -7,5 +7,6 @@ import java.util.List;
 public interface ParametroDao {
     public List<ParametrosGen> listarParametrosGen();
     public void insertarParametrosGen(ParametrosGen par);
-
+    public ParametrosGen getParametrosGen(String codcon);
+    public void actualizarParametrosGen(ParametrosGen par);
 }

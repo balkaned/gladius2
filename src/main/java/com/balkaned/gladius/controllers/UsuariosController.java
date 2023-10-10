@@ -5,12 +5,11 @@ import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -166,7 +165,7 @@ public class UsuariosController {
             Integer codusumat = 1;
 
             Usuario p = new Usuario();
-            p.setUsuario(usuario);
+            p.setUsuario(usuario2);
             p.setPassword(password);
             p.setEstado(estado);
             p.setEmail(email);
@@ -194,6 +193,88 @@ public class UsuariosController {
             valido = true;
         }
         return valido;
+    }
+
+    @RequestMapping("/editarUsuario@{idUsu}")
+    public ModelAndView editarUsuario(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
+        logger.info("/editarUsuario");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("idUsu",idUsu);
+        Usuario usuariox = usuarioService.recuperar(Integer.valueOf(idUsu));
+        request.setAttribute("usuariox", usuariox);
+
+        return new ModelAndView("public/gladius/configuracion/usuarios/editarUsuario");
+    }
+
+    @RequestMapping("/modificarUsuario")
+    public ModelAndView modificarUsuario(ModelMap model, HttpServletRequest request) {
+        logger.info("/modificarUsuario");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Integer codusuario = Integer.valueOf(request.getParameter("id_usuario"));
+        String usuariox = request.getParameter("txt_usuario");
+        String password = request.getParameter("txt_password");
+        String emailx = request.getParameter("txt_email");
+        //String urlfoto = request.getParameter("txt_urlfoto");
+        String estado = request.getParameter("lov_estado");
+
+        Usuario p = new Usuario();
+        p.setIdUsuario(codusuario);
+        p.setUsuario(usuariox);
+        p.setPassword(password);
+        p.setEmail(emailx);
+        p.setEstado(estado);
+        //     p.setUrlfoto(urlfoto);
+        p.setUrlfoto(null);
+
+        usuarioService.actualizar(p);
+
+        return new ModelAndView("redirect:/listUsuarios");
     }
 
 }

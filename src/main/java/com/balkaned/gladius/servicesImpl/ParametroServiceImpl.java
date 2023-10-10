@@ -15,5 +15,7 @@ public class ParametroServiceImpl implements ParametroService {
 
     public List<ParametrosGen> listarParametrosGen(){return dao.listarParametrosGen();}
     public void insertarParametrosGen(ParametrosGen par){dao.insertarParametrosGen(par);}
+    public ParametrosGen getParametrosGen(String codcon){return dao.getParametrosGen(codcon);}
+    public void actualizarParametrosGen(ParametrosGen par){dao.actualizarParametrosGen(par);}
 
 }

@@ -94,4 +94,63 @@ public class UsuarioDaoImpl implements UsuarioDao {
         "1");
     }
 
+    public Usuario recuperar(Integer id){
+
+        String sql="select    u.iexcodusu," +
+                "                            u.iexdesusu, " +
+                "                            u.iexpassw, " +
+                "                             coalesce(u.iexusucre,0) iexusucre, " +
+                "                             u2.iexdesusu usucre, " +
+                "                             to_char(u.iexfeccre,'dd/mm/yyyy') iexfeccre, " +
+                "                            coalesce(u.iexusumod ,0) iexusumod, " +
+                "                             u3.iexdesusu usumod, " +
+                "                             to_char(u.iexfecmod,'dd/mm/yyyy') iexfecmod,  " +
+                "							 case u.iexflgest WHEN '1'  then 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO," +
+                "                             u.iexcodusu_mat," +
+                "                            u.iexemail, " +
+                "                            u.iexurlfoto " +
+                "                        from      " +
+                "                        iexusuario u " +
+                "						left outer join iexusuario u2 on  u.iexusucre=u2.iexcodusu " +
+                "						left outer join iexusuario u3 on   u.iexusumod=u3.iexcodusu " +
+                "                        where u.iexcodusu ="+id+"  ";
+
+        return (Usuario) template.query(sql, new ResultSetExtractor<Usuario>() {
+            public Usuario extractData(ResultSet rs) throws SQLException, DataAccessException{
+                Usuario p = new Usuario();
+                while(rs.next()) {
+                    p.setIdUsuario(rs.getInt("iexcodusu"));
+                    p.setUsuario(rs.getString("iexdesusu"));
+                    p.setPassword(rs.getString("iexpassw"));
+                    p.setIdUsuarioCrea(rs.getInt("iexusucre"));
+                    p.setIdUsuarioMod(rs.getInt("iexusumod"));
+                    p.setDesUsuarioCrea(rs.getString("usucre"));
+                    p.setDesUsuarioMod(rs.getString("usumod"));
+                    p.setFechaCrea(rs.getString("iexfeccre"));
+                    p.setFechaModfica(rs.getString("iexfecmod"));
+                    p.setEstado(rs.getString("estado"));
+                    p.setIdUsuMat(rs.getInt("iexcodusu_mat"));
+                    p.setEmail(rs.getString("iexemail"));
+                    p.setUrlfoto(rs.getString("iexurlfoto"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizar(Usuario Usuario){
+
+        template.update("CALL pl_gestion_usuarios(?,?,?,?,0,?,?,?,?)",
+
+        Usuario.getIdUsuario(),
+        Usuario.getUsuario(),
+        Usuario.getPassword(),
+        Usuario.getEstado(),
+        //pst.setInt(5, Usuario.getIdUsuMat());
+        Usuario.getEmail(),
+        Usuario.getUrlfoto(),
+        1,   // codigo de usuario que crea. debe tomar el codigo de usuario de la sesion
+        "2");
+    }
+
 }
