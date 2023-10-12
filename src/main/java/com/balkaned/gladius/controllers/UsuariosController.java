@@ -1,6 +1,5 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -224,7 +223,7 @@ public class UsuariosController {
 
         model.addAttribute("idUsu",idUsu);
         Usuario usuariox = usuarioService.recuperar(Integer.valueOf(idUsu));
-        request.setAttribute("usuariox", usuariox);
+        model.addAttribute("usuariox", usuariox);
 
         return new ModelAndView("public/gladius/configuracion/usuarios/editarUsuario");
     }
@@ -269,7 +268,7 @@ public class UsuariosController {
         p.setPassword(password);
         p.setEmail(emailx);
         p.setEstado(estado);
-        //     p.setUrlfoto(urlfoto);
+        //p.setUrlfoto(urlfoto);
         p.setUrlfoto(null);
 
         usuarioService.actualizar(p);

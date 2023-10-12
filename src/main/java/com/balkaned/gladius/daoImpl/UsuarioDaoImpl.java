@@ -132,6 +132,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     p.setIdUsuMat(rs.getInt("iexcodusu_mat"));
                     p.setEmail(rs.getString("iexemail"));
                     p.setUrlfoto(rs.getString("iexurlfoto"));
+                    //logger.info("estado: "+p.getEstado());
                 }
                 return p;
             }

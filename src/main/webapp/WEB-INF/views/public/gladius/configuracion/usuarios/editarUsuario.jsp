@@ -82,8 +82,8 @@
                               <div class="col-sm-6 col-md-12">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado (*)</label>
                                     <select class="form-select" name="lov_estado" required>
-                                      <option value="1"    ${requestScope.usuariox.estado=='1' ? 'selected' : ''} >Activo</option>
-                                      <option value="0"  ${requestScope.usuariox.estado=='0' ? 'selected' : ''} >Inactivo</option>
+                                      <option value="1" ${requestScope.usuariox.estado=='ACTIVO' ? 'selected' : ''} >Activo</option>
+                                      <option value="0" ${requestScope.usuariox.estado=='INACTIVO' ? 'selected' : ''} >Inactivo</option>
                                     </select>
                               </div>
 
