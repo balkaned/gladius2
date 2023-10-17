@@ -2,7 +2,6 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Opciones;
-import com.balkaned.gladius.beans.Rolesxopciones;
 import com.balkaned.gladius.dao.OpcionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -109,6 +108,63 @@ public class OpcionDaoImpl implements OpcionDao {
                 opc.getIexcodapps(),
                 opc.getIexaction(),
                 opc.getIexusucre());
+    }
+
+    public Opciones getOpciones(Integer codopc) {
+
+        String sql=" select  " +
+                "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
+                "o.iexflgest, o.iexcodsec,  " +
+                "e.iexdessec, " +
+                "s.iexdessys, " +
+                "o.iexdescripcion, o.iexcodapps, o.iexaction,  " +
+                "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
+                "from iexopciones o " +
+                "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
+                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys   where o.iexcodopc="+codopc+"  "   ;
+
+        return (Opciones) template.query(sql, new ResultSetExtractor<Opciones>() {
+            public Opciones extractData(ResultSet rs) throws SQLException, DataAccessException{
+                Opciones p = new Opciones();
+                while(rs.next()) {
+                    p.setIexcodopc(rs.getInt("iexcodopc"));
+                    p.setIexdesopc(rs.getString("iexdesopc"));
+                    p.setIexurlopc(rs.getString("iexurlopc"));
+                    p.setIexurlimg(rs.getString("iexurlimg"));
+                    p.setIexflgest(rs.getString("iexflgest"));
+                    p.setIexcodsec(rs.getInt("iexcodsec"));
+                    p.setDessec(rs.getString("iexdessec"));
+                    p.setDessys(rs.getString("iexdessys"));
+                    p.setIexdescripcion(rs.getString("iexdescripcion"));
+                    p.setIexcodapps(rs.getString("iexcodapps"));
+                    p.setIexaction(rs.getString("iexaction"));
+                    p.setIexusucre(rs.getString("iexusucre"));
+                    p.setIexfeccre(rs.getString("iexfeccre"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizarOpciones(Opciones opc){
+
+        template.update("  update iexopciones set " +
+                        "  iexdesopc =? , iexurlopc =?, iexurlimg =?, " +
+                        " iexflgest =?, iexcodsec =?, iexdescripcion =?, iexcodapps =? , iexaction =?,   " +
+                        " iexusumod =?, iexfeccre = current_date  where  iexcodopc   =  ? ",
+
+                        opc.getIexdesopc(),
+                        opc.getIexurlopc(),
+                        opc.getIexurlimg(),
+                        opc.getIexflgest(),
+                        opc.getIexcodsec(),
+                        opc.getIexdescripcion(),
+                        opc.getIexcodapps(),
+                        opc.getIexaction(),
+                        opc.getIexusumod(),
+                        opc.getIexcodopc());
     }
 
 }

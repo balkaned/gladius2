@@ -1,10 +1,12 @@
 package com.balkaned.gladius.controllers;
 
 
+import com.balkaned.gladius.beans.Opciones;
 import com.balkaned.gladius.beans.Seccion;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -136,6 +138,83 @@ public class SeccionesController {
         sec.setIexactiondef(request.getParameter("iexactiondef"));
 
         seccionService.insertarSeccion(sec);
+
+        return new ModelAndView("redirect:/listSecciones");
+    }
+
+    @RequestMapping("/editarSeccion@{idSec}")
+    public ModelAndView editarSeccion(ModelMap model, HttpServletRequest request, @PathVariable String idSec) {
+        logger.info("/editarSeccion");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("idSec",idSec);
+        model.addAttribute("xSeccion",seccionService.getSeccion(Integer.valueOf(idSec)));
+        model.addAttribute("lovSys",sistemaService.listarSistemas());
+
+        return new ModelAndView("public/gladius/configuracion/secciones/editarSeccion");
+    }
+
+    @RequestMapping("/modificarSeccion")
+    public ModelAndView modificarSeccion(ModelMap model, HttpServletRequest request) {
+        logger.info("/modificarSeccion");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Seccion sec = new Seccion();
+
+        sec.setIexcodsec(Integer.parseInt(request.getParameter("iexcodsec")));
+        sec.setIexdessec(request.getParameter("iexdessec"));
+        sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
+        sec.setIexordsec(Integer.parseInt(request.getParameter("iexordsec")));
+        sec.setIexsecimg(request.getParameter("iexsecimg"));
+        sec.setIexsecurl(request.getParameter("iexsecurl"));
+        sec.setIexsecobs(request.getParameter("iexsecobs"));
+        sec.setIexactiondef(request.getParameter("iexactiondef"));
+
+        seccionService.actualizarSeccion(sec);
 
         return new ModelAndView("redirect:/listSecciones");
     }

@@ -1,16 +1,13 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.beans.Seccion;
-import com.balkaned.gladius.dao.ParametroDao;
 import com.balkaned.gladius.dao.SeccionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,6 +103,59 @@ public class SeccionDaoImpl implements SeccionDao {
                         seccion.getIexsecimg(),
                         seccion.getIexsecobs(),
                         seccion.getIexactiondef());
+    }
+
+    public Seccion getSeccion(Integer codsec){
+
+        String sql=" select " +
+                "s.iexcodsec, " +
+                "s.iexdessec, " +
+                "s.iexordsec, " +
+                "s.iexcodsys, " +
+                "y.iexdessys, " +
+                "s.iexsecurl, " +
+                "s.iexsecimg, " +
+                "s.iexsecobs, " +
+                "s.iexopcdef,  " +
+                "s.iexactiondef  " +
+                "from iexseccion s, iexsystemas y " +
+                "where " +
+                "s.iexcodsys= y.iexcodsys  and s.iexcodsec= "+codsec+"  "  ;
+
+        return (Seccion) template.query(sql, new ResultSetExtractor<Seccion>() {
+            public Seccion extractData(ResultSet rs) throws SQLException, DataAccessException{
+                Seccion p = new Seccion();
+                while(rs.next()) {
+                    p.setIexcodsec(rs.getInt("iexcodsec"));
+                    p.setIexdessec(rs.getString("iexdessec"));
+                    p.setIexordsec(rs.getInt("iexordsec"));
+                    p.setIexcodsys(rs.getInt("iexcodsys"));
+                    p.setDessys(rs.getString("iexdessys"));
+                    p.setIexsecurl(rs.getString("iexsecurl"));
+                    p.setIexsecimg(rs.getString("iexsecimg"));
+                    p.setIexsecobs(rs.getString("iexsecobs"));
+                    p.setIexactiondef(rs.getString("iexactiondef"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizarSeccion(Seccion seccion){
+
+        template.update("  update iexseccion set " +
+                "    iexdessec= ?  , iexordsec= ?  ,  iexcodsys= ?  ,  iexsecurl= ? , " +
+                " iexsecimg = ? ,   iexsecobs= ? , iexactiondef = ?  " +
+                "  where iexcodsec  = ? ",
+
+        seccion.getIexdessec(),
+        seccion.getIexordsec(),
+        seccion.getIexcodsys(),
+        seccion.getIexsecurl(),
+        seccion.getIexsecimg(),
+        seccion.getIexsecobs(),
+        seccion.getIexactiondef(),
+        seccion.getIexcodsec());
 
     }
 

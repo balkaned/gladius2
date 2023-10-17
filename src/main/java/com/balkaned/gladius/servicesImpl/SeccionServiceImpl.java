@@ -17,5 +17,7 @@ public class SeccionServiceImpl implements SeccionService {
     public List<Seccion> listarSeccion(){return dao.listarSeccion();}
     public Integer getIdSeccion(){return dao.getIdSeccion();}
     public void insertarSeccion(Seccion seccion){dao.insertarSeccion(seccion);}
+    public Seccion getSeccion(Integer codsec){return dao.getSeccion(codsec);}
+    public void actualizarSeccion(Seccion seccion){dao.actualizarSeccion(seccion);}
 
 }

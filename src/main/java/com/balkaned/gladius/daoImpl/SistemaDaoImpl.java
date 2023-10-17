@@ -63,4 +63,34 @@ public class SistemaDaoImpl implements SistemaDao {
                         systema.getIexdessys());
     }
 
+    public Sistemas getSistemas(Integer codsis){
+
+        String sql=" select  " +
+                "iexcodsys, " +
+                "iexdessys, " +
+                "iexactiondefault " +
+                "from iexsystemas where iexcodsys = "+codsis+" ";
+        return (Sistemas) template.query(sql, new ResultSetExtractor<Sistemas>() {
+            public Sistemas extractData(ResultSet rs) throws SQLException, DataAccessException{
+                Sistemas p = new Sistemas();
+                while(rs.next()) {
+                    p.setIexcodsys(rs.getInt("iexcodsys"));
+                    p.setIexdessys(rs.getString("iexdessys"));
+                    p.setIexactiondefault(rs.getString("iexactiondefault"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizarSistemas(Sistemas systema){
+
+        template.update("  update iexsystemas  set  iexdessys =? " +
+                        " where iexcodsys=?     ",
+
+        systema.getIexdessys(),
+        systema.getIexcodsys());
+
+    }
+
 }
