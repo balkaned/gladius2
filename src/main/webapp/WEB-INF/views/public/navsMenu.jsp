@@ -205,12 +205,12 @@
                   <li class="collapsed-nav-item-title d-none">Gestion de Tiempos</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" href="" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Asistencia</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" href="listTurno" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Gestions de Turno</span></div>
                   </a>
               </li>

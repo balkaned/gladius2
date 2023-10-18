@@ -1,6 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
+import com.balkaned.gladius.beans.Role;
 import com.balkaned.gladius.beans.Turno;
 import com.balkaned.gladius.beans.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
@@ -9,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,19 +26,26 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Turno> listarTurnos(Integer codcia){
+    public List<Turno> listarTurnos(Integer codcia) {
 
-        String sql = " select  " +
-                " iexcodcia, iexcodturno, iexflgturno, iexdesturno, " +
-                " iexhorini, iexhorfin, " +
-                " iexflgdiasig, iextopminantes, iextopmaxpost, " +
-                //     " lunes, martes, miercoles, jueves, viernes, sabado, domingo,  " +
-                " iexdesusu, iexfeccrea " +
-                " from iexturno where iexcodcia="+codcia+"  "  ;
+        String sql = " select   " +
+                "t.iexcodcia," +
+                " t.iexcodturno," +
+                " t.iexdesturno," +
+                " t.iexhorini, " +
+                "t.iexhorfin,  " +
+                "t.iexflgdiasig," +
+                " t.iextopminantes," +
+                " t.iextopmaxpost,  " +
+                "iexflgturno,  " +
+                "t.iexdesusu, " +
+                "t.iexfeccrea " +
+                "from iexturno t   " +
+                "where iexcodcia=" + codcia + "   ";
 
         return template.query(sql, new ResultSetExtractor<List<Turno>>() {
             public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -46,8 +55,8 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     Turno p = new Turno();
 
                     p.setCodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodturno(rs.getInt("iexcodturno"))  ;
-                    p.setIexflgturno(rs.getString("iexflgturno")) ;
+                    p.setIexcodturno(rs.getInt("iexcodturno"));
+                    p.setIexflgturno(rs.getString("iexflgturno"));
                     p.setIexdesturno(rs.getString("iexdesturno"));
                     p.setIexhorini(rs.getString("iexhorini"));
                     p.setIexhorfin(rs.getString("iexhorfin"));
@@ -71,7 +80,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         });
     }
 
-    public List<Turnodiario> listarTurnoDia(Integer codcia, Integer codtra, String fecini, String fecfin){
+    public List<Turnodiario> listarTurnoDia(Integer codcia, Integer codtra, String fecini, String fecfin) {
 
         String sql = " select	" +
                 "    t.iexcodcia ," +
@@ -80,7 +89,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "    t.iexfecdia ," +
                 "    to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia ," +
                 "    t.iexcodturno ," +
-                "    e.iexflgturno, "+
+                "    e.iexflgturno, " +
                 "    e.iexdesturno," +
                 "    t.iexiniturno ," +
                 "    t.iexfinturno ," +
@@ -108,9 +117,9 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "	where " +
                 "	t.iexcodcia = e.iexcodcia and " +
                 "    t.iexcodturno = e.iexcodturno and " +
-                "    t.iexcodcia="+codcia+"  and " +
-                "	t.iexcodtra="+codtra+" and " +
-                "	t.iexfecdia >= to_date('"+fecini+"','dd/mm/yyyy') and t.iexfecdia <= to_date('"+fecfin+"','dd/mm/yyyy') order by iexcodfec asc  "  ;
+                "    t.iexcodcia=" + codcia + "  and " +
+                "	t.iexcodtra=" + codtra + " and " +
+                "	t.iexfecdia >= to_date('" + fecini + "','dd/mm/yyyy') and t.iexfecdia <= to_date('" + fecfin + "','dd/mm/yyyy') order by iexcodfec asc  ";
         return template.query(sql, new ResultSetExtractor<List<Turnodiario>>() {
             public List<Turnodiario> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Turnodiario> lista = new ArrayList<Turnodiario>();
@@ -157,6 +166,86 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 return lista;
             }
         });
+    }
+
+    public void insertarTurno(Turno turno) {
+
+        template.update("  insert into iexturno( " +
+                        " iexcodcia,iexcodturno, iexflgturno,iexdesturno,iexhorini,iexhorfin,iexflgdiasig,iextopminantes,iextopmaxpost" +
+                        " ) values ( " +
+                        "  ? ,  ?  ,  ? , ? ,  ?  ,  ? , ? ,  ?  ,  ?  " +
+                        ")  ",
+
+
+                turno.getCodcia(),
+                turno.getIexcodturno(),
+                turno.getIexflgturno(),
+                turno.getIexdesturno(),
+                turno.getIexhorini(),
+                turno.getIexhorfin(),
+                turno.getIexflgdiasig(),
+                turno.getIextopminantes(),
+                turno.getIextopmaxpost());
+
+    }
+
+
+    public Turno getTurno(Integer codcia, Integer codTurn) {
+        String sql = " select   " +
+                "t.iexcodcia, " +
+                "t.iexcodturno, " +
+                "t.iexdesturno, " +
+                "t.iexflgturno, " +
+                " t.iexhorini," +
+                " t.iexhorfin,  " +
+                "t.iexflgdiasig, " +
+                "t.iextopminantes," +
+                " t.iextopmaxpost, " +
+                "t.iexdesusu, " +
+                "t.iexfeccrea  " +
+                "from iexturno t   " +
+                "where iexcodcia=" + codcia + "  and t.iexcodturno = " + codTurn + " ";
+
+        return (Turno) template.query(sql, new ResultSetExtractor<Turno>() {
+            public Turno extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Turno tur = new Turno();
+                while (rs.next()) {
+                    tur.setCodcia(rs.getInt("iexcodcia"));
+                    tur.setIexcodturno(rs.getInt("iexcodturno"));
+                    tur.setIexdesturno(rs.getString("iexdesturno"));
+                    tur.setIexhorini(rs.getString("iexhorini"));
+                    tur.setIexhorfin(rs.getString("iexhorfin"));
+                    tur.setIexflgdiasig(rs.getString("iexflgdiasig"));
+                    tur.setIextopminantes(rs.getDouble("iextopminantes"));
+                    tur.setIextopmaxpost(rs.getDouble("iextopmaxpost"));
+                    tur.setIexdesusu(rs.getString("iexdesusu"));
+                    tur.setIexfeccrea(rs.getString("iexfeccrea"));
+                    tur.setIexflgturno(rs.getString("iexflgturno"));
+                }
+                return tur;
+            }
+        });
+    }
+
+    public void actualizarTurno(Turno turno) {
+
+        template.update(
+                   "  update iexturno  set  " +
+                        "	iexflgturno =?, iexdesturno =?, iexhorini =?, iexhorfin =?,  " +
+                        "	iexflgdiasig =?, iextopminantes =?, iextopmaxpost =?, " +
+                        "	iexdesusumod =?, iexfecmod =current_timestamp  " +
+                        "       where  iexcodcia=? and  iexcodturno =?",
+
+                turno.getIexflgturno(),
+                turno.getIexdesturno(),
+                turno.getIexhorini(),
+                turno.getIexhorfin(),
+                turno.getIexflgdiasig(),
+                turno.getIextopminantes(),
+                turno.getIextopmaxpost(),
+                turno.getIexdesusu(),
+                turno.getCodcia(),
+                turno.getIexcodturno());
     }
 
 }

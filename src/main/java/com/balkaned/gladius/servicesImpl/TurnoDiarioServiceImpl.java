@@ -18,6 +18,9 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     @Autowired
     TurnoDiarioDao dao;
     public List<Turno> listarTurnos(Integer codcia){return dao.listarTurnos(codcia);}
-    public List<Turnodiario> listarTurnoDia(Integer codcia, Integer codtra, String fecini, String fecfin){return dao.listarTurnoDia(codcia,codtra,fecini,fecfin);};
+    public List<Turnodiario> listarTurnoDia(Integer codcia, Integer codtra, String fecini, String fecfin){return dao.listarTurnoDia(codcia,codtra,fecini,fecfin);}
+    public void insertarTurno(Turno turno) {dao.insertarTurno(turno);}
+    public Turno getTurno(Integer codcia, Integer codturno) {  return dao.getTurno( codcia, codturno);}
+    public void actualizarTurno(Turno turno) { dao.actualizarTurno(turno);}
 
 }
