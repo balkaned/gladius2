@@ -147,9 +147,9 @@
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver Detalle</a>
                                         <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
-                                     <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>
-                                     </div>
+                                   </div>
                                  </div>
                                </td>
                             </tr>
