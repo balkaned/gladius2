@@ -114,10 +114,22 @@
                   </div>
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${concepto.codConcepto}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desConcepto}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">
+                  <span class="badge badge-phoenix fs--2 badge-phoenix-warning">
+                    <span class="badge-label">
+                        ${concepto.desConcepto}
+                    </span>
+                  </span>
+                </td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desVariable}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">
+                  <span class="badge badge-phoenix fs--2 badge-phoenix-info">
+                    <span class="badge-label">
+                        ${concepto.desAbreviacion}
+                    </span>
+                  </span>
+                </td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.descripcion}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desAbreviacion}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
