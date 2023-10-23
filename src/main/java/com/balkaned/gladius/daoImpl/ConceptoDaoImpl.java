@@ -85,4 +85,21 @@ public class ConceptoDaoImpl implements ConceptoDao {
             return list;
         });
     }
+
+    @Override
+    public void insertarConcepto(Concepto concepto) {
+        template.update("INSERT INTO iexconcepto " +
+                        "(coocodcon, " +
+                        "coodescon, " +
+                        "coocodforvar, " +
+                        "coodesabrev, " +
+                        "coodescripcion) " +
+                        "VALUES (?, ?, ?, ?, ?)",
+                concepto.getCodConcepto(),
+                concepto.getDesConcepto(),
+                concepto.getDesVariable(),
+                concepto.getDesAbreviacion(),
+                concepto.getDescripcion()
+        );
+    }
 }

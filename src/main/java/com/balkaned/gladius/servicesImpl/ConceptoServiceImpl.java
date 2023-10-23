@@ -21,4 +21,9 @@ public class ConceptoServiceImpl implements ConceptoService {
     public List<Concepto> listConceptos() {
         return dao.listConceptos();
     }
+
+    @Override
+    public void insertarConcepto(Concepto concepto) {
+        dao.insertarConcepto(concepto);
+    }
 }

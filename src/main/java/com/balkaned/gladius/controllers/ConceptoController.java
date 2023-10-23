@@ -93,4 +93,47 @@ public class ConceptoController {
 
         return new ModelAndView("public/gladius/confPlanilla/conceptos/nuevoConcepto");
     }
+
+    @RequestMapping("/insertarConcepto")
+    public ModelAndView insertarConcepto(
+            ModelMap model,
+            HttpServletRequest request
+    ) {
+        log.info("/insertarConcepto");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        Concepto newConcepto = new Concepto();
+        newConcepto.setCodConcepto(request.getParameter("codConcepto"));
+        newConcepto.setDesConcepto(request.getParameter("desConcepto"));
+        newConcepto.setDesVariable(request.getParameter("desVariable"));
+        newConcepto.setDesAbreviacion(request.getParameter("desAbreviacion"));
+        newConcepto.setDescripcion(request.getParameter("descripcion"));
+
+        conceptoService.insertarConcepto(newConcepto);
+
+        return new ModelAndView("redirect:/listConceptos");
+    }
 }

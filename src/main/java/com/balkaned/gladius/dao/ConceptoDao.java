@@ -9,4 +9,6 @@ public interface ConceptoDao {
     public List<Concepto> listardet();
 
     List<Concepto> listConceptos();
+
+    void insertarConcepto(Concepto concepto);
 }

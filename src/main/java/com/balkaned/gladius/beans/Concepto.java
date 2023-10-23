@@ -10,12 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Concepto {
-
     Integer idProceso;
     String codConcepto;
     String desConcepto;
-    String desVariable ;
-    String descripcion ;
-    String desAbreviacion ;
-
+    String desVariable;
+    String descripcion;
+    String desAbreviacion;
 }
