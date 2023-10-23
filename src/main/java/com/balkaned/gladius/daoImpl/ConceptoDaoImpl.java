@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,13 +25,13 @@ public class ConceptoDaoImpl implements ConceptoDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Concepto> listardet(){
+    public List<Concepto> listardet() {
 
-        String sql =  "select  " +
+        String sql = "select  " +
                 "	coocodcon, " +
                 "	coodescon, " +
                 "	coocodforvar, " +
@@ -38,12 +39,12 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "	coodescripcion " +
                 "from iexconcepto  order by coodescon asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
+        return template.query(sql, new ResultSetExtractor<>() {
 
             public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Concepto> lista = new ArrayList<Concepto>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Concepto con = new Concepto();
                     con.setCodConcepto(rs.getString("coocodcon"));
                     con.setDesConcepto(rs.getString("coodescon"));
@@ -55,6 +56,33 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 }
                 return lista;
             }
+        });
+    }
+
+    @Override
+    public List<Concepto> listConceptos() {
+        String sqlQuery = "SELECT " +
+                "coocodcon, " +
+                "coodescon, " +
+                "coocodforvar, " +
+                "coodesabrev, " +
+                "coodescripcion " +
+                "FROM iexconcepto order by coodescon asc";
+        return template.query(sqlQuery, rs -> {
+            List<Concepto> list = new ArrayList<>();
+
+            while (rs.next()) {
+                Concepto con = new Concepto();
+                con.setCodConcepto(rs.getString("coocodcon"));
+                con.setDesConcepto(rs.getString("coodescon"));
+                con.setDesVariable(rs.getString("coocodforvar"));
+                con.setDesAbreviacion(rs.getString("coodesabrev"));
+                con.setDescripcion(rs.getString("coodescripcion"));
+
+                list.add(con);
+            }
+
+            return list;
         });
     }
 }

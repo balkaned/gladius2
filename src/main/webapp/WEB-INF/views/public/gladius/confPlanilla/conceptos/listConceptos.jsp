@@ -105,7 +105,7 @@
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
-            <c:forEach var="area" items="${requestScope.conceptosList}">
+            <c:forEach var="concepto" items="${requestScope.conceptosList}">
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                 <td class="fs--1 align-middle px-0 py-3">
                   <div class="form-check mb-0 fs-0">
@@ -113,11 +113,11 @@
                            data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                   </div>
                 </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${concepto.iexcodconcepto}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.iexnomconcepto}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.iexvarformula}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.iexdescripcion}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.iexabreviado}</td>
+                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${concepto.codConcepto}</a></td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desConcepto}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desVariable}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.descripcion}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desAbreviacion}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
