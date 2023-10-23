@@ -3,7 +3,6 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Concepto;
 import com.balkaned.gladius.dao.ConceptoDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -125,5 +124,21 @@ public class ConceptoDaoImpl implements ConceptoDao {
 
             return con;
         });
+    }
+
+    @Override
+    public void actualizarConcepto(Concepto concepto) {
+        template.update("UPDATE iexconcepto " +
+                        "SET coodescon = ?, " +
+                        "coocodforvar = ?, " +
+                        "coodesabrev = ?, " +
+                        "coodescripcion = ? " +
+                        "WHERE coocodcon = ? ",
+                concepto.getDesConcepto(),
+                concepto.getDesVariable(),
+                concepto.getDesAbreviacion(),
+                concepto.getDescripcion(),
+                concepto.getCodConcepto()
+        );
     }
 }

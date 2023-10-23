@@ -49,30 +49,32 @@
       <div class="row g-5">
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
-            <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarConcepto" novalidate>
+            <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarConcepto" novalidate>
+              <input class="form-control" name="codConcepto" type="hidden" value="${requestScope.xConcepto.codConcepto}" />
+
               <div class="col-sm-6 col-md-4">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Concepto</label>
-                <input class="form-control" name="codConcepto" type="text" value="${requestScope.xConcepto.codConcepto}" placeholder="" required disabled readonly/>
+                <input class="form-control" name="codConcepto" type="text" value="${requestScope.xConcepto.codConcepto}" required disabled readonly/>
               </div>
 
               <div class="col-sm-6 col-md-4">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto</label>
-                <input class="form-control" name="desConcepto" type="text" value="${requestScope.xConcepto.desConcepto}" placeholder="" required/>
+                <input class="form-control" name="desConcepto" type="text" value="${requestScope.xConcepto.desConcepto}" required/>
               </div>
 
               <div class="col-sm-6 col-md-4">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Variable Formula</label>
-                <input class="form-control" name="desVariable" type="text" value="${requestScope.xConcepto.desVariable}" placeholder="" required/>
+                <input class="form-control" name="desVariable" type="text" value="${requestScope.xConcepto.desVariable}" required/>
               </div>
 
               <div class="col-sm-6 col-md-4">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
-                <input class="form-control" name="desAbreviacion" type="text" value="${requestScope.xConcepto.desAbreviacion}" placeholder="" required/>
+                <input class="form-control" name="desAbreviacion" type="text" value="${requestScope.xConcepto.desAbreviacion}" required/>
               </div>
 
               <div class="col-sm-6 col-md-8">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
-                <input class="form-control" name="descripcion" type="text" value="${requestScope.xConcepto.descripcion}" placeholder="" required/>
+                <input class="form-control" name="descripcion" type="text" value="${requestScope.xConcepto.descripcion}" required/>
               </div>
 
               <div class="alert alert-success" role="alert" id="alert" style="display:none;">

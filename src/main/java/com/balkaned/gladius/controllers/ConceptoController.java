@@ -70,7 +70,7 @@ public class ConceptoController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -83,14 +83,14 @@ public class ConceptoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/confPlanilla/conceptos/nuevoConcepto");
     }
@@ -103,6 +103,90 @@ public class ConceptoController {
         log.info("/insertarConcepto");
 
         String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Concepto newConcepto = new Concepto();
+        newConcepto.setCodConcepto(request.getParameter("codConcepto"));
+        newConcepto.setDesConcepto(request.getParameter("desConcepto"));
+        newConcepto.setDesVariable(request.getParameter("desVariable"));
+        newConcepto.setDesAbreviacion(request.getParameter("desAbreviacion"));
+        newConcepto.setDescripcion(request.getParameter("descripcion"));
+
+        conceptoService.insertarConcepto(newConcepto);
+
+        return new ModelAndView("redirect:/listConceptos");
+    }
+
+    @RequestMapping("/editarConcepto@{idParam}")
+    public ModelAndView editarConcepto(
+            ModelMap model,
+            HttpServletRequest request,
+            @PathVariable String idParam
+    ) {
+        log.info("/editarConcepto@{idParam}");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Concepto xConcepto = conceptoService.getById(idParam);
+
+        model.addAttribute("xConcepto", xConcepto);
+
+        log.info("xConcepto: " + xConcepto);
+
+        return new ModelAndView("public/gladius/confPlanilla/conceptos/editarConcepto");
+    }
+
+    @RequestMapping("/actualizarConcepto")
+    public ModelAndView actualizarConcepto(
+            ModelMap model,
+            HttpServletRequest request
+    ) {
+       log.info("/actualizarConcepto");
+
+       String user = (String) request.getSession().getAttribute("user");
 
         if(request.getSession().getAttribute("user")==null) {
             return new ModelAndView("redirect:/login2");
@@ -133,49 +217,8 @@ public class ConceptoController {
         newConcepto.setDesAbreviacion(request.getParameter("desAbreviacion"));
         newConcepto.setDescripcion(request.getParameter("descripcion"));
 
-        conceptoService.insertarConcepto(newConcepto);
+        conceptoService.actualizarConcepto(newConcepto);
 
         return new ModelAndView("redirect:/listConceptos");
-    }
-
-    @RequestMapping("/editarConcepto@{idParam}")
-    public ModelAndView editarConcepto(
-            ModelMap model,
-            HttpServletRequest request,
-            @PathVariable String idParam
-    ) {
-        log.info("/editarConcepto@{idParam}");
-
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Concepto xConcepto = conceptoService.getById(idParam);
-
-        model.addAttribute("xConcepto",xConcepto);
-
-        log.info("xConcepto: " + xConcepto);
-
-        return new ModelAndView("public/gladius/confPlanilla/conceptos/editarConcepto");
     }
 }

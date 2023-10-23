@@ -13,4 +13,6 @@ public interface ConceptoDao {
     void insertarConcepto(Concepto concepto);
 
     Concepto getById(String id);
+
+    void actualizarConcepto(Concepto concepto);
 }

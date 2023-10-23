@@ -31,4 +31,9 @@ public class ConceptoServiceImpl implements ConceptoService {
     public Concepto getById(String id) {
         return dao.getById(id);
     }
+
+    @Override
+    public void actualizarConcepto(Concepto concepto) {
+        dao.actualizarConcepto(concepto);
+    }
 }
