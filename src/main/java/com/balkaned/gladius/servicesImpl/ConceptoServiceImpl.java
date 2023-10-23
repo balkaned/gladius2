@@ -26,4 +26,9 @@ public class ConceptoServiceImpl implements ConceptoService {
     public void insertarConcepto(Concepto concepto) {
         dao.insertarConcepto(concepto);
     }
+
+    @Override
+    public Concepto getById(String id) {
+        return dao.getById(id);
+    }
 }

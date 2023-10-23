@@ -102,4 +102,28 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 concepto.getDescripcion()
         );
     }
+
+    @Override
+    public Concepto getById(String id) {
+        String sqlQuery = "SELECT " +
+                "coocodcon, " +
+                "coodescon, " +
+                "coocodforvar, " +
+                "coodesabrev, " +
+                "coodescripcion " +
+                "FROM iexconcepto " +
+                "WHERE coocodcon = '" + id + "' ";
+        return template.query(sqlQuery, rs -> {
+            Concepto con = new Concepto();
+            while (rs.next()) {
+                con.setCodConcepto(rs.getString("coocodcon"));
+                con.setDesConcepto(rs.getString("coodescon"));
+                con.setDesVariable(rs.getString("coocodforvar"));
+                con.setDesAbreviacion(rs.getString("coodesabrev"));
+                con.setDescripcion(rs.getString("coodescripcion"));
+            }
+
+            return con;
+        });
+    }
 }

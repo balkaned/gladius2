@@ -11,4 +11,6 @@ public interface ConceptoDao {
     List<Concepto> listConceptos();
 
     void insertarConcepto(Concepto concepto);
+
+    Concepto getById(String id);
 }
