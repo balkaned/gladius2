@@ -124,7 +124,7 @@
                       <li class="collapsed-nav-item-title d-none">Conf. Planillas</li>
 
                       <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="listConceptos" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Conceptos</span></div>
                         </a>
                       </li>
