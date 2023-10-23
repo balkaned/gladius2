@@ -14,13 +14,37 @@
   <jsp:include page="../../../links.jsp"></jsp:include>
 </head>
 <script>
-    function mostrarAlert() {
-        var div = document.getElementById('alert');
+    function mostrarAlertSuccess() {
+        let div = document.getElementById('alert');
         div.style.display = '';
 
         setTimeout(function () {
             $("#alerts").hide(6000);
         }, 3000);
+    }
+
+    function mostrarAlertDanger() {
+        let div = document.getElementById('incomplete');
+        div.style.display = '';
+
+        setTimeout(function () {
+            $("#alerts").hide(6000);
+        }, 3000);
+    }
+
+    function validarCampos() {
+        let codConcepto = document.getElementsByName('codConcepto')[0].value;
+        let desConcepto = document.getElementsByName('desConcepto')[0].value;
+        let desVariable = document.getElementsByName('desVariable')[0].value;
+        let desAbreviacion = document.getElementsByName('desAbreviacion')[0].value;
+        let descripcion = document.getElementsByName('descripcion')[0].value;
+
+        if (codConcepto.trim() === '' || desConcepto.trim() === '' || desVariable.trim() === '' || desAbreviacion.trim() === '' || descripcion.trim() === '') {
+            mostrarAlertDanger();
+        }
+        else {
+            mostrarAlertSuccess();
+        }
     }
 </script>
 <body>
@@ -50,12 +74,12 @@
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
-              <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-2">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Concepto</label>
                 <input class="form-control" name="codConcepto" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-3">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto</label>
                 <input class="form-control" name="desConcepto" type="text" value="" placeholder="" required/>
               </div>
@@ -70,7 +94,7 @@
                 <input class="form-control" name="desAbreviacion" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-8">
+              <div class="col-sm-6 col-md-5">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                 <input class="form-control" name="descripcion" type="text" value="" placeholder="" required/>
               </div>
@@ -78,6 +102,11 @@
               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                 Se grabó exitosamente los cambios.
               </div>
+
+              <div class="alert alert-danger" role="alert" id="incomplete" style="display:none;">
+                Por favor, complete todos los campos requeridos.
+              </div>
+
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-end">
                   <div class="col-auto">
@@ -106,7 +135,7 @@
                     </form>
                     <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
                       <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal">Cancel</button>
-                      <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal">Confirmar</button>
+                      <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="validarCampos();" type="submit" data-bs-dismiss="modal">Confirmar</button>
                     </div>
                   </div>
                 </div>

@@ -14,13 +14,36 @@
   <jsp:include page="../../../links.jsp"></jsp:include>
 </head>
 <script>
-    function mostrarAlert() {
-        var div = document.getElementById('alert');
+    function mostrarAlertSuccess() {
+        let div = document.getElementById('alert');
         div.style.display = '';
 
         setTimeout(function () {
             $("#alerts").hide(6000);
         }, 3000);
+    }
+
+    function mostrarAlertDanger() {
+        let div = document.getElementById('incomplete');
+        div.style.display = '';
+
+        setTimeout(function () {
+            $("#alerts").hide(6000);
+        }, 3000);
+    }
+
+    function validarCampos() {
+        let desConcepto = document.getElementsByName('desConcepto')[0].value;
+        let desVariable = document.getElementsByName('desVariable')[0].value;
+        let desAbreviacion = document.getElementsByName('desAbreviacion')[0].value;
+        let descripcion = document.getElementsByName('descripcion')[0].value;
+
+        if (desConcepto.trim() === '' || desVariable.trim() === '' || desAbreviacion.trim() === '' || descripcion.trim() === '') {
+            mostrarAlertDanger();
+        }
+        else {
+            mostrarAlertSuccess();
+        }
     }
 </script>
 <body>
@@ -50,14 +73,14 @@
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarConcepto" novalidate>
-              <input class="form-control" name="codConcepto" type="hidden" value="${requestScope.xConcepto.codConcepto}" />
+              <input class="form-control" name="codConcepto" type="hidden" value="${requestScope.xConcepto.codConcepto}"/>
 
-              <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-2">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Concepto</label>
                 <input class="form-control" name="codConcepto" type="text" value="${requestScope.xConcepto.codConcepto}" required disabled readonly/>
               </div>
 
-              <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-3">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto</label>
                 <input class="form-control" name="desConcepto" type="text" value="${requestScope.xConcepto.desConcepto}" required/>
               </div>
@@ -72,7 +95,7 @@
                 <input class="form-control" name="desAbreviacion" type="text" value="${requestScope.xConcepto.desAbreviacion}" required/>
               </div>
 
-              <div class="col-sm-6 col-md-8">
+              <div class="col-sm-6 col-md-5">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                 <input class="form-control" name="descripcion" type="text" value="${requestScope.xConcepto.descripcion}" required/>
               </div>
@@ -80,18 +103,24 @@
               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                 Se grabó exitosamente los cambios.
               </div>
+
+              <div class="alert alert-danger" role="alert" id="incomplete" style="display:none;">
+                Por favor, complete todos los campos requeridos.
+              </div>
+
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-end">
                   <div class="col-auto">
                     <a class="btn btn-phoenix-primary px-5" href="listConceptos">Cancel</a>
                   </div>
                   <div class="col-auto">
-                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                            aria-expanded="false" data-bs-reference="parent">Guardar Concepto
+                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window"
+                            aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar Concepto
                     </button>
                   </div>
                 </div>
               </div>
+
               <div class="modal fade" id="confirmModal" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content border">
@@ -102,13 +131,13 @@
                       </div>
                       <div class="modal-body pt-4 pb-2 px-4">
                         <div class="mb-3">
-                          <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                          <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operación?</label>
                         </div>
                       </div>
                     </form>
                     <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
                       <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal">Cancel</button>
-                      <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal">Confirmar</button>
+                      <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="validarCampos();" type="submit" data-bs-dismiss="modal">Confirmar</button>
                     </div>
                   </div>
                 </div>
