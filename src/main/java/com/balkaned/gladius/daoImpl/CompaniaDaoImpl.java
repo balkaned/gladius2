@@ -23,13 +23,13 @@ public class CompaniaDaoImpl implements CompaniaDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public Compania getCompaniaAll(Integer codcia){
+    public Compania getCompaniaAll(Integer codcia) {
 
-        String sql =  "select " +
+        String sql = "select " +
                 "c.iexcodcia    codcia, " +
                 "c.iexdescia    descia, " +
                 "c.iexnroruc    nroruc, " +
@@ -37,32 +37,32 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexdireccion direccion," +
                 "c.iexnrotelf   telefono, " +
                 "c.iexcodact    codactividad, " +
-                " d.desdet,  "+
+                " d.desdet,  " +
                 "c.iexrepnombre nombreRepresentante, " +
                 "c.iexrepcargo  cargoRepresentante, " +
                 "c.iexrepdocid  nrodocRepresentante, " +
                 "c.iexreplogo   urllogo, " +
-                "c.iexusucre, "+
-                "c.iexfeccre, "+
-                "c.iexusumod, "+
-                "c.iexfecmod, "+
-                "c.iexurlfileserver, "+
-                "c.iexurlfilereport  ,"+
-                " c.iexurlfileimg , "+
-                " c.iexflgsource , "+
-                " c.iexususource , "+
-                " c.iexpasssource , "+
-                " c.iexportsource, "+
-                " c.iexsourcedes , "+
-                " c.iexregiondes , "+
+                "c.iexusucre, " +
+                "c.iexfeccre, " +
+                "c.iexusumod, " +
+                "c.iexfecmod, " +
+                "c.iexurlfileserver, " +
+                "c.iexurlfilereport  ," +
+                " c.iexurlfileimg , " +
+                " c.iexflgsource , " +
+                " c.iexususource , " +
+                " c.iexpasssource , " +
+                " c.iexportsource, " +
+                " c.iexsourcedes , " +
+                " c.iexregiondes , " +
                 " c.iexdesobservacion," +
-                " c.iexschema "+
+                " c.iexschema " +
                 "from iexcompania c  " +
-                " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia="+codcia+" ";
+                " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia=" + codcia + " ";
         return (Compania) template.query(sql, new ResultSetExtractor<Compania>() {
             public Compania extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Compania cia = new Compania();
-                while(rs.next()) {
+                while (rs.next()) {
                     cia.setIdCodcia(rs.getInt("codcia"));
                     cia.setDescCia(rs.getString("descia"));
                     cia.setNroRuc(rs.getString("nroruc"));
@@ -97,17 +97,17 @@ public class CompaniaDaoImpl implements CompaniaDao {
         });
     }
 
-    public void logoCompania(Compania com){
+    public void logoCompania(Compania com) {
 
         template.update("update  iexcompania set   iexreplogo=?  where iexcodcia = ? ",
 
-        com.getUrlLogo(),
-        com.getIdCodcia());
+                com.getUrlLogo(),
+                com.getIdCodcia());
     }
 
-    public List<Compania> listarTodo(){
+    public List<Compania> listarTodo() {
 
-        String sql =  "select " +
+        String sql = "select " +
                 "c.iexcodcia    codcia, " +
                 "c.iexdescia    descia, " +
                 "c.iexnroruc    nroruc, " +
@@ -124,7 +124,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
             public List<Compania> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Compania> lista = new ArrayList<Compania>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Compania cia = new Compania();
 
                     cia.setIdCodcia(rs.getInt("codcia"));
@@ -139,7 +139,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
         });
     }
 
-    public void insertarCompania(Compania com){
+    public void insertarCompania(Compania com) {
 
         template.update("  insert into  iexcompania ( " +
                         "iexcodcia,        iexdescia,               iexnroruc,              iexdescorto, " +
@@ -147,10 +147,10 @@ public class CompaniaDaoImpl implements CompaniaDao {
                         "iexrepcargo,      iexrepdocid,             iexreplogo,             iexusucre, " +
                         "iexfeccre,        iexurlfileserver,        iexurlfilereport " +
                         " ) values ( " +
-                        "  ? ,        ?    ,     ?   ,        ?  ,"+
-                        "  ? ,        ?    ,     ?   ,        ?  ,"+
-                        "  ? ,        ?    ,     ?   ,        ?  ,"+
-                        " current_date  ,   ?   ,   ?  "+
+                        "  ? ,        ?    ,     ?   ,        ?  ," +
+                        "  ? ,        ?    ,     ?   ,        ?  ," +
+                        "  ? ,        ?    ,     ?   ,        ?  ," +
+                        " current_date  ,   ?   ,   ?  " +
                         ")  ",
 
                 com.getIdCodcia(),
@@ -169,9 +169,9 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getIexurlfilereport());
     }
 
-    public Compania getCompania(Integer codcia){
+    public Compania getCompania(Integer codcia) {
 
-        String sql="select " +
+        String sql = "select " +
                 "c.iexcodcia    codcia, " +
                 "c.iexdescia    descia, " +
                 "c.iexnroruc    nroruc, " +
@@ -179,24 +179,24 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexdireccion direccion," +
                 "c.iexnrotelf   telefono, " +
                 "c.iexcodact    codactividad, " +
-                " d.desdet,  "+
+                " d.desdet,  " +
                 "c.iexrepnombre nombreRepresentante, " +
                 "c.iexrepcargo  cargoRepresentante, " +
                 "c.iexrepdocid  nrodocRepresentante, " +
                 "c.iexreplogo   urllogo, " +
-                "c.iexusucre, "+
-                "c.iexfeccre, "+
-                "c.iexusumod, "+
-                "c.iexfecmod, "+
-                "c.iexurlfileserver, "+
-                "c.iexurlfilereport  "+
+                "c.iexusucre, " +
+                "c.iexfeccre, " +
+                "c.iexusumod, " +
+                "c.iexfecmod, " +
+                "c.iexurlfileserver, " +
+                "c.iexurlfilereport  " +
                 "from iexcompania c  "
-                + " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia="+codcia+" ";
+                + " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia=" + codcia + " ";
 
         return (Compania) template.query(sql, new ResultSetExtractor<Compania>() {
-            public Compania extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public Compania extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Compania cia = new Compania();
-                while(rs.next()) {
+                while (rs.next()) {
                     cia.setIdCodcia(rs.getInt("codcia"));
                     cia.setDescCia(rs.getString("descia"));
                     cia.setNroRuc(rs.getString("nroruc"));
@@ -215,25 +215,25 @@ public class CompaniaDaoImpl implements CompaniaDao {
                     cia.setFecMod(rs.getString("iexfecmod"));
                     cia.setIexurlfileserver(rs.getString("iexurlfileserver"));
                     cia.setIexurlfilereport(rs.getString("iexurlfilereport"));
-                    logger.info("urlLogo: "+cia.getUrlLogo());
+                    logger.info("urlLogo: " + cia.getUrlLogo());
                 }
                 return cia;
             }
         });
     }
 
-    public List<Ciaxcon> listarCiaxcon(Integer codcia,String flgtipreg){
+    public List<Ciaxcon> listarCiaxcon(Integer codcia, String flgtipreg) {
 
         String sql = " select  " +
                 " c.iexcodcia, c.iexcodcon, d.coodescon, c.iextipreg " +
-                " from iexciaxcon c, iexconcepto d where c.iexcodcon = d.coocodcon   and c.iexcodcia="+codcia+"  and c.iextipreg='"+flgtipreg+"' ";
+                " from iexciaxcon c, iexconcepto d where c.iexcodcon = d.coocodcon   and c.iexcodcia=" + codcia + "  and c.iextipreg='" + flgtipreg + "' ";
 
         return template.query(sql, new ResultSetExtractor<List<Ciaxcon>>() {
 
             public List<Ciaxcon> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Ciaxcon> lista = new ArrayList<Ciaxcon>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Ciaxcon p = new Ciaxcon();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -248,7 +248,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
         });
     }
 
-    public void actualizarCompania(Compania com){
+    public void actualizarCompania(Compania com) {
 
         template.update("  update  iexcompania set " +
                         "  iexdescia=?,               iexnroruc=?,              iexdescorto=?, " +
@@ -257,41 +257,41 @@ public class CompaniaDaoImpl implements CompaniaDao {
                         "iexfecmod=current_date,        iexurlfileserver=?,        iexurlfilereport=? " +
                         "  where iexcodcia = ? ",
 
-                        com.getDescCia(),
-                        com.getNroRuc(),
-                        com.getDescCiaCorto(),
-                        com.getDireccionCia(),
-                        com.getNroTelfCia(),
-                        com.getIdActividadCia(),
-                        com.getNomRepesentante(),
-                        com.getDesCargoRep(),
-                        com.getNroDocuRep(),
-                        com.getUrlLogo(),
-                        com.getUsuMod(),
-                        com.getIexurlfileserver(),
-                        com.getIexurlfilereport(),
-                        com.getIdCodcia());
+                com.getDescCia(),
+                com.getNroRuc(),
+                com.getDescCiaCorto(),
+                com.getDireccionCia(),
+                com.getNroTelfCia(),
+                com.getIdActividadCia(),
+                com.getNomRepesentante(),
+                com.getDesCargoRep(),
+                com.getNroDocuRep(),
+                com.getUrlLogo(),
+                com.getUsuMod(),
+                com.getIexurlfileserver(),
+                com.getIexurlfilereport(),
+                com.getIdCodcia());
     }
 
-    public void insertarCiaxcon(Integer codcia,String codcon,String tipreg){
+    public void insertarCiaxcon(Integer codcia, String codcon, String tipreg) {
 
         template.update("  insert into  iexciaxcon ( " +
                         "iexcodcia, iexcodcon, iexflgest, iexdefval, iextipreg " +
                         " ) values ( " +
-                        "  ? ,  ? ,  ? ,  ?  , ? "+
+                        "  ? ,  ? ,  ? ,  ?  , ? " +
                         ")  ",
                 codcia,
-                    codcon,
-                    "1",
-                    0.0,
-                    tipreg);
+                codcon,
+                "1",
+                0.0,
+                tipreg);
     }
 
-    public void deleteCiaxcon(Integer codcia, String codcon){
+    public void deleteCiaxcon(Integer codcia, String codcon) {
 
         template.update("  delete from iexciaxcon  where iexcodcia=? and  iexcodcon=?  ",
-        codcia,
-        codcon);
+                codcia,
+                codcon);
     }
 
 }

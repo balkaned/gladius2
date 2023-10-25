@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -39,7 +40,7 @@ public class EmpleadoController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -52,31 +53,31 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         Empleado emp = new Empleado();
         emp.setIexcodcia(idCompania);
 
-        List<Empleado> empleadoList=empleadoService.listarEmpleado(emp);
-        model.addAttribute("empleadoList",empleadoList);
+        List<Empleado> empleadoList = empleadoService.listarEmpleado(emp);
+        model.addAttribute("empleadoList", empleadoList);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleados");
     }
 
     @RequestMapping("detalleEmpl@{idTrab}")
-    public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request,@PathVariable String idTrab) {
+    public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/detalleEmpl");
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -89,25 +90,25 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
+        logger.info("idCompaniaXXXX: " + idCompania);
+        logger.info("idTraXXXXXb: " + idTrab);
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
-        logger.info("fecha nac: "+emp.getIexfecnac());
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        logger.info("fecha nac: " + emp.getIexfecnac());
         model.addAttribute("fecnacIEX", emp.getIexfecnac());
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -115,102 +116,106 @@ public class EmpleadoController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
-        logger.info("estadoFlag: "+emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+        logger.info("estadoFlag: " + emp.getIexflgest());
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        logger.info("iexlogo: "+emp.getIexlogo());
-        model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
-        model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
-        model.addAttribute("lovModForm",lovsService.getLovs("18","%"));
-        model.addAttribute("lovPaisEmisor",lovsService.getLovs("26","%"));
-        model.addAttribute("lovNacionalidad",lovsService.getLovs("4","%"));
-        model.addAttribute("lovGrdInstruccion",lovsService.getLovs("9","%"));
-        model.addAttribute("lovCenForm",lovsService.getLovs("51","%"));
-        model.addAttribute("lovEstados",lovsService.getLovs("54","%"));
-        model.addAttribute("lovLarDistancia",lovsService.getLovs("29","%"));
-        model.addAttribute("lovEstcivil",lovsService.getLovs("68","%"));
-        model.addAttribute("lovDept_origen",lovsService.getLovsDept("",emp.getIexpaisemisor() ));  // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen",lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen",lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss
+        logger.info("iexlogo: " + emp.getIexlogo());
+        model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
+        model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
+        model.addAttribute("lovModForm", lovsService.getLovs("18", "%"));
+        model.addAttribute("lovPaisEmisor", lovsService.getLovs("26", "%"));
+        model.addAttribute("lovNacionalidad", lovsService.getLovs("4", "%"));
+        model.addAttribute("lovGrdInstruccion", lovsService.getLovs("9", "%"));
+        model.addAttribute("lovCenForm", lovsService.getLovs("51", "%"));
+        model.addAttribute("lovEstados", lovsService.getLovs("54", "%"));
+        model.addAttribute("lovLarDistancia", lovsService.getLovs("29", "%"));
+        model.addAttribute("lovEstcivil", lovsService.getLovs("68", "%"));
+        model.addAttribute("lovDept_origen", lovsService.getLovsDept("", emp.getIexpaisemisor()));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen", lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen", lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss
 
-        Empleado emp2=empleadoService.recuperarLaboral(idCompania,Integer.parseInt(idTrab));
-        model.addAttribute("emp2",emp2);
-        model.addAttribute("lovSitPen",lovsService.getLovs("15","%"));
-        model.addAttribute("lovTipCont",lovsService.getLovs("12","%"));
-        model.addAttribute("lovPliego",lovsService.getLovs("31","%"));
-        model.addAttribute("lovSituesp",lovsService.getLovs("35","%"));
-        model.addAttribute("lovOcupRegPub",lovsService.getLovs("10","%"));
-        model.addAttribute("lovOcupRegPrv",lovsService.getLovs("30","%"));
-        model.addAttribute("lovPuesto",lovsService.getPuestoCia(idCompania));
-        model.addAttribute("lovCcosto",lovsService.getCCostoCia(idCompania));
-        model.addAttribute("lovArea",lovsService.getAreaCia(idCompania));
-        model.addAttribute("lovUbicacion",lovsService.getUbicacionCia(idCompania));
-        model.addAttribute("lovCateTra",lovsService.getLovs("24","%"));
-        model.addAttribute("lovRegLab",lovsService.getLovs("33","%"));
-        model.addAttribute("lovTipTra",lovsService.getLovs("8","%"));
+        Empleado emp2 = empleadoService.recuperarLaboral(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp2", emp2);
+        model.addAttribute("lovSitPen", lovsService.getLovs("15", "%"));
+        model.addAttribute("lovTipCont", lovsService.getLovs("12", "%"));
+        model.addAttribute("lovPliego", lovsService.getLovs("31", "%"));
+        model.addAttribute("lovSituesp", lovsService.getLovs("35", "%"));
+        model.addAttribute("lovOcupRegPub", lovsService.getLovs("10", "%"));
+        model.addAttribute("lovOcupRegPrv", lovsService.getLovs("30", "%"));
+        model.addAttribute("lovPuesto", lovsService.getPuestoCia(idCompania));
+        model.addAttribute("lovCcosto", lovsService.getCCostoCia(idCompania));
+        model.addAttribute("lovArea", lovsService.getAreaCia(idCompania));
+        model.addAttribute("lovUbicacion", lovsService.getUbicacionCia(idCompania));
+        model.addAttribute("lovCateTra", lovsService.getLovs("24", "%"));
+        model.addAttribute("lovRegLab", lovsService.getLovs("33", "%"));
+        model.addAttribute("lovTipTra", lovsService.getLovs("8", "%"));
 
-        Empleado emp3=empleadoService.recuperarPagos(idCompania,Integer.parseInt(idTrab));
-        model.addAttribute("emp3",emp3);
-        model.addAttribute("lovBancoHab",lovsService.getLovs("36","%"));
-        model.addAttribute("lovMonedaHab",lovsService.getLovs("52","%"));
-        model.addAttribute("lovTipCtaHab",lovsService.getLovs("53","%"));
-        model.addAttribute("lovBancoCts",lovsService.getLovs("36","%"));
-        model.addAttribute("lovMonedaCts",lovsService.getLovs("52","%"));
-        model.addAttribute("lovTipCtaCts",lovsService.getLovs("53","%"));
-        model.addAttribute("lovTipPago",lovsService.getLovs("16","%"));
-        model.addAttribute("lovPerRem",lovsService.getLovs("13","%"));
+        Empleado emp3 = empleadoService.recuperarPagos(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp3", emp3);
+        model.addAttribute("lovBancoHab", lovsService.getLovs("36", "%"));
+        model.addAttribute("lovMonedaHab", lovsService.getLovs("52", "%"));
+        model.addAttribute("lovTipCtaHab", lovsService.getLovs("53", "%"));
+        model.addAttribute("lovBancoCts", lovsService.getLovs("36", "%"));
+        model.addAttribute("lovMonedaCts", lovsService.getLovs("52", "%"));
+        model.addAttribute("lovTipCtaCts", lovsService.getLovs("53", "%"));
+        model.addAttribute("lovTipPago", lovsService.getLovs("16", "%"));
+        model.addAttribute("lovPerRem", lovsService.getLovs("13", "%"));
 
-        Empleado emp4=empleadoService.recuperarSegSocial(idCompania,Integer.parseInt(idTrab));
-        model.addAttribute("emp4",emp4);
-        model.addAttribute("lovEssalud",lovsService.getLovs("32","%"));
-        model.addAttribute("lovProvEps",lovsService.getLovs("14","%"));
-        model.addAttribute("lovTipCenEdu",lovsService.getLovs("51","%"));
-        model.addAttribute("lovCodAfp",lovsService.getLovs("11","%"));
+        Empleado emp4 = empleadoService.recuperarSegSocial(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp4", emp4);
+        model.addAttribute("lovEssalud", lovsService.getLovs("32", "%"));
+        model.addAttribute("lovProvEps", lovsService.getLovs("14", "%"));
+        model.addAttribute("lovTipCenEdu", lovsService.getLovs("51", "%"));
+        model.addAttribute("lovCodAfp", lovsService.getLovs("11", "%"));
 
-        Empleado emp5=empleadoService.recuperarDireccion(idCompania,Integer.parseInt(idTrab));
-        model.addAttribute("emp5",emp5);
-        model.addAttribute("lovTipVia",lovsService.getLovs("5","%"));
-        model.addAttribute("lovTipZona",lovsService.getLovs("6","%"));
-        model.addAttribute("lovTipVia2",lovsService.getLovs("5","%"));
-        model.addAttribute("lovTipZona2",lovsService.getLovs("6","%"));
-        model.addAttribute("lovDept_origen1",lovsService.getLovsDept ("", emp5.getIexnacion_origen1()));  // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen1",lovsService.getLovsProv("", emp5.getIexdepart_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen1",lovsService.getLovsDist("", emp5.getIexprovin_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDept_origen2",lovsService.getLovsDept("", emp5.getIexnacion_origen2()  ));  // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen2",lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen2",lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
+        Empleado emp5 = empleadoService.recuperarDireccion(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp5", emp5);
+        model.addAttribute("lovTipVia", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovTipVia2", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona2", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", emp5.getIexnacion_origen1()));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", emp5.getIexdepart_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", emp5.getIexprovin_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", emp5.getIexnacion_origen2()));  // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
     }
 
-    @RequestMapping(value="/updateEmplDatPers",method=RequestMethod.POST)
-    public ModelAndView updateEmplDatPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+    @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)
+    public ModelAndView updateEmplDatPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatPers");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: "+iexcodcia);
-        logger.info("iexcodtra: "+iexcodtra);
+        logger.info("iexcodcia: " + iexcodcia);
+        logger.info("iexcodtra: " + iexcodtra);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodoc = request.getParameter("iexnrodoc");
         String iexnomtra = request.getParameter("iexnomtra");
-        String iexapepat= request.getParameter("iexapepat");
+        String iexapepat = request.getParameter("iexapepat");
         String iexapemat = request.getParameter("iexapemat");
         String iexfecnac = request.getParameter("iexfecnac");
         String iexcodsex = request.getParameter("iexcodsex");
@@ -226,12 +231,12 @@ public class EmpleadoController {
         String iexcentroform = request.getParameter("iexcentroform");
         String iexflgdomicil = request.getParameter("iexflgdomicil");
         String iexcodant = request.getParameter("iexcodant");
-        String iexflgest  = request.getParameter("iexflgest");
+        String iexflgest = request.getParameter("iexflgest");
         String iexlardist = request.getParameter("iexcodlardist");
         String iexnrotelf = request.getParameter("iexnrotelf");
         String iexemail = request.getParameter("iexemail");
         String iexemail_coorp = request.getParameter("iexemail_coorp");
-        String iexestcivil =  request.getParameter("iexestcivil");
+        String iexestcivil = request.getParameter("iexestcivil");
 
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.valueOf(iexcodtra));
@@ -264,25 +269,26 @@ public class EmpleadoController {
 
         empleadoService.actualizarCabecera(p);
 
-        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+        return new ModelAndView("redirect:/detalleEmpl@" + iexcodtra);
     }
 
-    @RequestMapping(value="/updateEmplDatLab",method=RequestMethod.POST)
-    public ModelAndView updateEmplDatLab(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+    @RequestMapping(value = "/updateEmplDatLab", method = RequestMethod.POST)
+    public ModelAndView updateEmplDatLab(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatLab");
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: "+iexcodcia);
-        logger.info("iexcodtra: "+iexcodtra);
+        logger.info("iexcodcia: " + iexcodcia);
+        logger.info("iexcodtra: " + iexcodtra);
 
         String iextiptra = request.getParameter("iextiptra");
         String iexsituapen = request.getParameter("iexsituapen");
@@ -325,25 +331,26 @@ public class EmpleadoController {
 
         empleadoService.actualizarLaboral(p);
 
-        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+        return new ModelAndView("redirect:/detalleEmpl@" + iexcodtra);
     }
 
-    @RequestMapping(value="/updateInfoPago",method=RequestMethod.POST)
-    public ModelAndView updateInfoPago(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+    @RequestMapping(value = "/updateInfoPago", method = RequestMethod.POST)
+    public ModelAndView updateInfoPago(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateInfoPago");
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: "+iexcodcia);
-        logger.info("iexcodtra: "+iexcodtra);
+        logger.info("iexcodcia: " + iexcodcia);
+        logger.info("iexcodtra: " + iexcodtra);
 
         String iextippago = request.getParameter("iextippago");
         String iexperrem = request.getParameter("iexperrem");
@@ -353,7 +360,7 @@ public class EmpleadoController {
         String iexcodmon_hab = request.getParameter("iexcodmon_hab");
         String iexnrocta_hab = request.getParameter("iexnrocta_hab");
         String iexflgbancci_hab = request.getParameter("iexflgbancci_hab");
-        String iextipban_cts= request.getParameter("iextipban_cts");
+        String iextipban_cts = request.getParameter("iextipban_cts");
         String iexcodban_cts = request.getParameter("iexcodban_cts");
         String iexcodmon_cts = request.getParameter("iexcodmon_cts");
         String iexflgbancci_cts = request.getParameter("iexflgbancci_cts");
@@ -378,25 +385,26 @@ public class EmpleadoController {
 
         empleadoService.actualizarPagos(p);
 
-        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+        return new ModelAndView("redirect:/detalleEmpl@" + iexcodtra);
     }
 
-    @RequestMapping(value="/updateSegurSocial",method=RequestMethod.POST)
-    public ModelAndView updateSegurSocial(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+    @RequestMapping(value = "/updateSegurSocial", method = RequestMethod.POST)
+    public ModelAndView updateSegurSocial(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateSegurSocial");
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: "+iexcodcia);
-        logger.info("iexcodtra: "+iexcodtra);
+        logger.info("iexcodcia: " + iexcodcia);
+        logger.info("iexcodtra: " + iexcodtra);
 
         String iexcodafp = request.getParameter("iexcodafp");
         String iexflgcomi_mix = request.getParameter("iexflgcomi_mix");
@@ -408,13 +416,13 @@ public class EmpleadoController {
         String iexcodeps = request.getParameter("iexcodeps");
         String iexconvdobtrib = request.getParameter("iexconvdobtrib");
         String iexdiscapacidad = request.getParameter("iexdiscapacidad");
-        String iexsctrpension= request.getParameter("iexsctrpension");
+        String iexsctrpension = request.getParameter("iexsctrpension");
         String iexregalter = request.getParameter("iexregalter");
         String iexjornmax = request.getParameter("iexjornmax");
         String iexhornocturno = request.getParameter("iexhornocturno");
         String iexsindicalizado = request.getParameter("iexsindicalizado");
         String iexexon5ta = request.getParameter("iexexon5ta");
-        String iexnroruc_cas= request.getParameter("iexnroruc_cas");
+        String iexnroruc_cas = request.getParameter("iexnroruc_cas");
         String iexmadreresp = request.getParameter("iexmadreresp");
         String iextipocentoedu = request.getParameter("iextipocentoedu");
         String iexmasvida = request.getParameter("iexflgmas_vida");
@@ -447,25 +455,26 @@ public class EmpleadoController {
 
         empleadoService.actualizarSegSocial(p);
 
-        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+        return new ModelAndView("redirect:/detalleEmpl@" + iexcodtra);
     }
 
-    @RequestMapping(value="/updateEmplDatDomic",method=RequestMethod.POST)
-    public ModelAndView updateEmplDatDomic(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request){
+    @RequestMapping(value = "/updateEmplDatDomic", method = RequestMethod.POST)
+    public ModelAndView updateEmplDatDomic(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatDomic");
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
         Empleado p = new Empleado();
-        Integer iexcodcia= Integer.valueOf(request.getParameter("iexcodcia"));;
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: "+iexcodcia);
-        logger.info("iexcodtra: "+iexcodtra);
+        logger.info("iexcodcia: " + iexcodcia);
+        logger.info("iexcodtra: " + iexcodtra);
 
         String iextipvia_dom1 = request.getParameter("iextipvia_dom1");
         String iexnomvia_dom1 = request.getParameter("iexnomvia_dom1");
@@ -475,7 +484,7 @@ public class EmpleadoController {
         String iexmanzana_dom1 = request.getParameter("iexmanzana_dom1");
         String iexlote_dom1 = request.getParameter("iexlote_dom1");
         String iexkilometro_dom1 = request.getParameter("iexkilometro_dom1");
-        String iexblock_dom1  = request.getParameter("iexblock_dom1");
+        String iexblock_dom1 = request.getParameter("iexblock_dom1");
         String iexetapa_dom1 = request.getParameter("iexetapa_dom1");
         String iextipzona_dom1 = request.getParameter("iextipzona_dom1");
         String iexnomzona_dom1 = request.getParameter("iexnomzona_dom1");
@@ -492,10 +501,10 @@ public class EmpleadoController {
         String iexblock_dom2 = request.getParameter("iexblock_dom2");
         String iexetapa_dom2 = request.getParameter("iexetapa_dom2");
         String iextipzona_dom2 = request.getParameter("iextipzona_dom2");
-        String iexnomzona_dom2= request.getParameter("iexnomzona_dom2");
+        String iexnomzona_dom2 = request.getParameter("iexnomzona_dom2");
         String iexreferencia_dom2 = request.getParameter("iexreferencia_dom2");
         //String iexubigeo_dom2 = request.getParameter("iexubigeo_dom2");
-        String iexflgdomicilio  = request.getParameter("iexflgdomicilio");
+        String iexflgdomicilio = request.getParameter("iexflgdomicilio");
 
         String iexnacion_origen1 = request.getParameter("iexnacion_origen1");
         String iexdepart_origen1 = request.getParameter("iexdepart_origen1");
@@ -549,7 +558,7 @@ public class EmpleadoController {
 
         empleadoService.actualizarDireccion(p);
 
-        return new ModelAndView("redirect:/detalleEmpl@"+iexcodtra);
+        return new ModelAndView("redirect:/detalleEmpl@" + iexcodtra);
     }
 
     @RequestMapping("/valRegEmpleado")
@@ -557,7 +566,7 @@ public class EmpleadoController {
         logger.info("/valRegEmpleado");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -570,14 +579,14 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/valRegEmpleado");
     }
@@ -587,7 +596,7 @@ public class EmpleadoController {
         logger.info("/validarNroDoc");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -600,47 +609,47 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodocid = request.getParameter("iexnrodocid");
 
-        String resultado="";
-        String Msg_form_global="";
+        String resultado = "";
+        String Msg_form_global = "";
 
         Empleado empleado = new Empleado();
         empleado.setIexcodcia(idCompania);
         empleado.setIextipdocid(iextipdocid);
         empleado.setIexnrodoc(iexnrodocid);
 
-        List<Empleado> lista =empleadoService.validarCabecera(empleado);
+        List<Empleado> lista = empleadoService.validarCabecera(empleado);
 
-        Integer val=0;
+        Integer val = 0;
         model.addAttribute("LstPerRegistrada", lista);
 
         Iterator<Empleado> it = lista.iterator();
         // mientras al iterador queda proximo juego
-        while(it.hasNext()){
+        while (it.hasNext()) {
             val++;
             it.next();
         }
 
-        if(val==0) {
-            Msg_form_global="OK"; //Verifica si la lista esta llena. De esta vacio significa que el registro a validar seria nuevo
-        }else{
-            Msg_form_global="Error";
-            model.addAttribute("msg", "Existen registros activos con el mismo numero de documento. Contactar con el Administrador" );
+        if (val == 0) {
+            Msg_form_global = "OK"; //Verifica si la lista esta llena. De esta vacio significa que el registro a validar seria nuevo
+        } else {
+            Msg_form_global = "Error";
+            model.addAttribute("msg", "Existen registros activos con el mismo numero de documento. Contactar con el Administrador");
         }
-        logger.info("ValidadEmpleado --> Mensaje global:"+Msg_form_global+" , cantidad de items="+val);
+        logger.info("ValidadEmpleado --> Mensaje global:" + Msg_form_global + " , cantidad de items=" + val);
 
-        if (Msg_form_global=="OK"){
+        if (Msg_form_global == "OK") {
             return new ModelAndView("redirect:/nuevoEmpleado");
         }
 
@@ -652,7 +661,7 @@ public class EmpleadoController {
         logger.info("/nuevoEmpleado");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -665,18 +674,18 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
-        model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
-        model.addAttribute("lovTipTra",lovsService.getLovs("8","%"));
+        model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
+        model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
+        model.addAttribute("lovTipTra", lovsService.getLovs("8", "%"));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/nuevoEmpleado");
     }
@@ -686,11 +695,11 @@ public class EmpleadoController {
         logger.info("/insertarEmpleado");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
-        Integer idempleado=0;
+        Integer idempleado = 0;
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -701,19 +710,19 @@ public class EmpleadoController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodocid = request.getParameter("iexnrodocid");
         String iexnomtra = request.getParameter("iexnomtra");
-        String iexapepat= request.getParameter("iexapepat");
+        String iexapepat = request.getParameter("iexapepat");
         String iexapemat = request.getParameter("iexapemat");
         String iexfecnac = request.getParameter("iexfecnac");
         String iexcodsex = request.getParameter("iexcodsex");
@@ -736,19 +745,19 @@ public class EmpleadoController {
         emp.setIexcodant(iexcodant);
         emp.setIexusucrea(usuario);
 
-        idempleado=empleadoService.obtieneIdEmpleado(emp);
-        logger.info("Obtiene Id empleado :"+idempleado );
+        idempleado = empleadoService.obtieneIdEmpleado(emp);
+        logger.info("Obtiene Id empleado :" + idempleado);
 
-        if(idempleado>0){
+        if (idempleado > 0) {
             emp.setIexcodtra(idempleado);
             empleadoService.insertarCabecera(emp);
 
             //id_new_emp=  idempleado;
-        }else{
-            idempleado=0;
+        } else {
+            idempleado = 0;
         }
 
-        return new ModelAndView("redirect:/detalleEmpl@"+idempleado);
+        return new ModelAndView("redirect:/detalleEmpl@" + idempleado);
     }
 
     @RequestMapping("/verFicha@{idTrab}")

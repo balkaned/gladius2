@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -35,7 +36,7 @@ public class SistemasController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -48,18 +49,18 @@ public class SistemasController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
+        logger.info("################### idCompania: " + idCompania);
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        model.addAttribute("LstSistema",sistemaService.listarSistemas());
+        model.addAttribute("LstSistema", sistemaService.listarSistemas());
 
         return new ModelAndView("public/gladius/configuracion/sistemas/listSistemas");
     }
@@ -69,7 +70,7 @@ public class SistemasController {
         logger.info("/nuevoSistema");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -82,14 +83,14 @@ public class SistemasController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/configuracion/sistemas/nuevoSistema");
     }
@@ -99,7 +100,7 @@ public class SistemasController {
         logger.info("/insertarSistemas");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -112,14 +113,14 @@ public class SistemasController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         String codsys = request.getParameter("iexcodsys");
 
@@ -137,7 +138,7 @@ public class SistemasController {
         logger.info("/editarSistema");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -150,17 +151,17 @@ public class SistemasController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        model.addAttribute("idSis",idSis);
-        model.addAttribute("xSys",sistemaService.getSistemas(Integer.valueOf(idSis)));
+        model.addAttribute("idSis", idSis);
+        model.addAttribute("xSys", sistemaService.getSistemas(Integer.valueOf(idSis)));
 
         return new ModelAndView("public/gladius/configuracion/sistemas/editarSistema");
     }
@@ -170,7 +171,7 @@ public class SistemasController {
         logger.info("/modificarSistema");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -183,14 +184,14 @@ public class SistemasController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         String codsys2 = request.getParameter("iexcodsys2");
         Sistemas sis = new Sistemas();

@@ -23,7 +23,7 @@
             <form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
-              <span id="spntop" class="text-white">${nombreComp} </span><span id="spntop" class="text-white" style="margin-left:20px;">RUC: ${rucComp} </span>
+              <span id="spntop" class="text-white">${nombreComp} </span><span id="spntop" class="text-white" style="margin-left:20px;">${rucComp} </span>
               <!--<span class="fas fa-search search-box-icon"></span>-->
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
@@ -345,7 +345,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-l ">
-                  <img class="rounded-circle " src="verFoto@LOGO@${idComp}@${urlLogo}@null" alt="" />
+                  <img id="imgtop2" class="rounded-circle" src="verFoto@LOGO@${idComp}@${urlLogo}@null" alt="" />
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border border-300" aria-labelledby="navbarDropdownUser">

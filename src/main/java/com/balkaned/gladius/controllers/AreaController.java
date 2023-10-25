@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class AreaController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -46,22 +47,22 @@ public class AreaController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
+        logger.info("################### idCompania: " + idCompania);
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        List<Area> areasList=areaService.listarArea(idCompania,"");
+        List<Area> areasList = areaService.listarArea(idCompania, "");
 
-        logger.info("areasList: "+areasList);
+        logger.info("areasList: " + areasList);
 
-        model.addAttribute("areasList",areasList);
+        model.addAttribute("areasList", areasList);
 
         return new ModelAndView("public/gladius/organizacion/areas/listAreas");
     }
@@ -71,7 +72,7 @@ public class AreaController {
         logger.info("/nuevaArea");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -84,18 +85,18 @@ public class AreaController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        model.addAttribute("lovCatArea",lovsService.getLovs("62","%"));
-        model.addAttribute("lovArea",areaService.listarArea(idCompania,""));
-        model.addAttribute("idx",areaService.getIdArea(idCompania));
+        model.addAttribute("lovCatArea", lovsService.getLovs("62", "%"));
+        model.addAttribute("lovArea", areaService.listarArea(idCompania, ""));
+        model.addAttribute("idx", areaService.getIdArea(idCompania));
 
         return new ModelAndView("public/gladius/organizacion/areas/nuevaArea");
     }
@@ -105,7 +106,7 @@ public class AreaController {
         logger.info("/insertarArea");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -118,22 +119,22 @@ public class AreaController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         Integer iexcodcia = idCompania;
         String iexcodarea = request.getParameter("iexcodarea2");
         String iexdesarea = request.getParameter("iexdesarea");
         String iexdesarea_des = request.getParameter("iexdesarea_descripcion");
-        String iexcodcat  = request.getParameter("iexcodcat");
-        String iexareapadre =  request.getParameter("iexareapadre");
-        String iexusucrea   =  usuario;
+        String iexcodcat = request.getParameter("iexcodcat");
+        String iexareapadre = request.getParameter("iexareapadre");
+        String iexusucrea = usuario;
 
         Area area = new Area();
         area.setIexcodcia(iexcodcia);

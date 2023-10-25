@@ -50,23 +50,18 @@
                     <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>-->
-
                 <p class="navbar-vertical-label">Configuración</p>
                 <p id="p2" class="navbar-vertical-label">Menus de Configuración</p>
                 <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#conf" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="conf">
                     <div class="d-flex align-items-center">
-
                       <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="settings"></span></span><span class="nav-link-text">Configuración</span>
                     </div>
                   </a>
                   <div class="parent-wrapper label-1">
-
                     <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="conf">
-
                       <li class="collapsed-nav-item-title d-none">Configuración</li>
-
                       <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" href="listTablasGen" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Tablas Genericas</span></div>
                         </a>
                       </li>
@@ -113,7 +108,6 @@
                 <p id="p2" class="navbar-vertical-label">Configuración de Planillas</p>
                 <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#plan" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="plan">
                     <div class="d-flex align-items-center">
-
                       <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="grid"></span></span><span class="nav-link-text">Conf. Planillas</span>
                     </div>
                   </a>
