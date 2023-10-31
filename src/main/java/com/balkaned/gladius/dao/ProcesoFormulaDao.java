@@ -1,0 +1,12 @@
+package com.balkaned.gladius.dao;
+
+import com.balkaned.gladius.beans.FormulaXConcepto;
+import com.balkaned.gladius.beans.ProcesoForm;
+
+import java.util.List;
+
+public interface ProcesoFormulaDao {
+    List<ProcesoForm> listProcesoFormula();
+
+    List<FormulaXConcepto> listFormulaXConcepto();
+}
