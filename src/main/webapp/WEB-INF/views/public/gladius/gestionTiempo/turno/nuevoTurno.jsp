@@ -6,7 +6,7 @@
         <html lang="en-US" dir="ltr">
 
         <head>
-          <jsp:include page="../../links.jsp"></jsp:include>
+          <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
          <script>
              function mostrarAlert(){
@@ -26,9 +26,9 @@
           <!--    Main Content-->
           <!-- ===============================================-->
           <main class="main" id="top">
-            <jsp:include page="../../navsMenu.jsp"></jsp:include>
-            <jsp:include page="../../navTop.jsp"></jsp:include>
-            <jsp:include page="../../modalFade.jsp"></jsp:include>
+            <jsp:include page="../../../navsMenu.jsp"></jsp:include>
+            <jsp:include page="../../../navTop.jsp"></jsp:include>
+            <jsp:include page="../../../modalFade.jsp"></jsp:include>
 
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
@@ -40,48 +40,48 @@
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Editar turno</h2>
+                    <h2 id="h2top" class="mb-0">Insertar turno</h2>
                   </div>
                 </div>
 
                 <div class="row g-5">
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarTurno" novalidate>
+                      <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarTurno" novalidate>
                         <input class="form-control" name="codcia" type="hidden" value="${requestScope.emp.codcia}" />
-                        <input class="form-control" name="iexcodturno" type="hidden" value="${requestScope.turno.iexcodturno}" />
+                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                          <input class="form-control" name="iexcodturno" maxlength="18" type="number" value="${requestScope.turno.iexcodturno}"
-                            placeholder="#" required  disabled readonly />
+                          <input class="form-control" name="iexcodturno" maxlength="18" type="number" value=""
+                            placeholder="#" required />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Turno (*)</label>
-                          <input class="form-control" name="iexdesturno" type="text" value="${requestScope.turno.iexdesturno}" placeholder="" required />
+                          <input class="form-control" name="iexdesturno" type="text" value="" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación (*)</label>
-                          <input class="form-control" name="iexflgturno" type="text" value="${requestScope.turno.iexflgturno}" placeholder="" required />
+                          <input class="form-control" name="iexflgturno" type="text" value="" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Min Antes (*)</label>
-                          <input class="form-control" name="iextopminantes" type="text" value="${requestScope.turno.iextopminantes}" placeholder="" required />
+                          <input class="form-control" name="iextopminantes" type="text" value="" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora Inicio (*)</label>
-                          <input class="form-control" name="iexhorini" type="text" value="${requestScope.turno.iexhorini}" placeholder="" required />
+                          <input class="form-control" name="iexhorini" type="text" value="" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora Fin (*)</label>
-                          <input class="form-control" name="iexhorfin" type="text" value="${requestScope.turno.iexhorfin}" placeholder="" required />
+                          <input class="form-control" name="iexhorfin" type="text" value="" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Minutos Despues (*)</label>
-                          <input class="form-control" name="iextopmaxpost" type="text" value="${requestScope.turno.iextopmaxpost}" placeholder="" required />
+                          <input class="form-control" name="iextopmaxpost" type="text" value="" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
@@ -100,7 +100,7 @@
                             <div class="col-auto">
                               <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">Guardar turno</button>
+                                aria-expanded="false" data-bs-reference="parent">Guardar Turno</button>
                             </div>
                           </div>
                         </div>
@@ -139,14 +139,14 @@
 
             </div>
 
-            <jsp:include page="../../demoWidget.jsp"></jsp:include>
+            <jsp:include page="../../../demoWidget.jsp"></jsp:include>
 
           </main>
           <!-- ===============================================-->
           <!--    End of Main Content-->
           <!-- ===============================================-->
 
-          <jsp:include page="../../customize.jsp"></jsp:include>
+          <jsp:include page="../../../customize.jsp"></jsp:include>
         </body>
 
         </html>

@@ -105,7 +105,7 @@ public class GestionTiemposController {
         List<Turno> turnoList=turnoDiarioService.listarTurnos(idCompania);
         model.addAttribute("turnoList",turnoList);
 
-        return new ModelAndView("public/gladius/gestionTiempo/listTurno");
+        return new ModelAndView("public/gladius/gestionTiempo/turno/listTurno");
 
     }
 
@@ -136,7 +136,7 @@ public class GestionTiemposController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
 
-        return new ModelAndView("public/gladius/gestionTiempo/nuevoTurno");
+        return new ModelAndView("public/gladius/gestionTiempo/turno/nuevoTurno");
     }
 
     @RequestMapping("/insertarTurno")
@@ -227,7 +227,7 @@ public class GestionTiemposController {
 
         model.addAttribute("turno", turnoDiarioService.getTurno(idCompania,Integer.parseInt(idTurn)));
 
-        return new ModelAndView("public/gladius/gestionTiempo/editarTurno");
+        return new ModelAndView("public/gladius/gestionTiempo/turno/editarTurno");
     }
 
 

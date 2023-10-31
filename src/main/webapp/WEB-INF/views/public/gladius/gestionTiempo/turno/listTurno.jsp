@@ -6,7 +6,7 @@
         <html lang="en-US" dir="ltr">
 
         <head>
-          <jsp:include page="../../links.jsp"></jsp:include>
+          <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
 
 
@@ -15,9 +15,9 @@
           <!--    Main Content-->
           <!-- ===============================================-->
           <main class="main" id="top">
-            <jsp:include page="../../navsMenu.jsp"></jsp:include>
-            <jsp:include page="../../navTop.jsp"></jsp:include>
-            <jsp:include page="../../modalFade.jsp"></jsp:include>
+            <jsp:include page="../../../navsMenu.jsp"></jsp:include>
+            <jsp:include page="../../../navTop.jsp"></jsp:include>
+            <jsp:include page="../../../modalFade.jsp"></jsp:include>
 
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
@@ -32,18 +32,6 @@
                     <h2 id="h2top" class="mb-0">Turno</h2>
                   </div>
                 </div>
-                <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                  <li class="nav-item"><a class="nav-link" href="#">Reingreso<span
-                        class="text-700 fw-semi-bold"></span></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Consultar Todos<span
-                        class="text-700 fw-semi-bold"></span></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span
-                        class="text-700 fw-semi-bold"></span></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span
-                        class="text-700 fw-semi-bold"></span></a></li>
-                  <!--<li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
-                </ul>
                 <div id="orderTable"
                   data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                   <div class="mb-4">
@@ -51,7 +39,7 @@
                       <div class="col-auto">
                         <div class="search-box">
                           <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                            <input class="form-control search-input search" type="search" placeholder="Search empleados"
+                            <input class="form-control search-input search" type="search" placeholder="Search turno"
                               aria-label="Search" />
                             <span class="fas fa-search search-box-icon"></span>
 
@@ -135,7 +123,7 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold"
                                   href="editarTurno@${turn.iexcodturno}">#${turn.iexcodturno}</a></td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexdesturno}</td>
+                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-primary"><span class="badge-label">${turn.iexdesturno}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgturno}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexhorini}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexhorfin}</td>
@@ -148,7 +136,7 @@
                                     aria-expanded="false" data-bs-reference="parent"><span
                                       class="fas fa-ellipsis-h fs--2"></span></button>
                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                    <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Ver Detalle</a>
+                                    <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Editar turno</a>
                                     <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="#!">Eliminar</a>
@@ -182,14 +170,14 @@
 
             </div>
 
-            <jsp:include page="../../demoWidget.jsp"></jsp:include>
+            <jsp:include page="../../../demoWidget.jsp"></jsp:include>
 
           </main>
           <!-- ===============================================-->
           <!--    End of Main Content-->
           <!-- ===============================================-->
 
-          <jsp:include page="../../customize.jsp"></jsp:include>
+          <jsp:include page="../../../customize.jsp"></jsp:include>
         </body>
 
         </html>
