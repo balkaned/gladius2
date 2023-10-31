@@ -469,6 +469,67 @@ public class VacacionesController {
     }
 
 
+    @RequestMapping("/gestionTiempoListVacaciones")
+    public ModelAndView gestionTiempoListVacaciones(ModelMap model, HttpServletRequest request){
+        logger.info("/gestionTiempoListVacaciones");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+
+        model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
+
+        return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
+    }
+
+
+    @RequestMapping("/nuevoGestionVacaciones")
+    public ModelAndView nuevoGestionVacaciones(ModelMap model, HttpServletRequest request) {
+        logger.info("/nuevoGestionVacaciones");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+
+        model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
+        return new ModelAndView("public/gladius/gestionTiempo/vacaciones/nuevoGestionVacaciones");
+    }
+
 
 
 }

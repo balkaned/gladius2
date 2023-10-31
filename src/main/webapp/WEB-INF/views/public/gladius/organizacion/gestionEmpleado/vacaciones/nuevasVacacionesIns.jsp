@@ -203,58 +203,69 @@ function enviaForm(variable){
                                             <input class="form-control" name="perfin2" type="hidden" value="${perfin}" />
                                             <input class="form-control" name="saldo2" type="hidden" value="${saldo}" />
                                             <input class="form-control" name="iexpermesini2" type="hidden" value="${perini}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Vacaciones(*)</label>
-                                                <select class="form-select" name="iextipvac" required >
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovTipvaca" items="${lovTipvaca}">
-                                                      <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.iextipvac ? 'selected' : ''}  >  ${lovTipvaca.desLov} </option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicial (*)</label>
-                                                <input class="form-control" name="iexpermesini" maxlength="18" type="text" value="${perini}" placeholder="street" readonly disabled/>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Final (*)</label>
-                                                <input class="form-control" name="iexpermesfin" maxlength="18" type="text" value="${perfin}" placeholder="street" readonly disabled/>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo (*)</label>
-                                                <input class="form-control" name="saldo" maxlength="18" type="text" value="${saldo}" placeholder="street" readonly disabled/>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="floatingInputStartDate">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° de Dias(*)</label>
-                                                <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" value="" placeholder="0" required readonly/>
-                                            </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="" />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-check-label fs-0 mb-5 mb-2" for="flexChecked">No considerar saldo?</label>
-                                                <input class="form-check-input" name="iexflgnosaldo" id="flexChecked" value="1" type="checkbox"/>
-                                            </div>
+                                              <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                                                                      <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                                                                        <option value="" selected>Seleccionar</option>
+                                                                        <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
+                                                                          <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
+                                                                            ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                                                                        </c:forEach>
+                                                                      </select>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                                                                      <select name="iexcodtra" id="iexcodtra" class="form-select">
+                                                                        <option value="0" selected>Seleccionar</option>
+
+                                                                      </select>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
+                                                                      <select name="iexpervac" id="iexpervac" class="form-select">
+                                                                        <option value="0" selected>Seleccionar</option>
+                                                                      </select>
+
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6 ">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
+                                                                      <input class="form-control" name="iexsaldodias" type="text" value="" placeholder=""
+                                                                        required />
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
+                                                                      <select class="form-select" name="iextipvac" id="iextipvac" onchange="regimen();" required>
+                                                                        <option value="" selected>Seleccionar</option>
+                                                                        <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
+                                                                          <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac
+                                                                            ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
+
+                                                                        </c:forEach>
+                                                                      </select>
+
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
+                                                                        class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                                      <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
+                                                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
+                                                                        data-options='{"disableMobile":true}' />
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
+                                                                        class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                                      <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
+                                                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
+                                                                        data-options='{"disableMobile":true}' />
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
+                                                                      <input class="form-control" name="iexnrodias" type="text" value="" placeholder="" required />
+                                                                    </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.
-                                            </div>
-                                            <div class="col-12 gy-6">
-                                                <div class="row g-3 justify-content-end">
-                                                  <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
-                                                  </div>
-                                                </div>
                                             </div>
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">

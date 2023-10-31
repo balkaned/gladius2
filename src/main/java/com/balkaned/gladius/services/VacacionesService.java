@@ -9,6 +9,7 @@ import java.util.List;
 public interface VacacionesService {
     public List<VacacionControl> listarVacacionesCtl(Empleado empleado);
     public List<VacacionProgramacion> listarVacacionesPer(Empleado empleado, String perini, String perfin);
+    public List<VacacionProgramacion> listaVacacionesGen(Integer codcia, Integer codtra,String regimen, String fecini , String fecfin );
     public Integer saldotraVac(Integer codcia, Integer codtra, String perini, String perfin);
     public Integer validaVac(Integer codcia, Integer codtra, String fecini, String fecfin);
     public Integer getIdVacacionPrg(VacacionProgramacion vacprg);

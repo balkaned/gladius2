@@ -203,4 +203,100 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 empleado.getIexcodtra());
 
     }
+
+
+    public List<VacacionProgramacion> listaVacacionesGen(Integer codcia, Integer codtra, String regimen ,String fecini, String fecfin){
+
+        String sql= "  select  " +
+                "	 c.iexcodcia, " +
+                "	 c.iexcodtra, " +
+                "	  c.iexapepat||' '|| c.iexapemat||' '|| c.iexnomtra  nomtra, " +
+                "    case   " +
+                "    when iexflgest='1' then 'activo'  " +
+                "    when iexflgest='0' then 'inactivo'  " +
+                "    else 'inactivo' end desestado, "+
+                "	 to_char(c.iexfecing,'dd/mm/yyyy') fecing, " +
+                "	 c.iexnrodoc, " +
+                "	 a.iextipvac, " +
+                "	 a.iexcorrel as vac_id, " +
+                "	 to_char(a.iexfecini,'dd/mm/yyyy') iexfecini, " +
+                "	 to_char(a.iexfecfin,'dd/mm/yyyy') iexfecfin, " +
+                " 	 case " +
+                "	  when (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')  and  a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )      " +
+                "	    then  (a.iexfecfin -  a.iexfecini) +1  " +
+                "      when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and    a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )     " +
+                "	    then  (a.iexfecfin -  to_date('"+fecini+"','dd/mm/yyyy') ) +1	" +
+                "	  when (a.iexfecini >= to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')   and  a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )    " +
+                "	    then  ( to_date('"+fecfin+"','dd/mm/yyyy')  -  a.iexfecini) +1	  " +
+                "	  when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and   a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )         " +
+                "	    then  ( to_date('"+fecfin+"','dd/mm/yyyy') - to_date('"+fecini+"','dd/mm/yyyy') ) +1  " +
+                "	 end  dias_vac,  " +
+                " case " +
+                "	  when (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')  and  a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )      " +
+                "	    then   to_char(a.iexfecfin,'dd/mm/yyyy')    " +
+                "      when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and    a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )     " +
+                "	    then  to_char(a.iexfecfin,'dd/mm/yyyy') 	" +
+                "	  when (a.iexfecini >= to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')   and  a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )    " +
+                "	    then   '"+fecfin+"' 	  " +
+                "	  when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and   a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )         " +
+                "	    then  '"+fecfin+"'  " +
+                "	 end  fecfinrep,  " +
+                "	 k.des1det codcon ,   k.desdet destipvac   " +
+                "	 from iexempleado c, " +
+                "	 iexvacprg a  " +
+                "	  full outer join ( " +
+                "	  select  " +
+                "          iexkey, desdet, des1det  " +
+                "        from iexttabled where iexcodtab='56'	  " +
+                "	  ) k  on  a.iextipvac = k.iexkey  " +
+                "	 where " +
+                "	 c.iexcodcia = a.iexcodcia and  " +
+                "	 c.iexcodtra = a.iexcodtra and	 " +
+                "	 c.iexcodcia="+codcia+" and   c.iexreglab='"+regimen+"'	 and " +
+                "	 (  " +
+                "		 (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <=to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "		or   " +
+                "	      (a.iexfecfin >=to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecfin <=to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "		 or  " +
+                "		 (a.iexfecini <to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecfin >to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "	 									  )  ";
+        if(codtra!=0){
+
+            sql =sql+" and c.iexcodtra="+codtra+" ";
+
+        }
+
+        sql= sql+" order by 3,4 asc ";
+
+        ;
+        return template.query(sql, new ResultSetExtractor<List<VacacionProgramacion>>() {
+            public List<VacacionProgramacion> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<VacacionProgramacion> lista = new ArrayList<VacacionProgramacion>();
+
+                while (rs.next()) {
+                    VacacionProgramacion p = new VacacionProgramacion();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcorrel(rs.getInt("iexcorrel"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setIexnrodias(rs.getDouble("iexnrodias"));
+                    p.setIextipvac(rs.getString("iextipvac"));
+                    p.setDestipvac(rs.getString("destipvac"));
+                    p.setIexglosa(rs.getString("iexglosa"));
+                    p.setIexpermesini(rs.getString("iexpermesini"));
+                    p.setIexpermesfin(rs.getString("iexpermesfin"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
 }
