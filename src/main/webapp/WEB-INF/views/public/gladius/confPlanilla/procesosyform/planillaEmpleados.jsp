@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Javier
-  Date: 30/10/2023
-  Time: 06:12
+  Date: 23/10/2023
+  Time: 12:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -26,13 +26,13 @@
     <nav class="mb-2" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
-        <li class="breadcrumb-item active">Procesos y Form</li>
+        <li class="breadcrumb-item active">Procesos y Forms</li>
       </ol>
     </nav>
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Procesos y Form</h2>
+          <h2 id="h2top" class="mb-0">Planilla de Empleados</h2>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
           <div class="col-auto">
             <div class="search-box">
               <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                <input class="form-control search-input search" type="search" placeholder="Search procesos" aria-label="Search"/>
+                <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
                 <span class="fas fa-search search-box-icon"></span>
               </form>
             </div>
@@ -82,7 +82,7 @@
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="nuevoProFo"><span class="fas fa-plus me-2"></span>Add new proceso</a>
+            <a class="btn btn-primary" href="nuevoConcepto"><span class="fas fa-plus me-2"></span>Add new concepto</a>
           </div>
         </div>
       </div>
@@ -97,63 +97,26 @@
                 </div>
               </th>
               <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PROCESOS</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GRUPO</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">REGIMEN LAB.</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTOS</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">FORMULAS</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PERIODOS</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ASIG. CONTABLE</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
-            <c:forEach var="profo" items="${requestScope.proFosList}">
+            <c:forEach var="concepto" items="${requestScope.conceptosList}">
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                <td class="fs--1 align-middle px-0 py-3">
-                  <div class="form-check mb-0 fs-0">
-                    <input class="form-check-input" type="checkbox"
-                           data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
-                  </div>
-                </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.prodespro}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.progrppro}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
+                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${concepto.codConcepto}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <a class="badge badge-phoenix fs--2 badge-phoenix-primary" href="planillaEmpleados">
+                  <span class="badge badge-phoenix fs--2 badge-phoenix-warning">
                     <span class="badge-label">
-                      <span class="fas fa-search"></span>
+                        ${concepto.desConcepto}
                     </span>
-                  </a>
-                </td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <a class="badge badge-phoenix fs--2 badge-phoenix-primary" href="#">
-                    <span class="badge-label">
-                      <span class="fas fa-search"></span>
-                    </span>
-                  </a>
-                </td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <a class="badge badge-phoenix fs--2 badge-phoenix-primary" href="#">
-                    <span class="badge-label">
-                      <span class="fas fa-search"></span>
-                    </span>
-                  </a>
-                </td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <a class="badge badge-phoenix fs--2 badge-phoenix-primary" href="#">
-                    <span class="badge-label">
-                      <span class="fas fa-search"></span>
-                    </span>
-                  </a>
+                  </span>
                 </td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item text-warning" href="editarProfo@${profo.procodpro}">Editar</a>
+                      <a class="dropdown-item text-warning" href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                   </div>
@@ -188,4 +151,3 @@
 <jsp:include page="../../../customize.jsp"></jsp:include>
 </body>
 </html>
-
