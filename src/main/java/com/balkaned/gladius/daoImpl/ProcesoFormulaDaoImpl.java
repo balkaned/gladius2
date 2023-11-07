@@ -62,31 +62,33 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     @Override
     public List<FormulaXConcepto> listFormulaXConcepto() {
-        String sqlQuery = "select frm.procodpro,\n" +
-                "       frm.forcodfor,\n" +
-                "       frm.proglosa,\n" +
-                "       frm.fordesfor,\n" +
-                "       frm.forcodcon,\n" +
-                "       frm.forflgest,\n" +
-                "       frm.fororden,\n" +
-                "       frm.fortipout,\n" +
-                "       frm.forvardes,\n" +
-                "       frm.forusucrea,\n" +
-                "       frm.forfeccrea,\n" +
-                "       frm.forusumod,\n" +
-                "       frm.forfecmod,\n" +
-                "       frm.forresult,\n" +
-                "       frm.sqlprogram,\n" +
-                "       frm.grpeje,\n" +
-                "       con.coocodcon,\n" +
-                "       con.coodescon,\n" +
-                "       con.coocodforvar,\n" +
-                "       con.coodesabrev,\n" +
-                "       con.coodescripcion\n" +
-                "from iexformula_cab frm\n" +
-                "inner join iexconcepto con\n" +
-                "on frm.forcodcon = con.coocodcon\n" +
-                "ORDER BY frm.fororden ASC";
+        String sqlQuery = "select " +
+                "frm.procodpro, " +
+                "frm.forcodfor, " +
+                "frm.proglosa, " +
+                "frm.fordesfor, " +
+                "frm.forcodcon, " +
+                "frm.forflgest, " +
+                "frm.fororden, " +
+                "frm.fortipout, " +
+                "frm.forvardes, " +
+                "frm.forusucrea, " +
+                "frm.forfeccrea, " +
+                "frm.forusumod, " +
+                "frm.forfecmod, " +
+                "frm.forresult, " +
+                "frm.sqlprogram, " +
+                "frm.grpeje, " +
+                "con.coocodcon, " +
+                "con.coodescon, " +
+                "con.coocodforvar, " +
+                "con.coodesabrev, " +
+                "con.coodescripcion " +
+                "from iexformula_cab frm " +
+                "inner join iexconcepto con " +
+                "on frm.forcodcon = con.coocodcon " +
+                "where frm.procodpro = 1 " +
+                "order by frm.fororden asc";
         return template.query(sqlQuery, rs -> {
             List<FormulaXConcepto> list = new ArrayList<>();
 
