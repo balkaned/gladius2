@@ -1,11 +1,13 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.FormulaXConcepto;
+import com.balkaned.gladius.beans.Proceso;
 import com.balkaned.gladius.beans.ProcesoForm;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,12 +64,12 @@ public class ProcesoFormulaController {
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/listProcesoFormula");
     }
 
-    @RequestMapping("/planillaEmpleados")
-    public ModelAndView planillaEmpleados (
+    @RequestMapping("/listConcepto")
+    public ModelAndView listConcepto(
             ModelMap model,
             HttpServletRequest request
     ) {
-        log.info("/planillaEmpleados");
+        log.info("/listConcepto");
 
         String user = (String) request.getSession().getAttribute("user");
 
@@ -95,11 +97,15 @@ public class ProcesoFormulaController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
 
-        return new ModelAndView("public/gladius/confPlanilla/procesosyform/planillaEmpleados");
+        List<Proceso> procesoList = service.listProceso("0");
+
+        model.addAttribute("procesoList", procesoList);
+
+        return new ModelAndView("public/gladius/confPlanilla/procesosyform/listConcepto");
     }
 
     @RequestMapping("/listFormulas")
-    public ModelAndView listFormulas (
+    public ModelAndView listFormulas(
             ModelMap model,
             HttpServletRequest request
     ) {

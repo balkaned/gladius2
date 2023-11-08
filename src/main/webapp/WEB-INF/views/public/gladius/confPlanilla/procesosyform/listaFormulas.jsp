@@ -116,7 +116,7 @@
                     <div class="dropdown-menu dropdown-menu-end py-2">
                       <a class="dropdown-item text-black" href="#!">Formular</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-warning" href="#!">Compilar</a>
+                      <a class="dropdown-item text-black" href="#!">Compilar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a>
                     </div>

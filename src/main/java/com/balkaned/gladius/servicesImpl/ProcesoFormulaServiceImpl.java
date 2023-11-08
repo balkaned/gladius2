@@ -1,6 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.FormulaXConcepto;
+import com.balkaned.gladius.beans.Proceso;
 import com.balkaned.gladius.beans.ProcesoForm;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
 import com.balkaned.gladius.services.ProcesoFormulaService;
@@ -22,5 +23,10 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
     @Override
     public List<FormulaXConcepto> listFormulaXConcepto() {
         return dao.listFormulaXConcepto();
+    }
+
+    @Override
+    public List<Proceso> listProceso(String id) {
+        return dao.listConcepto(id);
     }
 }

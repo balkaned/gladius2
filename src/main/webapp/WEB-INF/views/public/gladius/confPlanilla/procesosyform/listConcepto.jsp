@@ -32,7 +32,7 @@
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Planilla de Empleados</h2>
+          <h2 id="h2top" class="mb-0">Conceptos</h2>
         </div>
       </div>
     </div>
@@ -40,49 +40,27 @@
       <div class="mb-4">
         <div class="row g-3">
           <div class="col-auto">
-            <div class="search-box">
-              <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
-                <span class="fas fa-search search-box-icon"></span>
-              </form>
-            </div>
           </div>
           <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
             <div class="btn-group position-static" role="group">
               <div class="btn-group position-static text-nowrap" role="group">
                 <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
                         aria-expanded="false" data-bs-reference="parent">
-                  Payment status<span class="fas fa-angle-down ms-2"></span></button>
+                  Consultar<span class="fas fa-angle-down ms-2"></span></button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li>
-                    <hr class="dropdown-divider"/>
-                  </li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                  <li><a class="dropdown-item" href="#">Parametros</a></li>
+                  <li><a class="dropdown-item" href="#">Haberes</a></li>
+                  <li><a class="dropdown-item" href="#">Descuentos</a></li>
+                  <li><a class="dropdown-item" href="#">Aportes</a></li>
+                  <li><a class="dropdown-item" href="#">Neto</a></li>
+                  <li><a class="dropdown-item" href="#">Totales</a></li>
                 </ul>
               </div>
-              <div class="btn-group position-static text-nowrap" role="group">
-                <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window"
-                        aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                  Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li>
-                    <hr class="dropdown-divider"/>
-                  </li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-              </div>
-              <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
             </div>
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="nuevoConcepto"><span class="fas fa-plus me-2"></span>Add empleado</a>
+            <a class="btn btn-primary" href="#!"><span class="fas fa-plus me-2"></span>Add concepto</a>
           </div>
         </div>
       </div>
@@ -97,17 +75,24 @@
                 </div>
               </th>
               <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Concepto</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Accion</th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
-            <c:forEach var="concepto" items="${requestScope.conceptosList}">
+            <c:forEach var="proceso" items="${requestScope.procesoList}">
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${concepto.codConcepto}</a></td>
+                <td class="fs--1 align-middle px-0 py-3">
+                  <div class="form-check mb-0 fs-0">
+                    <input class="form-check-input" type="checkbox"
+                           data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
+                  </div>
+                </td>
+                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${proceso.procodcon}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">
                   <span class="badge badge-phoenix fs--2 badge-phoenix-warning">
                     <span class="badge-label">
-                        ${concepto.desConcepto}
+                        ${proceso.coodescon}
                     </span>
                   </span>
                 </td>

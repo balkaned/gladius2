@@ -1,6 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.FormulaXConcepto;
+import com.balkaned.gladius.beans.Proceso;
 import com.balkaned.gladius.beans.ProcesoForm;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
 import lombok.extern.log4j.Log4j2;
@@ -122,4 +123,29 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
             return list;
         });
     }
+
+    @Override
+    public List<Proceso> listConcepto(String id) {
+        String sqlQuery = "select a.procodcon, " +
+                "b.coodescon " +
+                "from iexproxconcepto a " +
+                "inner join iexconcepto b " +
+                "on a.procodcon = b.coocodcon " +
+                "where a.procodpro = 1 " +
+                "and a.protipcon = '" + id + "'"; // Aquí agregamos comillas simples alrededor de 'id'
+        return template.query(sqlQuery, rs -> {
+            List<Proceso> list = new ArrayList<>();
+
+            while (rs.next()) {
+                Proceso proceso = new Proceso();
+                proceso.setProcodcon(rs.getString("procodcon"));
+                proceso.setCoodescon(rs.getString("coodescon"));
+
+                list.add(proceso);
+            }
+
+            return list;
+        });
+    }
+
 }

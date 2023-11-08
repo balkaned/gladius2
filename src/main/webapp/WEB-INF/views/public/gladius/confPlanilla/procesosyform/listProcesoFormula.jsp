@@ -121,7 +121,7 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item text-black" href="planillaEmpleados">Conceptos</a>
+                      <a class="dropdown-item text-black" href="listConcepto">Conceptos</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-black" href="listFormulas">Formulas</a>
                       <div class="dropdown-divider"></div>
