@@ -1,11 +1,10 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Lovs;
-import com.balkaned.gladius.beans.ProcesoPeriodo;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
+import com.balkaned.gladius.services.VacacionesService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +29,9 @@ public class LovsController {
 
     @Autowired
     LovsService lovsService;
+
+    @Autowired
+    VacacionesService vacacionesService;
 
     @RequestMapping(value="/getlovsDEPX", method={RequestMethod.POST,RequestMethod.GET})
     public ModelAndView getlovsDEPX(HttpServletRequest request, HttpServletResponse response) throws  IOException{
@@ -110,6 +112,7 @@ public class LovsController {
 
         List<ProcesoPlanilla> listProRegimen=lovsService.getProxRegimen(iexcodreg);
 
+
         String json = new Gson().toJson(listProRegimen);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -139,6 +142,80 @@ public class LovsController {
 
         return null;
     }
+    @RequestMapping(value="/getlovsLOVCODTRA",method= {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getlovsLOVCODTRA(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("/getlovsLOVCODTRA");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+        String iexcodreg=request.getParameter("iexcodreg");
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        List<Empleado> listProRegimen=lovsService.listaTrabajadoresReg(idCompania,iexcodreg);
+
+
+        String json = new Gson().toJson(listProRegimen);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value="/getLovsLOVPERVAC",method= {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getLovsLOVPERVAC(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("/getLovsLOVPERVAC");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String xcodtra = request.getParameter("iexcodtra");
+        Empleado empleado10 = new Empleado();
+        empleado10.setIexcodtra(Integer.parseInt(xcodtra));
+        vacacionesService.procesaVacacionCtl(empleado10);
+
+        List<VacacionControl> listSalVacTras=lovsService.listaSaldoVacTra(idCompania,"01",Integer.parseInt(xcodtra));
+
+        String json = new Gson().toJson(listSalVacTras);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value="/getLovsSALVACTRA",method= {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView getLovsSALVACTRA(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("/getLovsSALVACTRA");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String xcodtra2 = request.getParameter("iexcodtra");
+        String xpervac = request.getParameter("pervacini");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        List<VacacionControl> listSalVacTras=lovsService.getSaldoVacTra(idCompania,Integer.parseInt(xcodtra2),xpervac);
+
+        String json = new Gson().toJson(listSalVacTras);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+
 
 }
 

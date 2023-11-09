@@ -525,4 +525,92 @@ public class LovsDaoImpl implements LovsDao {
         });
     }
 
+    public List<VacacionControl> getSaldoVacTra( Integer codcia, Integer codtra , String pervac ){
+
+        List<VacacionControl> lista = null;
+        String sql = " select  " +
+                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin,   iexdiassaldo "+
+                "from iexvacctl " +
+                "where iexcodcia="+codcia+" and iexcodtra="+codtra+" and  iexpermesini = '"+pervac+"' "  ;
+        return template.query(sql, new ResultSetExtractor<List<VacacionControl>>() {
+
+            public List<VacacionControl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<VacacionControl> lista = new ArrayList<VacacionControl>();
+
+                while(rs.next()) {
+                    VacacionControl p = new VacacionControl();
+
+                    p.setIexpermesini(rs.getString("iexpermesini"));
+                    p.setIexpermesfin(rs.getString("iexpermesfin"));
+                    p.setIexdiassaldo(rs.getDouble("iexdiassaldo"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+
+    public List<VacacionControl>  listaSaldoVacTra(Integer codcia, String regimen,  Integer codtra  ){
+
+        List<VacacionControl> lista = null;
+        String sql = " select  " +
+                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, to_char(iexfecini,'DD/MM/YYYY') as iexfecini, to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin,  " +
+                "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, iexdiascom, iexdiassaldo, " +
+                "iexusucrea, to_char(iexfeccrea,'DD/MM/YYYY') as iexfeccrea,  " +
+                "iexusumod, to_char(iexfecmod,'DD/MM/YYYY') as iexfecmod " +
+                "from iexvacctl " +
+                "where iexcodcia="+codcia+" and iexcodtra="+codtra+" and iexdiasgan>0 order by iexpermesini desc  "  ;
+        return template.query(sql, new ResultSetExtractor<List<VacacionControl>>() {
+
+            public List<VacacionControl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<VacacionControl> lista = new ArrayList<VacacionControl>();
+
+                while(rs.next()) {
+                    VacacionControl p = new VacacionControl();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexpermesini(rs.getString("iexpermesini"));
+                    p.setIexpermesfin(rs.getString("iexpermesfin"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setIexdiasgan(rs.getDouble("iexdiasgan"));
+                    p.setIexdiassaldo(rs.getDouble("iexdiassaldo"));
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<Empleado>  listaTrabajadoresReg(Integer codcia, String regimen){
+
+        List<Empleado> lista = null;
+        String sql = " select  " +
+                "iexcodtra, " +
+                "iexapepat, iexapemat, iexnomtra, " +
+                " to_char(iexfecing,'dd/mm/yyyy') as fecing " +
+                "from iexempleado where iexcodcia="+codcia+" and iexflgest='1' and iexreglab='"+regimen+"' order by 2,3,4 asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+
+            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Empleado> lista = new ArrayList<Empleado>();
+
+                while(rs.next()) {
+                    Empleado p = new Empleado();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    p.setIexfecing(rs.getString("fecing"));
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
 }

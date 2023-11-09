@@ -22,4 +22,8 @@ public interface LovsDao {
     public List<Lovs> getLovsDept( String id_table, String id_pais);
     public List<Lovs> getLovsProv( String id_table, String id_dept);
     public List<Lovs> getLovsDist( String id_table, String id_prov);
+    public List<VacacionControl> getSaldoVacTra( Integer codcia, Integer codtra , String pervac);
+    public List<VacacionControl>  listaSaldoVacTra(Integer codcia, String regimen,  Integer codtra  );
+    public List<Empleado>  listaTrabajadoresReg(Integer codcia, String regimen);
+
 }

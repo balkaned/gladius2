@@ -65,5 +65,10 @@ public class LovsServiceImpl implements LovsService {
     public List<Lovs> getLovsDist( String id_table, String id_prov){
         return dao.getLovsDist(id_table,id_prov);
     }
+    public List<VacacionControl> getSaldoVacTra( Integer codcia, Integer codtra , String pervac){return dao.getSaldoVacTra(codcia,codtra,pervac);}
+    public List<VacacionControl>  listaSaldoVacTra(Integer codcia, String regimen,  Integer codtra  ){return dao.listaSaldoVacTra(codcia,regimen,codtra);}
+    public List<Empleado>  listaTrabajadoresReg(Integer codcia, String regimen){return  dao.listaTrabajadoresReg(codcia,regimen);}
+
+
 
 }
