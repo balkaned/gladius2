@@ -26,5 +26,9 @@ public class VacacionProgramacion {
     String iexfeccrea;
     String iexusumod;
     String iexfecmod;
-
+    String desnomtra;
+    String fecing;
+    String nrodoc;
+    String desestado;
+    String fecfinrep;
 }

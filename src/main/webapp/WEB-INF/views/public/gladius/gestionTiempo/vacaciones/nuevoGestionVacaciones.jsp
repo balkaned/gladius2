@@ -9,15 +9,68 @@
           <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
         <script>
-          function mostrarAlert() {
-            //alert("se grabo exitosamente");
-            var div = document.getElementById('alert');
-            div.style.display = '';
+          function regimen() {
+            $.ajax({
+              url: "getlovsLOVCODTRA",
+              data: {
+                "accion": "LOVCODTRA",
+                "iexcodreg": $("#iexcodreg").val()
+              },
+              success: function (data) {
+                var opt = "";
+                opt += "<option value=0 >Seleccionar</option>";
+                for (var i in data) {
+                  opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
+                }
 
-            setTimeout(function () {
-              $("#alerts").hide(6000);
-            }, 3000);
+                $("#iexcodtra").html(opt);
+                $("#iexpervac").html("<option value='' > -- Selecciona -- </option>");
+              }
+            });
           }
+
+          function tranajador() {
+            $.ajax({
+              url: "getLovsLOVPERVAC",
+              data: {
+                "accion": "LOVPERVAC",
+                "iexcodtra": $("#iexcodtra").val()
+              },
+              success: function (data) {
+                var opt = "";
+                opt += "<option value=0 >Seleccionar</option>";
+                for (var i in data) {
+                  opt += "<option value=" + data[i].iexpermesini + " > " + data[i].iexpermesini + " - " + data[i].iexpermesfin + " : Saldo = " + data[i].iexdiassaldo + " </option> ";
+                }
+
+                $("#iexpervac").html(opt);
+              }
+            });
+          }
+            function numeroDias() {
+                         $.ajax({
+                          url: "getLovsSALVACTRA",
+                           data: {"accion": "SALVACTRA",
+                                   "iexcodtra": $("#iexcodtra").val(),
+                                    "pervacini": $("#iexpervac").val()},
+                                         success: function (data) {
+                                             var opt = "";
+                                             var opt2 = "";
+                                             var opt3 = "";
+                                            for (var i in data) {
+
+                                             opt +=""+data[i].iexdiassaldo+"";
+                                             opt2 +=""+data[i].iexpermesini+"";
+                                             opt3 +=""+data[i].iexpermesfin+"";
+                                             }
+
+                                               $("#iexsaldodias").val(opt);
+
+                                         }
+                                     });
+
+                    }
+
 
           function formatearFecha1() {
             var fechaSeleccionada = $('#iexfecini').val();
@@ -40,6 +93,7 @@
             var fechaFormat = dia + "/" + mes + "/" + anio;
             $("#iexfecfin").val(fechaFormat);
           }
+
           function isValidDate(day, month, year) {
             var dteDate;
             month = month - 1;
@@ -96,43 +150,58 @@
             alert("entro");
           }
 
-          function regimen() {
-            $.ajax({
-              url: "getlovsPROXCON",
-              data: {
-                "accion": "PROXCON",
-                "iexcodreg": $("#iexcodreg").val()
-              },
-              success: function (data) {
-                var opt = "";
-                opt += "<option value=0 >Seleccionar</option>";
-                for (var i in data) {
-                  opt += "<option value=" + data[i].idProceso + " > " + data[i].desProceso + " </option> ";
+
+
+          function insertaVacaciones() {
+            //document.getElementById("frmplaserv").submit();
+
+            var fechaInicial = document.getElementById("iexfecini").value;
+            var fechaFinal = document.getElementById("iexfecfin").value;
+            var tipvac = document.getElementById("iextipvac").value;
+            var resultado = "";
+
+            if (fechaInicial !== null && fechaFinal !== null && tipvac !== "") {
+              if (validate_fecha(fechaInicial) && validate_fecha(fechaFinal)) {
+                inicial = fechaInicial.split("/");
+                final = fechaFinal.split("/");
+                // obtenemos las fechas en milisegundos
+                var dateStart = new Date(inicial[2], (inicial[1] - 1), inicial[0]);
+                var dateEnd = new Date(final[2], (final[1] - 1), final[0]);
+
+                if (dateStart <= dateEnd) {
+                  // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+                  // que tiene un dia, y posteriormente entre 1000 ya que estamos
+                  // trabajando con milisegundos.
+                  //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+                  resultado = (((dateEnd - dateStart) / 86400) / 1000) + 1;
+
+                  /*
+                  if(document.getElementById("saldo").value >= resultado){
+                          document.getElementById("accion").value="nuevoGestionVacaciones";
+                          document.getElementById("formvacaciones").submit();
+                          mostrarAlert()
+                  }else{
+                      if(document.getElementById("iexflgnosaldo").checked ){
+                          document.getElementById("accion").value="nuevoGestionVacaciones";
+                          document.getElementById("formvacaciones").submit();
+                          mostrarAlert()
+                       }else{
+                      alert("Numero de Dias Programados es superior al Saldo de Dias");
+                       }
+                  }*/
+
+                  document.getElementById("accion").value = "nuevoGestionVacaciones";
+                  document.getElementById("formvacaciones").submit();
+                } else {
+                  alert("La fecha inicial es posterior a la fecha final");
                 }
-
-                $("#iexcodpro").html(opt);
               }
-            });
-          }
-
-          function procesoplanilla() {
-            $.ajax({
-              url: "getlovsPERX",
-              data: {
-                "accion": "LOVPERVAC",
-                "iexcodtra": $("#iexcodtra").val()
-              },
-              success: function (data) {
-                var opt = "";
-                opt += "<option value=0 >Seleccionar</option>";
-                for (var i in data) {
-                  opt += "<option value=" + data[i].iexpermesini + " > " + data[i].iexpermesini + " - " + data[i].iexpermesfin + " : Saldo = " + data[i].iexdiassaldo + " </option> ";
-                }
-
-
-                $("#iexpervac").html(opt);
+              else {
+                alert("Formatos de Fechas no son consistentes");
               }
-            });
+            } else {
+              alert("Debe ingresar correctamente el Tipo de Vacaciones, Fecha de Inicio y Fecha de Fin de la programacion vacacional");
+            }
           }
         </script>
 
@@ -163,8 +232,8 @@
                 <div class="row g-5">
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="nuevoGestionVacaciones"
-                        novalidate>
+                      <form class="row g-4 mb-0 needs-validation" name="formvacaciones" id="formvacaciones"
+                        method="POST" action="nuevoGestionVacaciones" novalidate>
                         <input class="form-control" name="iexcodcia" type="hidden"
                           value="${requestScope.emp.iexcodcia}" />
                         <input class="form-control" name="iexcodtra" type="hidden"
@@ -173,7 +242,6 @@
                         <input class="form-control" name="perfin2" type="hidden" value="${perfin}" />
                         <input class="form-control" name="saldo2" type="hidden" value="${saldo}" />
                         <input class="form-control" name="iexpermesini2" type="hidden" value="${perini}" />
-
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                           <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
@@ -186,22 +254,18 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                          <select name="iexcodtra" id="iexcodtra" class="form-select">
-                            <option value="0" selected>Seleccionar</option>
-
+                          <select name="iexcodtra" id="iexcodtra" class="form-select" onchange="tranajador();">
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
-                          <select name="iexpervac" id="iexpervac" class="form-select">
-                            <option value="0" selected>Seleccionar</option>
+                          <select name="iexpervac" id="iexpervac" class="form-select" onchange="numeroDias();">
                           </select>
 
                         </div>
                         <div class="col-sm-6 col-md-6 ">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
-                          <input class="form-control" name="iexsaldodias" type="text" value="" placeholder=""
-                            required />
+                            <input type="text" name="iexsaldodias"  class="form-control"    id="iexsaldodias" readonly="true" >
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
@@ -226,22 +290,21 @@
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
-                            onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
-                            data-options='{"disableMobile":true}' />
+                            onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy"
+                            data-options='{"disableMobile":true}'/>
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                          <input class="form-control" name="iexnrodias" type="text" value="" placeholder="" required />
+                         <input type="text" name="iexnrodias"  class="form-control"    id="iexnrodias" readonly="true"  >
                         </div>
-
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                           Se grabó exitosamente los cambios.
                         </div>
                         <div class="col-12 gy-6">
                           <div class="row g-3 justify-content-end">
                             <div class="col-auto">
-                              <a class="btn btn-phoenix-primary px-5" href="">Cancel</a>
+                              <a class="btn btn-phoenix-primary px-5" href="gestionTiempoListVacaciones">Cancel</a>
                             </div>
                             <div class="col-auto">
                               <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
@@ -271,7 +334,7 @@
                                 <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button"
                                   data-bs-dismiss="modal">Cancel</button>
                                 <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();"
-                                  type="submit" data-bs-dismiss="modal">Confirmar</button>
+                                <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="insertaVacaciones()" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                               </div>
                             </div>
                           </div>
