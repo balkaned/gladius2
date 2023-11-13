@@ -54,11 +54,11 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                              <div class="col-sm-6 col-md-4">
+                              <div class="col-sm-6 col-md-3">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
                                    <input class="form-control" name="iexcodopc" type="number"  placeholder="" required/>
                               </div>
-                              <div class="col-sm-6 col-md-8">
+                              <div class="col-sm-6 col-md-9">
                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones (*)</label>
                                  <input class="form-control" name="iexdesopc" type="text"  placeholder="" required/>
                               </div>

@@ -75,8 +75,8 @@
                 </div>
               </th>
               <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Concepto</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Accion</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
+              <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
@@ -101,7 +101,7 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item text-warning" href="#!">Editar</a>
+                      <a class="dropdown-item" href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                   </div>

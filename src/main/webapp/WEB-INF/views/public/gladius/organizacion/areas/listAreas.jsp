@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary" href="nuevaArea"><span class="fas fa-plus me-2"></span>Add new Area</a>
+                      <a class="btn btn-primary" href="nuevaArea"><span class="fas fa-plus me-2"></span>Add Area</a>
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${area.iexcodarea}</a></td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${area.iexdesarea}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${area.iexdesarea}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${area.iexdesarea_descripcion}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${area.descodcat}</td>
                               <td class="total align-middle text-end fw-semi-bold text-1000"></td>

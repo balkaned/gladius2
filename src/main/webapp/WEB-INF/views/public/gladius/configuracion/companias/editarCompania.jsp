@@ -62,7 +62,8 @@
                                        <input type="hidden"  name="codciax" value="${idCia}" >
                                        <input type="file" name="uploadFile" class="form-control"/>
                                        <br/>
-                                       <input type="submit" value="Upload" class="btn btn-primary" />
+
+                                       <button class="btn btn-primary" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
                                  </form>
                             </div>
                        </div>
@@ -172,7 +173,7 @@
                                <select name="id_concepto" id="id_concepto"  class="form-select">
                                    <option value="">Selecciona Concepto</option>
                                    <c:forEach  var="lovConcepto" items="${lovConcepto}">
-                                       <option value="${lovConcepto.codConcepto}"       >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
+                                       <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
                                     </c:forEach>
                                </select>
                            </div>
@@ -186,8 +187,8 @@
                            </div>
                            <div class="ln_solid"></div>
                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3 mt-3 mb-3">
-                                     <input type="submit" value="Grabar" class="btn btn-primary" />
+                                <div class="col-md-6 col-sm-6 mt-3">
+                                     <button class="btn btn-primary" type="submit"><span class="fas fa-plus me-2"></span>Añadir</button>
                                 </div>
                            </div>
                        </form>

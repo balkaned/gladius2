@@ -105,26 +105,10 @@
                             data-options='{"disableMobile":true}' />
                         </div>
                         <div class="d-grid gap-2 d-md-block">
-                          <button class="btn btn-primary" type="submit"><svg
-                              class="svg-inline--fa fa-magnifying-glass me-2" aria-hidden="true" focusable="false"
-                              data-prefix="fas" data-icon="magnifying-glass" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z">
-                              </path>
-                            </svg>Buscar</button>
-                          
-                            <a class="btn btn-primary" href="nuevoGestionVacaciones"><svg
-                              class="svg-inline--fa fa-plus me-2" aria-hidden="true" focusable="false" data-prefix="fas"
-                              data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                              data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z">
-                              </path>
-                            </svg>Agregar</a>
-
-                          <button class="btn btn-primary" type="button">Exportar Programación</button>
-                          <button class="btn btn-primary" type="button">Exportar Saldo</button>
+                          <button class="btn btn-primary" type="submit"><span class="fas fa-search me-2"></span>Buscar</button>
+                          <a class="btn btn-primary" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Agregar</a>
+                          <button class="btn btn-primary" type="button"><span class="fas fa-file-export me-2"></span>Exportar Programación</button>
+                          <button class="btn btn-primary" type="button"><span class="fas fa-money-check-dollar me-2"></span>Exportar Saldo</button>
                         </div>
                         <div id="orderTable"
                           data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
@@ -146,19 +130,15 @@
                                       DOC</th>
                                     <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">CODTRA
                                     </th>
-                                    <th class="sort align-middle text-center ps-8" scope="col" data-sort="date">
-                                      NOMBRES y APELLIDOS</th>
+                                    <th class="sort align-middle text-center ps-8 pe-4" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
                                     <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ESTADO
                                     </th>
                                     <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">
                                       F.INGRESO</th>
-                                    <th class="sort align-middle text-start pe-0" scope="col" data-sort="date">TIPO
-                                      VACA.</th>
-                                    <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">
-                                      FECINI</th>
-                                    <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">
-                                      FECFIN</th>
-                                    <th class="sort align-middle text-center pe-0" scope="col">DIAS</th>
+                                    <th class="sort align-middle text-start ps-9 pe-9" scope="col" data-sort="date">TIPO VACA.</th>
+                                    <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="date">FECINI</th>
+                                    <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="date">FECFIN</th>
+                                    <th class="sort align-middle text-center ps-4 pe-4" scope="col">DIAS</th>
                                      <th class="sort align-middle text-center pe-0" scope="col">FICHA</th>
                                   </tr>
                                 </thead>
@@ -179,8 +159,10 @@
                                         ${LstVacacionesView.iexcodtra}</td>
                                       <td class="total align-middle text-center fw-semi-bold text-1000">
                                         ${LstVacacionesView.desnomtra}</td>
-                                      <td class="total align-middle text-center fw-semi-bold text-1000">
-                                        ${LstVacacionesView.desestado}</td>
+
+                                      <c:if test="${LstVacacionesView.desestado=='activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                      <c:if test="${LstVacacionesView.desestado=='inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+
                                       <td class="total align-middle text-center fw-semi-bold text-1000">
                                         ${LstVacacionesView.fecing}</td>
                                       <td class="total align-middle text-center fw-semi-bold text-1000">

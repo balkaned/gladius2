@@ -74,27 +74,27 @@
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
-              <div class="col-sm-6 col-md-2">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Concepto</label>
+              <div class="col-sm-6 col-md-3">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
                 <input class="form-control" name="codConcepto" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-3">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto</label>
+              <div class="col-sm-6 col-md-9">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto (*) </label>
                 <input class="form-control" name="desConcepto" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-4">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Variable Formula</label>
+              <div class="col-sm-6 col-md-6">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Variable Formula (*)</label>
                 <input class="form-control" name="desVariable" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-6">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
                 <input class="form-control" name="desAbreviacion" type="text" value="" placeholder="" required/>
               </div>
 
-              <div class="col-sm-6 col-md-5">
+              <div class="col-sm-6 col-md-12">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                 <input class="form-control" name="descripcion" type="text" value="" placeholder="" required/>
               </div>

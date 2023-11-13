@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary"href="nuevoBanco"><span class="fas fa-plus me-2"></span>Add new Banco</a>
+                      <a class="btn btn-primary"href="nuevoBanco"><span class="fas fa-plus me-2"></span>Add Banco</a>
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${banc.iexcodban}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000">${banc.desban}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${banc.despro}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${banc.destipcta}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${banc.destipcta}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${banc.iexctaban}</td>
                               <td class="align-middle text-center white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

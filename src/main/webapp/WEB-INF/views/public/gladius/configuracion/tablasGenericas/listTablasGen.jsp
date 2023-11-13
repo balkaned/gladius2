@@ -106,15 +106,15 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcion@${LstRole.idRole}">#${LstTTablac.iexcodtab}</a></td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarTblGen@${LstTTablac.iexcodtab}">#${LstTTablac.iexcodtab}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstTTablac.iexdestab}</td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="editarOpcion@${LstRole.idRole}">Ver Detalle</a>
-                                        <a class="dropdown-item" href="verOpcion@${LstRole.idRole}">Editar</a>
+                                        <a class="dropdown-item" href="verDetalleTblGen@${LstTTablac.iexcodtab}">Ver Detalle</a>
+                                        <a class="dropdown-item" href="editarTblGen@${LstTTablac.iexcodtab}">Editar</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>
                                    </div>

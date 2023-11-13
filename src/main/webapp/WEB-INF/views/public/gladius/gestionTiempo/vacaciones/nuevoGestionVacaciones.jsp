@@ -257,15 +257,14 @@
                           <select name="iexcodtra" id="iexcodtra" class="form-select" onchange="tranajador();">
                           </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-6 col-md-9">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
                           <select name="iexpervac" id="iexpervac" class="form-select" onchange="numeroDias();">
                           </select>
-
                         </div>
-                        <div class="col-sm-6 col-md-6 ">
+                        <div class="col-sm-6 col-md-3 ">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
-                            <input type="text" name="iexsaldodias"  class="form-control"    id="iexsaldodias" readonly="true" >
+                            <input type="text" name="iexsaldodias"  class="form-control"  style="background-color:#F1F4F8;"  id="iexsaldodias" readonly >
                         </div>
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
@@ -274,7 +273,6 @@
                             <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
                               <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac
                                 ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
-
                             </c:forEach>
                           </select>
 
@@ -294,9 +292,9 @@
                             data-options='{"disableMobile":true}'/>
                         </div>
 
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-6 col-md-3">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                         <input type="text" name="iexnrodias"  class="form-control"    id="iexnrodias" readonly="true"  >
+                         <input type="text" name="iexnrodias" style="background-color:#F1F4F8;"class="form-control" id="iexnrodias" readonly >
                         </div>
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                           Se grabó exitosamente los cambios.

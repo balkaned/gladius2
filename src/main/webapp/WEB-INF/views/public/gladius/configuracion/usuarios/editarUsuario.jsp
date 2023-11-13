@@ -59,11 +59,11 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="id_usuario" type="hidden" value="${idUsu}" />
 
-                              <div class="col-sm-6 col-md-6">
+                              <div class="col-sm-6 col-md-3">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
                                      <input class="form-control" name="id_usuario" maxlength="15"  type="text" value="${idUsu}" required disabled readonly />
                               </div>
-                              <div class="col-sm-6 col-md-6">
+                              <div class="col-sm-6 col-md-9">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario (*)</label>
                                    <input class="form-control" name="txt_usuario" maxlength="15"  type="text" value="${requestScope.usuariox.usuario}"  required/>
                               </div>

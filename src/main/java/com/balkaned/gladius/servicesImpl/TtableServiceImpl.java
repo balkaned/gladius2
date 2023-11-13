@@ -2,6 +2,7 @@ package com.balkaned.gladius.servicesImpl;
 
 
 import com.balkaned.gladius.beans.TTablaCabecera;
+import com.balkaned.gladius.beans.TTablaDetalle;
 import com.balkaned.gladius.dao.TtableDao;
 import com.balkaned.gladius.services.TtableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,13 @@ public class TtableServiceImpl implements TtableService {
         dao.insertarTtablac(ttc);
     }
 
+    public TTablaCabecera recuperarTTablac(String idttabla) {
+        return dao.recuperarTTablac(idttabla);
+    }
+
+    public void actualizarTTablac(TTablaCabecera ttc) {
+        dao.actualizarTTablac(ttc);
+    }
+
+    public List<TTablaDetalle> listarTTablad(String idttabla){return dao.listarTTablad(idttabla);}
 }

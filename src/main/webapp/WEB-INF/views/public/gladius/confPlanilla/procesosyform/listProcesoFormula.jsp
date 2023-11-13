@@ -32,7 +32,7 @@
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Procesos y Form</h2>
+          <h2 id="h2top" class="mb-0">Procesos y Formulas</h2>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
                   </div>
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.prodespro}</td>
+                <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${profo.prodespro}</span></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${profo.progrppro}</td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
@@ -121,15 +121,11 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item text-black" href="listConcepto">Conceptos</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-black" href="listFormulas">Formulas</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-black" href="#!">Periodos</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-black" href="#!">Asig. Contable</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-warning" href="#!">Editar</a>
+                      <a class="dropdown-item " href="listConcepto">Conceptos</a>
+                      <a class="dropdown-item " href="listFormulas">Formulas</a>
+                      <a class="dropdown-item " href="#!">Periodos</a>
+                      <a class="dropdown-item " href="#!">Asig. Contable</a>
+                      <a class="dropdown-item " href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                   </div>
