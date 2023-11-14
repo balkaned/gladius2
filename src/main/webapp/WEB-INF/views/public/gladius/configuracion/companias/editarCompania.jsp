@@ -128,6 +128,27 @@
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
                               </div>
 
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source AWS (*)</label>
+                                    <input class="form-control" name="iexflgsource" type="number" placeholder="Puede ser: 1,2,3,4" value="${requestScope.xCia.iexflgsource}" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-8">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario Source AWS (*)</label>
+                                    <input class="form-control" name="iexususource" type="text" value="${requestScope.xCia.iexususource}" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-12">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Password Source AWS (*)</label>
+                                    <input class="form-control" name="iexpasssource" type="text" value="${requestScope.xCia.iexpasssource}" required />
+                              </div>
+                              <div class="col-sm-6 col-md-6">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Source AWS (*)</label>
+                                  <input class="form-control" name="iexsourcedes" type="text" value="${requestScope.xCia.iexsourcedes}" placeholder="gladiustest" required />
+                              </div>
+                              <div class="col-sm-6 col-md-6">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Region AWS (*)</label>
+                                    <input class="form-control" name="iexregiondes" type="text" value="${requestScope.xCia.iexregiondes}" placeholder="US_EAST_2" required/>
+                              </div>
+
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                   Se grabó exitosamente los cambios.
                               </div>

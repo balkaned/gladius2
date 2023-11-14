@@ -92,6 +92,10 @@ public class IndexController {
                         + "luego debe Parar y Volver a Desplegar el WAR, esta aplicación esta configurada para Apache Tomcat v7, en caso el problema persista consulte con el administrador del "
                         + "sistema balkanedperu@gmail.com.");
             }
+
+            if (request.getSession().getAttribute("tiposession").equals("6")) {
+                model.addAttribute("mensaje", "Usuario no existe o esta desactivado o falta permisos");
+            }
         }
 
         return new ModelAndView("public/login2a");
@@ -126,6 +130,15 @@ public class IndexController {
                         UsuarioConeccion uc3 = usuarioConeccionService.obtenerUsuarioConeccionById(uc2.getId_usuario());
 
                         logger.info("ID_Usuario: " + uc2.getId_usuario());
+                        logger.info("uc3.getId_usuario(): " + uc3.getId_usuario());
+                        logger.info("uc3.getUser: " + uc3.getUser());
+
+                        if(uc3.getUser()==null){
+                            logger.info("Usuario no existe o esta desactivado: ");
+                            request.getSession().setAttribute("tiposession", "6");
+
+                            return new ModelAndView("redirect:/login2");
+                        }
 
                         char firstCharacter = uc3.getUser().charAt(0);
                         char char1UpperCase = Character.toUpperCase(firstCharacter);

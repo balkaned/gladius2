@@ -1,6 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Usuario;
+import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -37,7 +39,7 @@ public class UsuariosController {
 
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -50,22 +52,22 @@ public class UsuariosController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
+        logger.info("################### idCompania: " + idCompania);
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         Integer pagina = 1;
         Integer numRegs = 15;
         String txtbuscar = "%";
 
-        model.addAttribute("LstUsuario",usuarioService.listar("%",1,15));
+        model.addAttribute("LstUsuario", usuarioService.listar("%", 1, 15));
 
         return new ModelAndView("public/gladius/configuracion/usuarios/listUsuarios");
     }
@@ -75,7 +77,7 @@ public class UsuariosController {
         logger.info("/nuevoUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -88,14 +90,14 @@ public class UsuariosController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
     }
@@ -105,7 +107,7 @@ public class UsuariosController {
         logger.info("/insertarUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -118,18 +120,18 @@ public class UsuariosController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        String Msg_form_global ="";
+        String Msg_form_global = "";
         String ret;
-        String msg="";
+        String msg = "";
 
         String usuario2 = request.getParameter("txt_usuario");
         String password = request.getParameter("txt_password");
@@ -137,45 +139,56 @@ public class UsuariosController {
         String email2 = request.getParameter("txt_email");
         String estado = request.getParameter("lov_estado");
 
-        String msg_txtusuario="";
-        String msg_txtpassword="";
-        String msg_txtemail="";
-        String msg_lovestado="Correcto";
-        String msg_frmstatus="";
-        int cont=0;
+        String msg_txtusuario = "";
+        String msg_txtpassword = "";
+        String msg_txtemail = "";
+        String msg_lovestado = "Correcto";
+        String msg_frmstatus = "";
+        int cont = 0;
 
-        if(password.equals(password2)) {
-            msg_txtpassword="Correcto";
-            cont++;
-        }else{
-            msg="El password de confirmación no es igual";
-        }
+        UsuarioConeccion uc= new UsuarioConeccion();
+        uc.setUser(usuario2);
 
-        if(esEmailValida(email)==true){
-            cont++;
-            msg_txtemail ="Correcto";
-        }else{
-            msg ="El formato de email no es correcto";
-        }
+        UsuarioConeccion ucConsulta=usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
+        logger.info("ucConsulta.getUser()"+ ucConsulta.getUser());
 
-        if(cont==2){
-            logger.info("contadorOK: "+cont);
-            String foto = "";
-            Integer codusumat = 1;
-
-            Usuario p = new Usuario();
-            p.setUsuario(usuario2);
-            p.setPassword(password);
-            p.setEstado(estado);
-            p.setEmail(email);
-            p.setUrlfoto(foto);
-            p.setIdUsuMat(codusumat);
-
-            usuarioService.insertar(p);
-
-            return new ModelAndView("redirect:/listUsuarios");
-        }else{
+        if(ucConsulta.getUser()!=null){
+            msg = "El usuario ya existe en la Base de Datos ingresar otro nombre";
             model.addAttribute("msg", msg);
+        }else{
+            if (password.equals(password2)) {
+                msg_txtpassword = "Correcto";
+                cont++;
+            } else {
+                msg = "El password de confirmación no es igual";
+            }
+
+            if (esEmailValida(email) == true) {
+                cont++;
+                msg_txtemail = "Correcto";
+            } else {
+                msg = "El formato de email no es correcto";
+            }
+
+            if (cont == 2) {
+                logger.info("contadorOK: " + cont);
+                String foto = "";
+                Integer codusumat = 1;
+
+                Usuario p = new Usuario();
+                p.setUsuario(usuario2);
+                p.setPassword(password);
+                p.setEstado(estado);
+                p.setEmail(email);
+                p.setUrlfoto(foto);
+                p.setIdUsuMat(codusumat);
+
+                usuarioService.insertar(p);
+
+                return new ModelAndView("redirect:/listUsuarios");
+            } else {
+                model.addAttribute("msg", msg);
+            }
         }
 
         return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
@@ -188,7 +201,7 @@ public class UsuariosController {
         Pattern patronEmail = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
 
         Matcher mEmail = patronEmail.matcher(email.toLowerCase());
-        if (mEmail.matches()){
+        if (mEmail.matches()) {
             valido = true;
         }
         return valido;
@@ -199,7 +212,7 @@ public class UsuariosController {
         logger.info("/editarUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -212,16 +225,16 @@ public class UsuariosController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        model.addAttribute("idUsu",idUsu);
+        model.addAttribute("idUsu", idUsu);
         Usuario usuariox = usuarioService.recuperar(Integer.valueOf(idUsu));
         model.addAttribute("usuariox", usuariox);
 
@@ -233,7 +246,7 @@ public class UsuariosController {
         logger.info("/modificarUsuario");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -246,14 +259,14 @@ public class UsuariosController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         Integer codusuario = Integer.valueOf(request.getParameter("id_usuario"));
         String usuariox = request.getParameter("txt_usuario");

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
+
 @RestController
 public class CompaniasController {
     static Logger logger = Logger.getLogger(CompaniasController.class.getName());
@@ -224,6 +226,12 @@ public class CompaniasController {
         cia.setUsuCrea(usuario);
         cia.setIexurlfileserver(request.getParameter("iexurlfileserver"));
         cia.setIexurlfilereport(request.getParameter("iexurlfilereport"));
+
+        cia.setIexflgsource(request.getParameter("iexflgsource"));
+        cia.setIexususource(request.getParameter("iexususource"));
+        cia.setIexpasssource(request.getParameter("iexpasssource"));
+        cia.setIexsourcedes(request.getParameter("iexsourcedes"));
+        cia.setIexregiondes(request.getParameter("iexregiondes"));
 
         companiaService.actualizarCompania(cia);
 

@@ -116,7 +116,7 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${xRolxopc.iexcodopc}</a></td>
+                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">#${xRolxopc.iexcodopc}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${xRolxopc.dessys}</span></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
@@ -129,7 +129,6 @@
                                 <c:if test="${xRolxopc.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${xRolxopc.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${xRolxopc.iexflgest=='0'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

@@ -44,6 +44,8 @@ public class Compania {
     String iexurlfilereport;
     String iexurlfileimg;
     String urlflgsource;
+
+    String iexflgsource;
     String iexususource;
     String iexpasssource;
     String iexportsource;
