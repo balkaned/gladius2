@@ -32,5 +32,15 @@ public class TtableServiceImpl implements TtableService {
         dao.actualizarTTablac(ttc);
     }
 
-    public List<TTablaDetalle> listarTTablad(String idttabla){return dao.listarTTablad(idttabla);}
+    public List<TTablaDetalle> listarTTablad(String idttabla) {
+        return dao.listarTTablad(idttabla);
+    }
+
+    public void actualizarTTablad(TTablaDetalle ttd) {
+        dao.actualizarTTablad(ttd);
+    }
+
+    public TTablaDetalle recuperarTTablad(String idttabla, String idttabladet) {
+        return dao.recuperarTTablad(idttabla, idttabladet);
+    }
 }

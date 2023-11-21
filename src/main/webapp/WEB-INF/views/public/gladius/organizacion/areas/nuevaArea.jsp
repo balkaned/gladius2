@@ -54,11 +54,11 @@
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de Area (*)</label>
+                              <div class="col-sm-6 col-md-3">
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo (*)</label>
                                      <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-8">
+                              <div class="col-sm-6 col-md-9">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area (*)</label>
                                     <input class="form-control" name="iexdesarea" type="text" value="" placeholder="" required/>
                               </div>
@@ -92,7 +92,7 @@
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
+                                      <a class="btn btn-phoenix-primary px-5" href="listAreas">Cancel</a>
                                     </div>
                                     <div class="col-auto">
                                       <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Area</button>

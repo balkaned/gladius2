@@ -82,7 +82,7 @@
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="#"><span class="fas fa-plus me-2"></span>Add new Formula</a>
+            <a class="btn btn-primary" href="#"><span class="fas fa-plus me-2"></span>Add Formula</a>
           </div>
         </div>
       </div>
@@ -91,32 +91,41 @@
           <table class="table table-sm fs--1 mb-0">
             <thead>
             <tr>
-              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">Orden de Ejecucion</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ID Operacion</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Codigo Concepto</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Concepto</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Glosa</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Estado</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">Accion</th>
+                  <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                        <div class="form-check mb-0 fs-0">
+                          <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                        </div>
+                  </th>
+                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ORDEN DE EJECUCION</th>
+                  <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">ID OPERACION</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CODIGO CONCEPTO</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GLOSA</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ESTADO</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
             <c:forEach var="formxcon" items="${requestScope.formulaXConceptoList}">
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                <td class="fs--1 align-middle px-0 py-3">
+                    <div class="form-check mb-0 fs-0">
+                      <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                    </div>
+                </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodcon}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.conccoodescon}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formproglosa}</td>
+                <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.conccoodescon}</td>
+                <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforflgest}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item text-black" href="#!">Formular</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-black" href="#!">Compilar</a>
+                      <a class="dropdown-item" href="#!">Formular</a>
+                      <a class="dropdown-item" href="#!">Compilar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a>
                     </div>

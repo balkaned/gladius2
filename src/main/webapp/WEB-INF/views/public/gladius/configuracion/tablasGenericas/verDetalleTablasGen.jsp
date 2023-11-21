@@ -38,26 +38,150 @@
               <div class="row g-5">
                  <div class="col-xl-7">
                    <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarTblGen" novalidate >
+                      <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarTblGenDetalle" novalidate >
                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                        <input class="form-control" name="iexcodrol2" type="hidden" value="${requestScope.ttablacx.iexcodtab}" />
+                        <input class="form-control" name="iexcodtab2" type="hidden" value="${sessionScope.ttablaclbl.iexcodtab}" />
 
                         <div class="col-sm-6 col-md-3">
                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                               <input class="form-control" name="iexcodrol" type="number"  value="${requestScope.ttablacx.iexcodtab}" required readonly disabled/>
+                               <input class="form-control" name="iexcodtab" type="number"  value="${sessionScope.ttablaclbl.iexcodtab}" required readonly disabled/>
                         </div>
                         <div class="col-sm-6 col-md-9">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la Tabla (*)</label>
-                              <input class="form-control" name="iexdesrol" type="text" value="${requestScope.ttablacx.iexdestab}" placeholder="" required/>
+                              <input class="form-control" name="iexdestab" type="text" value="${sessionScope.ttablaclbl.iexdestab}" placeholder="" required readonly disabled/>
                         </div>
                         <div class="col-sm-6 col-md-3">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Key (*)</label>
-                              <input class="form-control" name="iexdesrol" type="text" value="" placeholder="" required/>
+                              <input class="form-control" name="iexkey" type="text" value="${ttabladxx.iexkey}" placeholder="" required/>
                         </div>
                         <div class="col-sm-6 col-md-9">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Key (*)</label>
-                              <input class="form-control" name="iexdesrol" type="text" value="" placeholder="" required/>
+                              <input class="form-control" name="desdet" type="text" value="${ttabladxx.desdet}" placeholder="" required/>
                         </div>
+                        <table class="navy" >
+                             <tr>
+                                 <td>
+                                      <table  class="navy"   >
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg1=='1'}">
+                                                <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlbl1}</td>
+                                                <td><input type='text' name='des1det' value="${ttabladxx.des1det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                </tr>
+                                          </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='1'}">
+                                                <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlbl2}</td>
+                                                <td><input type='text' name='des2det'  value="${ttabladxx.des2det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                               </tr>
+                                           </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg3=='1'}">
+
+                                                <tr>
+
+                                                <td>${sessionScope.ttablaclbl.iexlbl3}</td>
+                                                <td><input type='text' name='des3det'   value="${ttabladxx.des3det}"   class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                </tr>
+                                           </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg4=='1'}">
+                                                <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlbl4}</td>
+                                                <td><input type='text' name='des4det'  value="${ttabladxx.des4det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                </tr>
+                                            </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg5=='1'}">
+
+                                                <tr>
+
+                                                <td>${sessionScope.ttablaclbl.iexlbl5}</td>
+                                                <td><input type='text' name='des5det'  value="${ttabladxx.des5det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                </tr>
+                                          </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='6'}">
+
+                                                <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlbl6}</td>
+                                                <td><input type='text' name='des6det' value="${ttabladxx.des6det}"   class="form-control"  style="width: 250px ;background:#fcefa1"></td>
+                                                </tr>
+
+                                          </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='7'}"  >
+
+                                                <tr>
+
+                                                <td>${sessionScope.ttablaclbl.iexlbl7}</td>
+                                                <td><input type='text' name='des7det' value="${ttabladxx.des7det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                                </tr>
+
+                                           </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='8'}">
+
+                                                <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlbl8}</td>
+                                                <td><input type='text' name='des8det' value="${ttabladxx.des8det}" class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                                </tr>
+                                                </c:if>
+                                      </table>
+                                 </td>
+                                 <td>
+                                     <table class="navy" >
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg9=='1'}">
+                                            <tr>
+                                           <td>${sessionScope.ttablaclbl.iexlblval9}</td>
+                                            <td><input type='text' name='val9det' value="${ttabladxx.val9det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                            </tr>
+                                            </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg10=='1'}">
+
+                                                <tr>
+                                            <td>${sessionScope.ttablaclbl.iexlblval10}</td>
+                                            <td><input type='text' name='val10det' value="${ttabladxx.val10det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                            </tr>
+                                          </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg11=='1'}">
+                                                <tr>
+                                            <td>${sessionScope.ttablaclbl.iexlblval11}</td>
+                                            <td><input type='text' name='val11det' value="${ttabladxx.val11det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                            </tr>
+                                               </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg12=='1'}">
+
+                                                <tr>
+                                            <td>${sessionScope.ttablaclbl.iexlblval12}</td>
+                                            <td><input type='text' name='val12det' value="${ttabladxx.val12det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                             </tr>
+
+                                                </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg13=='1'}">
+                                                <tr>
+                                              <td>${sessionScope.ttablaclbl.iexlblval13}</td>
+                                            <td><input type='text' name='val13det' value="${ttabladxx.val13det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                            </tr>
+
+                                               </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg14=='1'}">
+                                                <tr>
+                                            <td>${sessionScope.ttablaclbl.iexlblval14}</td>
+                                            <td><input type='text' name='val14det' value="${ttabladxx.val14det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                           </tr>
+
+                                              </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg15=='1'}">
+                                                <tr>
+                                          <td>${sessionScope.ttablaclbl.iexlblval15}</td>
+                                            <td><input type='text' name='val15det' value="${ttabladxx.val15det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                            </tr>
+
+                                               </c:if>
+                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg16=='1'}">
+                                                <tr>
+                                            <td>${sessionScope.ttablaclbl.iexlblval16}</td>
+                                            <td><input type='text' name='val16det' value="${ttabladxx.val16det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                          </tr>
+                                           </c:if>
+                                     </table>
+                                 </td>
+                             </tr>
+                         </table>
 
 
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
@@ -99,51 +223,16 @@
                  </div>
               </div>
 
-              <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+              <div class="mt-4" id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                   <div class="mb-4">
                     <div class="row g-3">
                       <div class="col-auto">
                         <div class="search-box">
                           <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                            <input class="form-control search-input search" type="search" placeholder="Search roles" aria-label="Search" />
+                            <input class="form-control search-input search" type="search" placeholder="Search detalle" aria-label="Search" />
                             <span class="fas fa-search search-box-icon"></span>
                           </form>
                         </div>
-                      </div>
-                      <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-                        <div class="btn-group position-static" role="group">
-                          <div class="btn-group position-static text-nowrap" role="group">
-                            <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                              Payment status<span class="fas fa-angle-down ms-2"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                              <li>
-                                <hr class="dropdown-divider" />
-                              </li>
-                              <li><a class="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                          </div>
-                          <div class="btn-group position-static text-nowrap" role="group">
-                            <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                              Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                              <li>
-                                <hr class="dropdown-divider" />
-                              </li>
-                              <li><a class="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                          </div>
-                          <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                        <a class="btn btn-primary" href="nuevoRol" ><span class="fas fa-plus me-2"></span>Add Rol</a>
                       </div>
                     </div>
                   </div>
@@ -157,28 +246,27 @@
                                 <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                               </div>
                             </th>
-                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                            <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ROLES</th>
+                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">KEY</th>
+                            <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESCRIPCION</th>
                             <th class="sort align-middle text-center ps-5" scope="col" ></th>
                           </tr>
                         </thead>
                         <tbody class="list" id="order-table-body">
-                            <c:forEach var="LstRole" items="${requestScope.LstRole}">
+                            <c:forEach var="LstTTablad" items="${requestScope.LstTTablad}">
                               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 <td class="fs--1 align-middle px-0 py-3">
                                   <div class="form-check mb-0 fs-0">
                                     <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                   </div>
                                 </td>
-                                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcion@${LstRole.idRole}">#${LstRole.idRole}</a></td>
-                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstRole.desRole}</td>
+                                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" >#${LstTTablad.iexkey}</a></td>
+                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstTTablad.desdet}</td>
 
                                 <td class="align-middle text-end white-space-nowrap pe-0 action">
                                    <div class="font-sans-serif btn-reveal-trigger position-static">
                                      <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                      <div class="dropdown-menu dropdown-menu-end py-2">
-                                          <a class="dropdown-item" href="${urlApp}@${LstRole.idRole}">Editar</a>
-                                          <a class="dropdown-item" href="verOpcion@${LstRole.idRole}">Ver Opciones</a>
+                                          <a class="dropdown-item" href="curDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}">Cur Detalle</a>
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item text-danger" href="#!">Eliminar</a>
                                      </div>

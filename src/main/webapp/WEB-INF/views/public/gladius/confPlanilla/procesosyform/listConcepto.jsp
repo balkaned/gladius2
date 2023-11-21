@@ -89,8 +89,8 @@
                   </div>
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${proceso.procodcon}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <span class="badge badge-phoenix fs--2 badge-phoenix-warning">
+                <td class="total align-middle text-start ps-5 fw-semi-bold text-1000">
+                  <span class="badge badge-phoenix fs--1 badge-phoenix-secondary">
                     <span class="badge-label">
                         ${proceso.coodescon}
                     </span>

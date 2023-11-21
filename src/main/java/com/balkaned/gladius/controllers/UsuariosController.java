@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.beans.UsuarioConeccion;
+import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,12 @@ public class UsuariosController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    RolService rolService;
+
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
 
     @RequestMapping("/listUsuarios")
     public ModelAndView listUsuarios(ModelMap model, HttpServletRequest request) {
@@ -146,16 +153,16 @@ public class UsuariosController {
         String msg_frmstatus = "";
         int cont = 0;
 
-        UsuarioConeccion uc= new UsuarioConeccion();
+        UsuarioConeccion uc = new UsuarioConeccion();
         uc.setUser(usuario2);
 
-        UsuarioConeccion ucConsulta=usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
-        logger.info("ucConsulta.getUser()"+ ucConsulta.getUser());
+        UsuarioConeccion ucConsulta = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
+        logger.info("ucConsulta.getUser()" + ucConsulta.getUser());
 
-        if(ucConsulta.getUser()!=null){
+        if (ucConsulta.getUser() != null) {
             msg = "El usuario ya existe en la Base de Datos ingresar otro nombre";
             model.addAttribute("msg", msg);
-        }else{
+        } else {
             if (password.equals(password2)) {
                 msg_txtpassword = "Correcto";
                 cont++;
@@ -287,6 +294,136 @@ public class UsuariosController {
         usuarioService.actualizar(p);
 
         return new ModelAndView("redirect:/listUsuarios");
+    }
+
+    @RequestMapping("/asignarRolUs@{idUsu}")
+    public ModelAndView asignarRolUs(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
+        logger.info("/asignarRolUs");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        model.addAttribute("idUsu", idUsu);
+
+        model.addAttribute("usuxciaxrol", usuxCompaniaService.listar(Integer.valueOf(idUsu)));
+        model.addAttribute("listacia", companiaService.listarTodo());
+        model.addAttribute("listarol", rolService.listarRoles());
+
+        return new ModelAndView("public/gladius/configuracion/usuarios/asignarRolUs");
+    }
+
+    @RequestMapping("/asignarRolxCiaIns")
+    public ModelAndView asignarRolxCiaIns(ModelMap model, HttpServletRequest request) {
+        logger.info("/asignarRolxCiaIns");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Integer codusuario = Integer.valueOf(request.getParameter("usuario_id"));
+        Integer lov_compania = Integer.valueOf(request.getParameter("lov_compania"));
+        Integer lov_rol = Integer.valueOf(request.getParameter("lov_rol"));
+        String codtra = request.getParameter("iexcodtra");
+
+        Integer xcodtra = 0;
+        if (codtra.equals("") || codtra == null) {
+            xcodtra = 0;
+        } else {
+            xcodtra = Integer.parseInt(codtra);
+        }
+
+        UsuxCompania usuxcia = new UsuxCompania();
+        usuxcia.setCodcia(lov_compania);
+        usuxcia.setCodrol(lov_rol);
+        usuxcia.setCodusu(codusuario);
+        usuxcia.setCodtra(xcodtra);
+
+        usuxCompaniaService.insertar(usuxcia);
+
+        return new ModelAndView("redirect:/asignarRolUs@" + codusuario);
+    }
+
+    @RequestMapping("/eliminarRolXciaUsu@{idUsu}@{idRol}@{idCia}")
+    public ModelAndView eliminarRolXciaUsu(ModelMap model, HttpServletRequest request,
+                                           @PathVariable String idUsu,
+                                           @PathVariable String idRol,
+                                           @PathVariable String idCia) {
+        logger.info("/eliminarRolXciaUsu");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Integer codusuario = Integer.valueOf(idUsu);
+        Integer lov_compania = Integer.valueOf(idCia);
+        Integer lov_rol = Integer.valueOf(idRol);
+
+        UsuxCompania usuxcia = new UsuxCompania();
+        usuxcia.setCodcia(lov_compania);
+        usuxcia.setCodrol(lov_rol);
+        usuxcia.setCodusu(codusuario);
+
+        usuxCompaniaService.eliminar(usuxcia);
+
+        return new ModelAndView("redirect:/asignarRolUs@" + idUsu);
     }
 
 }

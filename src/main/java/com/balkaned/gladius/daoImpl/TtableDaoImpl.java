@@ -306,7 +306,7 @@ public class TtableDaoImpl implements TtableDao {
 
     }
 
-    public List<TTablaDetalle> listarTTablad(String idttabla){
+    public List<TTablaDetalle> listarTTablad(String idttabla) {
 
         String sql = "select " +
                 "iexcodtab, " +
@@ -329,14 +329,14 @@ public class TtableDaoImpl implements TtableDao {
                 "val15det, " +
                 "val16det " +
                 "from  " +
-                "iexttabled where iexcodtab='"+idttabla+"' ";
+                "iexttabled where iexcodtab='" + idttabla + "' ";
 
         return template.query(sql, new ResultSetExtractor<List<TTablaDetalle>>() {
 
             public List<TTablaDetalle> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<TTablaDetalle> lista = new ArrayList<TTablaDetalle>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     TTablaDetalle p = new TTablaDetalle();
 
                     p.setIexcodtab(rs.getString("iexcodtab"));
@@ -362,6 +362,103 @@ public class TtableDaoImpl implements TtableDao {
                     lista.add(p);
                 }
                 return lista;
+            }
+        });
+    }
+
+    public void actualizarTTablad(TTablaDetalle ttd) {
+
+        template.update(" update  iexttabled  set  " +
+                        "desdet=?," +
+                        "des1det=?," +
+                        "des2det=?," +
+                        "des3det=?," +
+                        "des4det=?," +
+                        "des5det=?," +
+                        "des6det=?," +
+                        "des7det=?," +
+                        "des8det=?," +
+                        "val9det=?," +
+                        "val10det=?," +
+                        "val11det=?," +
+                        "val12det=?," +
+                        "val13det=?," +
+                        "val14det=?," +
+                        "val15det=?," +
+                        "val16det=?  where iexcodtab=?  and iexkey=?  ",
+
+                ttd.getDesdet(),
+                ttd.getDes1det(),
+                ttd.getDes2det(),
+                ttd.getDes3det(),
+                ttd.getDes4det(),
+                ttd.getDes5det(),
+                ttd.getDes6det(),
+                ttd.getDes7det(),
+                ttd.getDes8det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getVal9det(),
+                ttd.getIexcodtab(),
+                ttd.getIexkey());
+
+    }
+
+    public TTablaDetalle recuperarTTablad(String idttabla, String idttabladet) {
+
+        String sql = "select " +
+                "iexcodtab, " +
+                "iexkey, " +
+                "desdet, " +
+                "des1det," +
+                "des2det, " +
+                "des3det, " +
+                "des4det, " +
+                "des5det, " +
+                "des6det, " +
+                "des7det, " +
+                "des8det, " +
+                "val9det, " +
+                "val10det, " +
+                "val11det," +
+                "val12det, " +
+                "val13det, " +
+                "val14det, " +
+                "val15det, " +
+                "val16det " +
+                "from  " +
+                "iexttabled where iexcodtab='" + idttabla + "' and iexkey='" + idttabladet + "' ";
+
+        return (TTablaDetalle) template.query(sql, new ResultSetExtractor<TTablaDetalle>() {
+            public TTablaDetalle extractData(ResultSet rs) throws SQLException, DataAccessException {
+                TTablaDetalle p = new TTablaDetalle();
+                while (rs.next()) {
+                    p.setIexcodtab(rs.getString("iexcodtab"));
+                    p.setIexkey(rs.getString("iexkey"));
+                    p.setDesdet(rs.getString("desdet"));
+                    p.setDes1det(rs.getString("des1det"));
+                    p.setDes2det(rs.getString("des2det"));
+                    p.setDes3det(rs.getString("des3det"));
+                    p.setDes4det(rs.getString("des4det"));
+                    p.setDes5det(rs.getString("des5det"));
+                    p.setDes6det(rs.getString("des6det"));
+                    p.setDes7det(rs.getString("des7det"));
+                    p.setDes8det(rs.getString("des8det"));
+                    p.setVal9det(rs.getDouble("val9det"));
+                    p.setVal10det(rs.getDouble("val10det"));
+                    p.setVal11det(rs.getDouble("val11det"));
+                    p.setVal12det(rs.getDouble("val12det"));
+                    p.setVal13det(rs.getDouble("val13det"));
+                    p.setVal14det(rs.getDouble("val14det"));
+                    p.setVal15det(rs.getDouble("val15det"));
+                    p.setVal16det(rs.getDouble("val16det"));
+                }
+                return p;
             }
         });
     }

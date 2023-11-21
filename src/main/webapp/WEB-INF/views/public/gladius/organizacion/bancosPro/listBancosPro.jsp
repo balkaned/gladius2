@@ -119,7 +119,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${banc.iexcodban}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000">${banc.desban}</td>
+                              <td class="total align-middle text-start ps-5 fw-semi-bold text-1000">${banc.desban}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${banc.despro}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${banc.destipcta}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${banc.iexctaban}</td>
@@ -127,9 +127,8 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="detallearea">Ver Detalle</a>
-                                        <a class="dropdown-item" href="#!">Ficha</a>
-                                     <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                                     <div class="dropdown-divider"></div>
+                                     <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                                  </div>
                                </td>
                             </tr>

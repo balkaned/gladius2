@@ -54,7 +54,7 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexccosto2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-4">
+                              <div class="col-sm-6 col-md-3">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
                                     <input class="form-control" name="iexccosto" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>

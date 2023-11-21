@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Role;
 import com.balkaned.gladius.beans.Rolesxopciones;
 import com.balkaned.gladius.beans.TTablaCabecera;
+import com.balkaned.gladius.beans.TTablaDetalle;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -334,7 +335,6 @@ public class GestionTtableController {
     }
 
     @RequestMapping("/verDetalleTblGen@{idTbl}")
-    @GetMapping
     public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTbl) {
         logger.info("/verDetalleTblGen");
@@ -364,18 +364,18 @@ public class GestionTtableController {
         model.addAttribute("idTbl", idTbl);
 
         model.addAttribute("idTbl", idTbl);
-        model.addAttribute("ttablacx", ttableService.recuperarTTablac(idTbl));
+        request.getSession().setAttribute("ttablaclbl", ttableService.recuperarTTablac(idTbl));
         model.addAttribute("LstTTablad", ttableService.listarTTablad(idTbl));
 
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
     }
 
-    /*@RequestMapping("/modificarRolxOpcion")
-    public ModelAndView modificarRolxOpcion(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarRolxOpcion");
+    @RequestMapping("/modificarTblGenDetalle")
+    public ModelAndView modificarTblGenDetalle(ModelMap model, HttpServletRequest request) {
+        logger.info("/modificarTblGenDetalle");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -388,33 +388,182 @@ public class GestionTtableController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
-        String iexcodrol=request.getParameter("iexcodrol");
+        String iexcodtab = request.getParameter("iexcodtab2");
+        String iexkey = request.getParameter("iexkey");
+        String desdet = request.getParameter("desdet");
+        logger.info("iexcodtab: "+iexcodtab);
+        logger.info("iexkey: "+iexkey);
+        logger.info("desdet: "+desdet);
 
-        Rolesxopciones rolopc = new  Rolesxopciones();
-        rolopc.setIexcodrol(Integer.valueOf(iexcodrol));
-        rolopc.setIexcodopc(Integer.parseInt(request.getParameter("iexcodopc")));
-        rolopc.setIex_consultar(request.getParameter("iex_consultar"));
-        rolopc.setIex_registrar(request.getParameter("iex_registrar"));
-        rolopc.setIex_modificar(request.getParameter("iex_modificar"));
-        rolopc.setIex_eliminar(request.getParameter("iex_eliminar"));
-        rolopc.setIex_descargar_pdf(request.getParameter("iex_descargar_pdf"));
-        rolopc.setIex_descargar_xls(request.getParameter("iex_descargar_xls"));
-        rolopc.setIexflgest(request.getParameter("iexflgest"));
-        rolopc.setIexusumod(usuario);
+        String des1det = request.getParameter("des1det");
+        String des2det = request.getParameter("des2det");
+        String des3det = request.getParameter("des3det");
+        String des4det = request.getParameter("des4det");
+        String des5det = request.getParameter("des5det");
+        String des6det = request.getParameter("des6det");
+        String des7det = request.getParameter("des7det");
+        String des8det = request.getParameter("des8det");
+        String val9det = request.getParameter("val9det");
+        String val10det = request.getParameter("val10det");
+        String val11det = request.getParameter("val11det");
+        String val12det = request.getParameter("val12det");
+        String val13det = request.getParameter("val13det");
+        String val14det = request.getParameter("val14det");
+        String val15det = request.getParameter("val15det");
+        String val16det = request.getParameter("val16det");
 
-        rolService.actualizarRolesxopciones(rolopc);
+        TTablaDetalle p = new TTablaDetalle();
+        p.setIexcodtab(iexcodtab);
+        p.setIexkey(iexkey);
+        p.setDesdet(desdet);
 
-        return new ModelAndView("redirect:/verOpcion@"+iexcodrol);
-    }*/
+        if (request.getParameter("des1det") == null) {
+            p.setDes1det("");
+        } else {
+            p.setDes1det(des1det);
+        }
+
+        if (request.getParameter("des2det") == null) {
+            p.setDes2det("");
+        } else {
+            p.setDes2det(des2det);
+        }
+
+        if (request.getParameter("des3det") == null) {
+            p.setDes3det("");
+        } else {
+            p.setDes3det(des3det);
+        }
+        if (request.getParameter("des4det") == null) {
+            p.setDes4det("");
+        } else {
+            p.setDes4det(des4det);
+        }
+
+        if (request.getParameter("des5det") == null) {
+            p.setDes5det("");
+        } else {
+            p.setDes5det(des5det);
+        }
+
+        if (request.getParameter("des6det") == null) {
+            p.setDes6det("");
+        } else {
+            p.setDes6det(des6det);
+        }
+
+        if (request.getParameter("des7det") == null) {
+            p.setDes7det("");
+        } else {
+            p.setDes7det(des7det);
+        }
+
+        if (request.getParameter("des8det") == null) {
+            p.setDes8det("");
+        } else {
+            p.setDes8det(des8det);
+        }
+
+        if (request.getParameter("val9det") == null || request.getParameter("val9det") == "") {
+            p.setVal9det(0.0);
+        } else {
+            p.setVal9det(Double.parseDouble(val9det));
+        }
+
+        if (request.getParameter("val10det") == null || request.getParameter("val10det") == "") {
+            p.setVal10det(0.0);
+        } else {
+            p.setVal10det(Double.parseDouble(val10det));
+        }
+
+        if (request.getParameter("val11det") == null || request.getParameter("val11det") == "") {
+            p.setVal11det(0.0);
+        } else {
+            p.setVal11det(Double.parseDouble(val11det));
+        }
+
+        if (request.getParameter("val12det") == null || request.getParameter("val12det") == "") {
+            p.setVal12det(0.0);
+        } else {
+            p.setVal12det(Double.parseDouble(val12det));
+        }
+
+        if (request.getParameter("val13det") == null || request.getParameter("val13det") == "") {
+            p.setVal13det(0.0);
+        } else {
+            p.setVal13det(Double.parseDouble(val13det));
+        }
+        if (request.getParameter("val14det") == null || request.getParameter("val14det") == "") {
+            p.setVal14det(0.0);
+        } else {
+            p.setVal14det(Double.parseDouble(val14det));
+        }
+        if (request.getParameter("val15det") == null || request.getParameter("val15det") == "") {
+            p.setVal15det(0.0);
+        } else {
+            p.setVal15det(Double.parseDouble(val15det));
+        }
+
+        if (request.getParameter("val16det") == null || request.getParameter("val16det") == "") {
+            p.setVal16det(0.0);
+        } else {
+            p.setVal16det(Double.parseDouble(val16det));
+        }
+
+        ttableService.actualizarTTablad(p);
+
+        return new ModelAndView("redirect:/listTablasGen");
+    }
+
+    @RequestMapping("/curDetalleTblGen@{idTbl}@{idKey}")
+    public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTbl, @PathVariable String idKey) {
+        logger.info("/curDetalleTblGen");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+        model.addAttribute("idTbl", idTbl);
+
+        model.addAttribute("idTbl", idTbl);
+        model.addAttribute("idKey", idKey);
+
+        TTablaDetalle ttabladxx = ttableService.recuperarTTablad(idTbl,idKey);
+        model.addAttribute("ttabladxx", ttabladxx);
+
+        request.getSession().setAttribute("ttablaclbl", ttableService.recuperarTTablac(idTbl));
+        model.addAttribute("LstTTablad", ttableService.listarTTablad(idTbl));
+
+        return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
+    }
 
 }
 

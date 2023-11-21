@@ -51,6 +51,7 @@
              const objeto = localStorage.getItem("objeto");
 
              $('#'+objeto).addClass("active");
+             document.getElementById(objeto).focus();
 
           });
 

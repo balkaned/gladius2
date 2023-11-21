@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-auto">
                       <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary" href="nuevoLocal"><span class="fas fa-plus me-2"></span>Add new Local</a>
+                      <a class="btn btn-primary" href="nuevoLocal"><span class="fas fa-plus me-2"></span>Add Local</a>
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">UBICACION</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -109,7 +109,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${local.iexubicod}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000">${local.iexubides}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${local.iexubides}</span></td>
                               <td class="align-middle text-center white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
