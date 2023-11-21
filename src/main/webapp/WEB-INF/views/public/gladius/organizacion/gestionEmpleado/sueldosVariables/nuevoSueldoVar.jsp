@@ -78,7 +78,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor Concepto (*)</label>
-                                                 <input class="form-control" name="iexvalcon" maxlength="70" type="number" value="" placeholder="0.00" required/>
+                                                 <input class="form-control" name="iexvalcon" maxlength="70" type="number" step=0.01 value="" placeholder="0.00" required/>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

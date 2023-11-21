@@ -113,11 +113,11 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje</label>
-                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. Fijo</label>
-                                                <input class="form-control" name="ieximpfijo" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

@@ -67,39 +67,39 @@
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrem_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrem_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu 5ta Afect Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Renta 5ta Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rem Afect 5ta Otro Cia</label>
-                                                <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desct. 5ta Otra Cia</label>
-                                                <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. 4ta Acum (Desuso)</label>
-                                                <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desc 4ta Acum (Desuso)</label>
-                                                <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. Otra Cia (Desuso)</label>
-                                                <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dscto. Otra Cia (Desuso)</label>
-                                                <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" value="0.0" required />
+                                                <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

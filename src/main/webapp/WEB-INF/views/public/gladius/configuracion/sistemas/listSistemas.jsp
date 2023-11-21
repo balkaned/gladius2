@@ -107,13 +107,14 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarSistema@${LstSistema.iexcodsys}">#${LstSistema.iexcodsys}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5 pe-5">${LstSistema.iexdessys}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5 pe-5"><span class="badge badge-phoenix fs--1 badge-phoenix-secondary"><span class="badge-label">${LstSistema.iexdessys}</span></td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="editarSistema@${LstSistema.iexcodsys}">Editar</a>
-                                     <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                                         <a class="dropdown-item" href="editarSistema@${LstSistema.iexcodsys}">Editar</a>
+                                         <div class="dropdown-divider">
+                                         </div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
                                  </div>
                                </td>
                             </tr>

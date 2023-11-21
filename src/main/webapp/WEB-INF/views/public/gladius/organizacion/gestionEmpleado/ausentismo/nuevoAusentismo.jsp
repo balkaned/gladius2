@@ -202,7 +202,7 @@ function enviaForm(variable){
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° de Dias(*)</label>
-                                                   <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" placeholder="0" required readonly/>
+                                                   <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" style="background-color:#F1F4F8;" placeholder="0" required readonly/>
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>

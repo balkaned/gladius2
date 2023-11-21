@@ -204,65 +204,72 @@ function enviaForm(variable){
                                             <input class="form-control" name="saldo2" type="hidden" value="${saldo}" />
                                             <input class="form-control" name="iexpermesini2" type="hidden" value="${perini}" />
                                               <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
-                                                                      <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
-                                                                        <option value="" selected>Seleccionar</option>
-                                                                        <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
-                                                                          <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
-                                                                            ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
-                                                                        </c:forEach>
-                                                                      </select>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                                                      <select name="iexcodtra" id="iexcodtra" class="form-select">
-                                                                        <option value="0" selected>Seleccionar</option>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                                                  <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
+                                                      <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
+                                                        ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                                                  <select name="iexcodtra" id="iexcodtra" class="form-select">
+                                                    <option value="0" selected>Seleccionar</option>
 
-                                                                      </select>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
-                                                                      <select name="iexpervac" id="iexpervac" class="form-select">
-                                                                        <option value="0" selected>Seleccionar</option>
-                                                                      </select>
+                                                  </select>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
+                                                  <select name="iexpervac" id="iexpervac" class="form-select">
+                                                    <option value="0" selected>Seleccionar</option>
+                                                  </select>
 
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6 ">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
-                                                                      <input class="form-control" name="iexsaldodias" type="text" value="" placeholder=""
-                                                                        required />
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
-                                                                      <select class="form-select" name="iextipvac" id="iextipvac" onchange="regimen();" required>
-                                                                        <option value="" selected>Seleccionar</option>
-                                                                        <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
-                                                                          <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac
-                                                                            ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 ">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
+                                                  <input class="form-control" name="iexsaldodias" type="text" style="background-color:#F1F4F8;" value="" placeholder="" required readonly/>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
+                                                  <select class="form-select" name="iextipvac" id="iextipvac" onchange="regimen();" required>
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
+                                                      <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac
+                                                        ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
 
-                                                                        </c:forEach>
-                                                                      </select>
+                                                    </c:forEach>
+                                                  </select>
 
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
-                                                                        class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                                      <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
-                                                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
-                                                                        data-options='{"disableMobile":true}' />
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
-                                                                        class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                                      <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
-                                                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
-                                                                        data-options='{"disableMobile":true}' />
-                                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
+                                                    class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
+                                                    onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
+                                                    data-options='{"disableMobile":true}' />
+                                                </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
+                                                    class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
+                                                    onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
+                                                    data-options='{"disableMobile":true}' />
+                                                </div>
 
-                                                                    <div class="col-sm-6 col-md-6">
-                                                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                                                                      <input class="form-control" name="iexnrodias" type="text" value="" placeholder="" required />
-                                                                    </div>
+                                                <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
+                                                  <input class="form-control" name="iexnrodias" type="text" value="" placeholder="" style="background-color:#F1F4F8;" required readonly/>
+                                                </div>
+                                                <div class="col-12 gy-6">
+                                                    <div class="row g-3 justify-content-end">
+                                                      <div class="col-auto">
+                                                        <a class="btn btn-phoenix-primary" href="#">Cancel</a>
+                                                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                      </div>
+                                                    </div>
+                                                </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.

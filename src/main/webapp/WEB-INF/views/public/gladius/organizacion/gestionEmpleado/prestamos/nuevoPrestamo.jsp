@@ -92,11 +92,11 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe Bruto</label>
-                                                <input class="form-control" name="ieximpbruto" maxlength="10" type="number" required />
+                                                <input class="form-control" name="ieximpbruto" maxlength="10" step=0.01 type="number" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Cuotas</label>
-                                                <input class="form-control" name="iexnrocuota" maxlength="2" type="text" required />
+                                                <input class="form-control" name="iexnrocuota" maxlength="2" type="number" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Interes(*)</label>
@@ -109,11 +109,11 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interes</label>
-                                                 <input class="form-control" name="iexinteres" maxlength="4" type="text" required placeholder="%"/>
+                                                 <input class="form-control" name="iexinteres" maxlength="4" type="number" step=0.01 required placeholder="%"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe Total</label>
-                                                <input class="form-control" name="ieximptotal" maxlength="15" type="number" required />
+                                                <input class="form-control" name="ieximptotal" maxlength="15" type="number" step=0.01 required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>

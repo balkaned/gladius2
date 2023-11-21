@@ -85,8 +85,9 @@
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
+                                                    <a class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}">Ver detalle</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-primary" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}">Ver Detalle</a>
+                                                    <a class="dropdown-item text-danger" href="#">Eliminar</a>
                                                   </div>
                                                 </div>
                                               </td>

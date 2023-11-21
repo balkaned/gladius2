@@ -77,7 +77,7 @@
                               </div>
                               <div class="col-sm-6 col-md-4">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor (*)</label>
-                                     <input class="form-control" name="iexvalcon" type="number"  value="${requestScope.xParametro.iexvalcon}"/>
+                                     <input class="form-control" name="iexvalcon" type="number"  step=0.01 value="${requestScope.xParametro.iexvalcon}" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Observacion (*)</label>

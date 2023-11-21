@@ -107,7 +107,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcion@${LstRole.idRole}">#${LstRole.idRole}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstRole.desRole}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstRole.desRole}</span></td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

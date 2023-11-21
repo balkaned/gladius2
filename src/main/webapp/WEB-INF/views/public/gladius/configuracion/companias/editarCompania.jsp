@@ -214,7 +214,7 @@
                            </div>
                        </form>
                        </br>
-                       <div class="form-group row">
+                       <div class="form-group row mt-3">
                            <label class="control-label col-md-3 col-sm-3 "></label>
                            <div class="col-md-6 col-sm-6 ">
                                <table width="750">
@@ -240,7 +240,7 @@
                                                </div>
                                            </div>
                                        </td>
-                                       <td>
+                                       <td class="ps-3">
                                            <div class="mt-3 border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                               <div class="table-responsive scrollbar">
                                                    <table class="table table-sm fs--1 mb-0">

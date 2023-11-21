@@ -31,10 +31,17 @@
                           $("#iexcodtra").html(opt);
                       }
                     });
-
            });
      });
 
+     function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+     }
   </script>
 
   <body>
@@ -173,7 +180,7 @@
                                      <div class="dropdown-menu dropdown-menu-end py-2">
 
                                           <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item text-danger" href="eliminarRolXciaUsu@${usuxciaxrol.codusu}@${usuxciaxrol.codrol}@${usuxciaxrol.codcia}">Eliminar</a>
+                                          <a class="dropdown-item text-danger" onclick="return remove();" href="eliminarRolXciaUsu@${usuxciaxrol.codusu}@${usuxciaxrol.codrol}@${usuxciaxrol.codcia}">Eliminar</a>
                                      </div>
                                    </div>
                                  </td>
