@@ -206,7 +206,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
     }
 
 
-    public List<VacacionProgramacion> listaVacacionesGen(Integer codcia,  String regimen, String fecini , String fecfin , Integer codtra) {
+    public List<VacacionProgramacion> listaVacacionesGen(Integer codcia, String regimen, String fecini, String fecfin, Integer codtra) {
         String sql = "  select  " +
                 "	 c.iexcodcia, " +
                 "	 c.iexcodtra, " +
@@ -222,24 +222,24 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "	 to_char(a.iexfecini,'DD/MM/YYYY') iexfecini, " +
                 "	 to_char(a.iexfecfin,'DD/MM/YYYY') iexfecfin, " +
                 " 	 case " +
-                "	  when (a.iexfecini >=to_date('" +fecini+ "','DD/MM/YYYY') and  a.iexfecini <= to_date('" +fecfin+ "','DD/MM/YYYY')  and  a.iexfecfin <= to_date('" +fecfin+ "','DD/MM/YYYY') )" +
+                "	  when (a.iexfecini >=to_date('" + fecini + "','DD/MM/YYYY') and  a.iexfecini <= to_date('" + fecfin + "','DD/MM/YYYY')  and  a.iexfecfin <= to_date('" + fecfin + "','DD/MM/YYYY') )" +
                 "	    then  (a.iexfecfin -  a.iexfecini) +1  " +
-                "      when (a.iexfecini < to_date('" +fecini+ "','DD/MM/YYYY')  and    a.iexfecfin <= to_date('" +fecfin+ "','DD/MM/YYYY') )     " +
-                "	    then  (a.iexfecfin -  to_date('" +fecini+ "','DD/MM/YYYY') ) +1	" +
-                "	  when (a.iexfecini >= to_date('" +fecini+ "','DD/MM/YYYY')  and  a.iexfecini <= to_date('" +fecfin+ "','DD/MM/YYYY')   and  a.iexfecfin >  to_date('" +fecfin+ "','DD/MM/YYYY') )    " +
-                "	    then  ( to_date('" +fecfin+ "','DD/MM/YYYY')  -  a.iexfecini) +1	  " +
-                "	  when (a.iexfecini < to_date('" +fecini+ "','DD/MM/YYYY')  and   a.iexfecfin >  to_date('" +fecfin+ "','DD/MM/YYYY') )         " +
-                "	    then  ( to_date('" +fecfin+ "','DD/MM/YYYY') - to_date('" +fecini+ "','DD/MM/YYYY') ) +1  " +
+                "      when (a.iexfecini < to_date('" + fecini + "','DD/MM/YYYY')  and    a.iexfecfin <= to_date('" + fecfin + "','DD/MM/YYYY') )     " +
+                "	    then  (a.iexfecfin -  to_date('" + fecini + "','DD/MM/YYYY') ) +1	" +
+                "	  when (a.iexfecini >= to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecini <= to_date('" + fecfin + "','DD/MM/YYYY')   and  a.iexfecfin >  to_date('" + fecfin + "','DD/MM/YYYY') )    " +
+                "	    then  ( to_date('" + fecfin + "','DD/MM/YYYY')  -  a.iexfecini) +1	  " +
+                "	  when (a.iexfecini < to_date('" + fecini + "','DD/MM/YYYY')  and   a.iexfecfin >  to_date('" + fecfin + "','DD/MM/YYYY') )         " +
+                "	    then  ( to_date('" + fecfin + "','DD/MM/YYYY') - to_date('" + fecini + "','DD/MM/YYYY') ) +1  " +
                 "	 end  dias_vac,  " +
                 " case " +
-                "	  when (a.iexfecini >=to_date('" +fecini+ "','DD/MM/YYYY') and  a.iexfecini <= to_date('" +fecfin+ "','DD/MM/YYYY')  and  a.iexfecfin <= to_date('" +fecfin+ "','DD/MM/YYYY') )      " +
+                "	  when (a.iexfecini >=to_date('" + fecini + "','DD/MM/YYYY') and  a.iexfecini <= to_date('" + fecfin + "','DD/MM/YYYY')  and  a.iexfecfin <= to_date('" + fecfin + "','DD/MM/YYYY') )      " +
                 "	    then   to_char(a.iexfecfin,'DD/MM/YYYY')    " +
-                "      when (a.iexfecini < to_date('" +fecini+ "','DD/MM/YYYY')  and    a.iexfecfin <= to_date('" +fecfin+ "','DD/MM/YYYY') )     " +
+                "      when (a.iexfecini < to_date('" + fecini + "','DD/MM/YYYY')  and    a.iexfecfin <= to_date('" + fecfin + "','DD/MM/YYYY') )     " +
                 "	    then  to_char(a.iexfecfin,'DD/MM/YYYY') 	" +
-                "	  when (a.iexfecini >= to_date('" +fecini+ "','DD/MM/YYYY')  and  a.iexfecini <= to_date('" +fecfin+ "','DD/MM/YYYY')   and  a.iexfecfin >  to_date('" +fecfin+ "','DD/MM/YYYY') )    " +
-                "	    then   '" +fecfin+ "'" +
-                "	  when (a.iexfecini < to_date('" +fecini+ "','DD/MM/YYYY')  and   a.iexfecfin >  to_date('" +fecfin+ "','DD/MM/YYYY') )         " +
-                "	    then  '" +fecfin+ "'  " +
+                "	  when (a.iexfecini >= to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecini <= to_date('" + fecfin + "','DD/MM/YYYY')   and  a.iexfecfin >  to_date('" + fecfin + "','DD/MM/YYYY') )    " +
+                "	    then   '" + fecfin + "'" +
+                "	  when (a.iexfecini < to_date('" + fecini + "','DD/MM/YYYY')  and   a.iexfecfin >  to_date('" + fecfin + "','DD/MM/YYYY') )         " +
+                "	    then  '" + fecfin + "'  " +
                 "	 end  fecfinrep,  " +
                 "	 k.des1det codcon ,   k.desdet destipvac   " +
                 "	 from iexempleado c, " +
@@ -252,13 +252,13 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "	 where " +
                 "	 c.iexcodcia = a.iexcodcia and  " +
                 "	 c.iexcodtra = a.iexcodtra and	 " +
-                "	 c.iexcodcia=" +codcia+ " and   c.iexreglab='" +regimen+ "'	 and " +
+                "	 c.iexcodcia=" + codcia + " and   c.iexreglab='" + regimen + "'	 and " +
                 "	 (  " +
-                "		 (a.iexfecini >=to_date('" +fecini+ "','DD/MM/YYYY') and  a.iexfecini <=to_date('" +fecfin+ "','DD/MM/YYYY') )  " +
+                "		 (a.iexfecini >=to_date('" + fecini + "','DD/MM/YYYY') and  a.iexfecini <=to_date('" + fecfin + "','DD/MM/YYYY') )  " +
                 "		or   " +
-                "	      (a.iexfecfin >=to_date('" +fecini+ "','DD/MM/YYYY')  and  a.iexfecfin <=to_date('" +fecfin+ "','DD/MM/YYYY') )  " +
+                "	      (a.iexfecfin >=to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecfin <=to_date('" + fecfin + "','DD/MM/YYYY') )  " +
                 "		 or  " +
-                "		 (a.iexfecini <to_date('" +fecini+ "','DD/MM/YYYY')  and  a.iexfecfin >to_date('" +fecfin+ "','DD/MM/YYYY') )  " +
+                "		 (a.iexfecini <to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecfin >to_date('" + fecfin + "','DD/MM/YYYY') )  " +
                 "	 									  )  ";
         if (codtra != 0) {
 

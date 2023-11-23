@@ -121,26 +121,26 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
         });
     }
 
-    public void insertar(UsuxCompania usuxcia){
+    public void insertar(UsuxCompania usuxcia) {
 
         template.update("  call pl_gestion_rolciaxusu(?,?,?,? , ? )  ",
 
-        usuxcia.getCodusu(),
-        usuxcia.getCodcia(),
-        usuxcia.getCodrol(),
-        usuxcia.getCodtra(),
-        "1");
+                usuxcia.getCodusu(),
+                usuxcia.getCodcia(),
+                usuxcia.getCodrol(),
+                usuxcia.getCodtra(),
+                "1");
     }
 
-    public void eliminar(UsuxCompania usuxcia){
+    public void eliminar(UsuxCompania usuxcia) {
 
         template.update("  call pl_gestion_rolciaxusu(?,?,?,? , ? )  ",
 
-        usuxcia.getCodusu(),
-        usuxcia.getCodcia(),
-        usuxcia.getCodrol(),
-         0,
-        "3");
+                usuxcia.getCodusu(),
+                usuxcia.getCodcia(),
+                usuxcia.getCodrol(),
+                0,
+                "3");
     }
 
 

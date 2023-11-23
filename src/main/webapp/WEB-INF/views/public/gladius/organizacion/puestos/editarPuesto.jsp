@@ -43,31 +43,30 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar puesto</h2>
+                  <h2 id="h2top" class="mb-0">Editar puesto</h2>
                 </div>
               </div>
 
               <div class="row g-5">
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPuesto" novalidate >
+                       <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarPuesto" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                              <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                              <input class="form-control" name="iexpuesto2" type="hidden" value="${idx}" />
+                              <input class="form-control" name="iexpuesto2" type="hidden" value="${idPuesto}" />
                               <div class="col-sm-6 col-md-3">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                                    <input class="form-control" name="iexpuesto" type="text" value="${idx}" placeholder="" readonly disabled/>
+                                    <input class="form-control" name="iexpuesto" type="text" value="${idPuesto}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion del Puesto(*)</label>
-                                    <input class="form-control" name="iexdespuesto" type="text" value="" placeholder="" required/>
+                                    <input class="form-control" name="iexdespuesto" type="text" value="${requestScope.xPuesto.iexdespuesto}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria Puesto</label>
                                   <select class="form-select" name="iexcodcat" >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatPuesto" items="${lovCatPuesto}">
-                                        <option value="${lovCatPuesto.idLov}" >${lovCatPuesto.desLov}</option>
+                                        <option value="${lovCatPuesto.idLov}" ${lovCatPuesto.idLov== requestScope.xPuesto.iexcodcat ? 'selected' : ''} >${lovCatPuesto.desLov}</option>
                                     </c:forEach>
                                   </select>
                               </div>

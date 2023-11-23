@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,11 +25,11 @@ public class ContratoDaoImpl implements ContratoDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<ContratoEmp> listarContratoEmp(Empleado empleado){
+    public List<ContratoEmp> listarContratoEmp(Empleado empleado) {
         List<ContratoEmp> lista = null;
 
         String sql = " select  " +
@@ -36,7 +37,7 @@ public class ContratoDaoImpl implements ContratoDao {
                 "iexcodtra, " +
                 "iexcorrel, " +
                 "iextipcont, " +
-                "d.desdet destipcont, "+
+                "d.desdet destipcont, " +
                 "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "iexmodcont, " +
@@ -51,7 +52,7 @@ public class ContratoDaoImpl implements ContratoDao {
                 " end iexestado  " +
                 " from iexcontctl,  ( " +
                 " select  iexkey, desdet from iexttabled where iexcodtab='12' " +
-                " ) d where iexcodcia="+empleado.getIexcodcia()+" and iexcodtra="+empleado.getIexcodtra()+" and iextipcont = d.iexkey ";
+                " ) d where iexcodcia=" + empleado.getIexcodcia() + " and iexcodtra=" + empleado.getIexcodtra() + " and iextipcont = d.iexkey ";
 
         return template.query(sql, new ResultSetExtractor<List<ContratoEmp>>() {
             public List<ContratoEmp> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -82,42 +83,42 @@ public class ContratoDaoImpl implements ContratoDao {
         });
     }
 
-    public Integer getIdContratoEmp(ContratoEmp contemp){
+    public Integer getIdContratoEmp(ContratoEmp contemp) {
 
         final Integer[] idfinal = {0};
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexcontctl where iexcodcia="+contemp.getIexcodcia()+" and iexcodtra="+contemp.getIexcodtra()+" ";
+        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexcontctl where iexcodcia=" + contemp.getIexcodcia() + " and iexcodtra=" + contemp.getIexcodtra() + " ";
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idex");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertarContratoEmp(ContratoEmp contemp){
+    public void insertarContratoEmp(ContratoEmp contemp) {
 
         template.update("  insert into iexcontctl( " +
-                "iexcodcia,   iexcodtra,     iexcorrel,      iextipcont, " +
-                "iexfecini,   iexfecfin,     iexmodcont,     iexusucrea, iexestado, " +
-                "   iexfeccrea " +
-                " ) values ( " +
-                "  ?,   ? ,  ?,   ?,  "
-                + "  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,  ?,  ? , " +
-                " current_date  "+
-                ")  ",
+                        "iexcodcia,   iexcodtra,     iexcorrel,      iextipcont, " +
+                        "iexfecini,   iexfecfin,     iexmodcont,     iexusucrea, iexestado, " +
+                        "   iexfeccrea " +
+                        " ) values ( " +
+                        "  ?,   ? ,  ?,   ?,  "
+                        + "  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,  ?,  ? , " +
+                        " current_date  " +
+                        ")  ",
 
-            contemp.getIexcodcia(),
-            contemp.getIexcodtra(),
-            contemp.getIexcorrel(),
-            contemp.getIextipcont(),
-            contemp.getIexfecini(),
-            contemp.getIexfecfin(),
-            contemp.getIexmodcont(),
-            contemp.getIexusucrea(),
-            contemp.getIexestado());
+                contemp.getIexcodcia(),
+                contemp.getIexcodtra(),
+                contemp.getIexcorrel(),
+                contemp.getIextipcont(),
+                contemp.getIexfecini(),
+                contemp.getIexfecfin(),
+                contemp.getIexmodcont(),
+                contemp.getIexusucrea(),
+                contemp.getIexestado());
 
     }
 

@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,15 +27,15 @@ public class SueldosDaoImpl implements SueldoDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<EmpSueldo> obtenerEmpSueldo(Empleado empleado){
+    public List<EmpSueldo> obtenerEmpSueldo(Empleado empleado) {
 
         List<EmpSueldo> lista = null;
 
-        String sql =  "select " +
+        String sql = "select " +
                 "s.iexcodcia," +
                 "s.iexcodtra," +
                 "s.iexcodcon," +
@@ -44,15 +45,15 @@ public class SueldosDaoImpl implements SueldoDao {
                 "from iexconcepto c, " +
                 "iexsueldos s " +
                 "where " +
-                "s.iexcodcia = "+empleado.getIexcodcia()+" and  " +
-                "s.iexcodtra= "+empleado.getIexcodtra()+"  and " +
+                "s.iexcodcia = " + empleado.getIexcodcia() + " and  " +
+                "s.iexcodtra= " + empleado.getIexcodtra() + "  and " +
                 "c.coocodcon=s.iexcodcon ";
 
         return template.query(sql, new ResultSetExtractor<List<EmpSueldo>>() {
-            public List<EmpSueldo> extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public List<EmpSueldo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<EmpSueldo> lista = new ArrayList<EmpSueldo>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     EmpSueldo con = new EmpSueldo();
 
                     con.setIexcodcia(rs.getInt("iexcodcia"));
@@ -69,21 +70,21 @@ public class SueldosDaoImpl implements SueldoDao {
         });
     }
 
-    public List<Concepto> ListConceptos(Integer codcia, String Tipo){
+    public List<Concepto> ListConceptos(Integer codcia, String Tipo) {
 
         List<Concepto> lista = null;
 
-        String sql =  "select  " +
+        String sql = "select  " +
                 "coocodcon, coodescon " +
                 "from iexciaxcon, iexconcepto where " +
-                "iexcodcia="+codcia+" and  " +
-                "iexcodcon=coocodcon and iextipreg='"+Tipo+"' ";
+                "iexcodcia=" + codcia + " and  " +
+                "iexcodcon=coocodcon and iextipreg='" + Tipo + "' ";
 
         return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
-            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Concepto> lista = new ArrayList<Concepto>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Concepto con = new Concepto();
 
                     con.setCodConcepto(rs.getString("coocodcon"));
@@ -96,20 +97,20 @@ public class SueldosDaoImpl implements SueldoDao {
         });
     }
 
-    public void insertarEmpSueldo(EmpSueldo empsueldo){
+    public void insertarEmpSueldo(EmpSueldo empsueldo) {
 
         template.update("INSERT INTO iexsueldos (iexcodcia, iexcodtra, iexcodcon, iexvalcon, iexflgest)  VALUES (?, ?, ?, ?, ? )",
 
-        empsueldo.getIexcodcia(),
-        empsueldo.getIexcodtra(),
-        empsueldo.getIexcodcon(),
-        empsueldo.getIexvalcon(),
-        empsueldo.getIexflgest());
+                empsueldo.getIexcodcia(),
+                empsueldo.getIexcodtra(),
+                empsueldo.getIexcodcon(),
+                empsueldo.getIexvalcon(),
+                empsueldo.getIexflgest());
     }
 
-    public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl){
+    public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl) {
 
-        String sql =  " select  " +
+        String sql = " select  " +
                 "v.iexcodcia," +
                 "v.iexcodpro, " +
                 "v.iexnroper, " +
@@ -125,17 +126,17 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexfecmod " +
                 "from iexconcepto c , iexdatavar v " +
                 "where " +
-                "v.iexcodcia = "+cia+" and  " +
-                "v.iexcodpro= "+codpro+"  and " +
-                "v.iexnroper = '"+nroper+"' and " +
-                "v.iexcorrel = "+correl+"  and " +
-                "v.iexcodtra = "+codtra+"  and v.iexcodcon = c.coocodcon ";
+                "v.iexcodcia = " + cia + " and  " +
+                "v.iexcodpro= " + codpro + "  and " +
+                "v.iexnroper = '" + nroper + "' and " +
+                "v.iexcorrel = " + correl + "  and " +
+                "v.iexcodtra = " + codtra + "  and v.iexcodcon = c.coocodcon ";
 
         return template.query(sql, new ResultSetExtractor<List<EmpDatvar>>() {
-            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<EmpDatvar> lista = new ArrayList<EmpDatvar>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     EmpDatvar con = new EmpDatvar();
 
                     con.setIexcodcia(rs.getInt("iexcodcia"));
@@ -154,16 +155,16 @@ public class SueldosDaoImpl implements SueldoDao {
         });
     }
 
-    public void insertarEmpDatvar(EmpDatvar empdatvar){
+    public void insertarEmpDatvar(EmpDatvar empdatvar) {
 
         template.update("INSERT INTO  iexdatavar (iexcodcia, iexcodpro, iexnroper,  iexcorrel, iexcodtra, iexcodcon,  iexvalcon,  iexflgest )  VALUES (?, ?, ?, ?, ?,?,?,? )",
-            empdatvar.getIexcodcia(),
-            empdatvar.getIexcodpro(),
-            empdatvar.getIexnroper(),
-            empdatvar.getIexcorrel(),
-            empdatvar.getIexcodtra(),
-            empdatvar.getIexcodcon(),
-            empdatvar.getIexvalcon(),
-            empdatvar.getIexflgest());
+                empdatvar.getIexcodcia(),
+                empdatvar.getIexcodpro(),
+                empdatvar.getIexnroper(),
+                empdatvar.getIexcorrel(),
+                empdatvar.getIexcodtra(),
+                empdatvar.getIexcodcon(),
+                empdatvar.getIexvalcon(),
+                empdatvar.getIexflgest());
     }
 }

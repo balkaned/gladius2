@@ -27,11 +27,11 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<ProcesoPlanilla> listar(String text){
+    public List<ProcesoPlanilla> listar(String text) {
 
         List<ProcesoPlanilla> lista = null;
         String sql = "select " +
@@ -47,14 +47,14 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "bolprocesores " +
                 "from iexprocesos p   " +
                 "where " +
-                " prodespro like '%"+text+"%' order by procodpro asc ";
+                " prodespro like '%" + text + "%' order by procodpro asc ";
 
         return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
 
             public List<ProcesoPlanilla> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<ProcesoPlanilla> lista = new ArrayList<ProcesoPlanilla>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     ProcesoPlanilla p = new ProcesoPlanilla();
 
                     p.setIdProceso(rs.getInt("procodpro"));

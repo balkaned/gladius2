@@ -76,7 +76,7 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria de Area (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area Padre (*)</label>
                                     <select class="form-select" name="iexareapadre" required >
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">

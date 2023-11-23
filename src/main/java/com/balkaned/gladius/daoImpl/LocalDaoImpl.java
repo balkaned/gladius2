@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,11 +25,11 @@ public class LocalDaoImpl implements LocalDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Local> listarLocales(Integer codcia, String text){
+    public List<Local> listarLocales(Integer codcia, String text) {
 
         String sql = " select  " +
                 "a.iexcodcia, " +
@@ -37,8 +38,8 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexusucrea, " +
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
-                "a.iexfecmod "+
-                "from iexubicacion a  where a.iexcodcia="+codcia+"  "  ;
+                "a.iexfecmod " +
+                "from iexubicacion a  where a.iexcodcia=" + codcia + "  ";
 
         //System.out.println(sql);
 
@@ -47,7 +48,7 @@ public class LocalDaoImpl implements LocalDao {
             public List<Local> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Local> lista = new ArrayList<Local>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Local p = new Local();
                     CapitalizarCadena cap = new CapitalizarCadena();
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -66,7 +67,7 @@ public class LocalDaoImpl implements LocalDao {
         });
     }
 
-    public Local getLocales(Integer codcia, String codubicacion){
+    public Local getLocales(Integer codcia, String codubicacion) {
 
         Local p = null;
 
@@ -77,15 +78,15 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexusucrea, " +
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
-                "a.iexfecmod "+
-                "from iexubicacion a  where a.iexcodcia="+codcia+" and iexubicod ='"+codubicacion+"'  "  ;
+                "a.iexfecmod " +
+                "from iexubicacion a  where a.iexcodcia=" + codcia + " and iexubicod ='" + codubicacion + "'  ";
 
         //System.out.println(sql);
 
         return (Local) template.query(sql, new ResultSetExtractor<Local>() {
             public Local extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Local p = new Local();
-                while(rs.next()) {
+                while (rs.next()) {
                     CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -102,107 +103,36 @@ public class LocalDaoImpl implements LocalDao {
         });
     }
 
-    public Integer getIdUbicaion(Integer codcia){
+    public Integer getIdUbicaion(Integer codcia) {
 
         final Integer[] idcont = {0};
 
-        String sql=" select  coalesce(max(cast(iexubicod as integer)),0)+1  idcont  from iexubicacion  where iexcodcia ="+codcia;
+        String sql = " select  coalesce(max(cast(iexubicod as integer)),0)+1  idcont  from iexubicacion  where iexcodcia =" + codcia;
 
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
                     idcont[0] = Integer.valueOf(rs.getString("idcont"));
                 }
                 return idcont[0];
             }
         });
     }
-    public void insertarUbicacion(Local ubic){
+
+    public void insertarUbicacion(Local ubic) {
 
         template.update("  insert into iexubicacion( " +
                         " iexcodcia,     iexubicod,    iexubides,       " +
                         " iexusucrea,    iexfeccrea  " +
                         " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,  "+
-                        "  ? ,   current_date   "+
+                        "  ? ,   ?    ,   ?   ,  " +
+                        "  ? ,   current_date   " +
                         ")  ",
 
-                 ubic.getIexcodcia(),
-                 ubic.getIexubicod(),
-                 ubic.getIexubides(),
-                 ubic.getIexusucrea());
+                ubic.getIexcodcia(),
+                ubic.getIexubicod(),
+                ubic.getIexubides(),
+                ubic.getIexusucrea());
     }
 
-    /*public void  actualizarUbicaion(Ubicacion ubic) throws DAOException {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
-
-         System.out.println("Insertar cabecera");
-
-        sql.append("  update iexubicacion  set " +
-                        "     iexubides=?,      " +
-                        " iexusumod=?,    iexfecmod=current_date " +
-                        " where iexcodcia=?  and   iexubicod = ?");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-                 pst.setString(1, ubic.getIexubides());
-                 pst.setString(2, ubic.getIexusumod());
-                 pst.setInt(3,  ubic.getIexcodcia());
-                 pst.setString(4,  ubic.getIexubicod());
-
-
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    public void  eliminarUbicacion(Ubicacion ubic) throws DAOException {
-
-         String result = null;
-        StringBuilder sql = new StringBuilder();
-
-         System.out.println("Insertar cabecera");
-
-        sql.append("  delete from iexubicacion where iexcodcia=?  and   iexubicod = ?  ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-
-                 pst.setInt(1,  ubic.getIexcodcia());
-                 pst.setString(2,  ubic.getIexubicod());
-
-
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }*/
 }

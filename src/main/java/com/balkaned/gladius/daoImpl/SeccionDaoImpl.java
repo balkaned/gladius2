@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,11 +24,11 @@ public class SeccionDaoImpl implements SeccionDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Seccion> listarSeccion(){
+    public List<Seccion> listarSeccion() {
 
         List<Seccion> lista = null;
         String sql = " select " +
@@ -43,13 +44,13 @@ public class SeccionDaoImpl implements SeccionDao {
                 "s.iexactiondef  " +
                 "from iexseccion s, iexsystemas y " +
                 "where " +
-                "s.iexcodsys= y.iexcodsys "  ;
+                "s.iexcodsys= y.iexcodsys ";
         return template.query(sql, new ResultSetExtractor<List<Seccion>>() {
 
             public List<Seccion> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Seccion> lista = new ArrayList<Seccion>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Seccion p = new Seccion();
 
                     p.setIexcodsec(rs.getInt("iexcodsec"));
@@ -69,45 +70,45 @@ public class SeccionDaoImpl implements SeccionDao {
         });
     }
 
-    public Integer  getIdSeccion(){
+    public Integer getIdSeccion() {
 
         final Integer[] idfinal = {0};
 
-        String sql = " select  coalesce(max(iexcodsec),0)+1 as idex from iexseccion  " ;
+        String sql = " select  coalesce(max(iexcodsec),0)+1 as idex from iexseccion  ";
 
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idex");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertarSeccion(Seccion seccion){
+    public void insertarSeccion(Seccion seccion) {
 
         template.update("  insert into iexseccion( " +
                         " iexcodsec,   iexdessec,   iexordsec,    iexcodsys,    iexsecurl, " +
                         " iexsecimg,   iexsecobs , iexactiondef  " +
                         " ) values ( " +
-                        "  ? ,      ?  ,       ? ,     ?,       ?,  "+
-                        "  ? ,      ?   ,     ? "+
+                        "  ? ,      ?  ,       ? ,     ?,       ?,  " +
+                        "  ? ,      ?   ,     ? " +
                         ")  ",
 
-                        seccion.getIexcodsec(),
-                        seccion.getIexdessec(),
-                        seccion.getIexordsec(),
-                        seccion.getIexcodsys(),
-                        seccion.getIexsecurl(),
-                        seccion.getIexsecimg(),
-                        seccion.getIexsecobs(),
-                        seccion.getIexactiondef());
+                seccion.getIexcodsec(),
+                seccion.getIexdessec(),
+                seccion.getIexordsec(),
+                seccion.getIexcodsys(),
+                seccion.getIexsecurl(),
+                seccion.getIexsecimg(),
+                seccion.getIexsecobs(),
+                seccion.getIexactiondef());
     }
 
-    public Seccion getSeccion(Integer codsec){
+    public Seccion getSeccion(Integer codsec) {
 
-        String sql=" select " +
+        String sql = " select " +
                 "s.iexcodsec, " +
                 "s.iexdessec, " +
                 "s.iexordsec, " +
@@ -120,12 +121,12 @@ public class SeccionDaoImpl implements SeccionDao {
                 "s.iexactiondef  " +
                 "from iexseccion s, iexsystemas y " +
                 "where " +
-                "s.iexcodsys= y.iexcodsys  and s.iexcodsec= "+codsec+"  "  ;
+                "s.iexcodsys= y.iexcodsys  and s.iexcodsec= " + codsec + "  ";
 
         return (Seccion) template.query(sql, new ResultSetExtractor<Seccion>() {
-            public Seccion extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public Seccion extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Seccion p = new Seccion();
-                while(rs.next()) {
+                while (rs.next()) {
                     p.setIexcodsec(rs.getInt("iexcodsec"));
                     p.setIexdessec(rs.getString("iexdessec"));
                     p.setIexordsec(rs.getInt("iexordsec"));
@@ -141,21 +142,21 @@ public class SeccionDaoImpl implements SeccionDao {
         });
     }
 
-    public void actualizarSeccion(Seccion seccion){
+    public void actualizarSeccion(Seccion seccion) {
 
         template.update("  update iexseccion set " +
-                "    iexdessec= ?  , iexordsec= ?  ,  iexcodsys= ?  ,  iexsecurl= ? , " +
-                " iexsecimg = ? ,   iexsecobs= ? , iexactiondef = ?  " +
-                "  where iexcodsec  = ? ",
+                        "    iexdessec= ?  , iexordsec= ?  ,  iexcodsys= ?  ,  iexsecurl= ? , " +
+                        " iexsecimg = ? ,   iexsecobs= ? , iexactiondef = ?  " +
+                        "  where iexcodsec  = ? ",
 
-        seccion.getIexdessec(),
-        seccion.getIexordsec(),
-        seccion.getIexcodsys(),
-        seccion.getIexsecurl(),
-        seccion.getIexsecimg(),
-        seccion.getIexsecobs(),
-        seccion.getIexactiondef(),
-        seccion.getIexcodsec());
+                seccion.getIexdessec(),
+                seccion.getIexordsec(),
+                seccion.getIexcodsys(),
+                seccion.getIexsecurl(),
+                seccion.getIexsecimg(),
+                seccion.getIexsecobs(),
+                seccion.getIexactiondef(),
+                seccion.getIexcodsec());
 
     }
 

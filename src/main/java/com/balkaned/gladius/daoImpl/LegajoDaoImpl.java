@@ -27,11 +27,11 @@ public class LegajoDaoImpl implements LegajoDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Grpfile> listarGrpfile(Integer codcia, Integer codtra, String grpfile){
+    public List<Grpfile> listarGrpfile(Integer codcia, Integer codtra, String grpfile) {
 
         String sql = " select   i.iexcodcia, i.iexcodtra, " +
                 " grp.iexkey idgrp, " +
@@ -44,14 +44,14 @@ public class LegajoDaoImpl implements LegajoDao {
                 " from iexttabled where iexcodtab='91' )  grp on  i.iexgrpfile = grp.iexkey  " +
                 " left outer join  iexfileimage e  on  i.iexcodcia = e.iexcodcia and i.iexcodgrpfile =  e.iexcodgrpfile   " +
                 " where  " +
-                " i.iexcodcia = "+codcia+"  and   " +
-                " i.iexcodtra = "+codtra+"  " ;
+                " i.iexcodcia = " + codcia + "  and   " +
+                " i.iexcodtra = " + codtra + "  ";
 
-        if(!grpfile.equals("%")){
-            sql=sql+" and  i.iexgrpfile='"+grpfile+"' ";
+        if (!grpfile.equals("%")) {
+            sql = sql + " and  i.iexgrpfile='" + grpfile + "' ";
         }
 
-        sql=sql+" order by grp.iexkey ,  i.iexcodgrpfile asc  ";
+        sql = sql + " order by grp.iexkey ,  i.iexcodgrpfile asc  ";
 
         return template.query(sql, new ResultSetExtractor<List<Grpfile>>() {
             public List<Grpfile> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -60,8 +60,8 @@ public class LegajoDaoImpl implements LegajoDao {
                 while (rs.next()) {
                     Grpfile p = new Grpfile();
 
-                    p.setIexcodcia(rs.getInt("iexcodcia")) ;
-                    p.setIexcodtra(rs.getInt("iexcodtra")) ;
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setDesgrangrupo(rs.getString("desgrupo"));
                     p.setIexcodgrpfile(rs.getInt("iexcodgrpfile"));
                     p.setIexdesgrpfile(rs.getString("iexdesgrpfile"));
@@ -78,24 +78,24 @@ public class LegajoDaoImpl implements LegajoDao {
         });
     }
 
-    public Integer obtieneIdGrpFile(Grpfile grpfile){
+    public Integer obtieneIdGrpFile(Grpfile grpfile) {
 
         final Integer[] idfinal = {0};
 
-        String sql = " SELECT coalesce(max(iexcodgrpfile),0)+1 idcont  FROM iexgrpfile WHERE IEXCODCIA="+grpfile.getIexcodcia()+"  ";
+        String sql = " SELECT coalesce(max(iexcodgrpfile),0)+1 idcont  FROM iexgrpfile WHERE IEXCODCIA=" + grpfile.getIexcodcia() + "  ";
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idcont");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idcont");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertarGrpFile(Grpfile grpfile){
+    public void insertarGrpFile(Grpfile grpfile) {
 
-        template.update("insert into iexgrpfile(   "+
+        template.update("insert into iexgrpfile(   " +
                         " iexcodcia, " +
                         "iexcodgrpfile, " +
                         "iexcodtra, " +
@@ -103,16 +103,16 @@ public class LegajoDaoImpl implements LegajoDao {
                         "iexdesgrpfile, " +
                         "iexestado, " +
                         "iexusucrea, " +
-                        "iexfeccrea  ) values "+
+                        "iexfeccrea  ) values " +
                         "  ( ?,?,?,?,?,   ?,?,   CURRENT_TIMESTAMP  ) ",
 
-                        grpfile.getIexcodcia(),
-                        grpfile.getIexcodgrpfile(),
-                        grpfile.getIexcodtra(),
-                        grpfile.getIexgrpfile(),
-                        grpfile.getIexdesgrpfile(),
-                        grpfile.getIexestado(),
-                        grpfile.getIexusucrea());
+                grpfile.getIexcodcia(),
+                grpfile.getIexcodgrpfile(),
+                grpfile.getIexcodtra(),
+                grpfile.getIexgrpfile(),
+                grpfile.getIexdesgrpfile(),
+                grpfile.getIexestado(),
+                grpfile.getIexusucrea());
     }
 
 }

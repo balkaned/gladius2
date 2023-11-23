@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,22 +24,22 @@ public class SistemaDaoImpl implements SistemaDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Sistemas> listarSistemas(){
+    public List<Sistemas> listarSistemas() {
 
         String sql = " select  " +
                 "iexcodsys, " +
                 "iexdessys " +
-                "from iexsystemas "  ;
+                "from iexsystemas ";
         return template.query(sql, new ResultSetExtractor<List<Sistemas>>() {
 
             public List<Sistemas> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Sistemas> lista = new ArrayList<Sistemas>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     Sistemas p = new Sistemas();
 
                     p.setIexcodsys(rs.getInt("iexcodsys"));
@@ -51,29 +52,29 @@ public class SistemaDaoImpl implements SistemaDao {
         });
     }
 
-    public void insertarSistemas(Sistemas systema){
+    public void insertarSistemas(Sistemas systema) {
 
         template.update("  insert into iexsystemas( " +
                         " iexcodsys,       iexdessys " +
                         " ) values ( " +
-                        "  ? ,   ?   "+
+                        "  ? ,   ?   " +
                         ")  ",
 
-                        systema.getIexcodsys(),
-                        systema.getIexdessys());
+                systema.getIexcodsys(),
+                systema.getIexdessys());
     }
 
-    public Sistemas getSistemas(Integer codsis){
+    public Sistemas getSistemas(Integer codsis) {
 
-        String sql=" select  " +
+        String sql = " select  " +
                 "iexcodsys, " +
                 "iexdessys, " +
                 "iexactiondefault " +
-                "from iexsystemas where iexcodsys = "+codsis+" ";
+                "from iexsystemas where iexcodsys = " + codsis + " ";
         return (Sistemas) template.query(sql, new ResultSetExtractor<Sistemas>() {
-            public Sistemas extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public Sistemas extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Sistemas p = new Sistemas();
-                while(rs.next()) {
+                while (rs.next()) {
                     p.setIexcodsys(rs.getInt("iexcodsys"));
                     p.setIexdessys(rs.getString("iexdessys"));
                     p.setIexactiondefault(rs.getString("iexactiondefault"));
@@ -83,13 +84,13 @@ public class SistemaDaoImpl implements SistemaDao {
         });
     }
 
-    public void actualizarSistemas(Sistemas systema){
+    public void actualizarSistemas(Sistemas systema) {
 
         template.update("  update iexsystemas  set  iexdessys =? " +
                         " where iexcodsys=?     ",
 
-        systema.getIexdessys(),
-        systema.getIexcodsys());
+                systema.getIexdessys(),
+                systema.getIexcodsys());
 
     }
 

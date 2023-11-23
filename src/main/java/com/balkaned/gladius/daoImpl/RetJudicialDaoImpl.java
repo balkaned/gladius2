@@ -27,11 +27,11 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<RetencionJudicial> listarRetencionJudicial(Empleado empleado){
+    public List<RetencionJudicial> listarRetencionJudicial(Empleado empleado) {
 
         String sql = " select " +
                 "iexcodcia," +
@@ -56,7 +56,7 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "                        ) d,  " +
                 "   iexprocesos p " +
                 "where  " +
-                "iexcodcia="+empleado.getIexcodcia()+" and iexcodtra="+empleado.getIexcodtra()+" and  iextipretjud = d.iexkey and iexcodpro= p.procodpro "  ;
+                "iexcodcia=" + empleado.getIexcodcia() + " and iexcodtra=" + empleado.getIexcodtra() + " and  iextipretjud = d.iexkey and iexcodpro= p.procodpro ";
 
         return template.query(sql, new ResultSetExtractor<List<RetencionJudicial>>() {
             public List<RetencionJudicial> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -89,32 +89,32 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
         });
     }
 
-    public Integer getIdRetencionJudicial(RetencionJudicial retjud){
+    public Integer getIdRetencionJudicial(RetencionJudicial retjud) {
 
         final Integer[] idfinal = {0};
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexretjudic where iexcodcia="+retjud.getIexcodcia()+" and iexcodtra="+retjud.getIexcodtra()+" " ;
+        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexretjudic where iexcodcia=" + retjud.getIexcodcia() + " and iexcodtra=" + retjud.getIexcodtra() + " ";
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idex");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertarRetencionJudicial(RetencionJudicial retjud){
+    public void insertarRetencionJudicial(RetencionJudicial retjud) {
 
         template.update("  insert into iexretjudic( " +
-                "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
-                "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
-                "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
-                " ) values ( " +
-                "  ?,   ? ,  ?,   ?,  "+
-                "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,"+
-                "  ?  ,  ?,   ? ,  current_date "+
-                ")  ",
+                        "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
+                        "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
+                        "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
+                        " ) values ( " +
+                        "  ?,   ? ,  ?,   ?,  " +
+                        "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ," +
+                        "  ?  ,  ?,   ? ,  current_date " +
+                        ")  ",
 
                 retjud.getIexcodcia(),
                 retjud.getIexcodtra(),

@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,11 +25,11 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<DerechoHabiente> listar(Integer codcia, Integer codtra){
+    public List<DerechoHabiente> listar(Integer codcia, Integer codtra) {
 
         String sql = " select d.iexcodcia, " +
                 "d.iexcodtra, " +
@@ -92,8 +93,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 " d.iexcodtra = p.iexcodtra  and " +
                 " d.iextipvinculo = g.iexkey and " +
                 " d.iextipnroiddep = j.iexkey  and "
-                + " d.iexcodcia = "+codcia+" and "
-                + " d.iexcodtra = "+codtra+"  "  ;
+                + " d.iexcodcia = " + codcia + " and "
+                + " d.iexcodtra = " + codtra + "  ";
         return template.query(sql, new ResultSetExtractor<List<DerechoHabiente>>() {
             public List<DerechoHabiente> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<DerechoHabiente> lista = new ArrayList<DerechoHabiente>();
@@ -151,7 +152,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                     p.setIexnrotelf(rs.getString("iexnrotelf"));
                     p.setIexemail(rs.getString("iexemail"));
 
-                    logger.info("Iexfecnac: "+p.getIexfecnac());
+                    logger.info("Iexfecnac: " + p.getIexfecnac());
 
                     lista.add(p);
                 }
@@ -160,7 +161,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
         });
     }
 
-    public Integer validarDerhabiente(DerechoHabiente derhab){
+    public Integer validarDerhabiente(DerechoHabiente derhab) {
 
         String sql = " select d.iexcodcia, " +
                 "d.iexcodtra, " +
@@ -180,16 +181,16 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 " d.iexcodtra = p.iexcodtra  and " +
                 " d.iextipvinculo = g.iexkey and " +
                 " d.iextipnroiddep = j.iexkey  and "
-                + " d.iexcodcia = "+derhab.getIexcodcia()+" and "
-                + " d.iexcodtra = "+derhab.getIexcodtra()+" and  d.iextipnroiddep= '"+derhab.getIextipnroiddep()+"'  and  d.iexnroiddep='"+derhab.getIexnroiddep()+"' ";
+                + " d.iexcodcia = " + derhab.getIexcodcia() + " and "
+                + " d.iexcodtra = " + derhab.getIexcodtra() + " and  d.iextipnroiddep= '" + derhab.getIextipnroiddep() + "'  and  d.iexnroiddep='" + derhab.getIexnroiddep() + "' ";
 
         final DerechoHabiente[] p = {null};
         final Integer[] count = {0};
-        Integer idfinal=0;
+        Integer idfinal = 0;
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<DerechoHabiente> lista = new ArrayList<DerechoHabiente>();
-                while(rs.next()) {
+                while (rs.next()) {
                     DerechoHabiente p = new DerechoHabiente();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -212,58 +213,58 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
         });
     }
 
-    public Integer getIdDerechoHab(DerechoHabiente derhab){
+    public Integer getIdDerechoHab(DerechoHabiente derhab) {
 
         final Integer[] idfinal = {0};
 
-        String sql = " select coalesce(max(iexcoddep),0)+1 as idex from iexempderhab where iexcodcia="+derhab.getIexcodcia()+" and iexcodtra="+derhab.getIexcodtra()+" " ;
+        String sql = " select coalesce(max(iexcoddep),0)+1 as idex from iexempderhab where iexcodcia=" + derhab.getIexcodcia() + " and iexcodtra=" + derhab.getIexcodtra() + " ";
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idex");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idex");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public void insertar(DerechoHabiente derhab){
+    public void insertar(DerechoHabiente derhab) {
 
-        template.update(" insert into iexempderhab(   "+
-                " iexcodcia,           iexcodtra,         	iexcoddep,         iextipnroiddep,      iexnroiddep, " +
-                " iexpaisemisor,       iexfecnac,         	iexapepatdep,      iexapematdep,        iexnomdep, " +
-                " iexsexo,             iextipvinculo,     	iextipdocacredit,  iexnrodocacredit,    iexmesconcep, " +
-                " iextipvia_dom1,      iexnomvia_dom1,    	iexnrovia_dom1, " +
-                " iexdeptin_dom1,      iexinterior_dom1,  	iexmanzana_dom1, " +
-                " iexlote_dom1,        iexkilometro_dom1, 	iexblock_dom1, " +
-                " iexetapa_dom1,       iextipzona_dom1,   	iexnomzona_dom1, " +
-                " iexreferencia_dom1,  iexubigeo_dom1, " +
-                " iextipvia_dom2,      iexnomvia_dom2,        iexnrovia_dom2,    iexdeptin_dom2, " +
-                " iexinterior_dom2,    iexmanzana_dom2,       iexlote_dom2,      iexkilometro_dom2, " +
-                " iexblock_dom2,       iexetapa_dom2,         iextipzona_dom2,   iexnomzona_dom2, " +
-                " iexreferencia_dom2,  iexubigeo_dom2,         " +
-                " iexcenasis,          iexcodlar,             iexnrotelf,        iexemail , "+
-                "  iexnacion_origen1, " +
-                "    iexdepart_origen1 , " +
-                "    iexprovin_origen1 , " +
-                "    iexnacion_origen2 , " +
-                "    iexdepart_origen2 , " +
-                "    iexprovin_origen2 "+
-                " ) values "+
-                "  (   ? ,  ? , ?,   ?,   ?,  "+
-                "  ? ,  to_date(?,'DD/MM/YYYY'),  ?,   ?,   ?,  "+
-                "  ? ,  ?,  ?,   ?,   ?,   "+
-                "  ?,   ?,  ?  , "+
-                "  ?,   ?,  ?  , "+
-                "  ?,   ?,  ?  , "+
-                "  ?,   ?,  ?  , "+
-                "  ?,   ?,            "+
-                "  ?,   ?,  ?  , ? ,  "+
-                "  ?,   ?,  ?  , ? ,  "+
-                "  ?,   ?,  ?  , ? ,  "+
-                "  ?,   ?,             "+
-                "  ?,   ?,  ?  , ? ,   "+
-                "  ?, ?, ?, ?, ?, ? ) ",
+        template.update(" insert into iexempderhab(   " +
+                        " iexcodcia,           iexcodtra,         	iexcoddep,         iextipnroiddep,      iexnroiddep, " +
+                        " iexpaisemisor,       iexfecnac,         	iexapepatdep,      iexapematdep,        iexnomdep, " +
+                        " iexsexo,             iextipvinculo,     	iextipdocacredit,  iexnrodocacredit,    iexmesconcep, " +
+                        " iextipvia_dom1,      iexnomvia_dom1,    	iexnrovia_dom1, " +
+                        " iexdeptin_dom1,      iexinterior_dom1,  	iexmanzana_dom1, " +
+                        " iexlote_dom1,        iexkilometro_dom1, 	iexblock_dom1, " +
+                        " iexetapa_dom1,       iextipzona_dom1,   	iexnomzona_dom1, " +
+                        " iexreferencia_dom1,  iexubigeo_dom1, " +
+                        " iextipvia_dom2,      iexnomvia_dom2,        iexnrovia_dom2,    iexdeptin_dom2, " +
+                        " iexinterior_dom2,    iexmanzana_dom2,       iexlote_dom2,      iexkilometro_dom2, " +
+                        " iexblock_dom2,       iexetapa_dom2,         iextipzona_dom2,   iexnomzona_dom2, " +
+                        " iexreferencia_dom2,  iexubigeo_dom2,         " +
+                        " iexcenasis,          iexcodlar,             iexnrotelf,        iexemail , " +
+                        "  iexnacion_origen1, " +
+                        "    iexdepart_origen1 , " +
+                        "    iexprovin_origen1 , " +
+                        "    iexnacion_origen2 , " +
+                        "    iexdepart_origen2 , " +
+                        "    iexprovin_origen2 " +
+                        " ) values " +
+                        "  (   ? ,  ? , ?,   ?,   ?,  " +
+                        "  ? ,  to_date(?,'DD/MM/YYYY'),  ?,   ?,   ?,  " +
+                        "  ? ,  ?,  ?,   ?,   ?,   " +
+                        "  ?,   ?,  ?  , " +
+                        "  ?,   ?,  ?  , " +
+                        "  ?,   ?,  ?  , " +
+                        "  ?,   ?,  ?  , " +
+                        "  ?,   ?,            " +
+                        "  ?,   ?,  ?  , ? ,  " +
+                        "  ?,   ?,  ?  , ? ,  " +
+                        "  ?,   ?,  ?  , ? ,  " +
+                        "  ?,   ?,             " +
+                        "  ?,   ?,  ?  , ? ,   " +
+                        "  ?, ?, ?, ?, ?, ? ) ",
 
                 derhab.getIexcodcia(),
                 derhab.getIexcodtra(),

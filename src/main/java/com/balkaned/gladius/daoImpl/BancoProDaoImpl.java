@@ -27,11 +27,11 @@ public class BancoProDaoImpl implements BancoProDao {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<BancoPro> listarBancoPro(Integer codcia, String text){
+    public List<BancoPro> listarBancoPro(Integer codcia, String text) {
 
         List<BancoPro> lista = null;
         String sql = " select  " +
@@ -51,14 +51,14 @@ public class BancoProDaoImpl implements BancoProDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  on a.iexcodban = c.iexkey " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  on a.iextipcta = d.iexkey " +
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia="+codcia+"  " ;
+                "where iexcodcia=" + codcia + "  ";
 
         return template.query(sql, new ResultSetExtractor<List<BancoPro>>() {
 
             public List<BancoPro> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<BancoPro> lista = new ArrayList<BancoPro>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     BancoPro p = new BancoPro();
                     CapitalizarCadena cap = new CapitalizarCadena();
 
@@ -83,7 +83,7 @@ public class BancoProDaoImpl implements BancoProDao {
         });
     }
 
-    public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco){
+    public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco) {
 
         BancoPro p = null;
         List<BancoPro> lista = null;
@@ -104,11 +104,11 @@ public class BancoProDaoImpl implements BancoProDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  on a.iexcodban = c.iexkey " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  on a.iextipcta = d.iexkey " +
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia="+codcia+"  " ;
+                "where iexcodcia=" + codcia + "  ";
 
         return (BancoPro) template.query(sql, new ResultSetExtractor<BancoPro>() {
             public BancoPro extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while(rs.next()) {
+                while (rs.next()) {
                     BancoPro p = new BancoPro();
                     CapitalizarCadena cap = new CapitalizarCadena();
 
@@ -131,102 +131,22 @@ public class BancoProDaoImpl implements BancoProDao {
         });
     }
 
-    public void insertarBancoPro(BancoPro bancopro){
+    public void insertarBancoPro(BancoPro bancopro) {
 
         template.update("  insert into iexprobancos( " +
-                " iexcodcia,      iexcodban,     iexcodpro,      iextipcta,  " +
-                " iexctaban,      iexusucrea,    iexfeccrea " +
-                " ) values ( " +
-                "  ? ,   ?    ,   ?   ,  ?  , "+
-                "  ? ,  ? ,  current_date "+
-                ")  ",
+                        " iexcodcia,      iexcodban,     iexcodpro,      iextipcta,  " +
+                        " iexctaban,      iexusucrea,    iexfeccrea " +
+                        " ) values ( " +
+                        "  ? ,   ?    ,   ?   ,  ?  , " +
+                        "  ? ,  ? ,  current_date " +
+                        ")  ",
 
-            bancopro.getIexcodcia(),
-            bancopro.getIexcodban(),
-            bancopro.getIexcodpro(),
-            bancopro.getIextipcta(),
-            bancopro.getIexctaban(),
-            bancopro.getIexusucrea());
+                bancopro.getIexcodcia(),
+                bancopro.getIexcodban(),
+                bancopro.getIexcodpro(),
+                bancopro.getIextipcta(),
+                bancopro.getIexctaban(),
+                bancopro.getIexusucrea());
     }
-
-/*
-
-    public void  actualizarBancoPro(BancoPro bancopro) throws DAOException {
-
-
-         String result = null;
-        StringBuilder sql = new StringBuilder();
-
-         System.out.println("Insertar cabecera");
-
-        sql.append("  update iexprobancos set " +
-                        " iextipcta = ? , " +
-                        " iexctaban =? ,      iexusumod=?,    iexfecmod=current_date " +
-                        " where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-                 pst.setString(1, bancopro.getIextipcta());
-                 pst.setString(2, bancopro.getIexctaban());
-                 pst.setString(3, bancopro.getIexusumod());
-                 pst.setInt(4, bancopro.getIexcodcia());
-                 pst.setString(5, bancopro.getIexcodban());
-                 pst.setInt(6, bancopro.getIexcodpro());
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }
-
-    public void  eliminarBancoPro(BancoPro bancopro) throws DAOException {
-
-
-
-         String result = null;
-        StringBuilder sql = new StringBuilder();
-
-         System.out.println("Insertar cabecera");
-
-        sql.append("  delete from  iexprobancos  where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ");
-
-        try (
-                Connection cn = cf.getConnection();
-                //PreparedStatement pst = cn.prepareStatement(sql.toString());) {
-                CallableStatement pst =cn.prepareCall(sql.toString());) {
-
-
-                 pst.setInt(1, bancopro.getIexcodcia());
-                 pst.setString(2, bancopro.getIexcodban());
-                 pst.setInt(3, bancopro.getIexcodpro());
-
-             System.out.println(sql);
-
-            pst.execute();
-            pst.close();
-            cn.close();
-
-        } catch (SQLException e) {
-            result = e.getMessage();
-             System.out.println("Error en insertar cabecera"+e.getMessage());
-         } catch (NamingException ex) {
-            Logger.getLogger(DAOCompaniaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }*/
 
 }
