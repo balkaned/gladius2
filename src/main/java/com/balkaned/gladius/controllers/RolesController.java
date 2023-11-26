@@ -407,5 +407,78 @@ public class RolesController {
         return new ModelAndView("redirect:/verOpcion@"+iexcodrol);
     }
 
+    @RequestMapping("/deleteRol@{idRol}")
+    public ModelAndView deleteRol(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
+        logger.info("/deleteRol");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Role rol  = new Role();
+        rol.setIdRole(Integer.valueOf(idRol));
+
+        rolService.eliminarRole(rol);
+
+        return new ModelAndView("redirect:/listRoles");
+    }
+
+    @RequestMapping("/deleteOpcionxRol@{idOpc}@{idRol}")
+    public ModelAndView deleteOpcionxRol(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idOpc,
+                                         @PathVariable String idRol) {
+        logger.info("/deleteOpcionxRol");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Rolesxopciones rolopc = new  Rolesxopciones();
+        rolopc.setIexcodrol(Integer.valueOf(idRol));
+        rolopc.setIexcodopc(Integer.valueOf(idOpc));
+
+        rolService.eliminarRolesxopciones(rolopc);
+
+        return new ModelAndView("redirect:/verOpcion@"+idRol);
+    }
+
 }
 

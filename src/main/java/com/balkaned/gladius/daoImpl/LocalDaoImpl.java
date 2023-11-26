@@ -135,4 +135,27 @@ public class LocalDaoImpl implements LocalDao {
                 ubic.getIexusucrea());
     }
 
+    public void actualizarUbicaion(Local ubic) {
+
+        template.update("  update iexubicacion  set " +
+                        "     iexubides=?,      " +
+                        " iexusumod=?,    iexfecmod=current_date " +
+                        " where iexcodcia=?  and   iexubicod = ?",
+
+                ubic.getIexubides(),
+                ubic.getIexusumod(),
+                ubic.getIexcodcia(),
+                ubic.getIexubicod());
+
+    }
+
+    public void eliminarUbicacion(Local ubic) {
+
+        template.update("  delete from iexubicacion where iexcodcia=?  and   iexubicod = ?  ",
+
+                ubic.getIexcodcia(),
+                ubic.getIexubicod());
+
+    }
+
 }

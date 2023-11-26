@@ -127,8 +127,8 @@
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a class="dropdown-item" href="editarUsuario@${LstUsuario.idUsuario}">Editar</a>
                                         <a class="dropdown-item" href="asignarRolUs@${LstUsuario.idUsuario}">Asignar Rol</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                        <!--<div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->
                                    </div>
                                  </div>
                                </td>

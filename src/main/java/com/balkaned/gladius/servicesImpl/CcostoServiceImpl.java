@@ -14,12 +14,27 @@ public class CcostoServiceImpl implements CcostoService {
     @Autowired
     CcostoDao dao;
 
-    public List<CentroCosto> listarCentroCosto(Integer codcia, String text){
-        return dao.listarCentroCosto(codcia,text);
+    public List<CentroCosto> listarCentroCosto(Integer codcia, String text) {
+        return dao.listarCentroCosto(codcia, text);
     }
-    public CentroCosto getCentroCosto(Integer codcia, String codccosto){
-        return dao.getCentroCosto(codcia,codccosto);
+
+    public CentroCosto getCentroCosto(Integer codcia, String codccosto) {
+        return dao.getCentroCosto(codcia, codccosto);
     }
-    public Integer getIdCentroCosto(Integer codcia){return dao.getIdCentroCosto(codcia);}
-    public void insertarCentroCosto(CentroCosto ccosto){dao.insertarCentroCosto(ccosto);}
+
+    public Integer getIdCentroCosto(Integer codcia) {
+        return dao.getIdCentroCosto(codcia);
+    }
+
+    public void insertarCentroCosto(CentroCosto ccosto) {
+        dao.insertarCentroCosto(ccosto);
+    }
+
+    public void actualizarCentroCosto(CentroCosto ccosto) {
+        dao.actualizarCentroCosto(ccosto);
+    }
+
+    public void eliminarCentroCosto(CentroCosto ccosto) {
+        dao.eliminarCentroCosto(ccosto);
+    }
 }

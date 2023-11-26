@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -94,7 +105,7 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">Descripcion</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESCRIPCION</th>
                           <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
                       </thead>
@@ -116,7 +127,7 @@
                                         <a class="dropdown-item" href="verDetalleTblGen@${LstTTablac.iexcodtab}">Ver Detalle</a>
                                         <a class="dropdown-item" href="editarTblGen@${LstTTablac.iexcodtab}">Editar</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                        <a class="dropdown-item text-danger" onclick="return remove();" href="deleteTablaGen@${LstTTablac.iexcodtab}">Eliminar</a>
                                    </div>
                                  </div>
                                </td>

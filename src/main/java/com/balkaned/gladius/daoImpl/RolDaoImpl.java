@@ -269,4 +269,19 @@ public class RolDaoImpl implements RolDao {
                 rolxopc.getIexcodopc());
     }
 
+    public void eliminarRole(Role rol) {
+
+        template.update("  delete  from iexroles  where iexcodrol=?  ",
+
+                rol.getIdRole());
+    }
+
+    public void eliminarRolesxopciones(Rolesxopciones rolxopc) {
+
+        template.update("  delete  from iexrolxopc where iexcodrol =?  and  iexcodopc =? ",
+
+                rolxopc.getIexcodrol(),
+                rolxopc.getIexcodopc());
+    }
+
 }

@@ -25,8 +25,8 @@
           <div class="content">
             <nav class="mb-2" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestion de empleados</a></li>
+                <li class="breadcrumb-item active">Trabajadores</li>
               </ol>
             </nav>
             <div class="mb-9">
@@ -36,8 +36,7 @@
                 </div>
               </div>
               <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="#">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Consultar Todos<span class="text-700 fw-semi-bold"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="reingresoEmpleado">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
                 <!--<li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
@@ -112,7 +111,7 @@
                           <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">ESTADO</th>
                           <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI</th>
                           <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" >FICHA</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -145,10 +144,10 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver Detalle</a>
+                                        <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver detalle</a>
                                         <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                        <!--<div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->
                                    </div>
                                  </div>
                                </td>

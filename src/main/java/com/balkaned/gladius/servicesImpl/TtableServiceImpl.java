@@ -43,4 +43,16 @@ public class TtableServiceImpl implements TtableService {
     public TTablaDetalle recuperarTTablad(String idttabla, String idttabladet) {
         return dao.recuperarTTablad(idttabla, idttabladet);
     }
+
+    public void eliminarTTablac(String idttabla) {
+        dao.eliminarTTablac(idttabla);
+    }
+
+    public void eliminarTTablad(String idttabla) {
+        dao.eliminarTTablad(idttabla);
+    }
+
+    public void eliminarTTablade(String idttabla, String idttabladet) {
+        dao.eliminarTTablade(idttabla, idttabladet);
+    }
 }

@@ -463,4 +463,23 @@ public class TtableDaoImpl implements TtableDao {
         });
     }
 
+    public void eliminarTTablac(String idttabla) {
+
+        template.update(" delete from iexttablec where  iexcodtab = ? ",
+                idttabla);
+    }
+
+    public void eliminarTTablad(String idttabla) {
+
+        template.update(" delete from iexttabled where  iexcodtab = ? ",
+                idttabla);
+    }
+
+    public void eliminarTTablade(String idttabla, String idttabladet) {
+
+        template.update(" delete from iexttabled where  iexcodtab = ? and iexkey=? ",
+                idttabla,
+                idttabladet);
+    }
+
 }

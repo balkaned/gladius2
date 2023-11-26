@@ -15,4 +15,6 @@ public interface PuestoService {
 
     public void actualizarPuesto(Puesto puesto);
 
+    public void eliminarPuesto(Puesto puesto);
+
 }

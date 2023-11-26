@@ -17,4 +17,6 @@ public interface AreaService {
 
     public void actualizarArea(Area area);
 
+    public void eliminarArea(Area area);
+
 }

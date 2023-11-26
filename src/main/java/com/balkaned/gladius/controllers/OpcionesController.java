@@ -1,5 +1,6 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Opciones;
 import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.services.*;
@@ -211,6 +212,40 @@ public class OpcionesController {
         opc.setIexdescripcion(request.getParameter("iexdescripcion"));
 
         opcionService.actualizarOpciones(opc);
+
+        return new ModelAndView("redirect:/listOpciones");
+    }
+
+    @RequestMapping("/deleteOpc@{idOpc}")
+    public ModelAndView deleteOpc(ModelMap model, HttpServletRequest request, @PathVariable String idOpc) {
+        logger.info("/deleteOpc");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Opciones opc =  new Opciones();
+        opc.setIexcodopc(Integer.valueOf(idOpc));
+        opcionService.eliminarOpciones(opc);
 
         return new ModelAndView("redirect:/listOpciones");
     }

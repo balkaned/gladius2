@@ -318,7 +318,7 @@ public class SueldosController {
         model.addAttribute("iexcodpro",iexcodpro);
         model.addAttribute("iexperiodo",iexperiodo);
 
-        model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(iexcodtra),1));
+        model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(idTrab),1));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");
     }
@@ -379,7 +379,6 @@ public class SueldosController {
 
         model.addAttribute("iexcodpro",iexcodpro);
         model.addAttribute("iexperiodo",iexperiodo);
-
         model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(iexcodtra),1));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");

@@ -1,7 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 
-import com.balkaned.gladius.beans.Opciones;
+import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Sistemas;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -202,6 +201,43 @@ public class SistemasController {
 
         return new ModelAndView("redirect:/listSistemas");
     }
+
+    @RequestMapping("/deleteSistema@{idSys}")
+    public ModelAndView deleteSistema(ModelMap model, HttpServletRequest request, @PathVariable String idSys) {
+        logger.info("/deleteSistema");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Sistemas sis = new Sistemas();
+        sis.setIexcodsys(Integer.valueOf(idSys));
+
+        sistemaService.eliminarSistemas(sis);
+
+        return new ModelAndView("redirect:/listSistemas");
+    }
+
+
 
 }
 

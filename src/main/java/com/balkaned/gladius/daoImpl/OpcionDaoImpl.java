@@ -168,4 +168,11 @@ public class OpcionDaoImpl implements OpcionDao {
                 opc.getIexcodopc());
     }
 
+    public void eliminarOpciones(Opciones opc) {
+
+        template.update("  delete from  iexopciones  where  iexcodopc   =  ? ",
+
+                opc.getIexcodopc());
+    }
+
 }

@@ -18,6 +18,13 @@ public interface TtableDao {
     public List<TTablaDetalle> listarTTablad(String idttabla);
 
     public void actualizarTTablad(TTablaDetalle ttd);
+
     public TTablaDetalle recuperarTTablad(String idttabla, String idttabladet);
+
+    public void eliminarTTablac(String idttabla);
+
+    public void eliminarTTablad(String idttabla);
+
+    public void eliminarTTablade(String idttabla, String idttabladet);
 
 }

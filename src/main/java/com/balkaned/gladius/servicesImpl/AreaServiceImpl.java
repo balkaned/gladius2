@@ -37,4 +37,8 @@ public class AreaServiceImpl implements AreaService {
         dao.actualizarArea(area);
     }
 
+    public void eliminarArea(Area area) {
+        dao.eliminarArea(area);
+    }
+
 }

@@ -181,4 +181,12 @@ public class AreaDaoImpl implements AreaDao {
 
     }
 
+    public void eliminarArea(Area area){
+
+        template.update("  delete from iexarea  where iexcodcia=?  and   iexcodarea = ?",
+
+        area.getIexcodcia(),
+        area.getIexcodarea());
+    }
+
 }

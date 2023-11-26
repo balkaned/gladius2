@@ -224,5 +224,43 @@ public class PuestoController {
         return new ModelAndView("redirect:/listPuestos");
     }
 
+    @RequestMapping("/deleterPuesto@{idPuesto}")
+    public ModelAndView deleterPuesto(ModelMap model, HttpServletRequest request, @PathVariable String idPuesto) {
+        logger.info("/deleterPuesto");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        model.addAttribute("idPuesto", idPuesto);
+
+        Puesto  puesto = new Puesto();
+        puesto.setIexcodcia(idCompania);
+        puesto.setIexpuesto(idPuesto);
+
+        puestoService.eliminarPuesto(puesto);
+
+        return new ModelAndView("redirect:/listPuestos");
+    }
+
 }
 

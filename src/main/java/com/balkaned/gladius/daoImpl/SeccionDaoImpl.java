@@ -157,7 +157,14 @@ public class SeccionDaoImpl implements SeccionDao {
                 seccion.getIexsecobs(),
                 seccion.getIexactiondef(),
                 seccion.getIexcodsec());
+    }
 
+    public void eliminarSeccion(Seccion seccion) {
+
+        template.update("  delete from iexseccion   " +
+                        "  where iexcodsec  = ? ",
+
+                seccion.getIexcodsec());
     }
 
 }

@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -136,7 +147,7 @@
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a class="dropdown-item" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">Editar</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                        <a class="dropdown-item text-danger" onclick="return remove();" href="deleteOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">Eliminar</a>
                                    </div>
                                  </div>
                                </td>

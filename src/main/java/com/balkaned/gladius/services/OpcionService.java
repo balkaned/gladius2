@@ -9,5 +9,6 @@ public interface OpcionService {
     public void insertarOpciones(Opciones opc);
     public Opciones getOpciones(Integer codopc);
     public void actualizarOpciones(Opciones opc);
+    public void eliminarOpciones(Opciones opc);
 
 }

@@ -94,4 +94,12 @@ public class SistemaDaoImpl implements SistemaDao {
 
     }
 
+    public void eliminarSistemas(Sistemas systema) {
+
+        template.update("  delete from  iexsystemas  " +
+                        "  where iexcodsys=?     ",
+
+                systema.getIexcodsys());
+    }
+
 }

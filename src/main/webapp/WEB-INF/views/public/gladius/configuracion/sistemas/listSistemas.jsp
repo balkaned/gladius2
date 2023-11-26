@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -113,8 +124,9 @@
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                          <a class="dropdown-item" href="editarSistema@${LstSistema.iexcodsys}">Editar</a>
-                                         <div class="dropdown-divider">
-                                         </div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                                         <div class="dropdown-divider"></div>
+                                         <a class="dropdown-item text-danger" onclick="return remove();" href="deleteSistema@${LstSistema.iexcodsys}">Eliminar</a>
+                                   </div>
                                  </div>
                                </td>
                             </tr>

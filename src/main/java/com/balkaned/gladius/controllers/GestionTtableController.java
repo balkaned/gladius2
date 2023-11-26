@@ -1,9 +1,6 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Role;
-import com.balkaned.gladius.beans.Rolesxopciones;
-import com.balkaned.gladius.beans.TTablaCabecera;
-import com.balkaned.gladius.beans.TTablaDetalle;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -563,6 +560,77 @@ public class GestionTtableController {
         model.addAttribute("LstTTablad", ttableService.listarTTablad(idTbl));
 
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
+    }
+
+    @RequestMapping("/deleteTablaGen@{idTbl}")
+    public ModelAndView deleteTablaGen(ModelMap model, HttpServletRequest request, @PathVariable String idTbl) {
+        logger.info("/deleteTablaGen");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        ttableService.eliminarTTablac(idTbl);
+        ttableService.eliminarTTablad(idTbl);
+
+        return new ModelAndView("redirect:/listTablasGen");
+    }
+
+    @RequestMapping("/deletecurDetalleTblGen@{idTbl}@{idKey}")
+    public ModelAndView deletecurDetalleTblGen(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTbl,
+                                         @PathVariable String idKey) {
+        logger.info("/deletecurDetalleTblGen");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+        model.addAttribute("idTbl", idTbl);
+
+        model.addAttribute("idTbl", idTbl);
+        model.addAttribute("idKey", idKey);
+
+        ttableService.eliminarTTablade(idTbl,idKey);
+
+        return new ModelAndView("redirect:/verDetalleTblGen@"+idTbl);
     }
 
 }

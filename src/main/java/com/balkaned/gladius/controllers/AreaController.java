@@ -1,7 +1,6 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Area;
-import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
@@ -264,6 +262,11 @@ public class AreaController {
 
         model.addAttribute("idArea", idArea);
 
+        Area area = new Area();
+        area.setIexcodcia(idCompania);
+        area.setIexcodarea(idArea);
+
+        areaService.eliminarArea(area);
 
         return new ModelAndView("redirect:/listAreas");
     }

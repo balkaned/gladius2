@@ -146,4 +146,11 @@ public class ParametroDaoImpl implements ParametroDao {
 
     }
 
+    public void eliminarParametrosGen(ParametrosGen par) {
+
+        template.update("  delete from  iexparameter  where  iexcodcon  =  ?  ",
+                par.getIexcodcon());
+
+    }
+
 }

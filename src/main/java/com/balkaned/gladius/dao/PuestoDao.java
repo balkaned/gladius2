@@ -14,4 +14,6 @@ public interface PuestoDao {
     public void insertarPuesto(Puesto puesto);
 
     public void actualizarPuesto(Puesto puesto);
+
+    public void eliminarPuesto(Puesto puesto);
 }

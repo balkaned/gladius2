@@ -760,6 +760,122 @@ public class EmpleadoController {
         return new ModelAndView("redirect:/detalleEmpl@" + idempleado);
     }
 
+    @RequestMapping("/reingresoEmpleado")
+    public ModelAndView reingresoEmpleado(ModelMap model, HttpServletRequest request) {
+        logger.info("/reingresoEmpleado");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        logger.info("idCompania: " + idCompania);
+
+        model.addAttribute("LstEmpleadoInactivo", empleadoService.listarEmpleadoInactivos(idCompania));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/reingresoEmpleado");
+    }
+
+    @RequestMapping("/procesarEmpleadoInactivo")
+    public ModelAndView procesarEmpleadoInactivo(ModelMap model, HttpServletRequest request) {
+        logger.info("/procesarEmpleadoInactivo");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        String accion = request.getParameter("accion");
+        String idTrab = request.getParameter("iexempid");
+
+        if (accion.equals("SELPIN2")) {
+            model.addAttribute("iexempid", idTrab);
+            model.addAttribute("LstEmpleadoInactivo", empleadoService.listarEmpleadoInactivos(idCompania));
+            model.addAttribute("xtrainactivo", empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idTrab)));
+        }
+
+        if (accion.equals("REING")) {
+            String fecing = request.getParameter("fechaing");
+
+            Empleado emp = new Empleado();
+            emp.setIexcodcia(idCompania);
+            Integer codtranuevo = empleadoService.obtieneIdEmpleado(emp);
+            empleadoService.reingresarEmpleado(idCompania, Integer.valueOf(idTrab), fecing, usuario, codtranuevo);
+
+            return new ModelAndView("redirect:/empleadoReactivado@" + codtranuevo);
+        }
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/reingresoEmpleado");
+    }
+
+    @RequestMapping("/empleadoReactivado@{idNewTrab}")
+    public ModelAndView empleadoReactivado(ModelMap model, HttpServletRequest request, @PathVariable String idNewTrab) {
+        logger.info("/empleadoReactivado");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        model.addAttribute("xtrabnuevo",empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idNewTrab)));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/empleadoReactivado");
+    }
+
     @RequestMapping("/verFicha@{idTrab}")
     public ModelAndView verFicha(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String idTrab) throws UnsupportedEncodingException {
         /*logger.info("/verFicha");

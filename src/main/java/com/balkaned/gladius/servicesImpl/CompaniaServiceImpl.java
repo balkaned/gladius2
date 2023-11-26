@@ -52,4 +52,8 @@ public class CompaniaServiceImpl implements CompaniaService {
     public void deleteCiaxcon(Integer codcia, String codcon) {
         dao.deleteCiaxcon(codcia, codcon);
     }
+
+    public void eliminarCompania(Compania com) {
+        dao.eliminarCompania(com);
+    }
 }

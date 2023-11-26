@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -116,7 +127,7 @@
                                         <a class="dropdown-item" href="editarOpcion@${LstRole.idRole}">Editar</a>
                                         <a class="dropdown-item" href="verOpcion@${LstRole.idRole}">Ver Opciones</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                        <a class="dropdown-item text-danger" onclick="return remove();" href="deleteRol@${LstRole.idRole}">Eliminar</a>
                                    </div>
                                  </div>
                                </td>

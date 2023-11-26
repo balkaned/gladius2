@@ -14,12 +14,24 @@ public class BancoProServiceImpl implements BancoProService {
     @Autowired
     BancoProDao dao;
 
-    public List<BancoPro> listarBancoPro(Integer codcia, String text){
-        return dao.listarBancoPro(codcia,text);
+    public List<BancoPro> listarBancoPro(Integer codcia, String text) {
+        return dao.listarBancoPro(codcia, text);
     }
-    public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco){
-        return dao.getBancoPro(codcia,codpro,banco);
+
+    public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco) {
+        return dao.getBancoPro(codcia, codpro, banco);
     }
-    public void insertarBancoPro(BancoPro bancopro){dao.insertarBancoPro(bancopro);}
+
+    public void insertarBancoPro(BancoPro bancopro) {
+        dao.insertarBancoPro(bancopro);
+    }
+
+    public void actualizarBancoPro(BancoPro bancopro) {
+        dao.actualizarBancoPro(bancopro);
+    }
+
+    public void eliminarBancoPro(BancoPro bancopro) {
+        dao.eliminarBancoPro(bancopro);
+    }
 
 }

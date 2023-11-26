@@ -78,8 +78,6 @@ public class CcostoDaoImpl implements CcostoDao {
 
     public CentroCosto getCentroCosto(Integer codcia, String codccosto) {
 
-        CentroCosto p = null;
-        List<CentroCosto> lista = null;
         String sql = "select   " +
                 "a.iexcodcia, " +
                 "a.iexccosto, " +
@@ -97,8 +95,8 @@ public class CcostoDaoImpl implements CcostoDao {
 
         return (CentroCosto) template.query(sql, new ResultSetExtractor<CentroCosto>() {
             public CentroCosto extractData(ResultSet rs) throws SQLException, DataAccessException {
+                CentroCosto p = new CentroCosto();
                 while (rs.next()) {
-                    CentroCosto p = new CentroCosto();
                     CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -149,6 +147,29 @@ public class CcostoDaoImpl implements CcostoDao {
                 ccosto.getIexdesccosto(),
                 ccosto.getIexcodcat(),
                 "1");
+    }
+
+    public void actualizarCentroCosto(CentroCosto ccosto) {
+
+        template.update("  update iexccosto set" +
+                        "    iexdesccosto=?  ,iexcodcat=?,  " +
+                        " iexusumod =?,      iexfecmod=current_date " +
+                        " where iexcodcia=?   and  iexccosto=?  ",
+
+                ccosto.getIexdesccosto(),
+                ccosto.getIexcodcat(),
+                ccosto.getIexusumod(),
+                ccosto.getIexcodcia(),
+                ccosto.getIexccosto());
+
+    }
+
+    public void eliminarCentroCosto(CentroCosto ccosto) {
+
+        template.update("  delete from iexccosto where iexcodcia=?   and  iexccosto=?  ",
+
+        ccosto.getIexcodcia(),
+        ccosto.getIexccosto());
 
     }
 }

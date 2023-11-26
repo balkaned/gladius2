@@ -15,4 +15,6 @@ public interface AreaDao {
 
     public void actualizarArea(Area area);
 
+    public void eliminarArea(Area area);
+
 }

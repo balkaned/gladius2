@@ -1,5 +1,6 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -305,6 +306,42 @@ public class CompaniasController {
         companiaService.deleteCiaxcon(Integer.valueOf(idCia), idCon);
 
         return new ModelAndView("redirect:/editarCompania@" + idCia);
+    }
+
+    @RequestMapping("/deleteCompania@{idComp}")
+    public ModelAndView deleteCompania(ModelMap model, HttpServletRequest request, @PathVariable String idComp) {
+        logger.info("/deleteCompania");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        model.addAttribute("idComp", idComp);
+
+        Compania com = new Compania();
+        com.setIdCodcia(Integer.valueOf(idComp));
+        companiaService.eliminarCompania(com);
+
+        return new ModelAndView("redirect:/listCompanias");
     }
 
 }

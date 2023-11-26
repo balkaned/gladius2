@@ -38,4 +38,8 @@ public class PuestoServiceImpl implements PuestoService {
         dao.actualizarPuesto(puesto);
     }
 
+    public void eliminarPuesto(Puesto puesto) {
+        dao.eliminarPuesto(puesto);
+    }
+
 }

@@ -315,4 +315,10 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 codcon);
     }
 
+    public void eliminarCompania(Compania com) {
+
+        template.update("  delete from  iexcompania where  iexcodcia = ? ",
+                com.getIdCodcia());
+    }
+
 }

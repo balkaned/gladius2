@@ -1085,5 +1085,106 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     }
 
+    public List<Empleado> listarEmpleadoInactivos(Integer codcia) {
+
+        String sql = " select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexnomtra, " +
+                "iexapepat, " +
+                "iexapemat, " +
+                "iextipdocid, " +
+                "iexnrodoc, " +
+                "to_char(iexfecnac,'dd/mm/yyyy') iexfecnac, " +
+                "to_char(iexfecing,'dd/mm/yyyy') iexfecing, " +
+                "to_char(iexfecret,'dd/mm/yyyy') iexfecret, " +
+                "iextipcese, " +
+                "'' as destipcese, " +
+                "iexcodsex, " +
+                "'' dessex, " +
+                "iexpaisemisor, " +
+                "'' as despaisemisor, " +
+                "iexflgest, " +
+                "'' desestado, " +
+                "iexcodant, " +
+                "iextiptra, " +
+                "'' destiptra, " +
+                "iexmodform, " +
+                "'' desmodform, " +
+                "iexnacion_origen, " +
+                "'' desnacion_origen, " +
+                "iexdepart_origen, " +
+                "'' desdepart_origen, " +
+                "iexprovin_origen, " +
+                "'' desprovin_origen, " +
+                "iexdistri_origen, " +
+                "'' desdistri_origen, " +
+                "iexgrdinstruccion, " +
+                "'' desinstruccion, " +
+                "iexcentroform, " +
+                "'' descentroform, " +
+                "iexflgdomicil, " +
+                "iexfeccrea, " +
+                "iexfeccmod, " +
+                "iexusucrea, " +
+                "iexusumod " +
+                "from iexempleado where iexcodcia=" + codcia + " and iexflgest='0' and  iexfecret is not null  order by iexapepat , iexapemat, iexnomtra, iexfecret asc  ";
+
+        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+
+            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Empleado> lista = new ArrayList<Empleado>();
+                while (rs.next()) {
+                    Empleado p = new Empleado();
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    p.setIextipdocid(rs.getString("iextipdocid"));
+                    p.setIexnrodoc(rs.getString("iexnrodoc"));
+                    p.setIexfecnac(rs.getString("iexfecnac"));
+                    p.setIexfecing(rs.getString("iexfecing"));
+                    p.setIextipcese(rs.getString("iextipcese"));
+                    p.setIexfecret(rs.getString("iexfecret"));
+                    p.setIexcodsex(rs.getString("iexcodsex"));
+                    p.setIexpaisemisor(rs.getString("iexpaisemisor"));
+                    p.setIexflgest(rs.getString("iexflgest"));
+                    p.setIexcodant(rs.getString("iexcodant"));
+                    p.setIextiptra(rs.getString("iextiptra"));
+                    p.setIexmodform(rs.getString("iexmodform"));
+                    p.setIexnacion_origen(rs.getString("iexnacion_origen"));
+                    p.setIexdepart_origen(rs.getString("iexdepart_origen"));
+                    p.setIexprovin_origen(rs.getString("iexprovin_origen"));
+                    p.setIexdistri_origen(rs.getString("iexdistri_origen"));
+                    p.setIexcentroform(rs.getString("iexcentroform"));
+                    p.setIexflgdomicil(rs.getString("iexflgdomicil"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setDestipcese(rs.getString("destipcese"));
+                    p.setDessex(rs.getString("dessex"));
+                    p.setDespaisemisor(rs.getString("despaisemisor"));
+                    p.setDesestado(rs.getString("desestado"));
+                    p.setDestiptra(rs.getString("destiptra"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public void reingresarEmpleado(Integer ciaid,Integer codtra,String fechaing,String desusu,Integer codnew){
+
+        template.update("call pl_reingresa_trabajador(?,?,?,? ,?  )",
+
+        ciaid,
+        codtra,
+        fechaing,
+        desusu,
+        codnew);
+    }
+
 
 }

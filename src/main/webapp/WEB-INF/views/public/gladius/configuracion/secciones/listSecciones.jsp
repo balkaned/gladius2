@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -100,7 +111,7 @@
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">URL</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ACCION DEF</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OBS</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date"></th>
+                          <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -122,10 +133,12 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="editarSeccion@${LstSeccion.iexcodsec}">Editar</a>
-                                     <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                                      <a class="dropdown-item" href="editarSeccion@${LstSeccion.iexcodsec}">Editar</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item text-danger" onclick="return remove();" href="deleteSeccion@${LstSeccion.iexcodsec}">Eliminar</a>
+                                   </div>
                                  </div>
-                               </td>
+                              </td>
                             </tr>
                           </c:forEach>
                       </tbody>

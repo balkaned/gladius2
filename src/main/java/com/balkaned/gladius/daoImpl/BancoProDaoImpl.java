@@ -85,8 +85,6 @@ public class BancoProDaoImpl implements BancoProDao {
 
     public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco) {
 
-        BancoPro p = null;
-        List<BancoPro> lista = null;
         String sql = " select  " +
                 "a.iexcodcia, " +
                 "a.iexcodban, " +
@@ -104,14 +102,12 @@ public class BancoProDaoImpl implements BancoProDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  on a.iexcodban = c.iexkey " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  on a.iextipcta = d.iexkey " +
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia=" + codcia + "  ";
+                "where iexcodcia=" + codcia + " and iexcodban='" + banco + "' ";
 
         return (BancoPro) template.query(sql, new ResultSetExtractor<BancoPro>() {
             public BancoPro extractData(ResultSet rs) throws SQLException, DataAccessException {
+                BancoPro p = new BancoPro();
                 while (rs.next()) {
-                    BancoPro p = new BancoPro();
-                    CapitalizarCadena cap = new CapitalizarCadena();
-
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodban(rs.getString("iexcodban"));
                     p.setDesban(rs.getString("desban"));
@@ -125,6 +121,9 @@ public class BancoProDaoImpl implements BancoProDao {
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
                     p.setIexusumod(rs.getString("iexusumod"));
                     p.setIexfecmod(rs.getString("iexfecmod"));
+
+                    logger.info("iexcodpro: " + p.getIexcodpro());
+                    logger.info("Iexctaban: " + p.getIexctaban());
                 }
                 return p;
             }
@@ -147,6 +146,32 @@ public class BancoProDaoImpl implements BancoProDao {
                 bancopro.getIextipcta(),
                 bancopro.getIexctaban(),
                 bancopro.getIexusucrea());
+    }
+
+    public void actualizarBancoPro(BancoPro bancopro) {
+
+        template.update("  update iexprobancos set " +
+                        " iextipcta = ? , " +
+                        " iexctaban =? ,      iexusumod=?,    iexfecmod=current_date " +
+                        " where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ",
+
+                bancopro.getIextipcta(),
+                bancopro.getIexctaban(),
+                bancopro.getIexusumod(),
+                bancopro.getIexcodcia(),
+                bancopro.getIexcodban(),
+                bancopro.getIexcodpro());
+
+    }
+
+    public void eliminarBancoPro(BancoPro bancopro) {
+
+        template.update("  delete from  iexprobancos  where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ",
+
+                bancopro.getIexcodcia(),
+                bancopro.getIexcodban(),
+                bancopro.getIexcodpro());
+
     }
 
 }

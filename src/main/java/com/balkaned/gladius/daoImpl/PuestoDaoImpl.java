@@ -161,4 +161,13 @@ public class PuestoDaoImpl implements PuestoDao {
                 puesto.getIexpuesto());
 
     }
+
+    public void eliminarPuesto(Puesto puesto){
+
+        template.update("  delete from  iexpuesto  where iexcodcia=?  and  iexpuesto =?  ",
+
+        puesto.getIexcodcia(),
+        puesto.getIexpuesto());
+
+    }
 }

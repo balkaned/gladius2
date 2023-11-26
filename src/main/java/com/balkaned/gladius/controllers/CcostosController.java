@@ -6,6 +6,7 @@ import com.balkaned.gladius.beans.Puesto;
 import com.balkaned.gladius.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -143,6 +144,124 @@ public class CcostosController {
         cencos.setIexusucrea(iexusucrea);
 
         ccostoService.insertarCentroCosto(cencos);
+
+        return new ModelAndView("redirect:/listCcostos");
+    }
+
+    @RequestMapping("/editarCcosto@{idCosto}")
+    public ModelAndView editarCcosto(ModelMap model, HttpServletRequest request, @PathVariable String idCosto) {
+        logger.info("/editarCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if(request.getSession().getAttribute("user")==null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("idusuario",idusuario);
+        model.addAttribute("email",email);
+        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp",rucComp);
+        model.addAttribute("idComp",idCompania);
+        model.addAttribute("urlLogo",urlLogo);
+
+        model.addAttribute("idCosto",idCosto);
+        model.addAttribute("lovCatCencos",lovsService.getLovs("64","%"));
+        model.addAttribute("xCcosto",ccostoService.getCentroCosto(idCompania,idCosto));
+
+        return new ModelAndView("public/gladius/organizacion/ccostos/editarCcosto");
+    }
+
+    @RequestMapping("/modificarCcosto")
+    public ModelAndView modificarCcosto(ModelMap model, HttpServletRequest request) {
+        logger.info("/modificarCcosto");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        Integer iexcodcia = idCompania;
+        String iexccosto = request.getParameter("iexccosto2");
+        String iexdesccosto = request.getParameter("iexdesccosto");
+        String iexcodcat  = request.getParameter("iexcodcat");
+        String iexusucrea   =  usuario;
+
+        CentroCosto  cencos = new CentroCosto();
+        cencos.setIexcodcia(iexcodcia);
+        cencos.setIexccosto(iexccosto);
+        cencos.setIexdesccosto(iexdesccosto);
+        cencos.setIexcodcat(iexcodcat);
+        cencos.setIexusucrea(iexusucrea);
+
+        ccostoService.actualizarCentroCosto(cencos);
+
+        return new ModelAndView("redirect:/listCcostos");
+    }
+
+    @RequestMapping("/deleteCcosto@{idCosto}")
+    public ModelAndView deleteCcosto(ModelMap model, HttpServletRequest request, @PathVariable String idCosto) {
+        logger.info("/deleteCcosto");
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+        model.addAttribute("idCosto", idCosto);
+
+        CentroCosto cencos = new CentroCosto();
+        cencos.setIexcodcia(idCompania);
+        cencos.setIexccosto(idCosto);
+
+        ccostoService.eliminarCentroCosto(cencos);
 
         return new ModelAndView("redirect:/listCcostos");
     }
