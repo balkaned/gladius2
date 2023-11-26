@@ -1,6 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
+import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Role;
 import com.balkaned.gladius.beans.Turno;
 import com.balkaned.gladius.beans.Turnodiario;
@@ -167,6 +168,45 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
             }
         });
     }
+
+    public List<Empleado> listarTurMasTra(Integer codcia,  String fecini, String fecfin ) {
+
+        String sql = " select  " +
+                "e.iexcodcia,  e.iexcodtra, " +
+                "e.iexapepat, e.iexapemat, e.iexnomtra, " +
+                "e.iexfecing, " +
+                "e.iexfecret " +
+                "from  " +
+                "iexempleado e " +
+                "where  " +
+                "e.iexcodcia="+codcia+" and  " +
+                "e.iexflgest='1' " +
+                "group by  " +
+                "e.iexcodcia, e.iexcodtra, " +
+                "e.iexapepat, e.iexapemat, e.iexnomtra , e.iexfecing, " +
+                "e.iexfecret order by  e.iexapepat, e.iexapemat, e.iexnomtra asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Empleado> lista = new ArrayList<Empleado>();
+
+                while (rs.next()) {
+                    Empleado p = new Empleado();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"))  ;
+                    p.setIexapepat(rs.getString("iexapepat")) ;
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    p.setIexfecing(rs.getString("iexfecing"));
+                    p.setIexfecret(rs.getString("iexfecret"));
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
 
     public void insertarTurno(Turno turno) {
 

@@ -183,7 +183,7 @@ function enviaForm(variable){
                                      <form class="row g-4 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="insertarAusentismo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
+
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
                                                 <select class="form-select" name="iextipaus" required >
                                                   <option value="" selected >Seleccionar</option>

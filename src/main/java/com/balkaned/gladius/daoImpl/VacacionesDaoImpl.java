@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -174,14 +175,14 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public void insertarVacacionPrg(VacacionProgramacion vacprg) {
 
         template.update("  insert into iexvacprg ( " +
-                        "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
-                        "iextipvac , iexglosa,  " +
-                        "iexpermesini, iexpermesfin, iexusucrea, iexfeccrea " +
-                        ") values ( " +
-                        "  ?,   ? ,  ?,  to_date(?,'DD/MM/YYYY'),  to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
-                        "  ?,   ? ,   " +
-                        "  ?,   ? ,  ? ,  current_date " +
-                        ")  ",
+                "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
+                "iextipvac , iexglosa,  " +
+                "iexpermesini, iexpermesfin, iexusucrea, iexfeccrea " +
+                ") values ( " +
+                "  ?,   ? ,  ?,  to_date(?,'DD/MM/YYYY'),  to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
+                "  ?,   ? ,   "+
+                "  ?,   ? ,  ? ,  current_date "+
+                ")  ",
 
                 vacprg.getIexcodcia(),
                 vacprg.getIexcodtra(),
@@ -322,6 +323,101 @@ public class VacacionesDaoImpl implements VacacionesDao {
             }
         });
     }
+
+
+    public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg) {
+
+        String sql= " select  " +
+                " v.iexcodcia, v.iexcodtra, v.iexcorrel, to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, "
+                + " v.iexnrodias, v.iextipvac , d.desdet as destipvac, v.iexglosa,  " +
+                " v.iexpermesini, v.iexpermesfin, v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
+                " from " +
+                " iexvacprg v, " +
+                "( " +
+                " select  iexkey, desdet from iexttabled where iexcodtab='56' " +
+                ") d " +
+                " where " +
+                " v.iexcodcia="+vacprg.getIexcodcia()+" and v.iexcodtra="+vacprg.getIexcodtra()+" and v.iexcorrel="+vacprg.getIexcorrel()+" and " +
+                " v.iextipvac = d.iexkey ";
+        return (VacacionProgramacion) template.query(sql, new ResultSetExtractor<VacacionProgramacion>() {
+            public VacacionProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException{
+                VacacionProgramacion  p = new VacacionProgramacion();
+                while(rs.next()) {
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcorrel(rs.getInt("iexcorrel"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setIexnrodias(rs.getDouble("iexnrodias"));
+                    p.setIextipvac(rs.getString("iextipvac"));
+                    p.setDestipvac(rs.getString("destipvac"));
+                    p.setIexglosa(rs.getString("iexglosa"));
+                    p.setIexpermesini(rs.getString("iexpermesini"));
+                    p.setIexpermesfin(rs.getString("iexpermesfin"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+
+                }
+                return p;
+            }
+        });
+    }
+
+
+    public List<VacacionControl> listaSaldoVacTra(Integer codcia, String regimen, Integer codtra) {
+
+        String sql = " select  " +
+                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, to_char(iexfecini,'DD/MM/YYYY') as iexfecini, to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin,  " +
+                "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, iexdiascom, iexdiassaldo, " +
+                "iexusucrea, to_char(iexfeccrea,'DD/MM/YYYY') as iexfeccrea,  " +
+                "iexusumod, to_char(iexfecmod,'DD/MM/YYYY') as iexfecmod " +
+                "from iexvacctl " +
+                "where iexcodcia=" + codcia + " and iexcodtra=" + codtra + " and iexdiasgan>0 order by iexpermesini desc  ";
+
+        return template.query(sql, new ResultSetExtractor<List<VacacionControl>>() {
+            public List<VacacionControl> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<VacacionControl> lista = new ArrayList<VacacionControl>();
+
+                while (rs.next()) {
+                    VacacionControl p = new VacacionControl();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexpermesini(rs.getString("iexpermesini"));
+                    p.setIexpermesfin(rs.getString("iexpermesfin"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setIexdiasgan(rs.getDouble("iexdiasgan"));
+                    p.setIexdiassaldo(rs.getDouble("iexdiassaldo"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+
+    public void actualizarVacacionPrg(VacacionProgramacion vacprg) {
+
+        template.update("UPDATE iexvacprg SET iexfecini = TO_DATE(?, 'DD/MM/YYYY'),iexfecfin = TO_DATE(?, 'DD/MM/YYYY'),iexnrodias = ?,iextipvac = ?,  iexglosa = ?,iexpermesini = ?,iexpermesfin = ?,iexusucrea = ?,iexfecmod = CURRENT_DATE WHERE iexcodcia = ? AND iexcodtra = ? AND iexcorrel = ?");
+
+                    vacprg.getIexfecini();
+                    vacprg.getIexfecfin();
+                    vacprg.getIexnrodias();
+                    vacprg.getIextipvac();
+                    vacprg.getIexglosa();
+                    vacprg.getIexpermesini();
+                    vacprg.getIexpermesfin();
+                    vacprg.getIexusucrea();
+                    vacprg.getIexcodcia();
+                    vacprg.getIexcodtra();
+                    vacprg.getIexcorrel();
+    }
+
 
 
 }

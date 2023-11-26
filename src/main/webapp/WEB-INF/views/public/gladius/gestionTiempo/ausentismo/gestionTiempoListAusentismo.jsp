@@ -9,15 +9,52 @@
           <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
         <script>
-          function mostrarAlert() {
-            //alert("se grabo exitosamente");
-            var div = document.getElementById('alert');
-            div.style.display = '';
 
-            setTimeout(function () {
-              $("#alerts").hide(6000);
-            }, 3000);
-          }
+$(document).ready(function() {
+    // Bind change event to #iexcodreg
+    $('#iexcodreg').change(function(event) {
+        $.ajaxSetup({cache:false});
+        $.ajax({
+            url: "getlovsLOVCODTRA",
+            data: {"accion": "LOVCODTRA", "iexcodreg": $("#iexcodreg").val()},
+            success: function (data) {
+                var opt = "<option value='' > -- Selecciona -- </option>";
+                for (var i in data) {
+                    opt += "<option value='" + data[i].iexcodtra + "'>" +
+                    data[i].iexapepat + " " + data[i].iexapemat + " " +
+                    data[i].iexnomtra + " - " + data[i].iexfecing + "</option>";
+                }
+                $("#iexcodtra").html(opt);
+            }
+        });
+    });
+
+    // Bind change event to #iexcodtra
+    $('#iexcodtra').change(function() {
+        var selectedValue = $(this).val();
+        localStorage.setItem('selectedIexcodtra', selectedValue);
+
+        // Set a timeout to clear the selected option from localStorage after 1 minute
+        setTimeout(function() {
+            localStorage.removeItem('selectedIexcodtra');
+
+            // Reset the dropdown to its default state
+            $('#iexcodtra').val(''); // Set the dropdown to its default option
+        }, 60000);
+    });
+
+    // Set the selected option from localStorage when the page loads
+    var savedValue = localStorage.getItem('selectedIexcodtra');
+    if(savedValue) {
+        $("#iexcodtra").val(savedValue);
+
+        // Clear the savedValue after 1 minute from page load, if it exists
+        setTimeout(function() {
+            localStorage.removeItem('selectedIexcodtra');
+            $("#iexcodtra").val(''); // Reset the dropdown after 1 minute
+        }, 60000);
+    }
+});
 
           function formatearFecha1() {
             var fechaSeleccionada = $('#fecini').val();
@@ -30,16 +67,16 @@
             $("#fecini").val(fechaFormat);
             localStorage.setItem('fechaGuardada1', fechaFormat);
           }
-       $(document).ready(function () {
-         var fechaGuardada1 = localStorage.getItem('fechaGuardada1');
-         if (fechaGuardada1) {
-           $("#fecini").val(fechaGuardada1);
-         }
-         setTimeout(function() {
-           $("#fecini").val('');
-           localStorage.removeItem('fechaGuardada1'); // Also clear it from localStorage
-         }, 60000); // 60000 milliseconds = 1 minute
-       });
+          $(document).ready(function () {
+            var fechaGuardada1 = localStorage.getItem('fechaGuardada1');
+            if (fechaGuardada1) {
+              $("#fecini").val(fechaGuardada1);
+            }
+            setTimeout(function () {
+              $("#fecini").val('');
+              localStorage.removeItem('fechaGuardada1'); // Also clear it from localStorage
+            }, 60000); // 60000 milliseconds = 1 minute
+          });
 
           function formatearFecha2() {
             var fechaSeleccionada = $('#fecfin').val();
@@ -57,24 +94,16 @@
             if (fechaGuardada) {
               $("#fecfin").val(fechaGuardada);
             }
-            setTimeout(function() {
-                       $("#fecfin").val('');
-                       localStorage.removeItem('fechaGuardada'); // Also clear it from localStorage
-                     }, 60000); // 60000 milliseconds = 1 minute
+            setTimeout(function () {
+              $("#fecfin").val('');
+              localStorage.removeItem('fechaGuardada'); // Also clear it from localStorage
+            }, 60000); // 60000 milliseconds = 1 minute
           });
 
-          function consultaDet() {
-            document.getElementById("accion").value = "gestionTiempoListVacaciones";
+           function consultaDet() {
+            document.getElementById("accion").value = "gestionTiempoListAusentismo";
           }
 
-   function modificarDet(codtra, correl){
-                    document.getElementById("accion").value="getGestionVacaciones";
-                    document.getElementById("codtra").value=codtra;
-                    document.getElementById("correl").value=correl;
-                    document.getElementById("gtmvac").submit();
-
-        console.log(codtra, correl);
-             }
         </script>
 
         <body>
@@ -96,19 +125,19 @@
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Vacacciones</h2>
+                    <h2 id="h2top" class="mb-0">Ausentismo</h2>
                   </div>
                 </div>
 
                 <div class="row g-5">
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                      <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListAusentismo" novalidate>
                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
-                          <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                          <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
                               <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
@@ -117,45 +146,41 @@
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                          <select class="form-select" name="slc_estado" required="">
-                            <option value="" selected>Seleccionar</option>
-                            <option value="0">Activos</option>
-                            <option value="1">Inactivo</option>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                          <select name="iexcodtra" id="iexcodtra" class="form-control">
+                            <option value="0" selected>Seleccionar</option>
+                            <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
+                              <option value="${LstTrabajadorReg.iexcodtra}"
+                                ${LstTrabajadorReg.iexcodtra==requestScope.iexcodtra ? 'selected' : '' }>
+                                ${LstTrabajadorReg.iexapepat} ${LstTrabajadorReg.iexapemat}
+                                ${LstTrabajadorReg.iexnomtra} - ${LstTrabajadorReg.iexfecing}</option>
+                            </c:forEach>
+
                           </select>
                         </div>
+
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="fecini" id="fecini"
-                            onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
-                            data-options='{"disableMobile":true}' />
+                            onchange="formatearFecha1();" type="text"
+                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="fecfin" id="fecfin"
-                            onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy"
-                            data-options='{"disableMobile":true}' />
+                             onchange="formatearFecha2();" type="text"
+                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
                         </div>
                         <div class="d-grid gap-2 d-md-block">
-<<<<<<< Updated upstream
-                          <button class="btn btn-primary" type="submit"><span class="fas fa-search me-2"></span>Buscar</button>
-                          <a class="btn btn-primary" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Agregar</a>
-                          <button class="btn btn-link text-900 ps-3"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Programación</button>
-                          <button class="btn btn-link text-900 "><span class="fa-solid fa-money-check-dollar fs--1 me-2"></span>Exportar Saldo</button>
-                        </div>
-                        <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
-                          <div class="table-responsive scrollbar mx-n1 px-1">
-                        	<table class="table table-sm fs--1 mb-0">
-=======
-                          <button class="btn btn-primary" onclick="consultaDet();"><span
-                              class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                          <a class="btn btn-primary" href="nuevoGestionVacaciones"><span
-                              class="fas fa-plus me-2"></span>Agregar</a>
-                          <button class="btn btn-primary" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Programación</button>
-                          <button class="btn btn-primary" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Saldo</button>
+                            <button class="btn btn-primary" type="submit">
+                                <span class="fa-solid fa-magnifying-glass me-2"></span>Buscar
+                            </button>
+                          <a class="btn btn-primary" href="nuevoGestionAusentismo"><span class="fas fa-plus me-2"></span>Agregar</a>
+                          <button class="btn btn-primary" type="button"><span
+                              class="fa-solid fa-file-export me-2"></span>Exportar Xls</button>
                         </div>
                         <div id="orderTable"
                           data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
@@ -164,7 +189,6 @@
                             style="width: 160%;">
                             <div class="table-responsive scrollbar mx-n1 px-1">
                               <table class="table table-sm fs--1 mb-0">
->>>>>>> Stashed changes
                                 <thead>
                                   <tr>
                                     <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
@@ -176,9 +200,8 @@
                                     <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order"
                                       style="width:5%;">ID</th>
                                     <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DOC</th>
-                                    <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">CODTRA
-                                    </th>
-                                    <th class="sort align-middle text-center ps-8 pe-4" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
+                                    <th class="sort align-middle text-center ps-8 pe-4" scope="col" data-sort="date">
+                                      NOMBRES y APELLIDOS</th>
                                     <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ESTADO
                                     </th>
                                     <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">
@@ -194,7 +217,7 @@
                                   </tr>
                                 </thead>
                                 <tbody class="list" id="order-table-body">
-                                  <c:forEach var="LstVacacionesView" items="${requestScope.LstVacacionesView}">
+                                  <c:forEach var="LstAusentismoView" items="${requestScope.LstAusentismoView}">
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                       <td class="fs--1 align-middle px-0 py-3">
                                         <div class="form-check mb-0 fs-0">
@@ -203,29 +226,40 @@
                                         </div>
                                       </td>
                                       <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold"
-                                          href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a></td>
+                                          href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">#${LstAusentismoView.iexcorrel}</a></td>
                                       <td class="total align-middle text-center fw-semi-bold text-1000">
-                                        ${LstVacacionesView.nrodoc}</td>
+                                        ${LstAusentismoView.nrodoc}</td>
                                       <td class="total align-middle text-center fw-semi-bold text-1000">
-                                        ${LstVacacionesView.iexcodtra}</td>
-                                      <td class="total align-middle text-center fw-semi-bold text-1000">
-                                        ${LstVacacionesView.desnomtra}</td>
-                                      <c:if test="${LstVacacionesView.desestado=='activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                      <c:if test="${LstVacacionesView.desestado=='inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                      <td class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                        ${LstVacacionesView.fecing}</td>
+                                        ${LstAusentismoView.desnomtra}</td>
+                                      <c:if test="${LstAusentismoView.desestado=='activo'}">
+                                        <td
+                                          class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                          <span class="badge badge-phoenix fs--2 badge-phoenix-success"><span
+                                              class="badge-label">Activo</span><span class="ms-1"
+                                              style="height:12.8px;width:12.8px;"></span></span></td>
+                                      </c:if>
+                                      <c:if test="${LstAusentismoView.desestado=='inactivo'}">
+                                        <td
+                                          class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                          <span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span
+                                              class="badge-label">Inactivo</span><span class="ms-1"
+                                              style="height:12.8px;width:12.8px;"></span></span></td>
+                                      </c:if>
+                                      <td
+                                        class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                        ${LstAusentismoView.fecing}</td>
+                                      <td
+                                        class="delivery_type align-middle white-space-nowrap text-center  fs--1 text-start">
+                                        ${LstAusentismoView.destipaus}</td>
                                       <td
                                         class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
-                                        ${LstVacacionesView.destipvac}</td>
+                                        ${LstAusentismoView.iexfecini}</td>
                                       <td
                                         class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
-                                        ${LstVacacionesView.iexfecini}</td>
+                                        ${LstAusentismoView.fecfinrep}</td>
                                       <td
                                         class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
-                                        ${LstVacacionesView.fecfinrep}</td>
-                                      <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
-                                        ${LstVacacionesView.iexnrodias}</td>
+                                        ${LstAusentismoView.iexnrodias}</td>
 
                                       <td class="align-middle text-end white-space-nowrap pe-0 action">
                                         <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -237,7 +271,7 @@
                                           <div class="dropdown-menu dropdown-menu-end py-2">
                                             <a class="dropdown-item" href="">Editar
                                               Vacacciones</a>
-                                            <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha
+                                            <a class="dropdown-item" href="">Descargar Ficha
                                               PDF</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item text-danger" href="#!">Eliminar</a>

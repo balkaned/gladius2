@@ -11,86 +11,31 @@
         <script>
           $(document).ready(function () {
 
-              $('#iexcodreg').change(function (event) {
+            $('#iexcodreg').change(function (event) {
 
 
-                $.ajaxSetup({ cache: false });
-                $.ajax({
-                  url: "getlovsLOVCODTRA",
-                  data: {
-                    "accion": "LOVCODTRA",
-                    "iexcodreg": $("#iexcodreg").val()
-                  },
-                  success: function (data) {
-                    var opt = "";
-                    opt += "<option value='' > -- Selecciona -- </option>";
-                    for (var i in data) {
-                      opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
-                    }
-
-                    $("#iexcodtra").html(opt);
-                    $("#iexpervac").html("<option value='' > -- Selecciona -- </option>");
+              $.ajaxSetup({ cache: false });
+              $.ajax({
+                url: "getlovsLOVCODTRA",
+                data: {
+                  "accion": "LOVCODTRA",
+                  "iexcodreg": $("#iexcodreg").val()
+                },
+                success: function (data) {
+                  var opt = "";
+                  opt += "<option value='' > -- Selecciona -- </option>";
+                  for (var i in data) {
+                    opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
                   }
-                });
 
+                  $("#iexcodtra").html(opt);
+                }
               });
 
+            });
 
 
-              $('#iexcodtra').change(function (event) {
-
-
-                $.ajaxSetup({ cache: false });
-                $.ajax({
-                  url: "getLovsLOVPERVAC",
-                  data: {
-                    "accion": "LOVPERVAC",
-                    "iexcodtra": $("#iexcodtra").val()
-                  },
-                  success: function (data) {
-                    var opt = "";
-                    opt += "<option value='' > -- Selecciona -- </option>";
-                    for (var i in data) {
-                      opt += "<option value=" + data[i].iexpermesini + " > " + data[i].iexpermesini + " - " + data[i].iexpermesfin + " : Saldo = " + data[i].iexdiassaldo + " </option> ";
-                    }
-
-                    $("#iexpervac").html(opt);
-
-                  }
-                });
-
-              });
-
-
-              $('#iexpervac').change(function (event) {
-
-
-                $.ajaxSetup({ cache: false });
-                $.ajax({
-                  url: "getLovsSALVACTRA",
-                  data: {
-                    "accion": "SALVACTRA",
-                    "iexcodtra": $("#iexcodtra").val(),
-                    "pervacini": $("#iexpervac").val()
-                  },
-                  success: function (data) {
-                    var opt = "";
-                    var opt2 = "";
-                    var opt3 = "";
-                    for (var i in data) {
-
-                      opt += "" + data[i].iexdiassaldo + "";
-                      opt2 += "" + data[i].iexpermesini + "";
-                      opt3 += "" + data[i].iexpermesfin + "";
-                    }
-
-                    $("#iexsaldodias").val(opt);
-
-                  }
-                });
-
-              });
-           });
+          });
 
 
           function formatearFecha1() {
@@ -114,6 +59,7 @@
             var fechaFormat = dia + "/" + mes + "/" + anio;
             $("#iexfecfin").val(fechaFormat);
           }
+
 
           function isValidDate(day, month, year) {
             var dteDate;
@@ -167,18 +113,10 @@
             document.getElementById("iexnrodias").value = Number(resultado) + 1;
           }
 
+          function diasVacaciones() {
+            alert("entro");
+          }
 
-  function insertaVacaciones(){
-
-      var diassaldo=document.getElementById("iexsaldodias").value;
-	  var diasprg =document.getElementById("iexnrodias").value;
-      if(diassaldo>= diasprg){
-           document.getElementById("accion").value="insertGestionVacaciones";
-           document.getElementById("gtmvac").submit();
-                  }else {
-          alert("No puede programar mas dias del saldo permitido");
-         }
-      }
         </script>
 
 
@@ -202,19 +140,22 @@
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Insertar vacaciones</h2>
+                    <h2 id="h2top" class="mb-0">Insertar Ausentismo</h2>
                   </div>
                 </div>
 
                 <div class="row g-5">
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac" action="insertGestionVacaciones" novalidate>
-               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                      <form class="row g-4 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac"
+                        action="insertarGestionAusentismo" novalidate>
+                        <input class="form-control" name="iexcodcia" type="hidden"
+                          value="${requestScope.emp.iexcodcia}" />
+                        <input class="form-control" name="iexcodtra" type="hidden"
+                          value="${requestScope.emp.iexcodtra}" />
 
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                        <div class="col-sm-4 col-md-12">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen(*)</label>
                           <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
@@ -223,50 +164,40 @@
                             </c:forEach>
                           </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                          <select name="iexcodtra" id="iexcodtra" class="form-select">
+                        <div class="col-sm-6 col-md-12">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador(*)</label>
+                          <select name="iexcodtra" id="iexcodtra" class="form-select" required>
                           </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
-                          <select name="iexpervac" id="iexpervac" class="form-select">
-                          </select>
-                        </div>
-                        <div class="col-sm-6 col-md-3 ">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
-                          <input type="text" name="iexsaldodias" class="form-control" id="iexsaldodias"  readonly="true" style="background-color:#F1F4F8;">
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
-                          <select name="iextipvac"  id="iextipvac"    class="form-control"  >
-                           <option value="0" selected >Seleccionar</option>
-                             <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}"    >
-                               <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''}  >  ${lovTipvaca.desLov} </option>
+                        <div class="col-sm-6 col-md-12">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
+                          <select class="form-select" name="iexcodreg" id="iexcodreg" required>
+                            <option value="" selected>Seleccionar</option>
+                            <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
+                              <option value="${lovTipaus.idLov}" ${lovTipaus.idLov==requestScope.iextipaus ? 'selected'
+                                : '' }> ${lovTipaus.desLov} </option>
                             </c:forEach>
                           </select>
-                          </select>
-
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
+                        <div class="col-sm-4 col-md-4">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio (*)</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
-                              value="${requestScope.xVacacionesPrg.iexfecini}"
-                            onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy"
-                            data-options='{"disableMobile":true}' />
+                            onchange="formatearFecha1();" type="text" onchange="calcularDias();"
+                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
+                        <div class="col-sm-4 col-md-4">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin (*)</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
-                          onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy"
-                            data-options='{"disableMobile":true}' />
+                            onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy"
+                            data-options='{"disableMobile":true}' required />
                         </div>
 
                         <div class="col-sm-6 col-md-3">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                          <input type="text" name="iexnrodias" class="form-control" id="iexnrodias" readonly="true" style="background-color:#F1F4F8;">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° de Dias(*)</label>
+                          <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text"
+                            placeholder="0" required readonly />
                         </div>
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                           Se grabó exitosamente los cambios.
@@ -274,12 +205,12 @@
                         <div class="col-12 gy-6">
                           <div class="row g-3 justify-content-end">
                             <div class="col-auto">
-                              <a class="btn btn-phoenix-primary px-5" href="gestionTiempoListVacaciones">Cancel</a>
+                              <a class="btn btn-phoenix-primary px-5" href="gestionTiempoListAusentismo">Cancel</a>
                             </div>
                             <div class="col-auto">
                               <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">Insertar Vacaciones</button>
+                                aria-expanded="false" data-bs-reference="parent">Insertar Ausentismo</button>
                             </div>
                           </div>
                         </div>
@@ -303,7 +234,8 @@
                                 class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
                                 <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button"
                                   data-bs-dismiss="modal">Cancel</button>
-                               <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();"
+                                  type="submit" data-bs-dismiss="modal">Confirmar</button>
                               </div>
                             </div>
                           </div>

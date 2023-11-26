@@ -62,13 +62,69 @@ public class GestionTiemposController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
 
-        Empleado emp = new Empleado();
-        emp.setIexcodcia(idCompania);
 
-        List<Empleado> empleadoList = empleadoService.listarEmpleado(emp);
-        model.addAttribute("empleadoList", empleadoList);
+        String v_fecini = request.getParameter("fecini");
+        String v_fecfin = request.getParameter("fecfin");
 
-        return new ModelAndView("public/gladius/gestionTiempo/listAsistencia");
+        model.addAttribute("fecini", v_fecini);
+        model.addAttribute("fecfin", v_fecfin);
+
+        model.addAttribute("empleadoList", turnoDiarioService.listarTurMasTra(idCompania, v_fecini, v_fecfin));
+        model.addAttribute("lovTipTurno", lovsService.getLovs("69", "%"));
+
+
+        return new ModelAndView("public/gladius/gestionTiempo/asistencia/listAsistencia");
+    }
+
+
+    @RequestMapping("/listarTurnodia")
+    public ModelAndView listarTurnodia(ModelMap model, HttpServletRequest request) {
+        logger.info("/listarTurnodia");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        if (request.getSession().getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        String email = (String) request.getSession().getAttribute("email");
+        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
+        String rucComp = (String) request.getSession().getAttribute("ruccomp");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
+        model.addAttribute("nombreComp", nombreComp);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
+
+
+
+        Empleado Empleado = new Empleado();
+        Empleado = (Empleado) request.getSession(Boolean.parseBoolean("FichaEmpleado"));
+
+        String v_fecini = request.getParameter("fecini");
+        String v_fecfin = request.getParameter("fecfin");
+
+        request.setAttribute("fecini",v_fecini );
+        request.setAttribute("fecfin", v_fecfin );
+
+
+        model.addAttribute("LstTurno",turnoDiarioService.listarTurnos(idCompania));
+        model.addAttribute("lovTipTurno",lovsService.getLovs("69","%"));
+        model.addAttribute("xempxturno",empleadoService.recuperarTurnos(idCompania, Empleado.getIexcodtra()));
+
+        if (v_fecini!= null && v_fecfin!= null )  {
+            model.addAttribute("LstTurnoDiario", turnoDiarioService.listarTurnoDia(idCompania, Empleado.getIexcodtra(), v_fecini, v_fecfin));
+        }
+        return new ModelAndView("public/gladius/gestionTiempo/asistencia/listAsistencia");
     }
 
 
@@ -102,8 +158,8 @@ public class GestionTiemposController {
 
         Turno turn = new Turno();
         turn.setCodcia(idCompania);
-        List<Turno> turnoList=turnoDiarioService.listarTurnos(idCompania);
-        model.addAttribute("turnoList",turnoList);
+        List<Turno> turnoList = turnoDiarioService.listarTurnos(idCompania);
+        model.addAttribute("turnoList", turnoList);
 
         return new ModelAndView("public/gladius/gestionTiempo/turno/listTurno");
 
@@ -225,7 +281,7 @@ public class GestionTiemposController {
         model.addAttribute("urlLogo", urlLogo);
         model.addAttribute("idTurn", idTurn);
 
-        model.addAttribute("turno", turnoDiarioService.getTurno(idCompania,Integer.parseInt(idTurn)));
+        model.addAttribute("turno", turnoDiarioService.getTurno(idCompania, Integer.parseInt(idTurn)));
 
         return new ModelAndView("public/gladius/gestionTiempo/turno/editarTurno");
     }
@@ -236,7 +292,7 @@ public class GestionTiemposController {
         logger.info("/modificarTurno");
         String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
+        if (request.getSession().getAttribute("user") == null) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -249,14 +305,14 @@ public class GestionTiemposController {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("idusuario", idusuario);
+        model.addAttribute("email", email);
+        model.addAttribute("firstCharacter", firstCharacter);
         model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("rucComp", rucComp);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("urlLogo", urlLogo);
 
         Turno turno = new Turno();
         turno.setCodcia(idCompania);
