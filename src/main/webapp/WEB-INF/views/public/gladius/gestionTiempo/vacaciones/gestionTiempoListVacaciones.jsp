@@ -140,16 +140,6 @@
                             data-options='{"disableMobile":true}' />
                         </div>
                         <div class="d-grid gap-2 d-md-block">
-<<<<<<< Updated upstream
-                          <button class="btn btn-primary" type="submit"><span class="fas fa-search me-2"></span>Buscar</button>
-                          <a class="btn btn-primary" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Agregar</a>
-                          <button class="btn btn-link text-900 ps-3"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Programación</button>
-                          <button class="btn btn-link text-900 "><span class="fa-solid fa-money-check-dollar fs--1 me-2"></span>Exportar Saldo</button>
-                        </div>
-                        <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
-                          <div class="table-responsive scrollbar mx-n1 px-1">
-                        	<table class="table table-sm fs--1 mb-0">
-=======
                           <button class="btn btn-primary" onclick="consultaDet();"><span
                               class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                           <a class="btn btn-primary" href="nuevoGestionVacaciones"><span
@@ -164,7 +154,8 @@
                             style="width: 160%;">
                             <div class="table-responsive scrollbar mx-n1 px-1">
                               <table class="table table-sm fs--1 mb-0">
->>>>>>> Stashed changes
+                              <table class="table table-sm fs--1 mb-0">
+                              <table class="table table-sm fs--1 mb-0">
                                 <thead>
                                   <tr>
                                     <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
