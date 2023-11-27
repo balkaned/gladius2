@@ -56,7 +56,7 @@
                                     <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
                                       <h5 class="mb-0">Año</h5>
                                     </div>
-                                    <p class="mb-0 text-800"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${perini} - ${perfin}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
+                                    <p class="mb-0 text-800"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${perini} - ${perfin}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
                                 </div>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">

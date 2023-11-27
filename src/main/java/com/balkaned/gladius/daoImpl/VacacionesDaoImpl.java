@@ -175,14 +175,14 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public void insertarVacacionPrg(VacacionProgramacion vacprg) {
 
         template.update("  insert into iexvacprg ( " +
-                "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
-                "iextipvac , iexglosa,  " +
-                "iexpermesini, iexpermesfin, iexusucrea, iexfeccrea " +
-                ") values ( " +
-                "  ?,   ? ,  ?,  to_date(?,'DD/MM/YYYY'),  to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
-                "  ?,   ? ,   "+
-                "  ?,   ? ,  ? ,  current_date "+
-                ")  ",
+                        "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias,  " +
+                        "iextipvac , iexglosa,  " +
+                        "iexpermesini, iexpermesfin, iexusucrea, iexfeccrea " +
+                        ") values ( " +
+                        "  ?,   ? ,  ?,  to_date(?,'DD/MM/YYYY'),  to_date(?,'DD/MM/YYYY') ,  ?  ,   " +
+                        "  ?,   ? ,   " +
+                        "  ?,   ? ,  ? ,  current_date " +
+                        ")  ",
 
                 vacprg.getIexcodcia(),
                 vacprg.getIexcodtra(),
@@ -327,7 +327,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
     public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg) {
 
-        String sql= " select  " +
+        String sql = " select  " +
                 " v.iexcodcia, v.iexcodtra, v.iexcorrel, to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, "
                 + " v.iexnrodias, v.iextipvac , d.desdet as destipvac, v.iexglosa,  " +
                 " v.iexpermesini, v.iexpermesfin, v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
@@ -337,12 +337,12 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 " select  iexkey, desdet from iexttabled where iexcodtab='56' " +
                 ") d " +
                 " where " +
-                " v.iexcodcia="+vacprg.getIexcodcia()+" and v.iexcodtra="+vacprg.getIexcodtra()+" and v.iexcorrel="+vacprg.getIexcorrel()+" and " +
+                " v.iexcodcia=" + vacprg.getIexcodcia() + " and v.iexcodtra=" + vacprg.getIexcodtra() + " and v.iexcorrel=" + vacprg.getIexcorrel() + " and " +
                 " v.iextipvac = d.iexkey ";
         return (VacacionProgramacion) template.query(sql, new ResultSetExtractor<VacacionProgramacion>() {
-            public VacacionProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException{
-                VacacionProgramacion  p = new VacacionProgramacion();
-                while(rs.next()) {
+            public VacacionProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException {
+                VacacionProgramacion p = new VacacionProgramacion();
+                while (rs.next()) {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
@@ -405,19 +405,18 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
         template.update("UPDATE iexvacprg SET iexfecini = TO_DATE(?, 'DD/MM/YYYY'),iexfecfin = TO_DATE(?, 'DD/MM/YYYY'),iexnrodias = ?,iextipvac = ?,  iexglosa = ?,iexpermesini = ?,iexpermesfin = ?,iexusucrea = ?,iexfecmod = CURRENT_DATE WHERE iexcodcia = ? AND iexcodtra = ? AND iexcorrel = ?");
 
-                    vacprg.getIexfecini();
-                    vacprg.getIexfecfin();
-                    vacprg.getIexnrodias();
-                    vacprg.getIextipvac();
-                    vacprg.getIexglosa();
-                    vacprg.getIexpermesini();
-                    vacprg.getIexpermesfin();
-                    vacprg.getIexusucrea();
-                    vacprg.getIexcodcia();
-                    vacprg.getIexcodtra();
-                    vacprg.getIexcorrel();
+        vacprg.getIexfecini();
+        vacprg.getIexfecfin();
+        vacprg.getIexnrodias();
+        vacprg.getIextipvac();
+        vacprg.getIexglosa();
+        vacprg.getIexpermesini();
+        vacprg.getIexpermesfin();
+        vacprg.getIexusucrea();
+        vacprg.getIexcodcia();
+        vacprg.getIexcodtra();
+        vacprg.getIexcorrel();
     }
-
 
 
 }

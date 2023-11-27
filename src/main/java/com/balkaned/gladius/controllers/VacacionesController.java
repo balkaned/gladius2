@@ -361,11 +361,10 @@ public class VacacionesController {
         logger.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
-        String perini2 = request.getParameter("perini2");
-        String perfin2 = request.getParameter("perfin2");
-        String saldo = request.getParameter("saldo2");
-
-        String iexcodcia = request.getParameter("iexcodcia");
+        String perini2 = request.getParameter("iexpermesini");
+        String perfin2 = request.getParameter("iexpermesfin");
+        String saldo = request.getParameter("saldo");
+        String iexcodcia = String.valueOf(idCompania);
         String iexfecini = request.getParameter("iexfecini");
         String iexfecfin = request.getParameter("iexfecfin");
 
@@ -388,15 +387,15 @@ public class VacacionesController {
 
             if (codcorrel > 0) {
 
-                String iexpermesini2 = request.getParameter("iexpermesini2");
+                String iexpermesini2 = perini2;
 
                 logger.info("iexpermesini2: " + iexpermesini2);
                 Integer mesfinal = Integer.valueOf(iexpermesini2) + 1;
 
                 vacprg.setIexcorrel(codcorrel);
                 vacprg.setIextipvac(request.getParameter("iextipvac"));
-                vacprg.setIexfecini(request.getParameter("iexfecini"));
-                vacprg.setIexfecfin(request.getParameter("iexfecfin"));
+                vacprg.setIexfecini(iexfecini);
+                vacprg.setIexfecfin(iexfecfin);
                 vacprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
                 vacprg.setIexglosa(request.getParameter("iexglosa"));
                 vacprg.setIexusucrea("1");

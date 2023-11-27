@@ -36,10 +36,10 @@
                 </div>
               </div>
               <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="reingresoEmpleado">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="reingresoEmpleado"><span class="fa-solid fa-right-to-bracket fs--1 me-2"></span>Reingreso</a></li>
+                <!--<li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
-                <!--<li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
               </ul>
               <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
@@ -86,7 +86,8 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
+                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</button>
+                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</button>
                       <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                     </div>
                   </div>

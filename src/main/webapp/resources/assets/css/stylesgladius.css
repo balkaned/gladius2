@@ -418,4 +418,22 @@ margin-bottom:20px;
 background-color:grey;
 }
 
+.badgecirclered{
+border:0px solid red;
+padding:6px;
+background-color:red;
+border-radius:100px;
+color:white;
+font-weight:700;
+}
+
+.badgecirclegreen{
+border:0px solid green;
+padding:6px;
+background-color:green;
+border-radius:100px;
+color:white;
+font-weight:700;
+}
+
 

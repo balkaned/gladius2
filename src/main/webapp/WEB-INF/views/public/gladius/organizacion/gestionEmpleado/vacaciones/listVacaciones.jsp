@@ -66,7 +66,7 @@
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Pag y Goz</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Ven</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Saldo</th>
-                                          <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" >Ver</th>
+                                          <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" ></th>
                                         </tr>
                                       </thead>
                                       <tbody class="list" id="customer-order-table-body">
@@ -78,8 +78,8 @@
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexfecfin}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-danger"><span class="badge-label">${LstVacacionesCtl.iexdiasven}</span></td>
-                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 "><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstVacacionesCtl.iexdiassaldo}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 "><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></td>
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
