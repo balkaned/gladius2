@@ -79,7 +79,10 @@
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>
-                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 "><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ">
+                                                <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="badgecirclered">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                                <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                              </td>
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">

@@ -67,14 +67,14 @@
             document.getElementById("accion").value = "gestionTiempoListVacaciones";
           }
 
-   function modificarDet(codtra, correl){
-                    document.getElementById("accion").value="getGestionVacaciones";
-                    document.getElementById("codtra").value=codtra;
-                    document.getElementById("correl").value=correl;
-                    document.getElementById("gtmvac").submit();
+          function modificarDet(codtra, correl){
+                document.getElementById("accion").value="getGestionVacaciones";
+                document.getElementById("codtra").value=codtra;
+                document.getElementById("correl").value=correl;
+                document.getElementById("gtmvac").submit();
 
-        console.log(codtra, correl);
-             }
+                console.log(codtra, correl);
+         }
         </script>
 
         <body>
@@ -144,8 +144,8 @@
                               class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                           <a class="btn btn-primary" href="nuevoGestionVacaciones"><span
                               class="fas fa-plus me-2"></span>Agregar</a>
-                          <button class="btn btn-primary" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Programación</button>
-                          <button class="btn btn-primary" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Saldo</button>
+                          <button class="btn btn-link text-900 me-4 ps-3"><span class="fa-solid fa-file-export me-2"></span>Exportar Programación</button>
+                          <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export me-2"></span>Exportar Saldo</button>
                         </div>
                         <div id="orderTable"
                           data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
