@@ -105,13 +105,18 @@
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
-                       <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-6" id="myTab" role="tablist" style="overflow-y: hidden;">
+                       <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTab" role="tablist" style="overflow-y: hidden;">
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos Personales</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"> <span class="fa-solid fas fa-graduation-cap me-2 tab-icon-color"></span>Datos Laborales</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de Pago</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad Social</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos Domicilio</a></li>
                        </ul>
+                       <div class="col-12 d-flex justify-content-end mb-3">
+                           <div class="col-sm-6 col-md-12 d-flex justify-content-end">
+                               <a class="col-2 btn btn-phoenix-primary" href="listEmpleados">Atras</a>
+                           </div>
+                       </div>
 
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">

@@ -53,17 +53,20 @@
                        <div class="form-group row mt-4">
                             <div class="col-md-9 col-sm-6 ">
                                  <!--<img id="imgcompanyTbl" src="verFoto@LOGO@${idCia}@${requestScope.xCia.urlLogo}@null" class="avatar" alt="Avatar" width="100" height="100" >-->
-                                 <c:if test="${requestScope.xCia.urlLogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg" width="100" height="100" /></c:if>
-                                 <c:if test="${requestScope.xCia.urlLogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="verFoto@LOGO@${idCia}@${requestScope.xCia.urlLogo}@null" width="100" height="100" /></c:if>
-                                 <br>
-                                 <form method="post" action="fileUploadServlet@null@${idCia}" enctype="multipart/form-data">
-                                       <input type="hidden"  name="accion" value="LOGO" >
-                                       <input type="hidden"  name="idimg" value="${idCia}" >
-                                       <input type="hidden"  name="codciax" value="${idCia}" >
-                                       <input type="file" name="uploadFile" class="form-control"/>
-                                       <br/>
 
-                                       <button class="btn btn-primary" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
+                                 <c:if test="${requestScope.xCia.urlLogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg" width="100" height="100" /></c:if>
+
+                                 <c:if test="${requestScope.xCia.urlLogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
+                                 src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null"
+                                 width="100" height="100" /></c:if>
+
+                                 <form method="post"
+                                 action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null"
+                                 enctype="multipart/form-data">
+                                       <input type="hidden"  name="idimg" value="${idCia}" >
+                                       <input type="file" name="uploadFile" class="form-control"/>
+
+                                       <button class="btn btn-primary mt-3" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
                                  </form>
                             </div>
                        </div>
@@ -117,7 +120,7 @@
                               </div>
                               <div class="col-sm-6 col-md-12">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo </label>
-                                  <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" />
+                                  <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" placeholder="ID.jpg" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Server</label>
@@ -128,11 +131,11 @@
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
                               </div>
 
-                              <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source AWS (*)</label>
-                                    <input class="form-control" name="iexflgsource" type="number" placeholder="Puede ser: 1,2,3,4" value="${requestScope.xCia.iexflgsource}" required/>
+                              <div class="col-sm-6 col-md-5">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source AWS or FTP (*)</label>
+                                    <input class="form-control" name="iexflgsource" type="number" placeholder=" 1:AWS, 2:FTP" value="${requestScope.xCia.iexflgsource}" required/>
                               </div>
-                              <div class="col-sm-6 col-md-8">
+                              <div class="col-sm-6 col-md-7">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario Source AWS (*)</label>
                                     <input class="form-control" name="iexususource" type="text" value="${requestScope.xCia.iexususource}" required/>
                               </div>

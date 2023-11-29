@@ -16,21 +16,24 @@
         </div>
 
         <div class="card mb-2" style="height:275px;">
-            <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 70px; ">
+            <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 78px; ">
                 <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">-->
                 <!--<div class="bg-holder rounded-top" style="background-color:#e6ebf7; !important">-->
                 <div class="bg-holder rounded-top bg-100 #f6f7f8">
-                <input class="d-none" id="upload-feed-cover-image" type="file" />
+                <!--<input class="d-none" id="upload-feed-cover-image" type="file" />-->
                 <label class="cover-image-file-input" for="upload-feed-cover-image"></label>
-                <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white">
+                <div class="d-flex justify-content-end bottom-0 pe-1 pb-2 text-white mt-2 pe-2">
                     <span class="fa-solid fa-camera me-2"></span>
-                    <a href="#!" class="fs--1" data-bs-toggle="modal" data-bs-target="#reportsFilterModal2" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Subir</a>
+                    <a href="#!" class="fs--1 active focus" data-bs-toggle="modal" data-bs-target="#reportsFilterModal2" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Subir</a>
                 </div>
               </div>
-              <input class="d-none" id="upload-feed-porfile-picture" type="file" />
+              <!--<input class="d-none" id="upload-feed-porfile-picture" type="file" />-->
               <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-feed-porfile-picture">
                 <c:if test="${sexo.equals('MA') && iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user_blank.jpg" width="200" alt="" /></c:if>
-                <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="verFoto@FOTOEMP@${idComp}@${iexlogo}@null" width="200" alt="" /></c:if>
+
+                <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm"
+                src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${idTrab}@${iexlogo}@null@null"
+                width="200" alt="" /></c:if>
 
                 <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>
                 <c:if test="${iexlogo==null && sexo.equals('F')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/woman_user.jpg" width="200" alt="" /></c:if>
@@ -139,24 +142,23 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border">
         <div class="modal-header border-200 p-4">
-          <h5 class="modal-title text-1000 fs-2 lh-sm">Subir Imagen</h5>
+          <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de Trabajador</h5>
           <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
         </div>
         <div class="modal-body pt-4 pb-2 px-4">
             <div class="col-12 col-md-12">
-              <form method="post" action="fileUploadServlet@${idTrab}@${idComp}" enctype="multipart/form-data" >
-                  <input type="hidden" name="accion" value="FOTOEMP" >
+              <form method="post"
+              action="AWSorFTP_flgsource_MultipartUpload@subirFotoEmpl@${idComp}@${idTrab}"
+              enctype="multipart/form-data" >
                   <input type="hidden" name="idimg" value="${nrodoc}" >
-                  <input type="hidden" name="codciax" value="${idComp}" >
-                  <input type="hidden" name="idTrab" value="${idTrab}" >
                   <div class="mb-3">
-                        <label class="form-label">Subir Imagen</label>
+                        <label class="form-label">Subir Imagen solo en formato .jpg</label>
                         <input class="form-control" name="uploadFile" type="file" />
                   </div>
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-primary justify-content-end me-2 col-6" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                        <button class="btn btn-primary justify-content-end me-2 col-4" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
                     </div>
                   </div>
               </form>

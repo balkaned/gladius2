@@ -74,7 +74,9 @@
                                 				  <td class="customer align-middle white-space-nowrap pe-5 ps-5">
                                                     <a class="d-flex align-items-center text-900" href="#">
                                                         <div class="avatar avatar-m">
-                                                            <img class="rounded-circle" src="verFoto@FOTODER@${idComp}@${iexlogo}@${LovDerhab.iexcoddep}" alt="" />
+                                                            <img class="rounded-circle"
+                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null"
+                                                            alt="" />
                                                         </div>
                                                         <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</h6>
                                                       </a>
@@ -88,7 +90,7 @@
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
                                 					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                 					  <div class="dropdown-menu dropdown-menu-end py-2">
-                                					    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Agregar Foto</a>
+                                					    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-camera me-2"></span>Agregar foto</a>
                                 						<div class="dropdown-divider"></div>
                                 						<a class="dropdown-item text-warning" href="#!">Remove</a>
                                 					  </div>
@@ -100,25 +102,24 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                       <div class="modal-content border">
                                                           <div class="modal-header border-200 p-4">
-                                                            <h5 class="modal-title text-1000 fs-2 lh-sm">Subir Imagen</h5>
+                                                            <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de derecho habiente</h5>
                                                             <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
                                                           </div>
                                                           <div class="modal-body pt-4 pb-2 px-4">
                                                               <div class="col-12 col-md-12">
-                                                                <form method="post" action="fileUploadServlet@${idTrab}@${idComp}" enctype="multipart/form-data" >
-                                                                    <input type="hidden" name="accion" value="FOTODER" >
+                                                                <form method="post"
+                                                                action="AWSorFTP_flgsource_MultipartUpload@subirFotoDerHabiente@${idComp}@${idTrab}"
+                                                                enctype="multipart/form-data" >
                                                                     <input type="hidden" name="idimg" value="${nrodoc}" >
-                                                                    <input type="hidden" name="codciax" value="${idComp}" >
-                                                                    <input type="hidden" name="idTrab" value="${idTrab}" >
-                                                                    <input type="hidden" name="idDer" value="${LovDerhab.iexcoddep}" >
+                                                                    <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >
                                                                     <div class="mb-3">
-                                                                          <label class="form-label">Subir Imagen</label>
+                                                                          <label class="form-label">Subir Imagen solo en formato .jpg</label>
                                                                           <input class="form-control" name="uploadFile" type="file" />
                                                                     </div>
 
                                                                     <div class="col-sm-6 col-md-12 mt-2 mb-4">
                                                                       <div class="form-floating">
-                                                                          <button class="btn btn-primary justify-content-end me-2 col-6" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                                                                          <button class="btn btn-primary justify-content-end me-2 col-4" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
                                                                       </div>
                                                                     </div>
                                                                 </form>
