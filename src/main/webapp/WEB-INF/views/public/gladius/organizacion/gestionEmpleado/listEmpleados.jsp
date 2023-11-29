@@ -86,8 +86,8 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@PadronTrabajadores" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</a>
-                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@PadronTrabajadoresActivos" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</a>
+                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</a>
+                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadoresActivos" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</a>
                       <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                     </div>
                   </div>
@@ -146,7 +146,7 @@
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver detalle</a>
-                                        <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
+                                        <a class="dropdown-item" href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador"><span class="fa-solid fa-file-pdf fs--1 me-2"></span>Descargar Ficha PDF</a>
                                         <!--<div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->
                                    </div>

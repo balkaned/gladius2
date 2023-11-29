@@ -18,9 +18,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
@@ -30,9 +29,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +40,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 @RestController
@@ -53,7 +49,7 @@ public class AWS_FTP_FlgSourceController {
     JdbcTemplate template;
 
     @Autowired
-    public void setDataSource(DataSource datasource){
+    public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
     }
 
@@ -64,30 +60,33 @@ public class AWS_FTP_FlgSourceController {
     EmpleadoService empleadoService;
 
     @SneakyThrows
-    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{urlLogo}@{idDerHab}@{nombreJasper}")
+    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}")
     public ModelAndView AWSorFTP_flgsource(ModelMap model, HttpServletRequest request, HttpServletResponse response,
                                            @PathVariable String accion,
                                            @PathVariable String idComp,
+                                           @PathVariable String idTrab,
                                            @PathVariable String urlLogo,
                                            @PathVariable String idDerHab,
                                            @PathVariable String nombreJasper) {
-        log.info("/AWSorFTP_flgsource");
+        log.info("\n\n/AWSorFTP_flgsource");
 
         String accionx = accion;
         String codciax = idComp;
+        String idTrabx = idTrab;
         String fileurl = urlLogo;
         String idDerHabx = idDerHab;
-        String nombreJasperx=nombreJasper;
+        String nombreJasperx = nombreJasper;
 
         log.info("accionx: " + accionx);
-        log.info("codciax: "+codciax);
-        log.info("fileurl: "+urlLogo);
-        log.info("idDerHabx: "+idDerHabx);
-        log.info("nombreJasperx: "+nombreJasperx);
+        log.info("codciax: " + codciax);
+        log.info("idTrabx: " + idTrab);
+        log.info("fileurl: " + urlLogo);
+        log.info("idDerHabx: " + idDerHabx);
+        log.info("nombreJasperx: " + nombreJasperx);
 
         Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(codciax));
-        log.info("ciainfo.getDescCia(): "+ciainfo.getDescCia());
-        log.info("ciainfo.getUrlflgsource(): "+ciainfo.getUrlflgsource());
+        log.info("ciainfo.getDescCia(): " + ciainfo.getDescCia());
+        log.info("ciainfo.getUrlflgsource(): " + ciainfo.getUrlflgsource());
 
         //################# AWS CONEXION ##############################################################################
         if (ciainfo.getUrlflgsource().equals("1")) {
@@ -95,7 +94,7 @@ public class AWS_FTP_FlgSourceController {
 
             System.out.println("===========================================");
             System.out.println("Getting Started with Amazon S3");
-            System.out.println("===========================================\n");
+            System.out.println("===========================================");
 
             //Codigo cuando el flag 1 es AWS
             log.info("flgsource 1 : AWS");
@@ -286,12 +285,12 @@ public class AWS_FTP_FlgSourceController {
             if (accion.equals("verReporteExcel")) {
                 log.info("#### AWS verReporte Excel ####");
 
-                response.setHeader("Content-Disposition", "attachment; filename="+nombreJasper+".xls");
+                response.setHeader("Content-Disposition", "attachment; filename=" + nombreJasper + ".xls");
 
                 InputStream inputStream = null;
 
-                fileName = "reportes/"+nombreJasper+".jasper";
-                log.info("Nombre Jasper: "+fileName);
+                fileName = "reportes/" + nombreJasper + ".jasper";
+                log.info("Nombre Jasper: " + fileName);
 
                 credentials = new BasicAWSCredentials(key_name, passPhrase);
                 s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -310,7 +309,7 @@ public class AWS_FTP_FlgSourceController {
 
                     JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
 
-                    log.info("jasperPrint: "+jasperPrint.getName());
+                    log.info("jasperPrint: " + jasperPrint.getName());
 
                     if (jasperPrint != null) {
                         log.info("Se encontró jasper");
@@ -338,7 +337,91 @@ public class AWS_FTP_FlgSourceController {
                     log.info("No compila ");
                 }
             }
+
+            if (accion.equals("verReportePDF")) {
+                log.info("#### AWS verReporte PDF ####");
+
+                String path = "";
+                String logo = "";
+                String fotoemp = "";
+
+                log.info("codciax:" + codciax);
+                log.info("idTrabx: " + idTrabx);
+
+                Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
+
+                if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
+                    logo = "cia.jpg";
+                } else {
+                    logo = ciainfo.getUrlLogo();
+                }
+
+                if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
+                    fotoemp = "fotoemp.png";
+                } else {
+                    fotoemp = empleado.getIexlogo();
+                }
+
+                InputStream inputStreamfotoemp = null;
+                InputStream inputStreamlogo = null;
+                InputStream inputStreamRep = null;
+
+                clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+                bucket_name = ciainfo.getIexsourcedes().trim();
+                key_name = ciainfo.getIexususource().trim();
+                passPhrase = ciainfo.getIexpasssource().trim();
+
+                fileName = codciax + "/fotoemp/" + fotoemp;
+                credentials = new BasicAWSCredentials(key_name, passPhrase);
+
+                S3Object o = null;
+                s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                o = s3.getObject(bucket_name, fileName);
+                inputStreamfotoemp = o.getObjectContent();
+
+                log.info("logo: " + logo);
+
+                AmazonS3 s4 = null;
+                S3Object o2 = null;
+                fileName = "img/" + logo;
+                s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                o2 = s4.getObject(bucket_name, fileName);
+                inputStreamlogo = o2.getObjectContent();
+
+                AmazonS3 s5 = null;
+                S3Object o3 = null;
+                s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                fileName = "reportes/" + nombreJasper + ".jasper";
+                log.info("Nombre Jasper: " + fileName);
+                o3 = s5.getObject(bucket_name, fileName);
+                inputStreamRep = o3.getObjectContent();
+
+                Map parametros = new HashMap();
+                parametros.put("P_CODCIA", Integer.valueOf(codciax));
+                parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
+                parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                parametros.put("P_LOGO", inputStreamlogo);
+                parametros.put("P_FOTO", inputStreamfotoemp);
+
+                log.info("Ruta reporte:" + path);
+                Connection conn = template.getDataSource().getConnection();
+                OutputStream out = response.getOutputStream();
+
+                try {
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(inputStreamRep);
+                    byte[] bytes = JasperRunManager.runReportToPdf(reporte, parametros, conn);
+
+                    int len = bytes.length;
+                    response.setContentLength(len);
+                    out.write(bytes, 0, len);
+                    out.flush();
+                } catch (Exception e) {
+                    log.info("Error Reporte:" + e.getMessage());
+                }
+            }
         }
+
+
 
         //################# FTP CONEXION ##############################################################################
         if (ciainfo.getUrlflgsource() == "2") {
@@ -346,7 +429,7 @@ public class AWS_FTP_FlgSourceController {
 
             System.out.println("===========================================");
             System.out.println("Getting Started with FTP Connection");
-            System.out.println("===========================================\n");
+            System.out.println("===========================================");
 
             //Codigo cuando el flag es 2 FTP
             log.info("flgsource 2 : FTP");
@@ -376,16 +459,13 @@ public class AWS_FTP_FlgSourceController {
     }
 
 
-
-
-
     @SneakyThrows
     @RequestMapping(value = "/AWSorFTP_flgsourceMultipart@{accion}@{idComp}@{urlLogo}", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView AWSorFTP_flgsourceMultipart(ModelMap model, HttpServletRequest request, HttpServletResponse response,
-                                           @PathVariable String accion,
-                                           @PathVariable String idComp,
-                                           @PathVariable String urlLogo,
-                                           @RequestParam("uploadFile") MultipartFile uploadFile) {
+                                                    @PathVariable String accion,
+                                                    @PathVariable String idComp,
+                                                    @PathVariable String urlLogo,
+                                                    @RequestParam("uploadFile") MultipartFile uploadFile) {
         log.info("/AWSorFTP_flgsourceMultipart");
 
         log.info("accion: " + accion);
