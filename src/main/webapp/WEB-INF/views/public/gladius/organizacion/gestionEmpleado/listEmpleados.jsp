@@ -86,8 +86,8 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</button>
-                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</button>
+                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@PadronTrabajadores" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</a>
+                      <a class="btn btn-link text-900 me-4 px-0" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@PadronTrabajadoresActivos" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</a>
                       <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                     </div>
                   </div>
