@@ -352,17 +352,17 @@
                   <li class="collapsed-nav-item-title d-none">Gestión de Procesos Externos</li>
 
                   <li class="nav-item">
-                    <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" id="gestionPlame" href="gestionPlame" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Plame</span></div>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                      <a class="nav-link" id="gestionAfp" href="gestionAfp" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Afp Net</span></div>
                   </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                <a class="nav-link" id="gestionAsientosContables" href="gestionAsientosContables" data-bs-toggle="" aria-expanded="false">
                   <div class="d-flex align-items-center"><span class="nav-link-text">Asientos Contables</span></div>
                 </a>
               </li>
