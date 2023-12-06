@@ -39,7 +39,7 @@
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="reemplazar"><span class="fas fa-plus me-2"></span>Add cuenta contable</a>
+            <a class="btn btn-primary" href="insertarCuentasContables"><span class="fas fa-plus me-2"></span>Add cuenta contable</a>
           </div>
         </div>
       </div>

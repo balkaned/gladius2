@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -43,5 +45,17 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
 
             return list;
         });
+    }
+
+    @Override
+    public void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania) {
+        String sqlQuery = "insert into iexccontable (iexcodcia, iexccodcta, iexdescta, iextipocta, iexfeccrea) values (?, ?, ?, ?, current_date)";
+        template.update(
+                sqlQuery,
+                idCompania,
+                cuentaContable.getIexccodcta(),
+                cuentaContable.getIexdescta(),
+                cuentaContable.getDesdet()
+        );
     }
 }

@@ -26,4 +26,5 @@ public interface LovsDao {
     public List<VacacionControl>  listaSaldoVacTra(Integer codcia, String regimen,  Integer codtra  );
     public List<Empleado>  listaTrabajadoresReg(Integer codcia, String regimen);
 
+    List<Lovs> getLovsCContables();
 }

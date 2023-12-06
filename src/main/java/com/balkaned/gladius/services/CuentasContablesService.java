@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CuentasContablesService {
     List<CuentaContable> listarCuentasContables();
+
+    void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania);
 }

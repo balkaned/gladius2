@@ -17,4 +17,9 @@ public class CuentasContablesServiceImpl implements CuentasContablesService {
     public List<CuentaContable> listarCuentasContables() {
         return dao.listarCuentasContables();
     }
+
+    @Override
+    public void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania) {
+        dao.insertarCuentaContable(cuentaContable, idCompania);
+    }
 }

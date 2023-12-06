@@ -92,4 +92,8 @@ public class LovsServiceImpl implements LovsService {
     public List<Empleado> listaTrabajadoresReg(Integer codcia, String regimen) {
         return dao.listaTrabajadoresReg(codcia, regimen);
     }
+
+    public List<Lovs> getLovsCContables() {
+        return dao.getLovsCContables();
+    }
 }

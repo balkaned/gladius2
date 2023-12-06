@@ -579,4 +579,21 @@ public class LovsDaoImpl implements LovsDao {
             }
         });
     }
+
+    public List<Lovs> getLovsCContables() {
+        String sql = "select iexkey cod, trim(substring(desdet,1,40)) des from iexttabled where iexcodtab='65'";
+
+        return template.query(sql, rs -> {
+            List<Lovs> lista = new ArrayList<>();
+
+            while (rs.next()) {
+                Lovs p = new Lovs();
+                p.setIdLov(rs.getString("cod"));
+                p.setDesLov(rs.getString("des"));
+                lista.add(p);
+            }
+
+            return lista;
+        });
+    }
 }
