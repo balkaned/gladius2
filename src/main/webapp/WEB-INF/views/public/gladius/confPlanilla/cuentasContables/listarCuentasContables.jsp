@@ -56,6 +56,7 @@
               <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">DESCRIPCION DE CUENTA</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO DE CUENTA</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
@@ -70,6 +71,14 @@
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarCuentaContable@${ccontable.iexccodcta}">#${ccontable.iexccodcta}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${ccontable.iexdescta}</td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${ccontable.desdet}</td>
+                <td class="align-middle text-center white-space-nowrap pe-0 action">
+                  <div class="font-sans-serif btn-reveal-trigger position-static">
+                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
+                            aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                    <div class="dropdown-menu dropdown-menu-end py-2">
+                      <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                  </div>
+                </td>
               </tr>
             </c:forEach>
             </tbody>
