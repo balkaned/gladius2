@@ -145,7 +145,7 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link" id="listarCuentasContables" href="listarCuentasContables" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">C. Contables</span></div>
                         </a>
                       </li>
