@@ -212,7 +212,6 @@ public class CompaniasController {
         model.addAttribute("urlLogo", urlLogo);
 
         Compania cia = new Compania();
-
         cia.setIdCodcia(Integer.parseInt(request.getParameter("iexcodcia2")));
         cia.setDescCia(request.getParameter("iexdescia"));
         cia.setDescCiaCorto(request.getParameter("iexdescorto"));
@@ -225,10 +224,11 @@ public class CompaniasController {
         cia.setNroDocuRep(request.getParameter("iexrepdocid"));
         cia.setUrlLogo(request.getParameter("iexreplogo"));
         cia.setUsuCrea(usuario);
-        cia.setIexurlfileserver(request.getParameter("iexurlfileserver"));
         cia.setIexurlfilereport(request.getParameter("iexurlfilereport"));
 
         cia.setIexflgsource(request.getParameter("iexflgsource"));
+        cia.setIexurlfileserver(request.getParameter("iexurlfileserver"));
+        cia.setIexportsource(request.getParameter("iexportsource"));
         cia.setIexususource(request.getParameter("iexususource"));
         cia.setIexpasssource(request.getParameter("iexpasssource"));
         cia.setIexsourcedes(request.getParameter("iexsourcedes"));

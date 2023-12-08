@@ -8,20 +8,14 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
@@ -29,20 +23,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -88,6 +76,12 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
             Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(idComp));
             log.info("ciainfo.getDescCia(): " + ciainfo.getDescCia());
             log.info("ciainfo.getUrlflgsource(): " + ciainfo.getUrlflgsource());
+
+            //======================================
+            //======================================
+            //   Getting Started with Amazon S3
+            //======================================
+            //======================================
 
             //################# AWS CONEXION ##############################################################################
             if (ciainfo.getUrlflgsource().equals("1")) {
@@ -137,6 +131,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         credentials = new BasicAWSCredentials(key_name, passPhrase);
                         s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                         s3.putObject(bucket_name, nombreArchivo, nombreArchivo);
+                        log.info("Path: " + nombreArchivo);
 
                         InputStream in = uploadFile.getInputStream();
                         File tmp = null;
@@ -157,7 +152,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         log.info("Archivo escrito: " + nombreArchivo);
                         emp.setIexlogo(idimg + "." + "jpg");
                         empleadoService.actualizarFoto(emp);
-                    } catch (UncheckedIOException e) {
+                    } catch (IOException e) {
                         log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
                     }
 
@@ -184,6 +179,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         credentials = new BasicAWSCredentials(key_name, passPhrase);
                         s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                         s3.putObject(bucket_name, nombreArchivo, nombreArchivo);
+                        log.info("Path: " + nombreArchivo);
 
                         InputStream in = uploadFile.getInputStream();
                         File tmp = null;
@@ -200,11 +196,11 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         log.info("Archivo escrito: " + nombreArchivo);
                         emp.setIexlogo(idimg + "." + "jpg");
                         empleadoService.actualizarFoto(emp);
-                    } catch (UncheckedIOException e) {
+                    } catch (IOException e) {
                         log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
                     }
 
-                    return new ModelAndView("redirect:/detalleEmpl@" + idTrab);
+                    return new ModelAndView("redirect:/derechoHab@" + idTrab);
                 }
 
 
@@ -224,6 +220,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         credentials = new BasicAWSCredentials(key_name, passPhrase);
                         s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                         s3.putObject(bucket_name, nombreArchivo, nombreArchivo);
+                        log.info("Path: " + nombreArchivo);
 
                         InputStream in = uploadFile.getInputStream();
                         File tmp = null;
@@ -237,7 +234,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         request2.setMetadata(metadata);
                         s3.putObject(request2);
 
-                        System.out.println("Archivo escrito: " + nombreArchivo);
+                        log.info("Archivo escrito: " + nombreArchivo);
 
                         Compania cia = new Compania();
                         cia.setIdCodcia(Integer.parseInt(idimg));
@@ -246,7 +243,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                         return new ModelAndView("redirect:/editarCompania@" + idComp);
 
-                    } catch (UncheckedIOException e) {
+                    } catch (IOException e) {
                         log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
                     }
                 }
@@ -264,15 +261,54 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                 log.info("################# FTP CONEXION ##################");
 
                 System.out.println("===========================================");
-                System.out.println("FTP Connection");
+                System.out.println("    FTP Connection");
                 System.out.println("===========================================");
 
                 //Codigo cuando el flag es 2 FTP
                 log.info("flgsource 2 : FTP");
 
+                String server = ciainfo.getIexurlfileserver();
+                int port = Integer.parseInt(ciainfo.getIexportsource());
+                String user = ciainfo.getIexususource().trim();
+                String pass = ciainfo.getIexpasssource().trim();
+
+                log.info("server: " + server);
+                log.info("port: " + port);
+                log.info("user: " + user);
+                log.info("pass: " + pass);
+
                 //######### SUBIR FOTO EMPL FTP ##################################################################################
                 if (accion.equals("subirFotoEmpl")) {
                     log.info("#### FTP subirFotoEmpl ####");
+
+                    Integer codciaxRecup = Integer.valueOf(idComp);
+                    Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
+
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                        String remoteFile = "/" + codciax + "/fotoemp/" + idimg + "." + "jpg";
+                        log.info("Path: " + remoteFile);
+
+                        InputStream in = uploadFile.getInputStream();
+
+                        ftpClient.storeFile(remoteFile, in);
+
+                        in.close();
+                        ftpClient.logout();
+
+                        emp.setIexlogo(idimg + "." + "jpg");
+                        empleadoService.actualizarFoto(emp);
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
+
+                    return new ModelAndView("redirect:/detalleEmpl@" + idTrab);
 
                 }
 
@@ -280,12 +316,63 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                 if (accion.equals("subirFotoDerHabiente")) {
                     log.info("#### FTP subirFotoDerHabiente ####");
 
+                    Integer codciaxRecup = Integer.valueOf(idComp);
+                    Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
+
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                        String directory = "/" + codciax + "/fotoderhab/" + idDerHab;
+                        String remoteFile = "/" + codciax + "/fotoderhab/" + idDerHab + "/" + idimg + ".jpg";
+                        log.info("Path: " + remoteFile);
+
+                        InputStream in = uploadFile.getInputStream();
+                        ftpClient.makeDirectory(directory);
+                        ftpClient.storeFile(remoteFile, in);
+
+                        in.close();
+                        ftpClient.logout();
+
+                        emp.setIexlogo(idimg + ".jpg");
+                        empleadoService.actualizarFoto(emp);
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
+
+                    return new ModelAndView("redirect:/derechoHab@" + idTrab);
                 }
 
                 //######### SUBIR LOGO COMPANIA FTP ##################################################################################
                 if (accion.equals("subirLogoCompania")) {
                     log.info("#### FTP subirLogoCompania ####");
 
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                        String remoteFile = "/img/" + idimg + ".jpg";
+                        log.info("Path: " + remoteFile);
+
+                        InputStream in = uploadFile.getInputStream();
+
+                        ftpClient.storeFile(remoteFile, in);
+
+                        in.close();
+                        ftpClient.logout();
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
+
+                    return new ModelAndView("redirect:/editarCompania@" + idComp);
                 }
             }
         }

@@ -122,34 +122,42 @@
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo </label>
                                   <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" placeholder="ID.jpg" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Server</label>
-                                    <input class="form-control" name="iexurlfileserver" type="text"value="${requestScope.xCia.iexurlfileserver}" />
-                              </div>
+
                               <div class="col-sm-6 col-md-12">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
                               </div>
-
                               <div class="col-sm-6 col-md-5">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source AWS or FTP (*)</label>
-                                    <input class="form-control" name="iexflgsource" type="number" placeholder=" 1:AWS, 2:FTP" value="${requestScope.xCia.iexflgsource}" required/>
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source(*)</label>
+                              	  <select name="iexflgsource" class="form-select" required >
+                              		  <option value="1" ${1 == requestScope.xCia.iexflgsource ? 'selected' : ''} >1: AWS S3</option>
+                              		  <option value="2" ${2 == requestScope.xCia.iexflgsource ? 'selected' : ''} >2: FTP</option>
+                              	  </select>
+                              </div>
+                              <hr>
+                              <div class="col-sm-6 col-md-8">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">FTP_server</label>
+                                  <input class="form-control" name="iexurlfileserver" type="text" value="${requestScope.xCia.iexurlfileserver}" placeholder="ftp.balkaned.com" />
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">FTP_port</label>
+                                    <input class="form-control" name="iexportsource" type="number" value="${requestScope.xCia.iexportsource}" placeholder="21"/>
+                              </div>
+                              <div class="col-sm-6 col-md-5">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">AWS_key_name or FTP_user</label>
+                                    <input class="form-control" name="iexususource" type="text" value="${requestScope.xCia.iexususource}" />
                               </div>
                               <div class="col-sm-6 col-md-7">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario Source AWS (*)</label>
-                                    <input class="form-control" name="iexususource" type="text" value="${requestScope.xCia.iexususource}" required/>
-                              </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Password Source AWS (*)</label>
-                                    <input class="form-control" name="iexpasssource" type="text" value="${requestScope.xCia.iexpasssource}" required />
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">AWS_passPhrase or FTP_pass</label>
+                                    <input class="form-control" name="iexpasssource" type="text" value="${requestScope.xCia.iexpasssource}" />
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Source AWS (*)</label>
-                                  <input class="form-control" name="iexsourcedes" type="text" value="${requestScope.xCia.iexsourcedes}" placeholder="gladiustest" required />
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">AWS_bucket_name</label>
+                                  <input class="form-control" name="iexsourcedes" type="text" value="${requestScope.xCia.iexsourcedes}" placeholder="gladiustest" />
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Region AWS (*)</label>
-                                    <input class="form-control" name="iexregiondes" type="text" value="${requestScope.xCia.iexregiondes}" placeholder="US_EAST_2" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">AWS_clientRegion</label>
+                                    <input class="form-control" name="iexregiondes" type="text" value="${requestScope.xCia.iexregiondes}" placeholder="US_EAST_2" />
                               </div>
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">

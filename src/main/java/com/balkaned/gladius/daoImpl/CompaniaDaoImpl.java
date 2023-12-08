@@ -189,14 +189,15 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexfeccre, " +
                 "c.iexusumod, " +
                 "c.iexfecmod, " +
-                "c.iexurlfileserver, " +
                 "c.iexurlfilereport,  " +
 
                 "c.iexflgsource,  " +
+                "c.iexurlfileserver, " +
                 "c.iexususource, " +
                 "c.iexpasssource,  " +
                 "c.iexsourcedes,  " +
-                "c.iexregiondes  " +
+                "c.iexregiondes,  " +
+                "c.iexportsource "+
                 "from iexcompania c  "
                 + " full outer join ( select  iexkey, desdet from iexttabled where iexcodtab='1' )  d on c.iexcodact = d.iexkey  where c.iexcodcia=" + codcia + " ";
 
@@ -220,14 +221,15 @@ public class CompaniaDaoImpl implements CompaniaDao {
                     cia.setUsuMod(rs.getString("iexusumod"));
                     cia.setFecCrea(rs.getString("iexfeccre"));
                     cia.setFecMod(rs.getString("iexfecmod"));
-                    cia.setIexurlfileserver(rs.getString("iexurlfileserver"));
                     cia.setIexurlfilereport(rs.getString("iexurlfilereport"));
 
                     cia.setIexflgsource(rs.getString("iexflgsource"));
+                    cia.setIexurlfileserver(rs.getString("iexurlfileserver"));
                     cia.setIexususource(rs.getString("iexususource"));
                     cia.setIexpasssource(rs.getString("iexpasssource"));
                     cia.setIexsourcedes(rs.getString("iexsourcedes"));
                     cia.setIexregiondes(rs.getString("iexregiondes"));
+                    cia.setIexportsource(rs.getString("iexportsource"));
                     logger.info("urlLogo: " + cia.getUrlLogo());
                 }
                 return cia;
@@ -269,7 +271,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                         "iexrepcargo=?,      iexrepdocid=?,             iexreplogo=?,             iexusumod=?, " +
                         "iexfecmod=current_date,        iexurlfileserver=?,        iexurlfilereport=?, " +
                         "iexflgsource=?,        iexususource=?,        iexpasssource=?, " +
-                        "iexsourcedes=?,        iexregiondes=?  " +
+                        "iexsourcedes=?,        iexregiondes=?, iexportsource=? " +
                         "  where iexcodcia = ? ",
 
                 com.getDescCia(),
@@ -290,6 +292,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getIexpasssource(),
                 com.getIexsourcedes(),
                 com.getIexregiondes(),
+                com.getIexportsource(),
                 com.getIdCodcia());
 
     }

@@ -142,9 +142,9 @@ public class EmpleadoController {
         model.addAttribute("lovEstados", lovsService.getLovs("54", "%"));
         model.addAttribute("lovLarDistancia", lovsService.getLovs("29", "%"));
         model.addAttribute("lovEstcivil", lovsService.getLovs("68", "%"));
-        model.addAttribute("lovDept_origen", lovsService.getLovsDept("", emp.getIexpaisemisor()));  // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen", lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen", lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss
+        //model.addAttribute("lovDept_origen", lovsService.getLovsDept("", emp.getIexpaisemisor()));  // enlita los departamentos que tiene registrado el trabajdor
+        //model.addAttribute("lovProvin_origen", lovsService.getLovsProv("", emp.getIexdepart_origen()));   // enlita los departamentos que tiene registrado el trabajdor
+        //model.addAttribute("lovDist_origen", lovsService.getLovsDist("", emp.getIexprovin_origen()));   // enlita los departamentos que tiene registrado el trabajdorss
 
         Empleado emp2 = empleadoService.recuperarLaboral(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp2", emp2);
@@ -186,12 +186,12 @@ public class EmpleadoController {
         model.addAttribute("lovTipZona", lovsService.getLovs("6", "%"));
         model.addAttribute("lovTipVia2", lovsService.getLovs("5", "%"));
         model.addAttribute("lovTipZona2", lovsService.getLovs("6", "%"));
-        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", emp5.getIexnacion_origen1()));  // enlita los departamentos que tiene registrado el trabajdor
+        /*model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", emp5.getIexnacion_origen1()));  // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", emp5.getIexdepart_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", emp5.getIexprovin_origen1()));   // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", emp5.getIexnacion_origen2()));  // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor*/
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
     }

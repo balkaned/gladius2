@@ -6,8 +6,6 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.balkaned.gladius.beans.Compania;
@@ -23,15 +21,15 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +37,6 @@ import javax.sql.DataSource;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -93,6 +90,15 @@ public class AWS_FTP_FlgSourceController {
             Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(codciax));
             log.info("ciainfo.getDescCia(): " + ciainfo.getDescCia());
             log.info("ciainfo.getUrlflgsource(): " + ciainfo.getUrlflgsource());
+            log.info("ciainfo.getIexurlfileimg(): " + ciainfo.getIexurlfileimg());
+
+
+
+            //======================================
+            //======================================
+            //   Getting Started with Amazon S3
+            //======================================
+            //======================================
 
             //################# AWS CONEXION ##############################################################################
             if (ciainfo.getUrlflgsource().equals("1")) {
@@ -122,7 +128,7 @@ public class AWS_FTP_FlgSourceController {
 
                 log.info("clientRegion: " + clientRegion);
                 log.info("bucket_name: " + bucket_name);
-                log.info("key_name: " + clientRegion);
+                log.info("key_name: " + key_name);
                 log.info("passPhrase: " + passPhrase);
 
                 //######### VER LOGO AWS ##################################################################################
@@ -136,6 +142,7 @@ public class AWS_FTP_FlgSourceController {
 
                     try {
                         S3Object o = s3.getObject(bucket_name, fileName);
+                        log.info("Path: " + fileName);
                         S3ObjectInputStream s3is = o.getObjectContent();
 
                         tmp = File.createTempFile("s3test", ".jpeg");
@@ -185,6 +192,7 @@ public class AWS_FTP_FlgSourceController {
                     log.info("Extension file =" + extension);
 
                     S3Object o = s3.getObject(bucket_name, fileName);
+                    log.info("Path: " + fileName);
                     S3ObjectInputStream s3is = o.getObjectContent();
 
                     tmp = File.createTempFile("s3test", extension);
@@ -230,6 +238,7 @@ public class AWS_FTP_FlgSourceController {
                     log.info("Extension file =" + extension);
 
                     S3Object o = s3.getObject(bucket_name, fileName);
+                    log.info("Path: " + fileName);
                     S3ObjectInputStream s3is = o.getObjectContent();
 
                     tmp = File.createTempFile("s3test", extension);
@@ -270,6 +279,7 @@ public class AWS_FTP_FlgSourceController {
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
                     s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                     S3Object o = s3.getObject(bucket_name, fileName);
+                    log.info("Path: " + fileName);
 
                     inputStream = o.getObjectContent();
 
@@ -341,8 +351,7 @@ public class AWS_FTP_FlgSourceController {
                     s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                     o = s3.getObject(bucket_name, fileName);
                     inputStreamfotoemp = o.getObjectContent();
-
-                    log.info("logo: " + logo);
+                    log.info("Obtiene FotoEmpl Path: " + fileName);
 
                     AmazonS3 s4 = null;
                     S3Object o2 = null;
@@ -350,14 +359,15 @@ public class AWS_FTP_FlgSourceController {
                     s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                     o2 = s4.getObject(bucket_name, fileName);
                     inputStreamlogo = o2.getObjectContent();
+                    log.info("Obtiene Logo Path: " + fileName);
 
                     AmazonS3 s5 = null;
                     S3Object o3 = null;
                     s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                     fileName = "reportes/" + nombreJasper + ".jasper";
-                    log.info("Nombre Jasper: " + fileName);
                     o3 = s5.getObject(bucket_name, fileName);
                     inputStreamRep = o3.getObjectContent();
+                    log.info("Obtiene Reporte jasper Path: " + fileName);
 
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
@@ -396,21 +406,85 @@ public class AWS_FTP_FlgSourceController {
                 log.info("################# FTP CONEXION ##################");
 
                 System.out.println("===========================================");
-                System.out.println("FTP Connection");
+                System.out.println("   FTP Connection");
                 System.out.println("===========================================");
 
                 //Codigo cuando el flag es 2 FTP
                 log.info("flgsource 2 : FTP");
 
+                String server = ciainfo.getIexurlfileserver();
+                int port = Integer.parseInt(ciainfo.getIexportsource());
+                String user = ciainfo.getIexususource().trim();
+                String pass = ciainfo.getIexpasssource().trim();
+
+                log.info("server: " + server);
+                log.info("port: " + port);
+                log.info("user: " + user);
+                log.info("pass: " + pass);
+
                 //######### VER LOGO FTP ##################################################################################
                 if (accion.equals("verLogo")) {
                     log.info("#### FTP verLogo ####");
 
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(2);
+
+                        String remoteFile = "/img/" + fileurl;
+                        OutputStream outputStream = response.getOutputStream();
+                        InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
+                        log.info("Path: " + remoteFile);
+
+                        byte[] bytesArray = new byte[4096];
+                        int bytesRead = -1;
+
+                        while ((bytesRead = inputStream.read(bytesArray)) != -1) {
+                            outputStream.write(bytesArray, 0, bytesRead);
+                        }
+
+                        log.info("File # has been downloaded successfully!");
+
+                        outputStream.close();
+                        inputStream.close();
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
                 }
 
                 //######### VER FOTO EMPL FTP ########################################################################
                 if (accion.equals("verFotoEmpl")) {
                     log.info("#### FTP verFotoEmpl ####");
+
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(2);
+
+                        //String remoteFile = "/img/" + fileurl;
+                        String remoteFile = codciax + "/fotoemp/" + fileurl;
+                        OutputStream outputStream = response.getOutputStream();
+                        InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
+                        log.info("Path: " + remoteFile);
+
+                        byte[] bytesArray = new byte[4096];
+                        int bytesRead = -1;
+
+                        while ((bytesRead = inputStream.read(bytesArray)) != -1) {
+                            outputStream.write(bytesArray, 0, bytesRead);
+                        }
+
+                        log.info("File # has been downloaded successfully!");
+
+                        outputStream.close();
+                        inputStream.close();
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
 
                 }
 
@@ -418,17 +492,174 @@ public class AWS_FTP_FlgSourceController {
                 if (accion.equals("verFotoDerechoHab")) {
                     log.info("#### FTP verFotoDerechoHab ####");
 
+                    try {
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(2);
+
+                        String remoteFile = "/"+codciax + "/fotoderhab/" +idDerHabx+"/" +fileurl;
+                        OutputStream outputStream = response.getOutputStream();
+                        InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
+                        log.info("Path: " + remoteFile);
+
+                        byte[] bytesArray = new byte[4096];
+                        int bytesRead = -1;
+
+                        while ((bytesRead = inputStream.read(bytesArray)) != -1) {
+                            outputStream.write(bytesArray, 0, bytesRead);
+                        }
+
+                        log.info("File # has been downloaded successfully!");
+
+                        outputStream.close();
+                        inputStream.close();
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
+
                 }
 
                 //######### VER REPORTE EXCEL FTP ########################################################################
                 if (accion.equals("verReporteExcel")) {
                     log.info("#### FTP verReporte Excel ####");
 
+                    FTPClient ftpClient = new FTPClient();
+                    ftpClient.connect(server, port);
+                    ftpClient.login(user, pass);
+                    ftpClient.enterLocalPassiveMode();
+                    ftpClient.setFileType(2);
+
+                    response.setHeader("Content-Disposition", "attachment; filename=" + nombreJasper + ".xls");
+
+                    String remoteFile = "/reportes/" +nombreJasper+".jasper";
+                    OutputStream outputStream = response.getOutputStream();
+                    InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
+                    log.info("Path: " + remoteFile);
+
+                    Map parametros = new HashMap();
+                    parametros.put("P_CODCIA", Integer.valueOf(codciax));
+                    parametros.put("P_CODTRA", -1);
+                    parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+
+                    Connection conn = template.getDataSource().getConnection();
+
+                    try {
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
+
+                        log.info("jasperPrint: " + jasperPrint.getName());
+
+                        if (jasperPrint != null) {
+                            log.info("Se encontró jasper");
+
+                            JRXlsExporter exporter = new JRXlsExporter();
+                            ServletOutputStream ouputStream = response.getOutputStream();
+                            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(ouputStream));
+                            SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+                            configuration.setOnePagePerSheet(false);
+                            configuration.setDetectCellType(true);
+                            configuration.setCollapseRowSpan(false);
+                            exporter.setConfiguration(configuration);
+                            exporter.exportReport();
+                        }
+                    } catch (JRException ex) {
+                        log.info("No compila ");
+                    }
+
+                    outputStream.close();
+                    inputStream.close();
                 }
 
                 //######### VER REPORTE PDF FTP ########################################################################
                 if (accion.equals("verReportePDF")) {
                     log.info("#### FTP verReporte PDF ####");
+
+                    response.setHeader("Content-Disposition", "attachment; filename=" + nombreJasper + ".xls");
+
+                    String path = "";
+                    String logo = "";
+                    String fotoemp = "";
+
+                    log.info("codciax:" + codciax);
+                    log.info("idTrabx: " + idTrabx);
+
+                    Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
+
+                    if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
+                        logo = "cia.jpg";
+                    } else {
+                        logo = ciainfo.getUrlLogo();
+                    }
+
+                    log.info("logo: "+logo);
+
+                    if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
+                        fotoemp = "fotoemp.png";
+                    } else {
+                        fotoemp = empleado.getIexlogo();
+                    }
+
+                    try {
+                        InputStream inputStreamfotoemp = null;
+                        InputStream inputStreamlogo = null;
+                        InputStream inputStreamRep = null;
+
+                        FTPClient ftpClient = new FTPClient();
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        String remoteFile = "/"+codciax + "/fotoemp/" + fotoemp;
+                        inputStreamfotoemp = ftpClient.retrieveFileStream(remoteFile);
+                        log.info("Obtiene FotoEmpl Path: " + remoteFile);
+                        //inputStreamfotoemp.close();
+                        ftpClient.disconnect();
+
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        String remoteFile2 = "/img/" + logo;
+                        inputStreamlogo = ftpClient.retrieveFileStream(remoteFile2);
+                        log.info("Obtiene Logo Path: " + remoteFile2);
+                        //inputStreamlogo.close();
+                        ftpClient.disconnect();
+
+                        ftpClient.connect(server, port);
+                        ftpClient.login(user, pass);
+                        ftpClient.enterLocalPassiveMode();
+                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        String remoteFile3 = "/reportes/" + nombreJasper+ ".jasper";
+                        OutputStream outputStreamRep = response.getOutputStream();
+                        inputStreamRep = ftpClient.retrieveFileStream(remoteFile2);
+                        log.info("Obtiene Reporte jasper Path: " + remoteFile3);
+                        ftpClient.disconnect();
+
+                        Map parametros = new HashMap();
+                        parametros.put("P_CODCIA", Integer.valueOf(codciax));
+                        parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
+                        parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                        parametros.put("P_LOGO", inputStreamlogo);
+                        parametros.put("P_FOTO", inputStreamfotoemp);
+
+                        log.info("Ruta reporte:" + path);
+                        Connection conn = template.getDataSource().getConnection();
+                        OutputStream out = response.getOutputStream();
+
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(inputStreamRep);
+                        byte[] bytes = JasperRunManager.runReportToPdf(reporte, parametros, conn);
+
+                        int len = bytes.length;
+                        response.setContentLength(len);
+                        out.write(bytes, 0, len);
+                        out.flush();
+                    } catch (IOException e) {
+                        log.info(e.getMessage());
+                    }
+
+
 
                 }
             }
