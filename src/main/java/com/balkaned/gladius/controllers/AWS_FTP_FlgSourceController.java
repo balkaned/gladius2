@@ -10,6 +10,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.ParametroReport;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import lombok.SneakyThrows;
@@ -28,7 +29,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +39,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -60,14 +59,15 @@ public class AWS_FTP_FlgSourceController {
     EmpleadoService empleadoService;
 
     @SneakyThrows
-    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}")
+    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}@{parametrosJasper}")
     public ModelAndView AWSorFTP_flgsource(ModelMap model, HttpServletRequest request, HttpServletResponse response,
                                            @PathVariable String accion,
                                            @PathVariable String idComp,
                                            @PathVariable String idTrab,
                                            @PathVariable String urlLogo,
                                            @PathVariable String idDerHab,
-                                           @PathVariable String nombreJasper) {
+                                           @PathVariable String nombreJasper,
+                                           @PathVariable String parametrosJasper) {
         log.info("\n\n\n/AWSorFTP_flgsource");
 
         String accionx = accion;
@@ -76,6 +76,7 @@ public class AWS_FTP_FlgSourceController {
         String fileurl = urlLogo;
         String idDerHabx = idDerHab;
         String nombreJasperx = nombreJasper;
+        String parametrosJasperx = parametrosJasper;
 
         log.info("accionx: " + accionx);
         log.info("codciax: " + codciax);
@@ -83,6 +84,50 @@ public class AWS_FTP_FlgSourceController {
         log.info("fileurl: " + urlLogo);
         log.info("idDerHabx: " + idDerHabx);
         log.info("nombreJasperx: " + nombreJasperx);
+        log.info("parametrosJasperx: " + parametrosJasperx);
+
+        int cantidadParametros=0;
+        List<ParametroReport> lspreport= new ArrayList<ParametroReport>();
+
+        //Procesando parametros Jasper
+        if(parametrosJasperx==null || parametrosJasperx.equals("") || parametrosJasperx.equals("null") || parametrosJasperx=="null"){
+            log.info("No hay parámetros de reporte no se procesará parámetros");
+        }else {
+            cantidadParametros = Integer.parseInt(parametrosJasperx.substring(0, 1));
+            log.info("cantidadParametros: "+cantidadParametros);
+            String[] parts=null;
+            for (int i = 0; i <cantidadParametros; i++) {
+                log.info("i: "+i);
+                String cadenaSinNumParametros=parametrosJasperx.substring(2,parametrosJasperx.length());
+                log.info("cadenaSinNumParametros: "+cadenaSinNumParametros);
+                parts = cadenaSinNumParametros.split("P");
+                log.info("parts[]: "+parts[i]);
+            }
+
+            for(int i=0; i<cantidadParametros; i++){
+                String stringDivisor[]=parts[i].split("=");
+                log.info("stringDivisor[0]: "+stringDivisor[0]);
+                log.info("stringDivisor[1]: "+stringDivisor[1]);
+
+                if(stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")){
+                    String day=stringDivisor[1].substring(0,2);
+                    String month=stringDivisor[1].substring(3,5);
+                    String year=stringDivisor[1].substring(6,10);
+                    String fechaconv=day+"/"+month+"/"+year;
+
+                    ParametroReport pr = new ParametroReport();
+                    pr.setNombreParametro(stringDivisor[0]);
+                    pr.setValorParametro(fechaconv);
+                    lspreport.add(pr);
+                }
+            }
+
+            //Finalmente recorremos la Lista de Objetos
+            for (ParametroReport item:lspreport) {
+                log.info("item.getNombreParametro(): "+item.getNombreParametro());
+                log.info("item.getValorParametro(): "+item.getValorParametro());
+            }
+        }
 
         if (codciax.equals("") || codciax == null || codciax == "") {
             log.info("codciax vacio");
@@ -91,8 +136,6 @@ public class AWS_FTP_FlgSourceController {
             log.info("ciainfo.getDescCia(): " + ciainfo.getDescCia());
             log.info("ciainfo.getUrlflgsource(): " + ciainfo.getUrlflgsource());
             log.info("ciainfo.getIexurlfileimg(): " + ciainfo.getIexurlfileimg());
-
-
 
             //======================================
             //======================================
@@ -283,15 +326,24 @@ public class AWS_FTP_FlgSourceController {
 
                     inputStream = o.getObjectContent();
 
+                    //Parametros de Reporte
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", -1);
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                    //Agregamos mas parametros al Reporte que vienen desde la url
+                    if(lspreport.size()>0) {
+                        for (ParametroReport item : lspreport) {
+                            log.info("item.getNombreParametro(): " + item.getNombreParametro());
+                            log.info("item.getValorParametro(): " + item.getValorParametro());
+
+                            parametros.put(item.getNombreParametro(), item.getValorParametro());
+                        }
+                    }
 
                     Connection conn = template.getDataSource().getConnection();
 
                     try {
-
                         JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
 
                         log.info("jasperPrint: " + jasperPrint.getName());
@@ -538,10 +590,20 @@ public class AWS_FTP_FlgSourceController {
                     InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
                     log.info("Path: " + remoteFile);
 
+                    //Parametros de Reporte
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", -1);
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                    //Agregamos mas parametros al Reporte que vienen desde la url
+                    if(lspreport.size()>0) {
+                        for (ParametroReport item : lspreport) {
+                            log.info("item.getNombreParametro(): " + item.getNombreParametro());
+                            log.info("item.getValorParametro(): " + item.getValorParametro());
+
+                            parametros.put(item.getNombreParametro(), item.getValorParametro());
+                        }
+                    }
 
                     Connection conn = template.getDataSource().getConnection();
 
@@ -576,9 +638,6 @@ public class AWS_FTP_FlgSourceController {
                 if (accion.equals("verReportePDF")) {
                     log.info("#### FTP verReporte PDF ####");
 
-                    response.setHeader("Content-Disposition", "attachment; filename=" + nombreJasper + ".xls");
-
-                    String path = "";
                     String logo = "";
                     String fotoemp = "";
 
@@ -601,11 +660,11 @@ public class AWS_FTP_FlgSourceController {
                         fotoemp = empleado.getIexlogo();
                     }
 
-                    try {
-                        InputStream inputStreamfotoemp = null;
-                        InputStream inputStreamlogo = null;
-                        InputStream inputStreamRep = null;
+                    InputStream inputStreamfotoemp = null;
+                    InputStream inputStreamlogo = null;
+                    InputStream inputStreamRep = null;
 
+                    try {
                         FTPClient ftpClient = new FTPClient();
                         ftpClient.connect(server, port);
                         ftpClient.login(user, pass);
@@ -614,28 +673,24 @@ public class AWS_FTP_FlgSourceController {
                         String remoteFile = "/"+codciax + "/fotoemp/" + fotoemp;
                         inputStreamfotoemp = ftpClient.retrieveFileStream(remoteFile);
                         log.info("Obtiene FotoEmpl Path: " + remoteFile);
-                        //inputStreamfotoemp.close();
-                        ftpClient.disconnect();
 
-                        ftpClient.connect(server, port);
-                        ftpClient.login(user, pass);
-                        ftpClient.enterLocalPassiveMode();
-                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        FTPClient ftpClient2 = new FTPClient();
+                        ftpClient2.connect(server, port);
+                        ftpClient2.login(user, pass);
+                        ftpClient2.enterLocalPassiveMode();
+                        ftpClient2.setFileType(FTP.BINARY_FILE_TYPE);
                         String remoteFile2 = "/img/" + logo;
-                        inputStreamlogo = ftpClient.retrieveFileStream(remoteFile2);
+                        inputStreamlogo = ftpClient2.retrieveFileStream(remoteFile2);
                         log.info("Obtiene Logo Path: " + remoteFile2);
-                        //inputStreamlogo.close();
-                        ftpClient.disconnect();
 
-                        ftpClient.connect(server, port);
-                        ftpClient.login(user, pass);
-                        ftpClient.enterLocalPassiveMode();
-                        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        FTPClient ftpClient3 = new FTPClient();
+                        ftpClient3.connect(server, port);
+                        ftpClient3.login(user, pass);
+                        ftpClient3.enterLocalPassiveMode();
+                        ftpClient3.setFileType(FTP.BINARY_FILE_TYPE);
                         String remoteFile3 = "/reportes/" + nombreJasper+ ".jasper";
-                        OutputStream outputStreamRep = response.getOutputStream();
-                        inputStreamRep = ftpClient.retrieveFileStream(remoteFile2);
+                        inputStreamRep = ftpClient3.retrieveFileStream(remoteFile3);
                         log.info("Obtiene Reporte jasper Path: " + remoteFile3);
-                        ftpClient.disconnect();
 
                         Map parametros = new HashMap();
                         parametros.put("P_CODCIA", Integer.valueOf(codciax));
@@ -644,7 +699,6 @@ public class AWS_FTP_FlgSourceController {
                         parametros.put("P_LOGO", inputStreamlogo);
                         parametros.put("P_FOTO", inputStreamfotoemp);
 
-                        log.info("Ruta reporte:" + path);
                         Connection conn = template.getDataSource().getConnection();
                         OutputStream out = response.getOutputStream();
 
@@ -655,12 +709,13 @@ public class AWS_FTP_FlgSourceController {
                         response.setContentLength(len);
                         out.write(bytes, 0, len);
                         out.flush();
+
+                        inputStreamfotoemp.close();
+                        inputStreamlogo.close();
+                        inputStreamRep.close();
                     } catch (IOException e) {
                         log.info(e.getMessage());
                     }
-
-
-
                 }
             }
         }

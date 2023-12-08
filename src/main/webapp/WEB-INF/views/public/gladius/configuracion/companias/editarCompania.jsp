@@ -57,7 +57,7 @@
                                  <c:if test="${requestScope.xCia.urlLogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg" width="100" height="100" /></c:if>
 
                                  <c:if test="${requestScope.xCia.urlLogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
-                                 src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null"
+                                 src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null"
                                  width="100" height="100" /></c:if>
 
                                  <form method="post"

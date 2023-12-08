@@ -19,8 +19,7 @@
           var flag=0;
           var seleccion="";
           $(document).ready(function(){
-             $("#btnMenuCollapse").click(function(){
-
+             /*$("#btnMenuCollapse").click(function(){
                     if(flag==0){
                         $('#usermenu').addClass('collapsedspan');
                         $('#span1').addClass('collapsedspan');
@@ -37,8 +36,7 @@
                         //$('#navbarVerticalCollapse').addClass('resizemenu');
                         flag=0;
                     }
-             });
-
+             });*/
 
              $('li a').click(function(){
                   $(this).addClass('active');
@@ -52,9 +50,7 @@
 
              $('#'+objeto).addClass("active");
              document.getElementById(objeto).focus();
-
           });
-
         </script>
         <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
           <!-- scrollbar removed-->

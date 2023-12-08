@@ -32,7 +32,7 @@
                 <c:if test="${sexo.equals('MA') && iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user_blank.jpg" width="200" alt="" /></c:if>
 
                 <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm"
-                src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${idTrab}@${iexlogo}@null@null"
+                src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${idTrab}@${iexlogo}@null@null@null"
                 width="200" alt="" /></c:if>
 
                 <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>

@@ -101,7 +101,7 @@ margin-top:10px !important;
                       </div>
                     </div><span class="badge badge-phoenix fs--1 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
                         <img id="imgcompany"
-                        src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null"
+                        src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null@null"
                         class="avatar" alt="Avatar" width="100">
                     <div class="d-flex align-items-center mb-2">
                         <span class="fa-solid far fa-newspaper me-2 text-700 fs--1 fw-extra-bold"></span>

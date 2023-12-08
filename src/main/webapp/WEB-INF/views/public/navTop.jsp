@@ -346,7 +346,7 @@
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-l ">
                   <img id="imgtop2" class="rounded-circle"
-                  src="AWSorFTP_flgsource@verLogo@${idComp}@null@${urlLogo}@null@null"
+                  src="AWSorFTP_flgsource@verLogo@${idComp}@null@${urlLogo}@null@null@null"
                   alt="" />
                 </div>
               </a>
@@ -356,7 +356,7 @@
                     <div class="text-center pt-4 pb-3">
                       <div class="avatar avatar-xl ">
                         <img class="rounded-circle "
-                        src="AWSorFTP_flgsource@verLogo@${idComp}@null@${urlLogo}@null@null"
+                        src="AWSorFTP_flgsource@verLogo@${idComp}@null@${urlLogo}@null@null@null"
                         alt="" />
                       </div>
                       <h6 class="mt-2 text-black">${usuario}</h6>

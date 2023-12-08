@@ -75,7 +75,7 @@
                                                     <a class="d-flex align-items-center text-900" href="#">
                                                         <div class="avatar avatar-m">
                                                             <img class="rounded-circle"
-                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null"
+                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null@null"
                                                             alt="" />
                                                         </div>
                                                         <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</h6>
