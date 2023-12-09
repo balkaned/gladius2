@@ -1,20 +1,4 @@
-<script>
-      $(document).ready(function(){
-         $('li a').click(function(){
-              $(this).addClass('activelsempl');
-              var thisselc=this.id;
-              //alert("thisselc: "+thisselc);
-              localStorage.setItem("selLocal2", "activelsempl");
-              localStorage.setItem("objeto2",thisselc);
-         });
 
-         const selLocal2 = localStorage.getItem("selLocal2");
-         const objeto2 = localStorage.getItem("objeto2");
-
-         $('#'+objeto2).addClass("activelsempl");
-         document.getElementById(objeto2).focus();
-      });
-</script>
 <div id="otropciones" class="email-content scrollbar-overlay">
   <div class="d-flex justify-content-between align-items-center">
     <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Otras opciones</p>
