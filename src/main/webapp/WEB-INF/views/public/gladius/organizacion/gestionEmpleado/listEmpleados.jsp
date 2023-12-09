@@ -140,7 +140,7 @@
                                   <h6 class="mb-0 ms-3 text-900">${empl.nomCompactoUpper}</h6>
                                 </a>
                               </td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${nrodoc}</td>
+                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${empl.iexcodsex}</td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>

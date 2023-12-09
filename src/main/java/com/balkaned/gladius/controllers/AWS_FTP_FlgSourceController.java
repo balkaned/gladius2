@@ -29,6 +29,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -86,34 +87,34 @@ public class AWS_FTP_FlgSourceController {
         log.info("nombreJasperx: " + nombreJasperx);
         log.info("parametrosJasperx: " + parametrosJasperx);
 
-        int cantidadParametros=0;
-        List<ParametroReport> lspreport= new ArrayList<ParametroReport>();
+        int cantidadParametros = 0;
+        List<ParametroReport> lspreport = new ArrayList<ParametroReport>();
 
         //Procesando parametros Jasper
-        if(parametrosJasperx==null || parametrosJasperx.equals("") || parametrosJasperx.equals("null") || parametrosJasperx=="null"){
+        if (parametrosJasperx == null || parametrosJasperx.equals("") || parametrosJasperx.equals("null") || parametrosJasperx == "null") {
             log.info("No hay parámetros de reporte no se procesará parámetros");
-        }else {
+        } else {
             cantidadParametros = Integer.parseInt(parametrosJasperx.substring(0, 1));
-            log.info("cantidadParametros: "+cantidadParametros);
-            String[] parts=null;
-            for (int i = 0; i <cantidadParametros; i++) {
-                log.info("i: "+i);
-                String cadenaSinNumParametros=parametrosJasperx.substring(2,parametrosJasperx.length());
-                log.info("cadenaSinNumParametros: "+cadenaSinNumParametros);
+            log.info("cantidadParametros: " + cantidadParametros);
+            String[] parts = null;
+            for (int i = 0; i < cantidadParametros; i++) {
+                log.info("i: " + i);
+                String cadenaSinNumParametros = parametrosJasperx.substring(2, parametrosJasperx.length());
+                log.info("cadenaSinNumParametros: " + cadenaSinNumParametros);
                 parts = cadenaSinNumParametros.split("P");
-                log.info("parts[]: "+parts[i]);
+                log.info("parts[]: " + parts[i]);
             }
 
-            for(int i=0; i<cantidadParametros; i++){
-                String stringDivisor[]=parts[i].split("=");
-                log.info("stringDivisor[0]: "+stringDivisor[0]);
-                log.info("stringDivisor[1]: "+stringDivisor[1]);
+            for (int i = 0; i < cantidadParametros; i++) {
+                String stringDivisor[] = parts[i].split("=");
+                log.info("stringDivisor[0]: " + stringDivisor[0]);
+                log.info("stringDivisor[1]: " + stringDivisor[1]);
 
-                if(stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")){
-                    String day=stringDivisor[1].substring(0,2);
-                    String month=stringDivisor[1].substring(3,5);
-                    String year=stringDivisor[1].substring(6,10);
-                    String fechaconv=day+"/"+month+"/"+year;
+                if (stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")) {
+                    String day = stringDivisor[1].substring(0, 2);
+                    String month = stringDivisor[1].substring(3, 5);
+                    String year = stringDivisor[1].substring(6, 10);
+                    String fechaconv = day + "/" + month + "/" + year;
 
                     ParametroReport pr = new ParametroReport();
                     pr.setNombreParametro(stringDivisor[0]);
@@ -123,9 +124,9 @@ public class AWS_FTP_FlgSourceController {
             }
 
             //Finalmente recorremos la Lista de Objetos
-            for (ParametroReport item:lspreport) {
-                log.info("item.getNombreParametro(): "+item.getNombreParametro());
-                log.info("item.getValorParametro(): "+item.getValorParametro());
+            for (ParametroReport item : lspreport) {
+                log.info("item.getNombreParametro(): " + item.getNombreParametro());
+                log.info("item.getValorParametro(): " + item.getValorParametro());
             }
         }
 
@@ -332,7 +333,7 @@ public class AWS_FTP_FlgSourceController {
                     parametros.put("P_CODTRA", -1);
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
                     //Agregamos mas parametros al Reporte que vienen desde la url
-                    if(lspreport.size()>0) {
+                    if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
                             log.info("item.getValorParametro(): " + item.getValorParametro());
@@ -551,7 +552,7 @@ public class AWS_FTP_FlgSourceController {
                         ftpClient.enterLocalPassiveMode();
                         ftpClient.setFileType(2);
 
-                        String remoteFile = "/"+codciax + "/fotoderhab/" +idDerHabx+"/" +fileurl;
+                        String remoteFile = "/" + codciax + "/fotoderhab/" + idDerHabx + "/" + fileurl;
                         OutputStream outputStream = response.getOutputStream();
                         InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
                         log.info("Path: " + remoteFile);
@@ -585,7 +586,7 @@ public class AWS_FTP_FlgSourceController {
 
                     response.setHeader("Content-Disposition", "attachment; filename=" + nombreJasper + ".xls");
 
-                    String remoteFile = "/reportes/" +nombreJasper+".jasper";
+                    String remoteFile = "/reportes/" + nombreJasper + ".jasper";
                     OutputStream outputStream = response.getOutputStream();
                     InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
                     log.info("Path: " + remoteFile);
@@ -596,7 +597,7 @@ public class AWS_FTP_FlgSourceController {
                     parametros.put("P_CODTRA", -1);
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
                     //Agregamos mas parametros al Reporte que vienen desde la url
-                    if(lspreport.size()>0) {
+                    if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
                             log.info("item.getValorParametro(): " + item.getValorParametro());
@@ -652,7 +653,7 @@ public class AWS_FTP_FlgSourceController {
                         logo = ciainfo.getUrlLogo();
                     }
 
-                    log.info("logo: "+logo);
+                    log.info("logo: " + logo);
 
                     if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
                         fotoemp = "fotoemp.png";
@@ -670,7 +671,7 @@ public class AWS_FTP_FlgSourceController {
                         ftpClient.login(user, pass);
                         ftpClient.enterLocalPassiveMode();
                         ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-                        String remoteFile = "/"+codciax + "/fotoemp/" + fotoemp;
+                        String remoteFile = "/" + codciax + "/fotoemp/" + fotoemp;
                         inputStreamfotoemp = ftpClient.retrieveFileStream(remoteFile);
                         log.info("Obtiene FotoEmpl Path: " + remoteFile);
 
@@ -688,7 +689,7 @@ public class AWS_FTP_FlgSourceController {
                         ftpClient3.login(user, pass);
                         ftpClient3.enterLocalPassiveMode();
                         ftpClient3.setFileType(FTP.BINARY_FILE_TYPE);
-                        String remoteFile3 = "/reportes/" + nombreJasper+ ".jasper";
+                        String remoteFile3 = "/reportes/" + nombreJasper + ".jasper";
                         inputStreamRep = ftpClient3.retrieveFileStream(remoteFile3);
                         log.info("Obtiene Reporte jasper Path: " + remoteFile3);
 

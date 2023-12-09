@@ -39,25 +39,21 @@
              });*/
 
              $('#menunav a').click(function(){
-                  alert("ingreso a click menu");
                   $(this).addClass('active');
                   var thisselc=this.id;
                   sessionStorage.setItem("menunav",thisselc);
              });
 
              $('#linav a').click(function(){
-                  alert("ingreso a click navempl");
                   $(this).addClass('activelsempl');
                   var thisselc=this.id;
                   sessionStorage.setItem("navempl",thisselc);
              });
 
              var menunav = sessionStorage.getItem("menunav");
-             alert("menunav: "+menunav);
              $('#'+menunav).addClass("active");
 
              var navempl = sessionStorage.getItem("navempl");
-             alert("navempl: "+navempl);
              $('#'+navempl).addClass("activelsempl");
 
              document.getElementById(menunav).focus();

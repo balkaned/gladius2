@@ -80,6 +80,26 @@
           var fechaFormat=dia+"/"+mes+"/"+anio;
           $("#iexfecafp").val(fechaFormat);
   }
+
+  $(document).ready(function(){
+      var fechacargada=$("#iexfecnachidden").val();
+      $("#iexfecnac").val(fechacargada);
+
+      var fechacargada2=$("#iexfecinghidden").val();
+      $("#iexfecing").val(fechacargada2);
+
+      var fechacargada3=$("#iexfecrethidden").val();
+      $("#iexfecret").val(fechacargada3);
+
+      var fechacargada4=$("#iexfecini_conthidden").val();
+      $("#iexfecini_cont").val(fechacargada4);
+
+      var fechacargada5=$("#iexfecfin_conthidden").val();
+      $("#iexfecfin_cont").val(fechacargada5);
+
+      var fechacargada6=$("#iexfecafphidden").val();
+      $("#iexfecafp").val(fechacargada6);
+  });
 </script>
 
   <body>
@@ -173,6 +193,7 @@
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                             <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" required />
+                                            <input class="form-control" id="iexfecnachidden" type="hidden" value="${fecnacIEX}" />
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo(*) [TT50]</label>
@@ -375,10 +396,12 @@
                                             <div class="col-sm-6 col-md-6">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecing" id="iexfecing" onchange="formatearFecha2();" value="${requestScope.emp2.iexfecing}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required="true"/>
+                                                  <input class="form-control" id="iexfecinghidden" type="hidden" value="${requestScope.emp2.iexfecing}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Retiro</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecret" id="iexfecret" onchange="formatearFecha3();" value="${requestScope.emp2.iexfecret}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                                                  <input class="form-control" id="iexfecrethidden" type="hidden" value="${requestScope.emp2.iexfecret}" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Contrato [TT12] (*)</label>
@@ -392,10 +415,12 @@
                                             <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fec Ini Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecini_cont" id="iexfecini_cont" onchange="formatearFecha4();" value="${requestScope.emp2.iexfecini_cont}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                                                  <input class="form-control" id="iexfecini_conthidden" type="hidden" value="${requestScope.emp2.iexfecini_cont}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fec Fin Contrato</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin_cont" id="iexfecfin_cont" onchange="formatearFecha5();"value="${requestScope.emp2.iexfecfin_cont}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                                                  <input class="form-control" id="iexfecfin_conthidden" type="hidden" value="${requestScope.emp2.iexfecfin_cont}" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pliego [TT31]</label>
@@ -672,6 +697,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio Fondo Pensiones (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecafp" id="iexfecafp" onchange="formatearFecha6();" value="${requestScope.emp4.iexfecafp}" type="text" placeholder="end date" data-options='{"disableMobile":true}' required />
+                                                <input class="form-control" id="iexfecafphidden" type="hidden" value="${requestScope.emp4.iexfecafp}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cussp (*)</label>
@@ -805,7 +831,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via (*)</label>
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="50" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="" required />
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="40" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="" required />
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via (*)</label>
@@ -895,7 +921,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via 2</label>
-                                                <input class="form-control" name="iexnomvia_dom2" maxlength="50" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="" />
+                                                <input class="form-control" name="iexnomvia_dom2" maxlength="40" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="" />
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
@@ -940,7 +966,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia dom 2</label>
-                                                <input class="form-control" name="iexreferencia_dom2" maxlength="100" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="" />
+                                                <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="" />
                                           </div>
                                           <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor 2 (*) [TT26]</label>

@@ -144,7 +144,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "                        e.iexapepat,  " +
                 "                        e.iexapemat,  " +
                 "                        e.iextipdocid, " +
-                "			     d.desdet destipdoc, " +
+                "			             d.desdet destipdoc, " +
                 "                        e.iexnrodoc,  " +
                 "                        to_char(e.iexfecnac,'dd/mm/yyyy') iexfecnac,  " +
                 "                        to_char(e.iexfecing,'dd/mm/yyyy') iexfecing,  " +
@@ -202,9 +202,9 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             sql = sql + "and  iexflgest  like '%" + empleado.getIexflgest() + "%' ";
         }
 
-        if (empleado.getIexcodsex() != null && !empleado.getIexcodsex().equals("%")) {
+        /*if (empleado.getIexcodsex() != null && !empleado.getIexcodsex().equals("%")) {
             sql = sql + "and  iexcodsex  like '%" + empleado.getIexcodsex() + "%' ";
-        }
+        }*/
 
         if (empleado.getFeciniing_par() != "" && empleado.getFecfining_par() != "") {
             if (empleado.getFeciniing_par() != null && empleado.getFecfining_par() != null) {
@@ -234,7 +234,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexfecing(rs.getString("iexfecing"));
                     p.setIextipcese(rs.getString("iextipcese"));
                     p.setIexfecret(rs.getString("iexfecret"));
-                    p.setIexcodsex(cap.letras(rs.getString("dessex")));
+                    //p.setIexcodsex(cap.letras(rs.getString("dessex")));
+                    p.setIexcodsex(rs.getString("iexcodsex"));
                     p.setIexpaisemisor(rs.getString("iexpaisemisor"));
                     p.setIexflgest(rs.getString("iexflgest"));
                     p.setIexcodant(rs.getString("iexcodant"));
@@ -247,10 +248,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexcentroform(rs.getString("iexcentroform"));
                     p.setIexflgdomicil(rs.getString("iexflgdomicil"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
-
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexusumod(rs.getString("iexusumod"));
-
                     p.setDestipcese(rs.getString("destipcese"));
                     p.setDessex(rs.getString("dessex"));
                     p.setDespaisemisor(rs.getString("despaisemisor"));
@@ -1175,15 +1174,15 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
-    public void reingresarEmpleado(Integer ciaid,Integer codtra,String fechaing,String desusu,Integer codnew){
+    public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew) {
 
         template.update("call pl_reingresa_trabajador(?,?,?,? ,?  )",
 
-        ciaid,
-        codtra,
-        fechaing,
-        desusu,
-        codnew);
+                ciaid,
+                codtra,
+                fechaing,
+                desusu,
+                codnew);
     }
 
 
