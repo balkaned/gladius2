@@ -25,4 +25,5 @@ public class Opciones {
     String iexfeccre;
     String iexusumod;
     String iexfecmod;
+    String iexactionspring;
 }

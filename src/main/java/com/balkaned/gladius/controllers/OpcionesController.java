@@ -56,6 +56,7 @@ public class OpcionesController {
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String usuario = (String) request.getSession().getAttribute("user");
 
         Integer idopc = opcionService.getIdOpciones();
         Opciones opc = new Opciones();
@@ -66,8 +67,10 @@ public class OpcionesController {
         opc.setIexurlopc(request.getParameter("iexurlopc"));
         opc.setIexurlimg(request.getParameter("iexurlimg"));
         opc.setIexaction(request.getParameter("iexaction"));
+        opc.setIexactionspring(request.getParameter("iexactionspring"));
         opc.setIexcodapps(request.getParameter("iexcodapps"));
         opc.setIexdescripcion(request.getParameter("iexdescripcion"));
+        opc.setIexusucre(usuario);
 
         opcionService.insertarOpciones(opc);
 
@@ -103,6 +106,7 @@ public class OpcionesController {
         opc.setIexurlopc(request.getParameter("iexurlopc"));
         opc.setIexurlimg(request.getParameter("iexurlimg"));
         opc.setIexaction(request.getParameter("iexaction"));
+        opc.setIexactionspring(request.getParameter("iexactionspring"));
         opc.setIexcodapps(request.getParameter("iexcodapps"));
         opc.setIexdescripcion(request.getParameter("iexdescripcion"));
 

@@ -111,8 +111,8 @@
                               <div class="col-sm-6 col-md-6">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Est (*)</label>
                                     <select name="iexflgest" class="form-select" required >
-                                        <option value="1"   ${'1'== requestScope.exRolxopc.iexflgest ? 'selected' : ''}   >Activo</option>
-                                        <option value="0"    ${'0'== requestScope.exRolxopc.iexflgest ? 'selected' : ''}  >Inactivo</option>
+                                        <option value="1" ${'1'== requestScope.exRolxopc.iexflgest ? 'selected' : ''}   >Activo</option>
+                                        <option value="0" ${null== requestScope.exRolxopc.iexflgest ? 'selected' : ''}  >Inactivo</option>
                                     </select>
                               </div>
 

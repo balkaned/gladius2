@@ -29,6 +29,7 @@ public class PuestoController {
     public ModelAndView listPuestos(ModelMap model, HttpServletRequest request) {
         logger.info("/listPuestos");
 
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<Puesto> puestoList = puestoService.listarPuesto(idCompania, "");

@@ -243,6 +243,7 @@ public class RolDaoImpl implements RolDao {
                     rol.setIex_descargar_pdf(rs.getString("iex_descargar_pdf"));
                     rol.setIexusucre(rs.getString("iexusucre"));
                     rol.setIexfeccre(rs.getString("iexfeccre"));
+                    logger.info("rol.getIexflgest():"+rol.getIexflgest());
                 }
                 return rol;
             }

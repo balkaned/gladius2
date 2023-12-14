@@ -106,11 +106,11 @@
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SECCION</th>
-                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">ORD</th>
-                          <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">SISTEMAS</th>
+                          <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">ORD</th>
+                          <th class="sort align-middle text-center ps-4" scope="col" data-sort="date">SISTEMAS</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">URL</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ACCION DEF</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OBS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OBSERVACIONES</th>
                           <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
                       </thead>
@@ -127,8 +127,8 @@
                               <td class="total align-middle text-center fw-semi-bold text-1000">${LstSeccion.iexordsec}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstSeccion.dessys}</span></td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstSeccion.iexsecurl}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstSeccion.iexactiondef}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstSeccion.iexsecobs}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700 ps-5">${LstSeccion.iexactiondef}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-1000 ps-5">${LstSeccion.iexsecobs}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>

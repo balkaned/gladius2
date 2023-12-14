@@ -105,10 +105,11 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OPCIONES</th>
-                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">EST</th>
+                          <th class="sort align-middle text-center ps-5 pe-10" scope="col" data-sort="date">OPCIONES</th>
+                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">ESTADO</th>
                           <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">SECCION - SISTEMAS</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ACCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">NEW ACCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ACCION OLD</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESCRIPCION</th>
                           <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
@@ -122,11 +123,16 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpc@${LstOpciones.iexcodopc}">#${LstOpciones.iexcodopc}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstOpciones.iexdesopc}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${LstOpciones.iexflgest}</td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${LstOpciones.dessec} - ${LstOpciones.dessys}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstOpciones.iexaction}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstOpciones.iexdescripcion}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5 pe-16">${LstOpciones.iexdesopc}</td>
+
+                              <!--<td class="total align-middle text-center fw-semi-bold text-1000">${LstOpciones.iexflgest}</td>-->
+                              <c:if test="${LstOpciones.iexflgest=='1'}"><td class="ps-6 pe-5 payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                              <c:if test="${LstOpciones.iexflgest!='1'}"><td class="ps-6 pe-5 payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+
+                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start ps-4">${LstOpciones.dessec} - ${LstOpciones.dessys}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-700 ps-3">${LstOpciones.iexactionspring}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-700 ps-3">${LstOpciones.iexaction}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-900 ps-4">${LstOpciones.iexdescripcion}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>

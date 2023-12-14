@@ -68,7 +68,7 @@
               </div>
 
               <div class="row g-5">
-                 <div class="col-xl-10">
+                 <div class="col-xl-8">
                    <div class="row gx-3 gy-4">
                       <form class="row g-4 mb-0 needs-validation" method="POST" action="asignarRolxCiaIns" novalidate >
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />

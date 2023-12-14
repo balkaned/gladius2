@@ -48,7 +48,7 @@
               </div>
 
               <div class="row g-5">
-                   <div class="col-xl-7">
+                   <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarCompania" novalidate >
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />

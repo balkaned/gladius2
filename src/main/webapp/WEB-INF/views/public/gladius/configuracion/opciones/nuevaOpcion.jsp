@@ -48,7 +48,7 @@
               </div>
 
               <div class="row g-5">
-                   <div class="col-xl-7">
+                   <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarOpcion" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
@@ -87,8 +87,12 @@
                                     <input class="form-control" name="iexurlimg" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action (*)</label>
-                                  <input class="form-control" name="iexaction" type="text" value="" placeholder="" required/>
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">NEW Action(*)</label>
+                                      <input class="form-control" name="iexactionspring" type="text" value="" placeholder="/ListPruebas" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-6">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action OLD</label>
+                                  <input class="form-control" name="iexaction" type="text" value="" placeholder="" />
                               </div>
                               <div class="col-sm-6 col-md-6">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Code Apps (*)</label>

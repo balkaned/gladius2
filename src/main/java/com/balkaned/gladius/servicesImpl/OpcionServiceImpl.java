@@ -34,7 +34,8 @@ public class OpcionServiceImpl implements OpcionService {
     public void actualizarOpciones(Opciones opc) {
         dao.actualizarOpciones(opc);
     }
-    public void eliminarOpciones(Opciones opc){
+
+    public void eliminarOpciones(Opciones opc) {
         dao.eliminarOpciones(opc);
     }
 
