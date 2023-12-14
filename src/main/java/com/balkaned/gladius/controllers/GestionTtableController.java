@@ -2,9 +2,9 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,43 +18,17 @@ public class GestionTtableController {
     static Logger logger = Logger.getLogger(GestionTtableController.class.getName());
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-    @Autowired
-    CompaniaService companiaService;
-    @Autowired
-    LovsService lovsService;
-    @Autowired
     TtableService ttableService;
+
+    @Autowired
+    Sessionattributes sessionattributes;
 
     @RequestMapping("/listTablasGen")
     public ModelAndView listTablasGen(ModelMap model, HttpServletRequest request) {
         logger.info("/listTablasGen");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        logger.info("################### idCompania: " + idCompania);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("LstTTablac", ttableService.listarTTablac("%"));
 
@@ -64,29 +38,9 @@ public class GestionTtableController {
     @RequestMapping("/nuevaTablaGen")
     public ModelAndView nuevaTablaGen(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevaTablaGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/nuevaTablaGen");
     }
@@ -94,29 +48,9 @@ public class GestionTtableController {
     @RequestMapping("/insertarNuevaTblGen")
     public ModelAndView insertarNuevaTblGen(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarNuevaTblGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodtab = request.getParameter("iexcodtab");
         String iexdestab = request.getParameter("iexdestab");
@@ -198,29 +132,8 @@ public class GestionTtableController {
     public ModelAndView editarTblGen(ModelMap model, HttpServletRequest request, @PathVariable String idTbl) {
         logger.info("/editarTblGen");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("idTbl", idTbl);
         model.addAttribute("ttablacx", ttableService.recuperarTTablac(idTbl));
@@ -231,29 +144,9 @@ public class GestionTtableController {
     @RequestMapping("/modificarTblGen")
     public ModelAndView modificarTblGen(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarTblGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodrol = request.getParameter("iexcodrol2");
         String iexdesrol = request.getParameter("iexdesrol");
@@ -335,30 +228,9 @@ public class GestionTtableController {
     public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTbl) {
         logger.info("/verDetalleTblGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-        model.addAttribute("idTbl", idTbl);
 
         model.addAttribute("idTbl", idTbl);
         request.getSession().setAttribute("ttablaclbl", ttableService.recuperarTTablac(idTbl));
@@ -370,36 +242,16 @@ public class GestionTtableController {
     @RequestMapping("/modificarTblGenDetalle")
     public ModelAndView modificarTblGenDetalle(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarTblGenDetalle");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodtab = request.getParameter("iexcodtab2");
         String iexkey = request.getParameter("iexkey");
         String desdet = request.getParameter("desdet");
-        logger.info("iexcodtab: "+iexcodtab);
-        logger.info("iexkey: "+iexkey);
-        logger.info("desdet: "+desdet);
+        logger.info("iexcodtab: " + iexcodtab);
+        logger.info("iexkey: " + iexkey);
+        logger.info("desdet: " + desdet);
 
         String des1det = request.getParameter("des1det");
         String des2det = request.getParameter("des2det");
@@ -525,35 +377,14 @@ public class GestionTtableController {
     public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTbl, @PathVariable String idKey) {
         logger.info("/curDetalleTblGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-        model.addAttribute("idTbl", idTbl);
 
         model.addAttribute("idTbl", idTbl);
         model.addAttribute("idKey", idKey);
 
-        TTablaDetalle ttabladxx = ttableService.recuperarTTablad(idTbl,idKey);
+        TTablaDetalle ttabladxx = ttableService.recuperarTTablad(idTbl, idKey);
         model.addAttribute("ttabladxx", ttabladxx);
 
         request.getSession().setAttribute("ttablaclbl", ttableService.recuperarTTablac(idTbl));
@@ -565,29 +396,9 @@ public class GestionTtableController {
     @RequestMapping("/deleteTablaGen@{idTbl}")
     public ModelAndView deleteTablaGen(ModelMap model, HttpServletRequest request, @PathVariable String idTbl) {
         logger.info("/deleteTablaGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         ttableService.eliminarTTablac(idTbl);
         ttableService.eliminarTTablad(idTbl);
@@ -597,40 +408,19 @@ public class GestionTtableController {
 
     @RequestMapping("/deletecurDetalleTblGen@{idTbl}@{idKey}")
     public ModelAndView deletecurDetalleTblGen(ModelMap model, HttpServletRequest request,
-                                         @PathVariable String idTbl,
-                                         @PathVariable String idKey) {
+                                               @PathVariable String idTbl,
+                                               @PathVariable String idKey) {
         logger.info("/deletecurDetalleTblGen");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-        model.addAttribute("idTbl", idTbl);
 
         model.addAttribute("idTbl", idTbl);
         model.addAttribute("idKey", idKey);
 
-        ttableService.eliminarTTablade(idTbl,idKey);
+        ttableService.eliminarTTablade(idTbl, idKey);
 
-        return new ModelAndView("redirect:/verDetalleTblGen@"+idTbl);
+        return new ModelAndView("redirect:/verDetalleTblGen@" + idTbl);
     }
 
 }

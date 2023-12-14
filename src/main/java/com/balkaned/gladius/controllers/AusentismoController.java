@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,6 @@ public class AusentismoController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
@@ -32,34 +27,18 @@ public class AusentismoController {
     @Autowired
     AusentismoService ausentismoService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/ausentismo@{idTrab}")
     public ModelAndView ausentismo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/ausentismo");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
+        logger.info("idTrab: "+idTrab);
         model.addAttribute("idTrab",idTrab);
 
         Empleado empleado = new Empleado();
@@ -93,30 +72,11 @@ public class AusentismoController {
     public ModelAndView nuevoAusentismo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
         logger.info("/nuevoAusentismo");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
+        logger.info("idTrab: "+idTrab);
         model.addAttribute("idTrab",idTrab);
 
         Empleado empleado = new Empleado();
@@ -150,29 +110,10 @@ public class AusentismoController {
     @RequestMapping("/insertarAusentismo")
     public ModelAndView insertarAusentismo(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarAusentismo");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         String iexcodtra = request.getParameter("iexcodtra");
 

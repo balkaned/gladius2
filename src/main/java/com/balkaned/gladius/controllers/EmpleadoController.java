@@ -2,16 +2,14 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,44 +21,17 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
-    SueldoService sueldoService;
+    Sessionattributes sessionattributes;
 
     @RequestMapping("/listEmpleados")
     public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
         logger.info("/listEmpleados");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Empleado emp = new Empleado();
         emp.setIexcodcia(idCompania);
@@ -75,30 +46,11 @@ public class EmpleadoController {
     public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/detalleEmpl");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        logger.info("idCompania: " + idCompania);
+        logger.info("idTrab: " + idTrab);
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -118,7 +70,7 @@ public class EmpleadoController {
         model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp", idCompania);
         model.addAttribute("iexlogo", emp.getIexlogo());
-        model.addAttribute("urlLogo", urlLogo);
+
         logger.info("estadoFlag: " + emp.getIexflgest());
 
         String sexo;
@@ -197,13 +149,11 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)
-    public ModelAndView updateEmplDatPers(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
+    public ModelAndView updateEmplDatPers(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatPers");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
+        sessionattributes.getVariablesSession(model, request);
+        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
@@ -273,14 +223,11 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = "/updateEmplDatLab", method = RequestMethod.POST)
-    public ModelAndView updateEmplDatLab(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
+    public ModelAndView updateEmplDatLab(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatLab");
 
+        sessionattributes.getVariablesSession(model, request);
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
@@ -335,14 +282,11 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = "/updateInfoPago", method = RequestMethod.POST)
-    public ModelAndView updateInfoPago(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
+    public ModelAndView updateInfoPago(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateInfoPago");
 
+        sessionattributes.getVariablesSession(model, request);
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
@@ -389,18 +333,14 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = "/updateSegurSocial", method = RequestMethod.POST)
-    public ModelAndView updateSegurSocial(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
+    public ModelAndView updateSegurSocial(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateSegurSocial");
 
+        sessionattributes.getVariablesSession(model, request);
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
-        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
         logger.info("iexcodcia: " + iexcodcia);
@@ -459,18 +399,14 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = "/updateEmplDatDomic", method = RequestMethod.POST)
-    public ModelAndView updateEmplDatDomic(@ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
+    public ModelAndView updateEmplDatDomic(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         logger.info("/updateEmplDatDomic");
 
+        sessionattributes.getVariablesSession(model, request);
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
-        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
         logger.info("iexcodcia: " + iexcodcia);
@@ -564,29 +500,8 @@ public class EmpleadoController {
     @RequestMapping("/valRegEmpleado")
     public ModelAndView valRegEmpleado(ModelMap model, HttpServletRequest request) {
         logger.info("/valRegEmpleado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
+        sessionattributes.getVariablesSession(model, request);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/valRegEmpleado");
     }
@@ -594,29 +509,9 @@ public class EmpleadoController {
     @RequestMapping("/validarNroDoc")
     public ModelAndView validarNroDoc(ModelMap model, HttpServletRequest request) {
         logger.info("/validarNroDoc");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodocid = request.getParameter("iexnrodocid");
@@ -659,29 +554,8 @@ public class EmpleadoController {
     @RequestMapping("/nuevoEmpleado")
     public ModelAndView nuevoEmpleado(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevoEmpleado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
+        sessionattributes.getVariablesSession(model, request);
 
         model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
         model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
@@ -693,31 +567,12 @@ public class EmpleadoController {
     @RequestMapping("/insertarEmpleado")
     public ModelAndView insertarEmpleado(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarEmpleado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
+        sessionattributes.getVariablesSession(model, request);
 
         Integer idempleado = 0;
-
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodocid = request.getParameter("iexnrodocid");
@@ -731,7 +586,6 @@ public class EmpleadoController {
         String iexcodant = request.getParameter("iexcodant");
 
         Empleado emp = new Empleado();
-
         emp.setIexcodcia(idCompania);
         emp.setIexnomtra(iexnomtra);
         emp.setIexapepat(iexapepat);
@@ -763,31 +617,9 @@ public class EmpleadoController {
     @RequestMapping("/reingresoEmpleado")
     public ModelAndView reingresoEmpleado(ModelMap model, HttpServletRequest request) {
         logger.info("/reingresoEmpleado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        logger.info("idCompania: " + idCompania);
 
         model.addAttribute("LstEmpleadoInactivo", empleadoService.listarEmpleadoInactivos(idCompania));
 
@@ -797,29 +629,10 @@ public class EmpleadoController {
     @RequestMapping("/procesarEmpleadoInactivo")
     public ModelAndView procesarEmpleadoInactivo(ModelMap model, HttpServletRequest request) {
         logger.info("/procesarEmpleadoInactivo");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
+        sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String accion = request.getParameter("accion");
         String idTrab = request.getParameter("iexempid");
@@ -847,197 +660,14 @@ public class EmpleadoController {
     @RequestMapping("/empleadoReactivado@{idNewTrab}")
     public ModelAndView empleadoReactivado(ModelMap model, HttpServletRequest request, @PathVariable String idNewTrab) {
         logger.info("/empleadoReactivado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        model.addAttribute("xtrabnuevo",empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idNewTrab)));
+        model.addAttribute("xtrabnuevo", empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idNewTrab)));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/empleadoReactivado");
     }
 
-    @RequestMapping("/verFicha@{idTrab}")
-    public ModelAndView verFicha(ModelMap model, HttpServletRequest request, HttpServletResponse response, @PathVariable String idTrab) throws UnsupportedEncodingException {
-        /*logger.info("/verFicha");
-
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("application/pdf;charset=UTF-8");
-
-        String path="";
-        String reportejasp;
-
-        //  path = request.getServletContext().getRealPath("/reportes/BoletaEmpTra.jasper");
-        path = (String)session.getAttribute("GLADIUS_REP")+"FichaTrabajador.jasper";
-
-        String v_idproceso = "";
-        String v_idperiodo = "";
-        Integer v_codcia = (Integer) session.getAttribute("codcia");
-
-        String iexcodtra =request.getParameter("iexcodtra");
-        String logo ="";
-        String fotoemp ="";
-
-        Compania ciainfo= daocia.getCompaniaAll(v_codcia);
-
-        Regions clientRegion = Regions.US_EAST_2;
-        String bucket_name = "gladiusfileserver";
-        String key_name ="AKIAQWQ2VFTRCSCFOZW5";
-        String passPhrase = "2QUcAxspuoSXonhItKr5SGntESeh2qymzm0aCQVE";
-        String fileName = "";
-        AWSCredentials credentials =null;
-
-        System.out.println("codcia:"+v_codcia);
-        System.out.println("codtra: "+iexcodtra);
-
-        Empleado empleado =  new Empleado();
-        empleado = dao.recuperarCabecera((Integer) session.getAttribute("codcia"),Integer.valueOf(iexcodtra.trim()) );
-
-        Compania cia  =(Compania)session.getAttribute("ciades");
-
-        if(cia.getUrlLogo()==null || cia.getUrlLogo().equals("")){
-            logo ="cia.jpg";
-        }else{
-            logo=cia.getUrlLogo() ;
-        }
-
-        if(empleado.getIexlogo()==null || empleado.getIexlogo().equals("")){
-            fotoemp ="fotoemp.png";
-        }else{
-            fotoemp=empleado.getIexlogo() ;
-        }
-
-        //InputStream inputStream =o.getObjectContent();
-        InputStream inputStreamfotoemp =null;
-        InputStream inputStreamlogo =null;
-        InputStream inputStreamRep =null;
-
-        if(ciainfo.getUrlflgsource().equals("1")) {
-            clientRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
-            bucket_name = ciainfo.getIexsourcedes().trim();
-            key_name =ciainfo.getIexususource().trim();
-            passPhrase = ciainfo.getIexpasssource().trim();
-
-            fileName = (Integer)session.getAttribute("codcia")+"/fotoemp/"+fotoemp;
-            credentials = new BasicAWSCredentials(key_name, passPhrase);
-
-            AmazonS3 s3 = null;
-            S3Object o =null;
-            s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-            o = s3.getObject(bucket_name, fileName);
-            inputStreamfotoemp = o.getObjectContent();
-
-            System.out.println("logo: "+logo);
-
-            AmazonS3 s4 = null;
-            S3Object o2 =null;
-            fileName="img/"+logo;
-            s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-            o2 = s4.getObject(bucket_name, fileName);
-            inputStreamlogo =  o2.getObjectContent();
-
-            AmazonS3 s5 = null;
-            S3Object o3 =null;
-            fileName="";
-            s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-            fileName = "reportes/FichaTrabajador.jasper";
-            o3 = s5.getObject(bucket_name, fileName);
-            inputStreamRep = o3.getObjectContent();
-
-            Map parametros = new HashMap();
-            //parametros.put("REPORT_CONNECTION",conn);
-            //parametros.put("SUBREPORT_DIR","");
-            parametros.put("P_CODCIA",  v_codcia);
-            parametros.put("P_CODTRA",  Integer.parseInt(iexcodtra) );
-            parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
-            parametros.put("P_LOGO", inputStreamlogo);
-            // parametros.put("P_LOGO", null);
-            // parametros.put("P_FOTO", (String)session.getAttribute("GLADIUS_FILE")+"fotoemp/"+fotoemp);
-            parametros.put("P_FOTO", inputStreamfotoemp);
-            //    parametros.put("P_FOTO", null);
-
-            //	OutputStream out = response.getOutputStream();
-
-            System.out.println(" ruta reporte:"+path);
-
-            try (
-                // Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gladius", "gladius", "gladius");
-                Connection conn = ConnectionFactory.getInstance().getConnection();
-                OutputStream out = response.getOutputStream()) {
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(inputStreamRep);
-                byte[] bytes = JasperRunManager.runReportToPdf( reporte ,parametros, conn);
-
-                int len = bytes.length;
-                response.setContentLength(len);
-                out.write(bytes, 0, len);
-                out.flush();
-
-            } catch (Exception e) {
-                System.out.println("Error Reporte :"+e.getMessage());
-            }
-
-
-        }else if(ciainfo.getUrlflgsource().equals("2")){
-
-            inputStreamfotoemp = new FileInputStream(ciainfo.getIexurlfileserver()+(Integer)session.getAttribute("codcia")+"/fotoemp/"+fotoemp);
-            inputStreamlogo = new FileInputStream(ciainfo.getIexurlfileserver()+"/img/"+logo);
-            inputStreamRep = new FileInputStream(ciainfo.getIexurlfileserver()+"reportes/FichaTrabajador.jasper");
-
-            Map parametros = new HashMap();
-            //parametros.put("REPORT_CONNECTION",conn);
-            //parametros.put("SUBREPORT_DIR","");
-            parametros.put("P_CODCIA",  v_codcia);
-            parametros.put("P_CODTRA",  Integer.parseInt(iexcodtra) );
-            parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
-            parametros.put("P_LOGO", inputStreamlogo);
-            parametros.put("P_FOTO", inputStreamfotoemp);
-
-            //	OutputStream out = response.getOutputStream();
-
-            System.out.println(" ruta reporte:"+path);
-
-            try (
-                // Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gladius", "gladius", "gladius");
-                Connection conn = ConnectionFactory.getInstance().getConnection();
-                OutputStream out = response.getOutputStream()) {
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(new File(path));
-                byte[] bytes = JasperRunManager.runReportToPdf(inputStreamRep,parametros, conn);
-
-                int len = bytes.length;
-                response.setContentLength(len);
-                out.write(bytes, 0, len);
-                out.flush();
-
-            } catch (Exception e) {
-                System.out.println("Error Reporte :"+e.getMessage());
-        }*/
-
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/fichaTrabajador");
-    }
 }
 

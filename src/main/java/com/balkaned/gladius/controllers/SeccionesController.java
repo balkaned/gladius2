@@ -1,16 +1,16 @@
 package com.balkaned.gladius.controllers;
 
 
-import com.balkaned.gladius.beans.Area;
-import com.balkaned.gladius.beans.Opciones;
 import com.balkaned.gladius.beans.Seccion;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -18,14 +18,6 @@ import java.util.logging.Logger;
 public class SeccionesController {
     static Logger logger = Logger.getLogger(SeccionesController.class.getName());
 
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
-    LovsService lovsService;
 
     @Autowired
     SeccionService seccionService;
@@ -33,37 +25,17 @@ public class SeccionesController {
     @Autowired
     SistemaService sistemaService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/listSecciones")
     public ModelAndView listSecciones(ModelMap model, HttpServletRequest request) {
         logger.info("/listSecciones");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("LstSeccion",seccionService.listarSeccion());
+        model.addAttribute("LstSeccion", seccionService.listarSeccion());
 
         return new ModelAndView("public/gladius/configuracion/secciones/listSecciones");
     }
@@ -71,31 +43,11 @@ public class SeccionesController {
     @RequestMapping("/nuevaSeccion")
     public ModelAndView nuevaSeccion(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevaSeccion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("lovSys",sistemaService.listarSistemas());
+        model.addAttribute("lovSys", sistemaService.listarSistemas());
 
         return new ModelAndView("public/gladius/configuracion/secciones/nuevaSeccion");
     }
@@ -103,32 +55,12 @@ public class SeccionesController {
     @RequestMapping("/insertarSeccion")
     public ModelAndView insertarSeccion(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarSeccion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         Seccion sec = new Seccion();
-        Integer idsec= seccionService.getIdSeccion();
+        Integer idsec = seccionService.getIdSeccion();
         sec.setIexcodsec(idsec);
         sec.setIexdessec(request.getParameter("iexdessec"));
         sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
@@ -146,33 +78,13 @@ public class SeccionesController {
     @RequestMapping("/editarSeccion@{idSec}")
     public ModelAndView editarSeccion(ModelMap model, HttpServletRequest request, @PathVariable String idSec) {
         logger.info("/editarSeccion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("idSec",idSec);
-        model.addAttribute("xSeccion",seccionService.getSeccion(Integer.valueOf(idSec)));
-        model.addAttribute("lovSys",sistemaService.listarSistemas());
+        model.addAttribute("idSec", idSec);
+        model.addAttribute("xSeccion", seccionService.getSeccion(Integer.valueOf(idSec)));
+        model.addAttribute("lovSys", sistemaService.listarSistemas());
 
         return new ModelAndView("public/gladius/configuracion/secciones/editarSeccion");
     }
@@ -180,29 +92,9 @@ public class SeccionesController {
     @RequestMapping("/modificarSeccion")
     public ModelAndView modificarSeccion(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarSeccion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         Seccion sec = new Seccion();
 
@@ -223,30 +115,9 @@ public class SeccionesController {
     @RequestMapping("/deleteSeccion@{idSec}")
     public ModelAndView deleteSeccion(ModelMap model, HttpServletRequest request, @PathVariable String idSec) {
         logger.info("/deleteSeccion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
 
         Seccion sec = new Seccion();
         sec.setIexcodsec(Integer.valueOf(idSec));

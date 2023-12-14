@@ -4,18 +4,13 @@ import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
@@ -25,52 +20,30 @@ public class SueldosController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
     SueldoService sueldoService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/sueldoFijo@{idTrab}")
-    public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/sueldoFijo");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -78,15 +51,18 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
         empleado.setIexcodcia(idCompania);
         empleado.setIexcodtra(Integer.valueOf(idTrab));
@@ -97,40 +73,22 @@ public class SueldosController {
     }
 
     @RequestMapping("/nuevoSueldoFijo@{idTrab}")
-    public ModelAndView nuevoSueldoFijo(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    public ModelAndView nuevoSueldoFijo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/nuevoSueldoFijo");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -138,18 +96,22 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
         model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
-        model.addAttribute("lovConcepSue",sueldoService.ListConceptos(idCompania, "1"));
+        model.addAttribute("lovConcepSue", sueldoService.ListConceptos(idCompania, "1"));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosFijos/nuevoSueldoFijo");
     }
@@ -157,42 +119,23 @@ public class SueldosController {
     @RequestMapping("/insertarSueldoFijo")
     public ModelAndView insertarSueldoFijo(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarSueldoFijo");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
+        Integer idempleado = 0;
 
-        Integer idempleado=0;
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         String concepto = request.getParameter("iexcodcon");
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Double valcon  = 0.0;
+        Double valcon = 0.0;
 
-        if(request.getParameter("iexvalcon")==null) {
-            valcon  = 0.0;
-        }else {
-            valcon  = Double.parseDouble(request.getParameter("iexvalcon"));
-        };
+        if (request.getParameter("iexvalcon") == null) {
+            valcon = 0.0;
+        } else {
+            valcon = Double.parseDouble(request.getParameter("iexvalcon"));
+        }
+        ;
 
         EmpSueldo sueldo = new EmpSueldo();
         sueldo.setIexcodcia(iexcodcia);
@@ -203,44 +146,26 @@ public class SueldosController {
 
         sueldoService.insertarEmpSueldo(sueldo);
 
-        return new ModelAndView("redirect:/sueldoFijo@"+iexcodtra);
+        return new ModelAndView("redirect:/sueldoFijo@" + iexcodtra);
     }
 
     @RequestMapping("/sueldoVariable@{idTrab}")
-    public ModelAndView sueldoVariable(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    public ModelAndView sueldoVariable(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/sueldoVariable");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -248,17 +173,21 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
+        model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/sueldoVariable");
     }
@@ -267,34 +196,16 @@ public class SueldosController {
     public ModelAndView verDataSueldoVar(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTrab) {
         logger.info("/verDataSueldoVar");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-        model.addAttribute("idTrab",idTrab);
+        model.addAttribute("idTrab", idTrab);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -302,61 +213,47 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodpro = request.getParameter("iexcodpro");
         String iexperiodo = request.getParameter("iexperiodo");
         String iexcodtra = request.getParameter("iexcodtra");
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        model.addAttribute("iexcodpro",iexcodpro);
-        model.addAttribute("iexperiodo",iexperiodo);
+        model.addAttribute("iexcodpro", iexcodpro);
+        model.addAttribute("iexperiodo", iexperiodo);
 
-        model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(idTrab),1));
+        model.addAttribute("fdatavar", sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro), iexperiodo, Integer.valueOf(idTrab), 1));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");
     }
 
     @RequestMapping("/verDataSueldoVarBack@{idTrab}@{codpro}@{periodo}")
     public ModelAndView verDataSueldoVarBack(ModelMap model, HttpServletRequest request,
-        @PathVariable String idTrab,
-        @PathVariable String codpro,
-        @PathVariable String periodo) {
+                                             @PathVariable String idTrab,
+                                             @PathVariable String codpro,
+                                             @PathVariable String periodo) {
         logger.info("/verDataSueldoVarBack");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-        model.addAttribute("idTrab",idTrab);
+        model.addAttribute("idTrab", idTrab);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -364,63 +261,48 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodpro = codpro;
         String iexperiodo = periodo;
         String iexcodtra = idTrab;
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        model.addAttribute("iexcodpro",iexcodpro);
-        model.addAttribute("iexperiodo",iexperiodo);
-        model.addAttribute("fdatavar",sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro),iexperiodo, Integer.valueOf(iexcodtra),1));
+        model.addAttribute("iexcodpro", iexcodpro);
+        model.addAttribute("iexperiodo", iexperiodo);
+        model.addAttribute("fdatavar", sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro), iexperiodo, Integer.valueOf(iexcodtra), 1));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");
     }
 
 
-
     @RequestMapping("/nuevoSueldoVar@{idTrab}@{codpro}@{nroper}")
     public ModelAndView nuevoSueldoVar(ModelMap model, HttpServletRequest request,
-        @PathVariable String idTrab,
-        @PathVariable String codpro,
-        @PathVariable String nroper) {
+                                       @PathVariable String idTrab,
+                                       @PathVariable String codpro,
+                                       @PathVariable String nroper) {
 
         logger.info("/nuevoSueldoVar");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-        model.addAttribute("idTrab",idTrab);
+        model.addAttribute("idTrab", idTrab);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -428,17 +310,21 @@ public class SueldosController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
         String concepto2 = request.getParameter("iexcodcon");
-        model.addAttribute("lovConcepVar",sueldoService.ListConceptos(idCompania, "2"));
+        model.addAttribute("lovConcepVar", sueldoService.ListConceptos(idCompania, "2"));
         request.setAttribute("iexcodpro", codpro);
         request.setAttribute("iexperiodo", nroper);
 
@@ -448,42 +334,22 @@ public class SueldosController {
     @RequestMapping("/insertarConceptoVar")
     public ModelAndView insertarConceptoVar(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarConceptoVar");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
+        sessionattributes.getVariablesSession(model, request);
 
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Integer iexcodcia  = Integer.valueOf(request.getParameter("iexcodcia"));
+        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Integer v_codpro = Integer.valueOf( request.getParameter("iexcodpro2"));
-        String periodo  =   request.getParameter("iexperiodo2");
+        Integer v_codpro = Integer.valueOf(request.getParameter("iexcodpro2"));
+        String periodo = request.getParameter("iexperiodo2");
         String concepto = request.getParameter("iexcodcon");
-        Double valcon  = 0.0;
+        Double valcon = 0.0;
 
-        if(request.getParameter("iexvalcon")==null) {
-            valcon  = 0.0;
-        }else {
-            valcon  = Double.parseDouble(request.getParameter("iexvalcon"));
-        };
+        if (request.getParameter("iexvalcon") == null) {
+            valcon = 0.0;
+        } else {
+            valcon = Double.parseDouble(request.getParameter("iexvalcon"));
+        }
+        ;
 
         EmpDatvar Datvar = new EmpDatvar();
         Datvar.setIexcodcia(iexcodcia);
@@ -497,7 +363,7 @@ public class SueldosController {
 
         sueldoService.insertarEmpDatvar(Datvar);
 
-        return new ModelAndView("redirect:/verDataSueldoVarBack@"+iexcodtra+"@"+v_codpro+"@"+periodo);
+        return new ModelAndView("redirect:/verDataSueldoVarBack@" + iexcodtra + "@" + v_codpro + "@" + periodo);
     }
 }
 

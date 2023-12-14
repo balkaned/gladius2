@@ -103,10 +103,6 @@
                                   <input class="form-control" name="iexreplogo" type="text" value="" placeholder="ID.jpg" required />
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Server</label>
-                                    <input class="form-control" name="iexurlfileserver" type="text" value="" placeholder="" />
-                              </div>
-                              <div class="col-sm-6 col-md-12">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="" placeholder="" />
                               </div>

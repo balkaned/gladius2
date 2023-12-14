@@ -44,7 +44,7 @@
                                   <h2 class="mb-0">Vacaciones</h2>
                                   <div class="col-auto">
                                       <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary btn-sm" href="actualizar@${idTrab}"><span class="fa-solid fas fa-wrench me-2"></span>Actualizar</a>
+                                      <a class="btn btn-primary btn-sm" href="actualizarVacEmpl@${idTrab}"><span class="fa-solid fas fa-wrench me-2"></span>Actualizar</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">

@@ -2,14 +2,15 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.EmpAcum;
 import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -20,52 +21,28 @@ public class AcumuladoController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
-    LovsService lovsService;
-
-    @Autowired
     AcumuladoService acumuladoService;
+
+    @Autowired
+    Sessionattributes sessionattributes;
 
 
     @RequestMapping("/acumulado@{idTrab}")
-    public ModelAndView acumulado(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    public ModelAndView acumulado(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/acumulado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTrabXXXXX: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("empleado", empleado);
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -73,56 +50,42 @@ public class AcumuladoController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        model.addAttribute("LstAcumEmp",acumuladoService.listarEmpAcum(emp.getIexcodcia(), emp.getIexcodtra()));
+        model.addAttribute("LstAcumEmp", acumuladoService.listarEmpAcum(emp.getIexcodcia(), emp.getIexcodtra()));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/acumulados");
     }
 
-   @RequestMapping("/nuevoAcumulado@{idTrab}")
-    public ModelAndView nuevoAcumulado(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    @RequestMapping("/nuevoAcumulado@{idTrab}")
+    public ModelAndView nuevoAcumulado(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/nuevoAcumulado");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -130,15 +93,19 @@ public class AcumuladoController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/nuevoAcumulado");
     }
@@ -146,34 +113,15 @@ public class AcumuladoController {
     @RequestMapping("/insertarAcumulado")
     public ModelAndView insertarAcumulado(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarAcumulado");
+
+        sessionattributes.getVariablesSession(model, request);
         String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         String iexcodcia = request.getParameter("iexcodcia");
         String iexcodtra = request.getParameter("iexcodtra");
 
-        EmpAcum empacum  = new EmpAcum();
+        EmpAcum empacum = new EmpAcum();
 
         empacum.setIexcodcia(Integer.valueOf(iexcodcia));
         empacum.setIexcodtra(Integer.valueOf(iexcodtra));
@@ -191,7 +139,7 @@ public class AcumuladoController {
 
         acumuladoService.insertarEmpAcum(empacum);
 
-        return new ModelAndView("redirect:/acumulado@"+iexcodtra);
+        return new ModelAndView("redirect:/acumulado@" + iexcodtra);
     }
 
 }

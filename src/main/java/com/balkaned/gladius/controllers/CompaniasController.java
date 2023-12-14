@@ -1,8 +1,9 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
+
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +17,6 @@ import java.util.logging.Logger;
 @RestController
 public class CompaniasController {
     static Logger logger = Logger.getLogger(CompaniasController.class.getName());
-    @Autowired
-    ParametroService parametroService;
-
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
 
     @Autowired
     CompaniaService companiaService;
@@ -29,37 +25,14 @@ public class CompaniasController {
     LovsService lovsService;
 
     @Autowired
-    ConceptoService conceptoService;
+    Sessionattributes sessionattributes;
 
     @RequestMapping("/listCompanias")
     public ModelAndView listCompanias(ModelMap model, HttpServletRequest request) {
         logger.info("/listCompanias");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        logger.info("################### idCompania: " + idCompania);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("LstCompania", companiaService.listarTodo());
 
@@ -69,29 +42,9 @@ public class CompaniasController {
     @RequestMapping("/nuevaCompania")
     public ModelAndView nuevaCompania(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevaCompania");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("lovTipAct", lovsService.getLovs("1", "%"));
 
@@ -101,29 +54,10 @@ public class CompaniasController {
     @RequestMapping("/insertarCompania")
     public ModelAndView insertarCompania(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarCompania");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
+        sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Compania cia = new Compania();
 
@@ -150,29 +84,9 @@ public class CompaniasController {
     @RequestMapping("/editarCompania@{idCia}")
     public ModelAndView editarCompania(ModelMap model, HttpServletRequest request, @PathVariable String idCia) {
         logger.info("/editarCompania");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("idCia", idCia);
         model.addAttribute("lovTipAct", lovsService.getLovs("1", "%"));
@@ -187,29 +101,10 @@ public class CompaniasController {
     @RequestMapping("/modificarCompania")
     public ModelAndView modificarCompania(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarCompania");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
+        sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Compania cia = new Compania();
         cia.setIdCodcia(Integer.parseInt(request.getParameter("iexcodcia2")));
@@ -242,29 +137,9 @@ public class CompaniasController {
     @RequestMapping("/insertarConceptoComp")
     public ModelAndView insertarConceptoCom(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarConceptoComp");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String pcodcia = request.getParameter("idcia");
         String pcodcon = request.getParameter("id_concepto");
@@ -279,29 +154,9 @@ public class CompaniasController {
                                         @PathVariable String idCia,
                                         @PathVariable String idCon) {
         logger.info("/delConceptoComp");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         companiaService.deleteCiaxcon(Integer.valueOf(idCia), idCon);
 
@@ -311,29 +166,9 @@ public class CompaniasController {
     @RequestMapping("/deleteCompania@{idComp}")
     public ModelAndView deleteCompania(ModelMap model, HttpServletRequest request, @PathVariable String idComp) {
         logger.info("/deleteCompania");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("idComp", idComp);
 

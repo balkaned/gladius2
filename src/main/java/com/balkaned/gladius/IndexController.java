@@ -3,20 +3,20 @@ package com.balkaned.gladius;
 
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.UsuarioConeccion;
+import com.balkaned.gladius.beans.UsuxOpciones;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.UsuarioConeccionService;
+import com.balkaned.gladius.services.UsuxOpcionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
-
 import static java.lang.System.out;
 
 @RestController
@@ -31,6 +31,9 @@ public class IndexController {
 
     @Autowired
     EmpleadoService empleadoService;
+
+    @Autowired
+    UsuxOpcionesService usuxOpcionesService;
 
     @RequestMapping("/login2")
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -181,8 +184,6 @@ public class IndexController {
     @RequestMapping("/logoff")
     public ModelAndView logoff(ModelMap model, HttpServletRequest request) {
 
-        //model.addAttribute("usuario", new Usuario());
-
         request.getSession().setAttribute("user", null);
         request.getSession().setAttribute("idUser", null);
         request.getSession().setAttribute("email", null);
@@ -223,6 +224,12 @@ public class IndexController {
         model.addAttribute("nombreComp", comp1.getDescCia());
         model.addAttribute("rucComp", comp1.getNroRuc());
         model.addAttribute("schema", comp1.getSchema());
+
+        int idCompconv=Integer.parseInt(idComp);
+        int idUsuarioconv=Integer.parseInt(idusuario);
+
+        List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv,idUsuarioconv,1);
+        model.addAttribute("usuxsysxopc",listaMenus);
 
         return new ModelAndView("public/kanban");
     }

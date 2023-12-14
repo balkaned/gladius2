@@ -4,6 +4,7 @@ import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,17 +20,12 @@ import java.util.regex.Pattern;
 @RestController
 public class UsuariosController {
     static Logger logger = Logger.getLogger(UsuariosController.class.getName());
-    @Autowired
-    ParametroService parametroService;
 
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
 
     @Autowired
     CompaniaService companiaService;
-
-    @Autowired
-    LovsService lovsService;
 
     @Autowired
     UsuarioService usuarioService;
@@ -40,35 +36,15 @@ public class UsuariosController {
     @Autowired
     UsuxCompaniaService usuxCompaniaService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/listUsuarios")
     public ModelAndView listUsuarios(ModelMap model, HttpServletRequest request) {
         logger.info("/listUsuarios");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        logger.info("################### idCompania: " + idCompania);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Integer pagina = 1;
         Integer numRegs = 15;
@@ -82,29 +58,9 @@ public class UsuariosController {
     @RequestMapping("/nuevoUsuario")
     public ModelAndView nuevoUsuario(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevoUsuario");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
     }
@@ -112,29 +68,10 @@ public class UsuariosController {
     @RequestMapping("/insertarUsuario")
     public ModelAndView insertarUsuario(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarUsuario");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
+        String email = (String) request.getSession().getAttribute("email");
 
         String Msg_form_global = "";
         String ret;
@@ -157,12 +94,9 @@ public class UsuariosController {
         uc.setUser(usuario2);
 
         UsuarioConeccion ucConsulta = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
-        logger.info("ucConsulta.getUser()" + ucConsulta.getUser());
+        logger.info("ucConsulta.getUser():" + ucConsulta.getUser());
 
-        if (ucConsulta.getUser() != null) {
-            msg = "El usuario ya existe en la Base de Datos ingresar otro nombre";
-            model.addAttribute("msg", msg);
-        } else {
+        if (ucConsulta.getUser() == null) {
             if (password.equals(password2)) {
                 msg_txtpassword = "Correcto";
                 cont++;
@@ -196,6 +130,9 @@ public class UsuariosController {
             } else {
                 model.addAttribute("msg", msg);
             }
+        } else {
+            msg = "El usuario ya existe en la Base de Datos ingresar otro nombre";
+            model.addAttribute("msg", msg);
         }
 
         return new ModelAndView("public/gladius/configuracion/usuarios/nuevoUsuario");
@@ -217,29 +154,9 @@ public class UsuariosController {
     @RequestMapping("/editarUsuario@{idUsu}")
     public ModelAndView editarUsuario(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
         logger.info("/editarUsuario");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("idUsu", idUsu);
         Usuario usuariox = usuarioService.recuperar(Integer.valueOf(idUsu));
@@ -251,29 +168,9 @@ public class UsuariosController {
     @RequestMapping("/modificarUsuario")
     public ModelAndView modificarUsuario(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarUsuario");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Integer codusuario = Integer.valueOf(request.getParameter("id_usuario"));
         String usuariox = request.getParameter("txt_usuario");
@@ -299,29 +196,9 @@ public class UsuariosController {
     @RequestMapping("/asignarRolUs@{idUsu}")
     public ModelAndView asignarRolUs(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
         logger.info("/asignarRolUs");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         model.addAttribute("idUsu", idUsu);
 
@@ -335,29 +212,9 @@ public class UsuariosController {
     @RequestMapping("/asignarRolxCiaIns")
     public ModelAndView asignarRolxCiaIns(ModelMap model, HttpServletRequest request) {
         logger.info("/asignarRolxCiaIns");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Integer codusuario = Integer.valueOf(request.getParameter("usuario_id"));
         Integer lov_compania = Integer.valueOf(request.getParameter("lov_compania"));
@@ -388,29 +245,9 @@ public class UsuariosController {
                                            @PathVariable String idRol,
                                            @PathVariable String idCia) {
         logger.info("/eliminarRolXciaUsu");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Integer codusuario = Integer.valueOf(idUsu);
         Integer lov_compania = Integer.valueOf(idCia);

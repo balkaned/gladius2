@@ -4,6 +4,7 @@ import com.balkaned.gladius.beans.DerechoHabiente;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,51 +22,30 @@ public class DerechoHabientesController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
     DerechoHabientesService derechoHabientesService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/derechoHab@{idTrab}")
-    public ModelAndView derechoHab(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    public ModelAndView derechoHab(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/derechoHab");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTrabXXXXX: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        model.addAttribute("empleado", empleado);
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -73,56 +53,42 @@ public class DerechoHabientesController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-        model.addAttribute("LovDerhab",derechoHabientesService.listar(emp.getIexcodcia(), emp.getIexcodtra()));
+        model.addAttribute("LovDerhab", derechoHabientesService.listar(emp.getIexcodcia(), emp.getIexcodtra()));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/derechoHab");
     }
 
-   @RequestMapping("/nuevoDerechoHab@{idTrab}")
-    public ModelAndView nuevoDerechoHab(ModelMap model, HttpServletRequest request,@PathVariable String idTrab){
+    @RequestMapping("/nuevoDerechoHab@{idTrab}")
+    public ModelAndView nuevoDerechoHab(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/nuevoDerechoHab");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: "+idCompania);
-        logger.info("idTraXXXXXb: "+idTrab);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idTrab",idTrab);
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
-        model.addAttribute("empleado",empleado);
+        model.addAttribute("empleado", empleado);
 
-        Empleado emp=empleadoService.recuperarCabecera(idCompania,Integer.parseInt(idTrab));
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl",emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -130,67 +96,48 @@ public class DerechoHabientesController {
         model.addAttribute("puesto", emp.getDespuesto());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("iexlogo",emp.getIexlogo());
-        model.addAttribute("urlLogo",urlLogo);
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): "+emp.getIexcodsex());
-        if(emp.getIexcodsex()==null){sexo="NA";}else{sexo=emp.getIexcodsex();}
-        logger.info("sexo: "+sexo);
-        model.addAttribute("sexo",sexo);
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
 
-       model.addAttribute("lovTipdoc",lovsService.getLovs("3","%"));
-       model.addAttribute("lovSexo",lovsService.getLovs("50","%"));
-       model.addAttribute("lovPaisEmisor",lovsService.getLovs("26","%"));
-       model.addAttribute("lovVincul",lovsService.getLovs("19","%"));
-       model.addAttribute("lovAcredVincul",lovsService.getLovs("27","%"));
-       model.addAttribute("lovTipVia",lovsService.getLovs("5","%"));
-       model.addAttribute("lovTipZona",lovsService.getLovs("6","%"));
-       model.addAttribute("lovTipVia2",lovsService.getLovs("5","%"));
-       model.addAttribute("lovTipZona2",lovsService.getLovs("6","%"));
-       model.addAttribute("lovLarDistancia",lovsService.getLovs("29","%"));
+        model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
+        model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
+        model.addAttribute("lovPaisEmisor", lovsService.getLovs("26", "%"));
+        model.addAttribute("lovVincul", lovsService.getLovs("19", "%"));
+        model.addAttribute("lovAcredVincul", lovsService.getLovs("27", "%"));
+        model.addAttribute("lovTipVia", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovTipVia2", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona2", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovLarDistancia", lovsService.getLovs("29", "%"));
 
-       return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/nuevoDerechoHab");
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/nuevoDerechoHab");
     }
 
     @RequestMapping("/insertarDerechoHab")
     public ModelAndView insertarDerechoHab(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarDerechoHab");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        String Msg_form_global="";
-        Integer coddep=0;
-        Integer idfinal=0;
-        Integer count=0;
+        String Msg_form_global = "";
+        Integer coddep = 0;
+        Integer idfinal = 0;
+        Integer count = 0;
 
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        /*Integer  iexcodcia = (Integer)session.getAttribute("codcia");
-        String  iexcodtra = request.getParameter("iexcodtra");
-        String  iexcoddep = request.getParameter("iexcoddep");*/
         String iextipnroiddep = request.getParameter("iextipnroiddep");
         String iexnroiddep = request.getParameter("iexnroiddep");
 
@@ -201,17 +148,17 @@ public class DerechoHabientesController {
         derhab.setIexnroiddep(iexnroiddep);
 
         count = derechoHabientesService.validarDerhabiente(derhab);
-        logger.info("count: "+count);
+        logger.info("count: " + count);
 
-        if(count>0){
-            idfinal=-1;
-            model.addAttribute("msg","Ya existe un empleado con ese Nro de Documento");
-            model.addAttribute("idTrab",iexcodtra);
-        }else {
+        if (count > 0) {
+            idfinal = -1;
+            model.addAttribute("msg", "Ya existe un empleado con ese Nro de Documento");
+            model.addAttribute("idTrab", iexcodtra);
+        } else {
             Msg_form_global = "ok";
 
-            coddep=derechoHabientesService.getIdDerechoHab(derhab);
-            logger.info("coddep: "+coddep);
+            coddep = derechoHabientesService.getIdDerechoHab(derhab);
+            logger.info("coddep: " + coddep);
 
             if (Msg_form_global == "ok") {
                 if (coddep > 0) {
@@ -328,7 +275,7 @@ public class DerechoHabientesController {
 
                     derechoHabientesService.insertar(derhab2);
 
-                    return new ModelAndView("redirect:/derechoHab@"+iexcodtra);
+                    return new ModelAndView("redirect:/derechoHab@" + iexcodtra);
                 }
             }
         }

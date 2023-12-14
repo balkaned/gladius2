@@ -2,12 +2,14 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -16,50 +18,21 @@ public class RolesController {
     static Logger logger = Logger.getLogger(RolesController.class.getName());
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
-    LovsService lovsService;
-
-    @Autowired
     RolService rolService;
     @Autowired
     OpcionService opcionService;
+
+    @Autowired
+    Sessionattributes sessionattributes;
 
     @RequestMapping("/listRoles")
     public ModelAndView listRoles(ModelMap model, HttpServletRequest request) {
         logger.info("/listRoles");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("LstRole",rolService.listarRoles());
+        model.addAttribute("LstRole", rolService.listarRoles());
 
         return new ModelAndView("public/gladius/configuracion/roles/listRoles");
     }
@@ -67,29 +40,9 @@ public class RolesController {
     @RequestMapping("/nuevoRol")
     public ModelAndView nuevoRol(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevoRol");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         return new ModelAndView("public/gladius/configuracion/roles/nuevoRol");
     }
@@ -97,31 +50,11 @@ public class RolesController {
     @RequestMapping("/insertarRol")
     public ModelAndView insertarRol(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarRol");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Role rol  = new Role();
+        Role rol = new Role();
         rol.setIdRole(Integer.parseInt(request.getParameter("iexcodrol")));
         rol.setDesRole(request.getParameter("iexdesrol"));
 
@@ -132,36 +65,14 @@ public class RolesController {
 
     @RequestMapping("/verOpcion@{idRol}")
     public ModelAndView verOpcion(ModelMap model, HttpServletRequest request,
-                                   @PathVariable String idRol){
+                                  @PathVariable String idRol) {
         logger.info("/verOpcion");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("idRol",idRol);
-
-        model.addAttribute("xRolxopc",rolService.listarRolesxOpcion(Integer.valueOf(idRol)));
+        model.addAttribute("idRol", idRol);
+        model.addAttribute("xRolxopc", rolService.listarRolesxOpcion(Integer.valueOf(idRol)));
 
         return new ModelAndView("public/gladius/configuracion/roles/listRolesxOpcion");
     }
@@ -170,65 +81,24 @@ public class RolesController {
     public ModelAndView nuevoRolxOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
         logger.info("/nuevoRolxOpcion");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("idRol",idRol);
-
-        model.addAttribute("lovOpcion",opcionService.listarOpciones());
+        model.addAttribute("idRol", idRol);
+        model.addAttribute("lovOpcion", opcionService.listarOpciones());
 
         return new ModelAndView("public/gladius/configuracion/roles/nuevoRolxOpcion");
     }
 
     @RequestMapping("/insertarRolxOpcion@{idRol}")
-    public ModelAndView insertarRolxOpcion(ModelMap model, HttpServletRequest request,@PathVariable String idRol) {
+    public ModelAndView insertarRolxOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
         logger.info("/insertarRolxOpcion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
+        sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Rolesxopciones rolopc = new  Rolesxopciones();
+        Rolesxopciones rolopc = new Rolesxopciones();
         rolopc.setIexcodrol(Integer.parseInt(request.getParameter("iexcodrol")));
         rolopc.setIexcodopc(Integer.parseInt(request.getParameter("iexcodopc")));
         rolopc.setIex_consultar(request.getParameter("iex_consultar"));
@@ -242,43 +112,22 @@ public class RolesController {
 
         rolService.insertarRolesxopciones(rolopc);
 
-        return new ModelAndView("redirect:/verOpcion@"+idRol);
+        return new ModelAndView("redirect:/verOpcion@" + idRol);
     }
 
     @RequestMapping("/editarOpcion@{idRol}")
     public ModelAndView editarOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
         logger.info("/editarOpcion");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("idRol",idRol);
+        model.addAttribute("idRol", idRol);
 
         Role rol = new Role();
         rol.setIdRole(Integer.valueOf(idRol));
-        Role rol2=rolService.getRole(rol);
-        model.addAttribute("rol",rol2);
+        Role rol2 = rolService.getRole(rol);
+        model.addAttribute("rol", rol2);
 
         return new ModelAndView("public/gladius/configuracion/roles/editarRol");
     }
@@ -286,31 +135,11 @@ public class RolesController {
     @RequestMapping("/modificarRol")
     public ModelAndView modificarRol(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarRol");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Role rol  = new Role();
+        Role rol = new Role();
         rol.setIdRole(Integer.parseInt(request.getParameter("iexcodrol")));
         rol.setDesRole(request.getParameter("iexdesrol"));
         rolService.actualizarRole(rol);
@@ -324,39 +153,19 @@ public class RolesController {
                                          @PathVariable String idRol) {
         logger.info("/editarOpcionxRol");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-        model.addAttribute("idRolxOpc",idRolxOpc);
-        model.addAttribute("idRol",idRol);
+        model.addAttribute("idRolxOpc", idRolxOpc);
+        model.addAttribute("idRol", idRol);
 
-        Rolesxopciones rolopc = new  Rolesxopciones();
+        Rolesxopciones rolopc = new Rolesxopciones();
         rolopc.setIexcodrol(Integer.valueOf(idRol));
         rolopc.setIexcodopc(Integer.valueOf(idRolxOpc));
 
-        model.addAttribute("exRolxopc",rolService.getRolesxopciones(rolopc));
+        model.addAttribute("exRolxopc", rolService.getRolesxopciones(rolopc));
         model.addAttribute("iexcodrol", idRol);
-        model.addAttribute("lovOpcion",opcionService.listarOpciones());
+        model.addAttribute("lovOpcion", opcionService.listarOpciones());
 
         return new ModelAndView("public/gladius/configuracion/roles/editarRolxOpcion");
     }
@@ -364,33 +173,14 @@ public class RolesController {
     @RequestMapping("/modificarRolxOpcion")
     public ModelAndView modificarRolxOpcion(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarRolxOpcion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
+        sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
+        String iexcodrol = request.getParameter("iexcodrol");
 
-        String iexcodrol=request.getParameter("iexcodrol");
-
-        Rolesxopciones rolopc = new  Rolesxopciones();
+        Rolesxopciones rolopc = new Rolesxopciones();
         rolopc.setIexcodrol(Integer.valueOf(iexcodrol));
         rolopc.setIexcodopc(Integer.parseInt(request.getParameter("iexcodopc")));
         rolopc.setIex_consultar(request.getParameter("iex_consultar"));
@@ -404,37 +194,17 @@ public class RolesController {
 
         rolService.actualizarRolesxopciones(rolopc);
 
-        return new ModelAndView("redirect:/verOpcion@"+iexcodrol);
+        return new ModelAndView("redirect:/verOpcion@" + iexcodrol);
     }
 
     @RequestMapping("/deleteRol@{idRol}")
     public ModelAndView deleteRol(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
         logger.info("/deleteRol");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        Role rol  = new Role();
+        Role rol = new Role();
         rol.setIdRole(Integer.valueOf(idRol));
 
         rolService.eliminarRole(rol);
@@ -447,37 +217,17 @@ public class RolesController {
                                          @PathVariable String idOpc,
                                          @PathVariable String idRol) {
         logger.info("/deleteOpcionxRol");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        Rolesxopciones rolopc = new  Rolesxopciones();
+        Rolesxopciones rolopc = new Rolesxopciones();
         rolopc.setIexcodrol(Integer.valueOf(idRol));
         rolopc.setIexcodopc(Integer.valueOf(idOpc));
 
         rolService.eliminarRolesxopciones(rolopc);
 
-        return new ModelAndView("redirect:/verOpcion@"+idRol);
+        return new ModelAndView("redirect:/verOpcion@" + idRol);
     }
 
 }

@@ -1,15 +1,15 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Opciones;
-import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
@@ -17,48 +17,23 @@ import java.util.logging.Logger;
 public class OpcionesController {
     static Logger logger = Logger.getLogger(OpcionesController.class.getName());
 
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-    @Autowired
-    CompaniaService companiaService;
-    @Autowired
-    LovsService lovsService;
+
     @Autowired
     OpcionService opcionService;
     @Autowired
     SeccionService seccionService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/listOpciones")
     public ModelAndView listOpciones(ModelMap model, HttpServletRequest request) {
         logger.info("/listOpciones");
 
-        String user = (String) request.getSession().getAttribute("user");
-
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("################### idCompania: "+idCompania);
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("LstOpciones",opcionService.listarOpciones());
+        model.addAttribute("LstOpciones", opcionService.listarOpciones());
 
         return new ModelAndView("public/gladius/configuracion/opciones/listOpciones");
     }
@@ -66,31 +41,11 @@ public class OpcionesController {
     @RequestMapping("/nuevaOpcion")
     public ModelAndView nuevaOpcion(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevaOpcion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("lovSeccion",seccionService.listarSeccion());
+        model.addAttribute("lovSeccion", seccionService.listarSeccion());
 
         return new ModelAndView("public/gladius/configuracion/opciones/nuevaOpcion");
     }
@@ -98,32 +53,12 @@ public class OpcionesController {
     @RequestMapping("/insertarOpcion")
     public ModelAndView insertarOpcion(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarOpcion");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
 
         Integer idopc = opcionService.getIdOpciones();
-        Opciones opc =  new Opciones();
+        Opciones opc = new Opciones();
         opc.setIexcodopc(idopc);
         opc.setIexdesopc(request.getParameter("iexdesopc"));
         opc.setIexflgest(request.getParameter("iexflgest"));
@@ -142,33 +77,13 @@ public class OpcionesController {
     @RequestMapping("/editarOpc@{idOpc}")
     public ModelAndView editarOpc(ModelMap model, HttpServletRequest request, @PathVariable String idOpc) {
         logger.info("/editarOpc");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        model.addAttribute("idOpc",idOpc);
-        model.addAttribute("xOpcion",opcionService.getOpciones(Integer.valueOf(idOpc)));
-        model.addAttribute("lovSeccion",seccionService.listarSeccion());
+        model.addAttribute("idOpc", idOpc);
+        model.addAttribute("xOpcion", opcionService.getOpciones(Integer.valueOf(idOpc)));
+        model.addAttribute("lovSeccion", seccionService.listarSeccion());
 
         return new ModelAndView("public/gladius/configuracion/opciones/editarOpcion");
     }
@@ -176,31 +91,11 @@ public class OpcionesController {
     @RequestMapping("/modificarOpc")
     public ModelAndView modificarOpc(ModelMap model, HttpServletRequest request) {
         logger.info("/modificarOpc");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if(request.getSession().getAttribute("user")==null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("idusuario",idusuario);
-        model.addAttribute("email",email);
-        model.addAttribute("firstCharacter",firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp",rucComp);
-        model.addAttribute("idComp",idCompania);
-        model.addAttribute("urlLogo",urlLogo);
-
-        Opciones opc =  new Opciones();
+        Opciones opc = new Opciones();
         opc.setIexcodopc(Integer.parseInt(request.getParameter("iexcodopc")));
         opc.setIexdesopc(request.getParameter("iexdesopc"));
         opc.setIexflgest(request.getParameter("iexflgest"));
@@ -219,31 +114,11 @@ public class OpcionesController {
     @RequestMapping("/deleteOpc@{idOpc}")
     public ModelAndView deleteOpc(ModelMap model, HttpServletRequest request, @PathVariable String idOpc) {
         logger.info("/deleteOpc");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        Opciones opc =  new Opciones();
+        Opciones opc = new Opciones();
         opc.setIexcodopc(Integer.valueOf(idOpc));
         opcionService.eliminarOpciones(opc);
 

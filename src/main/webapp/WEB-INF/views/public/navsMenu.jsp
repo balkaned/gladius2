@@ -71,11 +71,51 @@
                     <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>-->
-                <p class="navbar-vertical-label">Configuración</p>
+
+
+                <!--Empiezo a mostrar los menus segun la bd perfiles y roles de usuario-->
+                <c:set var="seccion_cur" value=""/>
+                <c:set var="init" value="0"/>
+                <c:forEach var="usuxsysxopc" items="${requestScope.usuxsysxopc}">
+                    <c:if test="${usuxsysxopc.codsec != seccion_cur}">
+                        <c:if test="${init > 0}">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${usuxsysxopc.codsec != seccion_cur}">
+                            <p class="navbar-vertical-label">${usuxsysxopc.dessecCapi}</p>
+                            <p id="p2" class="navbar-vertical-label">Menus de ${usuxsysxopc.dessecCapi}</p>
+                            <div class="nav-item-wrapper">
+                                <a class="nav-link dropdown-indicator label-1" href="#${usuxsysxopc.codsec}" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="${usuxsysxopc.dessecCapi}">
+                                    <div class="d-flex align-items-center">
+                                      <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="${usuxsysxopc.icon}"></span></span><span class="nav-link-text">${usuxsysxopc.dessecCapi}</span>
+                                    </div>
+                                </a>
+                                <div class="parent-wrapper label-1">
+                                    <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="${usuxsysxopc.codsec}">
+                                          <li class="collapsed-nav-item-title d-none">${usuxsysxopc.dessecCapi}</li>
+
+                    </c:if>
+                    <c:if test="${usuxsysxopc.codsec == seccion_cur}">
+                                          <li id="menunav" class="nav-item">
+                                            <a class="nav-link" id="${usuxsysxopc.path}" href="${usuxsysxopc.path}" data-bs-toggle="" aria-expanded="false">
+                                              <div class="d-flex align-items-center"><span class="nav-link-text">${usuxsysxopc.desopc}</span></div>
+                                            </a>
+                                          </li>
+                    </c:if>
+                    <c:set var="seccion_cur" value="${usuxsysxopc.codsec}" />
+                    <c:set var="init" value="1" />
+                 </c:forEach>
+
+
+
+                <!--<p class="navbar-vertical-label">Configuración</p>
                 <p id="p2" class="navbar-vertical-label">Menus de Configuración</p>
                 <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#conf" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="conf">
                     <div class="d-flex align-items-center">
-                      <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="settings"></span></span><span class="nav-link-text">Configuración</span>
+                      <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="building"></span></span><span class="nav-link-text">Configuración</span>
                     </div>
                   </a>
                   <div class="parent-wrapper label-1">
@@ -129,7 +169,7 @@
                 <p id="p2" class="navbar-vertical-label">Configuración de Planillas</p>
                 <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#plan" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="plan">
                     <div class="d-flex align-items-center">
-                      <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="grid"></span></span><span class="nav-link-text">Conf. Planillas</span>
+                      <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="building"></span></span><span class="nav-link-text">Conf. Planillas</span>
                     </div>
                   </a>
                   <div class="parent-wrapper label-1">
@@ -420,7 +460,9 @@
             </div>
             </ul>
           </div>
+          -->
         </div>
+
         <div class="navbar-vertical-footer">
           <a id="btnMenuCollapse" class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center"><span class="uil uil-left-arrow-to-left fs-0"></span><span class="uil uil-arrow-from-right fs-0"></span><span class="navbar-vertical-footer-text ms-2">Collapsed View</span></a>
         </div>

@@ -64,19 +64,16 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
 
     @Override
     public UsuarioConeccion obtenerUsuarioConeccionByName(UsuarioConeccion uc) {
-        String sql = "select * from iexusuario where iexdesusu='" + uc.getUser() + "'";
+        String sql = "select * from iexusuario where iexdesusu='" + uc.getUser() + "' ";
 
         try {
             return (UsuarioConeccion) template.query(sql, new ResultSetExtractor<UsuarioConeccion>() {
                 public UsuarioConeccion extractData(ResultSet rs) throws SQLException, DataAccessException {
                     UsuarioConeccion us = new UsuarioConeccion();
-                    if (rs.next()) {
+                    while (rs.next()) {
                         us.setId_usuario(rs.getString("iexcodusu"));
                         us.setUser(rs.getString("iexdesusu"));
                         us.setPass(rs.getString("iexpassw"));
-                    } else {
-                        us.setUser("noecontrado");
-                        us.setPass("noecontrado");
                     }
                     return us;
                 }
@@ -98,7 +95,8 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 "cp.iexnroruc, " +
                 "cp.iexdireccion, " +
                 "cp.iexreplogo, " +
-                "cp.iexschema " +
+                "cp.iexschema," +
+                "cp.iexflgsource " +
                 "from iexcompania cp " +
                 "inner join iexusuxcia uc on uc.iexcodcia=cp.iexcodcia " +
                 "inner join iexusuario us on us.iexcodusu=uc.iexcodusu " +
@@ -117,6 +115,7 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     comp.setDireccion(rs.getString("iexdireccion"));
                     comp.setUrlLogo(rs.getString("iexreplogo"));
                     comp.setSchema(rs.getString("iexschema"));
+                    comp.setIexflgsource(rs.getString("iexflgsource"));
 
                     list.add(comp);
                 }

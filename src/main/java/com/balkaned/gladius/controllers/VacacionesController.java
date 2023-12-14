@@ -1,14 +1,11 @@
 package com.balkaned.gladius.controllers;
 
-import com.amazonaws.services.clouddirectory.model.FacetAttributeUpdate;
-import com.balkaned.gladius.beans.AusentismoProgramacion;
-import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,44 +21,23 @@ public class VacacionesController {
     EmpleadoService empleadoService;
 
     @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
     VacacionesService vacacionesService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
+
     @RequestMapping("/vacaciones@{idTrab}")
     public ModelAndView vacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/vacaciones");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
+        logger.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -105,30 +81,12 @@ public class VacacionesController {
                                         @PathVariable String perMesIni,
                                         @PathVariable String perMesFin) {
         logger.info("/verDetalleVac");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
+        logger.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -172,31 +130,12 @@ public class VacacionesController {
                                                    @PathVariable String perMesIni,
                                                    @PathVariable String perMesFin) {
         logger.info("/nuevasVacacionesValidacion");
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
 
         Integer idempleado = 0;
 
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
         model.addAttribute("emp", emp);
@@ -247,30 +186,12 @@ public class VacacionesController {
                                             @PathVariable String perfin,
                                             @PathVariable String saldo) {
         logger.info("/nuevasVacacionesIns");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
+        logger.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -311,29 +232,10 @@ public class VacacionesController {
     @RequestMapping("/insertarVacaciones")
     public ModelAndView insertarVacaciones(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarVacaciones");
-        String user = (String) request.getSession().getAttribute("user");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         String iexcodtra = request.getParameter("iexcodtra");
 
@@ -432,33 +334,14 @@ public class VacacionesController {
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/nuevasVacacionesIns");
     }
 
-    @RequestMapping("/actualizar@{idTrab}")
-    public ModelAndView actualizar(ModelMap model, HttpServletRequest request,
-                                   @PathVariable String idTrab) {
-        logger.info("/actualizar");
-        String user = (String) request.getSession().getAttribute("user");
+    @RequestMapping("/actualizarVacEmpl@{idTrab}")
+    public ModelAndView actualizarVacEmpl(ModelMap model, HttpServletRequest request,
+                                          @PathVariable String idTrab) {
+        logger.info("/actualizarVacEmpl");
 
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
         Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(idTrab));
         model.addAttribute("emp", emp);
@@ -489,7 +372,6 @@ public class VacacionesController {
         emp2.setIexcodcia(idCompania);
 
         vacacionesService.procesaVacacionCtl(emp2);
-        //request.setAttribute("LstVacacionesDet",dao.listarVacacionesPrg(empleado) );
         model.addAttribute("LstVacacionesCtl", vacacionesService.listarVacacionesCtl(emp2));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
@@ -670,7 +552,8 @@ public class VacacionesController {
                 Empleado empleado2 = new Empleado();
                 empleado2 = empleadoService.recuperarCabecera(vacprg.getIexcodcia(), vacprg.getIexcodtra());
                 if (iexfecini != null && iexfecfin != null) {
-                    model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(vacprg.getIexcodcia(), request.getParameter("iexcodreg"), iexfecini, iexfecfin, vacprg.getIexcodtra()));;
+                    model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(vacprg.getIexcodcia(), request.getParameter("iexcodreg"), iexfecini, iexfecfin, vacprg.getIexcodtra()));
+                    ;
                 }
                 model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(vacprg.getIexcodcia(), request.getParameter("iexcodreg")));
                 model.addAttribute("iexcodtra", vacprg.getIexcodtra());

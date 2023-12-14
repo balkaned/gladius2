@@ -108,7 +108,7 @@
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PUESTOS</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CATEGORIA</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
@@ -121,7 +121,7 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarPuesto@${puest.iexpuesto}">#${puest.iexpuesto}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000">${puest.iexdespuesto}</td>
-                              <td class="total align-middle text-end fw-semi-bold text-1000">${puest.descodcat}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000">${puest.descodcat}</td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

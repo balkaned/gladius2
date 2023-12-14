@@ -104,6 +104,14 @@ margin-top:10px !important;
                         src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null@null"
                         class="avatar" alt="Avatar" width="100">
                     <div class="d-flex align-items-center mb-2">
+
+                        <p class="fw-bold mb-0 text-truncate lh-1">Tipo de conexión :
+                        <span class="fw-semi-bold text-primary ms-1">${comp.iexflgsource} </span>
+                        <c:if test="${comp.iexflgsource=='1'}"><i style="font-size: 20px;" class="fa-brands fa-aws ps-2 pe-2"></i>AWS S3</c:if>
+                        <c:if test="${comp.iexflgsource=='2'}"><i style="font-size: 20px;" class="fa-solid fa-upload ps-2 pe-2"></i>FTP Filezilla</c:if>
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
                         <span class="fa-solid far fa-newspaper me-2 text-700 fs--1 fw-extra-bold"></span>
                         <p class="fw-bold mb-0 text-truncate lh-1">RUC : <span class="fw-semi-bold text-primary ms-1">${comp.ruc}</span></p>
                     </div>
