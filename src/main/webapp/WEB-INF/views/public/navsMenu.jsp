@@ -98,13 +98,13 @@
                                           <li class="collapsed-nav-item-title d-none">${usuxsysxopc.dessecCapi}</li>
 
                     </c:if>
-                    <c:if test="${usuxsysxopc.codsec == seccion_cur}">
+
                                           <li id="menunav" class="nav-item">
                                             <a class="nav-link" id="${usuxsysxopc.path}" href="${usuxsysxopc.path}" data-bs-toggle="" aria-expanded="false">
                                               <div class="d-flex align-items-center"><span class="nav-link-text">${usuxsysxopc.desopc}</span></div>
                                             </a>
                                           </li>
-                    </c:if>
+
                     <c:set var="seccion_cur" value="${usuxsysxopc.codsec}" />
                     <c:set var="init" value="1" />
                  </c:forEach>
