@@ -11,16 +11,16 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
-  <jsp:include page="../../../links.jsp"></jsp:include>
+  <jsp:include page="../../../../links.jsp"></jsp:include>
 </head>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
 <!-- ===============================================-->
 <main class="main" id="top">
-  <jsp:include page="../../../navsMenu.jsp"></jsp:include>
-  <jsp:include page="../../../navTop.jsp"></jsp:include>
-  <jsp:include page="../../../modalFade.jsp"></jsp:include>
+  <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
+  <jsp:include page="../../../../navTop.jsp"></jsp:include>
+  <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
   <div class="content">
     <nav class="mb-2" aria-label="breadcrumb">
@@ -124,7 +124,7 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item" href="#!">Formular</a>
+                      <a class="dropdown-item" href="formularCodigo">Formular</a>
                       <a class="dropdown-item" href="#!">Compilar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" href="#!">Eliminar</a>
@@ -152,12 +152,12 @@
     </div>
   </div>
 
-  <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+  <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
 </main>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
 
-<jsp:include page="../../../customize.jsp"></jsp:include>
+<jsp:include page="../../../../customize.jsp"></jsp:include>
 </body>
 </html>
