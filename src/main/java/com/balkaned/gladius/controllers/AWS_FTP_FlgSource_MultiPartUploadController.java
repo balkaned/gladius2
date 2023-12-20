@@ -10,8 +10,10 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.FileImageLegajo;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
+import com.balkaned.gladius.services.LegajoService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTP;
@@ -49,26 +51,43 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
     @Autowired
     EmpleadoService empleadoService;
 
+    @Autowired
+    LegajoService legajoService;
+
     @SneakyThrows
-    @RequestMapping(value = "/AWSorFTP_flgsource_MultipartUpload@{accion}@{idComp}@{idTrab}", method = RequestMethod.POST)
+    @RequestMapping(value = "/AWSorFTP_flgsource_MultipartUpload@{accion}@{idComp}@{idTrab}@{carpetaLectura}", method = RequestMethod.POST)
     public ModelAndView AWSorFTP_flgsource_MultipartUpload(ModelMap model, HttpServletRequest request, HttpServletResponse response,
                                                            @PathVariable String accion,
                                                            @PathVariable String idComp,
                                                            @PathVariable String idTrab,
+                                                           @PathVariable String carpetaLectura,
                                                            @RequestParam("uploadFile") MultipartFile uploadFile) throws ServletException, IOException, NoSuchFileException, UncheckedIOException {
         log.info("\n\n\n/AWSorFTP_flgsource_MultipartUpload");
 
+        //Parametros que vienen por GET url
         String accionx = accion;
         String codciax = idComp;
         String idTrabx = idTrab;
+        String carpetaLecturax = carpetaLectura;
         log.info("accionx: " + accionx);
         log.info("codciax: " + codciax);
         log.info("idTrabx: " + idTrabx);
+        log.info("carpetaLecturax: " + carpetaLecturax);
 
+        //Parametros que vienen por POST
         String idimg = request.getParameter("idimg");
         String idDerHab = request.getParameter("idDerHab");
+        String idgrpfile=request.getParameter("idgrpfile");
+        String grpFile=request.getParameter("grpFile");
+        String urlimagen= request.getParameter("urlimagen");
+        String desimagen=request.getParameter("desimagen");
         log.info("idimg: " + idimg);
         log.info("idDerHab: " + idDerHab);
+        log.info("idgrpfile: " + idgrpfile);
+        log.info("grpFile: " + grpFile);
+        log.info("urlimagen: " + urlimagen);
+        log.info("desimagen: " + desimagen);
+
 
         if (codciax.equals("") || codciax == null || codciax == "") {
             log.info("codciax vacio");
@@ -246,6 +265,82 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                     } catch (IOException e) {
                         log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
                     }
+                }
+
+                //######### SUBIR DOCUMENTO AWS ###########################################################################
+                if (accion.equals("subirDocumento")) {
+                    log.info("#### AWS subirDocumento ####");
+
+                    Integer codciaxRecup = Integer.valueOf(idComp);
+                    Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
+
+                    String nombreArchivo = "";
+                    int idimagen=0;
+
+                    log.info("Direccion existe");
+                    log.info("request: " + request);
+                    log.info("ciainfo.getIexsourcedes().trim(): " + ciainfo.getIexsourcedes().trim());
+
+                    try {
+
+                        String nombreFile;
+                        //Obtiene el nombre del archivo y la ruta
+                        if(carpetaLecturax.equals("legajo")){
+                            log.info("######### Obtiene el nombre del archivo y la ruta caso es legajo #######");
+                            idimagen=legajoService.obtieneIdImage(Integer.parseInt(codciax),Integer.parseInt(idgrpfile));
+                            nombreFile=codciax+"_"+idgrpfile+"_"+idimagen+".pdf";
+                            nombreArchivo=codciax+"/"+carpetaLecturax+"/"+nombreFile;
+                        }else {
+                            nombreFile=codciax+"_"+idgrpfile+".pdf";
+                            nombreArchivo = codciax + "/" + carpetaLecturax + "/" + idimg + "." + ".pdf";
+                        }
+
+
+                        log.info("nombreFile: " + nombreFile);
+                        log.info("nombreArchivoPathCompleto: " + nombreArchivo);
+
+                        credentials = new BasicAWSCredentials(key_name, passPhrase);
+                        s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        s3.putObject(bucket_name, nombreArchivo, nombreArchivo);
+                        log.info("Path: " + nombreArchivo);
+
+                        InputStream in = uploadFile.getInputStream();
+                        File tmp = null;
+                        tmp = File.createTempFile("s3test", ".pdf");
+                        Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                        PutObjectRequest request2 = new PutObjectRequest(bucket_name, nombreArchivo, tmp);
+
+                        ObjectMetadata metadata = new ObjectMetadata();
+                        metadata.setContentType(uploadFile.getContentType());
+                        request2.setMetadata(metadata);
+                        s3.putObject(request2);
+
+                        tmp.delete();
+                        tmp.deleteOnExit();
+                        System.gc();
+
+                        //Inserción en base datos solo para legajos
+                        if(carpetaLecturax.equals("legajo")){
+                            log.info("######### Inserta en tabla caso es legajo #######");
+                            FileImageLegajo img = new FileImageLegajo();
+                            img.setIexcodcia(Integer.valueOf(codciax));
+                            img.setIexcodgrpfile(Integer.valueOf(idgrpfile));
+                            img.setIexcodimage(idimagen);
+                            img.setIexdesimage(desimagen);
+                            //img.setIexurlimage(desurl);
+                            img.setIexurlimage(codciax+"_"+idgrpfile+"_"+idimagen+".pdf");
+                            img.setIexusucrea("admin");
+
+                            legajoService.insertarImage(img);
+
+                            return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrabx+"@"+grpFile);
+                        }
+                    } catch (IOException e) {
+                        log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
+                    }
+
+                    //return new ModelAndView("redirect:/detalleEmpl@" + idTrab);
                 }
             }
 

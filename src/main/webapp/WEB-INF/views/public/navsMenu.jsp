@@ -18,6 +18,7 @@
 
           var flag=0;
           var seleccion="";
+
           $(document).ready(function(){
              /*$("#btnMenuCollapse").click(function(){
                     if(flag==0){

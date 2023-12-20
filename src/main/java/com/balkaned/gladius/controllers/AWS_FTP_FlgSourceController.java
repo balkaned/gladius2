@@ -13,6 +13,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.ParametroReport;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
+import com.lowagie.text.pdf.PdfImage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
@@ -24,7 +25,12 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.CacheControl;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +66,7 @@ public class AWS_FTP_FlgSourceController {
     EmpleadoService empleadoService;
 
     @SneakyThrows
-    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}@{parametrosJasper}")
+    @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}@{parametrosJasper}@{carpetaLectura}@{idGrpfileLegajo}@{idImageLegajo}")
     public ModelAndView AWSorFTP_flgsource(ModelMap model, HttpServletRequest request, HttpServletResponse response,
                                            @PathVariable String accion,
                                            @PathVariable String idComp,
@@ -68,7 +74,10 @@ public class AWS_FTP_FlgSourceController {
                                            @PathVariable String urlLogo,
                                            @PathVariable String idDerHab,
                                            @PathVariable String nombreJasper,
-                                           @PathVariable String parametrosJasper) {
+                                           @PathVariable String parametrosJasper,
+                                           @PathVariable String carpetaLectura,
+                                           @PathVariable String idGrpfileLegajo,
+                                           @PathVariable String idImageLegajo) {
         log.info("\n\n\n/AWSorFTP_flgsource");
 
         String accionx = accion;
@@ -78,6 +87,9 @@ public class AWS_FTP_FlgSourceController {
         String idDerHabx = idDerHab;
         String nombreJasperx = nombreJasper;
         String parametrosJasperx = parametrosJasper;
+        String carpetaLecturax = carpetaLectura;
+        String idGrpfileLegajox = idGrpfileLegajo;
+        String idImageLegajox = idImageLegajo;
 
         log.info("accionx: " + accionx);
         log.info("codciax: " + codciax);
@@ -86,6 +98,9 @@ public class AWS_FTP_FlgSourceController {
         log.info("idDerHabx: " + idDerHabx);
         log.info("nombreJasperx: " + nombreJasperx);
         log.info("parametrosJasperx: " + parametrosJasperx);
+        log.info("carpetaLecturax: " + carpetaLecturax);
+        log.info("idGrpfileLegajox: " + idGrpfileLegajox);
+        log.info("idImageLegajox: " + idImageLegajox);
 
         int cantidadParametros = 0;
         List<ParametroReport> lspreport = new ArrayList<ParametroReport>();
@@ -444,6 +459,48 @@ public class AWS_FTP_FlgSourceController {
                     } catch (Exception e) {
                         log.info("Error Reporte:" + e.getMessage());
                     }
+                }
+
+                //######### VER REPORTE EXCEL AWS ########################################################################
+                if (accion.equals("decargarDocumento")) {
+                    log.info("#### AWS decargarDocumento ####");
+
+                    String Path=codciax+"/"+carpetaLecturax;
+                    fileName = codciax+"_"+idGrpfileLegajox+"_"+idImageLegajox+".pdf";
+                    String rutaCompleta=Path+"/"+fileName;
+                    log.info("rutaCompleta: " + rutaCompleta);
+
+                    credentials = new BasicAWSCredentials(key_name, passPhrase);
+                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                    S3Object o = s3.getObject(bucket_name, rutaCompleta);
+                    log.info("Path: " + rutaCompleta);
+
+                    InputStream inputStream1 = new BufferedInputStream(o.getObjectContent());
+                    log.info("inputStream1: "+inputStream1);
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+                    byte[] buf = new byte[1024];
+                    int n = 0;
+
+                    while (-1 != (n = inputStream1.read(buf))) {
+                        out.write(buf, 0, n);
+                    }
+
+                    out.close();
+                    inputStream1.close();
+                    byte[] bytesresponse = out.toByteArray();
+                    //FileOutputStream fos = new FileOutputStream("C:/Users/HP/Downloads/hola.pdf");
+
+                    response.setHeader("Content-Disposition", "attachment; filename="+fileName);
+                    response.setHeader("Cache-Control", "no-store");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setDateHeader("Expires", 0);
+                    response.setContentType("application/" + "pdf");
+                    ServletOutputStream responseOutputStream = response.getOutputStream();
+                    responseOutputStream.write(bytesresponse);
+                    responseOutputStream.flush();
+                    responseOutputStream.close();
+
                 }
             }
 

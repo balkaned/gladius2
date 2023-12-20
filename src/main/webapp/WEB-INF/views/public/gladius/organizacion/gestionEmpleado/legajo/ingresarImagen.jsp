@@ -57,21 +57,24 @@
                             <div class="row g-5">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarImagen" novalidate >
-                                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                            <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <input class="form-control" name="iexcodgrpfile2" type="hidden" value="${iexcodgrpfile}" />
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" enctype="multipart/form-data"
+                                     action="AWSorFTP_flgsource_MultipartUpload@subirDocumento@${idComp}@${idTrab}@legajo"
+                                     novalidate >
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
-                                                <input class="form-control" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required disabled readonly />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID grpfile</label>
+                                                <input class="form-control" style="background-color:#F1F4F8;" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required readonly />
+                                            </div>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Grupo Archivo grpfile</label>
+                                                <input class="form-control" style="background-color:#F1F4F8;" name="grpFile" maxlength="50" type="text" value="${grpFile}" required readonly />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir Imagen</label>
-                                                <input class="form-control" name="filepath" type="file" />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir Imagen solo en formato PDF</label>
+                                                <input class="form-control" name="uploadFile" type="file" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Imagen</label>
-                                                <input class="form-control" name="urlimagen" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Imagen (*)</label>
+                                                <input class="form-control" name="urlimagen" type="text" placeholder="Documento.PDF" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Imagen</label>
@@ -84,7 +87,7 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="legajo@${idTrab}">Cancel</a>
+                                                    <a class="btn btn-phoenix-primary" href="buscarLegajoAtras@${idTrab}@${grpFile}">Cancel</a>
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-cloud-upload-alt me-2"></span>Subir</button>
                                                   </div>
                                                 </div>

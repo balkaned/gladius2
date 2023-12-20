@@ -32,7 +32,7 @@
                 <c:if test="${sexo.equals('MA') && iexlogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/user_blank.jpg" width="200" alt="" /></c:if>
 
                 <c:if test="${iexlogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm"
-                src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${idTrab}@${iexlogo}@null@null@null"
+                src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${idTrab}@${iexlogo}@null@null@null@null@null@null"
                 width="200" alt="" /></c:if>
 
                 <c:if test="${iexlogo==null && sexo.equals('M')}"><img class="rounded-circle img-thumbnail bg-white shadow-sm" src="resources/assets/img/man_user.jpg" width="200" alt="" /></c:if>
@@ -148,7 +148,7 @@
         <div class="modal-body pt-4 pb-2 px-4">
             <div class="col-12 col-md-12">
               <form method="post"
-              action="AWSorFTP_flgsource_MultipartUpload@subirFotoEmpl@${idComp}@${idTrab}"
+              action="AWSorFTP_flgsource_MultipartUpload@subirFotoEmpl@${idComp}@${idTrab}@null"
               enctype="multipart/form-data" >
                   <input type="hidden" name="idimg" value="${nrodoc}" >
                   <div class="mb-3">

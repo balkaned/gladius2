@@ -108,11 +108,9 @@ public class LegajoController {
         logger.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
-        model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
-
         String codgrpfile = request.getParameter("codgrpfile");
-        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
-        Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
+        Integer iexcodtra = Integer.valueOf(idTrab);
+        Integer iexcodcia = idCompania;
 
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
         model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
@@ -121,17 +119,18 @@ public class LegajoController {
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
     }
 
-    @RequestMapping("/ingresarImagen@{idTrab}@{iexcodgrpfile}")
-    public ModelAndView ingresarImagen(ModelMap model, HttpServletRequest request,
-                                       @PathVariable String idTrab,
-                                       @PathVariable String iexcodgrpfile) {
-        logger.info("/ingresarImagen");
+    @RequestMapping("/buscarLegajoAtras@{idTrab}@{grpFile}")
+    public ModelAndView buscarLegajoAtras(ModelMap model, HttpServletRequest request,
+                                     @PathVariable String idTrab,
+                                     @PathVariable String grpFile) {
+        logger.info("/buscarLegajoAtras");
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
         logger.info("idTrab: " + idTrab);
+        logger.info("grpFile: " + grpFile);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -160,7 +159,60 @@ public class LegajoController {
         logger.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
+        String codgrpfile = grpFile;
+        Integer iexcodtra = Integer.valueOf(idTrab);
+        Integer iexcodcia = idCompania;
+
+        model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
+        model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
+        model.addAttribute("codgrpfile", codgrpfile);
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+    }
+
+    @RequestMapping("/ingresarImagen@{idTrab}@{iexcodgrpfile}@{grpFile}")
+    public ModelAndView ingresarImagen(ModelMap model, HttpServletRequest request,
+                                       @PathVariable String idTrab,
+                                       @PathVariable String iexcodgrpfile,
+                                       @PathVariable String grpFile) {
+        logger.info("/ingresarImagen");
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("idComp", idCompania);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
         model.addAttribute("iexcodgrpfile", iexcodgrpfile);
+        model.addAttribute("grpFile",grpFile);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/ingresarImagen");
     }

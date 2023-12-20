@@ -1,17 +1,14 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.FileImageLegajo;
 import com.balkaned.gladius.beans.Grpfile;
-import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.dao.LegajoDao;
-import com.balkaned.gladius.dao.RetJudicialDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -113,6 +110,36 @@ public class LegajoDaoImpl implements LegajoDao {
                 grpfile.getIexdesgrpfile(),
                 grpfile.getIexestado(),
                 grpfile.getIexusucrea());
+    }
+
+    public void insertarImage(FileImageLegajo fileImageLegajo){
+
+        template.update(" insert into iexfileimage(   iexcodcia, iexcodgrpfile, iexcodimage, iexurlimage, iexdesimage, iexestado , iexusucrea, iexfeccrea ) values "+
+                        "  ( ?,  ?,   ?,   ?,   ?,   ?,   ?,   CURRENT_TIMESTAMP  ) ",
+
+                fileImageLegajo.getIexcodcia(),
+                fileImageLegajo.getIexcodgrpfile(),
+                fileImageLegajo.getIexcodimage(),
+                fileImageLegajo.getIexurlimage(),
+                fileImageLegajo.getIexdesimage(),
+                fileImageLegajo.getIexestado(),
+                fileImageLegajo.getIexusucrea());
+    }
+
+    public Integer obtieneIdImage(Integer codcia, Integer idgrpfile){
+
+        final Integer[] idfinal = {0};
+
+        String sql = " SELECT coalesce(max(iexcodimage),0)+1 idcont  FROM iexfileimage WHERE IEXCODCIA="+codcia+"  and iexcodgrpfile = "+idgrpfile+" ";
+
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    idfinal[0] =rs.getInt("idcont");
+                }
+                return idfinal[0];
+            }
+        });
     }
 
 }

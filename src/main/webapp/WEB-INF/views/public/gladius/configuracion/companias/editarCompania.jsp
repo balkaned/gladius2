@@ -57,11 +57,11 @@
                                  <c:if test="${requestScope.xCia.urlLogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg" width="100" height="100" /></c:if>
 
                                  <c:if test="${requestScope.xCia.urlLogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
-                                 src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null"
+                                 src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
                                  width="100" height="100" /></c:if>
 
                                  <form method="post"
-                                 action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null"
+                                 action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null"
                                  enctype="multipart/form-data">
                                        <input type="hidden"  name="idimg" value="${idCia}" >
                                        <input type="file" name="uploadFile" class="form-control"/>
