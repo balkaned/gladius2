@@ -1,18 +1,20 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.FormulaXConcepto;
-import com.balkaned.gladius.beans.Proceso;
 import com.balkaned.gladius.beans.ProcesoForm;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 @RestController
@@ -37,15 +39,20 @@ public class ProcesoFormulaController {
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listProcesoFormula");
 	}
 
-	@RequestMapping("/listConcepto")
+	@RequestMapping("/listConceptoXProceso@{accion}@{codigo}")
 	public ModelAndView listConcepto(
-	 ModelMap model, HttpServletRequest request
+	 ModelMap model, HttpServletRequest request, @PathVariable String accion, @PathVariable String codigo
 	) {
-		logger.info("/listConcepto");
+		logger.info("/listConceptoXProceso");
 		sessionattributes.getVariablesSession(model, request);
-		List<Proceso> procesoList = service.listProceso("0");
-		model.addAttribute("procesoList", procesoList);
-		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listConcepto");
+
+		if (Objects.equals(accion, "QRY") && Objects.nonNull(codigo)) {
+			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(codigo);
+			model.addAttribute("slc_grpconcepto", codigo);
+			model.addAttribute("conceptoXProcesoList", conceptoXProcesoList);
+		}
+
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listConceptoXProceso");
 	}
 
 	@RequestMapping("/listFormulas")

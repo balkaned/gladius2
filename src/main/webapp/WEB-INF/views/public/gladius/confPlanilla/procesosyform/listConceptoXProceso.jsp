@@ -13,6 +13,8 @@
 <head>
   <jsp:include page="../../../links.jsp"></jsp:include>
 </head>
+<script>
+</script>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -43,18 +45,21 @@
           </div>
           <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
             <div class="btn-group position-static" role="group">
-              <div class="btn-group position-static text-nowrap" role="group">
-                <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                        aria-expanded="false" data-bs-reference="parent">
-                  Consultar<span class="fas fa-angle-down ms-2"></span></button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Parametros</a></li>
-                  <li><a class="dropdown-item" href="#">Haberes</a></li>
-                  <li><a class="dropdown-item" href="#">Descuentos</a></li>
-                  <li><a class="dropdown-item" href="#">Aportes</a></li>
-                  <li><a class="dropdown-item" href="#">Neto</a></li>
-                  <li><a class="dropdown-item" href="#">Totales</a></li>
-                </ul>
+              <div class="btn-group position-static text-nowrap flex" role="group">
+                <p style="margin-right: 10px; margin-top: 20px">Grupo de conceptos:</p>
+                <select class="my-2 form-control" style="width: 200px;" id="select_concepto" name="slc_grpconcepto">
+                  <option value="0" ${requestScope.slc_grpconcepto  =='0' ? 'selected' : ''}>Parametros</option>
+                  <option value="1" ${requestScope.slc_grpconcepto  =='1' ? 'selected' : ''}>Haberes</option>
+                  <option value="2" ${requestScope.slc_grpconcepto  =='2' ? 'selected' : ''}>Descuentos</option>
+                  <option value="3" ${requestScope.slc_grpconcepto  =='3' ? 'selected' : ''}>Aportes</option>
+                  <option value="4" ${requestScope.slc_grpconcepto  =='4' ? 'selected' : ''}>Neto</option>
+                  <option value="5" ${requestScope.slc_grpconcepto  =='5' ? 'selected' : ''}>Totales</option>
+                </select>
+                <button
+                 class="btn btn-success m-2 rounded rounded-lg"
+                 style="height: 40px;"
+                 onclick="window.location.href = '${pageContext.request.contextPath}/listConceptoXProceso@QRY@'+document.getElementById('select_concepto').value;"
+                >CONSULTAR</button>
               </div>
             </div>
           </div>
@@ -80,7 +85,7 @@
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
-            <c:forEach var="proceso" items="${requestScope.procesoList}">
+            <c:forEach var="conceptoXProceso" items="${requestScope.conceptoXProcesoList}">
               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                 <td class="fs--1 align-middle px-0 py-3">
                   <div class="form-check mb-0 fs-0">
@@ -88,11 +93,11 @@
                            data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                   </div>
                 </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${proceso.procodcon}</a></td>
+                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${conceptoXProceso.procodcon}</a></td>
                 <td class="total align-middle text-start ps-5 fw-semi-bold text-1000">
                   <span class="badge badge-phoenix fs--1 badge-phoenix-secondary">
                     <span class="badge-label">
-                        ${proceso.coodescon}
+                        ${conceptoXProceso.coodescon}
                     </span>
                   </span>
                 </td>

@@ -1,5 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
+import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.FormulaXConcepto;
 import com.balkaned.gladius.beans.Proceso;
 import com.balkaned.gladius.beans.ProcesoForm;
@@ -132,7 +133,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "inner join iexconcepto b " +
                 "on a.procodcon = b.coocodcon " +
                 "where a.procodpro = 1 " +
-                "and a.protipcon = '" + id + "'"; // Aquí agregamos comillas simples alrededor de 'id'
+                "and a.protipcon = '" + id + "'";
         return template.query(sqlQuery, rs -> {
             List<Proceso> list = new ArrayList<>();
 
@@ -140,7 +141,6 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 Proceso proceso = new Proceso();
                 proceso.setProcodcon(rs.getString("procodcon"));
                 proceso.setCoodescon(rs.getString("coodescon"));
-
                 list.add(proceso);
             }
 
@@ -148,4 +148,38 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         });
     }
 
+    @Override
+    public List<ConceptoXProceso> listConceptoXProceso(String id) {
+        String sqlQuery = "select " +
+                        "procodpro, " +
+                        "procodcon, " +
+                        "coodescon, " +
+                        "procodconpdt, " +
+                        "proflgbol, " +
+                        "proorden, " +
+                        "provalor, " +
+                        "protipcon, " +
+                        "prodescustom " +
+                        "from iexproxconcepto " +
+         "inner join iexconcepto on procodcon = coocodcon " +
+         "where procodpro= 1  and  protipcon='" + id + "'";
+        return template.query(sqlQuery, rs -> {
+            List<ConceptoXProceso> list = new ArrayList<>();
+
+            while (rs.next()) {
+                ConceptoXProceso p = new ConceptoXProceso();
+                p.setProcodpro(rs.getInt("procodpro"));
+                p.setProcodcon(rs.getString("procodcon"));
+                p.setCoodescon(rs.getString("coodescon"));
+                p.setProcodconpdt(rs.getString("procodconpdt"));
+                p.setProflgbol(rs.getString("proflgbol"));
+                p.setProorden(rs.getInt("proorden"));
+                p.setProvalor(rs.getDouble("provalor"));
+                p.setProdescustom(rs.getString("prodescustom"));
+                list.add(p);
+            }
+
+            return list;
+        });
+    }
 }
