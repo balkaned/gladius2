@@ -75,7 +75,7 @@
                                                     <a class="d-flex align-items-center text-900" href="#">
                                                         <div class="avatar avatar-m">
                                                             <img class="rounded-circle"
-                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null@null"
+                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null@null@null@null@null"
                                                             alt="" />
                                                         </div>
                                                         <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</h6>
@@ -108,7 +108,7 @@
                                                           <div class="modal-body pt-4 pb-2 px-4">
                                                               <div class="col-12 col-md-12">
                                                                 <form method="post"
-                                                                action="AWSorFTP_flgsource_MultipartUpload@subirFotoDerHabiente@${idComp}@${idTrab}"
+                                                                action="AWSorFTP_flgsource_MultipartUpload@subirFotoDerHabiente@${idComp}@${idTrab}@null"
                                                                 enctype="multipart/form-data" >
                                                                     <input type="hidden" name="idimg" value="${nrodoc}" >
                                                                     <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >

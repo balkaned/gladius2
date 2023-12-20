@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="row g-5">
-                                 <div class="col-xl-8">
+                                 <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="buscarLegajo@${idTrab}" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
@@ -77,7 +77,7 @@
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Cancel</a>
-                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="nuevoGrupo@${idTrab}" >Agregar Grupo</a>
+                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Agregar GrupoArch</a>
                                                     <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
                                                   </div>
                                                 </div>
@@ -133,9 +133,9 @@
                                            <div class="col-12 gy-6 mt-2">
                                                <div class="row g-3 justify-content-end">
                                                  <div class="col-auto">
-                                                   <a class="btn btn-phoenix-primary" href="eliminarLegajo@${idTrab}">Eliminar</a>
-                                                   <a class="btn btn-phoenix-secondary me-1 mb-1" href="actualizarLegajo@${idTrab}" >Actualizar</a>
-                                                   <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}"><span class="fa-solid fas fa-cloud-upload-alt me-2"></span>Ingresar Imagen</a>
+                                                    <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
+                                                   <a class="btn btn-phoenix-secondary me-1 mb-1" href="#" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
+                                                   <a class="btn btn-phoenix-danger" href="#"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
                                                  </div>
                                                </div>
                                            </div>
@@ -145,31 +145,37 @@
                                            		  <thead>
                                            			<tr>
                                            			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order" >ID</th>
+                                           			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="total">Descripcion</th>
                                            			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">FileName</th>
-                                           			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >Aprobar</th>
-                                           			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Estado</th>
-                                           			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" ></th>
+                                           			  <th class="sort align-middle text-center white-space-nowrap ps-1 pe-1 text-uppercase" scope="col" data-sort="payment_status" >Estado</th>
+                                           			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status"  >Aprobación</th>
+                                           			  <th class="sort align-middle text-center ps-0 pe-0 text-uppercase" scope="col" ></th>
                                            			</tr>
                                            		  </thead>
                                       </c:if>
                                                    <tbody class="list" id="customer-order-table-body">
                                                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                          <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${listGrpFile.iexcodimage}</a></td>
-                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${listGrpFile.iexurlimage}</td>
-                                                          <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">Aprobar</span></td>
+                                                          <td class="align-middle white-space-nowrap ps-0 pe-3"><a class="fw-semi-bold" href="#!">#${listGrpFile.iexcodimage}</a></td>
+                                                          <td class="align-middle white-space-nowrap text-start text-1000 ps-0 pe-0">${listGrpFile.iexdesimage}</td>
+                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-0 pe-3">${listGrpFile.iexurlimage}</td>
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span></td>
-                                                          <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
+                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Pendiente de aprobacion</span></td>
+                                                          <td class="align-middle white-space-nowrap text-end pe-0 ps-0">
                                                             <div class="font-sans-serif btn-reveal-trigger position-static">
                                                               <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                               <div class="dropdown-menu dropdown-menu-end py-2">
-                                                                <a class="dropdown-item" href="#">Descargar PDF</a>
+                                                                <a class="dropdown-item" href="#"><span class="fas fa-bolt me-2"></span>Aprobar</a>
+                                                                <a class="dropdown-item"
+                                                                href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
+                                                                ><span class="fas fa-download me-2"></span>Descargar</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-warning" href="#!">Remove</a>
+                                                                <a class="dropdown-item text-danger" href="#">Eliminar</a>
                                                               </div>
                                                             </div>
                                                           </td>
                                                         </tr>
                                                    </tbody>
+                                                   <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
                                  </c:forEach>
                             </div>
                           </div>

@@ -19,11 +19,11 @@ public class Sessionattributes {
     public ModelAndView getVariablesSession(ModelMap model, HttpServletRequest request){
 
         String user = (String) request.getSession().getAttribute("user");
-        if (request.getSession().getAttribute("user") == null) {
+        log.info("user:"+user);
+        if (request.getSession().getAttribute("user") == null || request.getSession().getAttribute("user").equals("")) {
             return new ModelAndView("redirect:/login2");
         }
 
-        String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
@@ -33,7 +33,7 @@ public class Sessionattributes {
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
         log.info("idCompania: " + idCompania);
 
-        model.addAttribute("usuario", usuario);
+        model.addAttribute("usuario", user);
         model.addAttribute("idusuario", idusuario);
         model.addAttribute("email", email);
         model.addAttribute("firstCharacter", firstCharacter);

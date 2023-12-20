@@ -59,7 +59,7 @@
     </li>
     <li class="nav-item" id="linav">
         <a id="legajo" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="legajo@${idTrab}">
-            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-analysis"></span><span class="flex-1">Legajo</span></div>
+            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-cloud-upload"></span><span class="flex-1">Legajo</span></div>
         </a>
     </li>
   </ul>
