@@ -55,12 +55,12 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                                     <input class="form-control" name="iexcodrol" type="number"  placeholder="" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                                     <input class="form-control" name="iexcodrol" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rol (*)</label>
-                                    <input class="form-control" name="iexdesrol" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rol</label>
+                                    <input class="form-control" name="iexdesrol" type="text" value="" placeholder="ANALISTA" required/>
                               </div>
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">

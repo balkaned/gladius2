@@ -55,22 +55,22 @@
                               <input class="form-control" name="iexcodopc" type="hidden" value="${idOpc}" />
 
                               <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                    <input class="form-control" name="iexcodopc" type="number"  value="${requestScope.xOpcion.iexcodopc}"  required disabled readonly/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones (*)</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
                                  <input class="form-control" name="iexdesopc" type="text"  value="${requestScope.xOpcion.iexdesopc}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                   <select class="form-select" name="iexflgest" required>
                                     <option value="1"   ${'1'== requestScope.xOpcion.iexflgest ? 'selected' : ''}  >Activo</option>
                                     <option value="2"   ${'2'== requestScope.xOpcion.iexflgest ? 'selected' : ''} >Inactivo</option>
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seccion Sistemas (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Seccion Sistemas</label>
                                     <select class="form-select" name="iexcodsec" required>
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovSeccion" items="${lovSeccion}">
@@ -79,27 +79,27 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Opc (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Opc</label>
                                      <input class="form-control" name="iexurlopc" type="text"   value="${requestScope.xOpcion.iexurlopc}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Img(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Img</label>
                                     <input class="form-control" name="iexurlimg" type="text" value="${requestScope.xOpcion.iexurlimg}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">NEW Action(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* NEW Action</label>
                                     <input class="form-control" name="iexactionspring" type="text" value="${requestScope.xOpcion.iexactionspring}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action OLD(*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Action OLD</label>
                                   <input class="form-control" name="iexaction" type="text" value="${requestScope.xOpcion.iexaction}" placeholder="" />
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Code Apps (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Code Apps</label>
                                     <input class="form-control" name="iexcodapps" type="text" value="${requestScope.xOpcion.iexcodapps}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
                                     <input class="form-control" name="iexdescripcion" type="text" value="${requestScope.xOpcion.iexdescripcion}" required/>
                               </div>
 

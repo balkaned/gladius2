@@ -74,31 +74,31 @@
                               <input class="form-control" name="iexcodcia2" type="hidden" value="${idCia}" />
 
                               <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                    <input class="form-control" name="iexcodcia" type="number" value="${idCia}" required disabled required/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion CIA (*)</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion CIA</label>
                                  <input class="form-control" name="iexdescia" type="text" value="${requestScope.xCia.descCia}" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Corta CIA (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Corta CIA</label>
                                    <input class="form-control" name="iexdescorto" type="text" value="${requestScope.xCia.descCiaCorto}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">RUC (*)</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* RUC</label>
                                  <input class="form-control" name="iexnroruc" type="text" maxlength="17" value="${requestScope.xCia.nroRuc}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Direccion (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Direccion</label>
                                    <input class="form-control" name="iexdireccion" type="text" value="${requestScope.xCia.direccionCia}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Telefono (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Telefono</label>
                                      <input class="form-control" name="iexnrotelf" type="text" value="${requestScope.xCia.nroTelfCia}" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Actividad Comercial (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Actividad Comercial</label>
                                   <select class="form-select" name="iexcodact" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipAct" items="${lovTipAct}">
@@ -107,19 +107,19 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Representante (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Representante</label>
                                      <input class="form-control" name="iexrepnombre" type="text"  value="${requestScope.xCia.nomRepesentante}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cargo del Representante (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cargo del Representante</label>
                                     <input class="form-control" name="iexrepcargo" type="text" value="${requestScope.xCia.desCargoRep}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento Identidad del Rep (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento Identidad del Rep</label>
                                     <input class="form-control" name="iexrepdocid" maxlength="17" type="text" value="${requestScope.xCia.nroDocuRep}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo </label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Logo</label>
                                   <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" placeholder="ID.jpg" required/>
                               </div>
 
@@ -128,7 +128,7 @@
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
                               </div>
                               <div class="col-sm-6 col-md-5">
-                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Flag Source(*)</label>
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Flag Source</label>
                               	  <select name="iexflgsource" class="form-select" required >
                               		  <option value="1" ${1 == requestScope.xCia.iexflgsource ? 'selected' : ''} >1: AWS S3</option>
                               		  <option value="2" ${2 == requestScope.xCia.iexflgsource ? 'selected' : ''} >2: FTP</option>
@@ -242,7 +242,7 @@
                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
                                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xCiaFij.iexcodcon}</td>
-                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
+                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
                                                               <td><a href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
                                                             </tr>
                                                         </c:forEach>
@@ -259,7 +259,7 @@
                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
                                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xCiaVar.iexcodcon}</td>
-                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
+                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
                                                              <td><a href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
                                                            </tr>
                                                        </c:forEach>

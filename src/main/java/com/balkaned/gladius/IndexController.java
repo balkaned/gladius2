@@ -4,10 +4,8 @@ package com.balkaned.gladius;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.beans.UsuxOpciones;
-import com.balkaned.gladius.services.CompaniaService;
-import com.balkaned.gladius.services.EmpleadoService;
-import com.balkaned.gladius.services.UsuarioConeccionService;
-import com.balkaned.gladius.services.UsuxOpcionesService;
+import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -30,10 +28,13 @@ public class IndexController {
     CompaniaService companiaService;
 
     @Autowired
-    EmpleadoService empleadoService;
+    UsuxOpcionesService usuxOpcionesService;
 
     @Autowired
-    UsuxOpcionesService usuxOpcionesService;
+    Sessionattributes sessionattributes;
+
+    @Autowired
+    UsuxSystemaService usuxSystemaService;
 
     @RequestMapping("/login2")
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -197,9 +198,16 @@ public class IndexController {
 
     @RequestMapping("/home@{idComp}@{idUser}")
     public ModelAndView home(ModelMap model, HttpServletRequest request, @PathVariable String idComp, @PathVariable String idUser) {
+        logger.info("/home");
 
         logger.info("idComp: " + idComp);
         logger.info("idUser: " + idUser);
+
+        String user = (String) request.getSession().getAttribute("user");
+        logger.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         UsuarioConeccion uc1 = usuarioConeccionService.obtenerUsuarioConeccionById(idUser);
         Compania comp1 = companiaService.getCompaniaAll(Integer.parseInt(idComp));
@@ -226,10 +234,11 @@ public class IndexController {
         model.addAttribute("schema", comp1.getSchema());
 
         int idCompconv=Integer.parseInt(idComp);
-        int idUsuarioconv=Integer.parseInt(idusuario);
+        int idUsuarioconv=Integer.parseInt(idUser);
 
         List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv,idUsuarioconv,1);
         model.addAttribute("usuxsysxopc",listaMenus);
+        model.addAttribute("ususys",usuxSystemaService.eligeSystema(idCompconv,idUsuarioconv,1));
 
         return new ModelAndView("public/kanban");
     }

@@ -54,19 +54,19 @@
                         <input class="form-control" name="iexcodtab2" type="hidden" value="${sessionScope.ttablaclbl.iexcodtab}" />
 
                         <div class="col-sm-6 col-md-3">
-                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                <input class="form-control" name="iexcodtab" type="number"  value="${sessionScope.ttablaclbl.iexcodtab}" required readonly disabled/>
                         </div>
                         <div class="col-sm-6 col-md-9">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la Tabla (*)</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre de la Tabla</label>
                               <input class="form-control" name="iexdestab" type="text" value="${sessionScope.ttablaclbl.iexdestab}" placeholder="" required readonly disabled/>
                         </div>
                         <div class="col-sm-6 col-md-3">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Key (*)</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID Key</label>
                               <input class="form-control" name="iexkey" type="text" value="${ttabladxx.iexkey}" placeholder="" required/>
                         </div>
                         <div class="col-sm-6 col-md-9">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Key (*)</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Key</label>
                               <input class="form-control" name="desdet" type="text" value="${ttabladxx.desdet}" placeholder="" required/>
                         </div>
                         <table class="navy" >

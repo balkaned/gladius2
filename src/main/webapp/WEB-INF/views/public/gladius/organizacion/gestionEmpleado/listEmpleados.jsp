@@ -88,11 +88,11 @@
                     <div class="col-auto">
 
                       <a class="btn btn-link text-900 me-4 px-0"
-                      href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null"
+                      href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
                        target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</a>
 
                       <a class="btn btn-link text-900 me-4 px-0"
-                      href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadoresActivos@null"
+                      href="#"
                       ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</a>
                       <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                     </div>
@@ -153,7 +153,7 @@
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver detalle</a>
                                         <a class="dropdown-item"
-                                        href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null"
+                                        href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null@null@null@null"
                                         target="_blank"><span class="fa-solid fa-file-pdf fs--1 me-2"></span>Descargar Ficha PDF</a>
                                         <!--<div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->

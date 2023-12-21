@@ -339,8 +339,6 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                     } catch (IOException e) {
                         log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
                     }
-
-                    //return new ModelAndView("redirect:/detalleEmpl@" + idTrab);
                 }
             }
 

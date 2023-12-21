@@ -52,41 +52,41 @@
                         <input class="form-control" name="iexcodturno" type="hidden" value="${requestScope.turno.iexcodturno}" />
 
                         <div class="col-sm-6 col-md-3">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                           <input class="form-control" name="iexcodturno" maxlength="18" type="number" value="${requestScope.turno.iexcodturno}"
                             placeholder="#" required  disabled readonly />
                         </div>
 
                         <div class="col-sm-6 col-md-9">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Turno (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Turno</label>
                           <input class="form-control" name="iexdesturno" type="text" value="${requestScope.turno.iexdesturno}" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Abreviación</label>
                           <input class="form-control" name="iexflgturno" type="text" value="${requestScope.turno.iexflgturno}" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Min Antes (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Min Antes</label>
                           <input class="form-control" name="iextopminantes" type="text" value="${requestScope.turno.iextopminantes}" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora Inicio (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Hora Inicio</label>
                           <input class="form-control" name="iexhorini" type="text" value="${requestScope.turno.iexhorini}" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora Fin (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Hora Fin</label>
                           <input class="form-control" name="iexhorfin" type="text" value="${requestScope.turno.iexhorfin}" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Minutos Despues (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Minutos Despues</label>
                           <input class="form-control" name="iextopmaxpost" type="text" value="${requestScope.turno.iextopmaxpost}" placeholder="" required />
                         </div>
 
                         <div class="col-sm-6 col-md-6">
                           <br>
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dia sig? (*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Dia sig?</label>
                           <input type="checkbox" name="flg_diasig" id="flg_diasig" class="form-check-input">
                         </div>
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">

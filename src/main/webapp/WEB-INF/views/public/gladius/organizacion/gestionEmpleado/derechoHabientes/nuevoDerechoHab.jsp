@@ -87,7 +87,7 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Documento(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Documento</label>
                                                 <select class="form-select" name="iextipnroiddep" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipdoc" items="${lovTipdoc}">
@@ -96,11 +96,11 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Doc (*)</label>
-                                                <input class="form-control" name="iexnroiddep" maxlength="15" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Doc</label>
+                                                <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="#" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor</label>
                                                 <select class="form-select" name="iexpaisemisor" id="iexpaisemisor" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
@@ -109,23 +109,23 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Paterno (*)</label>
-                                                <input class="form-control" name="iexapepatdep" maxlength="100" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Paterno</label>
+                                                <input class="form-control" name="iexapepatdep" maxlength="100" type="text" placeholder="Reynoso" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Materno (*)</label>
-                                                <input class="form-control" name="iexapematdep" maxlength="100" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Materno</label>
+                                                <input class="form-control" name="iexapematdep" maxlength="100" type="text" placeholder="Dominguez" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres (*)</label>
-                                                <input class="form-control" name="iexnomdep" maxlength="100" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombres</label>
+                                                <input class="form-control" name="iexnomdep" maxlength="100" type="text" placeholder="Alberto Gabriel" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Nacimiento (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo</label>
                                                 <select class="form-select" name="iexsexo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovSexo" items="${lovSexo}">
@@ -134,7 +134,7 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Vinculo (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Vinculo</label>
                                                 <select class="form-select" name="iextipvinculo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovVincul" items="${lovVincul}">
@@ -143,7 +143,7 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento Acredito Vinculo (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento Acredito Vinculo</label>
                                                 <select class="form-select" name="iextipdocacredit" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovAcredVincul" items="${lovAcredVincul}">
@@ -152,8 +152,8 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Doc Acredito Vinculo (*)</label>
-                                                <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Doc Acredito Vinculo</label>
+                                                <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" required placeholder="#"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de Concepcion</label>
@@ -170,14 +170,14 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Telefono</label>
-                                                 <input class="form-control" name="iexnrotelf" maxlength="50" type="text" />
+                                                 <input class="form-control" name="iexnrotelf" maxlength="50" type="text" placeholder="+51 987 893556" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Email</label>
-                                                <input class="form-control" name="iexemail" maxlength="50" type="text" />
+                                                <input class="form-control" name="iexemail" maxlength="50" type="text" placeholder="usuario@gmail.com"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Via (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
                                                 <select class="form-select" name="iextipvia_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipVia" items="${lovTipVia}">
@@ -191,38 +191,38 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Via</label>
-                                                <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" placeholder="435"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Depto</label>
-                                                <input class="form-control" name="iexdeptin_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexdeptin_dom1" maxlength="5" type="text" placeholder="203"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior Domicilio</label>
-                                                <input class="form-control" name="iexinterior_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexinterior_dom1" maxlength="5" type="text" placeholder="1"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana</label>
-                                                <input class="form-control" name="iexmanzana_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexmanzana_dom1" maxlength="5" type="text" placeholder="A"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote</label>
-                                                <input class="form-control" name="iexlote_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexlote_dom1" maxlength="5" type="text" placeholder="LT3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Km Referencia</label>
-                                                <input class="form-control" name="iexkilometro_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexkilometro_dom1" maxlength="5" type="text" placeholder="21"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloqueo</label>
-                                                  <input class="form-control" name="iexblock_dom1" maxlength="5" type="text" />
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque</label>
+                                                  <input class="form-control" name="iexblock_dom1" maxlength="5" type="text" placeholder="B3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa Del Domicilio</label>
-                                                <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" />
+                                                <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona dom1 (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona dom1</label>
                                                 <select class="form-select" name="iextipzona_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona" items="${lovTipZona}">
@@ -231,11 +231,11 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia dom1 (*)</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia dom1</label>
                                                  <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor (*) [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 1 [TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor1" id="iexpaisemisor1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor1" items="${lovPaisEmisor}">
@@ -244,19 +244,19 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 1</label>
                                                 <select class="form-select" name="iexdepart_origen1" id="iexdepart_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 1</label>
                                                 <select class="form-select" name="iexprovin_origen1" id="iexprovin_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ubigeo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ubigeo 1</label>
                                                 <select class="form-select" name="iexubigeo_dom1" id="iexubigeo_dom1">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
@@ -276,35 +276,35 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
-                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" type="text" placeholder="435"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept 2</label>
-                                                <input class="form-control" name="iexdeptin_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexdeptin_dom2" maxlength="6" type="text" placeholder="203"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior 2</label>
-                                                <input class="form-control" name="iexinterior_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexinterior_dom2" maxlength="6" type="text" placeholder="1"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana Domicilio 2</label>
-                                                <input class="form-control" name="iexmanzana_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexmanzana_dom2" maxlength="6" type="text" placeholder="A"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote 2</label>
-                                                <input class="form-control" name="iexlote_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexlote_dom2" maxlength="6" type="text" placeholder="LT3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia 2</label>
-                                                <input class="form-control" name="iexkilometro_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexkilometro_dom2" maxlength="6" type="text" placeholder="21"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 2</label>
-                                                <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" placeholder="B3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa Domicilio 2</label>
-                                                <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" />
+                                                <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona dom 2</label>
@@ -320,7 +320,7 @@ function formatearFecha2(){
                                                 <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor (*) [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 2[TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor2" id="iexpaisemisor2" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor2" items="${lovPaisEmisor}">
@@ -329,13 +329,13 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 2</label>
                                                 <select class="form-select" name="iexdepart_origen2" id="iexdepart_origen2">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 2</label>
                                                 <select class="form-select" name="iexprovin_origen2" id="iexprovin_origen2">
                                                   <option value="" selected >Seleccionar</option>
                                                 </select>

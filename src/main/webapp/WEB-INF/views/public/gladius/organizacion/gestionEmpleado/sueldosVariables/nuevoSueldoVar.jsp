@@ -60,15 +60,15 @@
                                             <input class="form-control" name="iexcodpro2" type="hidden" value="${iexcodpro}" />
                                             <input class="form-control" name="iexperiodo2" type="hidden" value="${iexperiodo}" />
                                             <div class="col-sm-6 col-md-6">
-                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de Planilla (*)</label>
+                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso de Planilla</label>
                                                      <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo (*)</label>
+                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo</label>
                                                     <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
                                                 <select class="form-select" name="iexcodcon" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepVar" items="${lovConcepVar}">
@@ -77,7 +77,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor Concepto (*)</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor Concepto</label>
                                                  <input class="form-control" name="iexvalcon" maxlength="70" type="number" step=0.01 value="" placeholder="0.00" required/>
                                             </div>
 

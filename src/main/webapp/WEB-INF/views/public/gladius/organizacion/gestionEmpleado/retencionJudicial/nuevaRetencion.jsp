@@ -82,7 +82,7 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Retencion(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Retencion</label>
                                                 <select class="form-select" name="iextipretjud" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipretj" items="${lovTipretj}">
@@ -91,11 +91,11 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Resolucion</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Resolucion</label>
                                                 <input class="form-control" name="iexresolucion" maxlength="50" type="text" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso Planilla(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso Planilla</label>
                                                 <select class="form-select" name="iexcodpro" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovProcesos" items="${lovProcesos}">
@@ -104,19 +104,19 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje</label>
-                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 value="0.0" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Porcentaje</label>
+                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 placeholder="10%-> 10.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. Fijo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Imp. Fijo</label>
                                                 <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
                                             </div>
 

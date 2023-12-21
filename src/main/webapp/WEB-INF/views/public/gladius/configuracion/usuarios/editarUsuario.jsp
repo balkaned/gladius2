@@ -60,27 +60,27 @@
                               <input class="form-control" name="id_usuario" type="hidden" value="${idUsu}" />
 
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                      <input class="form-control" name="id_usuario" maxlength="15"  type="text" value="${idUsu}" required disabled readonly />
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Usuario</label>
                                    <input class="form-control" name="txt_usuario" maxlength="15"  type="text" value="${requestScope.usuariox.usuario}"  required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Contraseña (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Contraseña</label>
                                      <input class="form-control" name="txt_password" maxlength="15" type="password"  value="${requestScope.usuariox.password}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar Contraseña (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Confirmar Contraseña</label>
                                    <input class="form-control" name="txt_password2" maxlength="15" type="password"  value="${requestScope.usuariox.password}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Email (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Email</label>
                                      <input class="form-control" name="txt_email" maxlength="60" type="text"  placeholder="@" value="${requestScope.usuariox.email}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                     <select class="form-select" name="lov_estado" required>
                                       <option value="1" ${requestScope.usuariox.estado=='ACTIVO' ? 'selected' : ''} >Activo</option>
                                       <option value="0" ${requestScope.usuariox.estado=='INACTIVO' ? 'selected' : ''} >Inactivo</option>

@@ -55,7 +55,7 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                               <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
                                   <select class="form-select" name="iexcodcon" required>
                                     <option value="" selected >Ninguno</option>
                                     <c:forEach var="lovConcepto" items="${lovConcepto}">
@@ -64,7 +64,7 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Parametro (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Parametro</label>
                                     <select class="form-select" name="iextippar" required>
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovTippar" items="${lovTippar}">
@@ -73,11 +73,11 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor (*)</label>
-                                     <input class="form-control" name="iexvalcon" type="number"  step=0.01 placeholder="" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor</label>
+                                     <input class="form-control" name="iexvalcon" type="number"  step=0.01 placeholder="0.00" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Observacion (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Observacion</label>
                                     <input class="form-control" name="iexdesobs" type="text" value="" placeholder="" required/>
                               </div>
 

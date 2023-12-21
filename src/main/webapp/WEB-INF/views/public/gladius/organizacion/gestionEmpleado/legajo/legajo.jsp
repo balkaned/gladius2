@@ -15,7 +15,15 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
-</script>
+  function remove() {
+    var opcion = confirm("Esta seguro de Eliminar el Registro?");
+    if (opcion == true) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+ </script>
 
   <body>
     <!-- ===============================================-->
@@ -61,7 +69,7 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de Archivos(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
                                                 <select class="form-select" name="codgrpfile" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
@@ -133,9 +141,9 @@
                                            <div class="col-12 gy-6 mt-2">
                                                <div class="row g-3 justify-content-end">
                                                  <div class="col-auto">
-                                                    <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
-                                                   <a class="btn btn-phoenix-secondary me-1 mb-1" href="#" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
-                                                   <a class="btn btn-phoenix-danger" href="#"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
+                                                   <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
+                                                   <a class="btn btn-phoenix-secondary me-1 mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
+                                                   <a class="btn btn-phoenix-danger" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
                                                  </div>
                                                </div>
                                            </div>
@@ -165,17 +173,23 @@
                                                               <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                                               <div class="dropdown-menu dropdown-menu-end py-2">
                                                                 <a class="dropdown-item" href="#"><span class="fas fa-bolt me-2"></span>Aprobar</a>
+
                                                                 <a class="dropdown-item"
                                                                 href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
                                                                 ><span class="fas fa-download me-2"></span>Descargar</a>
+
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger" href="#">Eliminar</a>
+
+                                                                <a class="dropdown-item text-danger" onclick="return remove();"
+                                                                href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
+                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
+
                                                               </div>
                                                             </div>
                                                           </td>
                                                         </tr>
                                                    </tbody>
-                                                   <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
+                                      <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
                                  </c:forEach>
                             </div>
                           </div>

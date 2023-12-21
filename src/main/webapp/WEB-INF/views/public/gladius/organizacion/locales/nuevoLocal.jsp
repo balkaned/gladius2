@@ -55,12 +55,12 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexubicod2" type="hidden" value="${idx}" />
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                     <input class="form-control" name="iexubicod" type="text" value="${idx}" placeholder="street" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion del Local (*)</label>
-                                    <input class="form-control" name="iexubides" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion del local</label>
+                                    <input class="form-control" name="iexubides" type="text" value="" placeholder="LOCAL SAN MIGUEL" required/>
                               </div>
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">

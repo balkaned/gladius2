@@ -55,19 +55,19 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Codigo</label>
                                      <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area (*)</label>
-                                    <input class="form-control" name="iexdesarea" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Area</label>
+                                    <input class="form-control" name="iexdesarea" type="text" value="" placeholder="RECURSOS HUMANOS" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
                                      <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria de Area (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Categoria de Area</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatArea" items="${lovCatArea}">
@@ -76,7 +76,7 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area Padre (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Area Padre</label>
                                     <select class="form-select" name="iexareapadre" required >
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">

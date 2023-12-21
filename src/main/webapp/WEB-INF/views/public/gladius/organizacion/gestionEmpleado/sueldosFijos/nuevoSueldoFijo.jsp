@@ -58,7 +58,7 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
                                                 <select class="form-select" name="iexcodcon" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
@@ -67,7 +67,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor (*)</label>
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor</label>
                                                    <input class="form-control" name="iexvalcon" maxlength="18" type="number" step=0.01 value="" placeholder="0.00" required/>
                                             </div>
 

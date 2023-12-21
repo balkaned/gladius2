@@ -76,7 +76,7 @@
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento</label>
                                   <select class="form-select" name="iextipdocid" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipdoc" items="${lovTipdoc}">
@@ -85,27 +85,27 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento</label>
                                    <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Paterno (*)</label>
-                                   <input class="form-control" name="iexapepat" type="text" value="" placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Paterno </label>
+                                   <input class="form-control" name="iexapepat" type="text" value="" placeholder="Gutierrez" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido Materno (*)</label>
-                                   <input class="form-control" name="iexapemat" type="text" value="" placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Materno</label>
+                                   <input class="form-control" name="iexapemat" type="text" value="" placeholder="Aravena" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres (*)</label>
-                                   <input class="form-control" name="iexnomtra" type="text" value="" placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombres</label>
+                                   <input class="form-control" name="iexnomtra" type="text" value="" placeholder="Gabriel Pedro" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo</label>
                                     <select class="form-select" name="iexcodsex" required>
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovSexo" items="${lovSexo}">
@@ -114,7 +114,7 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Trabajador (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Trabajador</label>
                                      <select class="form-select" name="iextiptra" required>
                                         <option value="" selected >Seleccionar</option>
                                         <c:forEach var="lovTipTra" items="${lovTipTra}">
@@ -123,7 +123,7 @@
                                      </select>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Ingreso </label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                     <input class="form-control datetimepicker" name="iexfecing" id="iexfecing" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                               </div>
                               <div class="col-sm-6 col-md-5">

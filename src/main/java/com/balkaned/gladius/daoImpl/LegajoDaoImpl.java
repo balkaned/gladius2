@@ -142,4 +142,69 @@ public class LegajoDaoImpl implements LegajoDao {
         });
     }
 
+    public Grpfile getGrpfile(Integer codcia, Integer idgrpfile){
+
+        String sql=" select   i.iexcodcia, i.iexcodtra, " +
+                " i.iexcodgrpfile,  " +
+                " i.iexdesgrpfile, " +
+                "  i.iexgrpfile , i.iexestado , i.iexusucrea, i.iexfeccrea, i.iexusumod, i.iexfecmod "+
+                " from iexgrpfile i  "+
+                " where  " +
+                " i.iexcodcia = "+codcia+"  and   " +
+                " i.iexcodgrpfile = "+idgrpfile+"  " ;
+        return (Grpfile) template.query(sql, new ResultSetExtractor<Grpfile>() {
+            public Grpfile extractData(ResultSet rs) throws SQLException, DataAccessException{
+                Grpfile p = new Grpfile();
+                while(rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia")) ;
+                    p.setIexcodtra(rs.getInt("iexcodtra")) ;
+                    p.setIexcodgrpfile(rs.getInt("iexcodgrpfile"));
+                    p.setIexdesgrpfile(rs.getString("iexdesgrpfile"));
+                    p.setIexgrpfile(rs.getString("iexgrpfile"));
+                    p.setIexestado(rs.getString("iexestado"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizarGrpFile(Grpfile grpfile){
+
+        template.update(" update iexgrpfile set   "+
+                        "iexgrpfile =? ," +
+                        "iexdesgrpfile =?   , " +
+                        "iexusumod =? , iexestado = ? , " +
+                        "iexfecmod = CURRENT_TIMESTAMP    where iexcodcia=?   and " +
+                        "    iexcodgrpfile = ?   and  iexcodtra = ? ",
+
+        grpfile.getIexgrpfile(),
+        grpfile.getIexdesgrpfile(),
+        grpfile.getIexusumod(),
+        grpfile.getIexestado(),
+        grpfile.getIexcodcia(),
+        grpfile.getIexcodgrpfile(),
+        grpfile.getIexcodtra());
+    }
+
+    public void eliminarGrpFile(Grpfile grpfile){
+
+        template.update(" delete from  iexgrpfile   where iexcodcia=?   and " +
+                        "    iexcodgrpfile = ?   and  iexcodtra = ? ",
+
+        grpfile.getIexcodcia(),
+        grpfile.getIexcodgrpfile(),
+        grpfile.getIexcodtra());
+
+    }
+
+    public void eliminarImage(FileImageLegajo fileImageLegajo){
+
+        template.update(" delete from  iexfileimage where   iexcodcia =? and  iexcodgrpfile =?  and iexcodimage =?  ",
+
+                fileImageLegajo.getIexcodcia(),
+                fileImageLegajo.getIexcodgrpfile(),
+                fileImageLegajo.getIexcodimage());
+
+    }
+
 }

@@ -54,31 +54,31 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                               <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                    <input class="form-control" name="iexcodcia" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion CIA (*)</label>
-                                 <input class="form-control" name="iexdescia" type="text"  placeholder="" required/>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion CIA</label>
+                                 <input class="form-control" name="iexdescia" type="text"  placeholder="Company ABC" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Corta CIA (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Corta CIA</label>
                                    <input class="form-control" name="iexdescorto" type="text"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">RUC (*)</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* RUC</label>
                                  <input class="form-control" name="iexnroruc" type="text" maxlength="17" placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Direccion (*)</label>
-                                   <input class="form-control" name="iexdireccion" type="text" placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Direccion</label>
+                                   <input class="form-control" name="iexdireccion" type="text" placeholder="Jr. Los Álamos #456, San Isidro, Lima, Perú" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Telefono (*)</label>
-                                     <input class="form-control" name="iexnrotelf" type="text" placeholder="#" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Telefono</label>
+                                     <input class="form-control" name="iexnrotelf" type="text" placeholder="+51 987 844921" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Actividad Comercial (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Actividad Comercial</label>
                                   <select class="form-select" name="iexcodact" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipAct" items="${lovTipAct}">
@@ -87,19 +87,19 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Representante (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Representante</label>
                                      <input class="form-control" name="iexrepnombre" type="text"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cargo del Representante (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cargo del Representante</label>
                                     <input class="form-control" name="iexrepcargo" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento Identidad del Rep (*)</label>
-                                    <input class="form-control" name="iexrepdocid" maxlength="17" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento Identidad del Rep</label>
+                                    <input class="form-control" name="iexrepdocid" maxlength="17" type="text" value="" placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo </label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Logo </label>
                                   <input class="form-control" name="iexreplogo" type="text" value="" placeholder="ID.jpg" required />
                               </div>
                               <div class="col-sm-6 col-md-12">

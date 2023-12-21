@@ -15,7 +15,6 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
-
 </script>
 
   <body>
@@ -51,55 +50,39 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevo acumulado</h2>
+                                <h2 id="h2top" class="mb-0">Editar grupo de archivo</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
-                                 <div class="col-xl-12">
+                                 <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarAcumulado" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarGrupoArch" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                            <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Anual</label>
-                                                <input class="form-control" name="iexaniotrib" maxlength="6" type="text" placeholder="202304" required />
+                                            <input class="form-control" name="iexcodtra" type="hidden" value="${idTrab}" />
+                                            <div class="col-sm-6 col-md-3">
+                                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                                            	<input class="form-control" name="idgrpfile" value="${xGrpFile.iexcodgrpfile}" style="background-color:#F1F4F8;" type="text" readonly />
                                             </div>
-                                            <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrem_acum" maxlength="10" type="number" step=0.01 value="0.0"  required />
+                                            <div class="col-sm-6 col-md-9">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
+                                                <select class="form-select text-black" name="codgrpfile" required >
+                                                  <option value="" selected >Seleccionar</option>
+                                                  <c:forEach var="lovGrpFile" items="${lovGrpFile}">
+                                                      <option value="${lovGrpFile.idLov}" ${lovGrpFile.idLov == xGrpFile.iexgrpfile ? 'selected' : ''} >${lovGrpFile.desLov} </option>
+                                                  </c:forEach>
+                                                </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu 5ta Afect Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
+                                            <div class="col-sm-6 col-md-12">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion File</label>
+                                                <input class="form-control" name="desfile" type="text" value="${xGrpFile.iexdesgrpfile}" required/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Renta 5ta Acum Anterior (Desuso)</label>
-                                                <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rem Afect 5ta Otro Cia</label>
-                                                <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Desct. 5ta Otra Cia</label>
-                                                <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. 4ta Acum (Desuso)</label>
-                                                <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Desc 4ta Acum (Desuso)</label>
-                                                <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. Otra Cia (Desuso)</label>
-                                                <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Dscto. Otra Cia (Desuso)</label>
-                                                <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" step=0.01 value="0.0" required />
+                                            <div class="col-sm-6 col-md-5">
+                                            	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
+                                            	  <select name="estado" class="form-select" required >
+                                            		  <option value="1">Activo</option>
+                                            		  <option value="0">Inactivo</option>
+                                            	  </select>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
@@ -108,8 +91,8 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="acumulado@${idTrab}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Acumulado</button>
+                                                    <a class="btn btn-phoenix-primary" href="legajo@${idTrab}">Cancel</a>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Grupo</button>
                                                   </div>
                                                 </div>
                                             </div>

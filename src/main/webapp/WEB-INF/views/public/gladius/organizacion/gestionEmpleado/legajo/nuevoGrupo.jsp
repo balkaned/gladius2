@@ -50,7 +50,7 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevo grupo</h2>
+                                <h2 id="h2top" class="mb-0">Insertar nuevo grupo de archivos</h2>
                               </div>
                             </div>
 
@@ -61,7 +61,7 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de Archivos (*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
                                                 <select class="form-select text-black" name="codgrpfile" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
@@ -70,8 +70,8 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion File (*)</label>
-                                                <input class="form-control" name="desfile" type="text" placeholder="" />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion File</label>
+                                                <input class="form-control" name="desfile" type="text" placeholder="" required/>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">

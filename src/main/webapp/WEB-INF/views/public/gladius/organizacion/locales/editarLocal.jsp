@@ -54,11 +54,11 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexubicod2" type="hidden" value="${idLocal}" />
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                     <input class="form-control" name="iexubicod" type="text" value="${idLocal}" placeholder="street" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion del Local (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion del Local</label>
                                     <input class="form-control" name="iexubides" type="text" value="${requestScope.xUbicacion.iexubides}" required/>
                               </div>
 

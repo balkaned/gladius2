@@ -6,13 +6,14 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.*;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.FileImageLegajo;
 import com.balkaned.gladius.beans.ParametroReport;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
+import com.balkaned.gladius.services.LegajoService;
 import com.lowagie.text.pdf.PdfImage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +65,9 @@ public class AWS_FTP_FlgSourceController {
 
     @Autowired
     EmpleadoService empleadoService;
+
+    @Autowired
+    LegajoService legajoService;
 
     @SneakyThrows
     @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}@{parametrosJasper}@{carpetaLectura}@{idGrpfileLegajo}@{idImageLegajo}")
@@ -500,6 +504,37 @@ public class AWS_FTP_FlgSourceController {
                     responseOutputStream.write(bytesresponse);
                     responseOutputStream.flush();
                     responseOutputStream.close();
+                }
+
+                //######### ELIMINAR DOCUMENTO AWS ###########################################################################
+                if (accion.equals("eliminarDocumento")) {
+                    log.info("#### AWS eliminarDocumento ####");
+
+                    String Path=codciax+"/"+carpetaLecturax;
+                    fileName = codciax+"_"+idGrpfileLegajox+"_"+idImageLegajox+".pdf";
+                    String rutaCompleta=Path+"/"+fileName;
+                    log.info("rutaCompleta: " + rutaCompleta);
+
+                    credentials = new BasicAWSCredentials(key_name, passPhrase);
+                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                    //S3Object o = s3.getObject(bucket_name, rutaCompleta);
+                    log.info("Path: " + rutaCompleta);
+
+                    s3.deleteObject(new DeleteObjectRequest(bucket_name, rutaCompleta));
+
+                    //Elimina en base datos solo para legajos
+                    if(carpetaLecturax.equals("legajo")){
+                        log.info("######### Elimina en tabla caso es legajo #######");
+
+                        FileImageLegajo img12  = new FileImageLegajo();
+                        img12.setIexcodcia(Integer.valueOf(codciax));
+                        img12.setIexcodgrpfile(Integer.valueOf(idGrpfileLegajox));
+                        img12.setIexcodimage(Integer.valueOf(idImageLegajox));
+
+                        legajoService.eliminarImage(img12);
+
+                        return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrabx+"@"+idGrpfileLegajox);
+                    }
 
                 }
             }

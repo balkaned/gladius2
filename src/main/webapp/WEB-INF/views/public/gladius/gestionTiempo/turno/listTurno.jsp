@@ -109,7 +109,7 @@
                             <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">HORA FIN</th>
                             <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">FLAG DIA
                               SIGUIENTE</th>
-                            <th class="sort align-middle text-center pe-0" scope="col">FICHA</th>
+                            <th class="sort align-middle text-center pe-0" scope="col"></th>
                           </tr>
                         </thead>
                         <tbody class="list" id="order-table-body">
@@ -136,7 +136,7 @@
                                     aria-expanded="false" data-bs-reference="parent"><span
                                       class="fas fa-ellipsis-h fs--2"></span></button>
                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                    <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Editar turno</a>
+                                    <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Editar</a>
                                     <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="#!">Eliminar</a>

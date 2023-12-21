@@ -63,17 +63,17 @@
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="addCuentaContable" novalidate>
               <div class="col-sm-6 col-md-3">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                <input class="form-control" name="iexccodcta" type="text" value="" placeholder="" required/>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                <input class="form-control" name="iexccodcta" type="number" value="" placeholder="#" required/>
               </div>
 
               <div class="col-sm-6 col-md-9">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
-                <input class="form-control" name="iexdescta" type="text" value="" placeholder="" required/>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripción</label>
+                <input class="form-control" name="iexdescta" type="text" value="" placeholder="Cuenta Caja Chica" required/>
               </div>
 
               <div class="col-sm-6 col-md-12">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta (*)</label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de cuenta</label>
                 <select class="form-select" name="desdet" required>
                   <option value="" selected>Ninguno</option>
                   <c:forEach var="lovConcepto" items="${lovConcepto}">

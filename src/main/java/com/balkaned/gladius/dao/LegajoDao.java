@@ -17,4 +17,12 @@ public interface LegajoDao {
 
     public Integer obtieneIdImage(Integer codcia, Integer idgrpfile);
 
+    public Grpfile getGrpfile(Integer codcia, Integer idgrpfile);
+
+    public void actualizarGrpFile(Grpfile grpfile);
+
+    public void eliminarGrpFile(Grpfile grpfile);
+
+    public void eliminarImage(FileImageLegajo fileImageLegajo);
+
 }

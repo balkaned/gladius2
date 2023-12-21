@@ -2,6 +2,7 @@ package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.UsuxOpciones;
 import com.balkaned.gladius.services.UsuxOpcionesService;
+import com.balkaned.gladius.services.UsuxSystemaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,14 @@ public class Sessionattributes {
     @Autowired
     UsuxOpcionesService usuxOpcionesService;
 
+    @Autowired
+    UsuxSystemaService usuxSystemaService;
+
     public ModelAndView getVariablesSession(ModelMap model, HttpServletRequest request){
 
         String user = (String) request.getSession().getAttribute("user");
         log.info("user:"+user);
-        if (request.getSession().getAttribute("user") == null || request.getSession().getAttribute("user").equals("")) {
+        if (user == null || user.equals("") || user.equals("null")) {
             return new ModelAndView("redirect:/login2");
         }
 
@@ -46,6 +50,7 @@ public class Sessionattributes {
         int idUsuarioconv=Integer.parseInt(idusuario);
         List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv,idUsuarioconv,1);
         model.addAttribute("usuxsysxopc",listaMenus);
+        model.addAttribute("ususys",usuxSystemaService.eligeSystema(idCompconv,idUsuarioconv,1));
 
         return null;
     }

@@ -101,7 +101,7 @@
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">VARIABLE FORMULA</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">DESCRIPCION</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ABREVIADO</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
+              <th class="sort align-middle text-center pe-0" scope="col" ></th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
@@ -122,14 +122,10 @@
                   </span>
                 </td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desVariable}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <span class="badge badge-phoenix fs--1 badge-phoenix-info">
-                    <span class="badge-label">
+                <td class="total align-middle text-start fw-semi-bold text-1000">
                         ${concepto.desAbreviacion}
-                    </span>
-                  </span>
                 </td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.descripcion}</td>
+                <td class="total align-middle text-start fw-semi-bold text-1000">${concepto.descripcion}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"

@@ -55,19 +55,19 @@
                               <input class="form-control" name="iexcodsec" type="hidden" value="${idSec}" />
 
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                      <input class="form-control" name="iexcodsec" type="text" value="${idSec}" required readonly disabled />
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seccion (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Seccion</label>
                                    <input class="form-control" name="iexdessec" type="text" value="${requestScope.xSeccion.iexdessec}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ord (*)</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Ord</label>
                                  <input class="form-control" name="iexordsec" type="text"  alue="${requestScope.xSeccion.iexordsec}"  required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sistemas (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sistemas</label>
                                   <select class="form-select" name="iexcodsys" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovSys" items="${lovSys}">
@@ -76,19 +76,19 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url</label>
                                      <input class="form-control" name="iexsecurl" type="text" value="${requestScope.xSeccion.iexsecurl}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Img (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Img</label>
                                     <input class="form-control" name="iexecimg" type="text" value="${requestScope.xSeccion.iexsecimg}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Obs (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Obs</label>
                                   <input class="form-control" name="iexsecobs" type="text" value="${requestScope.xSeccion.iexsecobs}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action Defecto (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Action Defecto</label>
                                     <input class="form-control" name="iexactiondef" type="text" value="${requestScope.xSeccion.iexactiondef}" required/>
                               </div>
 

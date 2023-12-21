@@ -55,15 +55,15 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seccion (*)</label>
-                                   <input class="form-control" name="iexdessec" type="text"  placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Seccion</label>
+                                   <input class="form-control" name="iexdessec" type="text"  placeholder="Seccion ABC" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ord (*)</label>
-                                 <input class="form-control" name="iexordsec" type="text"  placeholder=""required/>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Ord</label>
+                                 <input class="form-control" name="iexordsec" type="text"  placeholder="10"required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sistemas (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sistemas</label>
                                   <select class="form-select" name="iexcodsys" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovSys" items="${lovSys}">
@@ -72,19 +72,19 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url</label>
                                      <input class="form-control" name="iexsecurl" type="text"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Img (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Img</label>
                                     <input class="form-control" name="iexecimg" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Obs (*)</label>
-                                  <input class="form-control" name="iexsecobs" type="text" value="" placeholder="" required/>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Obs</label>
+                                  <input class="form-control" name="iexsecobs" type="text" value="" placeholder="Gestiona el tiempo de la solucion RRHH" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action Defecto (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Action Defecto</label>
                                     <input class="form-control" name="iexactiondef" type="text" value="" placeholder="" required/>
                               </div>
 

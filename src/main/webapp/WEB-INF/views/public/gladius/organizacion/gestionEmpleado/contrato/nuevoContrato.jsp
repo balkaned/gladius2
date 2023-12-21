@@ -82,7 +82,7 @@ function formatearFecha2(){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Contrato(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Contrato</label>
                                                 <select class="form-select" name="iextipcont" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipcont" items="${lovTipcont}">
@@ -91,15 +91,15 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modelo Contrato(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Modelo Contrato</label>
                                                 <select class="form-select" name="iexmodcont" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <option value="1"> Modelo 1</option>
@@ -107,7 +107,7 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                                 <select class="form-select" name="iexestado" required >
                                                   <option value="1">Activo</option>
                                                   <option value="0">Inactivo</option>

@@ -55,7 +55,7 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <!--<input class="form-control" name="iexccosto2" type="hidden" value="${idx}" />-->
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Banco</label>
                                     <select class="form-select" name="iexcodban" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovBancos" items="${lovBancos}">
@@ -64,7 +64,7 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
                                     <select class="form-select" name="iexcodpro" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovProcesos" items="${lovProcesos}">
@@ -73,7 +73,7 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Cuenta(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Cuenta</label>
                                     <select class="form-select" name="iextipcta" required >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovTipCta" items="${lovTipCta}">
@@ -82,7 +82,7 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero de Cuenta (*)</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Numero de Cuenta</label>
                                    <input class="form-control" name="iexctaban" maxlength="20" type="text" value="" placeholder="#" required/>
                               </div>
 

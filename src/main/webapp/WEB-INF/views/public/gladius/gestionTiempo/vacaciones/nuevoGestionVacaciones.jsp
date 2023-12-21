@@ -23,13 +23,13 @@
                   },
                   success: function (data) {
                     var opt = "";
-                    opt += "<option value='' > -- Selecciona -- </option>";
+                    opt += "<option value='' >Seleccionar</option>";
                     for (var i in data) {
                       opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
                     }
 
                     $("#iexcodtra").html(opt);
-                    $("#iexpervac").html("<option value='' > -- Selecciona -- </option>");
+                    $("#iexpervac").html("<option value='' >Seleccionar</option>");
                   }
                 });
 
@@ -49,7 +49,7 @@
                   },
                   success: function (data) {
                     var opt = "";
-                    opt += "<option value='' > -- Selecciona -- </option>";
+                    opt += "<option value='' >Seleccionar</option>";
                     for (var i in data) {
                       opt += "<option value=" + data[i].iexpermesini + " > " + data[i].iexpermesini + " - " + data[i].iexpermesfin + " : Saldo = " + data[i].iexdiassaldo + " </option> ";
                     }
@@ -210,8 +210,8 @@
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
                       <form class="row g-4 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac" action="insertGestionVacaciones" novalidate>
-               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                        <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
+                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                         <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>

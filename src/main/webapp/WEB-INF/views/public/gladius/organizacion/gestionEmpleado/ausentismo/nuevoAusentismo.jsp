@@ -184,7 +184,7 @@ function enviaForm(variable){
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
                                                 <select class="form-select" name="iextipaus" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipaus" items="${lovTipaus}">
@@ -193,15 +193,15 @@ function enviaForm(variable){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" onchange="calcularDias();" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° de Dias(*)</label>
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
                                                    <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" style="background-color:#F1F4F8;" placeholder="0" required readonly/>
                                             </div>
                                             <div class="col-sm-6 col-md-9">

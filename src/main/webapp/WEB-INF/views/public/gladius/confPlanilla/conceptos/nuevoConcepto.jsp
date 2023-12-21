@@ -75,28 +75,28 @@
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
               <div class="col-sm-6 col-md-3">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                <input class="form-control" name="codConcepto" type="text" value="" placeholder="" required/>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID </label>
+                <input class="form-control" name="codConcepto" type="number" value="" placeholder="#" required/>
               </div>
 
               <div class="col-sm-6 col-md-9">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del Concepto (*) </label>
-                <input class="form-control" name="desConcepto" type="text" value="" placeholder="" required/>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Concepto</label>
+                <input class="form-control" name="desConcepto" type="text" value="" placeholder="# DIA DE LIC. GOCE" required/>
               </div>
 
               <div class="col-sm-6 col-md-6">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Variable Formula (*)</label>
-                <input class="form-control" name="desVariable" type="text" value="" placeholder="" required/>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Variable Formula</label>
+                <input class="form-control" name="desVariable" type="text" value="" placeholder="$VAL_P0144$" required/>
               </div>
 
               <div class="col-sm-6 col-md-6">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
-                <input class="form-control" name="desAbreviacion" type="text" value="" placeholder="" required/>
+                <input class="form-control" name="desAbreviacion" type="text" value="" placeholder=""/>
               </div>
 
               <div class="col-sm-6 col-md-12">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
-                <input class="form-control" name="descripcion" type="text" value="" placeholder="" required/>
+                <input class="form-control" name="descripcion" type="text" value="" placeholder=""/>
               </div>
 
               <div class="alert alert-success" role="alert" id="alert" style="display:none;">

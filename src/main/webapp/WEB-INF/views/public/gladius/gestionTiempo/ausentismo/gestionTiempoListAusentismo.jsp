@@ -18,7 +18,7 @@ $(document).ready(function() {
             url: "getlovsLOVCODTRA",
             data: {"accion": "LOVCODTRA", "iexcodreg": $("#iexcodreg").val()},
             success: function (data) {
-                var opt = "<option value='' > -- Selecciona -- </option>";
+                var opt = "<option value='' >Selecciona</option>";
                 for (var i in data) {
                     opt += "<option value='" + data[i].iexcodtra + "'>" +
                     data[i].iexapepat + " " + data[i].iexapemat + " " +
@@ -213,7 +213,7 @@ $(document).ready(function() {
                                     <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN
                                     </th>
                                     <th class="sort align-middle text-start pe-0" scope="col" data-sort="date">DIAS</th>
-                                    <th class="sort align-middle text-center pe-0" scope="col">FICHA</th>
+                                    <th class="sort align-middle text-center pe-0" scope="col"></th>
                                   </tr>
                                 </thead>
                                 <tbody class="list" id="order-table-body">
@@ -248,17 +248,17 @@ $(document).ready(function() {
                                       <td
                                         class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
                                         ${LstAusentismoView.fecing}</td>
-                                      <td
-                                        class="delivery_type align-middle white-space-nowrap text-center  fs--1 text-start">
-                                        ${LstAusentismoView.destipaus}</td>
+                                      <td class="delivery_type align-middle white-space-nowrap text-center  fs--1 text-start">
+                                        <span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstAusentismoView.destipaus}</span>
+                                      </td>
                                       <td
                                         class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
                                         ${LstAusentismoView.iexfecini}</td>
                                       <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start ps-3">
                                         ${LstAusentismoView.fecfinrep}</td>
                                       <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start ps-4">
                                         ${LstAusentismoView.iexnrodias}</td>
 
                                       <td class="align-middle text-end white-space-nowrap pe-0 action">
@@ -269,9 +269,8 @@ $(document).ready(function() {
                                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span
                                               class="fas fa-ellipsis-h fs--2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-                                            <a class="dropdown-item" href="">Editar
-                                              Vacacciones</a>
-                                            <a class="dropdown-item" href="">Descargar Ficha
+                                            <a class="dropdown-item" href="#">Editar</a>
+                                            <a class="dropdown-item" href="#">Descargar Ficha
                                               PDF</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item text-danger" href="#!">Eliminar</a>

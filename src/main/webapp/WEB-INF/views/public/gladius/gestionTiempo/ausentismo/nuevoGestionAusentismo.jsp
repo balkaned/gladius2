@@ -13,7 +13,6 @@
 
             $('#iexcodreg').change(function (event) {
 
-
               $.ajaxSetup({ cache: false });
               $.ajax({
                 url: "getlovsLOVCODTRA",
@@ -23,7 +22,7 @@
                 },
                 success: function (data) {
                   var opt = "";
-                  opt += "<option value='' > -- Selecciona -- </option>";
+                  opt += "<option value='' >Seleccionar</option>";
                   for (var i in data) {
                     opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
                   }
@@ -155,7 +154,7 @@
                           value="${requestScope.emp.iexcodtra}" />
 
                         <div class="col-sm-4 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
                           <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
@@ -165,12 +164,12 @@
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Trabajador</label>
                           <select name="iexcodtra" id="iexcodtra" class="form-select" required>
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
                           <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
@@ -180,14 +179,14 @@
                           </select>
                         </div>
                         <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio (*)</label><span
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
                             onchange="formatearFecha1();" type="text" onchange="calcularDias();"
                             placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                         </div>
                         <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin (*)</label><span
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
                             onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy"
@@ -195,10 +194,11 @@
                         </div>
 
                         <div class="col-sm-6 col-md-3">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° de Dias(*)</label>
-                          <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text"
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                          <input class="form-control" style="background-color:#F1F4F8;" name="iexnrodias" id="iexnrodias" maxlength="10" type="text"
                             placeholder="0" required readonly />
                         </div>
+
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                           Se grabó exitosamente los cambios.
                         </div>
@@ -210,7 +210,7 @@
                             <div class="col-auto">
                               <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">Insertar Ausentismo</button>
+                                aria-expanded="false" data-bs-reference="parent">Guardar Ausentismo</button>
                             </div>
                           </div>
                         </div>

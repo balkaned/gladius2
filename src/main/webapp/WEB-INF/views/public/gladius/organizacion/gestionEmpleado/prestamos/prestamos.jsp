@@ -73,7 +73,7 @@
                                         <c:forEach var="LstPrestCab" items="${requestScope.LstPrestCab}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstPrestCab.iexcorrel}</a></td>
-                                              <td class="total align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstPrestCab.destippres}</span></td>
+                                              <td class="total align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstPrestCab.destippres}</span></td>
                                               <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.ieximpbru}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.iexnrocuotas}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>

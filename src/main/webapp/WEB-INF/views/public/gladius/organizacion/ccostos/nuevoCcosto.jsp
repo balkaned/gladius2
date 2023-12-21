@@ -55,15 +55,15 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexccosto2" type="hidden" value="${idx}" />
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                     <input class="form-control" name="iexccosto" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion (*)</label>
-                                    <input class="form-control" name="iexdesccosto" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
+                                    <input class="form-control" name="iexdesccosto" type="text" value="" placeholder="CC MULTIDENT" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria Centro de Costos(*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Categoria Centro de Costos</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatCencos" items="${lovCatCencos}">

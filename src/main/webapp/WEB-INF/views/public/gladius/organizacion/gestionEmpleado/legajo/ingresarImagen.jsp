@@ -61,23 +61,23 @@
                                      action="AWSorFTP_flgsource_MultipartUpload@subirDocumento@${idComp}@${idTrab}@legajo"
                                      novalidate >
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID grpfile</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID grpfile</label>
                                                 <input class="form-control" style="background-color:#F1F4F8;" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required readonly />
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Grupo Archivo grpfile</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID Grupo Archivo grpfile</label>
                                                 <input class="form-control" style="background-color:#F1F4F8;" name="grpFile" maxlength="50" type="text" value="${grpFile}" required readonly />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir Imagen solo en formato PDF</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Subir documento solo en formato PDF</label>
                                                 <input class="form-control" name="uploadFile" type="file" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Imagen (*)</label>
-                                                <input class="form-control" name="urlimagen" type="text" placeholder="Documento.PDF" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Imagen</label>
+                                                <input class="form-control" name="urlimagen" type="text" placeholder="Documento.pdf" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion Imagen</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Imagen</label>
                                                  <input class="form-control" name="desimagen" type="text" required />
                                             </div>
 

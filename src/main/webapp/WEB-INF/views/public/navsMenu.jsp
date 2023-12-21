@@ -87,7 +87,7 @@
                     </c:if>
                     <c:if test="${usuxsysxopc.codsec != seccion_cur}">
                             <p class="navbar-vertical-label">${usuxsysxopc.dessecCapi}</p>
-                            <p id="p2" class="navbar-vertical-label">Menus de ${usuxsysxopc.dessecCapi}</p>
+                            <p id="p2" class="navbar-vertical-label">Menu de ${usuxsysxopc.dessecCapi}</p>
                             <div class="nav-item-wrapper">
                                 <a class="nav-link dropdown-indicator label-1" href="#${usuxsysxopc.codsec}" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="${usuxsysxopc.dessecCapi}">
                                     <div class="d-flex align-items-center">

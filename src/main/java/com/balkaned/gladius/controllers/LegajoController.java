@@ -287,5 +287,123 @@ public class LegajoController {
 
         return new ModelAndView("redirect:/legajo@" + iexcodtra);
     }
+
+    @RequestMapping("/editarGrupoArch@{idTrab}@{iexcodgrpfile}@{grpFile}")
+    public ModelAndView editarGrupoArch(ModelMap model, HttpServletRequest request,
+                                    @PathVariable String idTrab,
+                                    @PathVariable String iexcodgrpfile,
+                                    @PathVariable String grpFile) {
+        logger.info("/editarGrupoArch");
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idTrabXXXXX: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        logger.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
+        model.addAttribute("xGrpFile",legajoService.getGrpfile(idCompania, Integer.valueOf(iexcodgrpfile)));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/editarGrupoArch");
+    }
+
+    @RequestMapping("/modificarGrupoArch")
+    public ModelAndView modificarGrupoArch(ModelMap model, HttpServletRequest request) {
+        logger.info("/modificarGrupoArch");
+
+        sessionattributes.getVariablesSession(model, request);
+
+        String usuario = (String) request.getSession().getAttribute("user");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String codtra=request.getParameter("iexcodtra");
+        String codgrpfilee = request.getParameter("idgrpfile");
+        String grpfilee = request.getParameter("codgrpfile");
+        String desfile2 = request.getParameter("desfile");
+        String desestado = request.getParameter("estado");
+
+        Grpfile grp3  = new Grpfile();
+        grp3.setIexcodcia(idCompania);
+        grp3.setIexcodtra(Integer.valueOf(codtra));
+        grp3.setIexcodgrpfile(Integer.parseInt(codgrpfilee));
+        grp3.setIexgrpfile(grpfilee);
+        grp3.setIexdesgrpfile(desfile2);
+        grp3.setIexestado(desestado);
+        grp3.setIexusumod(usuario);
+
+        legajoService.actualizarGrpFile(grp3);
+
+        return new ModelAndView("redirect:/buscarLegajoAtras@"+codtra+"@"+grpfilee);
+    }
+
+    @RequestMapping("/delGrupoArch@{idTrab}@{iexcodgrpfile}@{grpFile}")
+    public ModelAndView delGrupoArch(ModelMap model, HttpServletRequest request,
+                                        @PathVariable String idTrab,
+                                        @PathVariable String iexcodgrpfile,
+                                        @PathVariable String grpFile) {
+        logger.info("/delGrupoArch");
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        Grpfile grp2  = new Grpfile();
+        grp2.setIexcodcia(idCompania);
+        grp2.setIexcodtra(Integer.valueOf(idTrab));
+        grp2.setIexcodgrpfile(Integer.valueOf(iexcodgrpfile));
+
+        logger.info("grp2.setIexcodcia: "+grp2.getIexcodcia());
+        logger.info("grp2.setIexcodtra: "+grp2.getIexcodtra());
+        logger.info("grp2.getIexcodgrpfile: "+grp2.getIexcodgrpfile());
+        legajoService.eliminarGrpFile(grp2);
+
+        return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrab+"@"+grpFile);
+    }
 }
 

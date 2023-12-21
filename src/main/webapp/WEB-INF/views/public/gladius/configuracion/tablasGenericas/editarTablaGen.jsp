@@ -55,11 +55,11 @@
                               <input class="form-control" name="iexcodrol2" type="hidden" value="${requestScope.ttablacx.iexcodtab}" />
 
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                      <input class="form-control" name="iexcodrol" type="number"  value="${requestScope.ttablacx.iexcodtab}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la Tabla (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre de la Tabla</label>
                                     <input class="form-control" name="iexdesrol" type="text" value="${requestScope.ttablacx.iexdestab}" placeholder="" required/>
                               </div>
 
@@ -67,66 +67,66 @@
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg1' value='1' value='1' ${requestScope.ttablacx.iexlblflg1=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl1' value="${requestScope.ttablacx.iexlbl1}" class="form-control" style="width: 250px;" ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl1' value="${requestScope.ttablacx.iexlbl1}" class="form-control mb-2" style="width: 250px;" ></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg9' value='1' ${requestScope.ttablacx.iexlblflg9=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval9' value="${requestScope.ttablacx.iexlblval9}" class="form-control" style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval9' value="${requestScope.ttablacx.iexlblval9}" class="form-control mb-2" style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg2' value='1' ${requestScope.ttablacx.iexlblflg2=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl2' value="${requestScope.ttablacx.iexlbl2}" class="form-control" style="width: 250px;"   ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl2' value="${requestScope.ttablacx.iexlbl2}" class="form-control mb-2" style="width: 250px;"   ></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg10'  value='1' ${requestScope.ttablacx.iexlblflg10=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval10' value="${requestScope.ttablacx.iexlblval10}" class="form-control" style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval10' value="${requestScope.ttablacx.iexlblval10}" class="form-control mb-2" style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg3' ${requestScope.ttablacx.iexlblflg3=='1' ? 'checked=true' : ''} value='1' class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl3' value="${requestScope.ttablacx.iexlbl3}" class="form-control" style="width: 250px;"></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl3' value="${requestScope.ttablacx.iexlbl3}" class="form-control mb-2" style="width: 250px;"></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg11' value='1' ${requestScope.ttablacx.iexlblflg11=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval11' value="${requestScope.ttablacx.iexlblval11}" class="form-control" style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval11' value="${requestScope.ttablacx.iexlblval11}" class="form-control mb-2" style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg4' value='1' ${requestScope.ttablacx.iexlblflg4=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl4' value="${requestScope.ttablacx.iexlbl4}" class="form-control"   style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl4' value="${requestScope.ttablacx.iexlbl4}" class="form-control mb-2"   style="width: 250px;"  ></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg12' value='1' ${requestScope.ttablacx.iexlblflg12=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval12' value="${requestScope.ttablacx.iexlblval12}" class="form-control"  style="width: 250px;"   ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval12' value="${requestScope.ttablacx.iexlblval12}" class="form-control mb-2"  style="width: 250px;"   ></td>
                                    </tr>
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg5' value='1' ${requestScope.ttablacx.iexlblflg5=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl5' value="${requestScope.ttablacx.iexlbl5}" class="form-control" style="width: 250px;" ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl5' value="${requestScope.ttablacx.iexlbl5}" class="form-control mb-2" style="width: 250px;" ></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg13'  value='1' ${requestScope.ttablacx.iexlblflg13=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval13' value="${requestScope.ttablacx.iexlblval13}" class="form-control"  style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval13' value="${requestScope.ttablacx.iexlblval13}" class="form-control mb-2"  style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg6' value='1' ${requestScope.ttablacx.iexlblflg6=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl6' value="${requestScope.ttablacx.iexlbl6}" class="form-control" style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl6' value="${requestScope.ttablacx.iexlbl6}" class="form-control mb-2" style="width: 250px;"  ></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg14'  value='1' ${requestScope.ttablacx.iexlblflg14=='1' ? 'checked=true' : ''} class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval14' value="${requestScope.ttablacx.iexlblval14}" class="form-control"  style="width: 250px;" ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval14' value="${requestScope.ttablacx.iexlblval14}" class="form-control mb-2"  style="width: 250px;" ></td>
                                   </tr>
                                   <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg7' value='1' ${requestScope.ttablacx.iexlblflg7=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl7' value="${requestScope.ttablacx.iexlbl7}" class="form-control" style="width: 250px;"></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl7' value="${requestScope.ttablacx.iexlbl7}" class="form-control mb-2" style="width: 250px;"></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg15' value='1' ${requestScope.ttablacx.iexlblflg15=='1' ? 'checked=true' : ''} class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval15' value="${requestScope.ttablacx.iexlblval15}" class="form-control"  style="width: 250px;"  ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval15' value="${requestScope.ttablacx.iexlblval15}" class="form-control mb-2"  style="width: 250px;"  ></td>
                                   </tr>
                                   <tr>
                                       <td>Des</td>
                                       <td><input type="checkbox" name='iexlblflg8' ${requestScope.ttablacx.iexlblflg8=='1' ? 'checked=true' : ''} value='1' class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl8' value="${requestScope.ttablacx.iexlbl8}" class="form-control"  style="width: 250px;"></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl8' value="${requestScope.ttablacx.iexlbl8}" class="form-control mb-2"  style="width: 250px;"></td>
                                       <td class="ps-3">des</td>
                                       <td><input type="checkbox" name='iexlblflg16' ${requestScope.ttablacx.iexlblflg16=='1' ? 'checked=true' : ''} value='1' class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval16' value="${requestScope.ttablacx.iexlblval16}" class="form-control" style="width: 250px;"></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval16' value="${requestScope.ttablacx.iexlblval16}" class="form-control mb-2" style="width: 250px;"></td>
                                   </tr>
                               </table>
 

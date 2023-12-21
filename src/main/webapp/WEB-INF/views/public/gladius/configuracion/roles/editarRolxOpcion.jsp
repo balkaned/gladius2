@@ -54,11 +54,11 @@
                               <input class="form-control" name="iexcodrol" type="hidden" value="${idRol}" />
                               <input class="form-control" name="iexcodopc" type="hidden" value="${idRolxOpc}" />
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                      <input class="form-control" name="iexcodopc" type="number"  value="${idRolxOpc}" required readlony disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones (*)</label>
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
                               	  <select name="iexcodopc" class="form-select" required >
                               		  <option value="" selected >Seleccionar</option>
                               		  <c:forEach var="lovOpcion" items="${lovOpcion}">
@@ -67,49 +67,49 @@
                               	  </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cons (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cons</label>
                                   <select name="iex_consultar" class="form-select" required >
                                       <option value="1"   ${'1'== requestScope.exRolxopc.iex_consultar ? 'selected' : ''}   >Si</option>
                                       <option value="0"    ${'0'== requestScope.exRolxopc.iex_consultar ? 'selected' : ''}  >No</option>
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Reg (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Reg</label>
                                     <select name="iex_registrar" class="form-select" required >
                                         <option value="1"   ${'1'== requestScope.exRolxopc.iex_registrar ? 'selected' : ''}   >Si</option>
                                         <option value="0"    ${'0'== requestScope.exRolxopc.iex_registrar ? 'selected' : ''}  >No</option>
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mod (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Mod</label>
                                   <select name="iex_modificar" class="form-select" required >
                                       <option value="1"   ${'1'== requestScope.exRolxopc.iex_modificar ? 'selected' : ''}   >Si</option>
                                       <option value="0"    ${'0'== requestScope.exRolxopc.iex_modificar ? 'selected' : ''}  >No</option>
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Eli (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Eli</label>
                                     <select name="iex_eliminar" class="form-select" required >
                                         <option value="1"   ${'1'== requestScope.exRolxopc.iex_eliminar ? 'selected' : ''}   >Si</option>
                                         <option value="0"    ${'0'== requestScope.exRolxopc.iex_eliminar ? 'selected' : ''}  >No</option>
                                     </select>
                                 </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rep (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rep</label>
                                     <select name="iex_descargar_pdf" class="form-select" required >
                                         <option value="1"   ${'1'== requestScope.exRolxopc.iex_descargar_pdf ? 'selected' : ''}   >Si</option>
                                         <option value="0"    ${'0'== requestScope.exRolxopc.iex_descargar_pdf ? 'selected' : ''}  >No</option>
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Exp (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Exp</label>
                                     <select name="iex_descargar_xls" class="form-select" required >
                                         <option value="1"   ${'1'== requestScope.exRolxopc.iex_descargar_xls ? 'selected' : ''}   >Si</option>
                                         <option value="0"    ${'0'== requestScope.exRolxopc.iex_descargar_xls ? 'selected' : ''}  >No</option>
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Est (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Est</label>
                                     <select name="iexflgest" class="form-select" required >
                                         <option value="1" ${'1'== requestScope.exRolxopc.iexflgest ? 'selected' : ''}   >Activo</option>
                                         <option value="0" ${null== requestScope.exRolxopc.iexflgest ? 'selected' : ''}  >Inactivo</option>

@@ -108,7 +108,7 @@
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">UBICACION</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">

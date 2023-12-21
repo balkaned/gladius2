@@ -116,7 +116,7 @@
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PROCESO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">NRO CTA</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">

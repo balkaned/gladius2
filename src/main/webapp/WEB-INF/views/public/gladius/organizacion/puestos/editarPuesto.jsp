@@ -54,11 +54,11 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexpuesto2" type="hidden" value="${idPuesto}" />
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                     <input class="form-control" name="iexpuesto" type="text" value="${idPuesto}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion del Puesto(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion del Puesto</label>
                                     <input class="form-control" name="iexdespuesto" type="text" value="${requestScope.xPuesto.iexdespuesto}" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">

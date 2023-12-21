@@ -23,7 +23,7 @@
                 },
                 success: function (data) {
                   var opt = "";
-                  opt += "<option value='' > -- Selecciona -- </option>";
+                  opt += "<option value='' >Seleccionar</option>";
                   for (var i in data) {
                     opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
                   }
@@ -144,15 +144,21 @@
                 </div>
 
                 <div class="row g-5">
-                  <div class="col-xl-8">
+                  <div class="col-xl-10">
                     <div class="row gx-3 gy-4">
                       <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarGestionAusentismo" novalidate>
                         <input class="form-control" name="iexcodcia" type="hidden"
                           value="${requestScope.emp.iexcodcia}" />
                         <input class="form-control" name="iexcodtra" type="hidden"
                           value="${requestScope.emp.iexcodtra}" />
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                          <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}"
+                            class="form-control" readonly="true" style="background-color:#F1F4F8;">
+                          </select>
+                        </div>
+                        <div class="col-sm-6 col-md-9">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
                           <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
@@ -162,14 +168,8 @@
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
-                          <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}"
-                            class="form-control" readonly="true" style="background-color:#F1F4F8;">
-                          </select>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                          <select name="iexcodtra" id="iexcodtra" class="form-control">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Trabajador</label>
+                          <select name="iexcodtra" id="iexcodtra" class="form-select" required>
                             <option value="0" selected>Seleccionar</option>
                             <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
                               <option value="${LstTrabajadorReg.iexcodtra}"
@@ -177,16 +177,12 @@
                                 ${LstTrabajadorReg.iexapepat} ${LstTrabajadorReg.iexapemat}
                                 ${LstTrabajadorReg.iexnomtra} - ${LstTrabajadorReg.iexfecing}</option>
                             </c:forEach>
-
-
                           </select>
                         </div>
-
                         <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
-
-                          <select name="iextipaus" id="iextipaus" class="form-control">
-                            <option value=""> --Selecciona Ausentismo-- </option>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
+                          <select name="iextipaus" id="iextipaus" class="form-select" required>
+                            <option value="">Seleccionar</option>
                             <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
                               <option value="${lovTipaus.idLov}"
                                 ${lovTipaus.idLov==requestScope.xAusentismoDet.iextipaus ? 'selected' : '' }>
@@ -195,19 +191,19 @@
                           </select>
                         </div>
                         <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control" name="iexfecini" id="iexfecini"
                             value="${requestScope.xAusentismoDet.iexfecini}" onchange="formatearFecha1();" type="text"
-                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                         </div>
                          <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
                             class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                           <input class="form-control " name="iexfecfin" id="iexfecfin"
                           <input class="form-control " name="iexfecfin" id="iexfecfin"
                             value="${requestScope.xAusentismoDet.iexfecfin}" onchange="calcularDias();" type="text"
-                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
+                            placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                         </div>
                         <div class="col-sm-4 col-md-4">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
@@ -226,7 +222,7 @@
                             <div class="col-auto">
                               <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">Actualizar ausentismo</button>
+                                aria-expanded="false" data-bs-reference="parent">Guardar Ausentismo</button>
                             </div>
                           </div>
                         </div>

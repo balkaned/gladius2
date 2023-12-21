@@ -178,10 +178,10 @@
                                       TIPO VACA.</th>
                                     <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI
                                     </th>
-                                    <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN
+                                    <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">FECFIN
                                     </th>
-                                    <th class="sort align-middle text-start pe-0" scope="col" data-sort="date">DIAS</th>
-                                    <th class="sort align-middle text-center pe-0" scope="col">FICHA</th>
+                                    <th class="sort align-middle text-start pe-3" scope="col" data-sort="date">DIAS</th>
+                                    <th class="sort align-middle text-center pe-0" scope="col"></th>
                                   </tr>
                                 </thead>
                                 <tbody class="list" id="order-table-body">
@@ -199,23 +199,22 @@
                                         ${LstVacacionesView.nrodoc}</td>
                                       <td class="total align-middle text-center fw-semi-bold text-1000">
                                         ${LstVacacionesView.iexcodtra}</td>
-                                      <td class="total align-middle text-center fw-semi-bold text-1000">
+                                      <td class="total align-middle text-start fw-semi-bold text-700">
                                         ${LstVacacionesView.desnomtra}</td>
                                       <c:if test="${LstVacacionesView.desestado=='activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                       <c:if test="${LstVacacionesView.desestado=='inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                       <td class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
                                         ${LstVacacionesView.fecing}</td>
+                                      <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
+                                        <span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstVacacionesView.destipvac}</span></td>
                                       <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
-                                        ${LstVacacionesView.destipvac}</td>
-                                      <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
                                         ${LstVacacionesView.iexfecini}</td>
                                       <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center">
                                         ${LstVacacionesView.fecfinrep}</td>
                                       <td
-                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
                                         ${LstVacacionesView.iexnrodias}</td>
 
                                       <td class="align-middle text-end white-space-nowrap pe-0 action">
@@ -226,8 +225,7 @@
                                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span
                                               class="fas fa-ellipsis-h fs--2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-                                            <a class="dropdown-item" href="">Editar
-                                              Vacacciones</a>
+                                            <a class="dropdown-item" href="">Editar</a>
                                             <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha
                                               PDF</a>
                                             <div class="dropdown-divider"></div>

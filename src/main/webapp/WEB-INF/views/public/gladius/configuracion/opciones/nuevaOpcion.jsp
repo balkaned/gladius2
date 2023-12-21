@@ -55,22 +55,22 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                               <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
-                                   <input class="form-control" name="iexcodopc" type="number"  placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                                   <input class="form-control" name="iexcodopc" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones (*)</label>
-                                 <input class="form-control" name="iexdesopc" type="text"  placeholder="" required/>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
+                                 <input class="form-control" name="iexdesopc" type="text"  placeholder="Gestión AFP" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado (*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                   <select class="form-select" name="iexflgest" required>
                                     <option value="1" >Activo</option>
                                     <option value="2" >Inactivo</option>
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seccion Sistemas (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Seccion Sistemas</label>
                                     <select class="form-select" name="iexcodsec" required>
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovSeccion" items="${lovSeccion}">
@@ -79,15 +79,15 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Opc (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Opc</label>
                                      <input class="form-control" name="iexurlopc" type="text"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url Img(*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Img</label>
                                     <input class="form-control" name="iexurlimg" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">NEW Action(*)</label>
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* NEW Action</label>
                                       <input class="form-control" name="iexactionspring" type="text" value="" placeholder="/ListPruebas" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
@@ -95,11 +95,11 @@
                                   <input class="form-control" name="iexaction" type="text" value="" placeholder="" />
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Code Apps (*)</label>
-                                    <input class="form-control" name="iexcodapps" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Code Apps</label>
+                                    <input class="form-control" name="iexcodapps" type="text" value="" placeholder="PAR0000" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
                                     <input class="form-control" name="iexdescripcion" type="text" value="" placeholder="" required/>
                               </div>
 

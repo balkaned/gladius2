@@ -55,11 +55,11 @@
                               <input class="form-control" name="iexcodrol" type="hidden" value="${requestScope.rol.idRole}" />
 
                               <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                      <input class="form-control" name="iexcodrol" type="number" value="${requestScope.rol.idRole}" required disabled readonly />
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rol (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rol</label>
                                     <input class="form-control" name="iexdesrol" type="text" value="${requestScope.rol.desRole}" required/>
                               </div>
 

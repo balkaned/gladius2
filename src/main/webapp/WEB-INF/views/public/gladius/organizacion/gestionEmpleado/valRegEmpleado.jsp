@@ -42,22 +42,22 @@
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="validarNroDoc" novalidate >
                           <input class="form-control" name="accion" type="hidden" value="VAL" />
                           <div class="col-sm-6 col-md-12">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento (*)</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento</label>
                                 <select name="iextipdocid" class="form-select" required >
                                     <option value="01">DNI</option>
                                     <option value="02">RUC</option>
                                     <option value="04">CE</option>
                                 </select>
                           </div>
-                          <div class="col-sm-6 col-md-12">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Documento</label>
+                          <div class="col-sm-6 col-md-9">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento</label>
                               <input class="form-control" name="iexnrodocid" maxlength="15" type="text" value="" placeholder="#" required/>
                           </div>
 
                           <div class="col-12 d-flex justify-content-end mt-6">
                               <div class="col-auto">
                                     <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Atras</a>
-                                    <button class="btn btn-primary" type="submit"><span></span>Validar</a>
+                                    <button class="btn btn-primary" type="submit"><span class="fas fa-paperclip me-2"></span>Validar</a>
                               </div>
                            </div>
 

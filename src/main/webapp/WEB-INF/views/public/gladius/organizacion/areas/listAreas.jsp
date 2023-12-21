@@ -112,7 +112,7 @@
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">DESCRIPCION</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CATEGORIA</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">AREA PADRE</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ACCION</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
                       <tbody class="list" id="order-table-body">
