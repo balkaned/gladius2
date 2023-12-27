@@ -261,7 +261,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "		 or  " +
                 "		 (a.iexfecini <to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecfin >to_date('" + fecfin + "','DD/MM/YYYY') )  " +
                 "	 									  )  ";
-        if (codtra != 0) {
+        if (codtra != null && codtra != 0) {
 
             sql = sql + " and c.iexcodtra=" + codtra + " ";
 
@@ -403,20 +403,29 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
     public void actualizarVacacionPrg(VacacionProgramacion vacprg) {
 
-        template.update("UPDATE iexvacprg SET iexfecini = TO_DATE(?, 'DD/MM/YYYY'),iexfecfin = TO_DATE(?, 'DD/MM/YYYY'),iexnrodias = ?,iextipvac = ?,  iexglosa = ?,iexpermesini = ?,iexpermesfin = ?,iexusucrea = ?,iexfecmod = CURRENT_DATE WHERE iexcodcia = ? AND iexcodtra = ? AND iexcorrel = ?");
+        template.update("UPDATE iexvacprg " +
+                        "SET iexfecini = to_date(?, 'DD/MM/YYYY'), " +
+                        "    iexfecfin = to_date(?, 'DD/MM/YYYY'), " +
+                        "    iexnrodias = ?, " +
+                        "    iextipvac = ?, " +
+                        "    iexglosa = ?, " +
+                        "    iexpermesini = ?, " +
+                        "    iexpermesfin = ?, " +
+                        "    iexusucrea = ?, " +
+                        "    iexfecmod = current_date " +
+                        "WHERE iexcodcia = ? AND iexcodtra = ? AND iexcorrel = ?",
 
-        vacprg.getIexfecini();
-        vacprg.getIexfecfin();
-        vacprg.getIexnrodias();
-        vacprg.getIextipvac();
-        vacprg.getIexglosa();
-        vacprg.getIexpermesini();
-        vacprg.getIexpermesfin();
-        vacprg.getIexusucrea();
-        vacprg.getIexcodcia();
-        vacprg.getIexcodtra();
-        vacprg.getIexcorrel();
+                vacprg.getIexfecini(),
+                vacprg.getIexfecfin(),
+                vacprg.getIexnrodias(),
+                vacprg.getIextipvac(),
+                vacprg.getIexglosa(),
+                vacprg.getIexpermesini(),
+                vacprg.getIexpermesfin(),
+                vacprg.getIexusucrea(),
+                vacprg.getIexcodcia(),
+                vacprg.getIexcodtra(),
+                vacprg.getIexcorrel() );
     }
-
 
 }

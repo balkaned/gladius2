@@ -9,6 +9,16 @@
           <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
         <script>
+          function mostrarAlert(){
+            //alert("se grabo exitosamente");
+            var div=document.getElementById('alert');
+            div.style.display = '';
+
+            setTimeout(function() {
+              $("#alerts").hide(6000);
+            }, 3000);
+          }
+
           $(document).ready(function () {
 
             $('#iexcodreg').change(function (event) {
@@ -148,10 +158,6 @@
                     <div class="row gx-3 gy-4">
                       <form class="row g-4 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac"
                         action="insertarGestionAusentismo" novalidate>
-                        <input class="form-control" name="iexcodcia" type="hidden"
-                          value="${requestScope.emp.iexcodcia}" />
-                        <input class="form-control" name="iexcodtra" type="hidden"
-                          value="${requestScope.emp.iexcodtra}" />
 
                         <div class="col-sm-4 col-md-12">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
@@ -169,8 +175,8 @@
                           </select>
                         </div>
                         <div class="col-sm-6 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
-                          <select class="form-select" name="iexcodreg" id="iexcodreg" required>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo(*)</label>
+                          <select class="form-select" name="iextipaus" id="iextipaus" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
                               <option value="${lovTipaus.idLov}" ${lovTipaus.idLov==requestScope.iextipaus ? 'selected'

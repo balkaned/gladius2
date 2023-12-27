@@ -381,29 +381,8 @@ public class VacacionesController {
     @RequestMapping("/gestionTiempoListVacaciones")
     public ModelAndView gestionTiempoListVacaciones(ModelMap model, HttpServletRequest request) {
         logger.info("/gestionTiempoListVacaciones");
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
 
         String regimen = request.getParameter("iexcodreg");
@@ -439,28 +418,8 @@ public class VacacionesController {
     @RequestMapping("/nuevoGestionVacaciones")
     public ModelAndView nuevoGestionVacaciones(ModelMap model, HttpServletRequest request) {
         logger.info("/nuevoGestionVacaciones");
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
 
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
@@ -469,63 +428,29 @@ public class VacacionesController {
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/nuevoGestionVacaciones");
     }
 
-
     @RequestMapping("/insertGestionVacaciones")
     public ModelAndView insertGestionVacaciones(ModelMap model, HttpServletRequest request) {
         logger.info("/insertGestionVacaciones");
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        String Msg_form_global = "";
-        Integer idempleado = 0;
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-
-        String iexfecini = request.getParameter("iexfecini");
-        String iexfecfin = request.getParameter("iexfecfin");
-
+        String iexcodtra = request.getParameter("iexcodtra");
+        String Msg_form_global = "";
+        String resultado = "Error";
         Integer codcorrel = 0;
         Empleado empleado = new Empleado();
         Integer validador = 0;
-        if (iexfecini != null && iexfecfin != null) {
-            validador = vacacionesService.validaVac(empleado.getIexcodcia(), empleado.getIexcodtra(), iexfecini, iexfecfin);
-        }
+
+
+        validador = vacacionesService.validaVac(empleado.getIexcodcia(), empleado.getIexcodtra(), request.getParameter("iexfecini"), request.getParameter("iexfecfin"));
+
         if (validador == 0) {
             VacacionProgramacion vacprg = new VacacionProgramacion();
             vacprg.setIexcodcia(idCompania);
-            idempleado = empleadoService.obtieneIdEmpleado(empleado);
-            if (idempleado > 0) {
-                vacprg.setIexcodtra(idempleado);
-            } else {
-                idempleado = 0;
-            }
-            codcorrel = vacacionesService.getIdVacacionPrg(vacprg);
+            vacprg.setIexcodtra(Integer.parseInt(iexcodtra));
 
-            logger.info("codcorrelVAc: " + codcorrel);
-            logger.info("idCompania: " + idCompania);
-            logger.info("validador: " + validador);
-            logger.info("iexfecini: " + request.getParameter("iexfecini"));
-            logger.info("iexfecini: " + request.getParameter("iexfecfin"));
-            logger.info("Obtiene Id empleado :" + idempleado);
+
+            codcorrel = vacacionesService.getIdVacacionPrg(vacprg);
             if (codcorrel > 0) {
                 vacprg.setIexcorrel(codcorrel);
                 vacprg.setIextipvac(request.getParameter("iextipvac"));
@@ -539,34 +464,35 @@ public class VacacionesController {
                     Integer iexpervac = Integer.parseInt(iexpervacString);
                     vacprg.setIexpermesfin(String.valueOf(iexpervac + 1));
                 } else {
-                    Msg_form_global = "Error" + iexpervacString;
+                    logger.info("Error iexpervacString" + iexpervacString);
                 }
                 if (iexnrodias != null && !iexnrodias.isEmpty()) {
                     vacprg.setIexnrodias(Double.parseDouble(iexnrodias));
                 } else {
-                    Msg_form_global = "Error" + iexnrodias;
+                    logger.info("Error iexnrodias" + iexnrodias);
                 }
+
                 vacacionesService.insertarVacacionPrg(vacprg);
                 Msg_form_global = "OK";
 
-                Empleado empleado2 = new Empleado();
-                empleado2 = empleadoService.recuperarCabecera(vacprg.getIexcodcia(), vacprg.getIexcodtra());
-                if (iexfecini != null && iexfecfin != null) {
-                    model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(vacprg.getIexcodcia(), request.getParameter("iexcodreg"), iexfecini, iexfecfin, vacprg.getIexcodtra()));
-                    ;
-                }
+                Empleado empleado2 = empleadoService.recuperarCabecera(vacprg.getIexcodcia(), vacprg.getIexcodtra());
+
+                model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(vacprg.getIexcodcia(), request.getParameter("iexcodreg"), empleado2.getIexfecing(), vacprg.getIexfecfin(), vacprg.getIexcodtra()));
                 model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(vacprg.getIexcodcia(), request.getParameter("iexcodreg")));
-                model.addAttribute("iexcodtra", vacprg.getIexcodtra());
                 model.addAttribute("iexcodreg", request.getParameter("iexcodreg"));
+                model.addAttribute("iexcodtra", vacprg.getIexcodtra());
                 model.addAttribute("fecini", empleado2.getIexfecing());
                 model.addAttribute("fecfin", vacprg.getIexfecfin());
+
             }
         } else {
 
-            Msg_form_global = "Error";
+            logger.info("Error en la validación de vacaciones: validador != 0");
+            Msg_form_global = "Error en la validación de vacaciones";
         }
 
         return new ModelAndView("redirect:/gestionTiempoListVacaciones");
+
     }
 
 
@@ -574,32 +500,18 @@ public class VacacionesController {
     public ModelAndView editarGestionVacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab,
                                                 @PathVariable String iexcorrel) {
         logger.info("/editarGestionVacaciones@{idTrab}@{iexcorrel}s");
-        String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login2");
-        }
-        String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
-        String email = (String) request.getSession().getAttribute("email");
-        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-        String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        logger.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        logger.info("iexcorrel: " + iexcorrel);
+        model.addAttribute("iexcorrel", iexcorrel);
 
         logger.info("idCompaniaXXXX: " + idCompania);
         logger.info("idTraXXXXXb: " + idTrab);
         logger.info("iexcorrel: " + iexcorrel);
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("idusuario", idusuario);
-        model.addAttribute("email", email);
-        model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", nombreComp);
-        model.addAttribute("rucComp", rucComp);
-        model.addAttribute("idComp", idCompania);
-        model.addAttribute("urlLogo", urlLogo);
-        model.addAttribute("idTrab", idTrab);
 
 
         VacacionProgramacion vacprg = new VacacionProgramacion();
@@ -607,125 +519,73 @@ public class VacacionesController {
         vacprg.setIexcodtra(Integer.valueOf(idTrab));
         vacprg.setIexcorrel(Integer.valueOf(iexcorrel));
 
+        VacacionProgramacion vacprg2 = new VacacionProgramacion();
+
+        vacprg2 = vacacionesService.getVacacionPrg(vacprg);
+
         Integer saldo2 = 0;
+
         Empleado empleado2 = new Empleado();
         empleado2 = empleadoService.recuperarCabecera(vacprg.getIexcodcia(), vacprg.getIexcodtra());
         vacacionesService.procesaVacacionCtl(empleado2);
         saldo2 = vacacionesService.saldotraVac(vacprg.getIexcodcia(), vacprg.getIexcodtra(), vacprg.getIexpermesini(), vacprg.getIexpermesfin());
 
+        model.addAttribute("xVacacionesPrg", vacprg2);
         model.addAttribute("iexcodreg", empleado2.getIexreglab());
-
-        Double iexnrodias = vacprg.getIexnrodias();
-        if (iexnrodias != null) {
-            model.addAttribute("xSaldo", saldo2 + iexnrodias);
-        } else {
-            model.addAttribute("xSaldo Null", saldo2);
-        }
-        model.addAttribute("LstPervac", vacacionesService.listaSaldoVacTra(idCompania, empleado2.getIexreglab(), vacprg.getIexcodtra()));
+        model.addAttribute("xSaldo", saldo2 + vacprg2.getIexnrodias());
+        model.addAttribute("LstPervac", vacacionesService.listaSaldoVacTra(idCompania, empleado2.getIexreglab(), vacprg2.getIexcodtra()));
         model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, empleado2.getIexreglab()));
-        model.addAttribute("xVacacionesPrg", vacacionesService.getVacacionPrg(vacprg));
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
-
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/actualizarGestionVacaciones");
     }
 
 
-//    @RequestMapping("/actualizarGestionVacaciones")
-//    public ModelAndView actualizarGestionVacaciones(ModelMap model, HttpServletRequest request) {
-//        logger.info("/actualizarGestionVacaciones");
-//        String user = (String) request.getSession().getAttribute("user");
-//
-//        if (request.getSession().getAttribute("user") == null) {
-//            return new ModelAndView("redirect:/login2");
-//        }
-//        String usuario = (String) request.getSession().getAttribute("user");
-//        String idusuario = (String) request.getSession().getAttribute("idUser");
-//        String email = (String) request.getSession().getAttribute("email");
-//        String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-//        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-//        String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
-//        String rucComp = (String) request.getSession().getAttribute("ruccomp");
-//        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-//
-//        model.addAttribute("usuario", usuario);
-//        model.addAttribute("idusuario", idusuario);
-//        model.addAttribute("email", email);
-//        model.addAttribute("firstCharacter", firstCharacter);
-//        model.addAttribute("nombreComp", nombreComp);
-//        model.addAttribute("rucComp", rucComp);
-//        model.addAttribute("idComp", idCompania);
-//        model.addAttribute("urlLogo", urlLogo);
-//
-//        String Msg_form_global = "";
-//        String resultado = "Error";
-//
-//        String iexcodtra = request.getParameter("iexcodtra");
-//        String correl = request.getParameter("iexcorrel");
-//
-//        Integer xcodtra = 0;
-//        try {
-//            if (iexcodtra != null && !iexcodtra.trim().isEmpty()) {
-//                xcodtra = Integer.parseInt(iexcodtra.trim());
-//            }
-//        } catch (NumberFormatException e) {
-//            logger.info("Error al convertir el código de trabajador: " + e);
-//            Msg_form_global = "Error al convertir el código de trabajador a número.";
-//            resultado = "Error";
-//        }
-//        VacacionProgramacion vacprg = new VacacionProgramacion();
-//
-//        Empleado empleado2 = new Empleado();
-//        empleado2 = empleadoService.recuperarCabecera(idCompania, xcodtra);
-//
-//        vacprg.setIexcodcia(idCompania);
-//        vacprg.setIexcodtra(xcodtra);
-//        if (correl != null && !correl.isEmpty()) {
-//            try {
-//                int correlInt = Integer.parseInt(correl);
-//                vacprg.setIexcorrel(correlInt);
-//            } catch (NumberFormatException e) {
-//                logger.info("Error al convertir el código de trabajador: " + e);
-//                Msg_form_global = "Error al convertir el código de trabajador a número.";
-//                resultado = "Error";
-//            }
-//        } else {
-//            resultado = "Error";
-//        }
-//        vacprg.setIextipvac(request.getParameter("iextipvac"));
-//        vacprg.setIexfecini(request.getParameter("iexfecini"));
-//        vacprg.setIexfecfin(request.getParameter("iexfecfin"));
-//        try {
-//            String iexnrodiasString = request.getParameter("iexnrodias");
-//            if (iexnrodiasString != null && !iexnrodiasString.trim().isEmpty()) {
-//                double iexnrodias = Double.parseDouble(iexnrodiasString);
-//                vacprg.setIexnrodias(iexnrodias);
-//            } else {
-//                logger.info("iexnrodiasString is null or empty: " + iexnrodiasString);
-//            }
-//        } catch (NumberFormatException e) {
-//            logger.info("Number format exception for iexnrodiasString: " + e.getMessage());
-//        }
-//        vacprg.setIexusucrea("1");
-//        vacprg.setIexpermesini(request.getParameter("iexpervac"));
-//        try {
-//            int experVac = Integer.parseInt(request.getParameter("iexpervac"));
-//            vacprg.setIexpermesfin(String.valueOf(experVac + 1));
-//        } catch (NumberFormatException e) {
-//            logger.info("error experVac" + e);
-//        }
-//
-//        vacacionesService.actualizarVacacionPrg(vacprg);
-//
-//        model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, empleado2.getIexreglab(), empleado2.getIexfecing(), request.getParameter("iexfecfin"), empleado2.getIexcodtra()));
-//        model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, empleado2.getIexreglab()));
-//        model.addAttribute("iexcodtra", empleado2.getIexcodtra());
-//        model.addAttribute("iexcodreg", empleado2.getIexreglab());
-//        model.addAttribute("fecini", empleado2.getIexfecing());
-//        model.addAttribute("fecfin", request.getParameter("iexfecfin"));
-//
-//        return new ModelAndView("redirect:/gestionTiempoListVacaciones");
-//    }
+    @RequestMapping("/actualizarGestionVacaciones")
+    public ModelAndView actualizarGestionVacaciones(ModelMap model, HttpServletRequest request) {
+        logger.info("/actualizarGestionVacaciones");
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        String codtra = request.getParameter("iexcodtra");
+        String correl = request.getParameter("iexcorrel");
+
+
+        VacacionProgramacion vacprg = new VacacionProgramacion();
+        Empleado empleado2 = new Empleado();
+        empleado2 = empleadoService.recuperarCabecera(vacprg.getIexcodcia(), vacprg.getIexcodtra());
+
+        vacprg.setIexcodcia(idCompania);
+        vacprg.setIexcodtra(Integer.valueOf(codtra));
+        vacprg.setIexcorrel(Integer.valueOf(correl));
+
+        vacprg.setIextipvac(request.getParameter("iextipvac"));
+        vacprg.setIexfecini(request.getParameter("iexfecini"));
+        vacprg.setIexfecfin(request.getParameter("iexfecfin"));
+        vacprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
+        vacprg.setIexusucrea("1");
+        vacprg.setIexpermesini(request.getParameter("iexpervac"));
+        vacprg.setIexpermesfin(String.valueOf(Integer.parseInt(request.getParameter("iexpervac")) + 1));
+
+
+        vacacionesService.actualizarVacacionPrg(vacprg);
+
+
+        if (empleado2.getIexfecing() != null && request.getParameter("iexfecfin") != null) {
+            model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, empleado2.getIexreglab(), empleado2.getIexfecing(), request.getParameter("iexfecfin"), empleado2.getIexcodtra()));
+        }
+        model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, empleado2.getIexreglab()));
+        model.addAttribute("iexcodtra", empleado2.getIexcodtra());
+        model.addAttribute("iexcodreg", empleado2.getIexreglab());
+        model.addAttribute("fecini", empleado2.getIexfecing());
+        model.addAttribute("fecfin", request.getParameter("iexfecfin"));
+        model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+        model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
+
+        return new ModelAndView("redirect:/gestionTiempoListVacaciones");
+
+    }
 
 
 }
