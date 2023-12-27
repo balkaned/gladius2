@@ -15,4 +15,6 @@ public interface ConceptoDao {
     Concepto getById(String id);
 
     void actualizarConcepto(Concepto concepto);
+
+    public Concepto recuperar(String id);
 }

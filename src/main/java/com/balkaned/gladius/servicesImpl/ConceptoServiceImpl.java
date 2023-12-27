@@ -36,4 +36,6 @@ public class ConceptoServiceImpl implements ConceptoService {
     public void actualizarConcepto(Concepto concepto) {
         dao.actualizarConcepto(concepto);
     }
+
+    public Concepto recuperar(String id) { return dao.recuperar(id); }
 }

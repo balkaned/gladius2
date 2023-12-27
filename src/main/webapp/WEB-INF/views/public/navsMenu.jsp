@@ -324,12 +324,12 @@
                   </a>
               </li>
               <li id="menunav" class="nav-item">
-                    <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" id="listReporte5taNomina" href="listReporte5taNomina" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Reporte 5ta Nomina</span></div>
                     </a>
                </li>
               <li id="menunav" class="nav-item">
-                  <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" id="listReportePlanillas" href="listReportePlanillas " data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Reporte de Planillas</span></div>
                   </a>
               </li>
@@ -369,12 +369,12 @@
                   </a>
               </li>
               <li id="menunav" class="nav-item">
-                  <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                  <a class="nav-link" id="listReportePlanillaxConcepto" href="listReportePlanillaxConcepto" data-bs-toggle="" aria-expanded="false">
                     <div class="d-flex align-items-center"><span class="nav-link-text">Reporte Planilla x Concepto</span></div>
                   </a>
               </li>
               <li id="menunav" class="nav-item">
-                    <a class="nav-link" id="#" href="#" data-bs-toggle="" aria-expanded="false">
+                    <a class="nav-link" id="listReporteNominaxPersona" href="listReporteNominaxPersona" data-bs-toggle="" aria-expanded="false">
                       <div class="d-flex align-items-center"><span class="nav-link-text">Reporte Nomina x Persona</span></div>
                     </a>
               </li>
