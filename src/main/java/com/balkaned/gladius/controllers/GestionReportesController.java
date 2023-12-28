@@ -1,5 +1,12 @@
 package com.balkaned.gladius.controllers;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
@@ -10,8 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @RestController
@@ -77,7 +90,7 @@ public class GestionReportesController {
         model.addAttribute("fichaEmp", empleado);
         model.addAttribute("xEmpAcumAnio", xEmpAcumAnio);
 
-        return new ModelAndView("public/gladius/gestionReporte/reporte5Categoria/listReporte5taNomina");
+        return new ModelAndView("public/gladius/gestionDePlanilla/reporte5Nomina/listReporte5taNomina");
     }
 
 
@@ -96,9 +109,18 @@ public class GestionReportesController {
 
 
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
-        return new ModelAndView("public/gladius/gestionReporte/reportePlanilla/listReportePlanillas");
+        return new ModelAndView("public/gladius/gestionDePlanilla/reportePlanilla/listReportePlanillas");
     }
 
+    @RequestMapping("/pdfResumenPla")
+    public ModelAndView pdfResumenPla(ModelMap model, HttpServletRequest request) throws FileNotFoundException {
+        logger.info("/listReportePlanillas");
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/reportePlanilla/listReportePlanillas");
+    }
 
     @RequestMapping("/listReportePlanillaxConcepto")
     public ModelAndView listReportePlanillaxConcepto(ModelMap model, HttpServletRequest request) {
@@ -137,7 +159,7 @@ public class GestionReportesController {
         model.addAttribute("xperfin", perfin);
 
 
-        return new ModelAndView("public/gladius/gestionReporte/listReportePlanillasXConceptos/listReportePlanillaxConcepto");
+        return new ModelAndView("public/gladius/gestionDePlanilla/listReportePlanillasXConceptos/listReportePlanillaxConcepto");
     }
 
     @RequestMapping("/listReporteNominaxPersona")
@@ -191,9 +213,8 @@ public class GestionReportesController {
         }
 
 
-
         model.addAttribute("LstEmpleadoRes", listarEmp);
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
-        return new ModelAndView("public/gladius/gestionReporte/ReportePlanillaXProceso/listReporteNominaxPersona");
+        return new ModelAndView("public/gladius/gestionDePlanilla/ReporteNominaXPersona/listReporteNominaxPersona");
     }
 }
