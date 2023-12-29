@@ -25,6 +25,7 @@ public class Sessionattributes {
         String user = (String) request.getSession().getAttribute("user");
         log.info("user:"+user);
         if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 

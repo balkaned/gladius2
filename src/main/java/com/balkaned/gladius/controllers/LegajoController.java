@@ -29,11 +29,15 @@ public class LegajoController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    Sessionattributes sessionattributes2;
+
     @RequestMapping("/legajo@{idTrab}")
     public ModelAndView legajo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         logger.info("/legajo");
 
         sessionattributes.getVariablesSession(model, request);
+
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 

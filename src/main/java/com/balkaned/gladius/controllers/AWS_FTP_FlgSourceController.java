@@ -398,40 +398,46 @@ public class AWS_FTP_FlgSourceController {
                     log.info("codciax:" + codciax);
                     log.info("idTrabx: " + idTrabx);
 
-                    Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
-
-                    if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
-                        logo = "cia.jpg";
-                    } else {
-                        logo = ciainfo.getUrlLogo();
-                    }
-
-                    if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
-                        fotoemp = "fotoemp.png";
-                    } else {
-                        fotoemp = empleado.getIexlogo();
-                    }
-
                     InputStream inputStreamfotoemp = null;
                     InputStream inputStreamlogo = null;
                     InputStream inputStreamRep = null;
 
-                    fileName = codciax + "/fotoemp/" + fotoemp;
-                    credentials = new BasicAWSCredentials(key_name, passPhrase);
+                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+                        Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
 
-                    S3Object o = null;
-                    s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                    o = s3.getObject(bucket_name, fileName);
-                    inputStreamfotoemp = o.getObjectContent();
-                    log.info("Obtiene FotoEmpl Path: " + fileName);
+                        if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
+                            logo = "cia.jpg";
+                        } else {
+                            logo = ciainfo.getUrlLogo();
+                        }
 
-                    AmazonS3 s4 = null;
-                    S3Object o2 = null;
-                    fileName = "img/" + logo;
-                    s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                    o2 = s4.getObject(bucket_name, fileName);
-                    inputStreamlogo = o2.getObjectContent();
-                    log.info("Obtiene Logo Path: " + fileName);
+                        if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
+                            fotoemp = "fotoemp.png";
+                        } else {
+                            fotoemp = empleado.getIexlogo();
+                        }
+                    }
+
+                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+
+                        fileName = codciax + "/fotoemp/" + fotoemp;
+                        credentials = new BasicAWSCredentials(key_name, passPhrase);
+                        S3Object o = null;
+                        s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        o = s3.getObject(bucket_name, fileName);
+                        inputStreamfotoemp = o.getObjectContent();
+                        log.info("Obtiene FotoEmpl Path: " + fileName);
+
+
+                        AmazonS3 s4 = null;
+                        S3Object o2 = null;
+                        fileName = "img/" + logo;
+                        s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        o2 = s4.getObject(bucket_name, fileName);
+                        inputStreamlogo = o2.getObjectContent();
+                        log.info("Obtiene Logo Path: " + fileName);
+                    }
+
 
                     AmazonS3 s5 = null;
                     S3Object o3 = null;
@@ -445,8 +451,21 @@ public class AWS_FTP_FlgSourceController {
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
-                    parametros.put("P_LOGO", inputStreamlogo);
-                    parametros.put("P_FOTO", inputStreamfotoemp);
+
+                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+                        parametros.put("P_LOGO", inputStreamlogo);
+                        parametros.put("P_FOTO", inputStreamfotoemp);
+                    }
+
+                    //Agregamos mas parametros al Reporte que vienen desde la url
+                    if (lspreport.size() > 0) {
+                        for (ParametroReport item : lspreport) {
+                            log.info("item.getNombreParametro(): " + item.getNombreParametro());
+                            log.info("item.getValorParametro(): " + item.getValorParametro());
+
+                            parametros.put(item.getNombreParametro(), item.getValorParametro());
+                        }
+                    }
 
                     log.info("Ruta reporte:" + path);
                     Connection conn = template.getDataSource().getConnection();
