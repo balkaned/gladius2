@@ -50,9 +50,11 @@ public class ProcesoFormulaController {
 			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(codigo);
 			model.addAttribute("slc_grpconcepto", codigo);
 			model.addAttribute("conceptoXProcesoList", conceptoXProcesoList);
+		} else {
+			model.addAttribute("slc_grpconcepto", '0');
 		}
 
-		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listConceptoXProceso");
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
 	}
 
 	@RequestMapping("/listFormulas")
@@ -73,5 +75,16 @@ public class ProcesoFormulaController {
 		logger.info("/formularCodigo");
 		sessionattributes.getVariablesSession(model, request);
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/formularCodigo");
+	}
+
+	@RequestMapping("/editarConceptoXProceso@{idProceso}@{idConcepto}")
+	public ModelAndView editarConceptoXProceso(
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String idConcepto
+	) {
+		sessionattributes.getVariablesSession(model, request);
+		logger.info("/editarConceptoXProceso");
+		logger.info("idProceso: " + idProceso);
+		logger.info("idConcepto: " + idConcepto);
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/nuevoConceptoXProceso");
 	}
 }
