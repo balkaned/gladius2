@@ -111,11 +111,16 @@
 								</label>
 							</div>
 
-							<div class="col-sm-3 col-md-3">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">
-									Concepto Resultado
-									<input class="form-control mt-2" name="descripcion" type="text" value="" placeholder="" required/>
-								</label>
+							<div>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="conResul">Concepto Resultado</label>
+								<div class="col-md-6 col-sm-6 ">
+									<select id="conResul" name="tip_concepto" class="form-control">
+										<option value="0">-- Seleccionar --</option>
+										<option value="1">Ejecucion Normal</option>
+										<option value="2">Resultado Salto</option>
+										<option value="3">Ejecucion Stored Procedure DB</option>
+									</select>
+								</div>
 							</div>
 
 							<div class="col-sm-3 col-md-3">
