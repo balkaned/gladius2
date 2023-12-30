@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.FormulaXConcepto;
 import com.balkaned.gladius.beans.ProcesoForm;
+import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,14 @@ public class ProcesoFormulaController {
 	ProcesoFormulaService service;
 
 	@Autowired
+	LovsService lovsService;
+
+	@Autowired
 	Sessionattributes sessionattributes;
 
 	static Logger logger = Logger.getLogger(AreaController.class.getName());
+
+	// Sección de Procesos y Fórmulas
 
 	@RequestMapping("/listProcesoFormulas")
 	public ModelAndView listConceptos(
@@ -38,6 +44,38 @@ public class ProcesoFormulaController {
 		model.addAttribute("proFosList", proFosList);
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listProcesoFormula");
 	}
+
+	@RequestMapping("/nuevoProcesoFormula")
+	public ModelAndView nuevoProcesoFormula(
+	 ModelMap model, HttpServletRequest request
+	) {
+		logger.info("/nuevoProcesoFormula");
+		sessionattributes.getVariablesSession(model, request);
+		model.addAttribute("Lovs_grpplanilla", lovsService.getLovs("55" , "%"));
+		model.addAttribute("Lovs_reglaboral", lovsService.getLovs("33" , "%"));
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/nuevoProcesoFormula");
+	}
+
+	@RequestMapping("/addProcesoFormula")
+	public ModelAndView addProcesoFormula(
+	 ModelMap model, HttpServletRequest request
+	) {
+		logger.info("/addProcesoFormula");
+		sessionattributes.getVariablesSession(model, request);
+		ProcesoForm procesoForm = new ProcesoForm();
+		procesoForm.setProdespro(request.getParameter("desProcesos"));
+		procesoForm.setProdescorto(request.getParameter("desCortoProcesos"));
+		procesoForm.setProcodregimenlab(request.getParameter("lov_regimenlab"));
+		procesoForm.setProgrppro(request.getParameter("lov_grpplanilla"));
+		procesoForm.setBolproceso(request.getParameter("reporteBoleta"));
+		procesoForm.setBolprocesoind(request.getParameter("reporteIndividual"));
+		procesoForm.setBolprocesores(request.getParameter("reporteResumen"));
+		procesoForm.setIdtipproceso(request.getParameter("tipoProceso"));
+		service.insertarProcesoFormula(procesoForm);
+		return new ModelAndView("redirect:/listProcesoFormulas");
+	}
+
+	// Sección de Conceptos X Proceso
 
 	@RequestMapping("/listConceptoXProceso@{accion}@{codigo}")
 	public ModelAndView listConcepto(
@@ -57,6 +95,19 @@ public class ProcesoFormulaController {
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
 	}
 
+	@RequestMapping("/editarConceptoXProceso@{idProceso}@{idConcepto}")
+	public ModelAndView editarConceptoXProceso(
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String idConcepto
+	) {
+		sessionattributes.getVariablesSession(model, request);
+		logger.info("/editarConceptoXProceso");
+		logger.info("idProceso: " + idProceso);
+		logger.info("idConcepto: " + idConcepto);
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/nuevoConceptoXProceso");
+	}
+
+	// Sección de Fórmulas
+
 	@RequestMapping("/listFormulas")
 	public ModelAndView listFormulas(
 	 ModelMap model, HttpServletRequest request
@@ -75,16 +126,5 @@ public class ProcesoFormulaController {
 		logger.info("/formularCodigo");
 		sessionattributes.getVariablesSession(model, request);
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/formularCodigo");
-	}
-
-	@RequestMapping("/editarConceptoXProceso@{idProceso}@{idConcepto}")
-	public ModelAndView editarConceptoXProceso(
-	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String idConcepto
-	) {
-		sessionattributes.getVariablesSession(model, request);
-		logger.info("/editarConceptoXProceso");
-		logger.info("idProceso: " + idProceso);
-		logger.info("idConcepto: " + idConcepto);
-		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/nuevoConceptoXProceso");
 	}
 }

@@ -7,6 +7,7 @@ import com.balkaned.gladius.beans.ProcesoForm;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -181,5 +182,27 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
             return list;
         });
+    }
+
+    @Override
+    public void insertarProcesoFormula(ProcesoForm proFo) {
+        String sqlQuery = "call pl_gestion_procesos(?,?,?,?,?,?,?,?,?,?)";
+        try {
+            template.update(
+             sqlQuery,
+             0,
+             proFo.getProdespro(),
+             proFo.getProdescorto(),
+             proFo.getProcodregimenlab(),
+             proFo.getProgrppro(),
+             "1",
+             proFo.getBolproceso(),
+             proFo.getIdtipproceso(),
+             proFo.getBolprocesoind(),
+             proFo.getBolprocesores()
+            );
+        } catch (DataAccessException e) {
+            log.error("Error al insertar proceso: " + e.getMessage());
+        }
     }
 }

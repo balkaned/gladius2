@@ -25,14 +25,14 @@
   <div class="content">
     <nav class="mb-2" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
-        <li class="breadcrumb-item active">Procesos y Form</li>
+        <li class="breadcrumb-item"><a href="#!">Page</a></li>
+        <li class="breadcrumb-item active">Default</li>
       </ol>
     </nav>
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Procesos y Formulas</h2>
+          <h2 id="h2top" class="mb-0">Procesos y Fórmulas</h2>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="nuevoProFo"><span class="fas fa-plus me-2"></span>Add proceso</a>
+            <a class="btn btn-primary" href="nuevoProcesoFormula"><span class="fas fa-plus me-2"></span>Add proceso</a>
           </div>
         </div>
       </div>

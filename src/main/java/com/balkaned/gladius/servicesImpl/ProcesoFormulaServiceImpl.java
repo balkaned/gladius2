@@ -35,4 +35,9 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
     public List<ConceptoXProceso> listConceptoXProceso(String id) {
         return dao.listConceptoXProceso(id);
     }
+
+    @Override
+    public void insertarProcesoFormula(ProcesoForm proFo) {
+        dao.insertarProcesoFormula(proFo);
+    }
 }
