@@ -13,6 +13,12 @@
 <head>
   <jsp:include page="../../../links.jsp"></jsp:include>
 </head>
+<script>
+  function remove() {
+    let option = confirm("Esta seguro de Eliminar el Registro?");
+    return option === true;
+  }
+</script>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -121,13 +127,13 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item " href="listConceptoXProceso@list@1">Conceptos</a>
+                      <a class="dropdown-item " href="listConceptoXProceso@@">Conceptos</a>
                       <a class="dropdown-item " href="listFormulas">Formulas</a>
                       <a class="dropdown-item " href="#!">Periodos</a>
                       <a class="dropdown-item " href="#!">Asig. Contable</a>
                       <a class="dropdown-item " href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                      <a class="dropdown-item text-danger" onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}">Eliminar</a></div>
                   </div>
                 </td>
               </tr>

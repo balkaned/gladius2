@@ -205,4 +205,17 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
             log.error("Error al insertar proceso: " + e.getMessage());
         }
     }
+
+    @Override
+    public void eliminarProcesoFormula(Integer id) {
+        String sqlQuery = "call pl_gestion_procesos(?,'','','0','','3','','','','')";
+        try {
+            template.update(
+             sqlQuery,
+             id
+            );
+        } catch (DataAccessException e) {
+            log.error("Error al eliminar proceso: " + e.getMessage());
+        }
+    }
 }

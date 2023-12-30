@@ -40,4 +40,9 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
     public void insertarProcesoFormula(ProcesoForm proFo) {
         dao.insertarProcesoFormula(proFo);
     }
+
+    @Override
+    public void eliminarProcesoFormula(Integer id) {
+        dao.eliminarProcesoFormula(id);
+    }
 }

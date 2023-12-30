@@ -75,6 +75,16 @@ public class ProcesoFormulaController {
 		return new ModelAndView("redirect:/listProcesoFormulas");
 	}
 
+	@RequestMapping("/eliminarProcesoFormula@{idProceso}")
+	public ModelAndView eliminarProcesoFormula(
+	 ModelMap model, HttpServletRequest request, @PathVariable Integer idProceso
+	) {
+		logger.info("/eliminarProcesoFormula");
+		sessionattributes.getVariablesSession(model, request);
+		service.eliminarProcesoFormula(idProceso);
+		return new ModelAndView("redirect:/listProcesoFormulas");
+	}
+
 	// Sección de Conceptos X Proceso
 
 	@RequestMapping("/listConceptoXProceso@{accion}@{codigo}")

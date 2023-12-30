@@ -13,4 +13,5 @@ public interface ProcesoFormulaService {
 	List<Proceso> listProceso(String id);
   List<ConceptoXProceso> listConceptoXProceso(String id);
 	void insertarProcesoFormula(ProcesoForm proFo);
+	void eliminarProcesoFormula(Integer id);
 }
