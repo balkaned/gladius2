@@ -8,4 +8,5 @@ import java.util.List;
 public interface ProcesoPlanillaDao {
     public List<ProcesoPlanilla> listar(String text);
     public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper);
+    ProcesoPlanilla listarPorProcodpro(Integer cod);
 }

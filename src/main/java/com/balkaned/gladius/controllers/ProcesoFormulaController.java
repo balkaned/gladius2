@@ -3,8 +3,10 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.FormulaXConcepto;
 import com.balkaned.gladius.beans.ProcesoForm;
+import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
+import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -26,6 +28,9 @@ public class ProcesoFormulaController {
 
 	@Autowired
 	LovsService lovsService;
+
+	@Autowired
+	ProcesoPlanillaService procesoPlanillaService;
 
 	@Autowired
 	Sessionattributes sessionattributes;
@@ -87,18 +92,25 @@ public class ProcesoFormulaController {
 
 	// Sección de Conceptos X Proceso
 
-	@RequestMapping("/listConceptoXProceso@{accion}@{codigo}")
+	@RequestMapping("/listConceptoXProceso@{proceso}@{codigo}")
 	public ModelAndView listConcepto(
-	 ModelMap model, HttpServletRequest request, @PathVariable String accion, @PathVariable String codigo
+	 ModelMap model, HttpServletRequest request, @PathVariable String proceso, @PathVariable String codigo
 	) {
 		logger.info("/listConceptoXProceso");
 		sessionattributes.getVariablesSession(model, request);
 
-		if (Objects.equals(accion, "QRY") && Objects.nonNull(codigo)) {
+		if (Objects.nonNull(proceso)) {
+			ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(proceso));
+			model.addAttribute("slc_proceso", proceso);
+			model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
+		}
+
+		if (Objects.nonNull(codigo)) {
 			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(codigo);
 			model.addAttribute("slc_grpconcepto", codigo);
 			model.addAttribute("conceptoXProcesoList", conceptoXProcesoList);
-		} else {
+		}
+		else {
 			model.addAttribute("slc_grpconcepto", '0');
 		}
 

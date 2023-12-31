@@ -17,6 +17,10 @@ public class ProcesoPlanillaServiceImpl implements ProcesoPlanillaService {
     public List<ProcesoPlanilla> listar(String text){
         return dao.listar(text);
     }
-    public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper) {return dao.listarAsieCab(codcia,codpro,nroper);};
+    public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper) {return dao.listarAsieCab(codcia,codpro,nroper);}
 
+    @Override
+    public ProcesoPlanilla listarPorProcodpro(Integer cod) {
+        return dao.listarPorProcodpro(cod);
+    }
 }

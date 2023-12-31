@@ -2,11 +2,8 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.AsientoContableCab;
-import com.balkaned.gladius.beans.BancoPro;
 import com.balkaned.gladius.beans.ProcesoPlanilla;
-import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -118,5 +115,25 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
         });
     }
 
-
+    @Override
+    public ProcesoPlanilla listarPorProcodpro(Integer cod) {
+        String sqlQuery = "select procodpro, prodespro, prodescorto, procodregimenlab, progrppro, " +
+         "bolproceso, idtipproceso, bolprocesoind, bolprocesores from iexprocesos p  where procodpro= '" + cod + "' " +
+         "order by 1 asc";
+        return template.query(sqlQuery, rs -> {
+            ProcesoPlanilla p = new ProcesoPlanilla();
+            while (rs.next()) {
+                p.setIdProceso(rs.getInt("procodpro"));
+                p.setDesProceso(rs.getString("prodespro"));
+                p.setDesProcesoCorto(rs.getString("prodescorto"));
+                p.setIdRegLab(rs.getString("procodregimenlab"));
+                p.setDesGrp(rs.getString("progrppro"));
+                p.setBolProceso(rs.getString("bolproceso"));
+                p.setIdTipProceso(rs.getString("idtipproceso"));
+                p.setBolProcesoind(rs.getString("bolprocesoind"));
+                p.setBolProcesores(rs.getString("bolprocesores"));
+            }
+            return p;
+        });
+    }
 }

@@ -15,7 +15,7 @@
 </head>
 <script>
   function obtenerListaConcepto() {
-    window.location.href = '${pageContext.request.contextPath}/listConceptoXProceso@QRY@'+document.getElementById('select_concepto').value;
+    window.location.href = '${pageContext.request.contextPath}/listConceptoXProceso@${requestScope.slc_proceso}@'+document.getElementById('select_concepto').value;
   }
 </script>
 <body>
@@ -37,7 +37,7 @@
 		<div class="mb-9">
 			<div class="row g-3 mb-4">
 				<div class="col-auto">
-					<h2 id="h2top" class="mb-0">Conceptos</h2>
+					<h2 id="h2top" class="mb-0">${requestScope.pplanillax}</h2>
 				</div>
 			</div>
 		</div>
