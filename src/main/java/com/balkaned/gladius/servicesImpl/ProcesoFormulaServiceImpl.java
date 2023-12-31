@@ -42,6 +42,11 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
     }
 
     @Override
+    public void insertarConceptoXProceso(ConceptoXProceso cxp) {
+        dao.insertarConceptoXProceso(cxp);
+    }
+
+    @Override
     public void editarConceptoXProceso(ConceptoXProceso cxp) {
         dao.editarConceptoXProceso(cxp);
     }

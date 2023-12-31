@@ -86,6 +86,30 @@ public class ConceptoDaoImpl implements ConceptoDao {
     }
 
     @Override
+    public List<Concepto> listarConceptoIns(Integer idProceso) {
+        String sqlQuery = "select coocodcon, coodescon from iexconcepto where coocodcon not in " +
+         " (select procodcon from iexproxconcepto where procodpro="+idProceso+"  ) ";
+        try {
+            return template.query(sqlQuery, rs -> {
+                List<Concepto> list = new ArrayList<>();
+
+                while (rs.next()) {
+                    Concepto con = new Concepto();
+                    con.setCodConcepto(rs.getString("coocodcon"));
+                    con.setDesConcepto(rs.getString("coodescon"));
+
+                    list.add(con);
+                }
+
+                return list;
+            });
+        } catch (Exception e) {
+            logger.info("Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public void insertarConcepto(Concepto concepto) {
         template.update("INSERT INTO iexconcepto " +
                         "(coocodcon, " +
