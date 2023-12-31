@@ -128,7 +128,7 @@
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
                       <a class="dropdown-item " href="listConceptoXProceso@${profo.procodpro}@">Conceptos</a>
-                      <a class="dropdown-item " href="listFormulas">Formulas</a>
+                      <a class="dropdown-item " href="listFormulas@${profo.procodpro}">Formulas</a>
                       <a class="dropdown-item " href="#!">Periodos</a>
                       <a class="dropdown-item " href="#!">Asig. Contable</a>
                       <a class="dropdown-item " href="#!">Editar</a>
