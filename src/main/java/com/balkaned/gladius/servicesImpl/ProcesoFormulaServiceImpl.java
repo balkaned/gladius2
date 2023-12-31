@@ -32,8 +32,8 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
     }
 
     @Override
-    public List<ConceptoXProceso> listConceptoXProceso(String id) {
-        return dao.listConceptoXProceso(id);
+    public List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon) {
+        return dao.listConceptoXProceso(idproceso, tipcon);
     }
 
     @Override

@@ -106,7 +106,7 @@ public class ProcesoFormulaController {
 		}
 
 		if (Objects.nonNull(codigo)) {
-			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(codigo);
+			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(Integer.valueOf(proceso), codigo);
 			model.addAttribute("slc_grpconcepto", codigo);
 			model.addAttribute("conceptoXProcesoList", conceptoXProcesoList);
 		}

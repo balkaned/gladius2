@@ -150,7 +150,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     }
 
     @Override
-    public List<ConceptoXProceso> listConceptoXProceso(String id) {
+    public List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon) {
         String sqlQuery = "select " +
                         "procodpro, " +
                         "procodcon, " +
@@ -161,9 +161,8 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                         "provalor, " +
                         "protipcon, " +
                         "prodescustom " +
-                        "from iexproxconcepto " +
-         "inner join iexconcepto on procodcon = coocodcon " +
-         "where procodpro= 1  and  protipcon='" + id + "'";
+                        "from iexproxconcepto inner join iexconcepto on procodcon = coocodcon"
+                + "  where procodpro="+idproceso+"  and  protipcon='"+tipcon+"'";
         return template.query(sqlQuery, rs -> {
             List<ConceptoXProceso> list = new ArrayList<>();
 
@@ -176,6 +175,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 p.setProflgbol(rs.getString("proflgbol"));
                 p.setProorden(rs.getInt("proorden"));
                 p.setProvalor(rs.getDouble("provalor"));
+                p.setProtipcon(rs.getString("protipcon"));
                 p.setProdescustom(rs.getString("prodescustom"));
                 list.add(p);
             }
