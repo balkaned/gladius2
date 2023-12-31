@@ -138,15 +138,14 @@ public class ProcesoFormulaController {
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/editarConceptoXProceso");
 	}
 
-	@RequestMapping("/editConceptoXProceso@{idProceso}")
+	@RequestMapping("/editConceptoXProceso@{idProceso}@{procodcon}")
 	public ModelAndView editConceptoXProceso(
-	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String procodcon
 	) {
 		logger.info("/editConceptoXProceso");
 		sessionattributes.getVariablesSession(model, request);
 		try {
 			Integer codproceso = Integer.valueOf(request.getParameter("idproceso"));
-			String codcon = request.getParameter("id_concept");
 			String tip_con = request.getParameter("tip_concepto");
 			String codcon_pdt = request.getParameter("id_concept_pdt");
 			String flg_bol = request.getParameter("flg_boleta");
@@ -181,7 +180,7 @@ public class ProcesoFormulaController {
 			}
 			ConceptoXProceso p = new ConceptoXProceso();
 			p.setProcodpro(codproceso);
-			p.setProcodcon(codcon);
+			p.setProcodcon(procodcon);
 			p.setProcodconpdt(codcon_pdt);
 			p.setProflgbol(flg_bol);
 			p.setProorden(Integer.valueOf(orden));
@@ -208,6 +207,7 @@ public class ProcesoFormulaController {
 			p.setFlg_promediable(flg_promediable);
 			p.setFlg_agrupable(flg_agrupable);
 			p.setNro_meses_atras(nro_meses_atras);
+			logger.info("ConceptoXProceso: " + p);
 			service.editarConceptoXProceso(p);
 		}
 		catch (Exception e) {

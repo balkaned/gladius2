@@ -257,14 +257,28 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     @Override
     public void editarConceptoXProceso(ConceptoXProceso cxp) {
-        String sqlQuery = "update iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, provalor = ?, " +
-         "protipcon = ?, prodescustom = ?, tip_ingreso = ?, flg_pry_5ta = ?, flg_des_5ta_mes = ?, flg_ess_reg = ?, " +
-         " flg_ess_pesq = ?, flg_ess_agrac = ?, flg_ess_sctr = ?, flg_extra_solid = ?, flg_fondo_art = ?, " +
-         " flg_apo_senati  = ?, flg_onp = ?, flg_afp = ?, flg_fond_compl_jub = ?, flg_esp_pens_pesq = ?, flg_5ta  = ?" +
-         " , " +
-         " flg_ess_seg_pen = ?, flg_cont_asis_previs= ?, flg_promediable = ?, flg_agrupable = ?, nro_meses_prom_atras" +
-         " = ? " +
-         "where procodpro = ? and trim(procodcon)=trim(?) ";
+        String sqlQuery = "  update  iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, provalor = ?, protipcon = ?, prodescustom = ? , "
+                + "tip_ingreso = ?, " +
+                  "flg_pry_5ta = ?, " +
+                 " flg_des_5ta_mes = ?, " +
+                " flg_ess_reg = ?, " +
+                " flg_ess_pesq = ?, " +
+                " flg_ess_agrac = ?, " +
+                " flg_ess_sctr = ?, " +
+                " flg_extra_solid = ?, " +
+                " flg_fondo_art = ?, " +
+                " flg_apo_senati  = ?, " +
+                "  flg_onp = ?, " +
+                " flg_afp = ?, " +
+                " flg_fond_compl_jub = ?, " +
+                " flg_esp_pens_pesq = ?, " +
+                " flg_5ta  = ? , " +
+                " flg_ess_seg_pen = ?, " +
+                " flg_cont_asis_previs= ? ," +
+                " flg_promediable = ? ,"+
+                " flg_agrupable = ? ,"+
+                " nro_meses_prom_atras = ? "+
+                "where procodpro = ? and trim(procodcon)=trim(?) ";
         try {
             template.update(sqlQuery, cxp.getProcodconpdt(), cxp.getProflgbol(), cxp.getProorden(), cxp.getProvalor()
              , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),

@@ -34,7 +34,9 @@
 			<div class="row g-5">
 				<div class="col-xl-7">
 					<div class="row gx-3 gy-4">
-						<form class="row g-4 mb-0 needs-validation" method="POST" action="editConceptoXProceso@${requestScope.slc_proceso}" novalidate>
+						<form class="row g-4 mb-0 needs-validation" method="POST"
+									action="editConceptoXProceso@${requestScope.slc_proceso}@${requestScope.proconceptox.procodcon}"
+									novalidate>
 							<h2>${requestScope.pplanillax} - [${requestScope.proconceptox.coodescon}]</h2>
 
 							<input type="hidden" id="idproceso" name="idproceso" style="width: 170px;" maxlength="50"
@@ -43,9 +45,8 @@
 							<!-- input -->
 							<div class="col-sm-6 col-md-12">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_concept">Concepto</label>
-								<input class="form-control" id="id_concept" name="id_concept" type="number"
-											 value="${requestScope.proconceptox.procodcon}"
-											 placeholder="${requestScope.proconceptox.procodcon}" disabled/>
+								<input class="form-control" id="id_concept" name="id_concept" type="text"
+											 maxlength="50" value="${requestScope.proconceptox.procodcon}" disabled/>
 							</div>
 
 							<!-- select -->
