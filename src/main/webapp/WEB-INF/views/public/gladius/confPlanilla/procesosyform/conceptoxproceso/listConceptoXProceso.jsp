@@ -30,8 +30,8 @@
 	<div class="content">
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
-				<li class="breadcrumb-item active">Procesos y Forms</li>
+				<li class="breadcrumb-item"><a href="#!">Page</a></li>
+				<li class="breadcrumb-item active">Default</li>
 			</ol>
 		</nav>
 		<div class="mb-9">
@@ -118,7 +118,7 @@
 														aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span
 										 class="fas fa-ellipsis-h fs--2"></span></button>
 										<div class="dropdown-menu dropdown-menu-end py-2">
-											<a class="dropdown-item" href="editarConceptoXProceso@1@1">Editar</a>
+											<a class="dropdown-item" href="editarConceptoXProceso@${requestScope.slc_proceso}@${conceptoXProceso.procodcon}">Editar</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
 									</div>

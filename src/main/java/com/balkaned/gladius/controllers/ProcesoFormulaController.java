@@ -56,8 +56,8 @@ public class ProcesoFormulaController {
 	) {
 		logger.info("/nuevoProcesoFormula");
 		sessionattributes.getVariablesSession(model, request);
-		model.addAttribute("Lovs_grpplanilla", lovsService.getLovs("55" , "%"));
-		model.addAttribute("Lovs_reglaboral", lovsService.getLovs("33" , "%"));
+		model.addAttribute("Lovs_grpplanilla", lovsService.getLovs("55", "%"));
+		model.addAttribute("Lovs_reglaboral", lovsService.getLovs("33", "%"));
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/nuevoProcesoFormula");
 	}
 
@@ -123,9 +123,97 @@ public class ProcesoFormulaController {
 	) {
 		sessionattributes.getVariablesSession(model, request);
 		logger.info("/editarConceptoXProceso");
-		logger.info("idProceso: " + idProceso);
-		logger.info("idConcepto: " + idConcepto);
-		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/nuevoConceptoXProceso");
+		if (Objects.nonNull(idProceso)) {
+			ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(idProceso));
+			model.addAttribute("slc_proceso", idProceso);
+			model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
+		}
+
+		if (Objects.nonNull(idConcepto)) {
+			model.addAttribute("slc_grpconcepto", idConcepto);
+			ConceptoXProceso conceptoXProceso = service.getConceptoXProceso(Integer.valueOf(idProceso), idConcepto);
+			model.addAttribute("proconceptox", conceptoXProceso);
+		}
+
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/editarConceptoXProceso");
+	}
+
+	@RequestMapping("/editConceptoXProceso@{idProceso}")
+	public ModelAndView editConceptoXProceso(
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso
+	) {
+		logger.info("/editConceptoXProceso");
+		sessionattributes.getVariablesSession(model, request);
+		try {
+			Integer codproceso = Integer.valueOf(request.getParameter("idproceso"));
+			String codcon = request.getParameter("id_concept");
+			String tip_con = request.getParameter("tip_concepto");
+			String codcon_pdt = request.getParameter("id_concept_pdt");
+			String flg_bol = request.getParameter("flg_boleta");
+			String orden = request.getParameter("id_orden_bol");
+			String valor = request.getParameter("valor_bol");
+			String des_custom = request.getParameter("des_custom");
+			String tip_ingreso = request.getParameter("tip_ingreso");
+			String flg_pry_5ta = request.getParameter("flg_pry_5ta");
+			String flg_des_5ta_mes = request.getParameter("flg_des_5ta_mes");
+			String flg_ess_reg = request.getParameter("flg_ess_reg");
+			String flg_ess_pesq = request.getParameter("flg_ess_pesq");
+			String flg_ess_agrac = request.getParameter("flg_ess_agrac");
+			String flg_ess_sctr = request.getParameter("flg_ess_sctr");
+			String flg_extra_solid = request.getParameter("flg_extra_solid");
+			String flg_fondo_art = request.getParameter("flg_fondo_art");
+			String flg_apo_senati = request.getParameter("flg_apo_senati");
+			String flg_onp = request.getParameter("flg_onp");
+			String flg_afp = request.getParameter("flg_afp");
+			String flg_fond_compl_jub = request.getParameter("flg_fond_compl_jub");
+			String flg_esp_pens_pesq = request.getParameter("flg_esp_pens_pesq");
+			String flg_5ta = request.getParameter("flg_5ta");
+			String flg_ess_seg_pen = request.getParameter("flg_ess_seg_pen");
+			String flg_cont_asis_previs = request.getParameter("flg_cont_asis_previs");
+			String flg_promediable = request.getParameter("flg_promediable");
+			String flg_agrupable = request.getParameter("flg_agrupable");
+			int nro_meses_atras;
+			if (request.getParameter("nro_meses_atras") == null) {
+				nro_meses_atras = 0;
+			}
+			else {
+				nro_meses_atras = Integer.valueOf(request.getParameter("nro_meses_atras"));
+			}
+			ConceptoXProceso p = new ConceptoXProceso();
+			p.setProcodpro(codproceso);
+			p.setProcodcon(codcon);
+			p.setProcodconpdt(codcon_pdt);
+			p.setProflgbol(flg_bol);
+			p.setProorden(Integer.valueOf(orden));
+			p.setProvalor(Double.valueOf(valor));
+			p.setProtipcon(tip_con);
+			p.setProdescustom(des_custom);
+			p.setTip_ingreso(tip_ingreso);
+			p.setFlg_pry_5ta(flg_pry_5ta);
+			p.setFlg_des_5ta_mes(flg_des_5ta_mes);
+			p.setFlg_ess_reg(flg_ess_reg);
+			p.setFlg_ess_pesq(flg_ess_pesq);
+			p.setFlg_ess_agrac(flg_ess_agrac);
+			p.setFlg_ess_sctr(flg_ess_sctr);
+			p.setFlg_extra_solid(flg_extra_solid);
+			p.setFlg_fondo_art(flg_fondo_art);
+			p.setFlg_apo_senati(flg_apo_senati);
+			p.setFlg_onp(flg_onp);
+			p.setFlg_afp(flg_afp);
+			p.setFlg_fond_compl_jub(flg_fond_compl_jub);
+			p.setFlg_esp_pens_pesq(flg_esp_pens_pesq);
+			p.setFlg_5ta(flg_5ta);
+			p.setFlg_ess_seg_pen(flg_ess_seg_pen);
+			p.setFlg_cont_asis_previs(flg_cont_asis_previs);
+			p.setFlg_promediable(flg_promediable);
+			p.setFlg_agrupable(flg_agrupable);
+			p.setNro_meses_atras(nro_meses_atras);
+			service.editarConceptoXProceso(p);
+		}
+		catch (Exception e) {
+			logger.info("Error: " + e.getMessage());
+		}
+		return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso + "@");
 	}
 
 	// Sección de Fórmulas

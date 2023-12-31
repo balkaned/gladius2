@@ -12,6 +12,8 @@ public interface ProcesoFormulaDao {
     List<FormulaXConcepto> listFormulaXConcepto();
     List<Proceso> listConcepto(String id);
     List<ConceptoXProceso> listConceptoXProceso(String id);
+    ConceptoXProceso getConceptoXProceso(Integer idproceso, String idconcepto);
+    void editarConceptoXProceso(ConceptoXProceso cxp);
     void insertarProcesoFormula(ProcesoForm proFo);
     void eliminarProcesoFormula(Integer id);
 }
