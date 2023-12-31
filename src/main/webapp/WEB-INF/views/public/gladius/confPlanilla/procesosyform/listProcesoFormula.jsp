@@ -130,7 +130,7 @@
                       <a class="dropdown-item " href="listConceptoXProceso@${profo.procodpro}@">Conceptos</a>
                       <a class="dropdown-item " href="listFormulas@${profo.procodpro}">Formulas</a>
                       <a class="dropdown-item " href="#!">Periodos</a>
-                      <a class="dropdown-item " href="#!">Asig. Contable</a>
+                      <a class="dropdown-item " href="listAsignacionContable@${profo.procodpro}">Asig. Contable</a>
                       <a class="dropdown-item " href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-danger" onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}">Eliminar</a></div>
