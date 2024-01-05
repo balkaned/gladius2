@@ -15,7 +15,7 @@
 </head>
 <script>
   function obtenerListaConcepto() {
-    window.location.href = '${pageContext.request.contextPath}/listConceptoXProceso@${requestScope.slc_proceso}@'+document.getElementById('select_concepto').value;
+    window.location.href = '${pageContext.request.contextPath}/listAsignacionContable@${requestScope.idxproceso}';
   }
 </script>
 <body>
@@ -71,7 +71,7 @@
 					<div class="col-auto">
 						<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export
 						</button>
-						<a class="btn btn-primary" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add concepto</a>
+						<a class="btn btn-primary" href=""><span class="fas fa-plus me-2"></span>Add Asig. Ctb.</a>
 					</div>
 				</div>
 			</div>
@@ -86,14 +86,15 @@
 												 data-bulk-select='{"body":"order-table-body"}'/>
 								</div>
 							</th>
-							<th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID
+							<th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">CODIGO
 							</th>
 							<th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
+							<th class="sort align-middle text-center pe-0" scope="col" data-sort="date">NRO. ASIGNA. CTB.</th>
 							<th class="sort align-middle text-center pe-0" scope="col">ACCION</th>
 						</tr>
 						</thead>
 						<tbody class="list" id="order-table-body">
-						<c:forEach var="conceptoXProceso" items="${requestScope.conceptoXProcesoList}">
+						<c:forEach var="LstconceptoxProcesopCtb" items="${requestScope.LstconceptoxProcesopCtb}">
 							<tr class="hover-actions-trigger btn-reveal-trigger position-static">
 								<td class="fs--1 align-middle px-0 py-3">
 									<div class="form-check mb-0 fs-0">
@@ -102,13 +103,18 @@
 									</div>
 								</td>
 								<td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold"
-																																					href="#!">#${conceptoXProceso.procodcon}</a>
+																																					href="#!">#${LstconceptoxProcesopCtb.procodcon}</a>
 								</td>
 								<td class="total align-middle text-start ps-5 fw-semi-bold text-1000">
                   <span class="badge badge-phoenix fs--1 badge-phoenix-secondary">
                     <span class="badge-label">
-												${conceptoXProceso.coodescon}
+												${LstconceptoxProcesopCtb.coodescon}
 										</span>
+                  </span>
+								</td>
+								<td class="total align-middle text-start ps-5 fw-semi-bold text-1000">
+                  <span class="badge badge-phoenix fs--1 badge-phoenix-secondary">
+												${LstconceptoxProcesopCtb.provalor}
                   </span>
 								</td>
 								<td class="align-middle text-center white-space-nowrap pe-0 action">
@@ -118,7 +124,7 @@
 														aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span
 										 class="fas fa-ellipsis-h fs--2"></span></button>
 										<div class="dropdown-menu dropdown-menu-end py-2">
-											<a class="dropdown-item" href="editarConceptoXProceso@${requestScope.slc_proceso}@${conceptoXProceso.procodcon}">Editar</a>
+											<a class="dropdown-item" href="#!">Actualizar</a></div>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
 									</div>

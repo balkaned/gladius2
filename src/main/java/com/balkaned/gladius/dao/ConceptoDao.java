@@ -10,6 +10,8 @@ public interface ConceptoDao {
 
     List<Concepto> listConceptos();
 
+    List<Concepto> listarConceptoIns(Integer idProceso);
+
     void insertarConcepto(Concepto concepto);
 
     Concepto getById(String id);

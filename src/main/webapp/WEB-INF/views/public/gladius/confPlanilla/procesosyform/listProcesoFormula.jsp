@@ -13,6 +13,12 @@
 <head>
   <jsp:include page="../../../links.jsp"></jsp:include>
 </head>
+<script>
+  function remove() {
+    let option = confirm("Esta seguro de Eliminar el Registro?");
+    return option === true;
+  }
+</script>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -25,14 +31,14 @@
   <div class="content">
     <nav class="mb-2" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
-        <li class="breadcrumb-item active">Procesos y Form</li>
+        <li class="breadcrumb-item"><a href="#!">Page</a></li>
+        <li class="breadcrumb-item active">Default</li>
       </ol>
     </nav>
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Procesos y Formulas</h2>
+          <h2 id="h2top" class="mb-0">Procesos y Fórmulas</h2>
         </div>
       </div>
     </div>
@@ -82,7 +88,7 @@
           </div>
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-            <a class="btn btn-primary" href="nuevoProFo"><span class="fas fa-plus me-2"></span>Add proceso</a>
+            <a class="btn btn-primary" href="nuevoProcesoFormula"><span class="fas fa-plus me-2"></span>Add proceso</a>
           </div>
         </div>
       </div>
@@ -121,13 +127,13 @@
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
                             aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item " href="listConceptoXProceso@list@1">Conceptos</a>
-                      <a class="dropdown-item " href="listFormulas">Formulas</a>
+                      <a class="dropdown-item " href="listConceptoXProceso@${profo.procodpro}@">Conceptos</a>
+                      <a class="dropdown-item " href="listFormulas@${profo.procodpro}">Formulas</a>
                       <a class="dropdown-item " href="#!">Periodos</a>
-                      <a class="dropdown-item " href="#!">Asig. Contable</a>
+                      <a class="dropdown-item " href="listAsignacionContable@${profo.procodpro}">Asig. Contable</a>
                       <a class="dropdown-item " href="#!">Editar</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-danger" href="#!">Eliminar</a></div>
+                      <a class="dropdown-item text-danger" onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}">Eliminar</a></div>
                   </div>
                 </td>
               </tr>
