@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.AsientoContableCab;
 import com.balkaned.gladius.beans.BancoPro;
+import com.balkaned.gladius.beans.ProcesoPeriodo;
 import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
@@ -110,6 +111,84 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     p.setTot_deb_na(rs.getDouble("tot_deb_na"));
                     p.setTot_cre_me(rs.getDouble("tot_cre_me"));
                     p.setTot_deb_me(rs.getDouble("tot_deb_me"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes){
+        String sql = "  select  e.iexcodcia," +
+                "  case " +
+                "  when substring(e.iexpermes,5,2) ='01' then  'Enero' " +
+                "  when substring(e.iexpermes,5,2) ='02' then  'Febrero' " +
+                "  when substring(e.iexpermes,5,2) ='03' then  'Marzo' " +
+                "  when substring(e.iexpermes,5,2) ='04' then  'Abril' " +
+                "  when substring(e.iexpermes,5,2) ='05' then  'Mayo' " +
+                "  when substring(e.iexpermes,5,2) ='06' then  'Junio' " +
+                "  when substring(e.iexpermes,5,2) ='07' then  'Julio' " +
+                "  when substring(e.iexpermes,5,2) ='08' then  'Agosto' " +
+                "  when substring(e.iexpermes,5,2) ='09' then  'Setiembre' " +
+                "  when substring(e.iexpermes,5,2) ='10' then  'Octubre' " +
+                "  when substring(e.iexpermes,5,2) ='11' then  'Noviembre' " +
+                "  when substring(e.iexpermes,5,2) ='12' then  'Diciembre'  " +
+                " else " +
+                " 'Sin mes' " +
+                " end desmes, " +
+                " substring(e.iexpermes,5,2) as permes, " +
+                " p.procodregimenlab, " +
+                " e.iexpermes, " +
+                " e.iexanio, " +
+                " e.iexnroper, " +
+                " e.iexfecini, " +
+                " e.iexfecfin, " +
+                " e.timerfecini, " +
+                " e.timerfecfin, "+
+                " e.iexfecpago, "+
+                " e.flgestado, "+
+                " p.progrppro, " +
+                " p.procodpro iexcodpro, " +
+                " p.prodespro, " +
+                " case " +
+                "  when flgestado ='1' then 'Creado' " +
+                "  when flgestado ='2' then 'Procesado' " +
+                "  when flgestado ='3' then 'Cerrado' " +
+                "  else " +
+                "   'sin estado' " +
+                "  end desestado " +
+                " from iexprocesos p,  iexproperiodo e " +
+                " where " +
+                " p.procodpro = e.iexcodpro and " +
+                " e.iexcodcia ="+codcia+" and " +
+                " iexpermes like '%"+permes+"%' and " +
+                " procodregimenlab='"+regpla+"' order by e.iexpermes, p.progrppro, e.iexnroper asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<ProcesoPeriodo>>() {
+
+            public List<ProcesoPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ProcesoPeriodo> lista = new ArrayList<ProcesoPeriodo>();
+
+                while(rs.next()) {
+                    ProcesoPeriodo p = new ProcesoPeriodo();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodpro(rs.getInt("iexcodpro"));
+                    p.setIexanio(rs.getString("iexanio"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+                    p.setIexpermes(rs.getString("iexpermes"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setTimerfecini(rs.getString("timerfecini"));
+                    p.setTimerfecfin(rs.getString("timerfecfin"));
+                    p.setIexfecpago(rs.getString("iexfecpago"));
+                    p.setFlgestado(rs.getString("flgestado"));
+                    p.setDesproceso(rs.getString("prodespro"));
+                    p.setDesestado(rs.getString("desestado"));
+                    p.setDesgrppla(rs.getString("progrppro"));
+                    p.setDesmes(rs.getString("desmes"));
+                    p.setCodregimen(rs.getString("procodregimenlab"));
 
                     lista.add(p);
                 }

@@ -1,24 +1,26 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Area;
-import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.services.AreaService;
+import com.balkaned.gladius.services.LovsService;
+import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
+import net.sf.jasperreports.engine.export.HtmlExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
-public class AreaController {
-    static Logger logger = Logger.getLogger(AreaController.class.getName());
+@Slf4j
+public class PlanillaController {
     @Autowired
-    AreaService areaService;
+    ProcesoPlanillaService procesoPlanillaService;
 
     @Autowired
     LovsService lovsService;
@@ -27,35 +29,35 @@ public class AreaController {
     Sessionattributes sessionattributes;
 
 
-    @RequestMapping("/listAreas")
-    public ModelAndView listAreas(ModelMap model, HttpServletRequest request) {
-        logger.info("/listAreas");
+    @RequestMapping("/listPlanillaGeneral")
+    public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
+        log.info("/listPlanillaGeneral");
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        List<Area> areasList = areaService.listarArea(idCompania, "");
-        logger.info("areasList: " + areasList);
-        model.addAttribute("areasList", areasList);
+        model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
 
-        return new ModelAndView("public/gladius/organizacion/areas/listAreas");
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/planillaGeneral");
     }
 
-    @RequestMapping("/nuevaArea")
-    public ModelAndView nuevaArea(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaArea");
+    @RequestMapping("/buscarPlanillaGen")
+    public ModelAndView buscarPlanillaGen(ModelMap model, HttpServletRequest request) {
+        log.info("/buscarPlanillaGen");
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        model.addAttribute("lovCatArea", lovsService.getLovs("62", "%"));
-        model.addAttribute("lovArea", areaService.listarArea(idCompania, ""));
-        model.addAttribute("idx", areaService.getIdArea(idCompania));
+        String iexcodreg = request.getParameter("iexcodreg");
+        String iexpermes = request.getParameter("iexpermes");
 
-        return new ModelAndView("public/gladius/organizacion/areas/nuevaArea");
+        model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
+        model.addAttribute("List_Procesos",procesoPlanillaService.listarProRegpla(idCompania,iexcodreg,iexpermes));
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/planillaGeneral");
     }
 
-    @RequestMapping("/insertarArea")
+    /*@RequestMapping("/insertarArea")
     public ModelAndView insertarArea(ModelMap model, HttpServletRequest request) {
         logger.info("/insertarArea");
 
@@ -146,7 +148,7 @@ public class AreaController {
         areaService.eliminarArea(area);
 
         return new ModelAndView("redirect:/listAreas");
-    }
+    }*/
 
 }
 
