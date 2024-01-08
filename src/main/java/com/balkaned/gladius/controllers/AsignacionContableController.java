@@ -39,8 +39,8 @@ public class AsignacionContableController {
 		String slc_grpconcepto = request.getParameter("slc_grpconcepto");
 		HttpSession session = request.getSession(true);
 		Integer xcodcia = (Integer) session.getAttribute("codcia");
-		ProcesoPlanilla pplanilla = procesoPlanillaService.listarPorProcodpro(idProceso);
-		request.setAttribute("pplanillax", pplanilla.getDesProceso());
+		//ProcesoPlanilla pplanilla = procesoPlanillaService.listarPorProcodpro(idProceso);
+		//request.setAttribute("pplanillax", pplanilla.getDesProceso());
 		request.setAttribute("idxproceso", idProceso);
 		List<ConceptoXProceso> listap = conceptoXProcesoService.listarTipconCtb(xcodcia, idProceso, slc_grpconcepto);
 		request.setAttribute("LstconceptoxProcesopCtb", listap);

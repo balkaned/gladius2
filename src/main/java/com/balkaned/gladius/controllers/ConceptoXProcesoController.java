@@ -43,9 +43,9 @@ public class ConceptoXProcesoController {
 		sessionattributes.getVariablesSession(model, request);
 
 		if (proceso != null) {
-			ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(proceso));
+			//ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(proceso));
 			model.addAttribute("slc_proceso", proceso);
-			model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
+			//model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
 		}
 
 		if (codigo != null && !codigo.isEmpty()) {
@@ -164,9 +164,9 @@ public class ConceptoXProcesoController {
 		sessionattributes.getVariablesSession(model, request);
 		logger.info("/editarConceptoXProceso");
 		if (Objects.nonNull(idProceso)) {
-			ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(idProceso));
+			//ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(idProceso));
 			model.addAttribute("slc_proceso", idProceso);
-			model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
+			//model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
 		}
 
 		if (Objects.nonNull(idConcepto)) {

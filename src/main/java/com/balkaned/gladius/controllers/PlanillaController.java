@@ -1,6 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Area;
+import com.balkaned.gladius.beans.ProcesoPeriodo;
 import com.balkaned.gladius.services.AreaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoPlanillaService;
@@ -57,37 +58,52 @@ public class PlanillaController {
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/planillaGeneral");
     }
 
-    /*@RequestMapping("/insertarArea")
-    public ModelAndView insertarArea(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarArea");
+    @RequestMapping("/insertarPeriodoPlan")
+    public ModelAndView insertarPeriodoPlan(ModelMap model, HttpServletRequest request) {
+        log.info("/insertarPeriodoPlan");
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        Integer iexcodcia = idCompania;
-        String iexcodarea = request.getParameter("iexcodarea2");
-        String iexdesarea = request.getParameter("iexdesarea");
-        String iexdesarea_des = request.getParameter("iexdesarea_descripcion");
-        String iexcodcat = request.getParameter("iexcodcat");
-        String iexareapadre = request.getParameter("iexareapadre");
-        String iexusucrea = usuario;
+        String proceso = request.getParameter("idproceso");
+        Integer p_Iexcodpro =0;
 
-        Area area = new Area();
-        area.setIexcodcia(iexcodcia);
-        area.setIexcodarea(iexcodarea);
-        area.setIexdesarea(iexdesarea);
-        area.setIexdesarea_descripcion(iexdesarea_des);
-        area.setIexcodcat(iexcodcat);
-        area.setIexareapadre(iexareapadre);
-        area.setIexusucrea(iexusucrea);
+        if( request.getParameter("idproceso")==null){
+            p_Iexcodpro =0;
+        }else {
+            p_Iexcodpro=Integer.parseInt(proceso);
+        }
 
-        areaService.insertarArea(area);
+        String p_Iexanio = request.getParameter("idanio");
+        String p_Iexpermes = request.getParameter("idpermes");
+        String p_Iexnroper = request.getParameter("idperiodo");
+        String p_Iexfecini = request.getParameter("fecini");
+        String p_Iexfecfin = request.getParameter("fecfin");
+        String p_Timerfecini = request.getParameter("fecinit");
+        String p_Timerfecfin = request.getParameter("fecfint");
+        String p_Iexfecpago = request.getParameter("fecpago");
+        String p_Iexfeccerti = request.getParameter("feccerti");
 
-        return new ModelAndView("redirect:/listAreas");
+        ProcesoPeriodo p = new ProcesoPeriodo();
+        p.setIexcodcia(idCompania);
+        p.setIexcodpro(p_Iexcodpro);
+        p.setIexanio(p_Iexanio);
+        p.setIexpermes(p_Iexpermes);
+        p.setIexnroper(p_Iexnroper);
+        p.setIexfecini(p_Iexfecini);
+        p.setIexfecfin(p_Iexfecfin);
+        p.setTimerfecini(p_Timerfecini);
+        p.setTimerfecfin(p_Timerfecfin);
+        p.setIexfecpago(p_Iexfecpago);
+        p.setIexfeccerti(p_Iexfeccerti);
+
+        procesoPlanillaService.insertarProper(p);
+
+        return new ModelAndView("redirect:/listPlanillaGeneral");
     }
 
-    @RequestMapping("/editarArea@{idArea}")
+    /*@RequestMapping("/editarArea@{idArea}")
     public ModelAndView editarArea(ModelMap model, HttpServletRequest request, @PathVariable String idArea) {
         logger.info("/editarArea");
 

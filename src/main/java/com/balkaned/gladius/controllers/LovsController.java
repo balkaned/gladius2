@@ -110,9 +110,9 @@ public class LovsController {
         }
 
         String iexcodreg = request.getParameter("iexcodreg");
+        logger.info("iexcodreg: "+iexcodreg);
 
         List<ProcesoPlanilla> listProRegimen = lovsService.getProxRegimen(iexcodreg);
-
 
         String json = new Gson().toJson(listProRegimen);
         response.setContentType("application/json");
