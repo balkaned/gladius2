@@ -141,7 +141,7 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Actualizar Ausentismo</h2>
+                    <h2 id="h2top" class="mb-0">Actualizar ausentismo</h2>
                 </div>
 
             </div>
@@ -149,9 +149,14 @@
             <div class="row g-5">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarGestionAusentismo"
-                              novalidate>
-                            <div class="col-sm-6 col-md-6">
+                        <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarGestionAusentismo" novalidate>
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}"
+                                       class="form-control" readonly="true" style="background-color:#F1F4F8;">
+                                </select>
+                            </div>
+                            <div class="col-sm-6 col-md-9">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();"
                                         required>
@@ -162,15 +167,9 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
-                                <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}"
-                                       class="form-control" readonly="true" style="background-color:#F1F4F8;">
-                                </select>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-12">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <select name="iexcodtra" id="iexcodtra" class="form-control">
+                                <select name="iexcodtra" id="iexcodtra" class="form-select">
                                     <option value="0" selected>Seleccionar</option>
                                     <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
                                         <option value="${LstTrabajadorReg.iexcodtra}"
@@ -178,17 +177,13 @@
                                                 ${LstTrabajadorReg.iexapepat} ${LstTrabajadorReg.iexapemat}
                                                 ${LstTrabajadorReg.iexnomtra} - ${LstTrabajadorReg.iexfecing}</option>
                                     </c:forEach>
-
-
                                 </select>
                             </div>
 
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de
-                                    Ausentismo(*)</label>
-
-                                <select name="iextipaus" id="iextipaus" class="form-control">
-                                    <option value=""> --Selecciona Ausentismo--</option>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ausentismo</label>
+                                <select name="iextipaus" id="iextipaus" class="form-select">
+                                    <option value=""> Seleccionar</option>
                                     <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
                                         <option value="${lovTipaus.idLov}"
                                             ${lovTipaus.idLov==requestScope.xAusentismoDet.iextipaus ? 'selected' : '' }>
@@ -212,7 +207,7 @@
                                        type="text"
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
                             </div>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-sm-4 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
                                 <input type="text" name="iexnrodias" class="form-control" id="iexnrodias"
                                        value="${requestScope.xAusentismoDet.iexnrodias}" readonly="true"
@@ -231,7 +226,7 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmModal" data-boundary="window"
                                                 aria-haspopup="true"
-                                                aria-expanded="false" data-bs-reference="parent">Actualizar ausentismo
+                                                aria-expanded="false" data-bs-reference="parent">Guardar Ausentismo
                                         </button>
                                     </div>
                                 </div>

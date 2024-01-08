@@ -120,8 +120,8 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestion de tiempos</a></li>
+                <li class="breadcrumb-item active">Gestion de Ausentismo</li>
             </ol>
         </nav>
         <div class="mb-9">
@@ -139,7 +139,7 @@
                             <input class="form-control" name="iexcodcia" type="hidden"
                                    value="${requestScope.emp.iexcodcia}"/>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-7">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                                     <option value="" selected>Seleccionar</option>
@@ -149,9 +149,9 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-9">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <select name="iexcodtra" id="iexcodtra" class="form-control">
+                                <select name="iexcodtra" id="iexcodtra" class="form-select">
                                     <option value="0" selected>Seleccionar</option>
                                     <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
                                         <option value="${LstTrabajadorReg.iexcodtra}"
@@ -163,7 +163,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecini" id="fecini"
@@ -171,7 +171,7 @@
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecfin" id="fecfin"
@@ -182,21 +182,20 @@
                                 <button class="btn btn-primary" type="submit">
                                     <span class="fa-solid fa-magnifying-glass me-2"></span>Buscar
                                 </button>
-                                <a class="btn btn-primary" href="nuevoGestionAusentismo"><span
+                                <a class="btn btn-phoenix-primary" href="nuevoGestionAusentismo"><span
                                         class="fas fa-plus me-2"></span>Agregar</a>
-                                <button class="btn btn-primary" type="button"><span
+                                <button class="btn btn-link text-900 me-4 px-0 ps-3" type="button"><span
                                         class="fa-solid fa-file-export me-2"></span>Exportar Xls
                                 </button>
                             </div>
-
                         </form>
-                        <div id="orderTable"
-                             data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
-                            <div
-                                    class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1"
-                                    style="width: 159%;">
-                                <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table table-sm fs--1 mb-0">
+                     </div>
+                </div>
+            </div>
+
+                        <div class="mt-4 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+                          <div class="table-responsive scrollbar mx-n1 px-1">
+                        	<table class="table table-sm fs--1 mb-0">
                                         <thead>
                                         <tr>
                                             <th class="white-space-nowrap fs--1 align-middle ps-0"
@@ -278,8 +277,8 @@
                                                 <td
                                                         class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
                                                         ${LstAusentismoView.fecing}</td>
-                                                <td class="delivery_type align-middle white-space-nowrap text-center  fs--1 text-start">
-                                                  <span class="badge badge-phoenix fs--1 badge-phoenix-warning"
+                                                <td class="delivery_type align-middle white-space-nowrap text-center  fs--2 text-start">
+                                                  <span class="badge badge-phoenix fs--2 badge-phoenix-info"
                                                  class="badge-label">${LstAusentismoView.destipaus}</span>
                                                 </td>
 
@@ -304,9 +303,8 @@
                                                                 data-bs-reference="parent"><span
                                                                 class="fas fa-ellipsis-h fs--2"></span></button>
                                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                                            <a class="dropdown-item" href="#">Editar</a>
-                                                            <a class="dropdown-item" href="#">Descargar Ficha
-                                                                PDF</a>
+                                                            <a class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">Editar</a>
+                                                            <a class="dropdown-item" href="#">Descargar Ficha PDF</a>
                                                             <div class="dropdown-divider"></div>
                                                             <a class="dropdown-item text-danger"
                                                                href="#!">Eliminar</a>

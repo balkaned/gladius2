@@ -158,7 +158,7 @@
                                 <button class="btn btn-primary px-5" type="submit" ><span class="fas fa-search me-2"></span>Buscar</button>
                               </div>
                               <div class="col-auto">
-                                <button class="btn btn-phoenix-secondary px-5" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Ingresar periodo</button>
+                                <button class="btn btn-phoenix-primary px-5" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Ingresar periodo</button>
                               </div>
                             </div>
                         </div>

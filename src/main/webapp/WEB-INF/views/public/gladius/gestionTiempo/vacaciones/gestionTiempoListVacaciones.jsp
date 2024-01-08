@@ -109,8 +109,8 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestion de tiempos</a></li>
+                <li class="breadcrumb-item active">Gestion de vacaciones</li>
             </ol>
         </nav>
         <div class="mb-9">
@@ -132,7 +132,7 @@
                                    value="${requestScope.emp.iexcodtra}"/>
 
                             <!-- Regimen Dropdown -->
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-8">
                                 <label
                                         class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg"
@@ -148,7 +148,7 @@
                             </div>
 
                             <!-- Estado Dropdown -->
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label
                                         class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                 <select class="form-select" name="slc_estado" required>
@@ -158,7 +158,7 @@
                             </div>
 
                             <!-- Fecha Inicio -->
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha
                                     Inicio</label>
                                 <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
@@ -168,7 +168,7 @@
                             </div>
 
                             <!-- Fecha Fin -->
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha
                                     Fin</label>
                                 <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
@@ -182,24 +182,21 @@
                                 <button class="btn btn-primary" onclick="consultaDet();"><span
                                         class="fa-solid fa-magnifying-glass me-2"></span>Buscar
                                 </button>
-                                <a class="btn btn-primary" href="nuevoGestionVacaciones"><span
+                                <a class="btn btn-phoenix-primary" href="nuevoGestionVacaciones"><span
                                         class="fas fa-plus me-2"></span>Agregar</a>
-                                <button class="btn btn-link text-900 me-4 ps-3"><span
-                                        class="fa-solid fa-file-export me-2"></span>Exportar
-                                    Programación
-                                </button>
-                                <button class="btn btn-link text-900 me-4 px-0"><span
+                                <button class="btn btn-link text-900 me-4 ps-3"><span class="fa-solid fa-file-export me-2"></span>Exportar Programación</button>
+                                <button class="btn btn-link text-900 me-4 ps-0"><span
                                         class="fa-solid fa-file-export me-2"></span>Exportar Saldo
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
 
-                        <div id="orderTable"
-                             data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
-                            <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1"
-                                 style="width: 159%;">
-                                <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table table-sm fs--1 mb-0">
+                        <div class=" mt-4 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+                          <div class="table-responsive scrollbar mx-n1 px-1">
+                        	<table class="table table-sm fs--1 mb-0">
                                         <thead>
                                         <tr>
                                             <th class="white-space-nowrap fs--1 align-middle ps-0"
@@ -223,9 +220,8 @@
                                             <th class="sort align-middle text-center ps-6"
                                                 scope="col" data-sort="date">CODTRA
                                             </th>
-                                            <th class="sort align-middle text-center ps-5 "
-                                                scope="col">NOMBRES y
-                                                APELLIDOS
+                                            <th class="sort align-middle text-center ps-9 pe-9"
+                                                scope="col">NOMBRES y APELLIDOS
                                             </th>
                                             <th class="sort align-middle text-center ps-5"
                                                 scope="col" data-sort="date">ESTADO
@@ -252,102 +248,102 @@
                                         </tr>
                                         </thead>
                                         <tbody class="list" id="order-table-body">
-                                        <c:forEach var="LstVacacionesView"
-                                                   items="${requestScope.LstVacacionesView}">
-                                            <tr
-                                                    class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                <td class="fs--1 align-middle px-0 py-3">
-                                                    <div class="form-check mb-0 fs-0">
-                                                        <input class="form-check-input"
-                                                               type="checkbox"
-                                                               data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
-                                                    </div>
-                                                </td>
-
-                                                <td
-                                                        class="order align-middle white-space-nowrap py-0">
-                                                    <a class="fw-semi-bold"
-                                                       href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a>
-                                                </td>
-                                                <td
-                                                        class="total align-middle text-center fw-semi-bold text-1000">
-                                                        ${LstVacacionesView.nrodoc}</td>
-                                                <td
-                                                        class="total align-middle text-center fw-semi-bold text-1000">
-                                                        ${LstVacacionesView.iexcodtra}</td>
-                                                <td
-                                                        class="total align-middle text-center fw-semi-bold text-700">
-                                                        ${LstVacacionesView.desnomtra}</td>
-                                                <c:if
-                                                        test="${LstVacacionesView.desestado=='activo'}">
-                                                    <td
-                                                            class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                                                <span
-                                                                                        class="badge badge-phoenix fs--2 badge-phoenix-success"><span
-                                                                                        class="badge-label">Activo</span><span
-                                                                                        class="ms-1"
-                                                                                        style="height:12.8px;width:12.8px;"></span></span>
-                                                    </td>
-                                                </c:if>
-                                                <c:if
-                                                        test="${LstVacacionesView.desestado=='inactivo'}">
-                                                    <td
-                                                            class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                                                <span
-                                                                                        class="badge badge-phoenix fs--2 badge-phoenix-danger"><span
-                                                                                        class="badge-label">Inactivo</span><span
-                                                                                        class="ms-1"
-                                                                                        style="height:12.8px;width:12.8px;"></span></span>
-                                                    </td>
-                                                </c:if>
-                                                <td
-                                                        class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                        ${LstVacacionesView.fecing}</td>
-                                                <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
-                                                                            <span
-                                                                                    class="badge badge-phoenix fs--1 badge-phoenix-warning"
-                                                                                    class="badge-label">${LstVacacionesView.destipvac}</span>
-                                                </td>
-                                                <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
-                                                        ${LstVacacionesView.iexfecini}</td>
-                                                <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center">
-                                                        ${LstVacacionesView.fecfinrep}</td>
-                                                <td
-                                                        class="delivery_type align-middle  white-space-nowrap text-900 fs--1 text-center">
-                                                        ${LstVacacionesView.iexnrodias}</td>
-                                                <td
-                                                        class="align-middle text-end white-space-nowrap pe-0 action">
-                                                    <div
-                                                            class="font-sans-serif btn-reveal-trigger position-static">
-                                                        <button
-                                                                class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
-                                                                type="button"
-                                                                data-bs-toggle="dropdown"
-                                                                data-boundary="window"
-                                                                aria-haspopup="true"
-                                                                aria-expanded="false"
-                                                                data-bs-reference="parent">
-                                                                                    <span
-                                                                                            class="fas fa-ellipsis-h fs--2"></span>
-                                                        </button>
-                                                        <div
-                                                                class="dropdown-menu dropdown-menu-end py-2">
-                                                            <a class="dropdown-item"
-                                                               href="">Editar</a>
-                                                            <a class="dropdown-item"
-                                                               href="fichaEmpl@${empl.iexcodtra}">Descargar
-                                                                Ficha PDF</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger"
-                                                               href="#!">Eliminar</a>
+                                            <c:forEach var="LstVacacionesView"
+                                                       items="${requestScope.LstVacacionesView}">
+                                                <tr
+                                                        class="hover-actions-trigger btn-reveal-trigger position-static">
+                                                    <td class="fs--1 align-middle px-0 py-3">
+                                                        <div class="form-check mb-0 fs-0">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
+                                                    </td>
+
+                                                    <td
+                                                            class="order align-middle white-space-nowrap py-0">
+                                                        <a class="fw-semi-bold"
+                                                           href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a>
+                                                    </td>
+                                                    <td
+                                                            class="total align-middle text-center fw-semi-bold text-1000 ps-3">
+                                                            ${LstVacacionesView.nrodoc}</td>
+                                                    <td
+                                                            class="total align-middle text-center fw-semi-bold text-1000">
+                                                            ${LstVacacionesView.iexcodtra}</td>
+                                                    <td
+                                                            class="total align-middle text-center fw-semi-bold text-700">
+                                                            ${LstVacacionesView.desnomtra}</td>
+                                                    <c:if
+                                                            test="${LstVacacionesView.desestado=='activo'}">
+                                                        <td
+                                                                class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                                                                    <span
+                                                                                            class="badge badge-phoenix fs--2 badge-phoenix-success"><span
+                                                                                            class="badge-label">Activo</span><span
+                                                                                            class="ms-1"
+                                                                                            style="height:12.8px;width:12.8px;"></span></span>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if
+                                                            test="${LstVacacionesView.desestado=='inactivo'}">
+                                                        <td
+                                                                class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                                                                    <span
+                                                                                            class="badge badge-phoenix fs--2 badge-phoenix-danger"><span
+                                                                                            class="badge-label">Inactivo</span><span
+                                                                                            class="ms-1"
+                                                                                            style="height:12.8px;width:12.8px;"></span></span>
+                                                        </td>
+                                                    </c:if>
+                                                    <td
+                                                            class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                                            ${LstVacacionesView.fecing}</td>
+                                                    <td
+                                                            class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
+                                                                                <span
+                                                                                        class="badge badge-phoenix fs--2 badge-phoenix-info"
+                                                                                        class="badge-label">${LstVacacionesView.destipvac}</span>
+                                                    </td>
+                                                    <td
+                                                            class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
+                                                            ${LstVacacionesView.iexfecini}</td>
+                                                    <td
+                                                            class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center">
+                                                            ${LstVacacionesView.fecfinrep}</td>
+                                                    <td
+                                                            class="delivery_type align-middle  white-space-nowrap text-900 fs--1 text-center">
+                                                            ${LstVacacionesView.iexnrodias}</td>
+                                                    <td
+                                                            class="align-middle text-end white-space-nowrap pe-0 action">
+                                                        <div
+                                                                class="font-sans-serif btn-reveal-trigger position-static">
+                                                            <button
+                                                                    class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
+                                                                    type="button"
+                                                                    data-bs-toggle="dropdown"
+                                                                    data-boundary="window"
+                                                                    aria-haspopup="true"
+                                                                    aria-expanded="false"
+                                                                    data-bs-reference="parent">
+                                                                                        <span
+                                                                                                class="fas fa-ellipsis-h fs--2"></span>
+                                                            </button>
+                                                            <div
+                                                                    class="dropdown-menu dropdown-menu-end py-2">
+                                                                <a class="dropdown-item"
+                                                                   href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">Editar</a>
+                                                                <a class="dropdown-item"
+                                                                   href="fichaEmpl@${empl.iexcodtra}">Descargar
+                                                                    Ficha PDF</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item text-danger"
+                                                                   href="#!">Eliminar</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                     <div

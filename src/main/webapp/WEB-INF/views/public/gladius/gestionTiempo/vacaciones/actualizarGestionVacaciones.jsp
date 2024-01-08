@@ -229,7 +229,14 @@
                     <div class="row gx-3 gy-4">
                         <form class="row g-4 mb-0 needs-validation" name="formvacaciones" id="formvacaciones"
                               method="POST" action="actualizarGestionVacaciones" novalidate>
-                            <div class="col-sm-6 col-md-6">
+
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                <input type="text" name="iexcorrel" value="${requestScope.xVacacionesPrg.iexcorrel}"
+                                       class="form-control" readonly="true" style="background-color:#F1F4F8;"  required>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 col-md-9">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();"
                                         required>
@@ -240,15 +247,9 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
-                                <input type="text" name="iexcorrel" value="${requestScope.xVacacionesPrg.iexcorrel}"
-                                       class="form-control" readonly="true" style="background-color:#F1F4F8;"  required>
-                                </select>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-7">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <select name="iexcodtra" id="iexcodtra" class="form-control" readonly="true">
+                                <select name="iexcodtra" id="iexcodtra" class="form-select" readonly="true">
                                     <option value="0" selected>Seleccionar</option>
                                     <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
                                         <option value="${LstTrabajadorReg.iexcodtra}"   ${LstTrabajadorReg.iexcodtra == requestScope.xVacacionesPrg.iexcodtra ? 'selected' : ''}     >${LstTrabajadorReg.iexapepat} ${LstTrabajadorReg.iexapemat} ${LstTrabajadorReg.iexnomtra}
@@ -257,9 +258,9 @@
                                 </select>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-5">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Vacacional</label>
-                                <select name="iexpervac" id="iexpervac" class="form-control" readonly="true">
+                                <select name="iexpervac" id="iexpervac" class="form-select" readonly="true">
                                     <option value="0" selected>Seleccionar</option>
                                     <c:forEach var="LstPervac" items="${requestScope.LstPervac}">
                                         <option value="${LstPervac.iexpermesini}"      ${LstPervac.iexpermesini == requestScope.xVacacionesPrg.iexpermesini ? 'selected' : ''}  > ${LstPervac.iexpermesini}
@@ -272,9 +273,9 @@
                                 <input type="text" name="iexsaldodias" class="form-control" id="iexsaldodias"
                                        value="${requestScope.xSaldo}" readonly="true" style="background-color:#F1F4F8;">
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-5">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Vacaciones</label>
-                                <select name="iextipvac" id="iextipvac" class="form-control">
+                                <select name="iextipvac" id="iextipvac" class="form-select">
                                     <option value="0" selected>Seleccionar</option>
                                     <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
                                         <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''}  > ${lovTipvaca.desLov} </option>
@@ -282,7 +283,7 @@
                                 </select>
 
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
@@ -290,7 +291,7 @@
                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" required/>
                                 <input class="form-control" id="iexfecnachidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecini}" />
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
@@ -318,7 +319,7 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmModal" data-boundary="window"
                                                 aria-haspopup="true"
-                                                aria-expanded="false" data-bs-reference="parent">Actualizar Vacaciones
+                                                aria-expanded="false" data-bs-reference="parent">Guardar Vacaciones
                                         </button>
                                     </div>
                                 </div>
