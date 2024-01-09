@@ -122,10 +122,10 @@
                   </span>
                 </td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${concepto.desVariable}</td>
-                <td class="total align-middle text-start fw-semi-bold text-1000">
+                <td class="total align-middle text-start fw-semi-bold text-600">
                         ${concepto.desAbreviacion}
                 </td>
-                <td class="total align-middle text-start fw-semi-bold text-1000">${concepto.descripcion}</td>
+                <td class="total align-middle text-start fw-semi-bold text-600">${concepto.descripcion}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"

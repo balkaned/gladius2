@@ -29,10 +29,10 @@
         <li class="breadcrumb-item active">Procesos y Forms</li>
       </ol>
     </nav>
-    <div class="mb-9">
+    <div class="mb-5">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Formulas</h2>
+          <h2 id="h2top" class="mb-0">Fórmulas</h2>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
           <div class="col-auto">
             <div class="search-box">
               <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                <input class="form-control search-input search" type="search" placeholder="Search formulas" aria-label="Search"/>
                 <span class="fas fa-search search-box-icon"></span>
               </form>
             </div>
@@ -83,6 +83,7 @@
           <div class="col-auto">
             <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
             <a class="btn btn-primary" href="#"><span class="fas fa-plus me-2"></span>Add Formula</a>
+            <a class="btn btn-phoenix-primary" href="listProcesoFormulas">Atras</a>
           </div>
         </div>
       </div>
@@ -96,13 +97,13 @@
                           <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                         </div>
                   </th>
-                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ORDEN DE EJECUCION</th>
-                  <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">ID OPERACION</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CODIGO CONCEPTO</th>
+                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ORD EJECUCION</th>
+                  <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">ID OPER</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">COD CONCEPTO</th>
                   <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
                   <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GLOSA</th>
                   <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ESTADO</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" ></th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
@@ -115,8 +116,8 @@
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodcon}</td>
-                <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.conccoodescon}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
+                <td class="total align-middle text-start fw-semi-bold text-600">${formxcon.conccoodescon}</td>
                 <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforflgest}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
