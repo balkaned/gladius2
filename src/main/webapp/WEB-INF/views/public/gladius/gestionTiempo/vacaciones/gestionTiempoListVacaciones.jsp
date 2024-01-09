@@ -123,14 +123,8 @@
             <div class="row g-5">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action=""
+                        <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListVacaciones"
                               novalidate>
-                            <!-- Input hidden fields -->
-                            <input class="form-control" name="iexcodcia" type="hidden"
-                                   value="${requestScope.emp.iexcodcia}"/>
-                            <input class="form-control" name="iexcodtra" type="hidden"
-                                   value="${requestScope.emp.iexcodtra}"/>
-
                             <!-- Regimen Dropdown -->
                             <div class="col-sm-6 col-md-8">
                                 <label
@@ -184,10 +178,16 @@
                                 </button>
                                 <a class="btn btn-phoenix-primary" href="nuevoGestionVacaciones"><span
                                         class="fas fa-plus me-2"></span>Agregar</a>
-                                <button class="btn btn-link text-900 me-4 ps-3"><span class="fa-solid fa-file-export me-2"></span>Exportar Programación</button>
-                                <button class="btn btn-link text-900 me-4 ps-0"><span
-                                        class="fa-solid fa-file-export me-2"></span>Exportar Saldo
-                                </button>
+
+                                <a class="btn btn-link text-900 me-4 px-0"
+                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null" target="_blank">
+                                    <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Programación
+                                </a>
+
+                                <a class="btn btn-link text-900 me-4 px-0"
+                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null" target="_blank">
+                                target="_blank"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar
+                                    Saldo</a>
                             </div>
                         </form>
                     </div>

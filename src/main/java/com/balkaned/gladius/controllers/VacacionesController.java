@@ -5,12 +5,14 @@ import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -33,7 +35,7 @@ public class VacacionesController {
         log.info("/vacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -91,7 +93,7 @@ public class VacacionesController {
         log.info("/verDetalleVac");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -147,7 +149,7 @@ public class VacacionesController {
         Integer idempleado = 0;
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -207,7 +209,7 @@ public class VacacionesController {
         log.info("/nuevasVacacionesIns");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -259,7 +261,7 @@ public class VacacionesController {
         log.info("/insertarVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -372,7 +374,7 @@ public class VacacionesController {
         log.info("/actualizarVacEmpl");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -416,13 +418,12 @@ public class VacacionesController {
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
     }
 
-
     @RequestMapping("/gestionTiempoListVacaciones")
     public ModelAndView gestionTiempoListVacaciones(ModelMap model, HttpServletRequest request) {
         log.info("/gestionTiempoListVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -431,14 +432,18 @@ public class VacacionesController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
+
+        String estado = request.getParameter("slc_estado");
+        String reglab = request.getParameter("iexcodreg");
         String regimen = request.getParameter("iexcodreg");
         String codtra = request.getParameter("iexcodtra");
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        model.addAttribute("fecini", fecini);
-        model.addAttribute("fecfin", fecfin);
-        model.addAttribute("iexcodreg", regimen);
+        CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
+        String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
+        String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
+
 
         Integer xcodtra = 0;
         if (codtra == null || codtra.isEmpty()) {
@@ -453,11 +458,24 @@ public class VacacionesController {
 
         log.info("fecini" + fecini);
         log.info("fecfin" + fecfin);
+        log.info("P_FECINI " + fechaFormatterini);
+        log.info("P_FECFIN " + fechaFormatterfin);
+        log.info("P_REGLAB " + reglab);
+        log.info("P_FLGEST " + estado);
+
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         if (fecini != null && fecfin != null) {
             model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, regimen, fecini, fecfin, xcodtra));
         }
+
+        model.addAttribute("fecini", fecini);
+        model.addAttribute("fecfin", fecfin);
+        model.addAttribute("iexcodreg", regimen);
+        model.addAttribute("P_FECINI", fechaFormatterini);
+        model.addAttribute("P_FECFIN", fechaFormatterfin);
+        model.addAttribute("P_REGLAB", reglab);
+        model.addAttribute("P_FLGEST", estado);
 
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
     }
@@ -467,7 +485,7 @@ public class VacacionesController {
         log.info("/nuevoGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -487,7 +505,7 @@ public class VacacionesController {
         log.info("/insertGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -560,7 +578,7 @@ public class VacacionesController {
         log.info("/editarGestionVacaciones@{idTrab}@{iexcorrel}s");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -611,7 +629,7 @@ public class VacacionesController {
         log.info("/actualizarGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
@@ -656,5 +674,31 @@ public class VacacionesController {
 
         return new ModelAndView("redirect:/gestionTiempoListVacaciones");
     }
+
+
+    @RequestMapping("/fechaformatter")
+    public ModelAndView fechaformatter(ModelMap model, HttpServletRequest request) {
+        log.info("/fechaformatter");
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String fecini = request.getParameter("fecini");
+        String fecfin = request.getParameter("fecfin");
+
+
+        CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
+        String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
+        String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
+
+        model.addAttribute("feciniFomrtter", fechaFormatterini);
+        model.addAttribute("fecfinFomrtter", fechaFormatterfin);
+
+
+        log.info("feciniFomrtter" + fechaFormatterini);
+        log.info("fecfinFomrtter" + fechaFormatterfin);
+
+        return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
+    }
+
 }
 
