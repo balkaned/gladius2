@@ -115,7 +115,7 @@
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${concepto.codConcepto}</a></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">
-                  <span class="badge badge-phoenix fs--1 badge-phoenix-warning">
+                  <span class="badge badge-phoenix fs--2 badge-phoenix-warning">
                     <span class="badge-label">
                         ${concepto.desConcepto}
                     </span>

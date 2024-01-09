@@ -30,51 +30,49 @@
 	<div class="content">
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="#!">Page</a></li>
-				<li class="breadcrumb-item active">Default</li>
+				<li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
+				<li class="breadcrumb-item active">Procesos y form</li>
 			</ol>
 		</nav>
-		<div class="mb-9">
-			<div class="row g-3 mb-4">
+		<div class="mb-3">
+			<div class="row g-3">
 				<div class="col-auto">
-					<h2 id="h2top" class="mb-0">${requestScope.pplanillax}</h2>
+					<h2 id="h2top" class="mb-0">Concepto por proceso</h2>
 				</div>
 			</div>
 		</div>
-		<div id="orderTable"
-				 data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
-			<div class="mb-4">
-				<div class="row g-3">
-					<div class="col-auto">
-					</div>
-					<div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-						<div class="btn-group position-static" role="group">
-							<div class="btn-group position-static text-nowrap flex" role="group">
-								<p style="margin-right: 10px; margin-top: 20px">Grupo de conceptos:</p>
-								<select class="my-2 form-control" style="width: 200px;" id="select_concepto" name="slc_grpconcepto">
-									<option value="0" ${requestScope.slc_grpconcepto  == '0' ? 'selected' : ''}>Parametros</option>
-									<option value="1" ${requestScope.slc_grpconcepto  == '1' ? 'selected' : ''}>Haberes</option>
-									<option value="2" ${requestScope.slc_grpconcepto  == '2' ? 'selected' : ''}>Descuentos</option>
-									<option value="3" ${requestScope.slc_grpconcepto  == '3' ? 'selected' : ''}>Aportes</option>
-									<option value="4" ${requestScope.slc_grpconcepto  == '4' ? 'selected' : ''}>Neto</option>
-									<option value="5" ${requestScope.slc_grpconcepto  == '5' ? 'selected' : ''}>Totales</option>
-								</select>
-								<button
-								 class="btn btn-success m-2 rounded rounded-lg"
-								 style="height: 40px;"
-								 onclick="obtenerListaConcepto()"
-								>CONSULTAR
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-auto">
-						<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export
-						</button>
-						<a class="btn btn-primary" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add concepto</a>
-					</div>
-				</div>
-			</div>
+		<div class="row g-5">
+            <div class="col-xl-8">
+                <div class="row gx-3 gy-4">
+                    <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                        <!-- Input hidden fields -->
+                        <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
+                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}"/>
+
+                        <div class="col-sm-6 col-md-8">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de conceptos</label>
+                            <select class="form-select" id="select_concepto" name="slc_grpconcepto">
+                                <option value="0" ${requestScope.slc_grpconcepto  == '0' ? 'selected' : ''}>Parametros</option>
+                                <option value="1" ${requestScope.slc_grpconcepto  == '1' ? 'selected' : ''}>Haberes</option>
+                                <option value="2" ${requestScope.slc_grpconcepto  == '2' ? 'selected' : ''}>Descuentos</option>
+                                <option value="3" ${requestScope.slc_grpconcepto  == '3' ? 'selected' : ''}>Aportes</option>
+                                <option value="4" ${requestScope.slc_grpconcepto  == '4' ? 'selected' : ''}>Neto</option>
+                                <option value="5" ${requestScope.slc_grpconcepto  == '5' ? 'selected' : ''}>Totales</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-primary" onclick="obtenerListaConcepto();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                            <a class="btn btn-phoenix-primary" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add Concepto</a>
+                            <a class="btn btn-phoenix-secondary text-900" href="listProcesoFormulas">Atras</a>
+                            <button class="btn btn-link text-900 me-4 ps-3"><span class="fa-solid fa-file-export me-2"></span>Exportar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+		<div id="orderTable" class="mt-3">
 			<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
 				<div class="table-responsive scrollbar mx-n1 px-1">
 					<table class="table table-sm fs--1 mb-0">
@@ -89,7 +87,7 @@
 							<th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID
 							</th>
 							<th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
-							<th class="sort align-middle text-center pe-0" scope="col">ACCION</th>
+							<th class="sort align-middle text-center pe-0" scope="col"></th>
 						</tr>
 						</thead>
 						<tbody class="list" id="order-table-body">

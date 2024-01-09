@@ -31,14 +31,14 @@
   <div class="content">
     <nav class="mb-2" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="#!">Page</a></li>
-        <li class="breadcrumb-item active">Default</li>
+        <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
+        <li class="breadcrumb-item active">Procesos y form</li>
       </ol>
     </nav>
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Procesos y Fórmulas</h2>
+          <h2 id="h2top" class="mb-0">Procesos y fórmulas</h2>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PROCESOS</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GRUPO</th>
               <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">REGIMEN LAB.</th>
-              <th class="sort align-middle text-center pe-0" scope="col" >ACCION</th>
+              <th class="sort align-middle text-center pe-0" scope="col" ></th>
             </tr>
             </thead>
             <tbody class="list" id="order-table-body">
