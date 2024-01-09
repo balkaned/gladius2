@@ -2,43 +2,37 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.AsientoContableCab;
 import com.balkaned.gladius.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
+
 @RestController
+@Slf4j
 public class SunatFileController {
-    static Logger logger = Logger.getLogger(VacacionesController.class.getName());
 
     @Autowired
     EmpleadoService empleadoService;
-
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
-
-
     @Autowired
     LovsService lovsService;
-
     @Autowired
     VacacionesService vacacionesService;
-
     @Autowired
     ProcesoPlanillaService procesoPlanillaService;
 
-
-
     @RequestMapping("/gestionPlame")
     public ModelAndView gestionPlame(ModelMap model, HttpServletRequest request) {
-        logger.info("/gestionPlame");
+        log.info("/gestionPlame");
 
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -59,15 +53,6 @@ public class SunatFileController {
         model.addAttribute("rucComp", rucComp);
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
-
-
-
-
-
-
-
-
-
 
         return new ModelAndView("public/gladius/gestionProceso/plame/gestionPlame");
     }
@@ -75,11 +60,12 @@ public class SunatFileController {
 
     @RequestMapping("/gestionAfp")
     public ModelAndView gestionAfp(ModelMap model, HttpServletRequest request) {
-        logger.info("/gestionAfp");
+        log.info("/gestionAfp");
 
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -100,20 +86,18 @@ public class SunatFileController {
         model.addAttribute("rucComp", rucComp);
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
-
-
-
 
         return new ModelAndView("public/gladius/gestionProceso/plame/gestionAfp");
     }
 
-
     @RequestMapping("/gestionAsientosContables")
     public ModelAndView gestionAsientosContables(ModelMap model, HttpServletRequest request) {
-        logger.info("/gestionAsientosContables");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/gestionAsientosContables");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -134,9 +118,8 @@ public class SunatFileController {
         model.addAttribute("rucComp", rucComp);
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
-
-
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
+
         return new ModelAndView("public/gladius/gestionProceso/asientoContable/gestionAsientosContables");
     }
 
@@ -144,11 +127,12 @@ public class SunatFileController {
 
     @RequestMapping("/buscarAsientosContables")
     public ModelAndView buscarAsientosContables(ModelMap model, HttpServletRequest request) {
-        logger.info("/buscarAsientosContables");
+        log.info("/buscarAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-
-        if (request.getSession().getAttribute("user") == null) {
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -182,8 +166,6 @@ public class SunatFileController {
         asicontcab.setIexcodpro(Integer.parseInt(v_idproceso));
         asicontcab.setIexnroper(v_idperiodo);
 
-
-
         model.addAttribute("lst_asiento_cab", procesoPlanillaService.listarAsieCab(idCompania, Integer.parseInt(v_idproceso), v_idperiodo));
         model.addAttribute("iexcodpro", v_idproceso);
         model.addAttribute("permes", v_idperiodo);
@@ -194,10 +176,12 @@ public class SunatFileController {
 
     @RequestMapping("/nuevoAsientosContables")
     public ModelAndView nuevoAsientosContables(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoAsientosContables");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/nuevoAsientosContables");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -218,10 +202,9 @@ public class SunatFileController {
         model.addAttribute("rucComp", rucComp);
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
-
-
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
-        logger.info("lovProcesos" + procesoPlanillaService.listar("%"));
+        log.info("lovProcesos" + procesoPlanillaService.listar("%"));
+
         return new ModelAndView("public/gladius/gestionProceso/asientoContable/nuevoAsientosContables");
     }
 

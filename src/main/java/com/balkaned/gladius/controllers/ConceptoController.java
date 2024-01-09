@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Concepto;
 import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class ConceptoController {
     @Autowired
     ConceptoService conceptoService;
@@ -22,7 +24,6 @@ public class ConceptoController {
     @Autowired
     Sessionattributes sessionattributes;
 
-    static Logger logger = Logger.getLogger(ConceptoController.class.getName());
     private static final String basePath = "public/gladius/confPlanilla/conceptos";
     private static final String listConceptos = "/listConceptos";
     private static final String nuevoConcepto = "/nuevoConcepto";
@@ -33,9 +34,16 @@ public class ConceptoController {
     @RequestMapping(listConceptos)
     public ModelAndView listConceptos(
             ModelMap model,
-            HttpServletRequest request
-    ) {
-        logger.info(listConceptos);
+            HttpServletRequest request) {
+        log.info(listConceptos);
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         List<Concepto> conceptosList = conceptoService.listConceptos();
         model.addAttribute("conceptosList", conceptosList);
@@ -47,7 +55,15 @@ public class ConceptoController {
             ModelMap model,
             HttpServletRequest request
     ) {
-        logger.info(nuevoConcepto);
+        log.info(nuevoConcepto);
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         return new ModelAndView(basePath + nuevoConcepto);
     }
@@ -57,7 +73,15 @@ public class ConceptoController {
             ModelMap model,
             HttpServletRequest request
     ) {
-        logger.info(insertarConcepto);
+        log.info(insertarConcepto);
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         conceptoService.insertarConcepto(getConcepto(request));
         return new ModelAndView("redirect:" + listConceptos);
@@ -69,7 +93,15 @@ public class ConceptoController {
             HttpServletRequest request,
             @PathVariable String idParam
     ) {
-        logger.info(editarConcepto + "@{idParam}");
+        log.info(editarConcepto + "@{idParam}");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Concepto xConcepto = conceptoService.getById(idParam);
         model.addAttribute("xConcepto", xConcepto);
@@ -81,7 +113,15 @@ public class ConceptoController {
             ModelMap model,
             HttpServletRequest request
     ) {
-        logger.info(actualizarConcepto);
+        log.info(actualizarConcepto);
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         conceptoService.actualizarConcepto(getConcepto(request));
         return new ModelAndView("redirect:" + listConceptos);
@@ -89,8 +129,8 @@ public class ConceptoController {
 
     private static Concepto getConcepto(HttpServletRequest request) {
         return Concepto.builder().idProceso(Integer.parseInt(request.getParameter("idProceso")))
-         .codConcepto(request.getParameter("codConcepto")).desConcepto(request.getParameter("desConcepto"))
-         .desVariable(request.getParameter("desVariable")).descripcion(request.getParameter("descripcion"))
-         .desAbreviacion(request.getParameter("desAbreviacion")).build();
+                .codConcepto(request.getParameter("codConcepto")).desConcepto(request.getParameter("desConcepto"))
+                .desVariable(request.getParameter("desVariable")).descripcion(request.getParameter("descripcion"))
+                .desAbreviacion(request.getParameter("desAbreviacion")).build();
     }
 }

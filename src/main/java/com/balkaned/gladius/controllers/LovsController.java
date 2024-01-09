@@ -3,12 +3,12 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class LovsController {
-    static Logger logger = Logger.getLogger(LovsController.class.getName());
 
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
@@ -36,15 +36,17 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsDEPX", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsDEPX(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsDEPX");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsDEPX");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         String codpais = request.getParameter("codpais");
-        logger.info("codpais: " + codpais);
+        log.info("codpais: " + codpais);
 
         List<Lovs> listLovs = lovsService.getLovsDept("", codpais);
 
@@ -58,15 +60,17 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsPROVX", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsPROVX(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsPROVX");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsPROVX");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         String coddept = request.getParameter("coddept");
-        logger.info("coddept: " + coddept);
+        log.info("coddept: " + coddept);
 
         List<Lovs> listLovs = lovsService.getLovsProv("", coddept);
 
@@ -80,15 +84,17 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsDISTX", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsDISTX(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsDISTX");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsDISTX");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         String codprov = request.getParameter("codprov");
-        logger.info("codprov: " + codprov);
+        log.info("codprov: " + codprov);
 
         List<Lovs> listLovs = lovsService.getLovsDist("", codprov);
 
@@ -102,15 +108,17 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsPROXCON", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsPROXCON(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsPROXCON");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsPROXCON");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         String iexcodreg = request.getParameter("iexcodreg");
-        logger.info("iexcodreg: "+iexcodreg);
+        log.info("iexcodreg: "+iexcodreg);
 
         List<ProcesoPlanilla> listProRegimen = lovsService.getProxRegimen(iexcodreg);
 
@@ -124,10 +132,12 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsPERX", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsPERX(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsPERX");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsPERX");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -146,14 +156,16 @@ public class LovsController {
 
     @RequestMapping(value = "/getlovsLOVCODTRA", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getlovsLOVCODTRA(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getlovsLOVCODTRA");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getlovsLOVCODTRA");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
-        String iexcodreg = request.getParameter("iexcodreg");
 
+        String iexcodreg = request.getParameter("iexcodreg");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<Empleado> listProRegimen = lovsService.listaTrabajadoresReg(idCompania, iexcodreg);
@@ -168,13 +180,14 @@ public class LovsController {
 
     @RequestMapping(value = "/getLovsLOVPERVAC", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getLovsLOVPERVAC(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getLovsLOVPERVAC");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getLovsLOVPERVAC");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
-
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -195,10 +208,12 @@ public class LovsController {
 
     @RequestMapping(value = "/getLovsSALVACTRA", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getLovsSALVACTRA(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getLovsSALVACTRA");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getLovsSALVACTRA");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -218,10 +233,12 @@ public class LovsController {
 
     @RequestMapping(value = "/getLovsLOVCODTRAxUSU", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getLovsLOVCODTRAxUSU(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("/getLovsLOVCODTRAxUSU");
-        String user = (String) request.getSession().getAttribute("user");
+        log.info("/getLovsLOVCODTRAxUSU");
 
-        if (request.getSession().getAttribute("user") == null) {
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -236,6 +253,5 @@ public class LovsController {
 
         return null;
     }
-
 }
 

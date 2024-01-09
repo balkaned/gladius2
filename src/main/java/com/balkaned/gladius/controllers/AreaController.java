@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class AreaController {
-    static Logger logger = Logger.getLogger(AreaController.class.getName());
     @Autowired
     AreaService areaService;
 
@@ -29,13 +29,20 @@ public class AreaController {
 
     @RequestMapping("/listAreas")
     public ModelAndView listAreas(ModelMap model, HttpServletRequest request) {
-        logger.info("/listAreas");
+        log.info("/listAreas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<Area> areasList = areaService.listarArea(idCompania, "");
-        logger.info("areasList: " + areasList);
+        log.info("areasList: " + areasList);
         model.addAttribute("areasList", areasList);
 
         return new ModelAndView("public/gladius/organizacion/areas/listAreas");
@@ -43,7 +50,14 @@ public class AreaController {
 
     @RequestMapping("/nuevaArea")
     public ModelAndView nuevaArea(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaArea");
+        log.info("/nuevaArea");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -57,7 +71,14 @@ public class AreaController {
 
     @RequestMapping("/insertarArea")
     public ModelAndView insertarArea(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarArea");
+        log.info("/insertarArea");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -87,7 +108,14 @@ public class AreaController {
 
     @RequestMapping("/editarArea@{idArea}")
     public ModelAndView editarArea(ModelMap model, HttpServletRequest request, @PathVariable String idArea) {
-        logger.info("/editarArea");
+        log.info("/editarArea");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -101,7 +129,14 @@ public class AreaController {
 
     @RequestMapping("/modificarArea")
     public ModelAndView modificarAreaa(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarArea");
+        log.info("/modificarArea");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -132,7 +167,14 @@ public class AreaController {
 
     @RequestMapping("/deleteArea@{idArea}")
     public ModelAndView deleteArea(ModelMap model, HttpServletRequest request, @PathVariable String idArea) {
-        logger.info("/deleteArea");
+        log.info("/deleteArea");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

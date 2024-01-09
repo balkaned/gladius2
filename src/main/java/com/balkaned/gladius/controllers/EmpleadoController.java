@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,8 +16,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class EmpleadoController {
-    static Logger logger = Logger.getLogger(EmpleadoController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -28,7 +29,14 @@ public class EmpleadoController {
 
     @RequestMapping("/listEmpleados")
     public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
-        logger.info("/listEmpleados");
+        log.info("/listEmpleados");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -44,12 +52,19 @@ public class EmpleadoController {
 
     @RequestMapping("detalleEmpl@{idTrab}")
     public ModelAndView detalleEmpl(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/detalleEmpl");
+        log.info("/detalleEmpl");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        logger.info("idCompania: " + idCompania);
-        logger.info("idTrab: " + idTrab);
+        log.info("idCompania: " + idCompania);
+        log.info("idTrab: " + idTrab);
 
         model.addAttribute("idTrab", idTrab);
 
@@ -57,7 +72,7 @@ public class EmpleadoController {
         model.addAttribute("empleado", empleado);
 
         Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
-        logger.info("fecha nac: " + emp.getIexfecnac());
+        log.info("fecha nac: " + emp.getIexfecnac());
         model.addAttribute("fecnacIEX", emp.getIexfecnac());
         model.addAttribute("emp", emp);
         model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
@@ -71,19 +86,19 @@ public class EmpleadoController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("iexlogo", emp.getIexlogo());
 
-        logger.info("estadoFlag: " + emp.getIexflgest());
+        log.info("estadoFlag: " + emp.getIexflgest());
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
-        logger.info("iexlogo: " + emp.getIexlogo());
+        log.info("iexlogo: " + emp.getIexlogo());
         model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
         model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
         model.addAttribute("lovModForm", lovsService.getLovs("18", "%"));
@@ -150,17 +165,23 @@ public class EmpleadoController {
 
     @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)
     public ModelAndView updateEmplDatPers(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
-        logger.info("/updateEmplDatPers");
+        log.info("/updateEmplDatPers");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: " + iexcodcia);
-        logger.info("iexcodtra: " + iexcodtra);
+        log.info("iexcodcia: " + iexcodcia);
+        log.info("iexcodtra: " + iexcodtra);
 
         String iextipdocid = request.getParameter("iextipdocid");
         String iexnrodoc = request.getParameter("iexnrodoc");
@@ -224,18 +245,23 @@ public class EmpleadoController {
 
     @RequestMapping(value = "/updateEmplDatLab", method = RequestMethod.POST)
     public ModelAndView updateEmplDatLab(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
-        logger.info("/updateEmplDatLab");
+        log.info("/updateEmplDatLab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
-        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: " + iexcodcia);
-        logger.info("iexcodtra: " + iexcodtra);
+        log.info("iexcodcia: " + iexcodcia);
+        log.info("iexcodtra: " + iexcodtra);
 
         String iextiptra = request.getParameter("iextiptra");
         String iexsituapen = request.getParameter("iexsituapen");
@@ -283,18 +309,23 @@ public class EmpleadoController {
 
     @RequestMapping(value = "/updateInfoPago", method = RequestMethod.POST)
     public ModelAndView updateInfoPago(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
-        logger.info("/updateInfoPago");
+        log.info("/updateInfoPago");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
-        ;
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: " + iexcodcia);
-        logger.info("iexcodtra: " + iexcodtra);
+        log.info("iexcodcia: " + iexcodcia);
+        log.info("iexcodtra: " + iexcodtra);
 
         String iextippago = request.getParameter("iextippago");
         String iexperrem = request.getParameter("iexperrem");
@@ -334,17 +365,23 @@ public class EmpleadoController {
 
     @RequestMapping(value = "/updateSegurSocial", method = RequestMethod.POST)
     public ModelAndView updateSegurSocial(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
-        logger.info("/updateSegurSocial");
+        log.info("/updateSegurSocial");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: " + iexcodcia);
-        logger.info("iexcodtra: " + iexcodtra);
+        log.info("iexcodcia: " + iexcodcia);
+        log.info("iexcodtra: " + iexcodtra);
 
         String iexcodafp = request.getParameter("iexcodafp");
         String iexflgcomi_mix = request.getParameter("iexflgcomi_mix");
@@ -400,17 +437,23 @@ public class EmpleadoController {
 
     @RequestMapping(value = "/updateEmplDatDomic", method = RequestMethod.POST)
     public ModelAndView updateEmplDatDomic(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
-        logger.info("/updateEmplDatDomic");
+        log.info("/updateEmplDatDomic");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        String user = (String) request.getSession().getAttribute("user");
 
         Empleado p = new Empleado();
         Integer iexcodcia = Integer.valueOf(request.getParameter("iexcodcia"));
         String iexcodtra = request.getParameter("iexcodtra");
 
-        logger.info("iexcodcia: " + iexcodcia);
-        logger.info("iexcodtra: " + iexcodtra);
+        log.info("iexcodcia: " + iexcodcia);
+        log.info("iexcodtra: " + iexcodtra);
 
         String iextipvia_dom1 = request.getParameter("iextipvia_dom1");
         String iexnomvia_dom1 = request.getParameter("iexnomvia_dom1");
@@ -499,7 +542,14 @@ public class EmpleadoController {
 
     @RequestMapping("/valRegEmpleado")
     public ModelAndView valRegEmpleado(ModelMap model, HttpServletRequest request) {
-        logger.info("/valRegEmpleado");
+        log.info("/valRegEmpleado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -508,7 +558,14 @@ public class EmpleadoController {
 
     @RequestMapping("/validarNroDoc")
     public ModelAndView validarNroDoc(ModelMap model, HttpServletRequest request) {
-        logger.info("/validarNroDoc");
+        log.info("/validarNroDoc");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -542,7 +599,8 @@ public class EmpleadoController {
             Msg_form_global = "Error";
             model.addAttribute("msg", "Existen registros activos con el mismo numero de documento. Contactar con el Administrador");
         }
-        logger.info("ValidadEmpleado --> Mensaje global:" + Msg_form_global + " , cantidad de items=" + val);
+
+        log.info("ValidadEmpleado --> Mensaje global:" + Msg_form_global + " , cantidad de items=" + val);
 
         if (Msg_form_global == "OK") {
             return new ModelAndView("redirect:/nuevoEmpleado");
@@ -553,7 +611,14 @@ public class EmpleadoController {
 
     @RequestMapping("/nuevoEmpleado")
     public ModelAndView nuevoEmpleado(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoEmpleado");
+        log.info("/nuevoEmpleado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -566,7 +631,14 @@ public class EmpleadoController {
 
     @RequestMapping("/insertarEmpleado")
     public ModelAndView insertarEmpleado(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarEmpleado");
+        log.info("/insertarEmpleado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -600,7 +672,7 @@ public class EmpleadoController {
         emp.setIexusucrea(usuario);
 
         idempleado = empleadoService.obtieneIdEmpleado(emp);
-        logger.info("Obtiene Id empleado :" + idempleado);
+        log.info("Obtiene Id empleado :" + idempleado);
 
         if (idempleado > 0) {
             emp.setIexcodtra(idempleado);
@@ -616,7 +688,14 @@ public class EmpleadoController {
 
     @RequestMapping("/reingresoEmpleado")
     public ModelAndView reingresoEmpleado(ModelMap model, HttpServletRequest request) {
-        logger.info("/reingresoEmpleado");
+        log.info("/reingresoEmpleado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -628,7 +707,14 @@ public class EmpleadoController {
 
     @RequestMapping("/procesarEmpleadoInactivo")
     public ModelAndView procesarEmpleadoInactivo(ModelMap model, HttpServletRequest request) {
-        logger.info("/procesarEmpleadoInactivo");
+        log.info("/procesarEmpleadoInactivo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -659,7 +745,14 @@ public class EmpleadoController {
 
     @RequestMapping("/empleadoReactivado@{idNewTrab}")
     public ModelAndView empleadoReactivado(ModelMap model, HttpServletRequest request, @PathVariable String idNewTrab) {
-        logger.info("/empleadoReactivado");
+        log.info("/empleadoReactivado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -668,6 +761,5 @@ public class EmpleadoController {
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/empleadoReactivado");
     }
-
 }
 

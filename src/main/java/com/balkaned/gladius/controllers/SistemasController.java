@@ -4,20 +4,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Sistemas;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class SistemasController {
-    static Logger logger = Logger.getLogger(SistemasController.class.getName());
-
 
     @Autowired
     SistemaService sistemaService;
@@ -27,7 +26,14 @@ public class SistemasController {
 
     @RequestMapping("/listSistemas")
     public ModelAndView listSistemas(ModelMap model, HttpServletRequest request) {
-        logger.info("/listSistemas");
+        log.info("/listSistemas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -39,7 +45,14 @@ public class SistemasController {
 
     @RequestMapping("/nuevoSistema")
     public ModelAndView nuevoSistema(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoSistema");
+        log.info("/nuevoSistema");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -49,7 +62,14 @@ public class SistemasController {
 
     @RequestMapping("/insertarSistemas")
     public ModelAndView insertarSistemas(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarSistemas");
+        log.info("/insertarSistemas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -67,7 +87,14 @@ public class SistemasController {
 
     @RequestMapping("/editarSistema@{idSis}")
     public ModelAndView editarSistema(ModelMap model, HttpServletRequest request, @PathVariable String idSis) {
-        logger.info("/editarSistema");
+        log.info("/editarSistema");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -80,7 +107,14 @@ public class SistemasController {
 
     @RequestMapping("/modificarSistema")
     public ModelAndView modificarSistema(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarSistema");
+        log.info("/modificarSistema");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -97,7 +131,14 @@ public class SistemasController {
 
     @RequestMapping("/deleteSistema@{idSys}")
     public ModelAndView deleteSistema(ModelMap model, HttpServletRequest request, @PathVariable String idSys) {
-        logger.info("/deleteSistema");
+        log.info("/deleteSistema");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -109,7 +150,5 @@ public class SistemasController {
 
         return new ModelAndView("redirect:/listSistemas");
     }
-
-
 }
 

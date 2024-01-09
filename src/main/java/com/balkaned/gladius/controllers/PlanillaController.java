@@ -1,21 +1,16 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.ProcesoPeriodo;
-import com.balkaned.gladius.services.AreaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jasperreports.engine.export.HtmlExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -29,10 +24,16 @@ public class PlanillaController {
     @Autowired
     Sessionattributes sessionattributes;
 
-
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
         log.info("/listPlanillaGeneral");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -45,6 +46,13 @@ public class PlanillaController {
     @RequestMapping("/buscarPlanillaGen")
     public ModelAndView buscarPlanillaGen(ModelMap model, HttpServletRequest request) {
         log.info("/buscarPlanillaGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -61,6 +69,13 @@ public class PlanillaController {
     @RequestMapping("/insertarPeriodoPlan")
     public ModelAndView insertarPeriodoPlan(ModelMap model, HttpServletRequest request) {
         log.info("/insertarPeriodoPlan");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");

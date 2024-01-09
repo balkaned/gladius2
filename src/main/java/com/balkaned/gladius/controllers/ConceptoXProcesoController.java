@@ -2,24 +2,24 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Concepto;
 import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class ConceptoXProcesoController {
 	@Autowired
 	Sessionattributes sessionattributes;
@@ -33,13 +33,19 @@ public class ConceptoXProcesoController {
 	@Autowired
 	ConceptoService conceptoService;
 
-	static Logger logger = Logger.getLogger(ConceptoXProcesoController.class.getName());
-
 	@RequestMapping("/listConceptoXProceso@{proceso}@{codigo}")
 	public ModelAndView listConcepto(
 	 ModelMap model, HttpServletRequest request, @PathVariable String proceso, @PathVariable String codigo
 	) {
-		logger.info("/listConceptoXProceso");
+		log.info("/listConceptoXProceso");
+
+		String user = (String) request.getSession().getAttribute("user");
+		log.info("user:"+user);
+		if (user == null || user.equals("") || user.equals("null")) {
+			log.info("Ingreso a user null");
+			return new ModelAndView("redirect:/login2");
+		}
+
 		sessionattributes.getVariablesSession(model, request);
 
 		if (proceso != null) {
@@ -64,7 +70,15 @@ public class ConceptoXProcesoController {
 	public ModelAndView nuevoConceptoXProceso(
 	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso
 	) {
-		logger.info("/nuevoConceptoXProceso");
+		log.info("/nuevoConceptoXProceso");
+
+		String user = (String) request.getSession().getAttribute("user");
+		log.info("user:"+user);
+		if (user == null || user.equals("") || user.equals("null")) {
+			log.info("Ingreso a user null");
+			return new ModelAndView("redirect:/login2");
+		}
+
 		sessionattributes.getVariablesSession(model, request);
 		if (Objects.nonNull(idProceso)) {
 			model.addAttribute("idxproceso", idProceso);
@@ -78,7 +92,15 @@ public class ConceptoXProcesoController {
 	public ModelAndView addConceptoXProceso(
 	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso
 	) {
-		logger.info("/addConceptoXProceso");
+		log.info("/addConceptoXProceso");
+
+		String user = (String) request.getSession().getAttribute("user");
+		log.info("user:"+user);
+		if (user == null || user.equals("") || user.equals("null")) {
+			log.info("Ingreso a user null");
+			return new ModelAndView("redirect:/login2");
+		}
+
 		sessionattributes.getVariablesSession(model, request);
 		try {
 			Integer codproceso = Integer.valueOf(idProceso);
@@ -148,21 +170,30 @@ public class ConceptoXProcesoController {
 			p.setFlg_promediable(flg_promediable);
 			p.setFlg_agrupable(flg_agrupable);
 			p.setNro_meses_atras(nro_meses_atras);
-			logger.info("ConceptoXProceso: " + p);
+			log.info("ConceptoXProceso: " + p);
 			service.insertarConceptoXProceso(p);
 		}
 		catch (Exception e) {
-			logger.info("Error: " + e.getMessage());
+			log.info("Error: " + e.getMessage());
 		}
 		return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso + "@");
 	}
 
 	@RequestMapping("/editarConceptoXProceso@{idProceso}@{idConcepto}")
 	public ModelAndView editarConceptoXProceso(
-	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String idConcepto
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String idConcepto) {
+		log.info("/editarConceptoXProceso");
+
+		String user = (String) request.getSession().getAttribute("user");
+		log.info("user:"+user);
+		if (user == null || user.equals("") || user.equals("null")) {
+			log.info("Ingreso a user null");
+			return new ModelAndView("redirect:/login2");
+		}
+
 		sessionattributes.getVariablesSession(model, request);
-		logger.info("/editarConceptoXProceso");
+
+
 		if (Objects.nonNull(idProceso)) {
 			//ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(idProceso));
 			model.addAttribute("slc_proceso", idProceso);
@@ -182,8 +213,17 @@ public class ConceptoXProcesoController {
 	public ModelAndView editConceptoXProceso(
 	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String procodcon
 	) {
-		logger.info("/editConceptoXProceso");
+		log.info("/editConceptoXProceso");
+
+		String user = (String) request.getSession().getAttribute("user");
+		log.info("user:"+user);
+		if (user == null || user.equals("") || user.equals("null")) {
+			log.info("Ingreso a user null");
+			return new ModelAndView("redirect:/login2");
+		}
+
 		sessionattributes.getVariablesSession(model, request);
+
 		try {
 			Integer codproceso = Integer.valueOf(request.getParameter("idproceso"));
 			String tip_con = request.getParameter("tip_concepto");
@@ -247,11 +287,11 @@ public class ConceptoXProcesoController {
 			p.setFlg_promediable(flg_promediable);
 			p.setFlg_agrupable(flg_agrupable);
 			p.setNro_meses_atras(nro_meses_atras);
-			logger.info("ConceptoXProceso: " + p);
+			log.info("ConceptoXProceso: " + p);
 			service.editarConceptoXProceso(p);
 		}
 		catch (Exception e) {
-			logger.info("Error: " + e.getMessage());
+			log.info("Error: " + e.getMessage());
 		}
 		return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso + "@");
 	}

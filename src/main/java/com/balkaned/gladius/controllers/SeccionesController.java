@@ -4,20 +4,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Seccion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class SeccionesController {
-    static Logger logger = Logger.getLogger(SeccionesController.class.getName());
-
 
     @Autowired
     SeccionService seccionService;
@@ -30,7 +29,14 @@ public class SeccionesController {
 
     @RequestMapping("/listSecciones")
     public ModelAndView listSecciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/listSecciones");
+        log.info("/listSecciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -42,7 +48,14 @@ public class SeccionesController {
 
     @RequestMapping("/nuevaSeccion")
     public ModelAndView nuevaSeccion(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaSeccion");
+        log.info("/nuevaSeccion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -54,7 +67,14 @@ public class SeccionesController {
 
     @RequestMapping("/insertarSeccion")
     public ModelAndView insertarSeccion(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarSeccion");
+        log.info("/insertarSeccion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -77,7 +97,14 @@ public class SeccionesController {
 
     @RequestMapping("/editarSeccion@{idSec}")
     public ModelAndView editarSeccion(ModelMap model, HttpServletRequest request, @PathVariable String idSec) {
-        logger.info("/editarSeccion");
+        log.info("/editarSeccion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -91,7 +118,14 @@ public class SeccionesController {
 
     @RequestMapping("/modificarSeccion")
     public ModelAndView modificarSeccion(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarSeccion");
+        log.info("/modificarSeccion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -114,7 +148,14 @@ public class SeccionesController {
 
     @RequestMapping("/deleteSeccion@{idSec}")
     public ModelAndView deleteSeccion(ModelMap model, HttpServletRequest request, @PathVariable String idSec) {
-        logger.info("/deleteSeccion");
+        log.info("/deleteSeccion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -125,6 +166,5 @@ public class SeccionesController {
 
         return new ModelAndView("redirect:/listSecciones");
     }
-
 }
 

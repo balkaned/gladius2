@@ -4,19 +4,18 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Grpfile;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class LegajoController {
-    static Logger logger = Logger.getLogger(LegajoController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -34,14 +33,21 @@ public class LegajoController {
 
     @RequestMapping("/legajo@{idTrab}")
     public ModelAndView legajo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/legajo");
+        log.info("/legajo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -61,13 +67,14 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
@@ -77,13 +84,20 @@ public class LegajoController {
 
     @RequestMapping("/buscarLegajo@{idTrab}")
     public ModelAndView buscarLegajo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/buscarLegajo");
+        log.info("/buscarLegajo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -103,13 +117,13 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         String codgrpfile = request.getParameter("codgrpfile");
@@ -127,14 +141,21 @@ public class LegajoController {
     public ModelAndView buscarLegajoAtras(ModelMap model, HttpServletRequest request,
                                      @PathVariable String idTrab,
                                      @PathVariable String grpFile) {
-        logger.info("/buscarLegajoAtras");
+        log.info("/buscarLegajoAtras");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
-        logger.info("grpFile: " + grpFile);
+        log.info("idTrab: " + idTrab);
+        log.info("grpFile: " + grpFile);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -154,13 +175,14 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         String codgrpfile = grpFile;
@@ -179,13 +201,20 @@ public class LegajoController {
                                        @PathVariable String idTrab,
                                        @PathVariable String iexcodgrpfile,
                                        @PathVariable String grpFile) {
-        logger.info("/ingresarImagen");
+        log.info("/ingresarImagen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
         model.addAttribute("idComp", idCompania);
 
@@ -206,13 +235,14 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("iexcodgrpfile", iexcodgrpfile);
@@ -224,13 +254,20 @@ public class LegajoController {
     @RequestMapping("/nuevoGrupo@{idTrab}")
     public ModelAndView nuevoGrupo(ModelMap model, HttpServletRequest request,
                                    @PathVariable String idTrab) {
-        logger.info("/nuevoGrupo");
+        log.info("/nuevoGrupo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrabXXXXX: " + idTrab);
+        log.info("idTrabXXXXX: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -250,15 +287,14 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/nuevoGrupo");
@@ -266,7 +302,14 @@ public class LegajoController {
 
     @RequestMapping("/insertarGrupo")
     public ModelAndView insertarGrupo(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarGrupo");
+        log.info("/insertarGrupo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -281,7 +324,7 @@ public class LegajoController {
         grp.setIexcodcia(Integer.valueOf(iexcodcia));
         grp.setIexcodtra(Integer.valueOf(iexcodtra));
         Integer idgrpfile = legajoService.obtieneIdGrpFile(grp);
-        logger.info("idgrpfile: " + idgrpfile);
+        log.info("idgrpfile: " + idgrpfile);
         grp.setIexcodgrpfile(idgrpfile);
         grp.setIexgrpfile(codgrpfile);
         grp.setIexdesgrpfile(desfile);
@@ -297,13 +340,20 @@ public class LegajoController {
                                     @PathVariable String idTrab,
                                     @PathVariable String iexcodgrpfile,
                                     @PathVariable String grpFile) {
-        logger.info("/editarGrupoArch");
+        log.info("/editarGrupoArch");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrabXXXXX: " + idTrab);
+        log.info("idTrabXXXXX: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -323,13 +373,14 @@ public class LegajoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
@@ -340,7 +391,14 @@ public class LegajoController {
 
     @RequestMapping("/modificarGrupoArch")
     public ModelAndView modificarGrupoArch(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarGrupoArch");
+        log.info("/modificarGrupoArch");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -372,13 +430,20 @@ public class LegajoController {
                                         @PathVariable String idTrab,
                                         @PathVariable String iexcodgrpfile,
                                         @PathVariable String grpFile) {
-        logger.info("/delGrupoArch");
+        log.info("/delGrupoArch");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -402,9 +467,9 @@ public class LegajoController {
         grp2.setIexcodtra(Integer.valueOf(idTrab));
         grp2.setIexcodgrpfile(Integer.valueOf(iexcodgrpfile));
 
-        logger.info("grp2.setIexcodcia: "+grp2.getIexcodcia());
-        logger.info("grp2.setIexcodtra: "+grp2.getIexcodtra());
-        logger.info("grp2.getIexcodgrpfile: "+grp2.getIexcodgrpfile());
+        log.info("grp2.setIexcodcia: "+grp2.getIexcodcia());
+        log.info("grp2.setIexcodtra: "+grp2.getIexcodtra());
+        log.info("grp2.getIexcodgrpfile: "+grp2.getIexcodgrpfile());
         legajoService.eliminarGrpFile(grp2);
 
         return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrab+"@"+grpFile);

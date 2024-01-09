@@ -3,31 +3,36 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class RolesController {
-    static Logger logger = Logger.getLogger(RolesController.class.getName());
 
     @Autowired
     RolService rolService;
     @Autowired
     OpcionService opcionService;
-
     @Autowired
     Sessionattributes sessionattributes;
 
     @RequestMapping("/listRoles")
     public ModelAndView listRoles(ModelMap model, HttpServletRequest request) {
-        logger.info("/listRoles");
+        log.info("/listRoles");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -39,7 +44,14 @@ public class RolesController {
 
     @RequestMapping("/nuevoRol")
     public ModelAndView nuevoRol(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoRol");
+        log.info("/nuevoRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -49,7 +61,14 @@ public class RolesController {
 
     @RequestMapping("/insertarRol")
     public ModelAndView insertarRol(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarRol");
+        log.info("/insertarRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -66,7 +85,14 @@ public class RolesController {
     @RequestMapping("/verOpcion@{idRol}")
     public ModelAndView verOpcion(ModelMap model, HttpServletRequest request,
                                   @PathVariable String idRol) {
-        logger.info("/verOpcion");
+        log.info("/verOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -79,7 +105,14 @@ public class RolesController {
 
     @RequestMapping("/nuevoRolxOpcion@{idRol}")
     public ModelAndView nuevoRolxOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
-        logger.info("/nuevoRolxOpcion");
+        log.info("/nuevoRolxOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -92,7 +125,14 @@ public class RolesController {
 
     @RequestMapping("/insertarRolxOpcion@{idRol}")
     public ModelAndView insertarRolxOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
-        logger.info("/insertarRolxOpcion");
+        log.info("/insertarRolxOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -117,7 +157,14 @@ public class RolesController {
 
     @RequestMapping("/editarOpcion@{idRol}")
     public ModelAndView editarOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
-        logger.info("/editarOpcion");
+        log.info("/editarOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -134,7 +181,14 @@ public class RolesController {
 
     @RequestMapping("/modificarRol")
     public ModelAndView modificarRol(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarRol");
+        log.info("/modificarRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -151,7 +205,14 @@ public class RolesController {
     public ModelAndView editarOpcionxRol(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idRolxOpc,
                                          @PathVariable String idRol) {
-        logger.info("/editarOpcionxRol");
+        log.info("/editarOpcionxRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -172,7 +233,14 @@ public class RolesController {
 
     @RequestMapping("/modificarRolxOpcion")
     public ModelAndView modificarRolxOpcion(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarRolxOpcion");
+        log.info("/modificarRolxOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -199,7 +267,14 @@ public class RolesController {
 
     @RequestMapping("/deleteRol@{idRol}")
     public ModelAndView deleteRol(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
-        logger.info("/deleteRol");
+        log.info("/deleteRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -216,7 +291,14 @@ public class RolesController {
     public ModelAndView deleteOpcionxRol(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idOpc,
                                          @PathVariable String idRol) {
-        logger.info("/deleteOpcionxRol");
+        log.info("/deleteOpcionxRol");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -229,6 +311,5 @@ public class RolesController {
 
         return new ModelAndView("redirect:/verOpcion@" + idRol);
     }
-
 }
 

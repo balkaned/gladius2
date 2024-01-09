@@ -4,19 +4,18 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class VacacionesController {
-    static Logger logger = Logger.getLogger(VacacionesController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -31,13 +30,20 @@ public class VacacionesController {
 
     @RequestMapping("/vacaciones@{idTrab}")
     public ModelAndView vacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/vacaciones");
+        log.info("/vacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -58,13 +64,15 @@ public class VacacionesController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         empleado.setIexcodcia(idCompania);
@@ -80,13 +88,20 @@ public class VacacionesController {
                                         @PathVariable String idTrab,
                                         @PathVariable String perMesIni,
                                         @PathVariable String perMesFin) {
-        logger.info("/verDetalleVac");
+        log.info("/verDetalleVac");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -105,20 +120,18 @@ public class VacacionesController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("iexlogo", emp.getIexlogo());
         model.addAttribute("urlLogo", urlLogo);
-
         model.addAttribute("perini", perMesIni);
         model.addAttribute("perfin", perMesFin);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("LstVacacionesPer", vacacionesService.listarVacacionesPer(emp, perMesIni, perMesFin));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
@@ -129,9 +142,16 @@ public class VacacionesController {
                                                    @PathVariable String idTrab,
                                                    @PathVariable String perMesIni,
                                                    @PathVariable String perMesFin) {
-        logger.info("/nuevasVacacionesValidacion");
+        log.info("/nuevasVacacionesValidacion");
 
         Integer idempleado = 0;
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -152,21 +172,20 @@ public class VacacionesController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("perini", perMesIni);
         model.addAttribute("perfin", perMesFin);
 
         Integer saldo = 0;
         saldo = vacacionesService.saldotraVac(idCompania, Integer.valueOf(idTrab), perMesIni, perMesFin);
-        logger.info("Saldo=" + saldo);
+        log.info("Saldo=" + saldo);
 
         if (saldo > 0) {
             return new ModelAndView("redirect:/nuevasVacacionesIns@{idTrab}@{perMesIni}@{perMesFin}@" + saldo);
@@ -185,13 +204,20 @@ public class VacacionesController {
                                             @PathVariable String perini,
                                             @PathVariable String perfin,
                                             @PathVariable String saldo) {
-        logger.info("/nuevasVacacionesIns");
+        log.info("/nuevasVacacionesIns");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -212,15 +238,14 @@ public class VacacionesController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("saldo", saldo);
         model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
         model.addAttribute("perini", perini);
@@ -231,7 +256,14 @@ public class VacacionesController {
 
     @RequestMapping("/insertarVacaciones")
     public ModelAndView insertarVacaciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarVacaciones");
+        log.info("/insertarVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -254,13 +286,13 @@ public class VacacionesController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         String perini2 = request.getParameter("iexpermesini");
@@ -285,13 +317,13 @@ public class VacacionesController {
             vacprg.setIexcodtra(Integer.valueOf(iexcodtra));
 
             codcorrel = vacacionesService.getIdVacacionPrg(vacprg);
-            logger.info("codcorrelVAc: " + codcorrel);
+            log.info("codcorrelVAc: " + codcorrel);
 
             if (codcorrel > 0) {
 
                 String iexpermesini2 = perini2;
 
-                logger.info("iexpermesini2: " + iexpermesini2);
+                log.info("iexpermesini2: " + iexpermesini2);
                 Integer mesfinal = Integer.valueOf(iexpermesini2) + 1;
 
                 vacprg.setIexcorrel(codcorrel);
@@ -337,7 +369,14 @@ public class VacacionesController {
     @RequestMapping("/actualizarVacEmpl@{idTrab}")
     public ModelAndView actualizarVacEmpl(ModelMap model, HttpServletRequest request,
                                           @PathVariable String idTrab) {
-        logger.info("/actualizarVacEmpl");
+        log.info("/actualizarVacEmpl");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -358,13 +397,13 @@ public class VacacionesController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         Empleado emp2 = new Empleado();
@@ -380,10 +419,17 @@ public class VacacionesController {
 
     @RequestMapping("/gestionTiempoListVacaciones")
     public ModelAndView gestionTiempoListVacaciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/gestionTiempoListVacaciones");
+        log.info("/gestionTiempoListVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         String regimen = request.getParameter("iexcodreg");
         String codtra = request.getParameter("iexcodtra");
@@ -405,22 +451,30 @@ public class VacacionesController {
             }
         }
 
-        logger.info("fecini" + fecini);
-        logger.info("fecfin" + fecfin);
+        log.info("fecini" + fecini);
+        log.info("fecfin" + fecfin);
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         if (fecini != null && fecfin != null) {
             model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, regimen, fecini, fecfin, xcodtra));
         }
+
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
     }
 
     @RequestMapping("/nuevoGestionVacaciones")
     public ModelAndView nuevoGestionVacaciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoGestionVacaciones");
+        log.info("/nuevoGestionVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
@@ -430,7 +484,15 @@ public class VacacionesController {
 
     @RequestMapping("/insertGestionVacaciones")
     public ModelAndView insertGestionVacaciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertGestionVacaciones");
+        log.info("/insertGestionVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -441,14 +503,12 @@ public class VacacionesController {
         Empleado empleado = new Empleado();
         Integer validador = 0;
 
-
         validador = vacacionesService.validaVac(empleado.getIexcodcia(), empleado.getIexcodtra(), request.getParameter("iexfecini"), request.getParameter("iexfecfin"));
 
         if (validador == 0) {
             VacacionProgramacion vacprg = new VacacionProgramacion();
             vacprg.setIexcodcia(idCompania);
             vacprg.setIexcodtra(Integer.parseInt(iexcodtra));
-
 
             codcorrel = vacacionesService.getIdVacacionPrg(vacprg);
             if (codcorrel > 0) {
@@ -464,12 +524,12 @@ public class VacacionesController {
                     Integer iexpervac = Integer.parseInt(iexpervacString);
                     vacprg.setIexpermesfin(String.valueOf(iexpervac + 1));
                 } else {
-                    logger.info("Error iexpervacString" + iexpervacString);
+                    log.info("Error iexpervacString" + iexpervacString);
                 }
                 if (iexnrodias != null && !iexnrodias.isEmpty()) {
                     vacprg.setIexnrodias(Double.parseDouble(iexnrodias));
                 } else {
-                    logger.info("Error iexnrodias" + iexnrodias);
+                    log.info("Error iexnrodias" + iexnrodias);
                 }
 
                 vacacionesService.insertarVacacionPrg(vacprg);
@@ -486,33 +546,38 @@ public class VacacionesController {
 
             }
         } else {
-
-            logger.info("Error en la validación de vacaciones: validador != 0");
+            log.info("Error en la validación de vacaciones: validador != 0");
             Msg_form_global = "Error en la validación de vacaciones";
         }
 
         return new ModelAndView("redirect:/gestionTiempoListVacaciones");
-
     }
 
 
     @RequestMapping("/editarGestionVacaciones@{idTrab}@{iexcorrel}")
     public ModelAndView editarGestionVacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab,
                                                 @PathVariable String iexcorrel) {
-        logger.info("/editarGestionVacaciones@{idTrab}@{iexcorrel}s");
+        log.info("/editarGestionVacaciones@{idTrab}@{iexcorrel}s");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
-        logger.info("iexcorrel: " + iexcorrel);
+        log.info("iexcorrel: " + iexcorrel);
         model.addAttribute("iexcorrel", iexcorrel);
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-        logger.info("iexcorrel: " + iexcorrel);
-
+        log.info("idCompaniaXXXX: " + idCompania);
+        log.info("idTraXXXXXb: " + idTrab);
+        log.info("iexcorrel: " + iexcorrel);
 
         VacacionProgramacion vacprg = new VacacionProgramacion();
         vacprg.setIexcodcia(idCompania);
@@ -543,7 +608,15 @@ public class VacacionesController {
 
     @RequestMapping("/actualizarGestionVacaciones")
     public ModelAndView actualizarGestionVacaciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/actualizarGestionVacaciones");
+        log.info("/actualizarGestionVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -568,9 +641,7 @@ public class VacacionesController {
         vacprg.setIexpermesini(request.getParameter("iexpervac"));
         vacprg.setIexpermesfin(String.valueOf(Integer.parseInt(request.getParameter("iexpervac")) + 1));
 
-
         vacacionesService.actualizarVacacionPrg(vacprg);
-
 
         if (empleado2.getIexfecing() != null && request.getParameter("iexfecfin") != null) {
             model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, empleado2.getIexreglab(), empleado2.getIexfecing(), request.getParameter("iexfecfin"), empleado2.getIexcodtra()));
@@ -584,9 +655,6 @@ public class VacacionesController {
         model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
 
         return new ModelAndView("redirect:/gestionTiempoListVacaciones");
-
     }
-
-
 }
 

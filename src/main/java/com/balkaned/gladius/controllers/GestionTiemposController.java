@@ -3,20 +3,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class GestionTiemposController {
-    static Logger logger = Logger.getLogger(GestionTiemposController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -31,13 +30,20 @@ public class GestionTiemposController {
 
     @RequestMapping("/gestionTiempo@{idTrab}")
     public ModelAndView gestionTiempo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/gestionTiempo");
+        log.info("/gestionTiempo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -57,13 +63,14 @@ public class GestionTiemposController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         String v_fecini = request.getParameter("fecini");
@@ -84,13 +91,20 @@ public class GestionTiemposController {
 
     @RequestMapping("/grabarTurno@{idTrab}")
     public ModelAndView grabarTurno(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/grabarTurno");
+        log.info("/grabarTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -111,13 +125,14 @@ public class GestionTiemposController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         Integer v_codcia = idCompania;
@@ -227,7 +242,14 @@ public class GestionTiemposController {
 
     @RequestMapping("/listAsistencia")
     public ModelAndView listAsistencia(ModelMap model, HttpServletRequest request) {
-        logger.info("/listAsistencia");
+        log.info("/listAsistencia");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -247,7 +269,14 @@ public class GestionTiemposController {
 
     @RequestMapping("/listarTurnodia")
     public ModelAndView listarTurnodia(ModelMap model, HttpServletRequest request) {
-        logger.info("/listarTurnodia");
+        log.info("/listarTurnodia");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -263,7 +292,6 @@ public class GestionTiemposController {
         request.setAttribute("fecini", v_fecini);
         request.setAttribute("fecfin", v_fecfin);
 
-
         model.addAttribute("LstTurno", turnoDiarioService.listarTurnos(idCompania));
         model.addAttribute("lovTipTurno", lovsService.getLovs("69", "%"));
         model.addAttribute("xempxturno", empleadoService.recuperarTurnos(idCompania, Empleado.getIexcodtra()));
@@ -277,12 +305,18 @@ public class GestionTiemposController {
 
     @RequestMapping("/listTurno")
     public ModelAndView lisTurno(ModelMap model, HttpServletRequest request) {
-        logger.info("/listTurno");
+        log.info("/listTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
 
         Turno turn = new Turno();
         turn.setCodcia(idCompania);
@@ -295,7 +329,15 @@ public class GestionTiemposController {
 
     @RequestMapping("/nuevoTurno")
     public ModelAndView nuevoTurno(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoTurno");
+        log.info("/nuevoTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -305,11 +347,18 @@ public class GestionTiemposController {
 
     @RequestMapping("/insertarTurno")
     public ModelAndView insertarTurno(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarTurno");
+        log.info("/insertarTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
 
         Turno turno = new Turno();
         turno.setCodcia(idCompania);
@@ -342,11 +391,18 @@ public class GestionTiemposController {
 
     @RequestMapping("/editarTurno@{idTurn}")
     public ModelAndView editarTurno(ModelMap model, HttpServletRequest request, @PathVariable String idTurn) {
-        logger.info("/editarTurno");
+        log.info("/editarTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
-
 
         model.addAttribute("turno", turnoDiarioService.getTurno(idCompania, Integer.parseInt(idTurn)));
 
@@ -356,7 +412,15 @@ public class GestionTiemposController {
 
     @RequestMapping("/modificarTurno")
     public ModelAndView modificarTurno(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarTurno");
+        log.info("/modificarTurno");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -389,7 +453,5 @@ public class GestionTiemposController {
 
         return new ModelAndView("redirect:/listTurno");
     }
-
-
 }
 

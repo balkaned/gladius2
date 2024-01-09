@@ -4,20 +4,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.BancoPro;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class BancosController {
-    static Logger logger = Logger.getLogger(BancosController.class.getName());
     @Autowired
     BancoProService bancoProService;
 
@@ -32,13 +31,20 @@ public class BancosController {
 
     @RequestMapping("/listBancos")
     public ModelAndView listBancos(ModelMap model, HttpServletRequest request) {
-        logger.info("/listBancos");
+        log.info("/listBancos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<BancoPro> bancoProList = bancoProService.listarBancoPro(idCompania, "");
-        logger.info("bancoProList: " + bancoProList);
+        log.info("bancoProList: " + bancoProList);
         model.addAttribute("bancoProList", bancoProList);
 
         return new ModelAndView("public/gladius/organizacion/bancosPro/listBancosPro");
@@ -46,7 +52,14 @@ public class BancosController {
 
     @RequestMapping("/nuevoBanco")
     public ModelAndView nuevoBanco(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoBanco");
+        log.info("/nuevoBanco");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -59,7 +72,14 @@ public class BancosController {
 
     @RequestMapping("/insertarBanco")
     public ModelAndView insertarBanco(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarBanco");
+        log.info("/insertarBanco");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -86,10 +106,17 @@ public class BancosController {
     }
 
     @RequestMapping("/editarBancoPro@{idBanco}@{idCodPro}")
-    public ModelAndView editarBancoPro(ModelMap model, HttpServletRequest request
-            , @PathVariable String idBanco
-            , @PathVariable String idCodPro) {
-        logger.info("/editarBancoPro");
+    public ModelAndView editarBancoPro(ModelMap model, HttpServletRequest request,
+                                       @PathVariable String idBanco,
+                                       @PathVariable String idCodPro) {
+        log.info("/editarBancoPro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -106,7 +133,14 @@ public class BancosController {
 
     @RequestMapping("/modificarBanco")
     public ModelAndView modificarBanco(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarBanco");
+        log.info("/modificarBanco");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -136,7 +170,14 @@ public class BancosController {
     public ModelAndView eliminarBancoPro(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idBanco,
                                          @PathVariable String idCodPro) {
-        logger.info("/eliminarBancoPro");
+        log.info("/eliminarBancoPro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -150,6 +191,5 @@ public class BancosController {
 
         return new ModelAndView("redirect:/listBancos");
     }
-
 }
 

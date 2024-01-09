@@ -4,19 +4,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class CompaniasController {
-    static Logger logger = Logger.getLogger(CompaniasController.class.getName());
 
     @Autowired
     CompaniaService companiaService;
@@ -29,7 +29,14 @@ public class CompaniasController {
 
     @RequestMapping("/listCompanias")
     public ModelAndView listCompanias(ModelMap model, HttpServletRequest request) {
-        logger.info("/listCompanias");
+        log.info("/listCompanias");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -41,7 +48,14 @@ public class CompaniasController {
 
     @RequestMapping("/nuevaCompania")
     public ModelAndView nuevaCompania(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaCompania");
+        log.info("/nuevaCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -53,7 +67,14 @@ public class CompaniasController {
 
     @RequestMapping("/insertarCompania")
     public ModelAndView insertarCompania(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarCompania");
+        log.info("/insertarCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -83,7 +104,14 @@ public class CompaniasController {
 
     @RequestMapping("/editarCompania@{idCia}")
     public ModelAndView editarCompania(ModelMap model, HttpServletRequest request, @PathVariable String idCia) {
-        logger.info("/editarCompania");
+        log.info("/editarCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -100,7 +128,14 @@ public class CompaniasController {
 
     @RequestMapping("/modificarCompania")
     public ModelAndView modificarCompania(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarCompania");
+        log.info("/modificarCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -136,7 +171,14 @@ public class CompaniasController {
 
     @RequestMapping("/insertarConceptoComp")
     public ModelAndView insertarConceptoCom(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarConceptoComp");
+        log.info("/insertarConceptoComp");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -153,7 +195,14 @@ public class CompaniasController {
     public ModelAndView delConceptoComp(ModelMap model, HttpServletRequest request,
                                         @PathVariable String idCia,
                                         @PathVariable String idCon) {
-        logger.info("/delConceptoComp");
+        log.info("/delConceptoComp");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -165,7 +214,14 @@ public class CompaniasController {
 
     @RequestMapping("/deleteCompania@{idComp}")
     public ModelAndView deleteCompania(ModelMap model, HttpServletRequest request, @PathVariable String idComp) {
-        logger.info("/deleteCompania");
+        log.info("/deleteCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -178,6 +234,5 @@ public class CompaniasController {
 
         return new ModelAndView("redirect:/listCompanias");
     }
-
 }
 

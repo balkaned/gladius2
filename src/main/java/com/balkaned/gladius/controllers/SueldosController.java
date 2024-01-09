@@ -5,17 +5,16 @@ import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class SueldosController {
-    static Logger logger = Logger.getLogger(SueldosController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -30,12 +29,19 @@ public class SueldosController {
 
     @RequestMapping("/sueldoFijo@{idTrab}")
     public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/sueldoFijo");
+        log.info("/sueldoFijo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -55,13 +61,13 @@ public class SueldosController {
         model.addAttribute("iexlogo", emp.getIexlogo());
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         empleado.setIexcodcia(idCompania);
@@ -74,13 +80,20 @@ public class SueldosController {
 
     @RequestMapping("/nuevoSueldoFijo@{idTrab}")
     public ModelAndView nuevoSueldoFijo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/nuevoSueldoFijo");
+        log.info("/nuevoSueldoFijo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -101,13 +114,14 @@ public class SueldosController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("fsueldox", sueldoService.obtenerEmpSueldo(empleado));
@@ -118,7 +132,14 @@ public class SueldosController {
 
     @RequestMapping("/insertarSueldoFijo")
     public ModelAndView insertarSueldoFijo(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarSueldoFijo");
+        log.info("/insertarSueldoFijo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         Integer idempleado = 0;
 
@@ -135,7 +156,6 @@ public class SueldosController {
         } else {
             valcon = Double.parseDouble(request.getParameter("iexvalcon"));
         }
-        ;
 
         EmpSueldo sueldo = new EmpSueldo();
         sueldo.setIexcodcia(iexcodcia);
@@ -151,13 +171,20 @@ public class SueldosController {
 
     @RequestMapping("/sueldoVariable@{idTrab}")
     public ModelAndView sueldoVariable(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/sueldoVariable");
+        log.info("/sueldoVariable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -178,15 +205,14 @@ public class SueldosController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/sueldoVariable");
@@ -195,7 +221,14 @@ public class SueldosController {
     @RequestMapping("/verDataSueldoVar@{idTrab}")
     public ModelAndView verDataSueldoVar(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTrab) {
-        logger.info("/verDataSueldoVar");
+        log.info("/verDataSueldoVar");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -221,18 +254,17 @@ public class SueldosController {
         String iexcodtra = request.getParameter("iexcodtra");
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
-        model.addAttribute("sexo", sexo);
+        log.info("sexo: " + sexo);
 
+        model.addAttribute("sexo", sexo);
         model.addAttribute("iexcodpro", iexcodpro);
         model.addAttribute("iexperiodo", iexperiodo);
-
         model.addAttribute("fdatavar", sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro), iexperiodo, Integer.valueOf(idTrab), 1));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/verDataSueldoVar");
@@ -243,7 +275,14 @@ public class SueldosController {
                                              @PathVariable String idTrab,
                                              @PathVariable String codpro,
                                              @PathVariable String periodo) {
-        logger.info("/verDataSueldoVarBack");
+        log.info("/verDataSueldoVarBack");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -269,15 +308,14 @@ public class SueldosController {
         String iexcodtra = idTrab;
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("iexcodpro", iexcodpro);
         model.addAttribute("iexperiodo", iexperiodo);
         model.addAttribute("fdatavar", sueldoService.obtenerEmpDatvar(idCompania, Integer.valueOf(iexcodpro), iexperiodo, Integer.valueOf(iexcodtra), 1));
@@ -291,8 +329,14 @@ public class SueldosController {
                                        @PathVariable String idTrab,
                                        @PathVariable String codpro,
                                        @PathVariable String nroper) {
+        log.info("/nuevoSueldoVar");
 
-        logger.info("/nuevoSueldoVar");
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -314,13 +358,13 @@ public class SueldosController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         String concepto2 = request.getParameter("iexcodcon");
@@ -333,7 +377,14 @@ public class SueldosController {
 
     @RequestMapping("/insertarConceptoVar")
     public ModelAndView insertarConceptoVar(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarConceptoVar");
+        log.info("/insertarConceptoVar");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 

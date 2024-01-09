@@ -4,19 +4,18 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class RetJudicialController {
-    static Logger logger = Logger.getLogger(RetJudicialController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -34,13 +33,20 @@ public class RetJudicialController {
 
     @RequestMapping("/retencionJud@{idTrab}")
     public ModelAndView retencionJud(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/retencionJud");
+        log.info("/retencionJud");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrabXXXXX: " + idTrab);
+        log.info("idTrabXXXXX: " + idTrab);
 
         model.addAttribute("idTrab", idTrab);
 
@@ -61,13 +67,13 @@ public class RetJudicialController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("LstRetencionDet", retencionJudService.listarRetencionJudicial(emp));
@@ -77,12 +83,19 @@ public class RetJudicialController {
 
     @RequestMapping("/nuevaRetencion@{idTrab}")
     public ModelAndView nuevaRetencion(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/nuevaRetencion");
+        log.info("/nuevaRetencion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -103,13 +116,13 @@ public class RetJudicialController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("lovTipretj", lovsService.getLovs("58", "%"));
@@ -120,7 +133,14 @@ public class RetJudicialController {
 
     @RequestMapping("/insertarRetencion")
     public ModelAndView insertarRetencion(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarRetencion");
+        log.info("/insertarRetencion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -151,6 +171,5 @@ public class RetJudicialController {
 
         return new ModelAndView("redirect:/retencionJud@" + iexcodtra);
     }
-
 }
 

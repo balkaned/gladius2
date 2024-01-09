@@ -3,19 +3,18 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class AusentismoController {
-    static Logger logger = Logger.getLogger(AusentismoController.class.getName());
     @Autowired
     EmpleadoService empleadoService;
 
@@ -32,13 +31,20 @@ public class AusentismoController {
 
     @RequestMapping("/ausentismo@{idTrab}")
     public ModelAndView ausentismo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/ausentismo");
+        log.info("/ausentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -58,13 +64,14 @@ public class AusentismoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("LstAusentismoDet", ausentismoService.listarAusentismoPrg(emp));
@@ -74,13 +81,20 @@ public class AusentismoController {
 
     @RequestMapping("/nuevoAusentismo@{idTrab}")
     public ModelAndView nuevoAusentismo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
-        logger.info("/nuevoAusentismo");
+        log.info("/nuevoAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
         Empleado empleado = new Empleado();
@@ -101,13 +115,14 @@ public class AusentismoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
@@ -117,7 +132,14 @@ public class AusentismoController {
 
     @RequestMapping("/insertarAusentismo")
     public ModelAndView insertarAusentismo(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarAusentismo");
+        log.info("/insertarAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -140,13 +162,14 @@ public class AusentismoController {
         model.addAttribute("urlLogo", urlLogo);
 
         String sexo;
-        logger.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
         if (emp.getIexcodsex() == null) {
             sexo = "NA";
         } else {
             sexo = emp.getIexcodsex();
         }
-        logger.info("sexo: " + sexo);
+
+        log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 
         Integer codcorrel = 0;
@@ -161,9 +184,9 @@ public class AusentismoController {
         ausprg.setIexcodtra(emp.getIexcodtra());
 
         codcorrel = ausentismoService.getIdAusentismoPrg(ausprg);
-        logger.info("codcorrel: " + codcorrel);
+        log.info("codcorrel: " + codcorrel);
         validador = ausentismoService.validaAus(emp.getIexcodcia(), emp.getIexcodtra(), iexfecini, iexfecfin, 0);
-        logger.info("validador: " + validador);
+        log.info("validador: " + validador);
 
         if (validador == 0) {
             //if(codcorrel >0) {
@@ -192,7 +215,15 @@ public class AusentismoController {
 
     @RequestMapping("/gestionTiempoListAusentismo")
     public ModelAndView gestionTiempoListAusentismo(ModelMap model, HttpServletRequest request) {
-        logger.info("/gestionTiempoListAusentismo");
+        log.info("/gestionTiempoListAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -228,6 +259,14 @@ public class AusentismoController {
 
     @RequestMapping("/nuevoGestionAusentismo")
     public ModelAndView nuevoGestionAusentismo(ModelMap model, HttpServletRequest request) {
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -241,7 +280,15 @@ public class AusentismoController {
 
     @RequestMapping("/insertarGestionAusentismo")
     public ModelAndView insertarGestionAusentismo(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarGestionAusentismo");
+        log.info("/insertarGestionAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -258,11 +305,11 @@ public class AusentismoController {
         codcorrel = ausentismoService.getIdAusentismoPrg(ausprg);
         validador = ausentismoService.validaAus(empleado.getIexcodcia(), empleado.getIexcodtra(), request.getParameter("iexfecini"), request.getParameter("iexfecfin"), 0);
 
-        logger.info("codcorrelVAc: " + codcorrel);
-        logger.info("idCompania: " + idCompania);
-        logger.info("validador: " + validador);
-        logger.info("iexfecini: " + request.getParameter("iexfecini"));
-        logger.info("iexfecini: " + request.getParameter("iexfecfin"));
+        log.info("codcorrelVAc: " + codcorrel);
+        log.info("idCompania: " + idCompania);
+        log.info("validador: " + validador);
+        log.info("iexfecini: " + request.getParameter("iexfecini"));
+        log.info("iexfecini: " + request.getParameter("iexfecfin"));
 
         if (validador == 0) {
 
@@ -300,21 +347,26 @@ public class AusentismoController {
     @RequestMapping("/editarGestionAusentismo@{idTrab}@{iexcorrel}")
     public ModelAndView editarGestionAusentismo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab,
                                                 @PathVariable String iexcorrel) {
-        logger.info("/editarGestionAusentismo@{idTrab}@{iexcorrel}");
+        log.info("/editarGestionAusentismo@{idTrab}@{iexcorrel}");
 
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        logger.info("idTrab: " + idTrab);
+        log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
 
-        logger.info("iexcorrel: " + iexcorrel);
+        log.info("iexcorrel: " + iexcorrel);
         model.addAttribute("iexcorrel", iexcorrel);
 
-        logger.info("idCompaniaXXXX: " + idCompania);
-        logger.info("idTraXXXXXb: " + idTrab);
-
+        log.info("idCompaniaXXXX: " + idCompania);
+        log.info("idTraXXXXXb: " + idTrab);
 
         AusentismoProgramacion ausprg = new AusentismoProgramacion();
         ausprg.setIexcodcia(idCompania);
@@ -324,7 +376,6 @@ public class AusentismoController {
         Integer saldo2 = 0;
         Empleado empleado2 = new Empleado();
         empleado2 = empleadoService.recuperarCabecera(ausprg.getIexcodcia(), ausprg.getIexcodtra());
-
 
         model.addAttribute("iexcodreg", empleado2.getIexreglab());
         model.addAttribute("xAusentismoDet", ausentismoService.getAusentismoPrg(ausprg));
@@ -337,11 +388,17 @@ public class AusentismoController {
 
     @RequestMapping("/actualizarGestionAusentismo")
     public ModelAndView actualizarGestionAusentismo(ModelMap model, HttpServletRequest request) {
-        logger.info("/actualizarGestionAusentismo");
+        log.info("/actualizarGestionAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         AusentismoProgramacion ausprg = new AusentismoProgramacion();
         Empleado empleado = new Empleado();
@@ -373,8 +430,5 @@ public class AusentismoController {
 
         return new ModelAndView("redirect:/gestionTiempoListAusentismo");
     }
-
-
-
 }
 

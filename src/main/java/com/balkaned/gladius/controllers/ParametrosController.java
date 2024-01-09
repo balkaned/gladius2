@@ -4,19 +4,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class ParametrosController {
-    static Logger logger = Logger.getLogger(ParametrosController.class.getName());
     @Autowired
     ParametroService parametroService;
 
@@ -32,7 +32,14 @@ public class ParametrosController {
 
     @RequestMapping("/listParametros")
     public ModelAndView listParametros(ModelMap model, HttpServletRequest request) {
-        logger.info("/listParametros");
+        log.info("/listParametros");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -44,7 +51,14 @@ public class ParametrosController {
 
     @RequestMapping("/nuevoParametro")
     public ModelAndView nuevoParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoParametro");
+        log.info("/nuevoParametro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -57,7 +71,14 @@ public class ParametrosController {
 
     @RequestMapping("/insertarParametro")
     public ModelAndView insertarParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarParametro");
+        log.info("/insertarParametro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -78,7 +99,14 @@ public class ParametrosController {
 
     @RequestMapping("/editarParametro@{idParam}")
     public ModelAndView editarParametro(ModelMap model, HttpServletRequest request, @PathVariable String idParam) {
-        logger.info("/editarParametro");
+        log.info("/editarParametro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -93,7 +121,14 @@ public class ParametrosController {
 
     @RequestMapping("/modificarParametro")
     public ModelAndView modificarParametro(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarParametro");
+        log.info("/modificarParametro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -113,7 +148,14 @@ public class ParametrosController {
 
     @RequestMapping("/deleteParametro@{idParam}")
     public ModelAndView deleteParametro(ModelMap model, HttpServletRequest request, @PathVariable String idParam) {
-        logger.info("/deleteParametro");
+        log.info("/deleteParametro");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -125,6 +167,5 @@ public class ParametrosController {
 
         return new ModelAndView("redirect:/listParametros");
     }
-
 }
 

@@ -3,19 +3,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class GestionTtableController {
-    static Logger logger = Logger.getLogger(GestionTtableController.class.getName());
 
     @Autowired
     TtableService ttableService;
@@ -25,7 +25,14 @@ public class GestionTtableController {
 
     @RequestMapping("/listTablasGen")
     public ModelAndView listTablasGen(ModelMap model, HttpServletRequest request) {
-        logger.info("/listTablasGen");
+        log.info("/listTablasGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -37,7 +44,14 @@ public class GestionTtableController {
 
     @RequestMapping("/nuevaTablaGen")
     public ModelAndView nuevaTablaGen(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaTablaGen");
+        log.info("/nuevaTablaGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -47,7 +61,14 @@ public class GestionTtableController {
 
     @RequestMapping("/insertarNuevaTblGen")
     public ModelAndView insertarNuevaTblGen(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarNuevaTblGen");
+        log.info("/insertarNuevaTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -130,7 +151,14 @@ public class GestionTtableController {
 
     @RequestMapping("/editarTblGen@{idTbl}")
     public ModelAndView editarTblGen(ModelMap model, HttpServletRequest request, @PathVariable String idTbl) {
-        logger.info("/editarTblGen");
+        log.info("/editarTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -143,7 +171,14 @@ public class GestionTtableController {
 
     @RequestMapping("/modificarTblGen")
     public ModelAndView modificarTblGen(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarTblGen");
+        log.info("/modificarTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -227,7 +262,14 @@ public class GestionTtableController {
     @RequestMapping("/verDetalleTblGen@{idTbl}")
     public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTbl) {
-        logger.info("/verDetalleTblGen");
+        log.info("/verDetalleTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -241,7 +283,14 @@ public class GestionTtableController {
 
     @RequestMapping("/modificarTblGenDetalle")
     public ModelAndView modificarTblGenDetalle(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarTblGenDetalle");
+        log.info("/modificarTblGenDetalle");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -249,9 +298,9 @@ public class GestionTtableController {
         String iexcodtab = request.getParameter("iexcodtab2");
         String iexkey = request.getParameter("iexkey");
         String desdet = request.getParameter("desdet");
-        logger.info("iexcodtab: " + iexcodtab);
-        logger.info("iexkey: " + iexkey);
-        logger.info("desdet: " + desdet);
+        log.info("iexcodtab: " + iexcodtab);
+        log.info("iexkey: " + iexkey);
+        log.info("desdet: " + desdet);
 
         String des1det = request.getParameter("des1det");
         String des2det = request.getParameter("des2det");
@@ -376,7 +425,14 @@ public class GestionTtableController {
     @RequestMapping("/curDetalleTblGen@{idTbl}@{idKey}")
     public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
                                          @PathVariable String idTbl, @PathVariable String idKey) {
-        logger.info("/curDetalleTblGen");
+        log.info("/curDetalleTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -395,7 +451,14 @@ public class GestionTtableController {
 
     @RequestMapping("/deleteTablaGen@{idTbl}")
     public ModelAndView deleteTablaGen(ModelMap model, HttpServletRequest request, @PathVariable String idTbl) {
-        logger.info("/deleteTablaGen");
+        log.info("/deleteTablaGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -410,7 +473,14 @@ public class GestionTtableController {
     public ModelAndView deletecurDetalleTblGen(ModelMap model, HttpServletRequest request,
                                                @PathVariable String idTbl,
                                                @PathVariable String idKey) {
-        logger.info("/deletecurDetalleTblGen");
+        log.info("/deletecurDetalleTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

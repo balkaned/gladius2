@@ -3,20 +3,19 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.beans.Opciones;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class OpcionesController {
-    static Logger logger = Logger.getLogger(OpcionesController.class.getName());
-
 
     @Autowired
     OpcionService opcionService;
@@ -28,7 +27,14 @@ public class OpcionesController {
 
     @RequestMapping("/listOpciones")
     public ModelAndView listOpciones(ModelMap model, HttpServletRequest request) {
-        logger.info("/listOpciones");
+        log.info("/listOpciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -40,7 +46,14 @@ public class OpcionesController {
 
     @RequestMapping("/nuevaOpcion")
     public ModelAndView nuevaOpcion(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevaOpcion");
+        log.info("/nuevaOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -52,7 +65,14 @@ public class OpcionesController {
 
     @RequestMapping("/insertarOpcion")
     public ModelAndView insertarOpcion(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarOpcion");
+        log.info("/insertarOpcion");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -79,7 +99,14 @@ public class OpcionesController {
 
     @RequestMapping("/editarOpc@{idOpc}")
     public ModelAndView editarOpc(ModelMap model, HttpServletRequest request, @PathVariable String idOpc) {
-        logger.info("/editarOpc");
+        log.info("/editarOpc");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -93,7 +120,14 @@ public class OpcionesController {
 
     @RequestMapping("/modificarOpc")
     public ModelAndView modificarOpc(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarOpc");
+        log.info("/modificarOpc");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -117,7 +151,14 @@ public class OpcionesController {
 
     @RequestMapping("/deleteOpc@{idOpc}")
     public ModelAndView deleteOpc(ModelMap model, HttpServletRequest request, @PathVariable String idOpc) {
-        logger.info("/deleteOpc");
+        log.info("/deleteOpc");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -128,6 +169,5 @@ public class OpcionesController {
 
         return new ModelAndView("redirect:/listOpciones");
     }
-
 }
 

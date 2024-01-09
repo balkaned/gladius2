@@ -1,24 +1,22 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.CentroCosto;
-import com.balkaned.gladius.beans.Puesto;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 @RestController
+@Slf4j
 public class CcostosController {
-    static Logger logger = Logger.getLogger(CcostosController.class.getName());
     @Autowired
     CcostoService ccostoService;
 
@@ -30,13 +28,20 @@ public class CcostosController {
 
     @RequestMapping("/listCcostos")
     public ModelAndView litsCcostos(ModelMap model, HttpServletRequest request) {
-        logger.info("/litsCcostos");
+        log.info("/litsCcostos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<CentroCosto> ccostosList = ccostoService.listarCentroCosto(idCompania, "");
-        logger.info("ccostosList: " + ccostosList);
+        log.info("ccostosList: " + ccostosList);
         model.addAttribute("ccostosList", ccostosList);
 
         return new ModelAndView("public/gladius/organizacion/ccostos/listCcostos");
@@ -44,7 +49,14 @@ public class CcostosController {
 
     @RequestMapping("/nuevoCcosto")
     public ModelAndView nuevoCcosto(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoCcosto");
+        log.info("/nuevoCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -57,7 +69,14 @@ public class CcostosController {
 
     @RequestMapping("/insertarCcosto")
     public ModelAndView insertarCcosto(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarCcosto");
+        log.info("/insertarCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -83,7 +102,14 @@ public class CcostosController {
 
     @RequestMapping("/editarCcosto@{idCosto}")
     public ModelAndView editarCcosto(ModelMap model, HttpServletRequest request, @PathVariable String idCosto) {
-        logger.info("/editarCcosto");
+        log.info("/editarCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -97,7 +123,14 @@ public class CcostosController {
 
     @RequestMapping("/modificarCcosto")
     public ModelAndView modificarCcosto(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarCcosto");
+        log.info("/modificarCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -123,7 +156,14 @@ public class CcostosController {
 
     @RequestMapping("/deleteCcosto@{idCosto}")
     public ModelAndView deleteCcosto(ModelMap model, HttpServletRequest request, @PathVariable String idCosto) {
-        logger.info("/deleteCcosto");
+        log.info("/deleteCcosto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -138,6 +178,5 @@ public class CcostosController {
 
         return new ModelAndView("redirect:/listCcostos");
     }
-
 }
 

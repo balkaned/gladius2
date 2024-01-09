@@ -1,35 +1,22 @@
 package com.balkaned.gladius.controllers;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class GestionReportesController {
-    static Logger logger = Logger.getLogger(GestionReportesController.class.getName());
 
     @Autowired
     PlanillaService planillaService;
@@ -50,20 +37,24 @@ public class GestionReportesController {
 
     @RequestMapping("/listReporte5taNomina")
     public ModelAndView listReporte5taNomina(ModelMap model, HttpServletRequest request) {
-        logger.info("/listReporte5taNomina");
+        log.info("/listReporte5taNomina");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         Empleado Empleado = new Empleado();
         Empleado.setIexcodcia(idCompania);
         List<Empleado> listarEmp = empleadoService.listarEmpleado(Empleado);
 
-
         String v_idproceso = "";
         String v_idperiodo = "";
-
         String anio = request.getParameter("peranio");
         String iexcodtra = request.getParameter("percodtra");
 
@@ -77,7 +68,7 @@ public class GestionReportesController {
                 lista = planillaService.listPla5ta(idCompania, anio, Integer.parseInt(iexcodtra));
                 xEmpAcumAnio = empAcumService.getEmpAcum(idCompania, Integer.parseInt(iexcodtra), anio);
             } else {
-                logger.info("Error no encontrado" + iexcodtra);
+                log.info("Error no encontrado" + iexcodtra);
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -96,7 +87,14 @@ public class GestionReportesController {
 
     @RequestMapping("/listReportePlanillas")
     public ModelAndView listReportePlanillas(ModelMap model, HttpServletRequest request) {
-        logger.info("/listReportePlanillas");
+        log.info("/listReportePlanillas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -114,7 +112,15 @@ public class GestionReportesController {
 
     @RequestMapping("/pdfResumenPla")
     public ModelAndView pdfResumenPla(ModelMap model, HttpServletRequest request) throws FileNotFoundException {
-        logger.info("/listReportePlanillas");
+        log.info("/listReportePlanillas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -124,7 +130,14 @@ public class GestionReportesController {
 
     @RequestMapping("/listReportePlanillaxConcepto")
     public ModelAndView listReportePlanillaxConcepto(ModelMap model, HttpServletRequest request) {
-        logger.info("/listReportePlanillaxConcepto");
+        log.info("/listReportePlanillaxConcepto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -132,7 +145,6 @@ public class GestionReportesController {
         String codcon = request.getParameter("codcon");
         String perini = request.getParameter("perini");
         String perfin = request.getParameter("perfin");
-
 
         List<Concepto> listacon = (List<Concepto>) model.getAttribute("listacon");
         List<Concepto> lista = (List<Concepto>) model.getAttribute("lstConcepto");
@@ -143,37 +155,40 @@ public class GestionReportesController {
         }
         if (lista == null) lista = conceptoService.listardet();
 
-
         Concepto condes = conceptoService.recuperar(codcon);
         if (condes != null) {
             listacon.add(condes);
         } else {
-            logger.info("Error en " + condes);
+            log.info("Error en " + condes);
         }
 
-        logger.info("lstConcepto" + lista);
-        logger.info("listacon" + listacon);
+        log.info("lstConcepto" + lista);
+        log.info("listacon" + listacon);
 
         model.addAttribute("lstConcepto", lista);
         model.addAttribute("xperini", perini);
         model.addAttribute("xperfin", perfin);
-
 
         return new ModelAndView("public/gladius/gestionDePlanilla/listReportePlanillasXConceptos/listReportePlanillaxConcepto");
     }
 
     @RequestMapping("/listReporteNominaxPersona")
     public ModelAndView listReporteNominaxPersona(ModelMap model, HttpServletRequest request) {
-        logger.info("/listReporteNominaxPersona");
+        log.info("/listReporteNominaxPersona");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-
         Empleado Empleado = new Empleado();
         Empleado.setIexcodcia(idCompania);
         List<Empleado> listarEmp = empleadoService.listarEmpleado(Empleado);
-
 
         String perini = request.getParameter("perini");
         String perfin = request.getParameter("perfin");
@@ -206,15 +221,15 @@ public class GestionReportesController {
                 }
 
             } else {
-                logger.info("Error no encontrado" + iexcodtra);
+                log.info("Error no encontrado" + iexcodtra);
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-
         model.addAttribute("LstEmpleadoRes", listarEmp);
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
+
         return new ModelAndView("public/gladius/gestionDePlanilla/ReporteNominaXPersona/listReporteNominaxPersona");
     }
 }

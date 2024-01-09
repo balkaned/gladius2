@@ -5,22 +5,20 @@ import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
+@Slf4j
 public class UsuariosController {
-    static Logger logger = Logger.getLogger(UsuariosController.class.getName());
-
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
 
@@ -41,7 +39,14 @@ public class UsuariosController {
 
     @RequestMapping("/listUsuarios")
     public ModelAndView listUsuarios(ModelMap model, HttpServletRequest request) {
-        logger.info("/listUsuarios");
+        log.info("/listUsuarios");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -57,7 +62,14 @@ public class UsuariosController {
 
     @RequestMapping("/nuevoUsuario")
     public ModelAndView nuevoUsuario(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoUsuario");
+        log.info("/nuevoUsuario");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -67,7 +79,14 @@ public class UsuariosController {
 
     @RequestMapping("/insertarUsuario")
     public ModelAndView insertarUsuario(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarUsuario");
+        log.info("/insertarUsuario");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -94,7 +113,7 @@ public class UsuariosController {
         uc.setUser(usuario2);
 
         UsuarioConeccion ucConsulta = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
-        logger.info("ucConsulta.getUser():" + ucConsulta.getUser());
+        log.info("ucConsulta.getUser():" + ucConsulta.getUser());
 
         if (ucConsulta.getUser() == null) {
             if (password.equals(password2)) {
@@ -112,7 +131,7 @@ public class UsuariosController {
             }
 
             if (cont == 2) {
-                logger.info("contadorOK: " + cont);
+                log.info("contadorOK: " + cont);
                 String foto = "";
                 Integer codusumat = 1;
 
@@ -153,7 +172,14 @@ public class UsuariosController {
 
     @RequestMapping("/editarUsuario@{idUsu}")
     public ModelAndView editarUsuario(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
-        logger.info("/editarUsuario");
+        log.info("/editarUsuario");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -167,7 +193,14 @@ public class UsuariosController {
 
     @RequestMapping("/modificarUsuario")
     public ModelAndView modificarUsuario(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarUsuario");
+        log.info("/modificarUsuario");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -195,13 +228,19 @@ public class UsuariosController {
 
     @RequestMapping("/asignarRolUs@{idUsu}")
     public ModelAndView asignarRolUs(ModelMap model, HttpServletRequest request, @PathVariable String idUsu) {
-        logger.info("/asignarRolUs");
+        log.info("/asignarRolUs");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         model.addAttribute("idUsu", idUsu);
-
         model.addAttribute("usuxciaxrol", usuxCompaniaService.listar(Integer.valueOf(idUsu)));
         model.addAttribute("listacia", companiaService.listarTodo());
         model.addAttribute("listarol", rolService.listarRoles());
@@ -211,7 +250,14 @@ public class UsuariosController {
 
     @RequestMapping("/asignarRolxCiaIns")
     public ModelAndView asignarRolxCiaIns(ModelMap model, HttpServletRequest request) {
-        logger.info("/asignarRolxCiaIns");
+        log.info("/asignarRolxCiaIns");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -244,7 +290,14 @@ public class UsuariosController {
                                            @PathVariable String idUsu,
                                            @PathVariable String idRol,
                                            @PathVariable String idCia) {
-        logger.info("/eliminarRolXciaUsu");
+        log.info("/eliminarRolXciaUsu");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -262,6 +315,5 @@ public class UsuariosController {
 
         return new ModelAndView("redirect:/asignarRolUs@" + idUsu);
     }
-
 }
 

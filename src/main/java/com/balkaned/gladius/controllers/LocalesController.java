@@ -1,26 +1,22 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
 import com.balkaned.gladius.beans.Local;
-import com.balkaned.gladius.beans.Puesto;
-import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.LocalService;
-import com.balkaned.gladius.services.UsuarioConeccionService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class LocalesController {
-    static Logger logger = Logger.getLogger(LocalesController.class.getName());
     @Autowired
     LocalService localService;
 
@@ -29,13 +25,20 @@ public class LocalesController {
 
     @RequestMapping("/listLocales")
     public ModelAndView listLocales(ModelMap model, HttpServletRequest request) {
-        logger.info("/listLocales");
+        log.info("/listLocales");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         List<Local> localesList = localService.listarLocales(idCompania, "");
-        logger.info("localesList: " + localesList);
+        log.info("localesList: " + localesList);
         model.addAttribute("localesList", localesList);
 
         return new ModelAndView("public/gladius/organizacion/locales/listLocales");
@@ -43,7 +46,14 @@ public class LocalesController {
 
     @RequestMapping("/nuevoLocal")
     public ModelAndView nuevoLocal(ModelMap model, HttpServletRequest request) {
-        logger.info("/nuevoLocal");
+        log.info("/nuevoLocal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -55,7 +65,14 @@ public class LocalesController {
 
     @RequestMapping("/insertarLocal")
     public ModelAndView insertarLocal(ModelMap model, HttpServletRequest request) {
-        logger.info("/insertarLocal");
+        log.info("/insertarLocal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -80,7 +97,14 @@ public class LocalesController {
     @RequestMapping("/editarLocal@{idLocal}")
     public ModelAndView editarLocal(ModelMap model, HttpServletRequest request,
                                     @PathVariable String idLocal) {
-        logger.info("/editarLocal");
+        log.info("/editarLocal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -93,7 +117,14 @@ public class LocalesController {
 
     @RequestMapping("/modificarLocal")
     public ModelAndView modificarLocal(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarLocal");
+        log.info("/modificarLocal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -117,7 +148,14 @@ public class LocalesController {
 
     @RequestMapping("/eliminarLocal@{idLocal}")
     public ModelAndView eliminarLocal(ModelMap model, HttpServletRequest request, @PathVariable String idLocal) {
-        logger.info("/eliminarLocal");
+        log.info("/eliminarLocal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:"+user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
