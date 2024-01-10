@@ -130,8 +130,8 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${empl.iextipdocid}</td>
-                              <td class="total align-middle text-end fw-semi-bold text-1000">${empl.iexnrodoc}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
+                              <td class="total align-middle text-end fw-semi-bold text-600">${empl.iexnrodoc}</td>
                               <td class="customer align-middle white-space-nowrap ps-8">
                                 <a class="d-flex align-items-center" href="#!">
                                   <div class="avatar avatar-m">
@@ -142,7 +142,7 @@
                               </td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${empl.iexcodsex}</td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexpuesto}</td>
+                              <td class="delivery_type align-middle white-space-nowrap text-600 fs--1 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexfecing}</td>

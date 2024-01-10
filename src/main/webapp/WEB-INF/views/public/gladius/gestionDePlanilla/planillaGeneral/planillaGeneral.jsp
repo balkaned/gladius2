@@ -30,6 +30,10 @@
         });
      }
 
+     function mostrarModalEditarPeriodo(){
+        alert("ingrese a la funcion");
+     }
+
      function remove() {
         var opcion = confirm("Esta seguro de Eliminar el Registro?");
         if (opcion == true) {
@@ -228,8 +232,10 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${List_Procesos.desgrppla}</td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="editarUsuario@${LstUsuario.idUsuario}">${List_Procesos.iexnroper}</a></td>
+                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${List_Procesos.desgrppla}</span></td>
+                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">
+                                        <a onclick="mostrarModalEditarPeriodo();" href="#" type="button" data-bs-toggle="modal" data-bs-target="#periodoModalEditar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-pencil me-2"></span>${List_Procesos.iexnroper}</a>
+                                    </td>
                                     <td class="total align-middle text-start fw-semi-bold text-600 ps-5">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-5">${List_Procesos.iexfecini}</td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${List_Procesos.iexfecfin}</td>
@@ -278,76 +284,149 @@
   </body>
 
   <div class="modal fade" id="periodoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addDealModal" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-100 p-6">
-                  <div class="modal-header border-0 p-0 mb-2">
-                    <h3 class="mb-0">Periodo proceso</h3>
-                    <button class="btn btn-sm btn-phoenix-secondary" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times text-danger"></span></button>
-                  </div>
-                  <div class="modal-body px-0">
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPeriodoPlan" novalidate>
-                                <div class="col-sm-6 col-md-6">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
-                                      <select name="iexcodreg2" id="iexcodreg2" onchange="regimen();" class="form-select" required >
-                                          <option value="" selected >Seleccionar</option>
-                                          <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
-                                              <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
-                                          </c:forEach>
-                                      </select>
-                                </div>
-                                <div class="col-sm-6 col-md-6">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
-                                      <select name="idproceso" id="idproceso" class="form-select" required >
-                                      </select>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
-                                    <input class="form-control" name="idanio" type="text" placeholder="2023" required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes YYYYMM</label>
-                                    <input class="form-control" name="idpermes" type="text" placeholder="yyyymm" required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
-                                    <input class="form-control" name="idperiodo" type="text" placeholder="202301" required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="fecini" name="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="fecfin" name="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="fecinit" name="fecinit" onchange="formatearFecha3();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="fecfint" name="fecfint" onchange="formatearFecha4();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="fecpago" name="fecpago" onchange="formatearFecha5();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Certificado/Boleta</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                    <input class="form-control datetimepicker" id="feccerti" name="feccerti" onchange="formatearFecha6();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
-                                </div>
-                                <div class="modal-footer border-0 pt-6 px-0 pb-0">
-                                    <button class="btn btn-link text-danger px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
-                                    <button type="submit" class="btn btn-primary my-0">Guardar Periodo</button>
-                                </div>
-                            </form>
-                        </div>
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-100 p-6">
+              <div class="modal-header border-0 p-0 mb-2">
+                <h3 class="mb-0">Periodo proceso</h3>
+                <button class="btn btn-sm btn-phoenix-secondary" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times text-danger"></span></button>
+              </div>
+              <div class="modal-body px-0">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPeriodoPlan" novalidate>
+                            <div class="col-sm-6 col-md-6">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
+                                  <select name="iexcodreg2" id="iexcodreg2" onchange="regimen();" class="form-select" required >
+                                      <option value="" selected >Seleccionar</option>
+                                      <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
+                                          <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
+                                      </c:forEach>
+                                  </select>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
+                                  <select name="idproceso" id="idproceso" class="form-select" required >
+                                  </select>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
+                                <input class="form-control" name="idanio" type="text" placeholder="2023" required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes YYYYMM</label>
+                                <input class="form-control" name="idpermes" type="text" placeholder="yyyymm" required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                                <input class="form-control" name="idperiodo" type="text" placeholder="202301" required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="fecini" name="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="fecfin" name="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="fecinit" name="fecinit" onchange="formatearFecha3();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="fecfint" name="fecfint" onchange="formatearFecha4();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="fecpago" name="fecpago" onchange="formatearFecha5();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Certificado/Boleta</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" id="feccerti" name="feccerti" onchange="formatearFecha6();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                            </div>
+                            <div class="modal-footer border-0 pt-6 px-0 pb-0">
+                                <button class="btn btn-link text-danger px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                                <button type="submit" class="btn btn-primary my-0">Guardar Periodo</button>
+                            </div>
+                        </form>
                     </div>
+                </div>
+              </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="periodoModalEditar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addDealModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content bg-100 p-6">
+                <div class="modal-header border-0 p-0 mb-2">
+                  <h3 class="mb-0">Editar periodo proceso</h3>
+                  <button class="btn btn-sm btn-phoenix-secondary" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times text-danger"></span></button>
+                </div>
+                <div class="modal-body px-0">
+                  <div class="row g-4">
+                      <div class="col-12">
+                          <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPeriodoPlan" novalidate>
+                              <div class="col-sm-6 col-md-6">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
+                                    <select name="iexcodreg2" id="iexcodreg2" onchange="regimen();" class="form-select" required >
+                                        <option value="" selected >Seleccionar</option>
+                                        <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
+                                            <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
+                                        </c:forEach>
+                                    </select>
+                              </div>
+                              <div class="col-sm-6 col-md-6">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
+                                    <select name="idproceso" id="idproceso" class="form-select" required >
+                                    </select>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
+                                  <input class="form-control" name="idanio" type="text" placeholder="2023" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes YYYYMM</label>
+                                  <input class="form-control" name="idpermes" type="text" placeholder="yyyymm" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                                  <input class="form-control" name="idperiodo" type="text" placeholder="202301" required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="fecini" name="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="fecfin" name="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="fecinit" name="fecinit" onchange="formatearFecha3();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="fecfint" name="fecfint" onchange="formatearFecha4();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="fecpago" name="fecpago" onchange="formatearFecha5();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Certificado/Boleta</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                  <input class="form-control datetimepicker" id="feccerti" name="feccerti" onchange="formatearFecha6();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                              </div>
+                              <div class="modal-footer border-0 pt-6 px-0 pb-0">
+                                  <button class="btn btn-link text-danger px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                                  <button type="submit" class="btn btn-primary my-0">Guardar Periodo</button>
+                              </div>
+                          </form>
+                      </div>
                   </div>
-            </div>
+                </div>
           </div>
         </div>
+    </div>
 </html>
 
