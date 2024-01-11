@@ -337,6 +337,18 @@
     #usermenu{
         height:0px;
     }
+
+    #imgcompany{
+        margin-top:15px;
+        margin-left:110px !important;
+        border:0px solid red !important;
+    }
+
+    .card-body div h4{
+        border:0px solid red;
+        font-size:10px !important;
+    }
+
 }
 
 .navbar-vertical-content{

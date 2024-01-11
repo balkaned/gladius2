@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row flex-center min-vh-100 py-5">
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
-              <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logoLast.png" alt="phoenix" width="58" />
+              <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logoLast4.png" alt="phoenix" width="58" />
               </div>
             </a>
             <div class="text-center mb-7">

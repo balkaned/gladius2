@@ -395,7 +395,7 @@ public class AWS_FTP_FlgSourceController {
                     InputStream inputStreamlogo = null;
                     InputStream inputStreamRep = null;
 
-                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="") {
                         Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
 
                         if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
@@ -411,7 +411,7 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="") {
 
                         fileName = codciax + "/fotoemp/" + fotoemp;
                         credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -431,7 +431,6 @@ public class AWS_FTP_FlgSourceController {
                         log.info("Obtiene Logo Path: " + fileName);
                     }
 
-
                     AmazonS3 s5 = null;
                     S3Object o3 = null;
                     s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -445,7 +444,7 @@ public class AWS_FTP_FlgSourceController {
                     parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
                     parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
 
-                    if(idTrabx==null || idTrabx.equals("") || idTrabx=="") {
+                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="")  {
                         parametros.put("P_LOGO", inputStreamlogo);
                         parametros.put("P_FOTO", inputStreamfotoemp);
                     }

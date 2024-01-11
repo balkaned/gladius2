@@ -152,21 +152,21 @@
                                             <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" required disabled />
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Documento</label>
-                                              <select name="iextipdocid" class="form-select" required >
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovTipdoc" items="${lovTipdoc}">
-                                                      <option value="${lovTipdoc.idLov}"  ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovTipdoc.desLov}</option>
-                                                  </c:forEach>
-                                              </select>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Documento</label>
+                                            <select name="iextipdocid" class="form-select" required >
+                                               <option value="" selected >Seleccionar</option>
+                                               <c:forEach var="lovTipdoc" items="${lovTipdoc}">
+                                                  <option value="${lovTipdoc.idLov}"  ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovTipdoc.desLov}</option>
+                                               </c:forEach>
+                                            </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado [TT54]</label>
                                             <select name="iexflgest" class="form-select" required>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovEstados" items="${lovEstados}">
-                                                      <option value="${lovEstados.idLov}"  ${lovEstados.idLov == requestScope.emp.iexflgest ? 'selected' : ''}   >${lovEstados.desLov}</option>
-                                                  </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovEstados" items="${lovEstados}">
+                                                    <option value="${lovEstados.idLov}"  ${lovEstados.idLov == requestScope.emp.iexflgest ? 'selected' : ''}   >${lovEstados.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
