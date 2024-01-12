@@ -29,11 +29,7 @@ public class PlanillaController {
         log.info("/listPlanillaGeneral");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -48,11 +44,7 @@ public class PlanillaController {
         log.info("/buscarPlanillaGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -71,11 +63,7 @@ public class PlanillaController {
         log.info("/insertarPeriodoPlan");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -117,69 +105,5 @@ public class PlanillaController {
 
         return new ModelAndView("redirect:/listPlanillaGeneral");
     }
-
-    /*@RequestMapping("/editarArea@{idArea}")
-    public ModelAndView editarArea(ModelMap model, HttpServletRequest request, @PathVariable String idArea) {
-        logger.info("/editarArea");
-
-        sessionattributes.getVariablesSession(model, request);
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
-        model.addAttribute("lovCatArea", lovsService.getLovs("62", "%"));
-        model.addAttribute("lovArea", areaService.listarArea(idCompania, ""));
-        model.addAttribute("xArea", areaService.getArea(idCompania, idArea));
-
-        return new ModelAndView("public/gladius/organizacion/areas/editarArea");
-    }
-
-    @RequestMapping("/modificarArea")
-    public ModelAndView modificarAreaa(ModelMap model, HttpServletRequest request) {
-        logger.info("/modificarArea");
-
-        sessionattributes.getVariablesSession(model, request);
-
-        String usuario = (String) request.getSession().getAttribute("user");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
-        Integer iexcodcia = idCompania;
-        String iexcodarea = request.getParameter("iexcodarea2");
-        String iexdesarea = request.getParameter("iexdesarea");
-        String iexdesarea_des = request.getParameter("iexdesarea_descripcion");
-        String iexcodcat = request.getParameter("iexcodcat");
-        String iexareapadre = request.getParameter("iexareapadre");
-        String iexusucrea = usuario;
-
-        Area area = new Area();
-        area.setIexcodcia(iexcodcia);
-        area.setIexcodarea(iexcodarea);
-        area.setIexdesarea(iexdesarea);
-        area.setIexdesarea_descripcion(iexdesarea_des);
-        area.setIexcodcat(iexcodcat);
-        area.setIexareapadre(iexareapadre);
-        area.setIexusumod(iexusucrea);
-
-        areaService.actualizarArea(area);
-
-        return new ModelAndView("redirect:/listAreas");
-    }
-
-    @RequestMapping("/deleteArea@{idArea}")
-    public ModelAndView deleteArea(ModelMap model, HttpServletRequest request, @PathVariable String idArea) {
-        logger.info("/deleteArea");
-
-        sessionattributes.getVariablesSession(model, request);
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
-        model.addAttribute("idArea", idArea);
-
-        Area area = new Area();
-        area.setIexcodcia(idCompania);
-        area.setIexcodarea(idArea);
-
-        areaService.eliminarArea(area);
-
-        return new ModelAndView("redirect:/listAreas");
-    }*/
-
 }
 

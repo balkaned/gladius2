@@ -42,11 +42,7 @@ public class UsuariosController {
         log.info("/listUsuarios");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -65,11 +61,7 @@ public class UsuariosController {
         log.info("/nuevoUsuario");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -82,11 +74,7 @@ public class UsuariosController {
         log.info("/insertarUsuario");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -175,11 +163,7 @@ public class UsuariosController {
         log.info("/editarUsuario");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -196,11 +180,7 @@ public class UsuariosController {
         log.info("/modificarUsuario");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -231,11 +211,7 @@ public class UsuariosController {
         log.info("/asignarRolUs");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -253,11 +229,7 @@ public class UsuariosController {
         log.info("/asignarRolxCiaIns");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -293,11 +265,7 @@ public class UsuariosController {
         log.info("/eliminarRolXciaUsu");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

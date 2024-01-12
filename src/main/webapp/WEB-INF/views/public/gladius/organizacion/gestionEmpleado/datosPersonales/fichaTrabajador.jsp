@@ -134,7 +134,7 @@
                        </ul>
                        <div class="col-12 mb-2">
                            <div class="col-sm-6 col-md-12 d-flex justify-content-end">
-                               <a class="col-3 btn btn-phoenix-primary" href="listEmpleados">Atras</a>
+                               <a class="col-4 btn btn-phoenix-primary" href="listEmpleados">Atras</a>
                            </div>
                        </div>
 
@@ -192,7 +192,7 @@
 
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" required />
+                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             <input class="form-control" id="iexfecnachidden" type="hidden" value="${fecnacIEX}" />
                                         </div>
                                         <div class="col-sm-6 col-md-6">

@@ -36,11 +36,7 @@ public class LegajoController {
         log.info("/legajo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -87,11 +83,7 @@ public class LegajoController {
         log.info("/buscarLegajo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -144,11 +136,7 @@ public class LegajoController {
         log.info("/buscarLegajoAtras");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -204,11 +192,7 @@ public class LegajoController {
         log.info("/ingresarImagen");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -257,11 +241,7 @@ public class LegajoController {
         log.info("/nuevoGrupo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -305,11 +285,7 @@ public class LegajoController {
         log.info("/insertarGrupo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -343,11 +319,7 @@ public class LegajoController {
         log.info("/editarGrupoArch");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -394,11 +366,7 @@ public class LegajoController {
         log.info("/modificarGrupoArch");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -433,11 +401,7 @@ public class LegajoController {
         log.info("/delGrupoArch");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

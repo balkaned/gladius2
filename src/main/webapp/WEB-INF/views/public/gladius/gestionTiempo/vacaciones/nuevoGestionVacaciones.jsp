@@ -20,10 +20,7 @@
     }
     
     $(document).ready(function () {
-
         $('#iexcodreg').change(function (event) {
-
-
             $.ajaxSetup({cache: false});
             $.ajax({
                 url: "getlovsLOVCODTRA",
@@ -42,14 +39,9 @@
                     $("#iexpervac").html("<option value='' >Seleccionar</option>");
                   }
                 });
-
-              });
-
-
+        });
 
         $('#iexcodtra').change(function (event) {
-
-
             $.ajaxSetup({cache: false});
             $.ajax({
                 url: "getLovsLOVPERVAC",
@@ -73,8 +65,6 @@
 
 
         $('#iexpervac').change(function (event) {
-
-
             $.ajaxSetup({cache: false});
             $.ajax({
                 url: "getLovsSALVACTRA",
@@ -95,7 +85,7 @@
                     }
 
                     $("#iexsaldodias").val(opt);
-
+                    $("#iexsaldodias2").val(opt);
                 }
             });
 
@@ -175,11 +165,10 @@
         }
 
         document.getElementById("iexnrodias").value = Number(resultado) + 1;
+        document.getElementById("iexnrodias2").value = Number(resultado) + 1;
     }
 
-
     function insertaVacaciones() {
-
         var diassaldo = document.getElementById("iexsaldodias").value;
         var diasprg = document.getElementById("iexnrodias").value;
         if (diassaldo >= diasprg) {
@@ -239,8 +228,8 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de tiempos</a></li>
+                <li class="breadcrumb-item active">Gestión vacaciones</li>
             </ol>
         </nav>
         <div class="mb-9">
@@ -279,8 +268,8 @@
                             </div>
                             <div class="col-sm-6 col-md-3 ">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
-                                <input type="text" name="iexsaldodias" class="form-control" id="iexsaldodias"
-                                       readonly="true" style="background-color:#F1F4F8;">
+                                <input type="text" name="iexsaldodiasdis" class="form-control" id="iexsaldodias2" readonly required disabled>
+                                <input type="hidden" name="iexsaldodias" id="iexsaldodias" value=""/>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
@@ -290,28 +279,26 @@
                                         <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''}  > ${lovTipvaca.desLov} </option>
                                     </c:forEach>
                                 </select>
-                                </select>
-
                             </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
                                        value="${requestScope.xVacacionesPrg.iexfecini}"
-                                       onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" required />
+                                       onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" required data-options='{"disableMobile":true}'/>
                             </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
-                                       onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" required />
+                                       onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" required data-options='{"disableMobile":true}'/>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Número de dias</label>
+                                <input type="text" name="iexnrodiasdis" class="form-control" id="iexnrodias2" readonly required disabled>
+                                <input type="hidden" name="iexnrodias" id="iexnrodias" value=""/>
                             </div>
 
-                            <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                                <input type="text" name="iexnrodias" class="form-control" id="iexnrodias"
-                                       readonly="true" style="background-color:#F1F4F8;">
-                            </div>
                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                 Se grabó exitosamente los cambios.
                             </div>
@@ -325,7 +312,7 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmModal" data-boundary="window"
                                                 aria-haspopup="true"
-                                                aria-expanded="false" data-bs-reference="parent">Insertar Vacaciones
+                                                aria-expanded="false" data-bs-reference="parent">Guardar Vacaciones
                                         </button>
                                     </div>
                                 </div>
@@ -355,9 +342,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <jsp:include page="../../../demoWidget.jsp"></jsp:include>

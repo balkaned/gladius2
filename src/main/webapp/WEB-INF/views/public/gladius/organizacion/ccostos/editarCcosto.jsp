@@ -43,7 +43,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Editar Centro de Costo</h2>
+                  <h2 id="h2top" class="mb-0">Editar centro de costo</h2>
                 </div>
               </div>
 
@@ -54,15 +54,15 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexccosto2" type="hidden" value="${idCosto}" />
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                                     <input class="form-control" name="iexccosto" type="text" value="${idCosto}" placeholder="" readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion (*)</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
                                     <input class="form-control" name="iexdesccosto" type="text" value="${requestScope.xCcosto.iexdesccosto}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria Centro de Costos(*)</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Categoria Centro de Costos</label>
                                   <select class="form-select" name="iexcodcat" required >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatCencos" items="${lovCatCencos}">

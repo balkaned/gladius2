@@ -34,11 +34,7 @@ public class AusentismoController {
         log.info("/ausentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -84,11 +80,7 @@ public class AusentismoController {
         log.info("/nuevoAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -124,7 +116,6 @@ public class AusentismoController {
 
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/nuevoAusentismo");
@@ -135,11 +126,7 @@ public class AusentismoController {
         log.info("/insertarAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -218,11 +205,7 @@ public class AusentismoController {
         log.info("/gestionTiempoListAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -259,13 +242,10 @@ public class AusentismoController {
 
     @RequestMapping("/nuevoGestionAusentismo")
     public ModelAndView nuevoGestionAusentismo(ModelMap model, HttpServletRequest request) {
+        log.info("/nuevoGestionAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -283,11 +263,7 @@ public class AusentismoController {
         log.info("/insertarGestionAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -312,7 +288,6 @@ public class AusentismoController {
         log.info("iexfecini: " + request.getParameter("iexfecfin"));
 
         if (validador == 0) {
-
             if (codcorrel > 0) {
                 ausprg.setIexcorrel(codcorrel);
                 ausprg.setIexfecini(request.getParameter("iexfecini"));
@@ -325,12 +300,9 @@ public class AusentismoController {
                 ausentismoService.insertarAusentismoPrg(ausprg);
                 Msg_form_global = "OK";
             }
-
         } else {
-
             Msg_form_global = "Error";
         }
-
 
         model.addAttribute("LstAusentismoView", ausentismoService.listaAusentismoGen(idCompania, request.getParameter("iexcodreg"), ausprg.getIexfecini(), ausprg.getIexfecfin(), Integer.parseInt(request.getParameter("iexcodtra"))));
         model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, request.getParameter("iexcodreg")));
@@ -350,11 +322,7 @@ public class AusentismoController {
         log.info("/editarGestionAusentismo@{idTrab}@{iexcorrel}");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -391,11 +359,7 @@ public class AusentismoController {
         log.info("/actualizarGestionAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

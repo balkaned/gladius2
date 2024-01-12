@@ -158,7 +158,7 @@
                                 <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecini" id="fecini"
                                        onchange="formatearFecha1();" type="text"
-                                       placeholder="dd/mm/yyyy" required/>
+                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                             </div>
 
                             <!-- Fecha Fin -->
@@ -168,7 +168,7 @@
                                 <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecfin" id="fecfin"
                                        onchange="formatearFecha2();" type="text"
-                                       placeholder="dd/mm/yyyy" required/>
+                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                             </div>
 
                             <!-- Buttons -->
@@ -185,9 +185,9 @@
                                 </a>
 
                                 <a class="btn btn-link text-900 me-4 px-0"
-                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null" target="_blank">
-                                target="_blank"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar
-                                    Saldo</a>
+                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null"
+                                   target="_blank">
+                                    <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Saldo</a>
                             </div>
                         </form>
                     </div>

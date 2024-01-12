@@ -29,11 +29,7 @@ public class PuestoController {
         log.info("/listPuestos");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -52,11 +48,7 @@ public class PuestoController {
         log.info("/nuevoPuesto");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -72,11 +64,7 @@ public class PuestoController {
         log.info("/insertarPuesto");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -105,11 +93,7 @@ public class PuestoController {
         log.info("/editarPuesto");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -126,11 +110,7 @@ public class PuestoController {
         log.info("/modificarPuesto");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -159,11 +139,7 @@ public class PuestoController {
         log.info("/deleterPuesto");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

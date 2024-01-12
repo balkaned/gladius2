@@ -103,30 +103,36 @@
                               </div>
                               <div class="col-sm-6 col-md-3">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id Trabajador</label>
-                                   <input class="form-control" name="idtrabajador" id="idtrabajador"  type="text" value="${requestScope.xtrainactivo.iexcodtra}" style="background-color:#F1F4F8;" required readonly />
+                                   <input class="form-control" name="idtrabajadordis" id="idtrabajadordis"  type="text" value="${requestScope.xtrainactivo.iexcodtra}" required readonly disabled/>
+                                   <input class="form-control" name="idtrabajador"  id="idtrabajador" type="hidden" value="${requestScope.xtrainactivo.iexcodtra}" />
                               </div>
                               <div class="col-sm-6 col-md-9">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                     <input class="form-control" name="nombres"  id="nombres" type="text" value="${requestScope.xtrainactivo.iexapepat} ${requestScope.xtrainactivo.iexapemat} ${requestScope.xtrainactivo.iexnomtra}" style="background-color:#F1F4F8;" required readonly />
+                                     <input class="form-control" name="nombresdis"  id="nombresdis" type="text" value="${requestScope.xtrainactivo.iexapepat} ${requestScope.xtrainactivo.iexapemat} ${requestScope.xtrainactivo.iexnomtra}" required readonly disabled/>
+                                     <input class="form-control" name="nombres"  id="nombres" type="hidden" value="${requestScope.xtrainactivo.iexapepat} ${requestScope.xtrainactivo.iexapemat} ${requestScope.xtrainactivo.iexnomtra}" />
                               </div>
                               <div class="col-sm-6 col-md-3">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento</label>
-                                    <input class="form-control" name="tipodocumento"  id="tipodocumento" type="text" value="${requestScope.xtrainactivo.iextipdocid}"  style="background-color:#F1F4F8;" required readonly />
+                                    <input class="form-control" name="tipodocumentodis"  id="tipodocumentodis" type="text" value="${requestScope.xtrainactivo.iextipdocid}" required readonly disabled/>
+                                    <input class="form-control" name="tipodocumento"  id="tipodocumento" type="hidden" value="${requestScope.xtrainactivo.iextipdocid}" />
                               </div>
                               <div class="col-sm-6 col-md-5">
                                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Documento</label>
-                                      <input class="form-control" name="nrodoc"   id="nrodoc" type="text" value="${requestScope.xtrainactivo.iexnrodoc}" style="background-color:#F1F4F8;" required readonly />
+                                      <input class="form-control" name="nrodocdis" id="nrodocdis" type="text" value="${requestScope.xtrainactivo.iexnrodoc}" required readonly disabled/>
+                                      <input class="form-control" name="nrodoc"  id="nrodoc" type="hidden" value="${requestScope.xtrainactivo.iexnrodoc}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio</label>
-                                     <input class="form-control" name="fechaing"  id="ultfecharet" type="text" value="${requestScope.xtrainactivo.iexfecing}" style="background-color:#F1F4F8;" required readonly />
+                                     <input class="form-control" name="fechaingdis"  id="ultfecharetdis" type="text" value="${requestScope.xtrainactivo.iexfecing}" required readonly disabled/>
+                                     <input class="form-control" name="fechaing"  id="ultfecharet" type="hidden" value="${requestScope.xtrainactivo.iexfecing}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
                                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ultima fecha Retiro</label>
-                                      <input class="form-control" name="ultfecharet"  id="ultfecharet" type="text" value="${requestScope.xtrainactivo.iexfecret}" style="background-color:#F1F4F8;" required readonly />
+                                      <input class="form-control" name="ultfecharet"  id="ultfecharet" type="text" value="${requestScope.xtrainactivo.iexfecret}" required readonly disabled/>
+                                      <input class="form-control" name="ultfecharet"  id="ultfecharet" type="hidden" value="${requestScope.xtrainactivo.iexfecret}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha Reingreso (*)</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >* Fecha Reingreso</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                  	  <input class="form-control datetimepicker" name="fechaing"  id="fechaing" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                               </div>
 

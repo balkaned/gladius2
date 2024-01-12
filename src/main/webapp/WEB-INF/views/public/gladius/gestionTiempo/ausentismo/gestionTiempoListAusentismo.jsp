@@ -179,14 +179,9 @@
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" type="submit">
-                                    <span class="fa-solid fa-magnifying-glass me-2"></span>Buscar
-                                </button>
-                                <a class="btn btn-phoenix-primary" href="nuevoGestionAusentismo"><span
-                                        class="fas fa-plus me-2"></span>Agregar</a>
-                                <button class="btn btn-link text-900 me-4 px-0 ps-3" type="button"><span
-                                        class="fa-solid fa-file-export me-2"></span>Exportar Xls
-                                </button>
+                                <button class="btn btn-primary" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                                <a class="btn btn-phoenix-primary" href="nuevoGestionAusentismo"><span class="fas fa-plus me-2"></span>Agregar</a>
+                                <button class="btn btn-link text-900 me-4 px-0 ps-3" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Xls</button>
                             </div>
                         </form>
                      </div>

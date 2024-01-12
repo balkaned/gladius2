@@ -72,10 +72,15 @@
         <jsp:include page="navsempleado.jsp"></jsp:include>
 
       </div>
-      <div class="phoenix-offcanvas-backdrop d-lg-none top-0" data-phoenix-backdrop="data-phoenix-backdrop"></div>
+      <div class="phoenix-offcanvas-backdrop d-lg-none top-0" data-phoenix-backdrop="data-phoenix-backdrop">
+      </div>
     </div>
 </div>
 
+
+
+
+<!-----Modales---->
 <div class="modal fade" id="reportsFilterModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border">

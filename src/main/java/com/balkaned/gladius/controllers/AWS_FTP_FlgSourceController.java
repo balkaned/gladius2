@@ -23,6 +23,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
+import net.sf.jasperreports.export.XlsExporterConfiguration;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -365,6 +366,7 @@ public class AWS_FTP_FlgSourceController {
                             log.info("Se encontró jasper");
 
                             JRXlsExporter exporter = new JRXlsExporter();
+                            //JRProperties.setProperty("net.sf.jasperreports.default.font.name", "Sans Serif");
                             ServletOutputStream ouputStream = response.getOutputStream();
                             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
                             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(ouputStream));

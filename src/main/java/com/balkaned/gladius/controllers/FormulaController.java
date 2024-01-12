@@ -33,16 +33,11 @@ public class FormulaController {
 
 	@RequestMapping("/listFormulas@{idProceso}")
 	public ModelAndView listFormulas(
-	 ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso) {
 		log.info("/listFormulas");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 		List<FormulaXConcepto> formulaXConceptoList = service.listFormulaXConcepto();
@@ -53,16 +48,11 @@ public class FormulaController {
 
 	@RequestMapping("/formularCodigo@{idProceso}@{idFormula}")
 	public ModelAndView formular(
-	 ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso, @PathVariable("idFormula") Integer idFormula
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso, @PathVariable("idFormula") Integer idFormula) {
 		log.info("/formularCodigo");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 		FormulaPlanilla fplanilla = formulaService.getByIdProcesoIdFormula(idProceso, idFormula);

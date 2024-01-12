@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -35,11 +34,7 @@ public class VacacionesController {
         log.info("/vacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -93,11 +88,7 @@ public class VacacionesController {
         log.info("/verDetalleVac");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -149,11 +140,7 @@ public class VacacionesController {
         Integer idempleado = 0;
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -209,11 +196,7 @@ public class VacacionesController {
         log.info("/nuevasVacacionesIns");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -261,11 +244,7 @@ public class VacacionesController {
         log.info("/insertarVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -374,11 +353,7 @@ public class VacacionesController {
         log.info("/actualizarVacEmpl");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -423,15 +398,10 @@ public class VacacionesController {
         log.info("/gestionTiempoListVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         String estado = request.getParameter("slc_estado");
         String reglab = request.getParameter("iexcodreg");
@@ -440,10 +410,11 @@ public class VacacionesController {
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
-        String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
-        String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
-
+        //CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
+        //String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
+        //String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
+        String fechaFormatterini=fecini;
+        String fechaFormatterfin=fecfin;
 
         Integer xcodtra = 0;
         if (codtra == null || codtra.isEmpty()) {
@@ -462,7 +433,6 @@ public class VacacionesController {
         log.info("P_FECFIN " + fechaFormatterfin);
         log.info("P_REGLAB " + reglab);
         log.info("P_FLGEST " + estado);
-
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         if (fecini != null && fecfin != null) {
@@ -485,11 +455,7 @@ public class VacacionesController {
         log.info("/nuevoGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -505,11 +471,7 @@ public class VacacionesController {
         log.info("/insertGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -578,11 +540,7 @@ public class VacacionesController {
         log.info("/editarGestionVacaciones@{idTrab}@{iexcorrel}s");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -629,11 +587,7 @@ public class VacacionesController {
         log.info("/actualizarGestionVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -679,6 +633,10 @@ public class VacacionesController {
     @RequestMapping("/fechaformatter")
     public ModelAndView fechaformatter(ModelMap model, HttpServletRequest request) {
         log.info("/fechaformatter");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 

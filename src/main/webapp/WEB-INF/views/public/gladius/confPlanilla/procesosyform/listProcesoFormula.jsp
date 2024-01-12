@@ -120,7 +120,7 @@
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
                 <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-secondary"><span class="badge-label">${profo.prodespro}</span></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.progrppro}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${profo.progrppro}</span></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">

@@ -26,17 +26,12 @@ public class AreaController {
     @Autowired
     Sessionattributes sessionattributes;
 
-
     @RequestMapping("/listAreas")
     public ModelAndView listAreas(ModelMap model, HttpServletRequest request) {
         log.info("/listAreas");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -53,11 +48,7 @@ public class AreaController {
         log.info("/nuevaArea");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -74,11 +65,7 @@ public class AreaController {
         log.info("/insertarArea");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -111,11 +98,7 @@ public class AreaController {
         log.info("/editarArea");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -132,11 +115,7 @@ public class AreaController {
         log.info("/modificarArea");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -170,11 +149,7 @@ public class AreaController {
         log.info("/deleteArea");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -189,6 +164,5 @@ public class AreaController {
 
         return new ModelAndView("redirect:/listAreas");
     }
-
 }
 

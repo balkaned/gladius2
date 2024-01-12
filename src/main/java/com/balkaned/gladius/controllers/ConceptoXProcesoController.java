@@ -35,16 +35,11 @@ public class ConceptoXProcesoController {
 
 	@RequestMapping("/listConceptoXProceso@{proceso}@{codigo}")
 	public ModelAndView listConcepto(
-	 ModelMap model, HttpServletRequest request, @PathVariable String proceso, @PathVariable String codigo
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable String proceso, @PathVariable String codigo) {
 		log.info("/listConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 
@@ -68,16 +63,11 @@ public class ConceptoXProcesoController {
 
 	@RequestMapping("/nuevoConceptoXProceso@{idProceso}")
 	public ModelAndView nuevoConceptoXProceso(
-	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso) {
 		log.info("/nuevoConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 		if (Objects.nonNull(idProceso)) {
@@ -95,11 +85,7 @@ public class ConceptoXProcesoController {
 		log.info("/addConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 		try {
@@ -185,14 +171,9 @@ public class ConceptoXProcesoController {
 		log.info("/editarConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
-
 
 		if (Objects.nonNull(idProceso)) {
 			//ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(idProceso));
@@ -211,16 +192,11 @@ public class ConceptoXProcesoController {
 
 	@RequestMapping("/editConceptoXProceso@{idProceso}@{procodcon}")
 	public ModelAndView editConceptoXProceso(
-	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String procodcon
-	) {
+	 ModelMap model, HttpServletRequest request, @PathVariable String idProceso, @PathVariable String procodcon) {
 		log.info("/editConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
-		log.info("user:"+user);
-		if (user == null || user.equals("") || user.equals("null")) {
-			log.info("Ingreso a user null");
-			return new ModelAndView("redirect:/login2");
-		}
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
 

@@ -30,11 +30,7 @@ public class SunatFileController {
         log.info("/gestionPlame");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -63,11 +59,7 @@ public class SunatFileController {
         log.info("/gestionAfp");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -95,11 +87,7 @@ public class SunatFileController {
         log.info("/gestionAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -130,11 +118,7 @@ public class SunatFileController {
         log.info("/buscarAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
@@ -179,11 +163,7 @@ public class SunatFileController {
         log.info("/nuevoAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");

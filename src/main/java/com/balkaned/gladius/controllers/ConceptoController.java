@@ -38,11 +38,7 @@ public class ConceptoController {
         log.info(listConceptos);
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         List<Concepto> conceptosList = conceptoService.listConceptos();
@@ -53,16 +49,11 @@ public class ConceptoController {
     @RequestMapping(nuevoConcepto)
     public ModelAndView nuevoConcepto(
             ModelMap model,
-            HttpServletRequest request
-    ) {
+            HttpServletRequest request) {
         log.info(nuevoConcepto);
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         return new ModelAndView(basePath + nuevoConcepto);
@@ -71,16 +62,11 @@ public class ConceptoController {
     @RequestMapping(insertarConcepto)
     public ModelAndView insertarConcepto(
             ModelMap model,
-            HttpServletRequest request
-    ) {
+            HttpServletRequest request) {
         log.info(insertarConcepto);
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         conceptoService.insertarConcepto(getConcepto(request));
@@ -91,16 +77,11 @@ public class ConceptoController {
     public ModelAndView editarConcepto(
             ModelMap model,
             HttpServletRequest request,
-            @PathVariable String idParam
-    ) {
+            @PathVariable String idParam) {
         log.info(editarConcepto + "@{idParam}");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         Concepto xConcepto = conceptoService.getById(idParam);
@@ -111,16 +92,11 @@ public class ConceptoController {
     @RequestMapping(actualizarConcepto)
     public ModelAndView actualizarConcepto(
             ModelMap model,
-            HttpServletRequest request
-    ) {
+            HttpServletRequest request) {
         log.info(actualizarConcepto);
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
         conceptoService.actualizarConcepto(getConcepto(request));

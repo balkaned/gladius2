@@ -39,11 +39,7 @@ public class LovsController {
         log.info("/getlovsDEPX");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String codpais = request.getParameter("codpais");
         log.info("codpais: " + codpais);
@@ -63,11 +59,7 @@ public class LovsController {
         log.info("/getlovsPROVX");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String coddept = request.getParameter("coddept");
         log.info("coddept: " + coddept);
@@ -87,11 +79,7 @@ public class LovsController {
         log.info("/getlovsDISTX");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String codprov = request.getParameter("codprov");
         log.info("codprov: " + codprov);
@@ -111,11 +99,7 @@ public class LovsController {
         log.info("/getlovsPROXCON");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String iexcodreg = request.getParameter("iexcodreg");
         log.info("iexcodreg: "+iexcodreg);
@@ -135,11 +119,7 @@ public class LovsController {
         log.info("/getlovsPERX");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String proceso = request.getParameter("iexcodpro");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -159,11 +139,7 @@ public class LovsController {
         log.info("/getlovsLOVCODTRA");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String iexcodreg = request.getParameter("iexcodreg");
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -183,11 +159,7 @@ public class LovsController {
         log.info("/getLovsLOVPERVAC");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -211,11 +183,7 @@ public class LovsController {
         log.info("/getLovsSALVACTRA");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String xcodtra2 = request.getParameter("iexcodtra");
         String xpervac = request.getParameter("pervacini");
@@ -236,11 +204,7 @@ public class LovsController {
         log.info("/getLovsLOVCODTRAxUSU");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
-            return new ModelAndView("redirect:/login2");
-        }
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         String iexcodcia = request.getParameter("iexcodcia");
 

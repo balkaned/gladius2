@@ -128,10 +128,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--<configuration>
-					<jvmArguments>-Xmx16m</jvmArguments>
-					<jvmArguments>-Xmx256m</jvmArguments>
-				</configuration>-->
+				<configuration>
+					<executable>true</executable>
+					<!--<jvmArguments>-Xmx16m</jvmArguments>-->
+					<!--<jvmArguments>-Xms64m -Xmx128m</jvmArguments>-->
+					<jvmArguments>-Xmx64m</jvmArguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -88,7 +88,7 @@
                         <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
                       </div>
                     </div>
-                    <div class="col-auto">
+                    <div class="d-grid gap-2 d-md-block">
                       <a class="btn btn-phoenix-primary px-5" href="listRoles">Atras</a>
                       <a class="btn btn-primary" href="nuevoRolxOpcion@${idRol}" ><span class="fas fa-plus me-2"></span>Add RolxOpcion</a>
                       <button class="btn btn-link text-900 me-4 px-0 ps-3"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>

@@ -20,10 +20,7 @@
     }
 
     $(document).ready(function () {
-
         $('#iexcodreg').change(function (event) {
-
-
             $.ajaxSetup({cache: false});
             $.ajax({
                 url: "getlovsLOVCODTRA",
@@ -40,10 +37,7 @@
                     $("#iexcodtra").html(opt);
                 }
             });
-
         });
-
-
     });
 
 
@@ -118,12 +112,9 @@
                 resultado = "0";
         }
 
-
         document.getElementById("iexnrodias").value = Number(resultado) + 1;
-
     }
 </script>
-
 
 <body>
 <main class="main" id="top">
@@ -134,14 +125,14 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de tiempo</a></li>
+                <li class="breadcrumb-item active">Gestión de ausentismo</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Actualizar ausentismo</h2>
+                    <h2 id="h2top" class="mb-0">Editar ausentismo</h2>
                 </div>
 
             </div>
@@ -152,9 +143,8 @@
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarGestionAusentismo" novalidate>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
-                                <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}"
-                                       class="form-control" readonly="true" style="background-color:#F1F4F8;">
-                                </select>
+                                <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}" class="form-control" readonly disabled>
+                                <input type="hidden" name="iexcorrel" id="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}" />
                             </div>
                             <div class="col-sm-6 col-md-9">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
@@ -194,7 +184,7 @@
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control" name="iexfecini" id="iexfecini"
+                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
                                        value="${requestScope.xAusentismoDet.iexfecini}" onchange="formatearFecha1();"
                                        type="text"
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
@@ -202,16 +192,15 @@
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control " name="iexfecfin" id="iexfecfin"
+                                <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
                                        value="${requestScope.xAusentismoDet.iexfecfin}" onchange="calcularDias();"
                                        type="text"
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
                             </div>
                             <div class="col-sm-4 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero Dias</label>
-                                <input type="text" name="iexnrodias" class="form-control" id="iexnrodias"
-                                       value="${requestScope.xAusentismoDet.iexnrodias}" readonly="true"
-                                       style="background-color:#F1F4F8;">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Número de dias</label>
+                                <input type="text" name="iexnrodias" class="form-control" id="iexnrodias" value="${requestScope.xAusentismoDet.iexnrodias}" readonly disabled>
+
                             </div>
                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                 Se grabó exitosamente los cambios.

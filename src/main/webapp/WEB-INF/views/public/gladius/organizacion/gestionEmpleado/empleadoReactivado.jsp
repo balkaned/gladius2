@@ -92,26 +92,25 @@
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input type="hidden"  id="accion" name="accion" value="VAL">
 
-
                               <div class="col-sm-6 col-md-3">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nuevo ID Trab</label>
-                                   <input class="form-control" name="idtrabajador" id="idtrabajador"  type="text" value="${requestScope.xtrabnuevo.iexcodtra}" style="background-color:#F1F4F8;" required readonly />
+                                   <input class="form-control" name="idtrabajador" id="idtrabajador"  type="text" value="${requestScope.xtrabnuevo.iexcodtra}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-9">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                     <input class="form-control" name="nombres"  id="nombres" type="text" value="${requestScope.xtrabnuevo.iexapepat} ${requestScope.xtrabnuevo.iexapemat} ${requestScope.xtrabnuevo.iexnomtra}" style="background-color:#F1F4F8;" required readonly />
+                                     <input class="form-control" name="nombres"  id="nombres" type="text" value="${requestScope.xtrabnuevo.iexapepat} ${requestScope.xtrabnuevo.iexapemat} ${requestScope.xtrabnuevo.iexnomtra}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-3">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento</label>
-                                    <input class="form-control" name="tipodocumento"  id="tipodocumento" type="text" value="${requestScope.xtrabnuevo.iextipdocid}" style="background-color:#F1F4F8;" required readonly />
+                                    <input class="form-control" name="tipodocumento"  id="tipodocumento" type="text" value="${requestScope.xtrabnuevo.iextipdocid}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-5">
                                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Documento</label>
-                                      <input class="form-control" name="nrodoc"   id="nrodoc" type="text" value="${requestScope.xtrabnuevo.iexnrodoc}" style="background-color:#F1F4F8;" required readonly />
+                                      <input class="form-control" name="nrodoc"   id="nrodoc" type="text" value="${requestScope.xtrabnuevo.iexnrodoc}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-4">
                                  	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha Ingreso</label>
-                                 	  <input class="form-control" name="fechaing"  id="fechaing"  type="text" style="background-color:#F1F4F8;" value="${requestScope.xtrabnuevo.iexfecing}" required readonly />
+                                 	  <input class="form-control" name="fechaing"  id="fechaing"  type="text" value="${requestScope.xtrabnuevo.iexfecing}" required readonly disabled/>
                               </div>
 
                               <div class="alert alert-success" role="alert" id="alert" style="display:none;">
