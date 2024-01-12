@@ -4,6 +4,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.utils.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -410,11 +411,9 @@ public class VacacionesController {
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        //CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
-        //String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
-        //String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
-        String fechaFormatterini=fecini;
-        String fechaFormatterfin=fecfin;
+        FormatterFecha formatter = new FormatterFecha();
+        String fechaFormatterini = formatter.fechaFormatter(fecini);
+        String fechaFormatterfin = formatter.fechaFormatter(fecfin);
 
         Integer xcodtra = 0;
         if (codtra == null || codtra.isEmpty()) {

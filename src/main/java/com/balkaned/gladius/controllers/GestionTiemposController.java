@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class GestionTiemposController {
         log.info("/gestionTiempo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -90,7 +93,9 @@ public class GestionTiemposController {
         log.info("/grabarTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -237,7 +242,9 @@ public class GestionTiemposController {
         log.info("/listAsistencia");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -260,7 +267,9 @@ public class GestionTiemposController {
         log.info("/listarTurnodia");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -292,7 +301,9 @@ public class GestionTiemposController {
         log.info("/listTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -312,7 +323,9 @@ public class GestionTiemposController {
         log.info("/nuevoTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -326,33 +339,51 @@ public class GestionTiemposController {
         log.info("/insertarTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        Turno turno = new Turno();
-        turno.setCodcia(idCompania);
-        turno.setIexcodturno(Integer.parseInt(request.getParameter("iexcodturno")));
-        turno.setIexdesturno(request.getParameter("iexdesturno"));
-        turno.setIexflgturno(request.getParameter("iexflgturno"));
-        turno.setIexdesturno(request.getParameter("iexdesturno"));
-        turno.setIexhorini(request.getParameter("iexhorini"));
-        turno.setIexhorfin(request.getParameter("iexhorfin"));
-        turno.setIexflgdiasig(request.getParameter("iexflgdiasig"));
 
+        String idturno = request.getParameter("iexcodturno");
+        String desturno = request.getParameter("iexdesturno");
+        String flgturno = request.getParameter("iexflgturno");
+        String horini = request.getParameter("iexhorini");
+        String horfin = request.getParameter("iexhorfin");
         String iextopmaxpost = request.getParameter("iextopmaxpost");
         String iextopminantes = request.getParameter("iextopminantes");
 
+
+        Turno turno = new Turno();
+        turno.setCodcia(idCompania);
+        turno.setIexcodturno(Integer.parseInt(idturno));
+        turno.setIexdesturno(desturno);
+        turno.setIexhorini(horini);
+        turno.setIexhorfin(horfin);
+        turno.setIexflgturno(flgturno);
+        turno.setIexflgdiasig(request.getParameter("iexflgdiasig"));
+
         if (iextopminantes != null && !iextopminantes.isEmpty()) {
-            turno.setIextopminantes(Double.parseDouble(iextopminantes));
+            try {
+                turno.setIextopminantes(Double.parseDouble(iextopminantes));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                turno.setIextopminantes(0.0);
+            }
         } else {
             turno.setIextopminantes(0.0);
         }
 
         if (iextopmaxpost != null && !iextopmaxpost.isEmpty()) {
-            turno.setIextopmaxpost(Double.parseDouble(iextopmaxpost));
+            try {
+                turno.setIextopmaxpost(Double.parseDouble(iextopmaxpost));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                turno.setIextopmaxpost(0.0);
+            }
         } else {
             turno.setIextopmaxpost(0.0);
         }
@@ -366,7 +397,9 @@ public class GestionTiemposController {
         log.info("/editarTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -383,33 +416,51 @@ public class GestionTiemposController {
         log.info("/modificarTurno");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        Turno turno = new Turno();
-        turno.setCodcia(idCompania);
-        turno.setIexcodturno(Integer.parseInt(request.getParameter("iexcodturno")));
-        turno.setIexdesturno(request.getParameter("iexdesturno"));
-        turno.setIexflgturno(request.getParameter("iexflgturno"));
-        turno.setIexdesturno(request.getParameter("iexdesturno"));
-        turno.setIexhorini(request.getParameter("iexhorini"));
-        turno.setIexhorfin(request.getParameter("iexhorfin"));
-        turno.setIexflgdiasig(request.getParameter("iexflgdiasig"));
-
+        String idturno = request.getParameter("iexcodturno");
+        String desturno = request.getParameter("iexdesturno");
+        String flgturno = request.getParameter("iexflgturno");
+        String horini = request.getParameter("iexhorini");
+        String horfin = request.getParameter("iexhorfin");
         String iextopmaxpost = request.getParameter("iextopmaxpost");
         String iextopminantes = request.getParameter("iextopminantes");
 
+
+        Turno turno = new Turno();
+        turno.setCodcia(idCompania);
+        turno.setIexcodturno(Integer.parseInt(idturno));
+        turno.setIexdesturno(desturno);
+        turno.setIexhorini(horini);
+        turno.setIexhorfin(horfin);
+        turno.setIexflgturno(flgturno);
+        turno.setIexflgdiasig(request.getParameter("iexflgdiasig"));
+
+
         if (iextopminantes != null && !iextopminantes.isEmpty()) {
-            turno.setIextopminantes(Double.parseDouble(iextopminantes));
+            try {
+                turno.setIextopminantes(Double.parseDouble(iextopminantes));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                turno.setIextopminantes(0.0);
+            }
         } else {
             turno.setIextopminantes(0.0);
         }
 
         if (iextopmaxpost != null && !iextopmaxpost.isEmpty()) {
-            turno.setIextopmaxpost(Double.parseDouble(iextopmaxpost));
+            try {
+                turno.setIextopmaxpost(Double.parseDouble(iextopmaxpost));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                turno.setIextopmaxpost(0.0);
+            }
         } else {
             turno.setIextopmaxpost(0.0);
         }

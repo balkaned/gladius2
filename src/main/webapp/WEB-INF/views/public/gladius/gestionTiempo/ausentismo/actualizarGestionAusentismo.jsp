@@ -64,6 +64,15 @@
     }
 
 
+    $(document).ready(function(){
+        var fechacargada=$("#iexfecnachidden").val();
+        $("#iexfecini").val(fechacargada);
+
+        var fechacargada2=$("#iexfecinghidden").val();
+        $("#iexfecfin").val(fechacargada2);
+
+    });
+
     function isValidDate(day, month, year) {
         var dteDate;
         month = month - 1;
@@ -188,6 +197,7 @@
                                        value="${requestScope.xAusentismoDet.iexfecini}" onchange="formatearFecha1();"
                                        type="text"
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
+                                <input class="form-control" id="iexfecnachidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecini}" />
                             </div>
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
@@ -196,6 +206,7 @@
                                        value="${requestScope.xAusentismoDet.iexfecfin}" onchange="calcularDias();"
                                        type="text"
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
+                                <input class="form-control" id="iexfecinghidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecfin}" />
                             </div>
                             <div class="col-sm-4 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Número de dias</label>

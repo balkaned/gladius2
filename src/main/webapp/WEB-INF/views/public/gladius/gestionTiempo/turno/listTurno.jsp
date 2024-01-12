@@ -9,7 +9,25 @@
           <jsp:include page="../../../links.jsp"></jsp:include>
         </head>
 
+        <script>
+          function mostrarAlert() {
+            //alert("se grabo exitosamente");
+            var div = document.getElementById('alert');
+            div.style.display = '';
 
+            setTimeout(function () {
+              $("#alerts").hide(6000);
+            }, 3000);
+          }
+          function remove() {
+            var opcion = confirm("Esta seguro de Eliminar el Registro?");
+            if (opcion == true) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        </script>
         <body>
           <!-- ===============================================-->
           <!--    Main Content-->

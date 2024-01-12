@@ -287,13 +287,13 @@
 
 
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">
+                                                        class="delivery_type align-middle white-space-nowrap text-center  text-900 fs--1 text-start">
                                                         ${LstAusentismoView.iexfecini}</td>
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start ps-3">
-                                                        ${LstAusentismoView.fecfinrep}</td>
+                                                        class="delivery_type align-middle white-space-nowrap text-center text-900 fs--1 text-start ps-3">
+                                                        ${LstAusentismoView.iexfecfin}</td>
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start ps-4">
+                                                        class="delivery_type align-middle white-space-nowrap text-center text-900 fs--1 text-start ps-4">
                                                         ${LstAusentismoView.iexnrodias}</td>
 
                                                 <td class="align-middle text-end white-space-nowrap pe-0 action">
