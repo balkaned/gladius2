@@ -16,5 +16,6 @@ public interface AusentismoService {
     public void insertarAusentismoPrg(AusentismoProgramacion ausprg);
     public AusentismoProgramacion getAusentismoPrg(AusentismoProgramacion ausprg);
     public void actualizarAusentismoPrg (AusentismoProgramacion ausprg);
+    public void  eliminarAusentismoPrg(AusentismoProgramacion ausprg);
 
 }

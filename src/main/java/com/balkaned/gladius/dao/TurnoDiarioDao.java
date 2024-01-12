@@ -14,5 +14,6 @@ public interface TurnoDiarioDao {
     public void insertarTurno(Turno turno);
     public Turno getTurno (Integer codcia, Integer codturno);
     public void actualizarTurno(Turno turno);
+    public void  eliminarTurno(Turno turno);
 
 }

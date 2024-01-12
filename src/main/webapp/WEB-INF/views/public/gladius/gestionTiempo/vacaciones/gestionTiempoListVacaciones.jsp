@@ -85,16 +85,15 @@
         return nuevaFecha;
     }
 
-    function exportExcel() {
-        var fecini = '<%= request.getParameter("fecini") %>';
-        var fecfin = '<%= request.getParameter("fecfin") %>';
-        var feciniFormateada = formatearFecha(fecini);
-        var fecfinFormateada = formatearFecha(fecfin);
-        var nuevaURL = 'AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@BoletaEmpRes@3Piexcodreg=5Pfecini=' + feciniFormateada + 'Pfecfin=' + fecfinFormateada;
-        window.location.href = nuevaURL;
-
-        console.log(0)
+    function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
 </script>
 
 <body>
@@ -185,9 +184,9 @@
                                 </a>
 
                                 <a class="btn btn-link text-900 me-4 px-0"
-                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null"
-                                   target="_blank">
-                                    <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Saldo</a>
+                                   href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null" target="_blank">
+                               <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar
+                                    Saldo</a>
                             </div>
                         </form>
                     </div>
@@ -333,12 +332,9 @@
                                                                     class="dropdown-menu dropdown-menu-end py-2">
                                                                 <a class="dropdown-item"
                                                                    href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">Editar</a>
-                                                                <a class="dropdown-item"
-                                                                   href="fichaEmpl@${empl.iexcodtra}">Descargar
-                                                                    Ficha PDF</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger"
-                                                                   href="#!">Eliminar</a>
+                                                                <a class="dropdown-item text-danger " onclick="return remove();"
+                                                                   href="eliminarVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">Eliminar</a>
                                                             </div>
                                                         </div>
                                                     </td>

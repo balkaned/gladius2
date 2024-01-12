@@ -23,5 +23,6 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     public void insertarTurno(Turno turno) {dao.insertarTurno(turno);}
     public Turno getTurno(Integer codcia, Integer codturno) {  return dao.getTurno( codcia, codturno);}
     public void actualizarTurno(Turno turno) { dao.actualizarTurno(turno);}
+    public void  eliminarTurno(Turno turno){dao.eliminarTurno(turno);}
 
 }

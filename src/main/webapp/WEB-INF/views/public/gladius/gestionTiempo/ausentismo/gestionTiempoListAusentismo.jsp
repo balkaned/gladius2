@@ -106,6 +106,14 @@
         document.getElementById("accion").value = "gestionTiempoListAusentismo";
     }
 
+    function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 </script>
 
 <body>
@@ -299,10 +307,9 @@
                                                                 class="fas fa-ellipsis-h fs--2"></span></button>
                                                         <div class="dropdown-menu dropdown-menu-end py-2">
                                                             <a class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">Editar</a>
-                                                            <a class="dropdown-item" href="#">Descargar Ficha PDF</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger"
-                                                               href="#!">Eliminar</a>
+                                                            <a class="dropdown-item text-danger" onclick="return remove();"
+                                                               href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">Eliminar</a>
                                                         </div>
                                                     </div>
                                                 </td>

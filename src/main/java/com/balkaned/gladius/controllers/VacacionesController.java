@@ -629,34 +629,53 @@ public class VacacionesController {
         return new ModelAndView("redirect:/gestionTiempoListVacaciones");
     }
 
-
-    @RequestMapping("/fechaformatter")
-    public ModelAndView fechaformatter(ModelMap model, HttpServletRequest request) {
-        log.info("/fechaformatter");
+    @RequestMapping("/eliminarVacaciones@{idTrab}@{iexcorrel}")
+    public ModelAndView eliminarVacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab,
+                                           @PathVariable String iexcorrel) {
+        log.info("/eliminarVacaciones");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        String fecini = request.getParameter("fecini");
-        String fecfin = request.getParameter("fecfin");
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        log.info("iexcorrel: " + iexcorrel);
+        model.addAttribute("iexcorrel", iexcorrel);
 
+        VacacionProgramacion vacprg = new VacacionProgramacion();
 
-        CapitalizarCadena capitalizarCadena = new CapitalizarCadena();
-        String fechaFormatterini = capitalizarCadena.fechaFormatter(fecini);
-        String fechaFormatterfin = capitalizarCadena.fechaFormatter(fecfin);
+        vacprg.setIexcodcia(idCompania);
+        vacprg.setIexcodtra(Integer.valueOf(idTrab));
+        vacprg.setIexcorrel(Integer.valueOf(iexcorrel));
+        String xcodtra2 = request.getParameter("iexcodtra");
 
-        model.addAttribute("feciniFomrtter", fechaFormatterini);
-        model.addAttribute("fecfinFomrtter", fechaFormatterfin);
+        vacacionesService.eliminarVacacionPrg(vacprg);
 
+        if (request.getParameter("fecini") != null && request.getParameter("iexfecfin") != null) {
 
-        log.info("feciniFomrtter" + fechaFormatterini);
-        log.info("fecfinFomrtter" + fechaFormatterfin);
+            model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(vacprg.getIexcodcia(), request.getParameter("iexcodreg"), request.getParameter("fecini"), request.getParameter("fecfin"), Integer.parseInt(idTrab)));
 
+        }
+        model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(vacprg.getIexcodcia(), request.getParameter("iexcodreg")));
+
+        model.addAttribute("iexcodtra", request.getParameter("iexcodtra"));
+        model.addAttribute("iexcodreg", request.getParameter("iexcodreg"));
+
+        model.addAttribute("fecini", request.getParameter("fecini"));
+        model.addAttribute("fecfin", request.getParameter("fecfin"));
+
+        model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+        model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
     }
+
 
 }
 

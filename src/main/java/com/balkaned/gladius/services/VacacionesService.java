@@ -19,5 +19,6 @@ public interface VacacionesService {
     public void procesaVacacionCtl(Empleado empleado);
     public void actualizarVacacionPrg(VacacionProgramacion vacprg);
     public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg);
+    public void  eliminarVacacionPrg(VacacionProgramacion vacprg);
 
 }

@@ -135,8 +135,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
     }
 
 
-
-    public List<AusentismoProgramacion> listaAusentismoGen(Integer codcia, String regimen, String fecini , String fecfin , Integer codtra ) {
+    public List<AusentismoProgramacion> listaAusentismoGen(Integer codcia, String regimen, String fecini, String fecfin, Integer codtra) {
         String sql = "  select  " +
                 "	 c.iexcodcia, " +
                 "	 c.iexcodtra, " +
@@ -144,7 +143,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "    case   " +
                 "    when iexflgest='1' then 'activo'  " +
                 "    when iexflgest='0' then 'inactivo'  " +
-                "    else 'inactivo' end desestado, "+
+                "    else 'inactivo' end desestado, " +
                 "	 to_char(c.iexfecing,'dd/mm/yyyy') fecing, " +
                 "	 c.iexnrodoc, " +
                 "	 a.iextipaus, " +
@@ -152,24 +151,24 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "	 to_char(a.iexfecini,'dd/mm/yyyy') iexfecini, " +
                 "	 to_char(a.iexfecfin,'dd/mm/yyyy') iexfecfin, " +
                 " 	 case " +
-                "	  when (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')  and  a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )      " +
+                "	  when (a.iexfecini >=to_date('" + fecini + "','dd/mm/yyyy') and  a.iexfecini <= to_date('" + fecfin + "','dd/mm/yyyy')  and  a.iexfecfin <= to_date('" + fecfin + "','dd/mm/yyyy') )      " +
                 "	    then  (a.iexfecfin -  a.iexfecini) +1  " +
-                "      when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and    a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )     " +
-                "	    then  (a.iexfecfin -  to_date('"+fecini+"','dd/mm/yyyy') ) +1	" +
-                "	  when (a.iexfecini >= to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')   and  a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )    " +
-                "	    then  ( to_date('"+fecfin+"','dd/mm/yyyy')  -  a.iexfecini) +1	  " +
-                "	  when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and   a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )         " +
-                "	    then  ( to_date('"+fecfin+"','dd/mm/yyyy') - to_date('"+fecini+"','dd/mm/yyyy') ) +1  " +
+                "      when (a.iexfecini < to_date('" + fecini + "','dd/mm/yyyy')  and    a.iexfecfin <= to_date('" + fecfin + "','dd/mm/yyyy') )     " +
+                "	    then  (a.iexfecfin -  to_date('" + fecini + "','dd/mm/yyyy') ) +1	" +
+                "	  when (a.iexfecini >= to_date('" + fecini + "','dd/mm/yyyy')  and  a.iexfecini <= to_date('" + fecfin + "','dd/mm/yyyy')   and  a.iexfecfin >  to_date('" + fecfin + "','dd/mm/yyyy') )    " +
+                "	    then  ( to_date('" + fecfin + "','dd/mm/yyyy')  -  a.iexfecini) +1	  " +
+                "	  when (a.iexfecini < to_date('" + fecini + "','dd/mm/yyyy')  and   a.iexfecfin >  to_date('" + fecfin + "','dd/mm/yyyy') )         " +
+                "	    then  ( to_date('" + fecfin + "','dd/mm/yyyy') - to_date('" + fecini + "','dd/mm/yyyy') ) +1  " +
                 "	 end  dias_aus,  " +
                 " case " +
-                "	  when (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')  and  a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )      " +
+                "	  when (a.iexfecini >=to_date('" + fecini + "','dd/mm/yyyy') and  a.iexfecini <= to_date('" + fecfin + "','dd/mm/yyyy')  and  a.iexfecfin <= to_date('" + fecfin + "','dd/mm/yyyy') )      " +
                 "	    then   to_char(a.iexfecfin,'dd/mm/yyyy')    " +
-                "      when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and    a.iexfecfin <= to_date('"+fecfin+"','dd/mm/yyyy') )     " +
+                "      when (a.iexfecini < to_date('" + fecini + "','dd/mm/yyyy')  and    a.iexfecfin <= to_date('" + fecfin + "','dd/mm/yyyy') )     " +
                 "	    then  to_char(a.iexfecfin,'dd/mm/yyyy') 	" +
-                "	  when (a.iexfecini >= to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecini <= to_date('"+fecfin+"','dd/mm/yyyy')   and  a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )    " +
-                "	    then   '"+fecfin+"' 	  " +
-                "	  when (a.iexfecini < to_date('"+fecini+"','dd/mm/yyyy')  and   a.iexfecfin >  to_date('"+fecfin+"','dd/mm/yyyy') )         " +
-                "	    then  '"+fecfin+"'  " +
+                "	  when (a.iexfecini >= to_date('" + fecini + "','dd/mm/yyyy')  and  a.iexfecini <= to_date('" + fecfin + "','dd/mm/yyyy')   and  a.iexfecfin >  to_date('" + fecfin + "','dd/mm/yyyy') )    " +
+                "	    then   '" + fecfin + "' 	  " +
+                "	  when (a.iexfecini < to_date('" + fecini + "','dd/mm/yyyy')  and   a.iexfecfin >  to_date('" + fecfin + "','dd/mm/yyyy') )         " +
+                "	    then  '" + fecfin + "'  " +
                 "	 end  fecfinrep,  " +
                 "	 k.des1det codcon ,   k.desdet destipaus   " +
                 "	 from iexempleado c, " +
@@ -182,13 +181,13 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "	 where " +
                 "	 c.iexcodcia = a.iexcodcia and  " +
                 "	 c.iexcodtra = a.iexcodtra and	 " +
-                "	 c.iexcodcia="+codcia+" and   c.iexreglab='"+regimen+"'	 and " +
+                "	 c.iexcodcia=" + codcia + " and   c.iexreglab='" + regimen + "'	 and " +
                 "	 (  " +
-                "		 (a.iexfecini >=to_date('"+fecini+"','dd/mm/yyyy') and  a.iexfecini <=to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "		 (a.iexfecini >=to_date('" + fecini + "','dd/mm/yyyy') and  a.iexfecini <=to_date('" + fecfin + "','dd/mm/yyyy') )  " +
                 "		or   " +
-                "	      (a.iexfecfin >=to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecfin <=to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "	      (a.iexfecfin >=to_date('" + fecini + "','dd/mm/yyyy')  and  a.iexfecfin <=to_date('" + fecfin + "','dd/mm/yyyy') )  " +
                 "		 or  " +
-                "		 (a.iexfecini <to_date('"+fecini+"','dd/mm/yyyy')  and  a.iexfecfin >to_date('"+fecfin+"','dd/mm/yyyy') )  " +
+                "		 (a.iexfecini <to_date('" + fecini + "','dd/mm/yyyy')  and  a.iexfecfin >to_date('" + fecfin + "','dd/mm/yyyy') )  " +
                 "																					  )   ";
 
         if (codtra != null && codtra.intValue() != 0) {
@@ -225,7 +224,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
 
     public AusentismoProgramacion getAusentismoPrg(AusentismoProgramacion ausprg) {
 
-        String sql= " select  " +
+        String sql = " select  " +
                 "v.iexcodcia, v.iexcodtra, v.iexcorrel, to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, "
                 + " v.iexnrodias, v.iextipaus , d.desdet as destipaus, v.iexglosa,  " +
                 " v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
@@ -235,12 +234,12 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "select  iexkey, desdet from iexttabled where iexcodtab='57' " +
                 ") d " +
                 " where " +
-                " v.iexcodcia="+ausprg.getIexcodcia()+" and v.iexcodtra="+ausprg.getIexcodtra()+" and v.iexcorrel="+ausprg.getIexcorrel()+" and " +
+                " v.iexcodcia=" + ausprg.getIexcodcia() + " and v.iexcodtra=" + ausprg.getIexcodtra() + " and v.iexcorrel=" + ausprg.getIexcorrel() + " and " +
                 " v.iextipaus = d.iexkey ";
         return (AusentismoProgramacion) template.query(sql, new ResultSetExtractor<AusentismoProgramacion>() {
-            public AusentismoProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException{
-                AusentismoProgramacion  p = new AusentismoProgramacion();
-                while(rs.next()) {
+            public AusentismoProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException {
+                AusentismoProgramacion p = new AusentismoProgramacion();
+                while (rs.next()) {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
@@ -264,22 +263,31 @@ public class AusentismoDaoImpl implements AusentismoDao {
     }
 
 
-    public void actualizarAusentismoPrg(AusentismoProgramacion ausprg){
+    public void actualizarAusentismoPrg(AusentismoProgramacion ausprg) {
 
         template.update("  update iexausprg set  " +
                         " iexfecini=to_date(?,'DD/MM/YYYY') , iexfecfin=to_date(?,'DD/MM/YYYY') , iexnrodias=? ,  " +
                         "iextipaus=?  , iexglosa=? , iexusumod=? , iexfecmod=current_date  " +
                         " where iexcodcia=?  and  iexcodtra=?  and iexcorrel=?  ",
 
-                                    ausprg.getIexfecini(),
-                                    ausprg.getIexfecfin(),
-                                    ausprg.getIexnrodias(),
-                                    ausprg.getIextipaus(),
-                                    ausprg.getIexglosa(),
-                                    ausprg.getIexusumod(),
-                                    ausprg.getIexcodcia(),
-                                    ausprg.getIexcodtra(),
-                                    ausprg.getIexcorrel());
+                ausprg.getIexfecini(),
+                ausprg.getIexfecfin(),
+                ausprg.getIexnrodias(),
+                ausprg.getIextipaus(),
+                ausprg.getIexglosa(),
+                ausprg.getIexusumod(),
+                ausprg.getIexcodcia(),
+                ausprg.getIexcodtra(),
+                ausprg.getIexcorrel());
+
+    }
+
+    public void eliminarAusentismoPrg(AusentismoProgramacion ausprg) {
+
+        template.update("  delete from  iexausprg  where iexcodcia=?  and  iexcodtra=?  and iexcorrel=? ",
+                ausprg.getIexcodcia(),
+                ausprg.getIexcodtra(),
+                ausprg.getIexcorrel());
 
     }
 

@@ -417,5 +417,37 @@ public class GestionTiemposController {
 
         return new ModelAndView("redirect:/listTurno");
     }
+
+    @RequestMapping("/eliminarTurno@{idTurn}")
+    public ModelAndView eliminarTurno(ModelMap model, HttpServletRequest request, @PathVariable String idTurn) {
+        log.info("/eliminarTurno@{idTurn}");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+
+        log.info("idTrab: " + idTurn);
+        model.addAttribute("idTrab", idTurn);
+
+
+        String codturno2 = request.getParameter("iexcodturno");
+        Turno tur = new Turno();
+        tur.setCodcia(idCompania);
+        tur.setIexcodturno(Integer.parseInt(idTurn));
+
+        turnoDiarioService.eliminarTurno(tur);
+
+        return new ModelAndView("redirect:/listTurno");
+    }
+
+
 }
 

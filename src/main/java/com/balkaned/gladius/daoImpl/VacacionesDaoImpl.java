@@ -425,7 +425,16 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 vacprg.getIexusucrea(),
                 vacprg.getIexcodcia(),
                 vacprg.getIexcodtra(),
-                vacprg.getIexcorrel() );
+                vacprg.getIexcorrel());
     }
 
+    public void eliminarVacacionPrg (VacacionProgramacion vacprg) {
+
+        template.update("  delete from iexvacprg  where iexcodcia=?  and  iexcodtra=?   and  iexcorrel= ? ",
+
+                vacprg.getIexcodcia(),
+                vacprg.getIexcodtra(),
+                vacprg.getIexcorrel());
+
+    }
 }

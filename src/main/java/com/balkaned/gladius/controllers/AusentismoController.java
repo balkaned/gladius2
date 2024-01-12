@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -34,7 +35,11 @@ public class AusentismoController {
         log.info("/ausentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -80,7 +85,12 @@ public class AusentismoController {
         log.info("/nuevoAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -126,7 +136,12 @@ public class AusentismoController {
         log.info("/insertarAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -205,7 +220,12 @@ public class AusentismoController {
         log.info("/gestionTiempoListAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -239,13 +259,17 @@ public class AusentismoController {
         return new ModelAndView("public/gladius/gestionTiempo/ausentismo/gestionTiempoListAusentismo");
     }
 
-
     @RequestMapping("/nuevoGestionAusentismo")
     public ModelAndView nuevoGestionAusentismo(ModelMap model, HttpServletRequest request) {
         log.info("/nuevoGestionAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -263,8 +287,12 @@ public class AusentismoController {
         log.info("/insertarGestionAusentismo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -322,8 +350,12 @@ public class AusentismoController {
         log.info("/editarGestionAusentismo@{idTrab}@{iexcorrel}");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -372,27 +404,79 @@ public class AusentismoController {
         ausprg.setIexcodtra(Integer.parseInt(request.getParameter("iexcodtra")));
         codcorrel = Integer.parseInt(request.getParameter("iexcorrel"));
 
-        empleado = empleadoService.recuperarCabecera(ausprg.getIexcodcia(),ausprg.getIexcodtra());
+        empleado = empleadoService.recuperarCabecera(ausprg.getIexcodcia(), ausprg.getIexcodtra());
 
         ausprg.setIexcorrel(codcorrel);
         ausprg.setIexfecini(request.getParameter("iexfecini"));
         ausprg.setIexfecfin(request.getParameter("iexfecfin"));
-        ausprg.setIextipaus( request.getParameter("iextipaus") );
+        ausprg.setIextipaus(request.getParameter("iextipaus"));
         ausprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
         ausprg.setIexusucrea("1");
 
         ausentismoService.actualizarAusentismoPrg(ausprg);
 
-        model.addAttribute("LstAusentismoView",ausentismoService.listaAusentismoGen(idCompania,  request.getParameter("iexcodreg") ,ausprg.getIexfecini(), ausprg.getIexfecfin() ,Integer.parseInt(request.getParameter("iexcodtra"))) );
-        model.addAttribute("LstTrabajadorReg",vacacionesService.listaTrabajadoresReg(idCompania, request.getParameter("iexcodreg")));
+        model.addAttribute("LstAusentismoView", ausentismoService.listaAusentismoGen(idCompania, request.getParameter("iexcodreg"), ausprg.getIexfecini(), ausprg.getIexfecfin(), Integer.parseInt(request.getParameter("iexcodtra"))));
+        model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, request.getParameter("iexcodreg")));
         model.addAttribute("iexcodtra", Integer.parseInt(request.getParameter("iexcodtra")));
-        model.addAttribute("fecini",ausprg.getIexfecini());
-        model.addAttribute("fecfin",ausprg.getIexfecfin());
-        model.addAttribute("iexcodreg", request.getParameter("iexcodreg") );
+        model.addAttribute("fecini", ausprg.getIexfecini());
+        model.addAttribute("fecfin", ausprg.getIexfecfin());
+        model.addAttribute("iexcodreg", request.getParameter("iexcodreg"));
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
-        model.addAttribute("lovTipaus",lovsService.getLovs("57","%"));
+        model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
 
         return new ModelAndView("redirect:/gestionTiempoListAusentismo");
     }
+
+
+    @RequestMapping("/eliminarAusentismo@{idTrab}@{iexcorrel}")
+    public ModelAndView eliminarAusentismo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab,
+                                           @PathVariable String iexcorrel) {
+        log.info("/eliminarAusentismo@{idTrab}@{iexcorrel}");
+
+        String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+
+        log.info("iexcorrel: " + iexcorrel);
+        model.addAttribute("iexcorrel", iexcorrel);
+
+        log.info("idCompaniaXXXX: " + idCompania);
+        log.info("idTraXXXXXb: " + idTrab);
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+
+        Empleado empleado = new Empleado();
+
+        ausprg.setIexcodcia(idCompania);
+        ausprg.setIexcodtra(Integer.valueOf(idTrab));
+        ausprg.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        empleado = empleadoService.recuperarCabecera(ausprg.getIexcodcia(), ausprg.getIexcodtra());
+
+        ausentismoService.eliminarAusentismoPrg(ausprg);
+        if (request.getParameter("fecini") != null && request.getParameter("iexfecfin") != null) {
+            model.addAttribute("LstAusentismoView", ausentismoService.listaAusentismoGen(idCompania, request.getParameter("iexcodreg"), request.getParameter("fecini"), request.getParameter("fecfin"), Integer.parseInt(idTrab)));
+
+        }
+        model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, empleado.getIexreglab()));
+        model.addAttribute("iexcodtra", Integer.parseInt(idTrab));
+        model.addAttribute("fecini", request.getParameter("fecini"));
+        model.addAttribute("fecfin", request.getParameter("fecfin"));
+        model.addAttribute("iexcodreg", request.getParameter("iexcodreg"));
+        model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+        model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
+
+        return new ModelAndView("public/gladius/gestionTiempo/ausentismo/gestionTiempoListAusentismo");
+    }
+
 }
 

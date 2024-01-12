@@ -137,9 +137,8 @@
                                       class="fas fa-ellipsis-h fs--2"></span></button>
                                   <div class="dropdown-menu dropdown-menu-end py-2">
                                     <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Editar</a>
-                                    <a class="dropdown-item" href="fichaEmpl@${empl.iexcodtra}">Descargar Ficha PDF</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                    <a class="dropdown-item text-danger"  onclick="return remove();" href="eliminarTurno@${turn.iexcodturno}">Eliminar</a>
                                   </div>
                                 </div>
                               </td>

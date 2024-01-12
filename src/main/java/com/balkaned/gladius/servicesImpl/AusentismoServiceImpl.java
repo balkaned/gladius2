@@ -23,4 +23,6 @@ public class AusentismoServiceImpl implements AusentismoService {
     public AusentismoProgramacion getAusentismoPrg(AusentismoProgramacion ausprg){return dao.getAusentismoPrg(ausprg);};
     public void actualizarAusentismoPrg (AusentismoProgramacion ausprg){dao.actualizarAusentismoPrg(ausprg);};
 
+    public void  eliminarAusentismoPrg(AusentismoProgramacion ausprg){dao.eliminarAusentismoPrg(ausprg);}
+
 }

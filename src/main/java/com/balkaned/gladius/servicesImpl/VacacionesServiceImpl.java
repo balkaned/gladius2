@@ -60,4 +60,5 @@ public class VacacionesServiceImpl implements VacacionesService {
     public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg) {
         return dao.getVacacionPrg(vacprg);
     }
+    public void  eliminarVacacionPrg(VacacionProgramacion vacprg){dao.eliminarVacacionPrg(vacprg);}
 }

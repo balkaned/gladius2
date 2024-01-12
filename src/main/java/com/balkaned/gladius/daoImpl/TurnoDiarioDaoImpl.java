@@ -1,10 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Role;
-import com.balkaned.gladius.beans.Turno;
-import com.balkaned.gladius.beans.Turnodiario;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -288,4 +285,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 turno.getIexcodturno());
     }
 
+    public void eliminarTurno (Turno turno) {
+
+        template.update("  delete from  iexturno  where  iexcodcia=? and  iexcodturno =? ",
+
+                turno.getCodcia(),
+                turno.getIexcodturno());
+
+    }
 }
