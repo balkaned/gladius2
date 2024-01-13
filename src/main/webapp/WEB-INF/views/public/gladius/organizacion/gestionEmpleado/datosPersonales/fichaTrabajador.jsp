@@ -113,14 +113,38 @@
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-12">
                     <div class="row align-items-center justify-content-between g-3 mb-3">
                     </div>
                   </div>
+                </div>-->
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                            <a class="btn btn-primary me-2" href="listEmpleados"><span class="fas fa-table me-2"></span>Ir a tabla</a>
+                            <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
+                            <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
+                              <li><a class="dropdown-item" href="#!">View profile</a></li>
+                              <li><a class="dropdown-item" href="#!">Report</a></li>
+                              <li><a class="dropdown-item" href="#!">Manage notifications</a></li>
+                              <li><a class="dropdown-item text-danger" href="#!">Delete Lead</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div class="row g-0 g-md-4 g-xl-6">
-
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
@@ -132,11 +156,11 @@
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad Social</a></li>
                             <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos Domicilio</a></li>
                        </ul>
-                       <div class="col-12 mb-2">
+                       <!--<div class="col-12 mb-2">
                            <div class="col-sm-6 col-md-12 d-flex justify-content-end">
                                <a class="col-4 btn btn-phoenix-primary" href="listEmpleados">Atras</a>
                            </div>
-                       </div>
+                       </div>-->
 
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
@@ -285,9 +309,9 @@
                                                     </c:forEach>
                                               </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Es domiciliado?</label>
+                                        <div class="col-sm-6 col-md-12">
                                             <input type="checkbox" class="form-check-input" name="iexflgdomicil" value="1"  ${requestScope.emp.iexflgdomicil=='1' ? 'checked=true' : ''} id="flexChecked" />
+                                            <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Es domiciliado?</label>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de Larga Distancia [TT29]</label>
@@ -393,12 +417,12 @@
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Ingreso</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecing" id="iexfecing" onchange="formatearFecha2();" value="${requestScope.emp2.iexfecing}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required="true"/>
                                                   <input class="form-control" id="iexfecinghidden" type="hidden" value="${requestScope.emp2.iexfecing}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Retiro</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecret" id="iexfecret" onchange="formatearFecha3();" value="${requestScope.emp2.iexfecret}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' />
                                                   <input class="form-control" id="iexfecrethidden" type="hidden" value="${requestScope.emp2.iexfecret}" />
@@ -586,9 +610,9 @@
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Es interbancario?</label>
+                                            <div class="col-sm-6 col-md-12">
                                                    <input class="form-check-input" name="iexflgbancci_hab" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_hab=='1' ? 'checked=true' : ''}  type="checkbox"/>
+                                                   <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Es interbancario?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Cuenta de Bancos</label>
@@ -621,9 +645,9 @@
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Es interbancario?</label>
-                                                   <input class="form-check-input" name="iexflgbancci_cts" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_cts=='1' ? 'checked=true' : ''} type="checkbox"/>
+                                            <div class="col-sm-6 col-md-12">
+                                                  <input class="form-check-input" name="iexflgbancci_cts" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_cts=='1' ? 'checked=true' : ''} type="checkbox"/>
+                                                  <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Es interbancario?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Cuenta CTS</label>
@@ -677,9 +701,9 @@
                                          <form class="row g-4 mb-0 needs-validation" method="POST" action="updateSegurSocial" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Es jubilado?</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexflgjubil" id="flexChecked" value="1" ${requestScope.emp4.iexflgjubil=='1' ? 'checked=true' : ''} type="checkbox"/>
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Es jubilado?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fondo Pensiones [TT11]</label>
@@ -690,9 +714,9 @@
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Comisión Mixta?</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexflgcomi_mix" id="flexChecked" value="1" ${requestScope.emp4.iexflgcomi_mix=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Comisión Mixta?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio Fondo Pensiones</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
@@ -703,7 +727,7 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cussp</label>
                                                 <input class="form-control" maxlength="50"name="iexcussp" value="${requestScope.emp4.iexcussp}" type="text" placeholder="#" required/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Essalud [TT32]</label>
                                                 <select class="form-select" name="iexessalud" required>
                                                     <option value="" selected >Seleccionar</option>
@@ -712,15 +736,15 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Senati</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexsenati" id="flexChecked" value="1" ${requestScope.emp4.iexsenati=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Senati</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Tiene Eps</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexflgeps" id="flexChecked" type="checkbox" value="1" ${requestScope.emp4.iexflgeps=='1' ? 'checked=true' : ''} />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Tiene Eps</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proveedor de Eps [TT14]</label>
                                                 <select class="form-select" name="iexcodeps" required >
                                                     <option value="" selected >Seleccionar</option>
@@ -729,49 +753,49 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Mas vida</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexflgmas_vida" id="flexChecked" value="1" ${requestScope.emp4.iexflgmas_vida=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Mas vida</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Convenio para evitar doble tributación</label>
-                                                   <input class="form-check-input" name="iexconvdobtrib" id="flexChecked" value="1" ${requestScope.emp4.iexconvdobtrib=='1' ? 'checked=true' : ''} type="checkbox" />
+                                            <div class="col-sm-6 col-md-12">
+                                                 <input class="form-check-input" name="iexconvdobtrib" id="flexChecked" value="1" ${requestScope.emp4.iexconvdobtrib=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                 <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Convenio para evitar doble tributación</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Discapacidad</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexdiscapacidad" id="flexChecked" value="1" ${requestScope.emp4.iexdiscapacidad=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Discapacidad</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Reg. Alternativo</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexregalter" id="flexChecked" value="1" ${requestScope.emp4.iexregalter=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Reg. Alternativo</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Sctr Pensionv</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexsctrpension" id="flexChecked" value="1" ${requestScope.emp4.iexsctrpension=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Sctr Pensionv</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <labelclass="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Jornada Maxima</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexjornmax" id="flexChecked" value="1" ${requestScope.emp4.iexjornmax=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Jornada Maxima</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Horario Nocturno</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexhornocturno" id="flexChecked" value="1" ${requestScope.emp4.iexhornocturno=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Horario Nocturno</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Sindicalizado</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexsindicalizado" id="flexChecked" value="1" ${requestScope.emp4.iexsindicalizado=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Sindicalizado</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Exoneracion 5ta</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexexon5ta" id="flexChecked" value="1" ${requestScope.emp4.iexexon5ta=='1' ? 'checked=true' : ''} type="checkbox" />
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Exoneracion 5ta</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Ruc Cas</label>
                                                 <input class="form-control" name="iexnroruc_cas" maxlength="20" id="floatingInputStreet" maxlength="11" value="${requestScope.emp4.iexnroruc_cas}" type="text" placeholder="#" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">Madre de responsaibilidad Limitada</label>
+                                            <div class="col-sm-6 col-md-12">
                                                 <input class="form-check-input" name="iexmadreresp" id="flexChecked" type="checkbox" value="1" ${requestScope.emp4.iexmadreresp=='1' ? 'checked=true' : ''}/>
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">Madre de responsaibilidad Limitada</label>
                                             </div>
 
                                             <div class="alert alert-success" role="alert" id="alert4" style="display:none;">

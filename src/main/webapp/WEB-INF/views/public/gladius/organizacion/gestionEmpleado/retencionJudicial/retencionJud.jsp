@@ -25,14 +25,24 @@
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="row g-0 g-md-4 g-xl-6">
 
+                <div class="row g-0 g-md-4 g-xl-6">
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
@@ -40,11 +50,13 @@
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
-                                <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                  <h2 class="mb-0">Retención judicial</h2>
-                                  <div class="col-auto">
+                                <div>
+                                  <div class="col-12 mt-2">
+                                    <h2 class="mb-0">Retención judicial</h2>
+                                  </div>
+                                  <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary btn-sm" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-primary ms-2" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -73,9 +85,9 @@
                                 			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
-                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
+                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexresolucion}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.descodpro}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-1000">${LstRetencionDet.descodpro}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexfecini}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LstRetencionDet.iexfecfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstRetencionDet.iexpordesct} %</span></td>
@@ -85,8 +97,9 @@
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
                                 					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                 					  <div class="dropdown-menu dropdown-menu-end py-2">
+                                					    <a class="dropdown-item" href="#">Editar</a>
                                 						<div class="dropdown-divider"></div>
-                                						<a class="dropdown-item text-warning" href="#!">Remove</a>
+                                						<a class="dropdown-item text-danger" href="#!">Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>

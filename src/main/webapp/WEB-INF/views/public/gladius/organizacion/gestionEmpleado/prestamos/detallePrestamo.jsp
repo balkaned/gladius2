@@ -64,8 +64,9 @@ function formatearFecha2(){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Préstamos</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -119,16 +120,16 @@ function formatearFecha2(){
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Glosa</label>
                                                 <input class="form-control" name="iexglosa" maxlength="50" value="${requestScope.xPrestCab.iexglosa}" type="text" disabled />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none">* Fecha de Prestamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" value="${requestScope.xPrestCab.iexfecpres}" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none">* Fecha Ini Vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" value="${requestScope.xPrestCab.iexfecinivig}" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Frecuencia Prestamo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Frecuencia Préstamo</label>
                                                 <select class="form-select" name="iexfrecuencia" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
@@ -139,6 +140,9 @@ function formatearFecha2(){
                                      </form>
                                    </div>
                                  </div>
+                            </div>
+                            <div class="col-auto mt-4">
+                                <h3 id="h2top" class="mb-0">Cronograma</h3>
                             </div>
 
                             <div class="border-top border-bottom border-200 mt-4" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
@@ -161,14 +165,13 @@ function formatearFecha2(){
                             				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${xPrestDet.iexfecpre}</td>
                             				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xPrestDet.ieximpbru}</td>
                             				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xPrestDet.iexinteres}</td>
-                            				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xPrestDet.ieximptotal}</td>
+                            				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ps-3 pe-3">${xPrestDet.ieximptotal}</td>
 
                             				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                             					<div class="font-sans-serif btn-reveal-trigger position-static">
                             					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                             					  <div class="dropdown-menu dropdown-menu-end py-2">
-                            						<div class="dropdown-divider"></div>
-                            						<a class="dropdown-item text-warning" href="#!">Remove</a>
+                            						<a class="dropdown-item" href="#!">Info</a>
                             					  </div>
                             					</div>
                             				  </td>

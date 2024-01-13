@@ -43,8 +43,9 @@
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Legajo</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -81,6 +82,8 @@
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="legajo@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Grupo</button>
                                                   </div>
                                                 </div>

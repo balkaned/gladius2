@@ -36,27 +36,31 @@
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="row g-0 g-md-4 g-xl-6">
 
+                <div class="row g-0 g-md-4 g-xl-6">
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
                       <div class="content2">
-                          <nav class="mb-2" aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
-                            </ol>
-                          </nav>
                           <div class="mb-9">
-                            <div class="row g-3 mb-4">
+                            <div class="row g-3 mt-2 mb-2">
                               <div class="col-auto">
                                 <h2 id="h2top" class="mb-0">Legajo</h2>
                               </div>
@@ -82,10 +86,14 @@
                                                 Se grabó exitosamente los cambios.
                                             </div>-->
                                             <div class="col-12 gy-6">
-                                                <div class="row g-3 justify-content-end">
-                                                  <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Cancel</a>
-                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Agregar GrupoArch</a>
+                                                <div class="row g-3 d-flex justify-content-end">
+                                                  <div class="col-auto ps-0">
+                                                    <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
+                                                  </div>
+                                                  <div class="col-auto ps-0">
+                                                    <a class="btn btn-phoenix-secondary" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Add GrupoArch</a>
+                                                  </div>
+                                                  <div class="col-auto ps-0">
                                                     <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
                                                   </div>
                                                 </div>
@@ -137,18 +145,22 @@
                                                <br>
                                            </c:if>
 
-                                           <h5 id="h2top" class="mb-0 mt-5">${listGrpFile.desgrangrupo} -  ${listGrpFile.iexdesgrpfile}</h5>
-                                           <div class="col-12 gy-6 mt-2">
+                                           <label class="form-label fs-0 text-1000 ps-0 text-none mt-4 mb-0">${listGrpFile.desgrangrupo} -  ${listGrpFile.iexdesgrpfile}</label>
+                                           <div class="col-12 gy-6 mt-3">
                                                <div class="row g-3 justify-content-end">
-                                                 <div class="col-auto">
+                                                 <div class="col-auto ps-0">
                                                    <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
+                                                 </div>
+                                                 <div class="col-auto ps-0">
                                                    <a class="btn btn-phoenix-secondary me-1 mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
+                                                 </div>
+                                                 <div class="col-auto ps-0">
                                                    <a class="btn btn-phoenix-danger" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
                                                  </div>
                                                </div>
                                            </div>
                                            <div class="border-top border-bottom border-200 mt-2" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
-                                           	  <div class="table-responsive scrollbar">
+                                              <div class="table-responsive scrollbar">
                                            		<table class="table table-sm fs--1 mb-0">
                                            		  <thead>
                                            			<tr>
@@ -189,6 +201,9 @@
                                                           </td>
                                                         </tr>
                                                    </tbody>
+                                                 </table>
+                                              </div>
+                                           </div>
                                       <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
                                  </c:forEach>
                             </div>

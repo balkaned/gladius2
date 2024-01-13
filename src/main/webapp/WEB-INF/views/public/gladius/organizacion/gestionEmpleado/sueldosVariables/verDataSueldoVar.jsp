@@ -25,14 +25,24 @@
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="row g-0 g-md-4 g-xl-6">
 
+                <div class="row g-0 g-md-4 g-xl-6">
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
@@ -40,15 +50,17 @@
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
-                               <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                      <h2 class="mb-0">Conceptos variables</h2>
-                                      <div class="col-auto">
+                               <div>
+                                      <div class="col-12 mt-2">
+                                        <h2 class="mb-0">Conceptos variables</h2>
+                                      </div>
+                                      <div class="col-12 mt-3 mb-2 d-flex justify-content-end">
                                           <a class="btn btn-phoenix-primary px-5" href="sueldoVariable@${idTrab}">Atras</a>
-                                          <a class="btn btn-primary btn-sm" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add Concepto</a>
+                                          <a class="btn btn-primary ms-2" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add Concepto</a>
                                       </div>
                                </div>
 
-                               <div class="row gx-4 gy-6 g-xl-7 justify-content-sm-center justify-content-xl-start">
+                               <div class="row mt-1 gx-4 gy-6 g-xl-7 justify-content-sm-center justify-content-xl-start">
                                    <div class="col-12 col-sm-auto">
                                      <div class="row g-4 flex-sm-column">
                                        <div class="col-6 col-sm-12">
@@ -63,7 +75,7 @@
                                        <div class="col-6 col-sm-12">
                                          <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="calendar" style="stroke-width:2.5;">  </span>
                                            <h6 class="mb-0">Periodo pendiente</h6>
-                                         </div><a class="fs--1 ms-4" href="!">${iexperiodo}</a>
+                                         </div><a class="fs--1 ms-4" href="!"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${iexperiodo}</span></a>
                                        </div>
                                      </div>
                                    </div>
@@ -90,15 +102,16 @@
                                			<c:forEach var="fdatavar" items="${requestScope.fdatavar}">
                                				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                				  <td class="order align-middle white-space-nowrap ps-3 pe-3 text-start"><a class="fw-semi-bold" href="#!">#${fdatavar.iexcodpro}</a></td>
-                               				  <td class="total align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${fdatavar.coodescon}</span></td>
-                               				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ps-3 pe-3">${fdatavar.iexvalcon}</td>
+                               				  <td class="total align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${fdatavar.coodescon}</span></td>
+                               				  <td class="align-middle white-space-nowrap text-center text-800 ps-3 pe-3">${fdatavar.iexvalcon}</td>
 
                                				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                					<div class="font-sans-serif btn-reveal-trigger position-static">
                                					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
                                					  <div class="dropdown-menu dropdown-menu-end py-2">
+                               						<a class="dropdown-item" href="#">Editar</a>
                                						<div class="dropdown-divider"></div>
-                               						<a class="dropdown-item text-warning" href="#!">Remove</a>
+                               						<a class="dropdown-item text-danger" href="#!">Eliminar</a>
                                					  </div>
                                					</div>
                                				  </td>

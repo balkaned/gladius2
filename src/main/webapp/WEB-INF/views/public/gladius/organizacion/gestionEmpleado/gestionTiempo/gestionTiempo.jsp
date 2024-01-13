@@ -114,23 +114,37 @@ function program_tur_row(turno, fecini,  fecfin){
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="row g-0 g-md-4 g-xl-6">
 
+                <div class="row g-0 g-md-4 g-xl-6">
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
                       <div class="content2">
                           <div class="mb-0">
-                            <div class="row g-3 mb-0">
-                              <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Gestion de tiempos</h2>
+                            <div>
+                              <div class="col-12 mt-2">
+                                <h2 class="mb-0">Gestión de tiempos</h2>
+                              </div>
+                              <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
+                                  <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
+                                  <a class="btn btn-primary ms-2" href="#"><span class="fa-solid fa-plus me-2"></span>Add Tiempos</a>
                               </div>
                             </div>
 
@@ -151,13 +165,13 @@ function program_tur_row(turno, fecini,  fecfin){
 
                                         <table>
                                              <tr>
-                                                 <div class="col-md-6">
-                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2 pe-4">Control Asistenca para Pago?</label>
-                                                     <input type="checkbox" name="iexctlasipag" id="iexctlasipag"  value="1" class="form-check-input" ${requestScope.xempxturno.iexctlasipag =='1' ? 'checked=true' : ''}  >
+                                                 <div class="col-md-12">
+                                                    <input type="checkbox" name="iexctlasipag" id="iexctlasipag"  value="1" class="form-check-input" ${requestScope.xempxturno.iexctlasipag =='1' ? 'checked=true' : ''}  >
+                                                    <label class="form-label fs-0 text-1000 ps-2 text-none mb-2 pe-4">Control Asistenca para Pago?</label>
                                                  </div>
                                              </tr>
                                              <tr>
-                                                <div class="col-sm-6 col-md-5">
+                                                <div class="col-sm-6 col-md-4">
                                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Turno</label>
                                                 	  <select id="slc_tipturno" name="slc_tipturno" class="form-select" onchange="jumpTo('slc_tipturno')" >
                                                 		 <option value="-1" >Seleccionar</option>
@@ -257,19 +271,19 @@ function program_tur_row(turno, fecini,  fecfin){
                                                     <label class="form-label fs-0 text-500 ps-0 text-none mb-0">Configuración de turnos</label>
                                                     <div class="col-md-4 col-sm-6">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desde</label>
-                                                        <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control" placeholder="dd/mm/yyyy">
+                                                        <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'>
                                                     </div>
                                                     <div class="col-md-4 col-sm-6">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hasta</label>
-                                                        <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control" placeholder="dd/mm/yyyy">
+                                                        <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'>
                                                     </div>
 
                                                </tr>
                                                <tr>
                                                    <td>
-                                                        <div class="col-6">
+                                                        <div class="col-12">
                                                             <input type="file" name="filexls" id="filexls" class="form-control">
-                                                            <button name="btn_xls" class="btn btn-success mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-regular fa-file-excel me-2"></span>xls</button>
+                                                            <button name="btn_xls" class="btn btn-phoenix-success mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-regular fa-file-excel me-2"></span>Exportar Excel</button>
                                                         </div>
                                                    </td>
                                                </tr>

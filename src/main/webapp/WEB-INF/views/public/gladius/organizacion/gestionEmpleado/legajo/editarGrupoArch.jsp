@@ -43,8 +43,9 @@
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Legajo</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -62,7 +63,8 @@
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${idTrab}" />
                                             <div class="col-sm-6 col-md-3">
                                             	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
-                                            	<input class="form-control" name="idgrpfile" value="${xGrpFile.iexcodgrpfile}" style="background-color:#F1F4F8;" type="text" readonly />
+                                            	<input class="form-control" name="idgrpfiledis" value="${xGrpFile.iexcodgrpfile}" type="text" readonly disabled/>
+                                                <input type="hidden" name="idgrpfile" id="idgrpfile" value="${xGrpFile.iexcodgrpfile}" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
@@ -92,6 +94,8 @@
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="legajo@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Grupo</button>
                                                   </div>
                                                 </div>

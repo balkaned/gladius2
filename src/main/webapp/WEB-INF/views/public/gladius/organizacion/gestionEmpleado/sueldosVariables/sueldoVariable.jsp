@@ -58,12 +58,24 @@
 
           <div class="content">
               <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
+
+                <div class="row mt-0 mb-1">
+                    <div class="col-12">
+                      <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-md-auto">
+                          <h2 class="mb-0"></h2>
+                        </div>
+                        <div class="col-12 col-md-auto">
+                          <div class="d-flex">
+                            <div class="flex-1 d-md-none">
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
+
                 <div class="row g-0 g-md-4 g-xl-6">
 
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>

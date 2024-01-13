@@ -64,14 +64,15 @@ function formatearFecha2(){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Retención Judicial</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nueva retencion</h2>
+                                <h2 id="h2top" class="mb-0">Insertar nueva retención</h2>
                               </div>
                             </div>
 
@@ -127,6 +128,8 @@ function formatearFecha2(){
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Retencion</button>
                                                   </div>
                                                 </div>

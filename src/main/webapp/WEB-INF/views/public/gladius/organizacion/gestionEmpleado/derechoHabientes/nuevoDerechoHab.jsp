@@ -64,8 +64,9 @@ function formatearFecha2(){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Derecho habiente</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -120,11 +121,11 @@ function formatearFecha2(){
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombres</label>
                                                 <input class="form-control" name="iexnomdep" maxlength="100" type="text" placeholder="Alberto Gabriel" required />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo</label>
                                                 <select class="form-select" name="iexsexo" required >
                                                   <option value="" selected >Seleccionar</option>
@@ -155,7 +156,7 @@ function formatearFecha2(){
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Doc Acredito Vinculo</label>
                                                 <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" required placeholder="#"/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de Concepcion</label>
                                                 <input class="form-control" name="iexmesconcep" maxlength="50" type="text" />
                                             </div>
@@ -362,6 +363,8 @@ function formatearFecha2(){
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="derechoHab@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar DerechoHab</button>
                                                   </div>
                                                 </div>

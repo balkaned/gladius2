@@ -1,8 +1,8 @@
 
 <div id="otropciones" class="email-content scrollbar-overlay">
   <div class="d-flex justify-content-between align-items-center">
-    <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Otras opciones</p>
-    <button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>
+    <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Menu de Opciones</p>
+    <!--<button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>-->
   </div>
   <ul class="nav flex-column border-top fs--1 vertical-nav mb-4">
     <li class="nav-item mt-1" id="linav"><a id="detalleEmpl" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="detalleEmpl@${idTrab}">

@@ -4,6 +4,7 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.FileImageLegajo;
 import com.balkaned.gladius.beans.Grpfile;
 import com.balkaned.gladius.dao.LegajoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -60,6 +61,11 @@ public class LegajoDaoImpl implements LegajoDao {
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setDesgrangrupo(rs.getString("desgrupo"));
+
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    String capitalize=cap.letras(p.getDesgrangrupo());
+                    p.setDesgrangrupo(capitalize);
+
                     p.setIexcodgrpfile(rs.getInt("iexcodgrpfile"));
                     p.setIexdesgrpfile(rs.getString("iexdesgrpfile"));
                     p.setIexcodimage(rs.getInt("iexcodimage"));

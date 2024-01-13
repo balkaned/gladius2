@@ -43,8 +43,9 @@
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Legajo</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -62,11 +63,13 @@
                                      novalidate >
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID grpfile</label>
-                                                <input class="form-control" style="background-color:#F1F4F8;" name="idgrpfile" maxlength="50" type="text" value="${iexcodgrpfile}" required readonly />
+                                                <input class="form-control" name="idgrpfiledis" maxlength="50" type="text" value="${iexcodgrpfile}" disabled readonly />
+                                                <input type="hidden" name="idgrpfile" id="idgrpfile" value="${iexcodgrpfile}" />
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID Grupo Archivo grpfile</label>
-                                                <input class="form-control" style="background-color:#F1F4F8;" name="grpFile" maxlength="50" type="text" value="${grpFile}" required readonly />
+                                                <input class="form-control" name="grpFile" maxlength="50" type="text" value="${grpFile}" disabled readonly />
+                                                <input type="hidden" name="grpFile" id="grpFile" value="${grpFile}" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Subir documento solo en formato PDF</label>
@@ -88,7 +91,9 @@
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="buscarLegajoAtras@${idTrab}@${grpFile}">Cancel</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-cloud-upload-alt me-2"></span>Subir</button>
+                                                  </div>
+                                                  <div class="col-auto">
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-cloud-upload-alt me-2"></span>Subir Documento</button>
                                                   </div>
                                                 </div>
                                             </div>

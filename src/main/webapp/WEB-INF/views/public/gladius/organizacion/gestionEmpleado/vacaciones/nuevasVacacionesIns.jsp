@@ -91,6 +91,7 @@ function calcularDias(){
 		}
 
 		document.getElementById("iexnrodias").value=Number(resultado)+1;
+		document.getElementById("iexnrodias2").value=Number(resultado)+1;
 }
 
 function enviaForm(variable){
@@ -173,8 +174,9 @@ function enviaForm(variable){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Vacaciones</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -207,15 +209,18 @@ function enviaForm(variable){
                                             </div>
                                             <div class="col-sm-6 col-md-4 ">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Inicial</label>
-                                              <input class="form-control" id="iexpermesini" name="iexpermesini" type="text" style="background-color:#F1F4F8;" value="${perini}" required readonly/>
+                                              <input class="form-control" id="iexpermesinidis" name="iexpermesinidis" type="text" value="${perini}" disabled readonly/>
+                                              <input type="hidden" name="iexpermesini" id="iexpermesini" value="${perini}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4 ">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Final</label>
-                                              <input class="form-control" id="iexpermesfin" name="iexpermesfin" type="text" style="background-color:#F1F4F8;" value="${perfin}" required readonly/>
+                                              <input class="form-control" id="iexpermesfindis" name="iexpermesfindis" type="text" value="${perfin}" disabled readonly/>
+                                              <input type="hidden" name="iexpermesfin" id="iexpermesfin" value="${perfin}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4 ">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Saldo</label>
-                                              <input class="form-control" id="saldo" name="saldo" type="text" style="background-color:#F1F4F8;" value="${saldo}" required readonly/>
+                                              <input class="form-control" id="saldodis" name="saldodis" type="text" value="${saldo}" disabled readonly/>
+                                              <input type="hidden" name="saldo" id="saldo" value="${saldo}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
@@ -227,21 +232,24 @@ function enviaForm(variable){
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
-                                              <input class="form-control" name="iexnrodias" id="iexnrodias" type="text" value="" style="background-color:#F1F4F8;" required readonly/>
+                                              <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="" disabled readonly/>
+                                              <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
                                                 <input class="form-control" name="iexglosa" type="text" value="${requestScope.iexglosa}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="flexChecked">No considerar saldo? </label>
-                                                   <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox"/>
+                                                <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox"/>
+                                                <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">No considerar saldo? </label>
                                             </div>
 
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
                                                   </div>
                                                 </div>

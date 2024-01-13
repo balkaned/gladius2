@@ -24,15 +24,24 @@
           <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
-              <div class="pb-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row align-items-center justify-content-between g-3 mb-3">
-                    </div>
-                  </div>
+                <div class="row mt-0 mb-1">
+                      <div class="col-12">
+                        <div class="row align-items-center justify-content-between">
+                          <div class="col-12 col-md-auto">
+                            <h2 class="mb-0"></h2>
+                          </div>
+                          <div class="col-12 col-md-auto">
+                            <div class="d-flex">
+                              <div class="flex-1 d-md-none">
+                                <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
-                <div class="row g-0 g-md-4 g-xl-6">
 
+                <div class="row g-0 g-md-4 g-xl-6">
                   <jsp:include page="../navsGenericEmpl.jsp"></jsp:include>
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
@@ -40,11 +49,13 @@
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
-                                <div class="d-flex justify-content-between align-items-center mb-4" id="scrollspyDeals">
-                                  <h2 class="mb-0">Tabla de vacaciones</h2>
-                                  <div class="col-auto">
+                                <div>
+                                  <div class="col-12 mt-2">
+                                    <h2 class="mb-0">Tabla de vacaciones</h2>
+                                  </div>
+                                  <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-primary px-5" href="vacaciones@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary btn-sm" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
+                                      <a class="btn btn-primary ms-2" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
                                   </div>
                                 </div>
                                 <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
@@ -56,7 +67,7 @@
                                     <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
                                       <h5 class="mb-0">Año</h5>
                                     </div>
-                                    <p class="mb-0 text-800"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${perini} - ${perfin}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
+                                    <p class="mb-0 text-800"><span class="badge badge-phoenix fs--1 badge-phoenix-primary"><span class="badge-label">${perini} - ${perfin}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
                                 </div>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
@@ -84,8 +95,8 @@
                                 			<c:forEach var="LstVacacionesPer" items="${requestScope.LstVacacionesPer}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${LstVacacionesPer.iexcorrel}</a></td>
-                                				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-700">${LstVacacionesPer.iexpermesini}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesPer.iexpermesfin}</td>
+                                				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${LstVacacionesPer.iexpermesini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-1000 ps-3 pe-3">${LstVacacionesPer.iexpermesfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesPer.iexfecini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesPer.iexfecfin}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesPer.iexnrodias}</td>

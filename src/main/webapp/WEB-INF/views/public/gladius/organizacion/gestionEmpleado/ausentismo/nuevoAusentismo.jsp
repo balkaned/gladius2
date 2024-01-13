@@ -91,6 +91,7 @@ function calcularDias(){
 		}
 
 		document.getElementById("iexnrodias").value=Number(resultado)+1;
+		document.getElementById("iexnrodias2").value=Number(resultado)+1;
 }
 
 function diasVacaciones(){
@@ -161,8 +162,9 @@ function enviaForm(variable){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organzación</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Ausentismo</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -202,7 +204,8 @@ function enviaForm(variable){
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
-                                                   <input class="form-control" name="iexnrodias" id="iexnrodias" maxlength="10" type="text" style="background-color:#F1F4F8;" placeholder="0" required readonly/>
+                                                   <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" type="text" placeholder="0" disabled readonly/>
+                                                   <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
@@ -216,6 +219,8 @@ function enviaForm(variable){
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="ausentismo@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Ausentismo</button>
                                                   </div>
                                                 </div>

@@ -64,8 +64,9 @@ function formatearFecha2(){
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Contratos</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -106,7 +107,7 @@ function formatearFecha2(){
                                                   <option value="2"> Modelo 2</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                                 <select class="form-select" name="iexestado" required >
                                                   <option value="1">Activo</option>
@@ -121,6 +122,8 @@ function formatearFecha2(){
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
                                                     <a class="btn btn-phoenix-primary" href="contrato@${idTrab}">Cancel</a>
+                                                  </div>
+                                                  <div class="col-auto">
                                                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Contrato</button>
                                                   </div>
                                                 </div>
