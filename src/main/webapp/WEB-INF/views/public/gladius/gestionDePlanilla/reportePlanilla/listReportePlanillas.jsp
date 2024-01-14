@@ -34,14 +34,14 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>
+                <li class="breadcrumb-item active">Reporte de planillas</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte De Plantilla X Concepto</h2>
+                    <h2 id="h2top" class="mb-0">Reporte de planillas</h2>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                     <div class="row gx-3 gy-4">
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso(*)</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
                                 <select class="form-select" name="iexcodpro" required>
                                     <option value="" selected>Seleccionar</option>
                                     <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
@@ -62,13 +62,13 @@
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
                                 <input class="form-control" type="text" id="nroper" name="nroper"
-                                       value="${requestScope.peranio}">
+                                       value="${requestScope.peranio}" placeholder="2023">
                             </div>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
                                 <input class="form-control" type="text" id="nroper2" name="nroper2"
-                                       value="${requestScope.peranio}">
+                                       value="${requestScope.peranio}" placeholder="2024">
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">

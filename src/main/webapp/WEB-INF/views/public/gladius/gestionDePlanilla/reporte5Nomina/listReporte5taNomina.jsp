@@ -34,14 +34,14 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>
+                <li class="breadcrumb-item active">Reporte 5ta nómina</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte De 5 Categoria</h2>
+                    <h2 id="h2top" class="mb-0">Reporte de 5 categoría</h2>
                 </div>
             </div>
 
@@ -50,57 +50,42 @@
                     <div class="row gx-3 gy-4">
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de
-                                    Trabajador</label>
-                                <select class="form-select" name="percodtra" id="percodtra"
-                                        required>
-                                    <option value="" selected>Seleccionar</option>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código Trabajador</label>
+                                <select class="form-select" name="percodtra" id="percodtra" required>
+                                    <option value="" selected >Seleccionar</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
-                                        <option value="${LstEmpleadoRes.iexcodtra}"     ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''}     >
-                                            [${LstEmpleadoRes.iexcodtra}]
-                                            - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}   </option>
+                                        <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''}     >
+                                        [${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Anio</label>
-                                <input class="form-control" type="text" id="peranio" name="peranio"
-                                       value="${requestScope.peranio}">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
+                                <input class="form-control" type="text" id="peranio" name="peranio" value="${requestScope.peranio}" placeholder="yyyy">
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-12">
+                                <button class="btn btn-primary" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <input class="form-control"
-                                       type="text"
-                                       value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}"
-                                       readonly="true"
-                                       style="background-color:#F1F4F8;">
+                                <input class="form-control" type="text" value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}" readonly disabled>
                             </div>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° Documento</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}"
-                                       readonly="true" style="background-color:#F1F4F8;">
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}" readonly disabled>
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexflgest}"
-                                       readonly="true" style="background-color:#F1F4F8;">
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexflgest}" readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}"
-                                       readonly="true" style="background-color:#F1F4F8;">
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}" readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Cese</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}"
-                                       readonly="true" style="background-color:#F1F4F8;">
-                            </div>
-                            <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Consultar
-                                </button>
-
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}" readonly disabled>
                             </div>
 
                             <div id="orderTable"
@@ -122,7 +107,7 @@
                                                 </th>
                                                 <th class="sort white-space-nowrap align-middle pe-3" scope="col"
                                                     data-sort="order"
-                                                    style="width:5%;">Periodo
+                                                    style="width:5%;">PERIODO
                                                 </th>
                                                 <th class="sort align-middle text-center ps-5" scope="col"
                                                     data-sort="date">IDPROCESO

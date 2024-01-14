@@ -52,8 +52,8 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
                                 <div>
-                                  <div class="col-12 mt-2">
-                                    <h2 class="mb-0">Sueldo fijo</h2>
+                                  <div class="col-12 mt-4">
+                                    <h2 class="mb-4">Sueldo fijo</h2>
                                   </div>
                                   <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>

@@ -136,7 +136,6 @@
             </div>
         </div>
         <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-          <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>
           <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
       </form>

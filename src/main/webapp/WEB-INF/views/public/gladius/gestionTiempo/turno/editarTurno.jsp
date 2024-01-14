@@ -33,8 +33,8 @@
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                  <li class="breadcrumb-item active">Default</li>
+                  <li class="breadcrumb-item"><a href="#!">Gestión de tiempos</a></li>
+                  <li class="breadcrumb-item active">Gestión de turno</li>
                 </ol>
               </nav>
               <div class="mb-9">
@@ -83,11 +83,9 @@
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Minutos Despues</label>
                           <input class="form-control" name="iextopmaxpost" type="text" value="${requestScope.turno.iextopmaxpost}" placeholder="" required />
                         </div>
-
-                        <div class="col-sm-6 col-md-6">
-                          <br>
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Dia sig?</label>
+                        <div class="col-sm-6 col-md-12">
                           <input type="checkbox" name="flg_diasig" id="flg_diasig" class="form-check-input">
+                          <label class="form-label fs-0 text-1000 ps-2 text-none mb-2">* Dia sig?</label>
                         </div>
                         <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                           Se grabó exitosamente los cambios.

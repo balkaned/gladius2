@@ -83,10 +83,11 @@
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
                       <div class="content2">
-                          <nav class="mb-2" aria-label="breadcrumb">
+                          <nav class="mt-3 mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Sueldo variables</li>
                             </ol>
                           </nav>
                           <div class="mb-9">

@@ -130,7 +130,7 @@
                             <div class="flex-1 d-md-none">
                               <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
                             </div>
-                            <a class="btn btn-primary me-2" href="listEmpleados"><span class="fas fa-table me-2"></span>Ir a tabla</a>
+                            <a class="btn btn-primary me-2" href="listEmpleados"><span class="fas fa-reply me-2"></span>Ir a tabla</a>
                             <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
                             <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
                             <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
@@ -164,7 +164,7 @@
 
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
-                            <h3 class="mb-0">Datos personales</h3>
+                            <h3 class="mt-3">Datos personales</h3>
                             <div class="row g-5">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
@@ -374,7 +374,7 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-notes" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mb-0">Datos laborales</h3>
+                                <h3 class="mt-3">Datos laborales</h3>
                                 <div class="row g-5">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
@@ -558,7 +558,7 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-meeting" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mb-0">Informacion de pago</h3>
+                                <h3 class="mt-3">Informacion de pago</h3>
                                 <div class="row g-5">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
@@ -694,7 +694,7 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-task" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mb-0">Seguridad social</h3>
+                                <h3 class="mt-3">Seguridad social</h3>
                                 <div class="row g-5">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
@@ -837,7 +837,7 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-call" role="tabpanel" aria-labelledby="activity-tab">
-                              <h3 class="mb-0">Datos domicilio</h3>
+                              <h3 class="mt-3">Datos domicilio</h3>
                               <div class="row g-5">
                                    <div class="col-xl-12">
                                      <div class="row gx-3 gy-4">

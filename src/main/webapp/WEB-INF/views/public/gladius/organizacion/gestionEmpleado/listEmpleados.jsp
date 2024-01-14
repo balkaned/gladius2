@@ -36,8 +36,8 @@
                 </div>
               </div>
               <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="reingresoEmpleado"><span class="fa-solid fa-right-to-bracket fs--1 me-2"></span>Reingreso</a></li>
-                <!--<li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
+                <!--<li class="nav-item"><a class="nav-link" href="reingresoEmpleado"><span class="fa-solid fa-right-to-bracket fs--1 me-2"></span>Reingreso</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
@@ -85,16 +85,17 @@
                         <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
                       </div>
                     </div>
-                    <div class="col-auto">
+                    <div class="d-grid gap-2 d-md-block">
+                          <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
+                          <a class="btn btn-phoenix-primary ms-1" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
 
-                      <a class="btn btn-link text-900 me-4 px-0"
-                      href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
-                       target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Todos Xls</a>
+                          <a class="btn btn-link text-900 me-4 ms-3 px-0"
+                          href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
+                           target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar excel todos</a>
 
-                      <a class="btn btn-link text-900 me-4 px-0"
-                      href="#"
-                      ><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar Activos Xls</a>
-                      <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
+                          <a class="btn btn-link text-900 me-4 px-0"
+                          href="#" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar excel activos</a>
+
                     </div>
                   </div>
                 </div>

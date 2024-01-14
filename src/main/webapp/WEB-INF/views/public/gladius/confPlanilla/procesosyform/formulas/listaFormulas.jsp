@@ -26,7 +26,8 @@
     <nav class="mb-2" aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
-        <li class="breadcrumb-item active">Procesos y Forms</li>
+        <li class="breadcrumb-item active">Procesos y form</li>
+        <li class="breadcrumb-item active">Fórmulas</li>
       </ol>
     </nav>
     <div class="mb-5">

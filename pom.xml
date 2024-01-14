@@ -14,10 +14,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Gladius</name>
 	<description>Gladius.v4 project for Spring Boot</description>
+	<!--<packaging>jar</packaging>-->
 	<packaging>war</packaging>
 	<properties>
-		<!--<java.version>11</java.version>-->
-		<java.version>8</java.version>
+		<java.version>11</java.version>
+		<!--<java.version>8</java.version>-->
 	</properties>
 
 	<dependencies>
@@ -131,8 +132,8 @@
 				<configuration>
 					<executable>true</executable>
 					<!--<jvmArguments>-Xmx16m</jvmArguments>-->
-					<!--<jvmArguments>-Xms64m -Xmx128m</jvmArguments>-->
-					<jvmArguments>-Xmx64m</jvmArguments>
+					<jvmArguments>-Xms256m -Xmx256m</jvmArguments>
+					<!--<jvmArguments>-Xmx64m</jvmArguments>-->
 				</configuration>
 			</plugin>
 		</plugins>

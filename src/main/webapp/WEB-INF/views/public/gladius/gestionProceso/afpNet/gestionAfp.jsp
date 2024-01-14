@@ -33,14 +33,14 @@
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                  <li class="breadcrumb-item active">Default</li>
+                  <li class="breadcrumb-item"><a href="#!">Gestión de procesos externos</a></li>
+                  <li class="breadcrumb-item active">Afp Net</li>
                 </ol>
               </nav>
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte de Afp Net</h2>
+                    <h2 id="h2top" class="mb-0">Reporte Afp Net</h2>
                   </div>
                 </div>
 
@@ -55,10 +55,10 @@
                                 <tbody>
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                   <tr>
-                                    <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
+                                    <td class="align-middle fw-semi-bold text-20">Periodo Mensual</td>
                                     <td>
                                       <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                                        class="form-control"  required />
+                                        class="form-control" placeholder="yyyymm" required />
                                     </td>
                                     <td></td>
                                   </tr>

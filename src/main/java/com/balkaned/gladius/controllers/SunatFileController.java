@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.AsientoContableCab;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -14,16 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class SunatFileController {
 
-    @Autowired
-    EmpleadoService empleadoService;
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-    @Autowired
-    LovsService lovsService;
-    @Autowired
-    VacacionesService vacacionesService;
+
     @Autowired
     ProcesoPlanillaService procesoPlanillaService;
+
+    @Autowired
+    Sessionattributes sessionattributes;
 
     @RequestMapping("/gestionPlame")
     public ModelAndView gestionPlame(ModelMap model, HttpServletRequest request) {
@@ -32,11 +29,13 @@ public class SunatFileController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -61,11 +60,13 @@ public class SunatFileController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -79,7 +80,7 @@ public class SunatFileController {
         model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", urlLogo);
 
-        return new ModelAndView("public/gladius/gestionProceso/plame/gestionAfp");
+        return new ModelAndView("public/gladius/gestionProceso/afpNet/gestionAfp");
     }
 
     @RequestMapping("/gestionAsientosContables")
@@ -89,11 +90,13 @@ public class SunatFileController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -120,11 +123,13 @@ public class SunatFileController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
@@ -165,11 +170,13 @@ public class SunatFileController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
         String usuario = (String) request.getSession().getAttribute("user");
         String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String nombreComp = (String) request.getSession().getAttribute("nombrecomp");
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");

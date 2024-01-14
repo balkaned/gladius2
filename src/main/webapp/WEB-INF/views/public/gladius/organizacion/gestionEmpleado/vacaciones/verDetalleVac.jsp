@@ -50,10 +50,10 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <div class="mb-8">
                                 <div>
-                                  <div class="col-12 mt-2">
+                                  <div class="col-12 mt-4">
                                     <h2 class="mb-0">Tabla de vacaciones</h2>
                                   </div>
-                                  <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
+                                  <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-primary px-5" href="vacaciones@${idTrab}">Atras</a>
                                       <a class="btn btn-primary ms-2" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
                                   </div>

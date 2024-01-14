@@ -40,8 +40,9 @@
                       <div class="content2">
                           <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                              <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                              <li class="breadcrumb-item active">Default</li>
+                              <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                              <li class="breadcrumb-item active">Trabajadores</li>
+                              <li class="breadcrumb-item active">Sueldo fijo</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -70,7 +71,6 @@
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor</label>
                                                    <input class="form-control" name="iexvalcon" maxlength="18" type="number" step=0.01 value="" placeholder="0.00" required/>
                                             </div>
-
 
                                             <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.

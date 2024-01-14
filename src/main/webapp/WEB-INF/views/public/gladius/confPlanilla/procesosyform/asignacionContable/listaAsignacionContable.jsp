@@ -32,6 +32,7 @@
 			<ol class="breadcrumb mb-0">
 				<li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
 				<li class="breadcrumb-item active">Procesos y form</li>
+				<li class="breadcrumb-item active">Asig. contable</li>
 			</ol>
 		</nav>
 		<div class="mb-3">

@@ -34,14 +34,14 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>
+                <li class="breadcrumb-item active">Reporte de nómina x persona</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte de Planilla X Proceso</h2>
+                    <h2 id="h2top" class="mb-0">Reporte de nómina x persona</h2>
                 </div>
             </div>
 
@@ -76,22 +76,16 @@
 
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
-                                <input class="form-control" type="text" id="perini" name="perini"
-                                       value="${requestScope.perini}">
+                                <input class="form-control" type="text" id="perini" name="perini" value="${requestScope.perini}">
                             </div>
 
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
-                                <input class="form-control" type="text" id="perfin" name="perfin"
-                                       value="${requestScope.perfin}">
+                                <input class="form-control" type="text" id="perfin" name="perfin" value="${requestScope.perfin}">
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Consultar
-                                </button>
-                                <button class="btn btn-primary" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Descargar Xls
-                                </button>
+                                <button class="btn btn-primary" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar</button>
+                                <button class="btn btn-link text-900 me-4 px-0 ps-3" onclick="consultaDet();"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar excel</button>
                             </div>
 
                             <div id="orderTable"

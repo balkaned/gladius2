@@ -120,37 +120,31 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>
+                <li class="breadcrumb-item active">Reporte de planilla x concepto</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte Planilla X Conceptos</h2>
+                    <h2 id="h2top" class="mb-0">Reporte planilla x conceptos</h2>
                 </div>
             </div>
 
             <div class="row g-5">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action=""
-                              novalidate>
-                            <input class="form-control" name="iexcodcia" type="hidden"
-                                   value="${requestScope.emp.iexcodcia}"/>
+                        <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
-                                <input class="form-control" type="text" name="perini"  id="perini"  value="${requestScope.xperini}"
-                                       >
+                                <input class="form-control" type="text" name="perini" id="perini" value="${requestScope.xperini}" placeholder="2023">
                             </div>
-
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
-                                <input class="form-control" type="text" name="perfin"  id="perfin"
-                                       value="${requestScope.xperfin}">
+                                <input class="form-control" type="text" name="perfin"  id="perfin" value="${requestScope.xperfin}" placeholder="2024">
                             </div>
-
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de Concepto</label>
                                 <select class="form-select" name="codcon"  id="codcon" required>
@@ -162,9 +156,7 @@
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" type="submit">
-                                    <span class="fa-solid fa-magnifying-glass me-2"></span>Agregar
-                                </button>
+                                <button class="btn btn-primary" type="submit"><span class="fa-solid fa-plus me-2"></span>Agregar</button>
                             </div>
                             <div id="orderTable"
                                  data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>

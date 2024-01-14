@@ -24,14 +24,14 @@
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                  <li class="breadcrumb-item active">Default</li>
+                  <li class="breadcrumb-item"><a href="#!">Gestión de procesos externos</a></li>
+                  <li class="breadcrumb-item active">Asientos Contables</li>
                 </ol>
               </nav>
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Gestion de Asientos Contable</h2>
+                    <h2 id="h2top" class="mb-0">Gestion de asientos contables</h2>
                   </div>
                 </div>
 
@@ -43,8 +43,8 @@
                           value="${requestScope.emp.iexcodcia}" />
                         <input class="form-control" name="iexcodtra" type="hidden"
                           value="${requestScope.emp.iexcodtra}" />
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso(*)</label>
+                        <div class="col-sm-6 col-md-8">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
                           <select class="form-select" name="iexcodpro" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
@@ -53,24 +53,24 @@
                             </c:forEach>
                           </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo YYYYMM</label>
+                        <div class="col-sm-6 col-md-4">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
                           <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                            class="form-control">
+                            class="form-control" placeholder="yyyymm">
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Asisento</label>
-                          <input type="text" name="nroasientocab" id="nroasientocab" value="" class="form-control" style="background-color:#F1F4F8;">
-                          <br />
-                          <input type="button" name="BuscarNroAsiento" value="Buscar x Nro Asiento"
-                            class="btn btn-primary dropdown-toggle">
+                        <div class="col-sm-6 col-md-4">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Asiento</label>
+                          <input type="text" name="nroasientocab" id="nroasientocab" value="" class="form-control" disabled >
+                        </div>
+                        <div class="col-sm-6 col-md-7">
+                            <input type="button" name="BuscarNroAsiento" value="Buscar x nro asiento" class="btn btn-primary dropdown-toggle">
                         </div>
 
                         <div class="d-grid gap-2 d-md-block">
                           <button class="btn btn-primary" type="submit">
                             <span class="fa-solid fa-magnifying-glass me-2"></span>Buscar
                           </button>
-                          <a class="btn btn-primary" href="nuevoAsientosContables"><span class="fas fa-plus me-2"></span>Crear</a>
+                          <a class="btn btn-phoenix-primary" href="nuevoAsientosContables"><span class="fas fa-plus me-2"></span>Nuevo Asiento Cont</a>
                         </div>
                         <div id="orderTable"
                           data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>

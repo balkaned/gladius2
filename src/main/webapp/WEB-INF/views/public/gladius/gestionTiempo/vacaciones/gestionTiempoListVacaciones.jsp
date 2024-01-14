@@ -171,7 +171,7 @@
                             </div>
 
                             <!-- Buttons -->
-                            <div class="d-grid gap-2 d-md-block">
+                            <div class="d-grid gap-2 d-md-block ">
                                 <button class="btn btn-primary" onclick="consultaDet();"><span
                                         class="fa-solid fa-magnifying-glass me-2"></span>Buscar
                                 </button>
@@ -180,7 +180,7 @@
 
                                 <a class="btn btn-link text-900 me-4 px-0"
                                    href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null" target="_blank">
-                                    <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Programación
+                                    <span class="fa-solid fa-file-export fs--1 ms-3 me-2"></span>Exportar Programación
                                 </a>
 
                                 <a class="btn btn-link text-900 me-4 px-0"

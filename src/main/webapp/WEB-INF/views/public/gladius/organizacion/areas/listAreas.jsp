@@ -34,8 +34,8 @@
           <div class="content">
             <nav class="mb-2" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Organización</a></li>
+                <li class="breadcrumb-item active">Areas</li>
               </ol>
             </nav>
             <div class="mb-9">

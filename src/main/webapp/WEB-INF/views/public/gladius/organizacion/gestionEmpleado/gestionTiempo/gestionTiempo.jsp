@@ -139,10 +139,10 @@ function program_tur_row(turno, fecini,  fecfin){
                       <div class="content2">
                           <div class="mb-0">
                             <div>
-                              <div class="col-12 mt-2">
+                              <div class="col-12 mt-4">
                                 <h2 class="mb-0">Gestión de tiempos</h2>
                               </div>
-                              <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
+                              <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                   <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
                                   <a class="btn btn-primary ms-2" href="#"><span class="fa-solid fa-plus me-2"></span>Add Tiempos</a>
                               </div>
@@ -259,7 +259,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12 col-sm-6 mt-2">
-                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary" type="submit" onclick="updtipturno();"><span class="fa-regular fa-clock me-2"></span>Grabar Horario</button>
+                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary" type="submit" onclick="updtipturno();"><span class="fa-regular fa-clock me-2"></span>Grabar horario</button>
                                                     </div>
                                                 </td>
                                             </tr>

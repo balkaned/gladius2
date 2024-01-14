@@ -24,14 +24,14 @@
             <div class="content">
               <nav class="mb-2" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                  <li class="breadcrumb-item active">Default</li>
+                  <li class="breadcrumb-item"><a href="#!">Gestión de Procesos Externos</a></li>
+                  <li class="breadcrumb-item active">Asientos Contables</li>
                 </ol>
               </nav>
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Nuevo de Asientos Contable</h2>
+                    <h2 id="h2top" class="mb-0">Nuevo asiento contable</h2>
                   </div>
                 </div>
 
@@ -44,7 +44,7 @@
                         <input class="form-control" name="iexcodtra" type="hidden"
                           value="${requestScope.emp.iexcodtra}" />
                         <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
                           <select class="form-select" name="iexcodpro" required>
                             <option value="" selected>Seleccionar</option>
                             <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
@@ -53,38 +53,37 @@
                             </c:forEach>
                           </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Anio(*)</label>
-                          <input type="text" name="anio" id="anio" value="${requestScope.anio}" class="form-control">
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Año</label>
+                          <input type="text" name="anio" id="anio" value="${requestScope.anio}" class="form-control" placeholder="yyyy">
                         </div>
                         <div class="col-sm-4   col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes YYYYMM(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes</label>
                           <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                            class="form-control">
+                            class="form-control" placeholder="mm">
                         </div>
                         <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo YYYYMM(*)</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo</label>
                           <input type="text" name="iexnroper" id="iexnroper" value="${requestScope.iexnroper}"
-                            class="form-control">
+                            class="form-control" placeholder="yyyymm">
                         </div>
 
                         <div class="col-sm-4 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Asisento</label>
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Asiento</label>
                           <input type="text" name="iexnroasientocab" id="iexnroasientocab"
                             value="${requestScope.iexnroasientocab}" class="form-control" readonly="true" style="background-color:#F1F4F8;">
                         </div>
 
-                        <div class="d-grid gap-2 d-md-block">
-                          <a class="btn btn-primary" href=""><span class="fas fa-plus me-2"></span>Crear</a>
-
-                          <a class="btn btn-primary" href=""><span class="fa-solid fa-pen me-2"></span>Actualizar</a>
-                          <a class="btn btn-primary" href=""><span
+                        <div class="d-grid gap-2 d-md-block col-12">
+                          <a class="btn btn-primary" href="#"><span class="fas fa-plus me-2"></span>Crear</a>
+                          <a class="btn btn-phoenix-primary" href="#"><span class="fa-solid fa-pen me-2"></span>Editar</a>
+                          <a class="btn btn-phoenix-warning" href="#"><span
                               class="fa-solid fa-rotate-right me-2"></span>Procesar</a>
-                          <a class="btn btn-primary" href="gestionAsientosContables"><span class="fa-solid fa-xmark me-2"></span>Cerrar</a>
-                          <a class="btn btn-link text-900 me-4 px-0" href=""><span
-                              class="fa-solid fa-file-export fs--1 me-2"></span>PDF</a>
-                          <a class="btn btn-link text-900 me-4 px-0" href=""><span
-                              class="fa-solid fa-file-export fs--1 me-2"></span>Xls</a>
+                          <a class="btn btn-phoenix-secondary" href="gestionAsientosContables">Atras</a>
+                          <a class="btn btn-link text-900 me-4 px-0" href="#"><span
+                              class="fa-solid fa-file-export fs--1 ms-2 me-2"></span>PDF</a>
+                          <a class="btn btn-link text-900 me-4 px-0" href="#"><span
+                              class="fa-solid fa-file-export fs--1 me-2"></span>Excel</a>
                         </div>
                         <div id="orderTable"
                           data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
