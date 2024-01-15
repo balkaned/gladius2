@@ -216,7 +216,7 @@
 #imgcompany{
     margin-top:-35px;
     margin-left:-100px;
-    border:0px solid red;
+    border:1px solid #D9D9D9 !important;
 }
 /*
 .nav-link.pe-3{
@@ -317,52 +317,60 @@
 }
 
 @media (max-width:990px){
-    #span1{
-        width:0px;
-        height:0px;
-    }
+            #span1{
+                width:0px;
+                height:0px;
+            }
 
-    #span2{
-        width:0px;
-        height:0px;
-        font-size:0px;
-    }
+            #span2{
+                width:0px;
+                height:0px;
+                font-size:0px;
+            }
 
-    #span3{
-       width:0px;
-       height:0px;
-       font-size:0px;
-    }
+            #span3{
+               width:0px;
+               height:0px;
+               font-size:0px;
+            }
 
-    #usermenu{
-        height:0px;
-    }
+            #usermenu{
+                height:0px;
+            }
 
-    #imgcompany{
-        margin-top:-30px;
-        margin-bottom:10px;
-        margin-left:180px !important;
-        border:0px solid red !important;
-    }
+            #imgcompany{
+                margin-top:-30px;
+                margin-bottom:10px;
+                margin-left:180px !important;
+                border:1px solid #D9D9D9 !important;
+            }
 
-    .card-body div h4{
-        border:0px solid red;
-        font-size:10px !important;
-    }
+            .card-body div h4{
+                border:0px solid red;
+                font-size:10px !important;
+            }
 
-    .modal-footer button{
-        margin-bottom:12px !important;
-    }
+            .modal-footer button{
+                margin-bottom:12px !important;
+            }
 
-    .modal-header h5{
-        font-size:16px !important;
-    }
+            .modal-header h5{
+                font-size:16px !important;
+            }
 
-    .alert{
-       padding-top:17px !important;
-       padding-bottom:17px !important;
-       height:auto !important;
-    }
+            .alert{
+               padding-top:17px !important;
+               padding-bottom:17px !important;
+               height:auto !important;
+            }
+
+            #imgcompanyedit{
+                border:0px solid red;
+                width:100px;
+                height:100px;
+                margin:0 !important;
+                margin-bottom:15px !important;
+            }
 }
 
 .modal-header h5{
@@ -487,6 +495,13 @@ border-radius:7px;
 
 #dropdownmenutable{
 font-size:13.5px;
+}
+
+#imgcompanyedit{
+border:0px solid red;
+width:100px;
+height:100px;
+margin:0;
 }
 
 

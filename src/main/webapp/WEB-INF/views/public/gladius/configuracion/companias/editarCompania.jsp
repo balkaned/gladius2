@@ -54,11 +54,11 @@
                             <div class="col-md-9 col-sm-6 ">
                                  <!--<img id="imgcompanyTbl" src="verFoto@LOGO@${idCia}@${requestScope.xCia.urlLogo}@null" class="avatar" alt="Avatar" width="100" height="100" >-->
 
-                                 <c:if test="${requestScope.xCia.urlLogo==null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg" width="100" height="100" /></c:if>
+                                 <c:if test="${requestScope.xCia.urlLogo==null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg"/></c:if>
 
-                                 <c:if test="${requestScope.xCia.urlLogo!=null}"><img class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
+                                 <c:if test="${requestScope.xCia.urlLogo!=null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
                                  src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
-                                 width="100" height="100" /></c:if>
+                                 /></c:if>
 
                                  <form method="post"
                                  action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null"
@@ -174,35 +174,35 @@
                                   </div>
                               </div>
                               <div class="modal fade" id="confirmModal" tabindex="-1">
-                                  <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content border">
-                                      <form id="addEventForm" autocomplete="off">
-                                        <div class="modal-header border-200 p-4">
-                                          <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                          <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                        </div>
-                                        <div class="modal-body pt-4 pb-2 px-4">
-                                          <div class="mb-3">
-                                            <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                          </div>
-                                        </div>
-                                      </form>
-                                      <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-                                          <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                          <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                      </div>
-                                    </div>
-                                  </div>
+                                <div class="modal-dialog modal-dialog-centered">
+                              	<div class="modal-content border">
+                              	  <form id="addEventForm" autocomplete="off">
+                              		<div class="modal-header border-200 p-4">
+                              		  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                              		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                              		</div>
+                              		<div class="modal-body pt-4 pb-2 px-4">
+                              		  <div class="mb-3">
+                              			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                              		  </div>
+                              		</div>
+                              	  </form>
+                              	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                              		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                              		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                              	  </div>
+                              	</div>
+                                </div>
                               </div>
                        </form>
 
-                       <form class="form-horizontal form-label-left"  id="formconcept"  method="POST" action="insertarConceptoComp" name="ciafijvar"  id="ciafijvar"  >
+                       <form class="form-horizontal form-label-left needs-validation"  id="formconcept"  method="POST" action="insertarConceptoComp" name="ciafijvar"  id="ciafijvar"  novalidate>
                            <input type="hidden"  name="idcia"  id="idcia"  value="${requestScope.xCia.idCodcia}"  readonly>
                            <input type="hidden"  name="accion" value="INSCONS" >
 
                            <div class="col-sm-6 col-md-7">
                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                               <select name="id_concepto" id="id_concepto"  class="form-select">
+                               <select name="id_concepto" id="id_concepto"  class="form-select" required>
                                    <option value="">Selecciona Concepto</option>
                                    <c:forEach  var="lovConcepto" items="${lovConcepto}">
                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
@@ -211,7 +211,7 @@
                            </div>
                            <div class="col-sm-6 col-md-7 mt-3">
                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Registro</label>
-                               <select name="tipo_reg" id="tipo_reg" class="form-select">
+                               <select name="tipo_reg" id="tipo_reg" class="form-select" required>
                                    <option value="">Seleccionar</option>
                                    <option value="1">Datos Dijos</option>
                                    <option value="2">Datos Variable</option>
@@ -220,7 +220,7 @@
                            <div class="ln_solid"></div>
                            <div class="form-group">
                                 <div class="col-md-6 col-sm-6 mt-3">
-                                     <button class="btn btn-phoenix-warning" type="submit"><span class="fas fa-plus me-2"></span>Añadir</button>
+                                     <button class="btn btn-phoenix-warning" type="submit"><span class="fas fa-plus me-2"></span>Añadir Concepto</button>
                                 </div>
                            </div>
                        </form>

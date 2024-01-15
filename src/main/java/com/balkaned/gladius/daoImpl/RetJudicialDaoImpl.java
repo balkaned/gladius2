@@ -6,6 +6,8 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.dao.ContratoDao;
 import com.balkaned.gladius.dao.RetJudicialDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -73,8 +75,17 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                     p.setIextipretjud(rs.getString("iextipretjud"));
                     p.setDestipretjud(rs.getString("destipretjud"));
                     p.setIexresolucion(rs.getString("iexresolucion"));
+
                     p.setIexfecini(rs.getString("iexfecini"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
+
                     p.setIexfecfin(rs.getString("iexfecfin"));
+                    FormatterFecha f2 = new FormatterFecha();
+                    CapitalizarCadena capit2= new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
+
                     p.setIexpordesct(rs.getDouble("iexpordesct"));
                     p.setIeximpfijo(rs.getDouble("ieximpfijo"));
                     p.setIexusucrea(rs.getString("iexusucrea"));

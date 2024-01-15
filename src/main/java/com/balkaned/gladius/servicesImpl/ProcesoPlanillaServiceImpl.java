@@ -32,6 +32,4 @@ public class ProcesoPlanillaServiceImpl implements ProcesoPlanillaService {
         dao.insertarProper(pperiodo);
     }
 
-    ;
-
 }

@@ -122,7 +122,7 @@
           <div class="content">
             <nav class="mb-2" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Gestion de Planillas</a></li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de Planillas</a></li>
                 <li class="breadcrumb-item active">Planilla General</li>
               </ol>
             </nav>
@@ -230,15 +230,15 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${List_Procesos.desgrppla}</span></td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">
+                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-2"><span class="badge badge-tag me-2 mb-2">${List_Procesos.desgrppla}</span></td>
+                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-2">
                                         <a onclick="mostrarModalEditarPeriodo();" href="#" type="button" data-bs-toggle="modal" data-bs-target="#periodoModalEditar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-pencil me-2"></span>${List_Procesos.iexnroper}</a>
                                     </td>
-                                    <td class="total align-middle text-start fw-semi-bold text-600 ps-5">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecini}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecfin}</td>
+                                    <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-600 ps-2">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
+                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecini}</td>
+                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecfin}</td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ">${List_Procesos.iexfecope}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${List_Procesos.desestado}</span></td>
+                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${List_Procesos.desestado}</span></td>
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">
                                          <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

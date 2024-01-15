@@ -116,7 +116,7 @@
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstUsuario.usuario}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000"></td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${LstUsuario.desUsuarioCrea}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstUsuario.fechaCrea}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstUsuario.fechaCrea}</td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">${LstUsuario.desUsuarioMod}</td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstUsuario.email}</td>
                                 <c:if test="${LstUsuario.estado=='ACTIVO'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>

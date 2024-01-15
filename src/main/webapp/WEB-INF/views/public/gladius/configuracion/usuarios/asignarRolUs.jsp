@@ -117,25 +117,25 @@
                         </div>
                         <div class="modal fade" id="confirmModal" tabindex="-1">
                           <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content border">
-                              <form id="addEventForm" autocomplete="off">
-                                <div class="modal-header border-200 p-4">
-                                  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                </div>
-                                <div class="modal-body pt-4 pb-2 px-4">
-                                  <div class="mb-3">
-                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                  </div>
-                                </div>
-                              </form>
-                              <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-                                  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                  <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                              </div>
-                            </div>
+                        	<div class="modal-content border">
+                        	  <form id="addEventForm" autocomplete="off">
+                        		<div class="modal-header border-200 p-4">
+                        		  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                        		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                        		</div>
+                        		<div class="modal-body pt-4 pb-2 px-4">
+                        		  <div class="mb-3">
+                        			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                        		  </div>
+                        		</div>
+                        	  </form>
+                        	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                        		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                        		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                        	  </div>
+                        	</div>
                           </div>
-                      </div>
+                        </div>
                       </form>
                    </div>
                  </div>
@@ -169,7 +169,7 @@
                                     <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                   </div>
                                 </td>
-                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.descia}</td>
+                                <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.descia}</td>
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${usuxciaxrol.desrol}</span></td>
                                 <td class="total align-middle text-center fw-semi-bold text-1000 ps-5">${usuxciaxrol.codtra}</td>
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.destra}</td>

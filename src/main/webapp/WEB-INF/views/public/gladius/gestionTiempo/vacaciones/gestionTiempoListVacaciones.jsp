@@ -108,8 +108,8 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Gestion de tiempos</a></li>
-                <li class="breadcrumb-item active">Gestion de vacaciones</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de tiempos</a></li>
+                <li class="breadcrumb-item active">Gestión de vacaciones</li>
             </ol>
         </nav>
         <div class="mb-9">
@@ -219,7 +219,7 @@
                                         <th class="sort align-middle text-center ps-6"
                                             scope="col" data-sort="date">CODTRA
                                         </th>
-                                        <th class="sort align-middle text-center ps-15 pe-15" scope="col" >NOMBRES y APELL.</th>
+                                        <th class="sort align-middle white-space-nowrap text-center ps-8 pe-8" scope="col" >NOMBRES y APELLIDOS</th>
                                         <th class="sort align-middle text-center ps-5"
                                             scope="col" data-sort="date">ESTADO
                                         </th>
@@ -227,7 +227,7 @@
                                             scope="col" data-sort="date">
                                             F.INGRESO
                                         </th>
-                                        <th class="sort align-middle text-center ps-5 pe-5"
+                                        <th class="sort align-middle text-center white-space-nowrap ps-5 pe-5"
                                             scope="col" data-sort="date">
                                             TIPO VACA.
                                         </th>
@@ -265,7 +265,7 @@
                                             <td
                                                     class="total align-middle text-center fw-semi-bold text-600 ps-3">
                                                     ${LstVacacionesView.nrodoc}</td>
-                                            <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${LstVacacionesView.iexcodtra}</span></td>
+                                            <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 fs--0 mb-2">${LstVacacionesView.iexcodtra}</span></td>
                                             <td
                                                     class="total align-middle text-start fw-semi-bold text-1000 ps-5">
                                                     ${LstVacacionesView.desnomtra}</td>
@@ -292,7 +292,7 @@
                                                 </td>
                                             </c:if>
                                             <td
-                                                    class=" fulfilment_status align-middle white-space-nowrap text-center text-900 ps-4 pe-4">
+                                                    class=" fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-4 pe-4">
                                                     <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecing}</td>
                                             <td
                                                     class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">

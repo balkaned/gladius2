@@ -97,7 +97,7 @@
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
@@ -143,7 +143,7 @@
                                                           </div>
                                                           <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                                             <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
-                                                            <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
+                                                            <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
                                                           </div>
                                                       </div>
                                                     </div>

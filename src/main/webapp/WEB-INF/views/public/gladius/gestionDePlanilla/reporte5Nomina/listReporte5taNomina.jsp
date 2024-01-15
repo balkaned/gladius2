@@ -104,37 +104,37 @@
                                                    data-bulk-select='{"body":"order-table-body"}'/>
                                         </div>
                                     </th>
-                                    <th class="sort white-space-nowrap align-middle pe-3" scope="col"
-                                        data-sort="order"
+                                    <th class="sort white-space-nowrap align-middle pe-2"
+                                        data-sort="date" scope="col"
                                         style="width:5%;">PERIODO
                                     </th>
-                                    <th class="sort align-middle text-center ps-5" scope="col"
-                                        data-sort="date">IDPROCESO
+                                    <th class="sort white-space-nowrap align-middle text-center ps-2" scope="col"
+                                        data-sort="date">ID PROCESO
                                     </th>
-                                    <th class="sort align-middle text-center ps-6" scope="col"
+                                    <th class="sort align-middle text-center ps-2" scope="col"
                                         data-sort="date">PROCESO
                                     </th>
-                                    <th class="sort align-middle text-center ps-8 pe-4" scope="col"
+                                    <th class="sort align-middle text-center" scope="col"
                                         data-sort="date">CORREL
                                     </th>
-                                    <th class="sort align-middle text-center ps-5" scope="col"
+                                    <th class="sort align-middle white-space-nowrap text-center ps-3 pe-3" scope="col"
                                         data-sort="date">TOTAL DE INGRESO
                                     </th>
-                                    <th class="sort align-middle text-center ps-5" scope="col"
+                                    <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
                                         data-sort="date">
                                         IMPORTE AFECTO 5TA
                                     </th>
-                                    <th class="sort align-middle text-center ps-5 pe-5" scope="col"
+                                    <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
                                         data-sort="date">
                                         ING 5TA OTRCIA MES
                                     </th>
-                                    <th class="sort align-middle text-center pe-3" scope="col"
+                                    <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
                                         data-sort="date">RENTA 5TA
                                     </th>
-                                    <th class="sort align-middle text-center pe-3" scope="col"
+                                    <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
                                         data-sort="date">RENTA 5TA OTRCIA MES
                                     </th>
-                                    <th class="sort align-middle text-start pe-0" scope="col"
+                                    <th class="sort white-space-nowrap align-middle text-start ps-3 pe-3" scope="col"
                                         data-sort="date">NETO A RECIBIR
                                     </th>
                                     <th class="sort align-middle text-center pe-0"></th>
@@ -161,7 +161,7 @@
                                         </td>
                                         <td class="total align-middle text-center fw-semi-bold text-1000">
                                                 ${Res_planilla5ta.iexcodpro}</td>
-                                        <td class="total align-middle text-center fw-semi-bold text-600 ps-5 pe-5"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${Res_planilla5ta.descodpro}</span></td>
+                                        <td class="total align-middle text-center fw-semi-bold text-600 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${Res_planilla5ta.descodpro}</span></td>
                                         <td class="total align-middle text-center fw-semi-bold text-1000">
                                                 ${Res_planilla5ta.iexcorrel}</td>
                                         <td class="total align-middle text-center fw-bold text-1000">

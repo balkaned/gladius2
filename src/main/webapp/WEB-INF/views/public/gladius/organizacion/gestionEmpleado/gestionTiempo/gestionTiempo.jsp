@@ -46,7 +46,7 @@ function updturnpForm(desfec,  turno){
 function updtipturno(){
     document.getElementById("accion").value="UPDTIPTURNO";
     //alert("Fecha :"+document.getElementById("iexcodfec").value+" , turno : "+ document.getElementById("iexcodturno").value);
-    confirm("Esta segurod de actulizar los horarios?");
+    confirm("Esta seguro de actualizar los horarios?");
     document.getElementById("GestionTiempos").submit();
 }
 
@@ -271,11 +271,11 @@ function program_tur_row(turno, fecini,  fecfin){
                                                     <label class="form-label fs-0 text-500 ps-0 text-none mb-0">Configuración de turnos</label>
                                                     <div class="col-md-4 col-sm-6">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desde</label>
-                                                        <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'>
+                                                        <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
                                                     </div>
                                                     <div class="col-md-4 col-sm-6">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hasta</label>
-                                                        <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'>
+                                                        <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
                                                     </div>
 
                                                </tr>

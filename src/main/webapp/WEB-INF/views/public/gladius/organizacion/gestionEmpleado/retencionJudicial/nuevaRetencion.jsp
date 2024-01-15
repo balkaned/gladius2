@@ -121,8 +121,11 @@ function formatearFecha2(){
                                                 <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
                                             </div>
 
-                                            <div class="alert alert-success" role="alert" id="alert" style="display:none;">
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert" style="display:none;">
                                                 Se grabó exitosamente los cambios.
+                                            </div>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="incomplete" style="display:none;">
+                                            	Por favor, complete todos los campos requeridos.
                                             </div>
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
@@ -135,25 +138,25 @@ function formatearFecha2(){
                                                 </div>
                                             </div>
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content border">
-                                                    <form id="addEventForm" autocomplete="off">
-                                                      <div class="modal-header border-200 p-4">
-                                                        <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                                        <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                                      </div>
-                                                      <div class="modal-body pt-4 pb-2 px-4">
-                                                        <div class="mb-3">
-                                                          <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                                        </div>
-                                                      </div>
-                                                    </form>
-                                                    <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-                                                        <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                                        <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
+                                              <div class="modal-dialog modal-dialog-centered">
+                                            	<div class="modal-content border">
+                                            	  <form id="addEventForm" autocomplete="off">
+                                            		<div class="modal-header border-200 p-4">
+                                            		  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                                            		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                            		</div>
+                                            		<div class="modal-body pt-4 pb-2 px-4">
+                                            		  <div class="mb-3">
+                                            			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                                            		  </div>
+                                            		</div>
+                                            	  </form>
+                                            	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                            		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            	  </div>
+                                            	</div>
+                                              </div>
                                             </div>
                                      </form>
                                    </div>

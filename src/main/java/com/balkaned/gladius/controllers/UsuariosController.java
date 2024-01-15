@@ -78,7 +78,6 @@ public class UsuariosController {
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        String email = (String) request.getSession().getAttribute("email");
 
         String Msg_form_global = "";
         String ret;
@@ -111,7 +110,7 @@ public class UsuariosController {
                 msg = "El password de confirmación no es igual";
             }
 
-            if (esEmailValida(email) == true) {
+            if (esEmailValida(email2) == true) {
                 cont++;
                 msg_txtemail = "Correcto";
             } else {
@@ -127,7 +126,7 @@ public class UsuariosController {
                 p.setUsuario(usuario2);
                 p.setPassword(password);
                 p.setEstado(estado);
-                p.setEmail(email);
+                p.setEmail(email2);
                 p.setUrlfoto(foto);
                 p.setIdUsuMat(codusumat);
 

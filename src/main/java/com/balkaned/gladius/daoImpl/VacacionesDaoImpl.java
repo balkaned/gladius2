@@ -4,6 +4,8 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.SueldoDao;
 import com.balkaned.gladius.dao.VacacionesDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,8 +54,17 @@ public class VacacionesDaoImpl implements VacacionesDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexpermesini(rs.getString("iexpermesini"));
                     p.setIexpermesfin(rs.getString("iexpermesfin"));
+
                     p.setIexfecini(rs.getString("iexfecini"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
+
                     p.setIexfecfin(rs.getString("iexfecfin"));
+                    FormatterFecha f2 = new FormatterFecha();
+                    CapitalizarCadena capit2= new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
+
                     p.setIexdiasgan(rs.getDouble("iexdiasgan"));
                     p.setIexdiasgoz(rs.getDouble("iexdiasgoz"));
                     p.setIexdiasven(rs.getDouble("iexdiasven"));
@@ -281,7 +292,12 @@ public class VacacionesDaoImpl implements VacacionesDao {
                     p.setIexcorrel(rs.getInt("vac_id"));
                     p.setNrodoc(rs.getString("iexnrodoc"));
                     p.setDesnomtra(rs.getString("nomtra"));
+
                     p.setFecing(rs.getString("fecing"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setFecing(f.fechaFormatterDia(p.getFecing())+" "+capit.letras(f.fechaFormatterMes(p.getFecing()))+", "+f.fechaFormatterAnio(p.getFecing()));
+
                     p.setIexfecini(rs.getString("iexfecini"));
                     p.setIexfecfin(rs.getString("iexfecfin"));
                     p.setIexnrodias(rs.getDouble("dias_vac"));

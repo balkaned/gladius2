@@ -84,9 +84,9 @@
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstAusentismoDet.iexcorrel}</a></td>
                                 				  <td class="align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstAusentismoDet.destipaus}</span></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecini}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000">${LstAusentismoDet.iexnrodias} dias</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecfin}</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-bold text-600">${LstAusentismoDet.iexnrodias} dias</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">

@@ -4,6 +4,8 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.DerechoHabiente;
 import com.balkaned.gladius.beans.RetencionJudicial;
 import com.balkaned.gladius.dao.DerechoHabientesDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -109,7 +111,12 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                     p.setDestipnroiddep(rs.getString("destipnroiddep"));
                     p.setIexnroiddep(rs.getString("iexnroiddep"));
                     p.setIexpaisemisor(rs.getString("iexpaisemisor"));
+
                     p.setIexfecnac(rs.getString("iexfecnac"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setIexfecnac(f.fechaFormatterDia(p.getIexfecnac())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecnac()))+", "+f.fechaFormatterAnio(p.getIexfecnac()));
+
                     p.setIexapepatdep(rs.getString("iexapepatdep"));
                     p.setIexapematdep(rs.getString("iexapematdep"));
                     p.setIexnomdep(rs.getString("iexnomdep"));

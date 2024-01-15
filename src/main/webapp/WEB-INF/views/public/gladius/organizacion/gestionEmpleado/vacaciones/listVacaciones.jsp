@@ -86,8 +86,8 @@
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="order align-middle white-space-nowrap ps-0 text-center"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesini}</a></td>
                                               <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesfin}</a></td>
-                                              <td class="align-middle white-space-nowrap text-center ps-3 pe-3 text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
+                                              <td class="align-middle white-space-nowrap text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
+                                              <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>

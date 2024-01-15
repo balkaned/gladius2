@@ -91,10 +91,10 @@
 
                           <a class="btn btn-link text-900 me-4 ms-3 px-0"
                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
-                           target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar excel todos</a>
+                           target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Excel Todos</a>
 
                           <a class="btn btn-link text-900 me-4 px-0"
-                          href="#" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar excel activos</a>
+                          href="#" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Excel Activos</a>
 
                     </div>
                   </div>
@@ -146,7 +146,7 @@
                               <td class="delivery_type align-middle white-space-nowrap text-600 fs--1 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${empl.iexfecing}</td>
+                              <td class="delivery_type align-middle white-space-nowrap fw-semi-bold text-1000 fs--1 text-start"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

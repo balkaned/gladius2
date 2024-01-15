@@ -324,18 +324,46 @@
 								</div>
 							</div>
 
-							<!-- Botones de acción -->
-							<div class="col-12 gy-6">
-								<div class="row g-3 justify-content-end">
-									<div class="col-auto">
-										<a class="btn btn-phoenix-primary px-5" href="listConceptoXProceso@${requestScope.slc_proceso}@">Cancel</a>
-									</div>
-									<div class="col-auto">
-										<button class="btn btn-primary px-5 px-sm-15" type="submit">Guardar Concepto
-										</button>
-									</div>
-								</div>
-							</div>
+							<div class="alert alert-success" role="alert" id="alert" style="display:none;">
+                                Se grabó exitosamente los cambios.
+                            </div>
+                            <div class="alert alert-danger" role="alert" id="incomplete" style="display:none;">
+                                Por favor, complete todos los campos requeridos.
+                            </div>
+                            <div class="col-12 gy-6">
+                                <div class="row g-3 justify-content-end">
+                                    <div class="col-auto">
+                                        <a class="btn btn-phoenix-primary px-5" href="#">Cancel</a>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
+                                                        aria-expanded="false" data-bs-reference="parent">Guardar Concepto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="confirmModal" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border">
+                                  <form id="addEventForm" autocomplete="off">
+                                    <div class="modal-header border-200 p-4">
+                                      <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                                      <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                    </div>
+                                    <div class="modal-body pt-4 pb-2 px-4">
+                                      <div class="mb-3">
+                                        <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                      <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                      <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 							<!-- Fin del formulario-->
 						</form>
 					</div>

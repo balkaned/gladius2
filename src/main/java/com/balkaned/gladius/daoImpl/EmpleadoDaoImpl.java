@@ -4,6 +4,7 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,7 +14,10 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -214,7 +218,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
         sql = sql + " order by iexapepat, iexapemat , iexnomtra asc";
 
-        //System.out.println(sql);
         return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
             public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Empleado> lista = new ArrayList<Empleado>();
@@ -231,7 +234,12 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIextipdocid(rs.getString("destipdoc"));
                     p.setIexnrodoc(rs.getString("iexnrodoc"));
                     p.setIexfecnac(rs.getString("iexfecnac"));
+
                     p.setIexfecing(rs.getString("iexfecing"));
+                        FormatterFecha f = new FormatterFecha();
+                        CapitalizarCadena capit= new CapitalizarCadena();
+                        p.setIexfecing(f.fechaFormatterDia(p.getIexfecing())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecing()))+", "+f.fechaFormatterAnio(p.getIexfecing()));
+
                     p.setIextipcese(rs.getString("iextipcese"));
                     p.setIexfecret(rs.getString("iexfecret"));
                     //p.setIexcodsex(cap.letras(rs.getString("dessex")));

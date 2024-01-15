@@ -130,8 +130,8 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">#${xRolxopc.iexcodopc}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${xRolxopc.dessys}</span></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
+                              <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
+                              <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_consultar}</td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_registrar}</td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_modificar}</td>

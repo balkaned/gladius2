@@ -4,6 +4,8 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.ContratoEmp;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.dao.ContratoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -66,8 +68,17 @@ public class ContratoDaoImpl implements ContratoDao {
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setIextipcont(rs.getString("iextipcont"));
                     p.setDestipcont(rs.getString("destipcont"));
+
                     p.setIexfecini(rs.getString("iexfecini"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
+
                     p.setIexfecfin(rs.getString("iexfecfin"));
+                    FormatterFecha f2 = new FormatterFecha();
+                    CapitalizarCadena capit2= new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
+
                     p.setIexmodcont(rs.getString("iexmodcont"));
                     p.setDesmodcont(rs.getString("desmodcont"));
                     p.setIexusucrea(rs.getString("iexusucrea"));

@@ -67,7 +67,7 @@ margin-top:10px !important;
         </div>
         <div class="row justify-content-between align-items-end mb-4 g-3">
 
-          <div class="col-12 col-sm-auto">
+          <div class="col-sm-6 col-md-12">
             <div class="d-flex align-items-center">
               <div class="search-box me-3">
                 <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
@@ -107,12 +107,14 @@ margin-top:10px !important;
                       <div class="hover-actions top-0 end-0 mt-4 me-4">
                         <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
                       </div>
-                    </div><span class="badge badge-phoenix fs--1 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
-                        <img id="imgcompany"
-                        src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null@null@null@null@null"
-                        class="avatar" alt="Avatar" width="100">
-                    <div class="d-flex align-items-center mb-2">
+                    </div>
+                    <span class="badge badge-phoenix fs--1 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
 
+                    <img id="imgcompany"
+                    src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null@null@null@null@null"
+                    class="avatar" alt="Avatar">
+
+                    <div class="d-flex align-items-center mb-2">
                         <p class="fw-bold mb-0 text-truncate lh-1">Tipo de conexión :
                         <span class="fw-semi-bold text-primary ms-1">${comp.iexflgsource} </span>
                         <c:if test="${comp.iexflgsource=='1'}"><i style="font-size: 20px;" class="fa-brands fa-aws ps-2 pe-2"></i>AWS S3</c:if>

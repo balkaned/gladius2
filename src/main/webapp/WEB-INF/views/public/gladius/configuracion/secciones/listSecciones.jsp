@@ -105,7 +105,7 @@
                             </div>
                           </th>
                           <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SECCION</th>
+                          <th class="sort white-space-nowrap align-middle text-center ps-5 pe-5" scope="col" data-sort="date">SECCION</th>
                           <th class="sort align-middle text-center ps-3" scope="col" data-sort="date">ORD</th>
                           <th class="sort align-middle text-center ps-4" scope="col" data-sort="date">SISTEMAS</th>
                           <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">URL</th>
@@ -123,7 +123,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarSeccion@${LstSeccion.iexcodsec}">#${LstSeccion.iexcodsec}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5 pe-5">${LstSeccion.iexdessec}</td>
+                              <td class="align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-5 pe-5">${LstSeccion.iexdessec}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${LstSeccion.iexordsec}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstSeccion.dessys}</span></td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstSeccion.iexsecurl}</td>

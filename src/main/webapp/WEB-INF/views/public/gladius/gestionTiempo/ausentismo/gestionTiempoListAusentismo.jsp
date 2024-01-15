@@ -128,8 +128,8 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Gestion de tiempos</a></li>
-                <li class="breadcrumb-item active">Gestion de Ausentismo</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de tiempos</a></li>
+                <li class="breadcrumb-item active">Gestión de Ausentismo</li>
             </ol>
         </nav>
         <div class="mb-9">
@@ -148,7 +148,7 @@
                                    value="${requestScope.emp.iexcodcia}"/>
 
                             <div class="col-sm-6 col-md-7">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                                     <option value="" selected>Seleccionar</option>
                                     <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
@@ -172,19 +172,19 @@
                             </div>
 
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label><span
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecini" id="fecini"
                                        onchange="formatearFecha1();" type="text"
-                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
+                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                             </div>
 
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label><span
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="fecfin" id="fecfin"
                                        onchange="formatearFecha2();" type="text"
-                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'/>
+                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'required />
                             </div>
                             <div class="d-grid gap-2 d-md-block">
                                 <button class="btn btn-primary" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
@@ -200,48 +200,48 @@
                           <div class="table-responsive scrollbar mx-n1 px-1">
                         	<table class="table table-sm fs--1 mb-0">
                                         <thead>
-                                        <tr>
-                                            <th class="white-space-nowrap fs--1 align-middle ps-0"
-                                                style="width:26px;">
-                                                <div class="form-check mb-0 fs-0">
-                                                    <input class="form-check-input" id="checkbox-bulk-order-select"
-                                                           type="checkbox"
-                                                           data-bulk-select='{"body":"order-table-body"}'/>
-                                                </div>
-                                            </th>
-                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col"
-                                                data-sort="order"
-                                                style="width:5%;">ID
-                                            </th>
-                                            <th class="sort align-middle text-center ps-5" scope="col"
-                                                data-sort="date">DOC
-                                            </th>
-                                            <th class="sort align-middle text-center ps-8 pe-4" scope="col"
-                                                data-sort="date">
-                                                NOMBRES y APELLIDOS
-                                            </th>
-                                            <th class="sort align-middle text-center ps-5" scope="col"
-                                                data-sort="date">ESTADO
-                                            </th>
-                                            <th class="sort align-middle text-center ps-5" scope="col"
-                                                data-sort="date">
-                                                F.INGRESO
-                                            </th>
-                                            <th class="sort align-middle text-center ps-5 pe-5" scope="col"
-                                                data-sort="date">
-                                                TIPO VACA.
-                                            </th>
-                                            <th class="sort align-middle text-center pe-3" scope="col"
-                                                data-sort="date">FECINI
-                                            </th>
-                                            <th class="sort align-middle text-center pe-3" scope="col"
-                                                data-sort="date">FECFIN
-                                            </th>
-                                            <th class="sort align-middle text-center pe-0" scope="col"
-                                                data-sort="date">DIAS
-                                            </th>
-                                            <th class="sort align-middle text-center pe-0" scope="col"></th>
-                                        </tr>
+                                            <tr>
+                                                <th class="white-space-nowrap fs--1 align-middle ps-0"
+                                                    style="width:26px;">
+                                                    <div class="form-check mb-0 fs-0">
+                                                        <input class="form-check-input" id="checkbox-bulk-order-select"
+                                                               type="checkbox"
+                                                               data-bulk-select='{"body":"order-table-body"}'/>
+                                                    </div>
+                                                </th>
+                                                <th class="sort white-space-nowrap align-middle pe-3" scope="col"
+                                                    data-sort="order"
+                                                    style="width:5%;">ID
+                                                </th>
+                                                <th class="sort align-middle text-center ps-5" scope="col"
+                                                    data-sort="date">DOC
+                                                </th>
+                                                <th class="sort align-middle white-space-nowrap text-center ps-8 pe-4" scope="col"
+                                                    data-sort="date">
+                                                    NOMBRES y APELLIDOS
+                                                </th>
+                                                <th class="sort align-middle text-center ps-5" scope="col"
+                                                    data-sort="date">ESTADO
+                                                </th>
+                                                <th class="sort align-middle text-center ps-5" scope="col"
+                                                    data-sort="date">
+                                                    F.INGRESO
+                                                </th>
+                                                <th class="sort align-middle text-center ps-5 pe-5" scope="col"
+                                                    data-sort="date">
+                                                    TIPO VACA.
+                                                </th>
+                                                <th class="sort align-middle text-center pe-3" scope="col"
+                                                    data-sort="date">FECINI
+                                                </th>
+                                                <th class="sort align-middle text-center pe-3" scope="col"
+                                                    data-sort="date">FECFIN
+                                                </th>
+                                                <th class="sort align-middle text-center pe-0" scope="col"
+                                                    data-sort="date">DIAS
+                                                </th>
+                                                <th class="sort align-middle text-center pe-0" scope="col"></th>
+                                            </tr>
                                         </thead>
                                         <tbody class="list" id="order-table-body">
                                         <c:forEach var="LstAusentismoView"
@@ -259,7 +259,7 @@
                                                 </td>
                                                 <td class="total align-middle text-center fw-semi-bold text-1000">
                                                         ${LstAusentismoView.nrodoc}</td>
-                                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstAusentismoView.desnomtra}</td>
+                                                <td class="total align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-5">${LstAusentismoView.desnomtra}</td>
                                                 <c:if test="${LstAusentismoView.desestado=='activo'}">
                                                     <td
                                                             class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
@@ -276,9 +276,9 @@
                                                                                            style="height:12.8px;width:12.8px;"></span></span>
                                                     </td>
                                                 </c:if>
-                                                <td
-                                                        class=" fulfilment_status align-middle white-space-nowrap text-center text-1000 ps-1 pe-3">
-                                                        <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstAusentismoView.fecing}</td>
+                                                <td class=" fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3">
+                                                        <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstAusentismoView.fecing}
+                                                </td>
                                                 <td class="delivery_type align-middle white-space-nowrap text-center  fs--2 text-start">
                                                   <span class="badge badge-phoenix fs--2 badge-phoenix-info"
                                                  class="badge-label">${LstAusentismoView.destipaus}</span>

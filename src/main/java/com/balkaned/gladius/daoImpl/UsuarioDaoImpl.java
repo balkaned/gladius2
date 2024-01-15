@@ -3,6 +3,8 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.dao.UsuarioDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -67,7 +69,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
                     p.setIdUsuarioMod(rs.getInt("iexusumod"));
                     p.setDesUsuarioCrea(rs.getString("usucre"));
                     p.setDesUsuarioMod(rs.getString("usumod"));
+
                     p.setFechaCrea(rs.getString("iexfeccre"));
+                    FormatterFecha f = new FormatterFecha();
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setFechaCrea(f.fechaFormatterDia(p.getFechaCrea())+" "+capit.letras(f.fechaFormatterMes(p.getFechaCrea()))+", "+f.fechaFormatterAnio(p.getFechaCrea()));
+
                     p.setFechaModfica(rs.getString("iexfecmod"));
                     p.setEstado(rs.getString("estado"));
                     p.setIdUsuMat(rs.getInt("iexcodusu_mat"));

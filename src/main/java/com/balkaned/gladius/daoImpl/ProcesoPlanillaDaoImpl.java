@@ -8,6 +8,7 @@ import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -179,8 +180,20 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     p.setIexanio(rs.getString("iexanio"));
                     p.setIexnroper(rs.getString("iexnroper"));
                     p.setIexpermes(rs.getString("iexpermes"));
+
                     p.setIexfecini(rs.getString("iexfecini"));
+                    //logger.info("fechaoriginal: "+p.getIexfecini());
+                    FormatterFecha f = new FormatterFecha();
+                    String fechaconv=f.fechaFormatterIngltoEsp(p.getIexfecini());
+                    CapitalizarCadena capit= new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(fechaconv)+" "+capit.letras(f.fechaFormatterMes(fechaconv))+", "+f.fechaFormatterAnio(fechaconv));
+
                     p.setIexfecfin(rs.getString("iexfecfin"));
+                    FormatterFecha f2 = new FormatterFecha();
+                    String fechaconv2=f2.fechaFormatterIngltoEsp(p.getIexfecfin());
+                    CapitalizarCadena capit2= new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(fechaconv2)+" "+capit2.letras(f2.fechaFormatterMes(fechaconv2))+", "+f2.fechaFormatterAnio(fechaconv2));
+
                     p.setTimerfecini(rs.getString("timerfecini"));
                     p.setTimerfecfin(rs.getString("timerfecfin"));
                     p.setIexfecpago(rs.getString("iexfecpago"));
