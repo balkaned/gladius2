@@ -131,11 +131,13 @@
                               <td class="fulfilment_status align-middle white-space-nowrap text-start text-1000 ps-5">${LstSeccion.iexsecobs}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
-                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                      <a class="dropdown-item" href="editarSeccion@${LstSeccion.iexcodsec}">Editar</a>
+                                  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                  data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                  <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                  <div class="dropdown-menu dropdown-menu-end py-2">
+                                      <a id="dropdownmenutable" class="dropdown-item" href="editarSeccion@${LstSeccion.iexcodsec}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                       <div class="dropdown-divider"></div>
-                                      <a class="dropdown-item text-danger" onclick="return remove();" href="deleteSeccion@${LstSeccion.iexcodsec}">Eliminar</a>
+                                      <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteSeccion@${LstSeccion.iexcodsec}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                    </div>
                                  </div>
                               </td>

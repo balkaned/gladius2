@@ -123,13 +123,14 @@
                 <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforflgest}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
-                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window"
-                            aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                    data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                    <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}">Formular</a>
-                      <a class="dropdown-item" href="#!">Compilar</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-square-root-variable me-2"></span>Formular</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-diagram-project me-2"></span>Compilar</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                      <a id="dropdownmenutable" class="dropdown-item " href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                     </div>
                   </div>
                 </td>

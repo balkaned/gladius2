@@ -182,17 +182,19 @@
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Pendiente de aprobacion</span></td>
                                                           <td class="align-middle white-space-nowrap text-end pe-0 ps-0">
                                                             <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                              <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                                              <div class="dropdown-menu dropdown-menu-end py-2">
+                                                              <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                              data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                              <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                                              <div id="dropdownmenutable" class="dropdown-menu dropdown-menu-end py-2">
                                                                 <a class="dropdown-item" href="#"><span class="fas fa-bolt me-2"></span>Aprobar</a>
 
-                                                                <a class="dropdown-item"
+                                                                <a id="dropdownmenutable" class="dropdown-item"
                                                                 href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
                                                                 ><span class="fas fa-download me-2"></span>Descargar</a>
 
                                                                 <div class="dropdown-divider"></div>
 
-                                                                <a class="dropdown-item text-danger" onclick="return remove();"
+                                                                <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();"
                                                                 href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
                                                                 ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
 

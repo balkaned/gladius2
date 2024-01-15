@@ -56,7 +56,7 @@
                         <div class="col-sm-6 col-md-4">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
                           <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                            class="form-control" placeholder="yyyymm">
+                            class="form-control" placeholder="yyyymm" required>
                         </div>
                         <div class="col-sm-6 col-md-4">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Asiento</label>

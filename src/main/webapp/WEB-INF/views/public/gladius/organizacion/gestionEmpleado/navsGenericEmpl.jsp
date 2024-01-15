@@ -83,12 +83,12 @@
 
 <!-----Modales---->
 <div class="modal fade" id="reportsFilterModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered ">
     <div class="modal-content border">
       <form id="addEventForm" autocomplete="off">
         <div class="modal-header border-200 p-4">
-          <h5 class="modal-title text-1000 fs-2 lh-sm">Acerca de</h5>
-          <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
+          <h5 class="modal-title text-1000 fs-2 lh-sm">Información de contacto</h5>
+          <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
         </div>
         <div class="modal-body pt-4 pb-2 px-4">
             <div class="ps-3" style="font-size:13px;">
@@ -135,8 +135,8 @@
               </div>
             </div>
         </div>
-        <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-          <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
+        <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+          <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
       </form>
     </div>
@@ -146,9 +146,9 @@
 <div class="modal fade" id="reportsFilterModal2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border">
-        <div class="modal-header border-200 p-4">
-          <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de Trabajador</h5>
-          <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
+        <div class="modal-header border-200 p-4 ">
+          <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de trabajador</h5>
+          <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--0"> 				</span></button>
         </div>
         <div class="modal-body pt-4 pb-2 px-4">
             <div class="col-12 col-md-12">
@@ -170,7 +170,7 @@
             </div>
 
         </div>
-        <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
+        <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
           <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>

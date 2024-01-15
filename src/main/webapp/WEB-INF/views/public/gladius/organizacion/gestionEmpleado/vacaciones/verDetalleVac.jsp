@@ -97,17 +97,19 @@
                                 				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${LstVacacionesPer.iexcorrel}</a></td>
                                 				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${LstVacacionesPer.iexpermesini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-1000 ps-3 pe-3">${LstVacacionesPer.iexpermesfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesPer.iexfecini}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesPer.iexfecfin}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecfin}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesPer.iexnrodias}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstVacacionesPer.destipvac}</span></td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
-                                					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                					  <div class="dropdown-menu dropdown-menu-end py-2">
+                                					  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                      data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                      <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                                      <div class="dropdown-menu dropdown-menu-end py-2">
                                 						<div class="dropdown-divider"></div>
-                                						<a class="dropdown-item text-warning" href="#!">Remove</a>
+                                						<a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>

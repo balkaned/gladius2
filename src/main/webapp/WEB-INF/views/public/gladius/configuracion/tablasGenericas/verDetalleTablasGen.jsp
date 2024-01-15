@@ -275,11 +275,11 @@
 
                                 <td class="align-middle text-end white-space-nowrap pe-0 action">
                                    <div class="font-sans-serif btn-reveal-trigger position-static">
-                                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                      <div class="dropdown-menu dropdown-menu-end py-2">
-                                          <a class="dropdown-item" href="curDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}">Cur Detalle</a>
+                                          <a id="dropdownmenutable" class="dropdown-item" href="curDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}"><span class="fa-solid fa-arrow-trend-down me-2"></span>Cur detalle</a>
                                           <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item text-danger" onclick="return remove();" href="deletecurDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}">Eliminar</a>
+                                          <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deletecurDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                      </div>
                                    </div>
                                  </td>

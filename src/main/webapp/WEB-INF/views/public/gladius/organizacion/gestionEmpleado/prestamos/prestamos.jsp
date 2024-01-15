@@ -91,13 +91,16 @@
                                               <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>
                                               <td class="date align-middle white-space-nowrap fs--1 fw-bold text-1000 text-center pe-4">${LstPrestCab.ieximptotal}</td>
                                               <td class="align-middle white-space-nowrap text-start text-700">${LstPrestCab.iexglosa}</td>
+
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                                  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                  data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                  <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                                    <a class="dropdown-item" href="detalleCron@${idTrab}@${LstPrestCab.iexcorrel}">Detalle y cronograma</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="detalleCron@${idTrab}@${LstPrestCab.iexcorrel}"><span class="fa-solid fa-credit-card me-2"></span>Detalle y cronograma</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </div>
                                                 </div>
                                               </td>

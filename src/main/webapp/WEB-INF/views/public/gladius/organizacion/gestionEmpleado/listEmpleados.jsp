@@ -146,16 +146,16 @@
                               <td class="delivery_type align-middle white-space-nowrap text-600 fs--1 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">${empl.iexfecing}</td>
+                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
-                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                   <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}">Ver detalle</a>
-                                        <a class="dropdown-item"
+                                        <a id="dropdownmenutable" class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-glasses me-2"></span>Detalle</a>
+                                        <a id="dropdownmenutable" class="dropdown-item"
                                         href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null@null@null@null"
-                                        target="_blank"><span class="fa-solid fa-file-pdf fs--1 me-2"></span>Descargar Ficha PDF</a>
+                                        target="_blank"><span class="fa-solid fa-file-pdf  me-2"></span>Descargar ficha</a>
                                         <!--<div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->
                                    </div>

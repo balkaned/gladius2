@@ -259,8 +259,7 @@
                                                 </td>
                                                 <td class="total align-middle text-center fw-semi-bold text-1000">
                                                         ${LstAusentismoView.nrodoc}</td>
-                                                <td class="total align-middle text-center fw-semi-bold text-1000">
-                                                        ${LstAusentismoView.desnomtra}</td>
+                                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstAusentismoView.desnomtra}</td>
                                                 <c:if test="${LstAusentismoView.desestado=='activo'}">
                                                     <td
                                                             class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
@@ -278,8 +277,8 @@
                                                     </td>
                                                 </c:if>
                                                 <td
-                                                        class=" fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                        ${LstAusentismoView.fecing}</td>
+                                                        class=" fulfilment_status align-middle white-space-nowrap text-center text-1000 ps-1 pe-3">
+                                                        <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstAusentismoView.fecing}</td>
                                                 <td class="delivery_type align-middle white-space-nowrap text-center  fs--2 text-start">
                                                   <span class="badge badge-phoenix fs--2 badge-phoenix-info"
                                                  class="badge-label">${LstAusentismoView.destipaus}</span>
@@ -287,29 +286,24 @@
 
 
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-center  text-900 fs--1 text-start">
-                                                        ${LstAusentismoView.iexfecini}</td>
+                                                        class="delivery_type align-middle white-space-nowrap text-center  text-1000 fs--1 text-start ps-3 pe-3">
+                                                        <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecini}</td>
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-center text-900 fs--1 text-start ps-3">
-                                                        ${LstAusentismoView.iexfecfin}</td>
+                                                        class="delivery_type align-middle white-space-nowrap text-center text-1000 fs--1 text-start ps-3 pe-3">
+                                                        <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecfin}</td>
                                                 <td
-                                                        class="delivery_type align-middle white-space-nowrap text-center text-900 fs--1 text-start ps-4">
+                                                        class="delivery_type align-middle white-space-nowrap text-center fw-bold text-800 fs--1 text-start ps-4 pe-3">
                                                         ${LstAusentismoView.iexnrodias}</td>
 
                                                 <td class="align-middle text-end white-space-nowrap pe-0 action">
                                                     <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                        <button
-                                                                class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
-                                                                type="button" data-bs-toggle="dropdown"
-                                                                data-boundary="window"
-                                                                aria-haspopup="true" aria-expanded="false"
-                                                                data-bs-reference="parent"><span
-                                                                class="fas fa-ellipsis-h fs--2"></span></button>
+                                                        <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                        data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                        <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                                            <a class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">Editar</a>
+                                                            <a id="dropdownmenutable"class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"<span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger" onclick="return remove();"
-                                                               href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">Eliminar</a>
+                                                            <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                         </div>
                                                     </div>
                                                 </td>

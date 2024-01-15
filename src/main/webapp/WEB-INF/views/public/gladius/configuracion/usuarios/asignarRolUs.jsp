@@ -173,14 +173,16 @@
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${usuxciaxrol.desrol}</span></td>
                                 <td class="total align-middle text-center fw-semi-bold text-1000 ps-5">${usuxciaxrol.codtra}</td>
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.destra}</td>
-                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.usucreades} ${usuxciaxrol.feccrea}</td>
+                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.usucreades} <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${usuxciaxrol.feccrea}</td>
 
                                 <td class="align-middle text-end white-space-nowrap pe-0 action">
                                    <div class="font-sans-serif btn-reveal-trigger position-static">
-                                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                     <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                     data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                     <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                      <div class="dropdown-menu dropdown-menu-end py-2">
                                           <!--<div class="dropdown-divider"></div>-->
-                                          <a class="dropdown-item text-danger" onclick="return remove();" href="eliminarRolXciaUsu@${usuxciaxrol.codusu}@${usuxciaxrol.codrol}@${usuxciaxrol.codcia}">Eliminar</a>
+                                          <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarRolXciaUsu@${usuxciaxrol.codusu}@${usuxciaxrol.codrol}@${usuxciaxrol.codcia}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                      </div>
                                    </div>
                                  </td>

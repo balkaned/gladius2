@@ -84,17 +84,19 @@
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstAusentismoDet.iexcorrel}</a></td>
                                 				  <td class="align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstAusentismoDet.destipaus}</span></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstAusentismoDet.iexfecini}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstAusentismoDet.iexfecfin}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000">${LstAusentismoDet.iexnrodias} dias</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
-                                					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                					  <div class="dropdown-menu dropdown-menu-end py-2">
-                                					    <a class="dropdown-item" href="#">Editar</a>
+                                					  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                      data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                      <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                                      <div class="dropdown-menu dropdown-menu-end py-2">
+                                					    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                 						<div class="dropdown-divider"></div>
-                                						<a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                						<a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>

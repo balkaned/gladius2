@@ -86,8 +86,8 @@
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="order align-middle white-space-nowrap ps-0 text-center"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesini}</a></td>
                                               <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesfin}</a></td>
-                                              <td class="align-middle white-space-nowrap text-center ps-3 pe-3 text-700">${LstVacacionesCtl.iexfecini}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexfecfin}</td>
+                                              <td class="align-middle white-space-nowrap text-center ps-3 pe-3 text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>
@@ -98,11 +98,13 @@
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                                  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                  data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                  <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                                    <a class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}">Ver detalle</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}"><span class="fa-solid fa-glasses me-2"></span>Detalle</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="#">Eliminar</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </div>
                                                 </div>
                                               </td>

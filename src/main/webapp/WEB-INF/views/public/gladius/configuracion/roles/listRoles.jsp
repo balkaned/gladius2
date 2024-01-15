@@ -122,12 +122,14 @@
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
-                                   <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
+                                   <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                   data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                   <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="editarOpcion@${LstRole.idRole}">Editar</a>
-                                        <a class="dropdown-item" href="verOpcion@${LstRole.idRole}">Ver Opciones</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" href="editarOpcion@${LstRole.idRole}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" href="verOpcion@${LstRole.idRole}"><span class="fa-solid fa-glasses me-2"></span>Ver opciones</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" onclick="return remove();" href="deleteRol@${LstRole.idRole}">Eliminar</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteRol@${LstRole.idRole}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                    </div>
                                  </div>
                                </td>

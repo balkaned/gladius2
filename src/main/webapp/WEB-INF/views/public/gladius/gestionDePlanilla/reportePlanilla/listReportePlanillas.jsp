@@ -62,13 +62,13 @@
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
                                 <input class="form-control" type="text" id="nroper" name="nroper"
-                                       value="${requestScope.peranio}" placeholder="2023">
+                                       value="${requestScope.peranio}" placeholder="2023" required>
                             </div>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
                                 <input class="form-control" type="text" id="nroper2" name="nroper2"
-                                       value="${requestScope.peranio}" placeholder="2024">
+                                       value="${requestScope.peranio}" placeholder="2024" required>
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">

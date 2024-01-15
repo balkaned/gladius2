@@ -259,7 +259,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12 col-sm-6 mt-2">
-                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary" type="submit" onclick="updtipturno();"><span class="fa-regular fa-clock me-2"></span>Grabar horario</button>
+                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-phoenix-warning" type="submit" onclick="updtipturno();"><span class="fa-solid fa-user-clock me-2"></span>Grabar horario</button>
                                                     </div>
                                                 </td>
                                             </tr>

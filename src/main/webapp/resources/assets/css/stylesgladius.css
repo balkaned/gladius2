@@ -359,10 +359,23 @@
     }
 
     .alert{
-       padding-top:5px !important;
-       padding-bottom:5px !important;
+       padding-top:17px !important;
+       padding-bottom:17px !important;
        height:auto !important;
     }
+}
+
+.modal-header h5{
+    font-size:17px !important;
+    font-weight:800;
+}
+
+.modal-header{
+    height:60px;
+}
+
+.modal-footer{
+    height:50px;
 }
 
 .alert{
@@ -470,6 +483,10 @@ font-weight:700;
 .activelsempl{
 background-color:#DCE0E6;
 border-radius:7px;
+}
+
+#dropdownmenutable{
+font-size:13.5px;
 }
 
 

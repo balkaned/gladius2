@@ -220,7 +220,7 @@
                            <div class="ln_solid"></div>
                            <div class="form-group">
                                 <div class="col-md-6 col-sm-6 mt-3">
-                                     <button class="btn btn-primary" type="submit"><span class="fas fa-plus me-2"></span>Añadir</button>
+                                     <button class="btn btn-phoenix-warning" type="submit"><span class="fas fa-plus me-2"></span>Añadir</button>
                                 </div>
                            </div>
                        </form>
@@ -241,7 +241,7 @@
                                                       <tbody class="list" id="customer-order-table-body">
                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
                                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xCiaFij.iexcodcon}</td>
+                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaFij.iexcodcon}</span></td>
                                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
                                                               <td><a href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
                                                             </tr>
@@ -258,7 +258,7 @@
                                                      <tbody class="list" id="customer-order-table-body">
                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
                                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xCiaVar.iexcodcon}</td>
+                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaVar.iexcodcon}</span></td>
                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
                                                              <td><a href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
                                                            </tr>

@@ -143,20 +143,18 @@
                                   href="editarTurno@${turn.iexcodturno}">#${turn.iexcodturno}</a></td>
                                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-primary"><span class="badge-label">${turn.iexdesturno}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgturno}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexhorini}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexhorfin}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><a href="#"><span class="fa-regular fa-clock me-2"></span></a>${turn.iexhorini}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><a href="#"><span class="fa-regular fa-clock me-2"></span></a>${turn.iexhorfin}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgdiasig}
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                 <div class="font-sans-serif btn-reveal-trigger position-static">
-                                  <button
-                                    class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
-                                    type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                    aria-expanded="false" data-bs-reference="parent"><span
-                                      class="fas fa-ellipsis-h fs--2"></span></button>
+                                  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                  data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                  <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                                    <a class="dropdown-item" href="editarTurno@${turn.iexcodturno}">Editar</a>
+                                    <a id="dropdownmenutable" class="dropdown-item" href="editarTurno@${turn.iexcodturno}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger"  onclick="return remove();" href="eliminarTurno@${turn.iexcodturno}">Eliminar</a>
+                                    <a id="dropdownmenutable" class="dropdown-item"  onclick="return remove();" href="eliminarTurno@${turn.iexcodturno}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                   </div>
                                 </div>
                               </td>

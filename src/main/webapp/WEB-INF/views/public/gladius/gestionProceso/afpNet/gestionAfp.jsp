@@ -45,20 +45,21 @@
                 </div>
 
                 <div class="row g-5">
-                  <div class="col-xl-10">
+                  <div class="col-12">
                     <div class="row gx-3 gy-4">
                       <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
-                          <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+                          <div>
                             <div class="table-responsive scrollbar mx-n1 px-1">
                               <table class="table table-hover">
-                               <caption>Generar Archivos Afp Net</caption>
+                               <span class="badge badge-tag me-2 mb-2">Generar Archivos Afp Net</span>
                                 <tbody>
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                   <tr>
                                     <td class="align-middle fw-semi-bold text-20">Periodo Mensual</td>
                                     <td>
-                                      <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                                        class="form-control" placeholder="yyyymm" required />
+                                      <div class="col-sm-6 col-md-5">
+                                        <input type="text" name="permes" id="permes" value="${requestScope.permes}" class="form-control" placeholder="yyyymm" required />
+                                      </div>
                                     </td>
                                     <td></td>
                                   </tr>

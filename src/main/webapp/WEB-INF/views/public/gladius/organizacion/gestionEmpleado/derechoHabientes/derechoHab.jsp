@@ -97,15 +97,17 @@
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.iexfecnac}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
-                                					  <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                					  <div class="dropdown-menu dropdown-menu-end py-2">
-                                					    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-camera me-2"></span>Agregar foto</a>
+                                					  <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                                      data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                      <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                                      <div class="dropdown-menu dropdown-menu-end py-2">
+                                					    <a id="dropdownmenutable"  href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-camera me-2"></span>Agregar foto</a>
                                 						<div class="dropdown-divider"></div>
-                                						<a class="dropdown-item text-danger" href="#!">Eliminar</a>
+                                						<a id="dropdownmenutable"  class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>
@@ -116,7 +118,7 @@
                                                       <div class="modal-content border">
                                                           <div class="modal-header border-200 p-4">
                                                             <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de derecho habiente</h5>
-                                                            <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"> 				</span></button>
+                                                            <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                                                           </div>
                                                           <div class="modal-body pt-4 pb-2 px-4">
                                                               <div class="col-12 col-md-12">
@@ -139,13 +141,13 @@
                                                               </div>
 
                                                           </div>
-                                                          <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
+                                                          <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                                             <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
                                                             <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
                                                           </div>
                                                       </div>
                                                     </div>
-                                                  </div>
+                                                </div>
                                 			</c:forEach>
                                 		  </tbody>
                                 		</table>

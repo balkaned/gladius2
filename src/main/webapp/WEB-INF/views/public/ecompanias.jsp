@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page="links.jsp"></jsp:include>
-<jsp:include page="navTop.jsp"></jsp:include>
+<jsp:include page="navTop_ecomp.jsp"></jsp:include>
 
 <style>
 .btn.btn-primary{
@@ -52,10 +52,18 @@ margin-top:10px !important;
           </ol>
         </nav>
         <div class="row gx-6 gy-3 mb-4 align-items-center">
-          <div class="col-auto">
+          <div class="col-12 mb-2">
             <h2 class="mb-0">Seleccionar compañia<span class="fw-normal text-700 ms-3"></span></h2>
           </div>
-          <div class="col-auto"><a class="btn btn-primary px-5" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a></div>
+          <div class="col-auto pe-0">
+            <a class="btn btn-primary px-5" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
+          </div>
+          <div class="col-auto ps-0 pe-0">
+            <a class="btn btn-phoenix-primary ms-2" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
+          </div>
+          <div class="col-auto ps-0">
+            <a class="btn btn-phoenix-secondary text-900 ms-2" href="logoff"><span class="fa-solid fa-key fs--1 me-2"></span>Log out</a>
+          </div>
         </div>
         <div class="row justify-content-between align-items-end mb-4 g-3">
 

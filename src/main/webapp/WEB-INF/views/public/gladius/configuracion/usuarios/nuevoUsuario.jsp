@@ -47,14 +47,14 @@
                 </div>
               </div>
               <c:if test="${msg!=null}">
-                   <!--<div class="alert alert-danger alert-dismissible " role="alert">
+                   <div class="alert alert-danger alert-dismissible " role="alert">
                       <strong>Error!</strong> ${msg}
-                   </div>-->
-                   <div class="alert alert-danger alert-dismissible" role="alert">
+                   </div>
+                   <!--<div class="alert alert-danger alert-dismissible" role="alert">
                         <span class="fas fa-times-outline-circle text-white fs-3 pe-2"></span>
                         ${msg}
                         <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                   </div>
+                   </div>-->
               </c:if>
 
               <div class="row g-5">
@@ -88,14 +88,14 @@
                                     </select>
                               </div>
 
-                              <!--<div class="alert alert-success" role="alert" id="alert" style="display:none;">
+                              <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                                   Se grabó exitosamente los cambios.
-                              </div>-->
-                              <div class="alert alert-success alert-dismissible" role="alert" id="alert" style="display:none;">
+                              </div>
+                              <!--<div class="alert alert-success alert-dismissible" role="alert" id="alert" style="display:none;">
                                       <span class="fas fa-check-circle text-white fs-3 pe-2"></span>
                                       Se grabó exitosamente los cambios.
                                       <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>
+                              </div>-->
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
