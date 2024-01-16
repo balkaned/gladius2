@@ -280,7 +280,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border">
             <form id="addEventForm" autocomplete="off">
-                <div class="modal-header border-200 p-4">
+                <div class="modal-header border-200 bg-soft p-4">
                     <h5 class="modal-title text-1000 fs-2 lh-sm">Reporte de planilla </h5>
                     <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                 </div>
