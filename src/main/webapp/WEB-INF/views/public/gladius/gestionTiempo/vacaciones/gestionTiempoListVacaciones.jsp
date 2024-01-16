@@ -125,26 +125,21 @@
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListVacaciones"
                               novalidate>
                             <!-- Regimen Dropdown -->
-                            <div class="col-sm-6 col-md-8">
-                                <label
-                                        class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
-                                <select class="form-select" name="iexcodreg" id="iexcodreg"
-                                        onchange="regimen();" required>
-                                    <option value="" selected>Seleccionar</option>
-                                    <c:forEach var="Lovs_regimen"
-                                               items="${requestScope.Lovs_regimen}">
-                                        <option value="${Lovs_regimen.idLov}"
-                                            ${Lovs_regimen.idLov==requestScope.iexcodreg
-                                                    ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                            <div class="col-sm-6 col-md-6">
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>-->
+                                <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                                    <option value="" selected>Seleccionar regimen</option>
+                                    <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
+                                        <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
                                     </c:forEach>
                                 </select>
                             </div>
 
                             <!-- Estado Dropdown -->
                             <div class="col-sm-6 col-md-4">
-                                <label
-                                        class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>-->
                                 <select class="form-select" name="slc_estado" required>
+                                    <option value="" selected>Seleccionar estado</option>
                                     <option value="0">Activos</option>
                                     <option value="1">Inactivo</option>
                                 </select>

@@ -140,17 +140,17 @@
             </div>
 
             <div class="row g-5">
-                <div class="col-xl-8">
+                <div class="col-xl-7">
                     <div class="row gx-3 gy-4">
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListAusentismo"
                               novalidate>
                             <input class="form-control" name="iexcodcia" type="hidden"
                                    value="${requestScope.emp.iexcodcia}"/>
 
-                            <div class="col-sm-6 col-md-7">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
+                            <div class="col-sm-6 col-md-8">
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>-->
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
-                                    <option value="" selected>Seleccionar</option>
+                                    <option value="" selected>Seleccionar regimen</option>
                                     <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
                                         <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
                                                 ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
@@ -158,16 +158,15 @@
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-9">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>-->
                                 <select name="iexcodtra" id="iexcodtra" class="form-select">
-                                    <option value="0" selected>Seleccionar</option>
+                                    <option value="0" selected>Seleccionar trabajador</option>
                                     <c:forEach var="LstTrabajadorReg" items="${requestScope.LstTrabajadorReg}">
                                         <option value="${LstTrabajadorReg.iexcodtra}"
                                             ${LstTrabajadorReg.iexcodtra==requestScope.iexcodtra ? 'selected' : '' }>
                                                 ${LstTrabajadorReg.iexapepat} ${LstTrabajadorReg.iexapemat}
                                                 ${LstTrabajadorReg.iexnomtra} - ${LstTrabajadorReg.iexfecing}</option>
                                     </c:forEach>
-
                                 </select>
                             </div>
 

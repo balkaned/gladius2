@@ -24,7 +24,7 @@
                       },
                       success: function (data) {
                            var opt = "";
-                           opt += "<option value='' >Seleccionar</option>";
+                           opt += "<option value='' >Seleccionar trabajador</option>";
                            for (var i in data) {
                                 opt += "<option value="+data[i].iexcodtra+" > "+data[i].iexapepat+" "+data[i].iexapemat+" "+data[i].iexnomtra+" - "+data[i].iexfecing+" </option> ";
                            }
@@ -75,27 +75,27 @@
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />
 
                         <div class="col-sm-6 col-md-7">
-                        	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Compania</label>
+                        	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Compania</label>-->
                         	  <select name="lov_compania" id="lov_compania" class="form-select" required >
-                        		  <option value="" selected >Seleccionar</option>
+                        		  <option value="" selected >Seleccionar compañia</option>
                         		  <c:forEach var="listacia" items="${listacia}">
                         			  <option value="${listacia.idCodcia}" >${listacia.descCia}</option>
                         		  </c:forEach>
                         	  </select>
                         </div>
                         <div class="col-sm-6 col-md-5">
-                        	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rol de Acceso</label>
+                        	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rol de Acceso</label>-->
                         	  <select name="lov_rol" class="form-select" required >
-                        		  <option value="" selected >Seleccionar</option>
+                        		  <option value="" selected >Rol de acceso</option>
                         		  <c:forEach var="listarol" items="${listarol}">
                         			  <option value="${listarol.idRole}" >${listarol.desRole}</option>
                         		  </c:forEach>
                         	  </select>
                         </div>
                         <div class="col-sm-6 col-md-7">
-                        	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                        	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>-->
                         	  <select name="iexcodtra" id="iexcodtra" class="form-select" >
-                        		  <option value="" selected >Seleccionar</option>
+                        		  <option value="" selected >Seleccionar trabajador</option>
                         		  <c:forEach var="LstTrabajadorCia" items="${LstTrabajadorCia}">
                         			  <option value="${LstTrabajadorCia.iexcodtra}"  ${LstTrabajadorCia.iexcodtra == requestScope.iexcodtra ? 'selected' : ''}  >${LstTrabajadorCia.iexapepat} ${LstTrabajadorCia.iexapemat} ${LstTrabajadorCia.iexnomtra} - ${LstTrabajadorCia.iexfecing}</option>
                         		  </c:forEach>
@@ -110,8 +110,8 @@
                               <div class="col-auto">
                                 <a class="btn btn-phoenix-primary px-5" href="listUsuarios">Atras</a>
                               </div>
-                              <div class="col-auto">
-                                <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Agregar a Lista</button>
+                              <div class="col-5">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Agregar a lista</button>
                               </div>
                             </div>
                         </div>

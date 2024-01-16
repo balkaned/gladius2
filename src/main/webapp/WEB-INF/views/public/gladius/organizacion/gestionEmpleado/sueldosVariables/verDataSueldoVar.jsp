@@ -66,7 +66,7 @@
                                        <div class="col-6 col-sm-12">
                                          <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="user" style="stroke-width:2.5;"></span>
                                            <h6 class="mb-0">Planilla</h6>
-                                         </div><a class="fs--1 ms-4" href="#!">#${iexcodpro}</a>
+                                         </div><a class="fs--1 ms-4" href="#!">${iexcodpro}</a>
                                        </div>
                                      </div>
                                    </div>
@@ -75,7 +75,7 @@
                                        <div class="col-6 col-sm-12">
                                          <div class="d-flex align-items-center mb-1"><span class="me-2" data-feather="calendar" style="stroke-width:2.5;">  </span>
                                            <h6 class="mb-0">Periodo pendiente</h6>
-                                         </div><a class="fs--1 ms-4" href="!"><span class="badge badge-phoenix fs--1 badge-phoenix-danger"><span class="badge-label">${iexperiodo}</span></a>
+                                         </div><a class="fs--1 ms-4" href="!"><span class="badge bg-danger fs--1">${iexperiodo}</span></a>
                                        </div>
                                      </div>
                                    </div>

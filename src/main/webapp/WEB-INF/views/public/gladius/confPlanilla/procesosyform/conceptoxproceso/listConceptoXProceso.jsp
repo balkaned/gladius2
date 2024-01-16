@@ -50,9 +50,10 @@
                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}"/>
 
-                        <div class="col-sm-6 col-md-8">
-                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de conceptos</label>
+                        <div class="col-sm-6 col-md-4">
+                            <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de conceptos</label>-->
                             <select class="form-select" id="select_concepto" name="slc_grpconcepto">
+                                <option value="">Seleccionar concepto</option>
                                 <option value="0" ${requestScope.slc_grpconcepto  == '0' ? 'selected' : ''}>Parametros</option>
                                 <option value="1" ${requestScope.slc_grpconcepto  == '1' ? 'selected' : ''}>Haberes</option>
                                 <option value="2" ${requestScope.slc_grpconcepto  == '2' ? 'selected' : ''}>Descuentos</option>

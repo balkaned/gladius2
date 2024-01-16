@@ -267,8 +267,9 @@ function program_tur_row(turno, fecini,  fecfin){
                                         <br>
                                            <table>
                                                <tr>
-
-                                                    <label class="form-label fs-0 text-500 ps-0 text-none mb-0">Configuración de turnos</label>
+                                                    <div class="col-9">
+                                                        <span class="badge badge-tag me-2 mb-2">Configuración de turnos</span>
+                                                    </div>
                                                     <div class="col-md-4 col-sm-6">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desde</label>
                                                         <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
@@ -277,7 +278,6 @@ function program_tur_row(turno, fecini,  fecfin){
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hasta</label>
                                                         <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
                                                     </div>
-
                                                </tr>
                                                <tr>
                                                    <td>
