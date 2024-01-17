@@ -89,12 +89,21 @@
                           <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                           <a class="btn btn-phoenix-primary ms-1" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
 
-                          <a class="btn btn-link text-900 me-4 ms-3 px-0"
+                          <!--<a class="btn btn-phoenix-secondary text-900 "
                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
-                           target="_blank" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Excel Todos</a>
+                           target="_blank" ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos</a>
 
-                          <a class="btn btn-link text-900 me-4 px-0"
-                          href="#" ><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Excel Activos</a>
+                          <a class="btn btn-phoenix-secondary text-900"
+                          href="#" ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Activos</a>-->
+
+                          <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                            <button class="btn btn-phoenix-secondary" type="button"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar</button>
+                            <button class="btn dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos</a>
+                              <a class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Activos</a>
+                            </div>
+                          </div>
 
                     </div>
                   </div>
@@ -152,10 +161,10 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a id="dropdownmenutable" class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-glasses me-2"></span>Detalle</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                         <a id="dropdownmenutable" class="dropdown-item"
                                         href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null@null@null@null"
-                                        target="_blank"><span class="fa-solid fa-file-pdf  me-2"></span>Descargar ficha</a>
+                                        target="_blank"><span class="fa-solid fa-download  me-2"></span>Descargar ficha PDF</a>
                                         <!--<div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Eliminar</a>-->
                                    </div>
