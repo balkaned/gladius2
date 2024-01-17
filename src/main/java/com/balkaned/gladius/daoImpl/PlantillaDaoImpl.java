@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
+import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PlaProPeriodo;
 import com.balkaned.gladius.dao.PlanillaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -419,6 +420,48 @@ public class PlantillaDaoImpl implements PlanillaDAO {
                 return lista;
             }
         });
+    }
+
+    public void PlameExe(Integer codcia, String permes, String file) {
+
+        template.update(" call prc_plame_sunat(?,?,? )  ",
+
+                codcia,
+                file,
+                permes);
+
+        logger.info("Base PLameExe ");
+
+    }
+
+    public List<String> PlameMes(Integer codcia, String permes, String file) {
+
+        String sql = " select   " +
+                " iexdesfile " +
+                " from  iexsunatfile where iexcodcia=" + codcia + " and iexcodfile='" + file + "'  and iexpermes='" + permes + "'  ";
+
+        return template.query(sql, new ResultSetExtractor<List<String>>() {
+            public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<String> lista = new ArrayList<String>();
+                String p = null;
+                while (rs.next()) {
+                    p = rs.getString(1);
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+
+    }
+
+
+    public void AfpNetExe(Integer codcia, String permes  ) {
+
+        template.update("call prc_afpnet_permes(?,?  )",
+
+                codcia,
+                permes);
+
     }
 
 }

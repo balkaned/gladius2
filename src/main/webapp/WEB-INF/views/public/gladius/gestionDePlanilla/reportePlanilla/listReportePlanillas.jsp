@@ -3,6 +3,7 @@
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -20,6 +21,25 @@
         }, 3000);
     }
 
+    $(document).ready(function() {
+        /* attach a submit handler to the form */
+        $('#submit1').click(function(event) {
+            $.ajaxSetup({cache:false});
+            $.ajax({
+                url: "lisReportePdf",
+                data: {"accion": "lisReportePdf",
+                    "codpro": $("#codpro").val(),
+                    "nroper" : $("#nroper").val(),
+                    "nroper2" : $("#nroper2").val()
+                },
+                success: function (data) {
+
+                    $("#idresult").html(data);
+                }
+            });
+
+        });
+    });
 </script>
 
 <body>
@@ -72,10 +92,10 @@
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Ver Reporte
-                                </button>
-
+                                <a id="submit1" href="#"  class="btn btn-primary btn-xs" ><span
+                                        class="fa-solid fa-magnifying-glass me-2"></span>Ver Reporte</a>
+                                <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
+                                <INPUT TYPE="HIDDEN" NAME="accion" Value="listReportePlanillas">
                             </div>
 
 

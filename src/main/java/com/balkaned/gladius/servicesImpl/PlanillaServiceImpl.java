@@ -14,6 +14,7 @@ public class PlanillaServiceImpl implements PlanillaService {
 
     @Autowired
     PlanillaDAO dao;
+    private String file;
 
     public List<PlaProPeriodo> listPla5ta(Integer codcia, String anio, Integer codtra) {
         return dao.listPla5ta(codcia, anio, codtra);
@@ -32,4 +33,11 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.listAllPlaPerTraPro(codcia, codtra, codpro, perfin, perfin);
     }
 
+    public void PlameExe(Integer codcia, String permes , String file ) {
+        dao.PlameExe(codcia, permes, file);
+    } ;
+
+    public List<String> PlameMes(Integer codcia, String permes , String file  ){return dao.PlameMes(codcia,permes, file);}
+
+    public void AfpNetExe(Integer codcia, String permes  ){ dao.AfpNetExe(codcia,permes);}
 }

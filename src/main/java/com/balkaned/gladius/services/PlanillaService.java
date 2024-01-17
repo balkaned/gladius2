@@ -13,4 +13,9 @@ public interface PlanillaService {
     public List<PlaProPeriodo> listAllPlaPerTra(Integer codcia, Integer codtra, String perini, String perfin);
 
     public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin);
+
+    public void PlameExe(Integer codcia, String permes , String file ) ;
+    public List<String> PlameMes(Integer codcia, String permes , String file  );
+    public void AfpNetExe(Integer codcia, String permes  );
 }
+

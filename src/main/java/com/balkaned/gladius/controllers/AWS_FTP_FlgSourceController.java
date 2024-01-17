@@ -120,19 +120,23 @@ public class AWS_FTP_FlgSourceController {
 
             for (int i = 0; i < cantidadParametros; i++) {
                 String stringDivisor[] = parts[i].split("=");
-                log.info("stringDivisor[0]: " + stringDivisor[0]);
-                log.info("stringDivisor[1]: " + stringDivisor[1]);
+                if (stringDivisor.length >= 2) {
+                    log.info("stringDivisor[0]: " + stringDivisor[0]);
+                    log.info("stringDivisor[1]: " + stringDivisor[1]);
 
-                if (stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")) {
-                    String day = stringDivisor[1].substring(0, 2);
-                    String month = stringDivisor[1].substring(3, 5);
-                    String year = stringDivisor[1].substring(6, 10);
-                    String fechaconv = day + "/" + month + "/" + year;
+                    if (stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")) {
+                        String day = stringDivisor[1].substring(0, 2);
+                        String month = stringDivisor[1].substring(3, 5);
+                        String year = stringDivisor[1].substring(6, 10);
+                        String fechaconv = day + "/" + month + "/" + year;
 
-                    ParametroReport pr = new ParametroReport();
-                    pr.setNombreParametro(stringDivisor[0]);
-                    pr.setValorParametro(fechaconv);
-                    lspreport.add(pr);
+                        ParametroReport pr = new ParametroReport();
+                        pr.setNombreParametro(stringDivisor[0]);
+                        pr.setValorParametro(fechaconv);
+                        lspreport.add(pr);
+                    }
+                } else {
+                    log.warn("Invalid format for parts[" + i + "]: " + parts[i]);
                 }
             }
 
@@ -370,6 +374,7 @@ public class AWS_FTP_FlgSourceController {
                             ServletOutputStream ouputStream = response.getOutputStream();
                             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
                             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(ouputStream));
+
                             SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
                             configuration.setOnePagePerSheet(false);
                             configuration.setDetectCellType(true);
