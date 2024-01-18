@@ -114,7 +114,7 @@ public class AWS_FTP_FlgSourceController {
                 log.info("i: " + i);
                 String cadenaSinNumParametros = parametrosJasperx.substring(2, parametrosJasperx.length());
                 log.info("cadenaSinNumParametros: " + cadenaSinNumParametros);
-                parts = cadenaSinNumParametros.split("P");
+                parts = cadenaSinNumParametros.split("U");
                 log.info("parts[]: " + parts[i]);
             }
 
@@ -125,6 +125,7 @@ public class AWS_FTP_FlgSourceController {
                     log.info("stringDivisor[1]: " + stringDivisor[1]);
 
                     if (stringDivisor[0].contains("fec") || stringDivisor[0].contains("FEC")) {
+                        log.info("Ingresa Procesamiento para parametros FEC o fec de fecha");
                         String day = stringDivisor[1].substring(0, 2);
                         String month = stringDivisor[1].substring(3, 5);
                         String year = stringDivisor[1].substring(6, 10);
@@ -134,10 +135,15 @@ public class AWS_FTP_FlgSourceController {
                         pr.setNombreParametro(stringDivisor[0]);
                         pr.setValorParametro(fechaconv);
                         lspreport.add(pr);
+                    }else{
+                        ParametroReport pr = new ParametroReport();
+                        pr.setNombreParametro(stringDivisor[0]);
+                        pr.setValorParametro(stringDivisor[1]);
+                        lspreport.add(pr);
                     }
-                } else {
+                } /*else {
                     log.warn("Invalid format for parts[" + i + "]: " + parts[i]);
-                }
+                }*/
             }
 
             //Finalmente recorremos la Lista de Objetos

@@ -171,10 +171,10 @@
                                   <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                   <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                   <div class="dropdown-menu">
-                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null">
+                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null">
                                 		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación
                                 	  </a>
-                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Saldo</a>
+                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Saldo</a>
                                 	  <div class="dropdown-divider"></div>
                                 	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
                                   </div>

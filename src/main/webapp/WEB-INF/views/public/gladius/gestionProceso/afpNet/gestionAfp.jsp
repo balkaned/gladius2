@@ -102,7 +102,7 @@
                                 <tr>
                                     <td class="align-middle fw-semi-bold text-20">Generar Afp Net</td>
                                     <td class="align-middle fw-semi-bold text-20">
-                                        <a class="btn btn-phoenix-secondary btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1PP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
+                                        <a class="btn btn-phoenix-secondary btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1UP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
                                               onclick="SendAfpFile('REP','1')"><span class="fa-solid fa-download me-2"></span>Descargar
                                         </a>
                                     </td>
