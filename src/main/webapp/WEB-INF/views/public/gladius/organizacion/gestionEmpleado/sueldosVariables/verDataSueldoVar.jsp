@@ -55,8 +55,8 @@
                                     <h2 class="mb-0">Conceptos variables</h2>
                                   </div>
                                   <div class="col-12 mt-5 mb-2 d-flex justify-content-end">
-                                      <a class="btn btn-phoenix-primary px-5" href="sueldoVariable@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary ms-2" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add Concepto</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="sueldoVariable@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                      <a class="btn btn-primary ms-2 btn-sm" href="nuevoSueldoVar@${idTrab}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-plus me-2"></span>Add Concepto</a>
                                   </div>
                                </div>
 

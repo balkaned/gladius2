@@ -87,14 +87,14 @@
                                             </div>-->
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 d-flex justify-content-end">
-                                                  <div class="col-auto ps-0">
-                                                    <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
+                                                  <div class="col-auto ps-0 pe-0">
+                                                    <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
                                                   </div>
-                                                  <div class="col-auto ps-0">
-                                                    <a class="btn btn-phoenix-secondary" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Add GrupoArch</a>
+                                                  <div class="col-auto ps-0 pe-0 ms-1">
+                                                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Add GrupoArch</a>
                                                   </div>
-                                                  <div class="col-auto ps-0">
-                                                    <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
+                                                  <div class="col-auto ps-0 pe-0 ms-1">
+                                                    <button class="btn btn-primary btn-sm" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>
                                                   </div>
                                                 </div>
                                             </div>
@@ -148,14 +148,14 @@
                                            <label class="form-label fs-0 text-1000 ps-0 text-none mt-4 mb-0">${listGrpFile.desgrangrupo} -  ${listGrpFile.iexdesgrpfile}</label>
                                            <div class="col-12 gy-6 mt-3">
                                                <div class="row g-3 justify-content-end">
-                                                 <div class="col-auto ps-0">
-                                                   <a class="btn btn-primary" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
+                                                 <div class="col-auto ps-0 pe-0">
+                                                   <a class="btn btn-success btn-sm" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
                                                  </div>
-                                                 <div class="col-auto ps-0">
-                                                   <a class="btn btn-phoenix-secondary me-1 mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
+                                                 <div class="col-auto ps-0 pe-0 ms-1">
+                                                   <a class="btn btn-phoenix-secondary btn-sm me-1 mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
                                                  </div>
-                                                 <div class="col-auto ps-0">
-                                                   <a class="btn btn-phoenix-danger" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
+                                                 <div class="col-auto ps-0 pe-0">
+                                                   <a class="btn btn-phoenix-secondary btn-sm" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
                                                  </div>
                                                </div>
                                            </div>
@@ -196,7 +196,7 @@
 
                                                                 <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();"
                                                                 href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
-                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
+                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar en la nube</a>
 
                                                               </div>
                                                             </div>

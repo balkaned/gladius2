@@ -92,24 +92,14 @@
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">
-                                <a id="submit1" href="#"  class="btn btn-primary btn-xs" ><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Ver Reporte</a>
+                                <a id="submit1" href="#"  class="btn btn-primary btn-sm" ><span class="fa-solid fa-magnifying-glass me-2"></span>Ver Reporte</a>
                                 <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
                                 <INPUT TYPE="HIDDEN" NAME="accion" Value="listReportePlanillas">
                             </div>
-
-
                         </form>
 
-
-                        <div id="idresult" style="width:1000px; height:600px; overflow: scroll;" >
-
-
-
-
-                        </div>
+                        <div id="idresult" style="width:1000px; height:600px; overflow: scroll;" ></div>
                     </div>
-
                 </div>
             </div>
         </div>

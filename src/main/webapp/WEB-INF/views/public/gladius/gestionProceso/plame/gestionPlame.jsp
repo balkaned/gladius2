@@ -91,100 +91,84 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de Procesos Externos</a></li>
+                <li class="breadcrumb-item active">Plame</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte de Plame</h2>
+                    <h2 id="h2top" class="mb-0">Reporte Plame</h2>
                 </div>
             </div>
 
-            <div class="row g-5">
-                <div class="col-xl-10">
-                    <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="" name="frmsunatfile"
-                              id="frmsunatfile" novalidate>
-                            <input type="hidden" name="file" id="file">
-                            <input type="hidden" name="accion" id="accion" value="">
-                            <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
-                                <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table table-hover">
-                                        <caption>Generar Archivos Plame</caption>
-                                        <tbody>
-                                        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                            <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
-                                            <td>
-                                                <input type="text" name="permes" id="permes"
-                                                       value="${requestScope.permes}"
-                                                       class="form-control" placeholder="YYYYMM"/>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr class="md-10">
-                                            <td class="align-middle fw-semi-bold text-20">Jornada Laboral[14] .jor</td>
-                                            <td class="align-middle fw-semi-bold text-20"><a
-                                                    href="expPlameFile?permes=${requestScope.permes}&file=14"
-                                                    id="descargarBtn"
-                                                    onclick=" SendSunatFile('REP','14')">Descargar</a>
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="#" id="actualizarBtn"
-                                                                                             onclick=" SendSunatFile('gestionPlame','14')">Actualizar</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle fw-semi-bold text-20">Dias No Laborados [15]</td>
-                                            <td class="align-middle fw-semi-bold text-20"><a
-                                                    href="expPlameFile?permes=${requestScope.permes}&file=15"
-                                                    id="descargarBtn2"
-                                                    onclick="SendSunatFile('REP','15')">Descargar</a>
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="#"
-                                                                                             id="actualizarBtn2"
-                                                                                             onclick="SendSunatFile('gestionPlame','15')">Actualizar</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle fw-semi-bold text-20">Detalle de Ingreso, Descuento
-                                                [18]
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a
-                                                    href="expPlameFile?permes=${requestScope.permes}&file=18"
-                                                    id="descargarBtn3"
-                                                    onclick="SendSunatFile('REP','18')">Descargar</a>
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="#"
-                                                                                             id="actualizarBtn3"
-                                                                                             onclick="SendSunatFile('gestionPlame','18')">Actualizar</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle fw-semi-bold text-20">Otras condiciones [26]</td>
-                                            <td class="align-middle fw-semi-bold text-20"><a
-                                                    href="expPlameFile?permes=${requestScope.permes}&file=26"
-                                                    id="descargarBtn4"
-                                                    onclick="SendSunatFile('REP','26')">Descargar</a>
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="#"
-                                                                                             id="actualizarBtn4"
-                                                                                             onclick="SendSunatFile('gestionPlame','26')">Actualizar</a>
-                                            </td>
-                                        </tr>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
+            <form class="row g-4 mb-0 needs-validation" method="POST" action="" name="frmsunatfile" id="frmsunatfile" novalidate>
+                <input type="hidden" name="file" id="file">
+                <input type="hidden" name="accion" id="accion" value="">
+                <div class="table-responsive scrollbar mx-n1 px-1">
+                    <table class="table table-hover">
+                        <span class="badge badge-tag me-2 mb-1 mt-3">Generar archivos Plame</span>
+                        <tbody>
+                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
+                                <td>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="permes" id="permes"  value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" required/>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="md-10">
+                                <td class="align-middle fw-semi-bold text-20">Jornada Laboral[14] .jor</td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=14"
+                                        id="descargarBtn"
+                                        onclick=" SendSunatFile('REP','14')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
+                                    </a>
+                                </td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn"
+                                    onclick=" SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle fw-semi-bold text-20">Dias No Laborados [15]</td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=15" id="descargarBtn2"
+                                        onclick="SendSunatFile('REP','15')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
+                                    </a>
+                                </td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn2" onclick="SendSunatFile('gestionPlame','15')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle fw-semi-bold text-20">Detalle de Ingreso, Descuento[18]</td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=18" id="descargarBtn3"
+                                        onclick="SendSunatFile('REP','18')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
+                                    </a>
+                                </td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn3" onclick="SendSunatFile('gestionPlame','18')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle fw-semi-bold text-20">Otras condiciones [26]</td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=26" id="descargarBtn4"
+                                        onclick="SendSunatFile('REP','26')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar</a>
+                                </td>
+                                <td class="align-middle fw-semi-bold text-20">
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn4" onclick="SendSunatFile('gestionPlame','26')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            </form>
 
         </div>
-
     </div>
 
     <jsp:include page="../../../demoWidget.jsp"></jsp:include>

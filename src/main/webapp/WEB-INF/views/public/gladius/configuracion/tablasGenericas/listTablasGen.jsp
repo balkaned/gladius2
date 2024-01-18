@@ -89,8 +89,19 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
-                      <a class="btn btn-primary" href="nuevaTablaGen" ><span class="fas fa-plus me-2"></span>Add Tabla Gen</a>
+                      <a class="btn btn-primary btn-sm" href="nuevaTablaGen" ><span class="fas fa-plus me-2"></span>Add Tabla Gen</a>
+                      <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                        <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                        <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                        <div class="dropdown-menu">
+                      	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
+                      		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                      	  </a>
+                      	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                      	  <div class="dropdown-divider"></div>
+                      	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -124,7 +135,7 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a id="dropdownmenutable" class="dropdown-item" href="verDetalleTblGen@${LstTTablac.iexcodtab}"><span class="fa-solid fa-glasses me-2"></span>Detalle</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" href="verDetalleTblGen@${LstTTablac.iexcodtab}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                         <a id="dropdownmenutable" class="dropdown-item" href="editarTblGen@${LstTTablac.iexcodtab}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                         <div class="dropdown-divider"></div>
                                         <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteTablaGen@${LstTTablac.iexcodtab}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>

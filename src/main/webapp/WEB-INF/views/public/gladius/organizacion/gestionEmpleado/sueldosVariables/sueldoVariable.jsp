@@ -93,7 +93,7 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Conceptos Variables</h2>
+                                <h2 id="h2top" class="mb-0">Conceptos variables</h2>
                               </div>
                             </div>
 
@@ -131,8 +131,8 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-search me-2"></span>Ver data</button>
+                                                    <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-search me-2"></span>Ver data</button>
                                                   </div>
                                                 </div>
                                             </div>

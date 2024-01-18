@@ -56,8 +56,8 @@
                                     <h2 class="mb-4">Sueldo fijo</h2>
                                   </div>
                                   <div class="col-12 mt-2 mb-2 d-flex justify-content-end">
-                                      <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary ms-2" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoSueldoFijo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Sueldo Fijo</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">

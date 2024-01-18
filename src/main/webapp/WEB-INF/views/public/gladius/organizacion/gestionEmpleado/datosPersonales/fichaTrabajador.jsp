@@ -130,9 +130,9 @@
                             <div class="flex-1 d-md-none">
                               <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
                             </div>
-                            <a class="btn btn-primary me-2" href="listEmpleados"><span class="fas fa-reply me-2"></span>Ir a tabla</a>
-                            <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
-                            <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
+                            <a class="btn btn-primary btn-sm me-2" href="listEmpleados"><span class="fas fa-reply me-2"></span>Ir a tabla</a>
+                            <button class="btn btn-phoenix-secondary btn-sm px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
+                            <button class="btn px-3 btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
                             <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
                               <li><a class="dropdown-item" href="#!">View profile</a></li>
                               <li><a class="dropdown-item" href="#!">Report</a></li>
@@ -150,11 +150,11 @@
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
                        <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTab" role="tablist" style="overflow-y: hidden;">
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos Personales</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"> <span class="fa-solid fas fa-graduation-cap me-2 tab-icon-color"></span>Datos Laborales</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de Pago</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad Social</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos Domicilio</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos personales</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"> <span class="fa-solid fas fa-graduation-cap me-2 tab-icon-color"></span>Datos laborales</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de pago</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad social</a></li>
+                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos domicilio</a></li>
                        </ul>
                        <!--<div class="col-12 mb-2">
                            <div class="col-sm-6 col-md-12 d-flex justify-content-end">

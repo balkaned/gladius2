@@ -71,56 +71,52 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de Proceso Exernos</a></li>
+                <li class="breadcrumb-item active">Afp Net</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte de Afp Net</h2>
+                    <h2 id="h2top" class="mb-0">Reporte Afp Net</h2>
                 </div>
             </div>
 
-            <div class="row g-5">
-                <div class="col-xl-10">
-                    <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation"  method="POST" action="" name="frmafpnetfile"  id="frmafpnetfile" novalidate>
-                            <input type="hidden" name="file" id="file" >
-                            <input type="hidden" name="accion" id="accion"  value="" >
-                            <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
-                                <div class="table-responsive scrollbar mx-n1 px-1">
-                                    <table class="table table-hover">
-                                        <caption>Generar Archivos Afp Net</caption>
-                                        <tbody>
-                                        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                            <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
-                                            <td>
-                                                <input type="text" name="permes"  id="permes"  value="${requestScope.permes}"   class="form-control" placeholder="YYYYMM" >
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle fw-semi-bold text-20">Generar Afp Net</td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1PP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
-                                                                                             onclick="SendAfpFile('REP','1')">Descargar</a>
-                                            </td>
-                                            <td class="align-middle fw-semi-bold text-20"><a href="#" id="procesarBtn"
-                                                                                             onclick="SendAfpFile('gestionAfp','2')">Procesar</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        </form>
+            <form class="row g-4 mb-0 needs-validation"  method="POST" action="" name="frmafpnetfile"  id="frmafpnetfile" novalidate>
+                <input type="hidden" name="file" id="file" >
+                <input type="hidden" name="accion" id="accion"  value="" >
+                <div>
+                    <div class="table-responsive scrollbar mx-n1 px-1">
+                        <table class="table table-hover">
+                            <span class="badge badge-tag me-2 mb-2">Generar Archivos Afp Net</span>
+                            <tbody>
+                                <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                    <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
+                                    <td>
+                                        <div class="col-sm-6 col-md-4">
+                                            <input type="text" name="permes"  id="permes"  value="${requestScope.permes}"   class="form-control" placeholder="YYYYMM" >
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle fw-semi-bold text-20">Generar Afp Net</td>
+                                    <td class="align-middle fw-semi-bold text-20">
+                                        <a class="btn btn-phoenix-secondary btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1PP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
+                                              onclick="SendAfpFile('REP','1')"><span class="fa-solid fa-download me-2"></span>Descargar
+                                        </a>
+                                    </td>
+                                    <td class="align-middle fw-semi-bold text-20">
+                                        <a class="btn btn-phoenix-secondary btn-sm" href="#" id="procesarBtn" onclick="SendAfpFile('gestionAfp','2')"><span class="fa-solid fa-wrench me-2"></span>Procesar
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
-
     </div>
 
     <jsp:include page="../../../demoWidget.jsp"></jsp:include>

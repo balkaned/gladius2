@@ -56,8 +56,8 @@
                                     <h2 class="mb-0">Derecho habientes</h2>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
-                                      <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary ms-2" href="nuevoDerechoHab@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Derch Hab</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoDerechoHab@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Derch Hab</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -106,6 +106,7 @@
                                                       <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                       <div class="dropdown-menu dropdown-menu-end py-2">
                                 					    <a id="dropdownmenutable"  href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-camera me-2"></span>Agregar foto</a>
+                                						<a id="dropdownmenutable"  class="dropdown-item" href="#!"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                 						<div class="dropdown-divider"></div>
                                 						<a id="dropdownmenutable"  class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>

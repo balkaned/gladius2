@@ -18,7 +18,7 @@
                 url: "getlovsLOVCODTRA",
                 data: {"accion": "LOVCODTRA", "iexcodreg": $("#iexcodreg").val()},
                 success: function (data) {
-                    var opt = "<option value='' >Selecciona</option>";
+                    var opt = "<option value='' >Seleccionar trabajador</option>";
                     for (var i in data) {
                         opt += "<option value='" + data[i].iexcodtra + "'>" +
                             data[i].iexapepat + " " + data[i].iexapemat + " " +
@@ -142,10 +142,8 @@
             <div class="row g-5">
                 <div class="col-xl-7">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListAusentismo"
-                              novalidate>
-                            <input class="form-control" name="iexcodcia" type="hidden"
-                                   value="${requestScope.emp.iexcodcia}"/>
+                        <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListAusentismo" novalidate>
+                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
 
                             <div class="col-sm-6 col-md-8">
                                 <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>-->
@@ -186,9 +184,20 @@
                                        placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'required />
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                                <a class="btn btn-phoenix-primary" href="nuevoGestionAusentismo"><span class="fas fa-plus me-2"></span>Agregar</a>
-                                <button class="btn btn-link text-900 me-4 px-0 ps-3" type="button"><span class="fa-solid fa-file-export me-2"></span>Exportar Xls</button>
+                                <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                                <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionAusentismo"><span class="fas fa-plus me-2"></span>Agregar</a>
+                                <div class="btn-group mb-1 me-1 ms-0 mt-1">
+                                  <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                                  <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                                  <div class="dropdown-menu">
+                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
+                                		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                                	  </a>
+                                	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                                	  <div class="dropdown-divider"></div>
+                                	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                                  </div>
+                                </div>
                             </div>
                         </form>
                      </div>
@@ -300,7 +309,7 @@
                                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                                            <a id="dropdownmenutable"class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"<span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                                            <a id="dropdownmenutable"class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                                             <div class="dropdown-divider"></div>
                                                             <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                         </div>
@@ -348,9 +357,7 @@
                                             </div>
                                             <div class="modal-body pt-4 pb-2 px-4">
                                                 <div class="mb-3">
-                                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro
-                                                        que desea
-                                                        confirmar la operacion?</label>
+                                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
                                                 </div>
                                             </div>
                                         </form>

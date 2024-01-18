@@ -125,7 +125,7 @@
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListVacaciones"
                               novalidate>
                             <!-- Regimen Dropdown -->
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-7">
                                 <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>-->
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                     <option value="" selected>Seleccionar regimen</option>
@@ -167,21 +167,31 @@
 
                             <!-- Buttons -->
                             <div class="d-grid gap-2 d-md-block ">
-                                <button class="btn btn-primary" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Buscar
-                                </button>
-                                <a class="btn btn-phoenix-primary" href="nuevoGestionVacaciones"><span
-                                        class="fas fa-plus me-2"></span>Agregar</a>
+                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                                <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Agregar Vacación</a>
 
-                                <a class="btn btn-link text-900 me-4 px-0"
+                                <div class="btn-group mb-1 me-1 ms-0 mt-1">
+                                  <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                                  <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                                  <div class="dropdown-menu">
+                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null">
+                                		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación
+                                	  </a>
+                                	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Saldo</a>
+                                	  <div class="dropdown-divider"></div>
+                                	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                                  </div>
+                                </div>
+
+                                <!--<a class="btn btn-link text-900 me-4 px-0"
                                    href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null" target="_blank">
                                     <span class="fa-solid fa-file-export fs--1 ms-3 me-2"></span>Exportar Programación
                                 </a>
 
                                 <a class="btn btn-link text-900 me-4 px-0"
                                    href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null" target="_blank">
-                               <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar
-                                    Saldo</a>
+                                    <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Saldo
+                                </a>-->
                             </div>
                         </form>
                     </div>

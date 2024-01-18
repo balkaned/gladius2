@@ -155,8 +155,8 @@
                                 </select>
                             </div>
 
-                            <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" type="submit"><span class="fa-solid fa-plus me-2"></span>Agregar</button>
+                            <div class="d-grid gap-2 d-md-block mb-3">
+                                <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-search me-2"></span>Buscar</button>
                             </div>
                         </form>
                     </div>
@@ -240,8 +240,10 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 "><h4 class="date text-info"></h4></label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="button"  onclick="enviaForm('1')" name="GeneraReporte"  value="Genera Reporte" class="btn btn-primary dropdown-toggle" >
-                                    <label style="width: 120px"></label><input type="button"  onclick="enviaForm('2')" name="GeneraAllReport"  value="Descargar" class="btn btn-primary dropdown-toggle" >
+                                    <!--<button onclick="enviaForm('1')" name="GeneraReporte"  value="Genera Reporte" class="btn btn-primary dropdown-toggle" ></button>-->
+                                    <button class="btn btn-phoenix-secondary btn-sm" onclick="enviaForm('1')" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-wrench me-2"></span>Generar reporte</button>
+                                    <!--<button></label><input type="button"  onclick="enviaForm('2')" name="GeneraAllReport"  value="Descargar" class="btn btn-primary dropdown-toggle" ></button>-->
+                                    <button class="btn btn-phoenix-secondary btn-sm" onclick="enviaForm('2')" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-download me-2"></span>Descargar</button>
                                 </div>
                             </div>
                             <br>

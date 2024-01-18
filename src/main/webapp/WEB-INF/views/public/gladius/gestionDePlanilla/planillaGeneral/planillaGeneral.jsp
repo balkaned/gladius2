@@ -158,11 +158,11 @@
                         </div>
                         <div class="col-12 gy-6">
                             <div class="row g-3 justify-content-end">
-                              <div class="col-auto">
-                                <button class="btn btn-primary px-5" type="submit" ><span class="fas fa-search me-2"></span>Buscar</button>
+                              <div class="col-auto ps-0 pe-0">
+                                <button class="btn btn-primary btn-sm " type="submit" ><span class="fas fa-search me-2"></span>Buscar</button>
                               </div>
-                              <div class="col-auto">
-                                <button class="btn btn-phoenix-primary px-5" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Ingresar periodo</button>
+                              <div class="col-auto ps-0 pe-0 ms-1">
+                                <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#periodoModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Ingresar periodo</button>
                               </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                                          data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                          <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                          <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-glasses me-2"></span>Detalle</a>
+                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                               <div class="dropdown-divider"></div>
                                               <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                          </div>

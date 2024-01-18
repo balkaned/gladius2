@@ -55,8 +55,8 @@
                                     <h2 class="mb-0">Retención judicial</h2>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
-                                      <a class="btn btn-phoenix-primary px-5" href="detalleEmpl@${idTrab}">Atras</a>
-                                      <a class="btn btn-primary ms-2" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                      <a class="btn btn-primary btn-sm ms-2" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">

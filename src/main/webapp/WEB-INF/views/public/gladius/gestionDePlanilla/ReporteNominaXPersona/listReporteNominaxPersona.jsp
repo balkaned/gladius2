@@ -46,14 +46,14 @@
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Page</a></li>
-                <li class="breadcrumb-item active">Default</li>
+                <li class="breadcrumb-item"><a href="#!">Gestión de Planillas</a></li>
+                <li class="breadcrumb-item active">Reporte Nómina x Persona</li>
             </ol>
         </nav>
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte de Planilla X Proceso</h2>
+                    <h2 id="h2top" class="mb-0">Reporte de nómina x persona</h2>
                 </div>
             </div>
 
@@ -62,48 +62,61 @@
                     <div class="row gx-3 gy-4">
                         <form class="row g-4 mb-0 needs-validation" id="formoid" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de
-                                    Trabajador</label>
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de
+                                    Trabajador</label>-->
                                 <select class="form-select" name="codtra" id="codtra" required>
-                                    <option value="" selected>Seleccionar</option>
+                                    <option value="" selected>Código trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
                                         <option value="${LstEmpleadoRes.iexcodtra}"     ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''}     >
                                             [${LstEmpleadoRes.iexcodtra}]
                                             - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}   </option>
                                     </c:forEach>
                                 </select>
-                                </select>
+
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
+                            <div class="col-sm-6 col-md-5">
+                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>-->
                                 <select class="form-select" name="codpro" id="codpro" required>
-                                    <option value="" selected>Seleccionar</option>
+                                    <option value="" selected>Proceso</option>
                                     <c:forEach var="LstProcesoPlanilla" items="${requestScope.LstProcesoPlanilla}">
                                         <option value="${LstProcesoPlanilla.idProceso}"   ${LstProcesoPlanilla.idProceso==requestScope.codpro ? 'selected' : ''}    > ${LstProcesoPlanilla.desProceso} </option>
                                     </c:forEach>
                                 </select>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
                                 <input class="form-control" type="text" name="perini" id="perini"
                                        value="${requestScope.perini}">
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
                                 <input class="form-control" type="text" id="perfin" name="perfin"
                                        value="${requestScope.perfin}">
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary" onclick="enviaForm('2')"><span
+                                <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span
                                         class="fa-solid fa-magnifying-glass me-2"></span>Consultar
                                 </button>
                                 <c:if test="${not empty requestScope.codpro}">
-                                    <a class="btn btn-link text-900 me-4 px-0"
+                                    <!--<a class="btn btn-link text-900 me-4 px-0"
                                        href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2Piexcodreg=${iexcodreg}Pslc_estado=2bvv@null@null@null@null"
                                        target="_blank"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar
-                                        Xls</a>
+                                        Xls</a>-->
+
+                                    <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                                      <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                                      <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                                      <div class="dropdown-menu">
+                                    	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2Piexcodreg=${iexcodreg}Pslc_estado=2bvv@null@null@null@null">
+                                    		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel
+                                    	  </a>
+                                    	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                                    	  <div class="dropdown-divider"></div>
+                                    	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                                      </div>
+                                    </div>
                                 </c:if>
                             </div>
                             <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">

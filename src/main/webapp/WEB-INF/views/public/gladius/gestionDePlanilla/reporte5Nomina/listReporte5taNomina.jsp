@@ -64,7 +64,7 @@
                                 <input class="form-control" type="text" id="peranio" name="peranio" value="${requestScope.peranio}" placeholder="yyyy" required>
                             </div>
                             <div class="col-sm-6 col-md-12">
-                                <button class="btn btn-primary" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar</button>
+                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
@@ -200,8 +200,8 @@
                                                <div class="dropdown-menu dropdown-menu-end py-2">
                                                     <a id="dropdownmenutable" class="dropdown-item" href="#!" class="fs--1" data-bs-toggle="modal"
                                                         data-bs-target="#reportsFilterModal" aria-haspopup="true"
-                                                        aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-file-pdf me-2"></span>Boleta</a>
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-file-pdf me-2"></span>Reporte 5ta</a>
+                                                        aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-download me-2"></span>Boleta PDF</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download me-2"></span>Reporte 5ta PDF</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                </div>

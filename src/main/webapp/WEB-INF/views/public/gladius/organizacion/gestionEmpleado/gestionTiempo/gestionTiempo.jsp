@@ -143,8 +143,8 @@ function program_tur_row(turno, fecini,  fecfin){
                                 <h2 class="mb-0">Gestión de tiempos</h2>
                               </div>
                               <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
-                                  <a class="btn btn-phoenix-primary" href="detalleEmpl@${idTrab}">Atras</a>
-                                  <a class="btn btn-primary ms-2" href="#"><span class="fa-solid fa-plus me-2"></span>Add Tiempos</a>
+                                  <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                  <a class="btn btn-phoenix-secondary ms-1 btn-sm" href="#"><span class="fa-solid fa-plus me-2"></span>Add Tiempos</a>
                               </div>
                             </div>
 
@@ -259,7 +259,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12 col-sm-6 mt-2">
-                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-phoenix-warning" type="submit" onclick="updtipturno();"><span class="fa-solid fa-user-clock me-2"></span>Grabar horario</button>
+                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-phoenix-secondary btn-sm" type="submit" onclick="updtipturno();"><span class="fa-solid fa-user-clock me-2"></span>Grabar horario</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -283,17 +283,17 @@ function program_tur_row(turno, fecini,  fecfin){
                                                    <td>
                                                         <div class="col-12">
                                                             <input type="file" name="filexls" id="filexls" class="form-control">
-                                                            <button name="btn_xls" class="btn btn-phoenix-success mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-regular fa-file-excel me-2"></span>Exportar Excel</button>
+                                                            <button name="btn_xls" class="btn btn-success btn-sm mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-solid fa-download me-2"></span>Exportar Excel</button>
                                                         </div>
                                                    </td>
                                                </tr>
                                                <tr>
                                                    <td colspan="8">
-                                                       <button name="btn_ver" class="btn btn-orange mt-2 mb-2 " onclick="enviaForm('1')"><span class="fa-solid fa-binoculars me-2"></span>Ver</button>
-                                                       <button name="btn_programar" class="btn btn-orange mt-2 mb-2 " onclick="enviaForm('3')"><span class="fa-solid fa-arrows-turn-to-dots me-2"></span>Turnos</button>
-                                                       <button name="btn_calificar" class="btn btn-orange mt-2 mb-2 " onclick="enviaForm('5')"><span class="fa-solid fa-ranking-star me-2"></span>Calificar</button>
-                                                       <button name="btn_vermarcas" class="btn btn-orange mt-2 mb-2 " onclick="enviaForm('4')"><span class="fa-solid fa-clock-rotate-left me-2"></span>Marcas</button>
-                                                       <button name="btn_borrar" class="btn btn-orange mt-2 mb-2 " onclick="enviaForm('2')"><span class="fa-solid fa-minus me-2"></span>Borrar</button>
+                                                       <button name="btn_ver" class="btn btn-phoenix-secondary btn-sm mt-2 mb-2 " onclick="enviaForm('1')"><span class="fa-solid fa-binoculars me-2"></span>Ver</button>
+                                                       <button name="btn_programar" class="btn btn-phoenix-secondary btn-sm mt-2 mb-2 " onclick="enviaForm('3')"><span class="fa-solid fa-arrows-turn-to-dots me-2"></span>Turnos</button>
+                                                       <button name="btn_calificar" class="btn btn-phoenix-secondary btn-sm mt-2 mb-2 " onclick="enviaForm('5')"><span class="fa-solid fa-ranking-star me-2"></span>Calificar</button>
+                                                       <button name="btn_vermarcas" class="btn btn-phoenix-secondary btn-sm mt-2 mb-2 " onclick="enviaForm('4')"><span class="fa-solid fa-clock-rotate-left me-2"></span>Marcas</button>
+                                                       <button name="btn_borrar" class="btn btn-phoenix-danger btn-sm mt-2 mb-2 " onclick="enviaForm('2')"><span class="fa-solid fa-minus me-2"></span>Borrar</button>
                                                     </td>
                                                </tr>
                                            </table>

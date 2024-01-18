@@ -64,10 +64,21 @@
                         </div>
 
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" onclick="obtenerListaConcepto();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                            <a class="btn btn-phoenix-primary" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add Concepto</a>
-                            <a class="btn btn-phoenix-secondary text-900" href="listProcesoFormulas">Atras</a>
-                            <button class="btn btn-link text-900 me-4 ps-3"><span class="fa-solid fa-file-export me-2"></span>Exportar</button>
+                            <button class="btn btn-primary btn-sm " onclick="obtenerListaConcepto();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                            <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add Concepto</a>
+                            <a class="btn btn-phoenix-secondary text-900 btn-sm" href="listProcesoFormulas"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                            <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                              <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                              <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                              <div class="dropdown-menu">
+                            	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
+                            		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                            	  </a>
+                            	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                            	  <div class="dropdown-divider"></div>
+                            	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                              </div>
+                            </div>
                         </div>
                     </form>
                 </div>

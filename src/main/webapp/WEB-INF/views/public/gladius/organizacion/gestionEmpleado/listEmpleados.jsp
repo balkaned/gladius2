@@ -86,8 +86,8 @@
                       </div>
                     </div>
                     <div class="d-grid gap-2 d-md-block">
-                          <a class="btn btn-primary" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
-                          <a class="btn btn-phoenix-primary ms-1" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
+                          <a class="btn btn-primary btn-sm" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
+                          <a class="btn btn-phoenix-secondary btn-sm ms-1" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
 
                           <!--<a class="btn btn-phoenix-secondary text-900 "
                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"
@@ -97,14 +97,17 @@
                           href="#" ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Activos</a>-->
 
                           <div class="btn-group mb-1 me-1 ms-1 mt-1">
-                            <button class="btn btn-phoenix-secondary" type="button"><span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar</button>
-                            <button class="btn dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                            <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
+                            <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos</a>
-                              <a class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Activos</a>
+                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null">
+                                <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                              </a>
+                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                              <div class="dropdown-divider"></div>
+                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
                             </div>
                           </div>
-
                     </div>
                   </div>
                 </div>
