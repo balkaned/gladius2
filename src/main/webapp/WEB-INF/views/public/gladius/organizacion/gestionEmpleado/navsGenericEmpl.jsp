@@ -13,7 +13,7 @@
           <div class="lead-details-offcanvas bg-soft scrollbar phoenix-offcanvas phoenix-offcanvas-fixed" id="productFilterColumn">
             <div class="d-flex justify-content-between align-items-center mb-2 d-md-none">
               <h4 class="mb-0"></h4>
-              <button class="btn p-0" data-phoenix-dismiss="offcanvas"><span class="uil uil-arrow-left fs-1"></span></button>
+              <button class="btn btn-phoenix-secondary p-0" data-phoenix-dismiss="offcanvas"><span class="uil uil-arrow-left fs-2"></span></button>
             </div>
 
             <div class="card mb-2" style="height:275px;">

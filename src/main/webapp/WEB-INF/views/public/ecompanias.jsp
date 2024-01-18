@@ -55,14 +55,12 @@ margin-top:10px !important;
           <div class="col-12 mb-2">
             <h2 class="mb-0">Seleccionar compañia<span class="fw-normal text-700 ms-3"></span></h2>
           </div>
-          <div class="col-auto pe-0">
-            <a class="btn btn-primary px-5 btn-sm" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
-          </div>
-          <div class="col-auto ps-0 pe-0">
-            <a class="btn btn-phoenix-secondary ms-2 btn-sm" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
-          </div>
-          <div class="col-auto ps-0">
-            <a class="btn btn-phoenix-secondary text-900 ms-2 btn-sm" href="logoff"><span class="fa-solid fa-key fs--1 me-2"></span>Log out</a>
+          <div >
+            <a class="btn btn-primary mb-1 btn-sm" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
+
+            <a class="btn btn-phoenix-secondary mb-1 btn-sm" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
+
+            <a class="btn btn-phoenix-secondary mb-1 text-900  btn-sm" href="logoff"><span class="fa-solid fa-key fs--1 me-2"></span>Log out</a>
           </div>
         </div>
         <div class="row justify-content-between align-items-end mb-4 g-3">
