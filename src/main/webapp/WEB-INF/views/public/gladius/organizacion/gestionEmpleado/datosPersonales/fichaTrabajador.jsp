@@ -130,9 +130,9 @@
                             <div class="flex-1 d-md-none">
                               <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
                             </div>
-                            <a class="btn btn-primary btn-sm me-2" href="listEmpleados"><span class="fas fa-reply me-2"></span>Ir a tabla</a>
-                            <button class="btn btn-phoenix-secondary btn-sm px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
-                            <button class="btn px-3 btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
+                            <a class="btn btn-primary me-2" href="listEmpleados"><span class="fas fa-reply me-2"></span>Ir a tabla</a>
+                            <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>
+                            <button class="btn px-3 btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-ellipsis"></span></button>
                             <ul class="dropdown-menu dropdown-menu-end p-0" style="z-index: 9999;">
                               <li><a class="dropdown-item" href="#!">View profile</a></li>
                               <li><a class="dropdown-item" href="#!">Report</a></li>
@@ -171,6 +171,7 @@
                                      <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate >
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Codigo Empleado</label>
                                             <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" required disabled />

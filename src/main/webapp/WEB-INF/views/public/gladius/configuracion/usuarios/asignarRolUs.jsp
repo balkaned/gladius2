@@ -74,7 +74,7 @@
                       <form class="row g-4 mb-0 needs-validation" method="POST" action="asignarRolxCiaIns" novalidate >
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />
 
-                        <div class="col-sm-6 col-md-7">
+                        <div class="col-sm-6 col-md-6">
                         	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Compania</label>-->
                         	  <select name="lov_compania" id="lov_compania" class="form-select" required >
                         		  <option value="" selected >Seleccionar compañia</option>
@@ -83,7 +83,7 @@
                         		  </c:forEach>
                         	  </select>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                         	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rol de Acceso</label>-->
                         	  <select name="lov_rol" class="form-select" required >
                         		  <option value="" selected >Rol de acceso</option>
@@ -106,13 +106,12 @@
                                 Se grabó exitosamente los cambios.
                         </div>
                         <div class="col-12 gy-6">
-                            <div class="row g-3 justify-content-end">
-                              <div class="col-auto">
-                                <a class="btn btn-phoenix-primary px-5" href="listUsuarios">Atras</a>
-                              </div>
-                              <div class="col-5">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Agregar a lista</button>
-                              </div>
+                            <div class="">
+
+                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listUsuarios"><span class="fas fa-reply me-2"></span>Atras</a>
+
+                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
+
                             </div>
                         </div>
                         <div class="modal fade" id="confirmModal" tabindex="-1">

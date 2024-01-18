@@ -107,7 +107,7 @@
                                         </a>
                                     </td>
                                     <td class="align-middle fw-semi-bold text-20">
-                                        <a class="btn btn-phoenix-secondary btn-sm" href="#" id="procesarBtn" onclick="SendAfpFile('gestionAfp','2')"><span class="fa-solid fa-wrench me-2"></span>Procesar
+                                        <a class="btn btn-phoenix-secondary btn-sm" href="#" id="procesarBtn" onclick="SendAfpFile('gestionAfp','2')"><span class="fa-solid fa-diagram-predecessor me-2"></span>Procesar
                                         </a>
                                     </td>
                                 </tr>

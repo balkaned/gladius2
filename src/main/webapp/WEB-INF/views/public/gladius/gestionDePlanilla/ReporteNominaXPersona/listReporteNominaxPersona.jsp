@@ -86,18 +86,15 @@
 
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
-                                <input class="form-control" type="text" name="perini" id="perini"
-                                       value="${requestScope.perini}">
+                                <input class="form-control" type="text" name="perini" id="perini" value="${requestScope.perini}" placeholder="202301">
                             </div>
 
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
-                                <input class="form-control" type="text" id="perfin" name="perfin"
-                                       value="${requestScope.perfin}">
+                                <input class="form-control" type="text" id="perfin" name="perfin" value="${requestScope.perfin}" placeholder="202302">
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Consultar
+                                <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar
                                 </button>
                                 <c:if test="${not empty requestScope.codpro}">
                                     <!--<a class="btn btn-link text-900 me-4 px-0"

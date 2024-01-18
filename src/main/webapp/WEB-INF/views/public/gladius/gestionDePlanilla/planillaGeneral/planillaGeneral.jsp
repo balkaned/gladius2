@@ -353,7 +353,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                    <button class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <button class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
                     <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>
               </div>
             </form>

@@ -155,7 +155,7 @@
                                 </select>
                             </div>
 
-                            <div class="d-grid gap-2 d-md-block mb-3">
+                            <div class="mb-3">
                                 <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-search me-2"></span>Buscar</button>
                             </div>
                         </form>
@@ -169,50 +169,48 @@
                         <div class="table-responsive scrollbar mx-n1 px-1">
                             <table class="table table-sm fs--1 mb-0">
                                 <thead>
-                                <tr>
-                                    <th class="white-space-nowrap fs--1 align-middle ps-0"
-                                        style="width:26px;">
-                                        <div class="form-check mb-0 fs-0">
-                                            <input class="form-check-input" id="checkbox-bulk-order-select"
-                                                   type="checkbox"
-                                                   data-bulk-select='{"body":"order-table-body"}'/>
-                                        </div>
-                                    </th>
-                                    <th class="sort white-space-nowrap align-middle pe-3" scope="col"
-                                        data-sort="order"
-                                        style="width:5%;">ID
-                                    </th>
-                                    <th class="sort align-middle text-center ps-5" scope="col"
-                                        data-sort="date">DESCRIPCION
-                                    </th>
-                                    <th class="sort align-middle text-center ps-8 pe-4" scope="col"
-                                        data-sort="date">
-                                        ELIMINAR
-                                    </th>
-
-                                </tr>
+                                    <tr>
+                                        <th class="white-space-nowrap fs--1 align-middle ps-0"
+                                            style="width:26px;">
+                                            <div class="form-check mb-0 fs-0">
+                                                <input class="form-check-input" id="checkbox-bulk-order-select"
+                                                       type="checkbox"
+                                                       data-bulk-select='{"body":"order-table-body"}'/>
+                                            </div>
+                                        </th>
+                                        <th class="sort white-space-nowrap align-middle pe-3" scope="col"
+                                            data-sort="order"
+                                            style="width:5%;">ID
+                                        </th>
+                                        <th class="sort align-middle text-center ps-5" scope="col"
+                                            data-sort="date">DESCRIPCION
+                                        </th>
+                                        <th class="sort align-middle text-center ps-8 pe-4" scope="col"
+                                            data-sort="date">
+                                            ELIMINAR
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody class="list" id="order-table-body">
-                                <c:if test="${not empty requestScope.listacon}">
-                                <c:forEach var="listacon"
-                                           items="${requestScope.listacon}">
-                                    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                        <td class="fs--1 align-middle px-0 py-3">
-                                            <div class="form-check mb-0 fs-0">
-                                                <input class="form-check-input" type="checkbox"
-                                                       data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
-                                            </div>
-                                        </td>
-                                        <td class="order align-middle white-space-nowrap py-0">
-                                                ${listacon.codConcepto}
-                                        </td>
-                                        <td class="total align-middle text-center fw-semi-bold text-1000">
-                                                ${listacon.desConcepto}</td>
-                                        <td class="total align-middle text-center fw-semi-bold text-1000">
-                                            <a href="${pageContext.request.contextPath}/GestionReportes?accion=PLACONDEL&codcon=${listacon.codConcepto}"  >Eliminar </a></td>
-                                    </tr>
-                                </c:forEach>
-                                </c:if>
+                                    <c:if test="${not empty requestScope.listacon}">
+                                        <c:forEach var="listacon" items="${requestScope.listacon}">
+                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                                <td class="fs--1 align-middle px-0 py-3">
+                                                    <div class="form-check mb-0 fs-0">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
+                                                    </div>
+                                                </td>
+                                                <td class="order align-middle white-space-nowrap py-0">
+                                                        ${listacon.codConcepto}
+                                                </td>
+                                                <td class="total align-middle text-center fw-semi-bold text-1000">
+                                                        ${listacon.desConcepto}</td>
+                                                <td class="total align-middle text-center fw-semi-bold text-1000">
+                                                    <a href="${pageContext.request.contextPath}/GestionReportes?accion=PLACONDEL&codcon=${listacon.codConcepto}"  >Eliminar </a></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
                                 </tbody>
                             </table>
 

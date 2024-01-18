@@ -146,19 +146,12 @@
                                            </c:if>
 
                                            <label class="form-label fs-0 text-1000 ps-0 text-none mt-4 mb-0">${listGrpFile.desgrangrupo} -  ${listGrpFile.iexdesgrpfile}</label>
-                                           <div class="col-12 gy-6 mt-3">
-                                               <div class="row g-3 justify-content-end">
-                                                 <div class="col-auto ps-0 pe-0">
-                                                   <a class="btn btn-success btn-sm" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
-                                                 </div>
-                                                 <div class="col-auto ps-0 pe-0 ms-1">
-                                                   <a class="btn btn-phoenix-secondary btn-sm me-1 mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
-                                                 </div>
-                                                 <div class="col-auto ps-0 pe-0">
-                                                   <a class="btn btn-phoenix-secondary btn-sm" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Del grupoArch</a>
-                                                 </div>
-                                               </div>
+                                           <div>
+                                               <a class="btn btn-phoenix-secondary btn-sm mb-1" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
+                                               <a class="btn btn-phoenix-secondary btn-sm mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
+                                               <a class="btn btn-phoenix-danger btn-sm mb-1" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Borrar</a>
                                            </div>
+
                                            <div class="border-top border-bottom border-200 mt-2" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                               <div class="table-responsive scrollbar">
                                            		<table class="table table-sm fs--1 mb-0">

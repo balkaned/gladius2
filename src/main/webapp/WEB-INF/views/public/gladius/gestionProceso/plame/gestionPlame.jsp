@@ -128,7 +128,7 @@
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn"
-                                    onclick=" SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                    onclick=" SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
@@ -139,7 +139,7 @@
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn2" onclick="SendSunatFile('gestionPlame','15')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn2" onclick="SendSunatFile('gestionPlame','15')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
@@ -150,7 +150,7 @@
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn3" onclick="SendSunatFile('gestionPlame','18')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn3" onclick="SendSunatFile('gestionPlame','18')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
@@ -160,7 +160,7 @@
                                         onclick="SendSunatFile('REP','26')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar</a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn4" onclick="SendSunatFile('gestionPlame','26')"><span class="fa-solid fa-wrench fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn4" onclick="SendSunatFile('gestionPlame','26')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                         </tbody>

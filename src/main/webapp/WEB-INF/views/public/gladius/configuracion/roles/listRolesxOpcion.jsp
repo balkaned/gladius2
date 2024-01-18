@@ -89,7 +89,7 @@
                         <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
                       </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-block">
+                    <div class="col-12">
                       <a class="btn btn-sm btn-phoenix-secondary px-5" href="listRoles"><span class="fa-solid fa-reply me-2"></span>Atras</a>
                       <a class="btn btn-sm btn-primary" href="nuevoRolxOpcion@${idRol}" ><span class="fas fa-plus me-2"></span>Add RolxOpcion</a>
                       <div class="btn-group mb-1 me-1 ms-1 mt-1">

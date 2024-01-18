@@ -60,13 +60,11 @@
                                  src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
                                  /></c:if>
 
-                                 <form method="post"
-                                 action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null"
-                                 enctype="multipart/form-data">
+                                 <form method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
                                        <input type="hidden"  name="idimg" value="${idCia}" >
                                        <input type="file" name="uploadFile" class="form-control"/>
 
-                                       <button class="btn btn-primary mt-3" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
+                                       <button class="btn btn-phoenix-secondary btn-sm mt-3" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
                                  </form>
                             </div>
                        </div>
@@ -122,7 +120,6 @@
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Logo</label>
                                   <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" placeholder="ID.jpg" required/>
                               </div>
-
                               <div class="col-sm-6 col-md-12">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
@@ -220,7 +217,7 @@
                            <div class="ln_solid"></div>
                            <div class="form-group">
                                 <div class="col-md-6 col-sm-6 mt-3">
-                                     <button class="btn btn-phoenix-warning" type="submit"><span class="fas fa-plus me-2"></span>Añadir Concepto</button>
+                                     <button class="btn btn-phoenix-secondary btn-sm" type="submit"><span class="fas fa-plus me-2"></span>Añadir Concepto</button>
                                 </div>
                            </div>
                        </form>

@@ -91,8 +91,8 @@
                                        value="${requestScope.peranio}" placeholder="2024" required>
                             </div>
 
-                            <div class="d-grid gap-2 d-md-block">
-                                <a id="submit1" href="#"  class="btn btn-primary btn-sm" ><span class="fa-solid fa-magnifying-glass me-2"></span>Ver Reporte</a>
+                            <div class="">
+                                <a id="submit1" href="#"  class="btn btn-primary btn-sm" ><span class="fa-solid fa-magnifying-glass me-2"></span>Ver reporte</a>
                                 <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
                                 <INPUT TYPE="HIDDEN" NAME="accion" Value="listReportePlanillas">
                             </div>

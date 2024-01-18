@@ -283,7 +283,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                    <td>
                                                         <div class="col-12">
                                                             <input type="file" name="filexls" id="filexls" class="form-control">
-                                                            <button name="btn_xls" class="btn btn-success btn-sm mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-solid fa-download me-2"></span>Exportar Excel</button>
+                                                            <button name="btn_xls" class="btn btn-phoenix-success btn-sm mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-solid fa-download me-2"></span>Exportar Excel</button>
                                                         </div>
                                                    </td>
                                                </tr>

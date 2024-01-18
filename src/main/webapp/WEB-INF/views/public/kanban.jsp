@@ -21,7 +21,6 @@
           <jsp:include page="navTop.jsp"></jsp:include>
           <jsp:include page="modalFade.jsp"></jsp:include>
 
-
           <div class="content" id="kanban">
                   <div class="kanban-header">
                     <div class="row gx-0 justify-content-between justify-content-md-start">
@@ -35,7 +34,6 @@
                         <div class="avatar-group"><a class="dropdown-toggle dropdown-caret-none d-inline-block" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <div class="avatar avatar-m ">
                               <img class="rounded-circle " src="resources/assets/img/team/30.webp" alt="" />
-
                             </div>
                           </a>
                           <div class="dropdown-menu avatar-dropdown-menu p-0 overflow-hidden" style="width: 320px;">
@@ -80,7 +78,6 @@
                           </div><a class="dropdown-toggle dropdown-caret-none d-inline-block" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <div class="avatar avatar-m ">
                               <img class="rounded-circle " src="resources/assets/img/team/60.webp" alt="" />
-
                             </div>
                           </a>
                           <div class="dropdown-menu avatar-dropdown-menu p-0 overflow-hidden" style="width: 320px;">
@@ -125,7 +122,6 @@
                           </div><a class="dropdown-toggle dropdown-caret-none d-inline-block" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <div class="avatar avatar-m ">
                               <img class="rounded-circle " src="resources/assets/img/team/25.webp" alt="" />
-
                             </div>
                           </a>
                           <div class="dropdown-menu avatar-dropdown-menu p-0 overflow-hidden" style="width: 320px;">
@@ -214,7 +210,7 @@
                             <div class="p-3 d-flex justify-content-between"><a class="btn btn-link p-0 text-decoration-none" href="#!">Details </a><a class="btn btn-link p-0 text-decoration-none text-danger" href="#!">Unassign </a></div>
                           </div>
                         </div>
-                        <button class="btn btn-primary ms-4 fs--2 px-3"><span class="fas fa-user-plus d-inline-block" style="min-width: 14px"></span><span class="d-none d-sm-inline ms-2">invite</span></button>
+                        <button class="btn btn-phoenix-secondary btn-sm ms-4 px-3"><span class="fas fa-user-plus pe-2"></span>invite</button>
                       </div>
                       <div class="col-md-auto d-flex align-items-center ms-auto mt-2 mt-md-0">
                         <ul class="nav w-100 fs--1">
@@ -460,7 +456,6 @@
                                 <div class="avatar-group ms-auto">
                                   <div class="avatar avatar-s  border border-white rounded-pill">
                                     <img class="rounded-circle " src="resources/assets/img/team/25.webp" alt="" />
-
                                   </div>
                                 </div>
                               </div>

@@ -63,7 +63,7 @@
                         <button class="btn btn-primary btn-sm mt-5" type="button" ><span class="fa-solid fa-search me-2"></span>Buscar x nro asiento</button>
                     </div>
 
-                    <div class="d-grid gap-2 d-md-block">
+                    <div class="">
                       <button class="btn btn-phoenix-secondary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                       <a class="btn btn-phoenix-secondary btn-sm" href="nuevoAsientosContables"><span class="fas fa-plus me-2"></span>Nuevo Asiento Cont</a>
                     </div>

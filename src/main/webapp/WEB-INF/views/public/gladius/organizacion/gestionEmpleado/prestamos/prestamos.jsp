@@ -56,7 +56,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-2" href="nuevoPrestamo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Prestamo</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoPrestamo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Prestamo</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">

@@ -63,11 +63,11 @@
                             </select>
                         </div>
 
-                        <div class="d-grid gap-2 d-md-block">
+                        <div class="">
                             <button class="btn btn-primary btn-sm " onclick="obtenerListaConcepto();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                             <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConceptoXProceso@${requestScope.slc_proceso}"><span class="fas fa-plus me-2"></span>Add Concepto</a>
                             <a class="btn btn-phoenix-secondary text-900 btn-sm" href="listProcesoFormulas"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                            <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                            <div class="btn-group mb-1 me-1 ms-0 mt-1">
                               <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                               <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                               <div class="dropdown-menu">

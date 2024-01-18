@@ -1,4 +1,7 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
     <!--<nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">-->
 
     <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
@@ -156,8 +159,8 @@
                 <div class="card position-relative border-0">
                   <div class="card-header p-2">
                     <div class="d-flex justify-content-between">
-                      <h5 class="text-black mb-0">Notificatons</h5>
-                      <button class="btn btn-link p-0 fs--1 fw-normal" type="button">Mark all as read</button>
+                      <h5 class="text-black mb-0">Notificaciones</h5>
+                      <button class="btn btn-link p-0 fs--1 fw-normal" type="button">Marca todos como leídos</button>
                     </div>
                   </div>
                   <div class="card-body p-0">
@@ -170,7 +173,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Jessie Samson</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>💬</span>Mentioned you in a comment.<span class="ms-2 text-400 fw-bold fs--2">10m</span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Mentioned you in a comment.<span class="ms-2 text-400 fw-bold fs--2">10m</span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">10:41 AM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -188,7 +191,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Jane Foster</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>📅</span>Created an event.<span class="ms-2 text-400 fw-bold fs--2">20m</span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Created an event.<span class="ms-2 text-400 fw-bold fs--2">20m</span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">10:20 AM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -205,7 +208,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Jessie Samson</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>👍</span>Liked your comment.<span class="ms-2 text-400 fw-bold fs--2">1h</span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Liked your comment.<span class="ms-2 text-400 fw-bold fs--2">1h</span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">9:30 AM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -224,7 +227,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Kiera Anderson</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>💬</span>Mentioned you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Mentioned you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">9:11 AM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -241,7 +244,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Herman Carter</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>👤</span>Tagged you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Tagged you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">10:58 PM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -258,7 +261,7 @@
                               </div>
                               <div class="flex-1 me-sm-3">
                                 <h4 class="fs--1 text-black">Benjamin Button</h4>
-                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'>👍</span>Liked your comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
+                                <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class='me-1 fs--2'></span>Liked your comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
                                 <p class="text-800 fs--1 mb-0"><span class="me-1 fas fa-clock"></span><span class="fw-bold">10:18 AM </span>August 7,2021</p>
                               </div>
                             </div>
@@ -272,7 +275,7 @@
                     </div>
                   </div>
                   <div class="card-footer p-0 border-top border-0">
-                    <div class="my-2 text-center fw-bold fs--2 text-600"><a class="fw-bolder" href="pages/notifications.html">Notification history</a></div>
+                    <div class="my-2 text-center fw-bold fs--1 text-600"><a class="fw-bolder" href="pages/notifications.html">Historial de notificaciones</a></div>
                   </div>
                 </div>
               </div>
@@ -296,46 +299,46 @@
                 <div class="card bg-white position-relative border-0">
                   <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
                     <div class="row text-center align-items-center gx-0 gy-0">
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/behance.webp" alt="" width="30" />
+                      <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/behance.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Behance</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
+                        </a></div>-->
+                      <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Cloud</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
+                        </a></div>-->
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://slack.com/intl/es-pe/"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Slack</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://github.com/"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Gitlab</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://bitbucket.org/"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">BitBucket</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-drive.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://drive.google.com/drive/my-drive"><img src="resources/assets/img/nav-icons/google-drive.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Drive</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/trello.webp" alt="" width="30" />
+                      <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#"><img src="resources/assets/img/nav-icons/trello.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Trello</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/figma.webp" alt="" width="20" />
+                        </a></div>-->
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.figma.com/"><img src="resources/assets/img/nav-icons/figma.webp" alt="" width="20" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Figma</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://twitter.com/"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Twitter</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.pinterest.com/"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Pinterest</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.linkedin.com/"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Linkedin</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-maps.webp" alt="" width="30" />
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.google.com/maps/place/BALKANED/@-12.0146003,-76.9848409,11.96z/data=!4m6!3m5!1s0x9105c3e90d86b7bb:0x2f24fbaf73d0e99f!8m2!3d-12.0193356!4d-76.8987403!16s%2Fg%2F11rbfnpzp_?hl=es-419&entry=ttu"><img src="resources/assets/img/nav-icons/google-maps.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Maps</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-photos.webp" alt="" width="30" />
+                      <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/google-photos.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Photos</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/spotify.webp" alt="" width="30" />
+                        </a></div>-->
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://open.spotify.com/intl-es!"><img src="resources/assets/img/nav-icons/spotify.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Spotify</p>
                         </a></div>
                     </div>

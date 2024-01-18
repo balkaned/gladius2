@@ -81,10 +81,10 @@
               <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
             </div>
           </div>
-          <div class="d-grid gap-2 d-md-block">
+          <div class="">
             <a class="btn btn-primary btn-sm" href="#"><span class="fas fa-plus me-2"></span>Add Formula</a>
             <a class="btn btn-phoenix-secondary btn-sm ms-1" href="listProcesoFormulas"><span class="fas fa-reply me-2"></span>Atras</a>
-            <div class="btn-group mb-1 me-1 ms-1 mt-1">
+            <div class="btn-group mb-1 me-1 ms-0 mt-1">
               <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
               <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
               <div class="dropdown-menu">

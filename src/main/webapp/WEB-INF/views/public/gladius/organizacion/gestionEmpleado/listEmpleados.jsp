@@ -85,7 +85,7 @@
                         <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
                       </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-block">
+                    <div class="">
                           <a class="btn btn-primary btn-sm" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                           <a class="btn btn-phoenix-secondary btn-sm ms-1" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
 
