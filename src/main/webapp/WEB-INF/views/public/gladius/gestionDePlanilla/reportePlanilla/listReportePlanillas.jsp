@@ -21,23 +21,39 @@
         }, 3000);
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         /* attach a submit handler to the form */
-        $('#submit1').click(function(event) {
-            $.ajaxSetup({cache:false});
+        $('#submit1').click(function (event) {
+            $.ajaxSetup({cache: false});
             $.ajax({
                 url: "lisReportePdf",
-                data: {"accion": "lisReportePdf",
-                    "codpro": $("#codpro").val(),
-                    "nroper" : $("#nroper").val(),
-                    "nroper2" : $("#nroper2").val()
+                data: {
+                    "accion": "lisReportePdf",
+                    "iexcodpro": $("#iexcodpro").val(),
+                    "nroper": $("#nroper").val(),
+                    "nroper2": $("#nroper2").val()
                 },
                 success: function (data) {
-
                     $("#idresult").html(data);
                 }
             });
 
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var submitBtn = document.getElementById('submit1');
+        var nroperInput = document.getElementById('nroper');
+        var nroper2Input = document.getElementById('nroper2');
+
+        submitBtn.addEventListener('click', function (event) {
+            var permes = nroperInput.value.trim();
+            var permes2 = nroper2Input.value.trim();
+
+            if (permes === '' || permes2 === '') {
+                alert('Por favor, ingrese ambos Periodo Inicio y Periodo Fin YYYY antes de ver reporte.');
+                event.preventDefault();
+            }
         });
     });
 </script>
@@ -71,9 +87,10 @@
                         <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
-                                <select class="form-select" name="iexcodpro" required>
+                                <select class="form-select" name="iexcodpro" id="iexcodpro"  required>
                                     <option value="" selected>Seleccionar</option>
-                                    <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
+                                    <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}"
+                                               varStatus="loopCounter">
                                         <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso==requestScope.iexcodpro
                                                 ? 'selected' : '' }>${lovProcesos.desProceso}</option>
                                     </c:forEach>
@@ -81,24 +98,25 @@
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
-                                <input class="form-control" type="text" id="nroper" name="nroper"
-                                       value="${requestScope.peranio}" placeholder="2023" required>
+                                <input class="form-control" type="text" id="nroper" name="nroper" placeholder="YYYY"
+                                       required>
                             </div>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
-                                <input class="form-control" type="text" id="nroper2" name="nroper2"
-                                       value="${requestScope.peranio}" placeholder="2024" required>
+                                <input class="form-control" type="text" id="nroper2" name="nroper2" placeholder="YYYY"
+                                       required>
                             </div>
 
                             <div class="">
-                                <a id="submit1" href="#"  class="btn btn-primary btn-sm" ><span class="fa-solid fa-magnifying-glass me-2"></span>Ver reporte</a>
+                                <a id="submit1" href="#" i-02d="procesarBtn" class="btn btn-primary btn-sm"><span
+                                        class="fa-solid fa-magnifying-glass me-2"></span>Ver reporte</a>
                                 <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
-                                <INPUT TYPE="HIDDEN" NAME="accion" Value="listReportePlanillas">
+                                <INPUT TYPE="HIDDEN" NAME="accion" Value="lisReportePdf">
                             </div>
                         </form>
 
-                        <div id="idresult" style="width:1000px; height:600px; overflow: scroll;" ></div>
+                        <div id="idresult" style="width:1000px; height:600px; overflow: scroll;"></div>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -39,13 +40,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Logger;
+
 @Slf4j
 @RestController
 public class GestionReportesController {
-
-
-    public static Logger logger = Logger.getLogger(GestionReportesController.class.getName());
-
     JdbcTemplate template;
 
     @Autowired
@@ -75,7 +73,9 @@ public class GestionReportesController {
         log.info("/listReporte5taNomina");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -121,7 +121,9 @@ public class GestionReportesController {
         log.info("/listReportePlanillas");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -137,23 +139,30 @@ public class GestionReportesController {
         log.info("/lisReportePdf");
 
         String user = (String) request.getSession().getAttribute("user");
-        logger.info("user:" + user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            logger.info("Ingreso a user null");
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
 
+
         String v_idproceso = "";
         String v_idperiodo = "";
         Integer v_codcia = idCompania;
-        String v_nroper = request.getParameter("nroper");
-        String v_nroper2 = request.getParameter("nroper2");
-        v_idproceso = request.getParameter("codpro");
+        String v_nroper =request.getParameter("nroper");
+        String v_nroper2 =request.getParameter("nroper2");
+        v_idproceso =request.getParameter("iexcodpro");
 
-        byte[] bytes = null;
+
+        log.info("v_codcia: " + v_codcia);
+        log.info("v_idproceso " + v_idproceso);
+        log.info("v_idperiodo " + v_idperiodo);
+        log.info("v_nroper " + v_nroper);
+        log.info("v_nroper2 " + v_nroper2);
+
 
         String fileName_pdf = "";
         Regions cliRegion = null;
@@ -163,7 +172,7 @@ public class GestionReportesController {
         InputStream inputStream = null;
 
 
-        logger.info("v_codcia: " + v_codcia);
+
         Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(v_codcia));
 
         cliRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
@@ -172,10 +181,10 @@ public class GestionReportesController {
         passPhrase_pdf = ciainfo.getIexpasssource().trim();
 
 
-        logger.info("cliRegion: " + cliRegion);
-        logger.info("bucket_name_pdf: " + bucket_name_pdf);
-        logger.info("key_name_pdf: " + key_name_pdf);
-        logger.info("passPhrase_pdf: " + passPhrase_pdf);
+        log.info("cliRegion: " + cliRegion);
+        log.info("bucket_name_pdf: " + bucket_name_pdf);
+        log.info("key_name_pdf: " + key_name_pdf);
+        log.info("passPhrase_pdf: " + passPhrase_pdf);
 
         fileName_pdf = "reportes/ReportResumenPla02.jasper";
 
@@ -185,41 +194,52 @@ public class GestionReportesController {
         inputStream = o.getObjectContent();
 
 
-        logger.info("Entro al reporte pdf ResumenPla ");
+        log.info("Entro al reporte lisReportePdf ");
 
 
         Map parametros = new HashMap();
         parametros.put("P_CODCIA", v_codcia);
-        parametros.put("P_CODPRO", v_idproceso);
+        parametros.put("P_CODPRO", Integer.parseInt(v_idproceso));
         parametros.put("P_NROPER", v_nroper);
         parametros.put("P_NROPER2", v_nroper2);
         parametros.put("P_XNROPER", "");
         parametros.put("P_XCODCON", "");
         parametros.put("SUBREPORT_DIR", "");
 
+
+        log.info("cliRegion: " + cliRegion);
+        log.info("bucket_name_pdf: " + bucket_name_pdf);
+        log.info("key_name_pdf: " + key_name_pdf);
+        log.info("passPhrase_pdf: " + passPhrase_pdf);
+
+
         Connection conn = template.getDataSource().getConnection();
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
 
-            logger.info("jasperPrint: " + jasperPrint.getName());
-
             if (jasperPrint != null) {
-                logger.info("Se encontró jasper");
-                HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
-                ServletOutputStream outputStream = response.getOutputStream();
-                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exporter.setExporterOutput(new SimpleHtmlExporterOutput(outputStream));
-                exporter.exportReport();
-                outputStream.flush();
-                outputStream.close();
+                log.info("Jasper encontrado");
+                try (PrintWriter writer = response.getWriter()) {
+                    HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
+                    exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                    exporter.setExporterOutput(new SimpleHtmlExporterOutput(writer));
+                    exporter.exportReport();
+                    writer.flush();
+                } catch (IOException e) {
+                    log.info("Error de entrada/salida al escribir en el flujo de salida: " + e.getMessage());
+                    throw new RuntimeException(e);
+                }
+            } else {
+                log.info("JasperPrint es nulo");
             }
-        } catch (IOException ex) {
-            logger.info("No compila ");
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        } finally {
-            conn.close();
+        } catch (JRException ex) {
+            log.info("Error al procesar el informe Jasper: " + ex.getMessage());
+        } catch (Exception e) {
+            log.info("Otro error inesperado: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
+
+
 
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
         return new ModelAndView("public/gladius/gestionDePlanilla/reportePlanilla/listReportePlanillas");
@@ -230,7 +250,9 @@ public class GestionReportesController {
         log.info("/listReportePlanillaxConcepto");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -270,7 +292,9 @@ public class GestionReportesController {
         log.info("/listReporteNominaxPersona");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
