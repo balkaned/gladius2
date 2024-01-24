@@ -52,49 +52,59 @@
                             <div class="col-sm-6 col-md-7">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código Trabajador</label>
                                 <select class="form-select" name="percodtra" id="percodtra" required>
-                                    <option value="" selected >Seleccionar</option>
+                                    <option value="" selected>Seleccionar</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
                                         <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''}     >
-                                        [${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
+                                            [${LstEmpleadoRes.iexcodtra}]
+                                            - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
-                                <input class="form-control" type="text" id="peranio" name="peranio" value="${requestScope.peranio}" placeholder="yyyy" required>
+                                <input class="form-control" type="text" id="peranio" name="peranio"
+                                       value="${requestScope.peranio}" placeholder="yyyy" required>
                             </div>
                             <div class="col-sm-6 col-md-12">
-                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar</button>
+                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span
+                                        class="fa-solid fa-magnifying-glass me-2"></span>Consultar
+                                </button>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <input class="form-control" type="text" value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}" readonly disabled>
+                                <input class="form-control" type="text"
+                                       value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}"
+                                       readonly disabled>
                             </div>
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° Documento</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}" readonly disabled>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}"
+                                       readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexflgest}" readonly disabled>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexflgest}"
+                                       readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}" readonly disabled>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}"
+                                       readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de cese</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}" readonly disabled>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}"
+                                       readonly disabled>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
-                      <div class="table-responsive scrollbar mx-n1 px-1">
-                        <table class="table table-sm fs--1 mb-0">
-                          <thead>
+                        <div class="table-responsive scrollbar mx-n1 px-1">
+                            <table class="table table-sm fs--1 mb-0">
+                                <thead>
                                 <tr>
                                     <th class="white-space-nowrap fs--1 align-middle ps-0"
                                         style="width:26px;">
@@ -139,8 +149,8 @@
                                     </th>
                                     <th class="sort align-middle text-center pe-0"></th>
                                 </tr>
-                          </thead>
-                          <tbody class="list" id="order-table-body">
+                                </thead>
+                                <tbody class="list" id="order-table-body">
                                 <c:set var="xtotingreso" value="${0}"/>
                                 <c:set var="xtotimp5ta" value="${0}"/>
                                 <c:set var="xtotdesc5ta" value="${0}"/>
@@ -157,11 +167,14 @@
                                             </div>
                                         </td>
                                         <td class="order align-middle white-space-nowrap py-0">
-                                                <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${Res_planilla5ta.iexnroper}
+                                            <a href="#"><span
+                                                    class="fa-solid fa-calendar-days me-2"></span></a> ${Res_planilla5ta.iexnroper}
                                         </td>
                                         <td class="total align-middle text-center fw-semi-bold text-1000">
                                                 ${Res_planilla5ta.iexcodpro}</td>
-                                        <td class="total align-middle text-center fw-semi-bold text-600 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${Res_planilla5ta.descodpro}</span></td>
+                                        <td class="total align-middle text-center fw-semi-bold text-600 ps-2 pe-2"><span
+                                                class="badge badge-phoenix fs--2 badge-phoenix-primary"><span
+                                                class="badge-label">${Res_planilla5ta.descodpro}</span></span></td>
                                         <td class="total align-middle text-center fw-semi-bold text-1000">
                                                 ${Res_planilla5ta.iexcorrel}</td>
                                         <td class="total align-middle text-center fw-bold text-1000">
@@ -193,19 +206,26 @@
                                         </td>
 
                                         <td class="align-middle text-end white-space-nowrap pe-0 action">
-                                             <div class="font-sans-serif btn-reveal-trigger position-static">
-                                               <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
-                                               data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                               <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
-                                               <div class="dropdown-menu dropdown-menu-end py-2">
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#!" class="fs--1" data-bs-toggle="modal"
-                                                        data-bs-target="#reportsFilterModal" aria-haspopup="true"
-                                                        aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-download me-2"></span>Boleta PDF</a>
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download me-2"></span>Reporte 5ta PDF</a>
+                                            <div class="font-sans-serif btn-reveal-trigger position-static">
+                                                <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown" data-boundary="window"
+                                                        aria-haspopup="true" aria-expanded="false"
+                                                        data-bs-reference="parent">
+                                                    <span class="fas fa-plus"></span><span
+                                                        class="fas fa-caret-down ms-2"></span></button>
+                                                <div class="dropdown-menu dropdown-menu-end py-2">
+                                                    <a id="dropdownmenutable" class="dropdown-item"
+                                                       href="AWSorFTP_flgsource@verReportePDF@${idComp}@${Res_planilla5ta.iexcodtra}@null@null@BoletaEmpTra@4UP_CODPRO=${Res_planilla5ta.iexcodpro}UP_NROPER=${Res_planilla5ta.iexnroper}UP_CORREL=${Res_planilla5ta.iexcorrel}UP_GRPPRO=${Res_planilla5ta.grppro}@null@null@null"><span
+                                                            class="fa-solid fa-download me-2"></span>Boleta PDF</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item"
+                                                       href="AWSorFTP_flgsource@verReportePDF@${idComp}@${Res_planilla5ta.iexcodtra}@null@null@5taProcesosDet@3UP_CODPRO=${Res_planilla5ta.iexcodpro}UP_NROPER=${Res_planilla5ta.iexnroper}UP_CORREL=${Res_planilla5ta.iexcorrel}@null@null@null"><span
+                                                            class="fa-solid fa-download me-2"></span>Reporte 5ta PDF</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
-                                               </div>
-                                             </div>
+                                                    <a id="dropdownmenutable" class="dropdown-item" href="#!"><span
+                                                            class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                </div>
+                                            </div>
                                         </td>
 
                                     </tr>
@@ -223,8 +243,8 @@
                                     <c:set var="xrenta5taotrciames"
                                            value="${ xrenta5taotrciames + Res_planilla5ta.rentafect5taotrcia_mes}"/>
                                 </c:forEach>
-                          </tbody>
-                          <tfoot>
+                                </tbody>
+                                <tfoot>
                                 <tr>
                                     <td></td>
                                     <td colspan="4"><h5>Totales</h5></td>
@@ -249,25 +269,39 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                          </tfoot>
-                        </table>
-                        <div>
-                            <c:set var="xtotaniorem5ta" value="${xtotimp5ta + ximp5taotrciames + xing5tacia_anterior }"/>
-                            <c:set var="xtotaniorent5ta" value="${xtotdesc5ta + xrenta5taotrciames + xret5tacia_anterior}"/>
-                            <h3 class="mt-4">Total ingresos afectos a 5ta del año : <span class="ms-3"><fmt:formatNumber value="${xtotaniorem5ta}" type="number" maxFractionDigits="2" pattern='###,###.00'/></span></h4>
-                            <h5 class="mt-2 mb-3">Total descuentos 5ta del año: <span class="ms-3"><fmt:formatNumber value="${xtotaniorent5ta}" type="number" maxFractionDigits="2" pattern='###,###.00'/></span></h5>
+                                </tfoot>
+                            </table>
+                            <div>
+                                <c:set var="xtotaniorem5ta"
+                                       value="${xtotimp5ta + ximp5taotrciames + xing5tacia_anterior }"/>
+                                <c:set var="xtotaniorent5ta"
+                                       value="${xtotdesc5ta + xrenta5taotrciames + xret5tacia_anterior}"/>
+                                <h4 class="mt-4">Total ingresos afectos a 5ta del año : <span
+                                        class="ms-3"><fmt:formatNumber value="${xtotaniorem5ta}" type="number"
+                                                                       maxFractionDigits="2"
+                                                                       pattern='###,###.00'/></span></h4>
+                                <h5 class="mt-2 mb-3">Total descuentos 5ta del año: <span class="ms-3"><fmt:formatNumber
+                                        value="${xtotaniorent5ta}" type="number" maxFractionDigits="2"
+                                        pattern='###,###.00'/></span></h5>
+                            </div>
                         </div>
-                      </div>
-                      <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
+                        <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
                             <div class="col-auto d-flex">
-                              <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900"
+                                   data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!"
+                                                                          data-list-view="*">View all<span
+                                    class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a
+                                    class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span
+                                    class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
                             </div>
                             <div class="col-auto d-flex">
-                              <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                              <ul class="mb-0 pagination"></ul>
-                              <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                <button class="page-link" data-list-pagination="prev"><span
+                                        class="fas fa-chevron-left"></span></button>
+                                <ul class="mb-0 pagination"></ul>
+                                <button class="page-link pe-0" data-list-pagination="next"><span
+                                        class="fas fa-chevron-right"></span></button>
                             </div>
-                      </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -282,7 +316,8 @@
             <form id="addEventForm" autocomplete="off">
                 <div class="modal-header border-200 bg-soft p-4">
                     <h5 class="modal-title text-1000 fs-2 lh-sm">Reporte de planilla </h5>
-                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span
+                            class="fas fa-times fs-0"></span></button>
                 </div>
                 <div class="modal-body pt-4 pb-2 px-4">
                     <div class="ps-3" style="font-size:13px;">
@@ -290,7 +325,9 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                    <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">Cerrar</button>
+                    <button class="btn btn-sm btn-primary px-9 fs--2 my-0" data-bs-dismiss="modal" type="submit">
+                        Cerrar
+                    </button>
                 </div>
             </form>
         </div>
