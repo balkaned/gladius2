@@ -5,6 +5,7 @@ import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PlaProPeriodo;
 import com.balkaned.gladius.dao.PlanillaDAO;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -278,13 +279,13 @@ public class PlantillaDaoImpl implements PlanillaDAO {
                 "k.iexfecfin," +
                 "k.iexcorrel  order by k.iexnroper,  k.iexcodpro asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<PlaProPeriodo>>() {
+        return template.query(sql, new ResultSetExtractor<>() {
+
             public List<PlaProPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<PlaProPeriodo> lista = new ArrayList<PlaProPeriodo>();
 
                 while (rs.next()) {
                     PlaProPeriodo p = new PlaProPeriodo();
-
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
                     p.setDescodpro(rs.getString("despro"));
@@ -303,6 +304,7 @@ public class PlantillaDaoImpl implements PlanillaDAO {
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setGrppro(rs.getString("progrppro"));
                     lista.add(p);
+                    logger.info("Consulta SQL lista (caso 1): " + lista.add(p));
                 }
                 return lista;
             }
@@ -390,13 +392,13 @@ public class PlantillaDaoImpl implements PlanillaDAO {
                 "k.iexfecfin," +
                 "k.iexcorrel  order by k.iexnroper,  k.iexcodpro asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<PlaProPeriodo>>() {
+        return template.query(sql, new ResultSetExtractor<>() {
+
             public List<PlaProPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<PlaProPeriodo> lista = new ArrayList<PlaProPeriodo>();
 
                 while (rs.next()) {
                     PlaProPeriodo p = new PlaProPeriodo();
-
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
                     p.setDescodpro(rs.getString("despro"));
@@ -414,8 +416,8 @@ public class PlantillaDaoImpl implements PlanillaDAO {
                     p.setTotalaporte(rs.getDouble("T4030"));
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setGrppro(rs.getString("progrppro"));
-
                     lista.add(p);
+                    logger.info("Consulta SQL lista (caso 2): " + lista.add(p));
                 }
                 return lista;
             }
@@ -455,7 +457,7 @@ public class PlantillaDaoImpl implements PlanillaDAO {
     }
 
 
-    public void AfpNetExe(Integer codcia, String permes  ) {
+    public void AfpNetExe(Integer codcia, String permes) {
 
         template.update("call prc_afpnet_permes(?,?  )",
 

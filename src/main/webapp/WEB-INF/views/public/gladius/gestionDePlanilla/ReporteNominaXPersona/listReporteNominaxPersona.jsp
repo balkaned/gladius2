@@ -67,9 +67,7 @@
                                 <select class="form-select" name="codtra" id="codtra" required>
                                     <option value="" selected>Código trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
-                                        <option value="${LstEmpleadoRes.iexcodtra}"     ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''}     >
-                                            [${LstEmpleadoRes.iexcodtra}]
-                                            - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}   </option>
+                                        <option value="${LstEmpleadoRes.iexcodtra}"     ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''}     >  [${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}   </option>
                                     </c:forEach>
                                 </select>
 
@@ -79,7 +77,7 @@
                                 <select class="form-select" name="codpro" id="codpro" required>
                                     <option value="" selected>Proceso</option>
                                     <c:forEach var="LstProcesoPlanilla" items="${requestScope.LstProcesoPlanilla}">
-                                        <option value="${LstProcesoPlanilla.idProceso}"   ${LstProcesoPlanilla.idProceso==requestScope.codpro ? 'selected' : ''}    > ${LstProcesoPlanilla.desProceso} </option>
+                                        <option value="${LstProcesoPlanilla.idProceso}"   ${LstProcesoPlanilla.idProceso==requestScope.codpro ? 'selected' : ''}    >  ${LstProcesoPlanilla.desProceso}   </option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -96,7 +94,7 @@
                             <div class="d-grid gap-2 d-md-block">
                                 <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar
                                 </button>
-                                <c:if test="${not empty requestScope.codpro}">
+                                <c:if test="${not empty requestScope.codpro}">x
                                     <!--<a class="btn btn-link text-900 me-4 px-0"
                                        href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2Piexcodreg=${iexcodreg}Pslc_estado=2bvv@null@null@null@null"
                                        target="_blank"><span class="fa-solid fa-file-export fs--1 me-2"></span>Descargar
@@ -117,7 +115,7 @@
                                 </c:if>
                             </div>
                             <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
-                            <INPUT TYPE="HIDDEN" id="accion" NAME="accion" Value="QRYPLATRAREP">
+                            <INPUT TYPE="HIDDEN" id="accion" NAME="accion" Value="">
                         </form>
                         <div id="orderTable"
                              data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>

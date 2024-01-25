@@ -72,29 +72,32 @@ public class GestionReportesController {
     public ModelAndView listReporte5taNomina(ModelMap model, HttpServletRequest request) {
         log.info("/listReporte5taNomina");
 
+        // Verificación de sesión y obtención de datos
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {
+        if (user == null || user.isEmpty() || user.equals("null")) {
             return new ModelAndView("redirect:/login2");
         }
 
         sessionattributes.getVariablesSession(model, request);
+
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        Empleado Empleado = new Empleado();
-        Empleado.setIexcodcia(idCompania);
-        List<Empleado> listarEmp = empleadoService.listarEmpleado(Empleado);
+        // Obtención de la lista de empleados
+        Empleado empleado = new Empleado();
+        empleado.setIexcodcia(idCompania);
+        List<Empleado> listarEmp = empleadoService.listarEmpleado(empleado);
 
-        String v_idproceso = "";
-        String v_idperiodo = "";
+        // Obtención de parámetros
         String anio = request.getParameter("peranio");
         String iexcodtra = request.getParameter("percodtra");
 
+
+        // Listas y objetos relacionados
         List<PlaProPeriodo> lista = new ArrayList<>();
-        Empleado empleado = new Empleado();
         EmpAcum xEmpAcumAnio = new EmpAcum();
+
         try {
             if (iexcodtra != null && !iexcodtra.isEmpty() && iexcodtra.matches("\\d+")) {
-
                 empleado = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(iexcodtra));
                 lista = planillaService.listPla5ta(idCompania, anio, Integer.parseInt(iexcodtra));
                 xEmpAcumAnio = empAcumService.getEmpAcum(idCompania, Integer.parseInt(iexcodtra), anio);
@@ -105,12 +108,14 @@ public class GestionReportesController {
             e.printStackTrace();
         }
 
+        // Añadir atributos al modelo
         model.addAttribute("Res_planilla5ta", lista);
         model.addAttribute("peranio", anio);
         model.addAttribute("percodtra", iexcodtra);
         model.addAttribute("LstEmpleadoRes", listarEmp);
         model.addAttribute("fichaEmp", empleado);
         model.addAttribute("xEmpAcumAnio", xEmpAcumAnio);
+
 
         return new ModelAndView("public/gladius/gestionDePlanilla/reporte5Nomina/listReporte5taNomina");
     }
@@ -148,13 +153,12 @@ public class GestionReportesController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
 
-
         String v_idproceso = "";
         String v_idperiodo = "";
         Integer v_codcia = idCompania;
-        String v_nroper =request.getParameter("nroper");
-        String v_nroper2 =request.getParameter("nroper2");
-        v_idproceso =request.getParameter("iexcodpro");
+        String v_nroper = request.getParameter("nroper");
+        String v_nroper2 = request.getParameter("nroper2");
+        v_idproceso = request.getParameter("iexcodpro");
 
 
         log.info("v_codcia: " + v_codcia);
@@ -170,7 +174,6 @@ public class GestionReportesController {
         String key_name_pdf = "";
         String passPhrase_pdf = "";
         InputStream inputStream = null;
-
 
 
         Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(v_codcia));
@@ -240,7 +243,6 @@ public class GestionReportesController {
         }
 
 
-
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
         return new ModelAndView("public/gladius/gestionDePlanilla/reportePlanilla/listReportePlanillas");
     }
@@ -290,9 +292,10 @@ public class GestionReportesController {
     @RequestMapping("/listReporteNominaxPersona")
     public ModelAndView listReporteNominaxPersona(ModelMap model, HttpServletRequest request) {
         log.info("/listReporteNominaxPersona");
-
         String user = (String) request.getSession().getAttribute("user");
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -301,9 +304,8 @@ public class GestionReportesController {
 
         Empleado Empleado = new Empleado();
         Empleado.setIexcodcia(idCompania);
-        List<Empleado> listarEmp = empleadoService.listarEmpleado(Empleado);
+        List<Empleado> listaEmpl = empleadoService.listarEmpleado(Empleado);
 
-        Empleado empleado = new Empleado();
 
         String perini = request.getParameter("perini");
         String perfin = request.getParameter("perfin");
@@ -311,38 +313,43 @@ public class GestionReportesController {
         String codpro = request.getParameter("codpro");
 
         try {
-            if (iexcodtra != null && !iexcodtra.isEmpty() && iexcodtra.matches("\\d+")) {
+            int codtrab = Integer.parseInt(iexcodtra);
+            Empleado empleado = empleadoService.recuperarCabecera(idCompania, codtrab);
 
-                empleado = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(iexcodtra));
-                if (codpro == null || codpro.trim().equals("")) {
+            log.info("recuperar" + empleado);
 
-                    List<PlaProPeriodo> lista = planillaService.listAllPlaPerTra(idCompania, Integer.parseInt(iexcodtra), perini, perfin);
-                    model.addAttribute("Res_planAllPerTra", lista);
-                    model.addAttribute("perini", perini);
-                    model.addAttribute("perfin", perfin);
-                    model.addAttribute("codtra", iexcodtra);
-                    model.addAttribute("fichaEmp", empleado);
-
-                } else {
-                    List<PlaProPeriodo> lista = planillaService.listAllPlaPerTraPro(idCompania, Integer.parseInt(iexcodtra), Integer.parseInt(codpro), perini, perfin);
-                    model.addAttribute("Res_planAllPerTra", lista);
-                    model.addAttribute("perini", perini);
-                    model.addAttribute("perfin", perfin);
-                    model.addAttribute("codtra", iexcodtra);
-                    model.addAttribute("codpro", codpro);
-                    model.addAttribute("fichaEmp", empleado);
-
-                }
-
+            if (codpro == null || codpro.trim().isEmpty()) {
+                List<PlaProPeriodo> lista = planillaService.listAllPlaPerTra(idCompania, codtrab, perini, perfin);
+                model.addAttribute("Res_planAllPerTra", lista);
+                model.addAttribute("perini", perini);
+                model.addAttribute("perfin", perfin);
+                model.addAttribute("codtra", codtrab);
+                model.addAttribute("fichaEmp", empleado);
             } else {
-                log.info("Error no encontrado" + iexcodtra);
+                List<PlaProPeriodo> lista = planillaService.listAllPlaPerTraPro(idCompania, codtrab, Integer.parseInt(codpro), perini, perfin);
+                model.addAttribute("Res_planAllPerTra", lista);
+                model.addAttribute("perini", perini);
+                model.addAttribute("perfin", perfin);
+                model.addAttribute("codtra", codtrab);
+                model.addAttribute("codpro", codpro);
+                model.addAttribute("fichaEmp", empleado);
+
+                log.info("Res_planAllPerTra" + planillaService.listAllPlaPerTraPro(idCompania, codtrab, Integer.parseInt(codpro), perini, perfin));
             }
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            log.error("Invalid value for iexcodtra: " + iexcodtra, e);
+            // Manejar el error de conversión de manera apropiada, si es necesario
         }
+        log.info("codpro : " + codpro);
+        log.info("iexcodtra : " + iexcodtra);
+        log.info("perini : " + perini);
+        log.info("perfin : " + perfin);
 
-        model.addAttribute("LstEmpleadoRes", listarEmp);
+
+        model.addAttribute("LstEmpleadoRes", listaEmpl);
         model.addAttribute("LstProcesoPlanilla", procesoPlanillaService.listar("%"));
         return new ModelAndView("public/gladius/gestionDePlanilla/ReporteNominaXPersona/listReporteNominaxPersona");
     }
+
+
 }

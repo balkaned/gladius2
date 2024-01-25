@@ -14,7 +14,6 @@ public class PlanillaServiceImpl implements PlanillaService {
 
     @Autowired
     PlanillaDAO dao;
-    private String file;
 
     public List<PlaProPeriodo> listPla5ta(Integer codcia, String anio, Integer codtra) {
         return dao.listPla5ta(codcia, anio, codtra);
