@@ -56,7 +56,7 @@
                               <input class="form-control" name="iexcodopc" type="hidden" value="${idRolxOpc}" />
                               <div class="col-sm-6 col-md-4">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
-                                     <input class="form-control" name="iexcodopc" type="number"  value="${idRolxOpc}" required readlony disabled/>
+                                     <input class="form-control" name="iexcodrol" type="number"  value="${idRolxOpc}" required readlony disabled/>
                               </div>
                               <div class="col-sm-6 col-md-12">
                               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>

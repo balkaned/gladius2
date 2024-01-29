@@ -55,7 +55,7 @@
                               <input class="form-control" name="iexcodrol" type="hidden" value="${idRol}" />
                               <div class="col-sm-6 col-md-4">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
-                                     <input class="form-control" name="iexcodopc" type="number"  placeholder="#" required/>
+                                     <input class="form-control" name="iexcodrol" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
                               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
