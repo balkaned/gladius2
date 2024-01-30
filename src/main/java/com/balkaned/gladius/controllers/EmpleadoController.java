@@ -183,7 +183,6 @@ public class EmpleadoController {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
         }
 
-
     }
 
     @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)

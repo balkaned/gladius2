@@ -188,7 +188,7 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via</label>
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="150" type="text" required/>
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="20" type="text" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Via</label>
@@ -273,7 +273,7 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom Via 2</label>
-                                                <input class="form-control" name="iexnomvia_dom2" maxlength="100" type="text" />
+                                                <input class="form-control" name="iexnomvia_dom2" maxlength="20" type="text" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>

@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.ContratoEmp;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,9 @@ public class ContratoController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/contrato@{idTrab}")
     public ModelAndView contrato(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/contrato");
@@ -39,6 +43,7 @@ public class ContratoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -71,7 +76,17 @@ public class ContratoController {
         model.addAttribute("sexo", sexo);
         model.addAttribute("LstContratoDet", contratoService.listarContratoEmp(emp));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/contratos");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/contratosSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/contratos");
+        }
+
+
     }
 
     @RequestMapping("/nuevoContrato@{idTrab}")

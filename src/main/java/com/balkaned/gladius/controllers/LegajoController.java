@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Grpfile;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class LegajoController {
     Sessionattributes sessionattributes;
 
     @Autowired
-    Sessionattributes sessionattributes2;
+    UsuxCompaniaService usuxCompaniaService;
 
     @RequestMapping("/legajo@{idTrab}")
     public ModelAndView legajo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
@@ -39,9 +40,9 @@ public class LegajoController {
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
-
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -72,10 +73,17 @@ public class LegajoController {
 
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajoSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        }
     }
 
     @RequestMapping("/buscarLegajo@{idTrab}")
@@ -88,6 +96,7 @@ public class LegajoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -126,7 +135,15 @@ public class LegajoController {
         model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
         model.addAttribute("codgrpfile", codgrpfile);
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajoSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        }
     }
 
     @RequestMapping("/buscarLegajoAtras@{idTrab}@{grpFile}")

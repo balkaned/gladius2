@@ -56,7 +56,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-warning ms-1 btn-sm" href="actualizarVacEmpl@${idTrab}"><span class="fa-solid fas fa-wrench me-2"></span>Actualizar</a>
+                                      <a class="btn btn-warning ms-1 btn-sm disabled" href="actualizarVacEmpl@${idTrab}"><span class="fa-solid fas fa-wrench me-2"></span>Actualizar</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -104,7 +104,7 @@
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
                                                     <a id="dropdownmenutable" class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item disabled" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </div>
                                                 </div>
                                               </td>

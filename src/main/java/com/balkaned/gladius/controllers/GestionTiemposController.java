@@ -29,6 +29,9 @@ public class GestionTiemposController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/gestionTiempo@{idTrab}")
     public ModelAndView gestionTiempo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/gestionTiempo");
@@ -41,6 +44,7 @@ public class GestionTiemposController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -85,7 +89,15 @@ public class GestionTiemposController {
             model.addAttribute("LstTurnoDiario", turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(idTrab), v_fecini, v_fecfin));
         }
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/gestionTiempo/gestionTiempo");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/gestionTiempo/gestionTiempoSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/gestionTiempo/gestionTiempo");
+        }
     }
 
     @RequestMapping("/grabarTurno@{idTrab}")

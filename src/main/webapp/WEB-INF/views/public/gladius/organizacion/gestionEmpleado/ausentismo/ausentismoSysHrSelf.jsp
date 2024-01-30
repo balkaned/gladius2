@@ -25,6 +25,7 @@
 
           <div class="content">
               <div class="pb-9">
+
                 <div class="row mt-0 mb-1">
                     <div class="col-12">
                       <div class="row align-items-center justify-content-between">
@@ -52,11 +53,11 @@
                             <div class="mb-8">
                                 <div>
                                   <div class="col-12 mt-4">
-                                    <h2 class="mb-0">Retención judicial</h2>
+                                        <h2 class="mb-0">Ausentismo</h2>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevoAusentismo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Ausentismo</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -71,27 +72,21 @@
                                 		  <thead>
                                 			<tr>
                                 			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order" >ID</th>
-                                			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">Tipo de Retencion</th>
-                                			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Resolucion</th>
-                                			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >Proceso</th>
-                                			  <th class="sort align-middle white-space-nowrap text-center text-uppercase ps-3 pe-3" scope="col" data-sort="delivery_type" >Fecha de Inicio</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Fecha Fin</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Porcentaje</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Imp. Fijo</th>
+                                			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">Tipo de Ausentismo</th>
+                                			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Fecha Inicio</th>
+                                			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >Fecha Fin</th>
+                                			  <th class="sort align-middle white-space-nowrap text-center text-uppercase ps-3 pe-3" scope="col" data-sort="delivery_type" >Nro de Dias</th>
                                 			  <th class="sort text-end text-center align-middle ps-3 pe-3 text-uppercase" scope="col"></th>
                                 			</tr>
                                 		  </thead>
                                 		  <tbody class="list" id="customer-order-table-body">
-                                			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
+                                			<c:forEach var="LstAusentismoDet" items="${requestScope.LstAusentismoDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
-                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexresolucion}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-1000">${LstRetencionDet.descodpro}</td>
-                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecini}</td>
-                                				  <td class="date align-middle white-space-nowrap fw-semi-bold text-1000 text-center pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-tag fs--1 me-2 mb-2">${LstRetencionDet.iexpordesct} %</span></td>
-                                				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000">${LstRetencionDet.ieximpfijo}</td>
+                                				  <td class="align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstAusentismoDet.iexcorrel}</a></td>
+                                				  <td class="align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-warning"><span class="badge-label">${LstAusentismoDet.destipaus}</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoDet.iexfecfin}</td>
+                                				  <td class="align-middle white-space-nowrap text-center fw-bold text-600">${LstAusentismoDet.iexnrodias} dias</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">

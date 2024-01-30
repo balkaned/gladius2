@@ -1,6 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
@@ -30,6 +31,9 @@ public class VacacionesController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/vacaciones@{idTrab}")
     public ModelAndView vacaciones(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/vacaciones");
@@ -40,6 +44,7 @@ public class VacacionesController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -78,7 +83,15 @@ public class VacacionesController {
 
         model.addAttribute("LstVacacionesCtl", vacacionesService.listarVacacionesCtl(empleado));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacacionesSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/listVacaciones");
+        }
     }
 
     @RequestMapping("/verDetalleVac@{idTrab}@{perMesIni}@{perMesFin}")
@@ -94,6 +107,7 @@ public class VacacionesController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -128,7 +142,17 @@ public class VacacionesController {
         model.addAttribute("sexo", sexo);
         model.addAttribute("LstVacacionesPer", vacacionesService.listarVacacionesPer(emp, perMesIni, perMesFin));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVacSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");
+        }
+
+
     }
 
     @RequestMapping("/nuevasVacacionesValidacion@{idTrab}@{perMesIni}@{perMesFin}")

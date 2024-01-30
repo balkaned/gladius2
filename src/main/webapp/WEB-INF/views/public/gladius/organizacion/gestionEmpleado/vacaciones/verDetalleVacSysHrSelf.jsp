@@ -11,7 +11,7 @@
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
-  
+
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
@@ -24,22 +24,21 @@
           <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
           <div class="content">
-              <div class="pb-9">
                 <div class="row mt-0 mb-1">
-                    <div class="col-12">
-                      <div class="row align-items-center justify-content-between">
-                        <div class="col-12 col-md-auto">
-                          <h2 class="mb-0"></h2>
-                        </div>
-                        <div class="col-12 col-md-auto">
-                          <div class="d-flex">
-                            <div class="flex-1 d-md-none">
-                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                      <div class="col-12">
+                        <div class="row align-items-center justify-content-between">
+                          <div class="col-12 col-md-auto">
+                            <h2 class="mb-0"></h2>
+                          </div>
+                          <div class="col-12 col-md-auto">
+                            <div class="d-flex">
+                              <div class="flex-1 d-md-none">
+                                <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                 </div>
 
                 <div class="row g-0 g-md-4 g-xl-6">
@@ -52,12 +51,23 @@
                             <div class="mb-8">
                                 <div>
                                   <div class="col-12 mt-4">
-                                    <h2 class="mb-0">Retención judicial</h2>
+                                    <h2 class="mb-0">Tabla de vacaciones</h2>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
-                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="vacaciones@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
+                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
                                   </div>
+                                </div>
+                                <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
+                                     <div class="alert alert-danger alert-dismissible " role="alert">
+                                        <strong>Error!</strong> ${requestScope.msgErrorSaldoVac}
+                                     </div>
+                                </c:if>
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
+                                      <h5 class="mb-0">Año</h5>
+                                    </div>
+                                    <p class="mb-0 text-800"><span class="badge bg-danger fs--1">${perini} - ${perfin}<span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
                                 </div>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
@@ -65,33 +75,32 @@
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
+
                                 <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                 	<div class="table-responsive scrollbar">
                                 		<table class="table table-sm fs--1 mb-0">
                                 		  <thead>
                                 			<tr>
                                 			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order" >ID</th>
-                                			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">Tipo de Retencion</th>
-                                			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Resolucion</th>
-                                			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >Proceso</th>
-                                			  <th class="sort align-middle white-space-nowrap text-center text-uppercase ps-3 pe-3" scope="col" data-sort="delivery_type" >Fecha de Inicio</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Fecha Fin</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Porcentaje</th>
-                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Imp. Fijo</th>
+                                			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">Año Ini</th>
+                                			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Año Fin</th>
+                                			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >Fecha Inicio</th>
+                                			  <th class="sort align-middle white-space-nowrap text-center text-uppercase ps-3 pe-3" scope="col" data-sort="delivery_type" >Fecha Fin</th>
+                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Nro Dias</th>
+                                			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="date">Tipo de Vacacion</th>
                                 			  <th class="sort text-end text-center align-middle ps-3 pe-3 text-uppercase" scope="col"></th>
                                 			</tr>
                                 		  </thead>
                                 		  <tbody class="list" id="customer-order-table-body">
-                                			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
+                                			<c:forEach var="LstVacacionesPer" items="${requestScope.LstVacacionesPer}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
-                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexresolucion}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-1000">${LstRetencionDet.descodpro}</td>
-                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecini}</td>
-                                				  <td class="date align-middle white-space-nowrap fw-semi-bold text-1000 text-center pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-tag fs--1 me-2 mb-2">${LstRetencionDet.iexpordesct} %</span></td>
-                                				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000">${LstRetencionDet.ieximpfijo}</td>
+                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${LstVacacionesPer.iexcorrel}</a></td>
+                                				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${LstVacacionesPer.iexpermesini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-1000 ps-3 pe-3">${LstVacacionesPer.iexpermesfin}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecini}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecfin}</td>
+                                				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesPer.iexnrodias}</td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstVacacionesPer.destipvac}</span></td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
@@ -99,7 +108,7 @@
                                                       data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                       <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                       <div class="dropdown-menu dropdown-menu-end py-2">
-                                					    <a id="dropdownmenutable" class="dropdown-item disabled" href="#"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                                        <a id="dropdownmenutable" class="dropdown-item disabled" href="#!"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                 						<div class="dropdown-divider"></div>
                                 						<a id="dropdownmenutable" class="dropdown-item disabled" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
@@ -121,6 +130,9 @@
                                 		  </div>
                                 	</div>
                                 </div>
+
+
+
                               </div>
                             </div>
                          </div>

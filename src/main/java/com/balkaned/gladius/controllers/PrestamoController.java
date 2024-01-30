@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PrestamoCab;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 @RestController
 @Slf4j
@@ -29,6 +29,9 @@ public class PrestamoController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/prestamos@{idTrab}")
     public ModelAndView prestamos(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/prestamos");
@@ -39,6 +42,7 @@ public class PrestamoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -69,10 +73,17 @@ public class PrestamoController {
 
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("LstPrestCab", prestamoService.listarPrestamoCab(emp));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/prestamos");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/prestamosSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/prestamos");
+        }
     }
 
     @RequestMapping("/nuevoPrestamo@{idTrab}")

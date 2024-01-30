@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.EmpAcum;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,9 @@ public class AcumuladoController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/acumulado@{idTrab}")
     public ModelAndView acumulado(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/acumulado");
@@ -35,6 +39,7 @@ public class AcumuladoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -62,12 +67,20 @@ public class AcumuladoController {
         } else {
             sexo = emp.getIexcodsex();
         }
+
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("LstAcumEmp", acumuladoService.listarEmpAcum(emp.getIexcodcia(), emp.getIexcodtra()));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/acumulados");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/acumuladosSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/acumulados");
+        }
     }
 
     @RequestMapping("/nuevoAcumulado@{idTrab}")

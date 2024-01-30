@@ -120,11 +120,11 @@ function formatearFecha2(){
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
                                                 <input class="form-control" name="iexglosa" maxlength="50" type="text" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
+                                            <div class="col-sm-6 col-md-5">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Prestamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
+                                            <div class="col-sm-6 col-md-5">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Ini Vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>

@@ -275,7 +275,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                         String strMain = p.getIexnomtra();
                         String[] arrSplit = strMain.split(" ");
 
-                        String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapemat());
+                        String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapepat());
                         p.setNomCompactoUpper(nombrecompleto);
                     }
 
@@ -1330,7 +1330,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                         String strMain = p.getIexnomtra();
                         String[] arrSplit = strMain.split(" ");
 
-                        String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapemat());
+                        String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapepat());
                         p.setNomCompactoUpper(nombrecompleto);
                     }
 

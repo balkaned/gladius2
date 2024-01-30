@@ -18,17 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 public class AusentismoController {
     @Autowired
     EmpleadoService empleadoService;
-
     @Autowired
     LovsService lovsService;
-
     @Autowired
     VacacionesService vacacionesService;
     @Autowired
     AusentismoService ausentismoService;
-
     @Autowired
     Sessionattributes sessionattributes;
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
 
     @RequestMapping("/ausentismo@{idTrab}")
     public ModelAndView ausentismo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
@@ -44,6 +43,7 @@ public class AusentismoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         model.addAttribute("idTrab", idTrab);
@@ -74,10 +74,17 @@ public class AusentismoController {
 
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
-
         model.addAttribute("LstAusentismoDet", ausentismoService.listarAusentismoPrg(emp));
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/ausentismo");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/ausentismoSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/ausentismo");
+        }
     }
 
     @RequestMapping("/nuevoAusentismo@{idTrab}")
