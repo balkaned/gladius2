@@ -142,11 +142,8 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                     usuxopc.setDessecimg(rs.getString("iexsecimg"));
                     usuxopc.setIcon(rs.getString("icon"));
                     usuxopc.setPath(rs.getString("iexactionspring"));
-
                     usuxopc.setDessecCapi(cap.letras(usuxopc.getDessec()));
-                    //logger.info("usuxopc.getDessecCapi(): "+usuxopc.getDessecCapi());
 
-                    //Se quita el slash del path
                     String cadena=usuxopc.getPath();
                     String nuevacadena= usuxopc.getPath().substring(1,cadena.length());
                     usuxopc.setPath(nuevacadena);
