@@ -136,7 +136,7 @@
             </div>
         </div>
         <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-          <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+          <button class="btn btn-sm btn-primary px-9 fs--1 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
       </form>
     </div>
@@ -163,7 +163,7 @@
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-primary justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                        <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
                     </div>
                   </div>
               </form>
@@ -172,7 +172,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
-          <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+          <button class="btn btn-sm btn-primary px-9 fs--1 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
     </div>
   </div>

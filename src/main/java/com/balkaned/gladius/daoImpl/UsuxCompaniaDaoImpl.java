@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.dao.UsuxCompaniaDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,6 +142,41 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
                 usuxcia.getCodrol(),
                 0,
                 "3");
+    }
+
+    public UsuarioxRol obtenerRolxUsuario(Integer codcia,Integer codusu) {
+
+        String sql="select " +
+                "u.iexcodusu, " +
+                "u.iexdesusu, " +
+                "com.iexcodcia, " +
+                "com.iexdescia, " +
+                "r.iexcodrol, " +
+                "r.iexdesrol, " +
+                "uc.iexcodtra " +
+                "from iexusuario u " +
+                "inner join iexusuxcia uc on uc.iexcodusu=u.iexcodusu " +
+                "inner join iexcompania com on com.iexcodcia=uc.iexcodcia " +
+                "inner join iexroles r on r.iexcodrol=uc.iexcodrol " +
+                "where com.iexcodcia="+codcia+" " +
+                "and u.iexcodusu="+codusu+" ";
+
+        return (UsuarioxRol) template.query(sql, new ResultSetExtractor<UsuarioxRol>() {
+            public UsuarioxRol extractData(ResultSet rs) throws SQLException, DataAccessException{
+                UsuarioxRol p = new UsuarioxRol();
+                while(rs.next()) {
+                   p.setIexcodusu(rs.getInt("iexcodusu"));
+                   p.setIexdesusu(rs.getString("iexdesusu"));
+                   p.setIexcodcia(rs.getInt("iexcodcia"));
+                   p.setIexdescia(rs.getString("iexdescia"));
+                   p.setIexcodrol(rs.getInt("iexcodrol"));
+                   p.setIexdesrol(rs.getString("iexdesrol"));
+                   p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                }
+                return p;
+            }
+        });
     }
 
 

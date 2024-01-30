@@ -1,6 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
@@ -27,23 +29,39 @@ public class EmpleadoController {
     @Autowired
     Sessionattributes sessionattributes;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
     @RequestMapping("/listEmpleados")
     public ModelAndView listEmpleados(ModelMap model, HttpServletRequest request) {
         log.info("/listEmpleados");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
         Empleado emp = new Empleado();
         emp.setIexcodcia(idCompania);
+        emp.setIexcodtra(ur.getIexcodtra());
 
-        List<Empleado> empleadoList = empleadoService.listarEmpleado(emp);
-        model.addAttribute("empleadoList", empleadoList);
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleados");
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            List<Empleado> empleadoListbyCodTra = empleadoService.listarEmpleadoByCodTrab(emp);
+            model.addAttribute("empleadoListbyCodTra",empleadoListbyCodTra);
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleadosSysHrSelf");
+        } else {
+            List<Empleado> empleadoList = empleadoService.listarEmpleado(emp);
+            model.addAttribute("empleadoList", empleadoList);
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleados");
+        }
     }
 
     @RequestMapping("detalleEmpl@{idTrab}")
@@ -51,10 +69,13 @@ public class EmpleadoController {
         log.info("/detalleEmpl");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
         log.info("idCompania: " + idCompania);
         log.info("idTrab: " + idTrab);
 
@@ -152,7 +173,17 @@ public class EmpleadoController {
         model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", emp5.getIexdepart_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
         model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlita los departamentos que tiene registrado el trabajdor
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonalesSyshrSelf/fichaTrabajadorSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
+        }
+
+
     }
 
     @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)
@@ -160,7 +191,9 @@ public class EmpleadoController {
         log.info("/updateEmplDatPers");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -236,7 +269,9 @@ public class EmpleadoController {
         log.info("/updateEmplDatLab");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -296,7 +331,9 @@ public class EmpleadoController {
         log.info("/updateInfoPago");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -348,7 +385,9 @@ public class EmpleadoController {
         log.info("/updateSegurSocial");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -416,7 +455,9 @@ public class EmpleadoController {
         log.info("/updateEmplDatDomic");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -517,7 +558,9 @@ public class EmpleadoController {
         log.info("/valRegEmpleado");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -529,7 +572,9 @@ public class EmpleadoController {
         log.info("/validarNroDoc");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -578,8 +623,10 @@ public class EmpleadoController {
         log.info("/nuevoEmpleado");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -595,7 +642,9 @@ public class EmpleadoController {
         log.info("/insertarEmpleado");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -648,7 +697,9 @@ public class EmpleadoController {
         log.info("/reingresoEmpleado");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -663,7 +714,9 @@ public class EmpleadoController {
         log.info("/procesarEmpleadoInactivo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         String usuario = (String) request.getSession().getAttribute("user");
@@ -697,7 +750,9 @@ public class EmpleadoController {
         log.info("/empleadoReactivado");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -706,5 +761,6 @@ public class EmpleadoController {
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/empleadoReactivado");
     }
+
 }
 

@@ -45,4 +45,6 @@ public interface EmpleadoDao {
 
     public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew);
 
+    public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado);
+
 }
