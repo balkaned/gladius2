@@ -17,8 +17,8 @@
     <script src="resources/vendors/echarts/echarts.min.js"></script>
     <script src="resources/vendors/dhtmlx-gantt/dhtmlxgantt.js"></script>
     <script src="resources/assets/js/projectmanagement-dashboard.js"></script>
-    <!--<script src="../src/js/theme/charts/echarts/examples/pie-chart.js"></script>-->
-    <!--<script src="resources/src/js/theme/charts/echarts/examples/pie-chart.js"></script>-->
+    <script src="resources/assets/js/basic-bar-chart.js"></script>
+    <script src="resources/assets/js/crm-dashboard.js"></script>
   </head>
 
   <body>
@@ -135,11 +135,22 @@
                   </div>
                 </div>
 
+                <div class="col-6 ms-0 ps-0 mt-3">
+                    <div>
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Areas</h3>
+                                <p>Cantidad de empleados por Areas</p>
+                                <div class="echart-revenue-target-conversion" style="min-height:200px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-12 mt-6 mb-5">
                     <h2 class="mb-2 text-1100">${nombreEnMes}</h2>
                     <h5 class="text-700 fw-semi-bold">Lista de personas que cumplen años este mes, empleados que ingresan y retirados</h5>
                 </div>
-
                 <div class="mx-lg-n4 mt-3">
                   <div class="row g-3">
                     <div class="col-12 col-xl-6 col-xxl-7">
@@ -289,7 +300,7 @@
                                         <strong class="text-black">No hay datos</strong>
                                          <p class="mb-0 fw-semi-bold text-1000">${mensaje2} <a href="#">Mas información</a></p>
                                     </div>
-                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <button class="btn-close fs-0" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             </c:if>
                             <c:forEach var="listRetirados" items="${requestScope.listRetirados}">
