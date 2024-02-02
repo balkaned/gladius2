@@ -1,11 +1,10 @@
 package com.balkaned.gladius;
 
 
-import com.balkaned.gladius.beans.Compania;
-import com.balkaned.gladius.beans.UsuarioConeccion;
-import com.balkaned.gladius.beans.UsuxOpciones;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -13,8 +12,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @Slf4j
@@ -33,6 +37,9 @@ public class IndexController {
 
     @Autowired
     UsuxSystemaService usuxSystemaService;
+
+    @Autowired
+    EmpleadoService empleadoService;
 
     @RequestMapping("/login2")
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -81,17 +88,17 @@ public class IndexController {
     public ModelAndView verificarLogin2(ModelMap model, HttpServletRequest request, @ModelAttribute("usuarioConeccion") UsuarioConeccion uc, BindingResult result, SessionStatus status) {
 
         UsuarioConeccion uc2 = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
-        log.info("uc.getUser(): "+uc.getUser());
-        log.info("uc2.getUser(): "+uc2.getUser());
+        log.info("uc.getUser(): " + uc.getUser());
+        log.info("uc2.getUser(): " + uc2.getUser());
 
-        if (uc.getUser()==null || uc.getUser().equals("")) {
+        if (uc.getUser() == null || uc.getUser().equals("")) {
             log.info("Campos Vacios");
             request.getSession().setAttribute("tiposession", "4");
 
             return new ModelAndView("redirect:/login2");
         }
 
-        if (uc2.getUser()==null) {
+        if (uc2.getUser() == null) {
             log.info("Usuario o Contraseña Incorrecta");
             request.getSession().setAttribute("tiposession", "3");
 
@@ -199,7 +206,7 @@ public class IndexController {
         log.info("idUser: " + idUser);
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:"+user);
+        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
             return new ModelAndView("redirect:/login2");
         }
@@ -228,13 +235,35 @@ public class IndexController {
         model.addAttribute("rucComp", comp1.getNroRuc());
         model.addAttribute("schema", comp1.getSchema());
 
-        int idCompconv=Integer.parseInt(idComp);
-        int idUsuarioconv=Integer.parseInt(idUser);
+        int idCompconv = Integer.parseInt(idComp);
+        int idUsuarioconv = Integer.parseInt(idUser);
 
-        List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv,idUsuarioconv,1);
-        model.addAttribute("usuxsysxopc",listaMenus);
-        model.addAttribute("ususys",usuxSystemaService.eligeSystema(idCompconv,idUsuarioconv,1));
+        List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv, idUsuarioconv, 1);
+        model.addAttribute("usuxsysxopc", listaMenus);
+        model.addAttribute("ususys", usuxSystemaService.eligeSystema(idCompconv, idUsuarioconv, 1));
 
-        return new ModelAndView("public/kanban");
+        List<Cumpleanos> listCumpl = empleadoService.traerListaDeCumpleañosPorMes();
+        model.addAttribute("listCumple", listCumpl);
+        model.addAttribute("cantCumpl", listCumpl.size());
+
+        Month mes = LocalDate.now().getMonth();
+        String nombreEnMes = mes.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
+        CapitalizarCadena cap = new CapitalizarCadena();
+        String mesCapitalizado = cap.letras(nombreEnMes);
+        model.addAttribute("nombreEnMes", mesCapitalizado);
+        log.info("nombreEnMes: " + mesCapitalizado);
+
+        List<Ingresantes> listIngresantes = empleadoService.traerListaDeIngresantesPorMes();
+        model.addAttribute("cantIngresantes", listIngresantes.size());
+
+        log.info("ListIngresantes.size(): " + listIngresantes.size());
+
+        if (listIngresantes.size() == 0) {
+            model.addAttribute("mensaje", "Este mes no ingresó ningun nuevo trabajador! ");
+        } else {
+            model.addAttribute("listIngresantes", listIngresantes);
+        }
+
+        return new ModelAndView("public/dashboard");
     }
 }

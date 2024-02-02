@@ -132,7 +132,7 @@
 
         series: [
           {
-            name: 'Tasks assigned to me',
+            name: 'Porcentaje de empleados clasificados por Sexo',
             type: 'pie',
             radius: ['48%', '90%'],
             startAngle: 30,
@@ -169,11 +169,9 @@
               show: false
             },
             data: [
-              { value: 78, name: 'Product design' },
-              { value: 63, name: 'Development' },
-              { value: 56, name: 'QA & Testing' },
-              { value: 36, name: 'Customer queries' },
-              { value: 24, name: 'R & D' }
+              { value: 80, name: 'Masculino' },
+              { value: 50, name: 'Femenino' },
+              { value: 20, name: 'Sin sexo' }
             ]
           }
         ],

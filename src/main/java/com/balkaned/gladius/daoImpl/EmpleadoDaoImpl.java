@@ -1,7 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
+import com.balkaned.gladius.beans.Cumpleanos;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.Ingresantes;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
@@ -1333,6 +1335,102 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                         String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapepat());
                         p.setNomCompactoUpper(nombrecompleto);
                     }
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<Cumpleanos> traerListaDeCumpleañosPorMes(){
+
+        String sql = "select " +
+                "e.iexcodtra, "+
+                "e.iexnomtra, " +
+                "e.iexapepat, " +
+                "e.iexapemat, " +
+                "to_char(e.iexfecnac, 'dd Month, yyyy') as iexfecnac, " +
+                "to_char(e.iexfecnac, 'MM') as mes, " +
+                "to_char(CURRENT_DATE, 'Month') as mes_actual, " +
+                "date_part('year', CURRENT_DATE) - date_part('year', e.iexfecnac) as edad " +
+                "from iexempleado e " +
+                "where to_char(e.iexfecnac, 'MM')=to_char(CURRENT_DATE, 'MM') ";
+
+        return template.query(sql, new ResultSetExtractor<List<Cumpleanos>>() {
+
+            public List<Cumpleanos> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Cumpleanos> lista = new ArrayList<Cumpleanos>();
+
+                while(rs.next()) {
+                    Cumpleanos p = new Cumpleanos();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
+
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
+                    p.setIexapepat(cap2.letras(p.getIexapepat()));
+
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap3 = new CapitalizarCadena();
+                    p.setIexapemat(cap3.letras(p.getIexapemat()));
+
+                    p.setIexfecnac(rs.getString("iexfecnac"));
+                    p.setMesActual(rs.getString("mes_actual"));
+                    p.setEdad(rs.getInt("edad"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<Ingresantes> traerListaDeIngresantesPorMes(){
+
+        String sql = "select " +
+                "e.iexcodtra, " +
+                "e.iexnomtra, " +
+                "e.iexapepat, " +
+                "e.iexapemat, " +
+                "e.iexfecing, " +
+                "to_char(e.iexfecing, 'dd/mm/yyyy') as iexfecingchar, " +
+                "to_char(e.iexfecing, 'MM') as mes, " +
+                "to_char(e.iexfecing, 'yyyy') as anio, " +
+                "to_char(CURRENT_DATE, 'MM') as mes_actual, " +
+                "to_char(CURRENT_DATE, 'yyyy') as anio_actual, " +
+                "to_char(CURRENT_DATE, 'Month') as mes_actual " +
+                "from iexempleado e " +
+                "where to_char(e.iexfecing, 'MM')=to_char(CURRENT_DATE, 'MM') " +
+                "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+
+        return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
+
+            public List<Ingresantes> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Ingresantes> lista = new ArrayList<Ingresantes>();
+
+                while(rs.next()) {
+                    Ingresantes p = new Ingresantes();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
+
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
+                    p.setIexapepat(cap2.letras(p.getIexapepat()));
+
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap3 = new CapitalizarCadena();
+                    p.setIexapemat(cap3.letras(p.getIexapemat()));
+
+                    p.setIexfecing(rs.getString("iexfecingchar"));
 
                     lista.add(p);
                 }

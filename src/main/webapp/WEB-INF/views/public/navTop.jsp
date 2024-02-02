@@ -10,7 +10,7 @@
 
           <div class="navbar-logo">
             <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-            <a class="navbar-brand me-1 me-sm-3" href="#">
+            <a class="navbar-brand me-1 me-sm-3" href="home@${idComp}@${idusuario}">
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="27" />
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>

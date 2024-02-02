@@ -1,6 +1,8 @@
 package com.balkaned.gladius.dao;
 
+import com.balkaned.gladius.beans.Cumpleanos;
 import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.Ingresantes;
 
 import java.util.List;
 
@@ -46,5 +48,8 @@ public interface EmpleadoDao {
     public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew);
 
     public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado);
+
+    public List<Cumpleanos> traerListaDeCumpleañosPorMes();
+    public List<Ingresantes> traerListaDeIngresantesPorMes();
 
 }
