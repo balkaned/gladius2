@@ -3,6 +3,7 @@ package com.balkaned.gladius.services;
 import com.balkaned.gladius.beans.Cumpleanos;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Ingresantes;
+import com.balkaned.gladius.beans.Retirados;
 
 import java.util.List;
 
@@ -53,5 +54,7 @@ public interface EmpleadoService {
     public List<Cumpleanos> traerListaDeCumpleañosPorMes();
 
     public List<Ingresantes> traerListaDeIngresantesPorMes();
+
+    public List<Retirados> traerListaDeRetiradosPorMes();
 
 }

@@ -3,6 +3,7 @@ package com.balkaned.gladius.servicesImpl;
 import com.balkaned.gladius.beans.Cumpleanos;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Ingresantes;
+import com.balkaned.gladius.beans.Retirados;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,17 +114,21 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return dao.listarEmpleadoInactivos(codcia);
     }
 
-    public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado){
+    public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado) {
 
         return dao.listarEmpleadoByCodTrab(empleado);
     }
 
-    public List<Cumpleanos> traerListaDeCumpleañosPorMes(){
+    public List<Cumpleanos> traerListaDeCumpleañosPorMes() {
         return dao.traerListaDeCumpleañosPorMes();
     }
 
-    public List<Ingresantes> traerListaDeIngresantesPorMes(){
+    public List<Ingresantes> traerListaDeIngresantesPorMes() {
         return dao.traerListaDeIngresantesPorMes();
+    }
+
+    public List<Retirados> traerListaDeRetiradosPorMes(){
+        return dao.traerListaDeRetiradosPorMes();
     }
 
 

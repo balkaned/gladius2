@@ -175,12 +175,12 @@
                                 <div class="row justify-content-between align-items-md-center btn-reveal-trigger border-200 gx-0 flex-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
                                     <div class="mb-1 mb-md-0 d-flex align-items-center lh-1">
-                                      <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">${listCumple.iexnomtra} ${listCumple.iexapepat} ${listCumple.iexapemat}</label><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-primary">${listCumple.edad} años</span>
+                                      <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">${listCumple.iexnomtra} ${listCumple.iexapepat} ${listCumple.iexapemat}</label><span class="fa-solid fa-cake-candles text-warning me-2 ms-2"></span><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-primary">${listCumple.edad} años</span>
                                     </div>
                                   </div>
                                   <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
                                     <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--2 me-2" href="#!"><span class="fas fa-paperclip me-1"></span>2</a>
-                                      <p class="text-1000 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fec nac: ${listCumple.iexfecnac}</p>
+                                      <p class="text-1000 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fecha de Nacimiento: ${listCumple.iexfecnac}</p>
                                       <div class="hover-md-hide hover-xl-show hover-xxl-hide">
                                         <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300"></p>
                                       </div>
@@ -255,7 +255,7 @@
                       </div>
                     </div>
 
-                    <div class="col-12 col-xl-6 col-xxl-7 mt-4">
+                    <div class="col-12 col-xl-6 col-xxl-7 mt-3">
                       <div class="card todo-list h-100">
                         <div class="card-header border-bottom-0 pb-0">
                           <div class="row justify-content-between align-items-center mb-4">
@@ -274,7 +274,7 @@
                                   </div>
                                 </div>
                                 <div class="col-auto d-flex">
-                                  <p class="mb-0 ms-sm-3 fs--1 text-700 fw-bold"><span class="fas fa-filter me-1 fw-extra-bold fs--2"></span>23 tasks</p>
+                                  <p class="mb-0 ms-sm-3 fs--1 text-700 fw-bold"><span class="fa-solid fa-arrow-down me-1 fw-extra-bold fs--1"></span>${cantRetirados} Retirados</p>
                                   <button class="btn btn-link p-0 ms-3 fs--1 text-primary fw-bold"><span class="fas fa-sort me-1 fw-extra-bold fs--2"></span>Sorting</button>
                                 </div>
                               </div>
@@ -282,24 +282,36 @@
                           </div>
                         </div>
                         <div class="card-body py-0 scrollbar to-do-list-body">
-                          <div class="d-flex hover-actions-trigger py-3 border-top">
-                            <input class="form-check-input form-check-input-todolist flex-shrink-0 my-1 me-2 form-check-input-undefined" type="checkbox" id="checkbox-todo-0" data-event-propagation-prevent="data-event-propagation-prevent" />
-                            <div class="row justify-content-between align-items-md-center btn-reveal-trigger border-200 gx-0 flex-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
-                                <div class="mb-1 mb-md-0 d-flex align-items-center lh-1">
-                                  <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">Designing the dungeon</label><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-primary">DRAFT</span>
+                            <c:if test="${mensaje2!=null}">
+                                <div id="alert" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert">
+                                    <span class="fa-solid fa-triangle-exclamation  text-warning fs-0 me-3"></span>
+                                    <div class="col-11">
+                                        <strong class="text-black">No hay datos</strong>
+                                         <p class="mb-0 fw-semi-bold text-1000">${mensaje2} <a href="#">Mas información</a></p>
+                                    </div>
+                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                              </div>
-                              <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
-                                <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--2 me-2" href="#!"><span class="fas fa-paperclip me-1"></span>2</a>
-                                  <p class="text-700 fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">12 Nov, 2021</p>
-                                  <div class="hover-md-hide hover-xl-show hover-xxl-hide">
-                                    <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300">12:00 PM</p>
+                            </c:if>
+                            <c:forEach var="listRetirados" items="${requestScope.listRetirados}">
+                              <div class="d-flex hover-actions-trigger py-3 border-top">
+                                <input class="form-check-input form-check-input-todolist flex-shrink-0 my-1 me-2 form-check-input-undefined" type="checkbox" id="checkbox-todo-0" data-event-propagation-prevent="data-event-propagation-prevent" />
+                                <div class="row justify-content-between align-items-md-center btn-reveal-trigger border-200 gx-0 flex-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
+                                    <div class="mb-1 mb-md-0 d-flex align-items-center lh-1">
+                                      <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">${listRetirados.iexnomtra} ${listRetirados.iexapepat} ${listRetirados.iexapemat}</label><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-danger">${listRetirados.iexfecret}</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
+                                    <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--2 me-2" href="#!"><span class="fas fa-paperclip me-1"></span>2</a>
+                                      <p class="text-1000 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fecha de retiro: ${listRetirados.iexfecret}</p>
+                                      <div class="hover-md-hide hover-xl-show hover-xxl-hide">
+                                        <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300"></p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
+                            </c:forEach>
                         </div>
                       </div>
                     </div>

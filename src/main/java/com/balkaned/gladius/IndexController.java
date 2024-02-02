@@ -265,6 +265,16 @@ public class IndexController {
             model.addAttribute("mensaje",null);
         }
 
+        List<Retirados> listRetirados= empleadoService.traerListaDeRetiradosPorMes();
+        model.addAttribute("cantRetirados",listRetirados.size());
+
+        if (listRetirados.size() == 0) {
+            model.addAttribute("mensaje2", "Este mes no cesó ningún trabajador! ");
+        } else {
+            model.addAttribute("listRetirados", listRetirados);
+            model.addAttribute("mensaje2",null);
+        }
+
         return new ModelAndView("public/dashboard");
     }
 }

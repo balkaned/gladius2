@@ -397,6 +397,10 @@
     /*border:0px solid grey;*/
 }
 
+.alert div p a{
+    text-decoration:underline;
+}
+
 .navbar-vertical-content{
     background-color:#111827;
 }

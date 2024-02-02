@@ -4,6 +4,7 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Cumpleanos;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Ingresantes;
+import com.balkaned.gladius.beans.Retirados;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
@@ -1406,8 +1407,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "to_char(CURRENT_DATE, 'Month') as mes_actual " +
                 "from iexempleado e " +
                 "where to_char(e.iexfecing, 'MM')=to_char(CURRENT_DATE, 'MM') " +
-                //"and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
-                "and to_char(e.iexfecing, 'yyyy')='2018' ";
+                "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                //"and to_char(e.iexfecing, 'yyyy')='2018' ";
 
         return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
 
@@ -1432,6 +1433,56 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexapemat(cap3.letras(p.getIexapemat()));
 
                     p.setIexfecing(rs.getString("iexfecingchar"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<Retirados> traerListaDeRetiradosPorMes(){
+
+        String sql = "select " +
+                "e.iexcodtra, " +
+                "e.iexnomtra, " +
+                "e.iexapepat, " +
+                "e.iexapemat, " +
+                "e.iexfecret, " +
+                "to_char(e.iexfecret, 'dd/mm/yyyy') as iexfecretchar, " +
+                "to_char(e.iexfecret, 'MM') as mes, " +
+                "to_char(e.iexfecret, 'yyyy') as anio, " +
+                "to_char(CURRENT_DATE, 'MM') as mes_actual, " +
+                "to_char(CURRENT_DATE, 'yyyy') as anio_actual, " +
+                "to_char(CURRENT_DATE, 'Month') as mes_actual " +
+                "from iexempleado e " +
+                "where to_char(e.iexfecret, 'MM')=to_char(CURRENT_DATE, 'MM') " +
+                "and to_char(e.iexfecret, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                //"and to_char(e.iexfecret, 'yyyy')='2021' ";
+
+        return template.query(sql, new ResultSetExtractor<List<Retirados>>() {
+
+            public List<Retirados> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Retirados> lista = new ArrayList<Retirados>();
+
+                while(rs.next()) {
+                    Retirados p = new Retirados();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
+
+                    p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
+                    p.setIexapepat(cap2.letras(p.getIexapepat()));
+
+                    p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap3 = new CapitalizarCadena();
+                    p.setIexapemat(cap3.letras(p.getIexapemat()));
+
+                    p.setIexfecret(rs.getString("iexfecretchar"));
 
                     lista.add(p);
                 }
