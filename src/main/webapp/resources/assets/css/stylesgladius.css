@@ -387,14 +387,14 @@
 }
 
 .alert{
-    padding-top:17px;
-    padding-bottom:17px;
+    /*padding-top:17px;
+    padding-bottom:17px;*/
     height:auto;
-    color:white;
+    /*color:white;*/
     font-size:14px;
     border-radius:0px;
     /*font-weight:bold;*/
-    border:0px solid grey;
+    /*border:0px solid grey;*/
 }
 
 .navbar-vertical-content{

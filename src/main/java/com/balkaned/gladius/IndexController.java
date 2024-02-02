@@ -262,6 +262,7 @@ public class IndexController {
             model.addAttribute("mensaje", "Este mes no ingresó ningun nuevo trabajador! ");
         } else {
             model.addAttribute("listIngresantes", listIngresantes);
+            model.addAttribute("mensaje",null);
         }
 
         return new ModelAndView("public/dashboard");

@@ -1406,7 +1406,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "to_char(CURRENT_DATE, 'Month') as mes_actual " +
                 "from iexempleado e " +
                 "where to_char(e.iexfecing, 'MM')=to_char(CURRENT_DATE, 'MM') " +
-                "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                //"and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                "and to_char(e.iexfecing, 'yyyy')='2018' ";
 
         return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
 

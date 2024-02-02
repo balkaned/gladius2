@@ -213,7 +213,7 @@
                                   </div>
                                 </div>
                                 <div class="col-auto d-flex">
-                                  <p class="mb-0 ms-sm-3 fs--1 text-700 fw-bold"><span class="fas fa-filter me-1 fw-extra-bold fs--2"></span>23 tasks</p>
+                                  <p class="mb-0 ms-sm-3 fs--1 text-700 fw-bold"><span class="fa-solid fa-arrow-up me-1 fw-extra-bold fs--1"></span>${cantIngresantes} Ingresantes</p>
                                   <button class="btn btn-link p-0 ms-3 fs--1 text-primary fw-bold"><span class="fas fa-sort me-1 fw-extra-bold fs--2"></span>Sorting</button>
                                 </div>
                               </div>
@@ -221,14 +221,16 @@
                           </div>
                         </div>
                         <div class="card-body py-0 scrollbar to-do-list-body">
-                            <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
-                            	<span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
-                            	<div class="col-11">
-                            		<strong class="text-black">No hay datos</strong>
-                            		 <p class="mb-0 fw-semi-bold text-1000">${mensaje} <a href="#">Mas información</a></p>
-                            	</div>
-                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                            <c:if test="${mensaje!=null}">
+                                <div id="alert" class="alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert">
+                                    <span class="fa-solid fa-info  text-info fs-0 me-3"></span>
+                                    <div class="col-11">
+                                        <strong class="text-black">No hay datos</strong>
+                                         <p class="mb-0 fw-semi-bold text-1000">${mensaje} <a href="#">Mas información</a></p>
+                                    </div>
+                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </c:if>
                             <c:forEach var="listIngresantes" items="${requestScope.listIngresantes}">
                               <div class="d-flex hover-actions-trigger py-3 border-top">
                                 <input class="form-check-input form-check-input-todolist flex-shrink-0 my-1 me-2 form-check-input-undefined" type="checkbox" id="checkbox-todo-0" data-event-propagation-prevent="data-event-propagation-prevent" />
@@ -240,7 +242,7 @@
                                   </div>
                                   <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
                                     <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--2 me-2" href="#!"><span class="fas fa-paperclip me-1"></span>2</a>
-                                      <p class="text-1000 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fec nac: ${listCumple.iexfecnac}</p>
+                                      <p class="text-1000 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fecha de ingreso: ${listIngresantes.iexfecing}</p>
                                       <div class="hover-md-hide hover-xl-show hover-xxl-hide">
                                         <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300"></p>
                                       </div>
