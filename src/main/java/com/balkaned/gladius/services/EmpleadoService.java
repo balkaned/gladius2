@@ -51,10 +51,16 @@ public interface EmpleadoService {
 
     public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado);
 
-    public List<Cumpleanos> traerListaDeCumpleañosPorMes();
+    public List<Cumpleanos> traerListaDeCumpleañosPorMes(Integer codcia);
 
-    public List<Ingresantes> traerListaDeIngresantesPorMes();
+    public List<Ingresantes> traerListaDeIngresantesPorMes(Integer codcia);
 
-    public List<Retirados> traerListaDeRetiradosPorMes();
+    public List<Retirados> traerListaDeRetiradosPorMes(Integer codcia);
+
+    public Integer getCantidadEmpl(Integer codcia);
+
+    public Integer getCantidadAreas(Integer codcia);
+
+    public Integer getCantidadBancos(Integer codcia);
 
 }

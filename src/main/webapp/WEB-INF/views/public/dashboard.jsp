@@ -49,7 +49,7 @@
                         <div class="d-flex align-items-center"><span class="fs-4 lh-1 uil uil-users-alt text-primary-500"></span>
                           <div class="ms-2">
                             <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">150</h2><span class="fs-1 fw-semi-bold text-900">Empleados</span>
+                              <h2 class="mb-0 me-2">${cantEmpl}</h2><span class="fs-1 fw-semi-bold text-900">Empleados</span>
                             </div>
                             <p class="text-800 fs--1 mb-0">Empleados activos</p>
                           </div>
@@ -69,7 +69,7 @@
                         <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-briefcase text-warning-500"></span>
                           <div class="ms-2">
                             <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">23</h2><span class="fs-1 fw-semi-bold text-900">Areas</span>
+                              <h2 class="mb-0 me-2">${cantAreas}</h2><span class="fs-1 fw-semi-bold text-900">Areas</span>
                             </div>
                             <p class="text-800 fs--1 mb-0">Total Areas</p>
                           </div>
@@ -79,7 +79,7 @@
                         <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-city text-danger-500"></span>
                           <div class="ms-2">
                             <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">3</h2><span class="fs-1 fw-semi-bold text-900">Bancos</span>
+                              <h2 class="mb-0 me-2">${cantBancos}</h2><span class="fs-1 fw-semi-bold text-900">Bancos</span>
                             </div>
                             <p class="text-800 fs--1 mb-0">Bancos para pagos</p>
                           </div>
@@ -180,6 +180,16 @@
                           </div>
                         </div>
                         <div class="card-body py-0 scrollbar to-do-list-body">
+                            <c:if test="${mensaje3!=null}">
+                                <div id="alert" class="alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert">
+                                    <span class="fa-solid fa-info  text-info fs-0 me-3"></span>
+                                    <div class="col-11">
+                                        <strong class="text-black">No hay datos</strong>
+                                        <p class="mb-0 fw-semi-bold text-1000">${mensaje3} <a href="#">Mas información</a></p>
+                                    </div>
+                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </c:if>
                             <c:forEach var="listCumple" items="${requestScope.listCumple}">
                               <div class="d-flex hover-actions-trigger py-3 border-top">
                                 <input class="form-check-input form-check-input-todolist flex-shrink-0 my-1 me-2 form-check-input-undefined" type="checkbox" id="checkbox-todo-0" data-event-propagation-prevent="data-event-propagation-prevent" />

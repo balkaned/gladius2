@@ -1344,7 +1344,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
-    public List<Cumpleanos> traerListaDeCumpleañosPorMes(){
+    public List<Cumpleanos> traerListaDeCumpleañosPorMes(Integer codcia){
 
         String sql = "select " +
                 "e.iexcodtra, "+
@@ -1356,7 +1356,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "to_char(CURRENT_DATE, 'Month') as mes_actual, " +
                 "date_part('year', CURRENT_DATE) - date_part('year', e.iexfecnac) as edad " +
                 "from iexempleado e " +
-                "where to_char(e.iexfecnac, 'MM')=to_char(CURRENT_DATE, 'MM') ";
+                "where to_char(e.iexfecnac, 'MM')=to_char(CURRENT_DATE, 'MM') "+
+                "and e.iexcodcia="+codcia+" ";
 
         return template.query(sql, new ResultSetExtractor<List<Cumpleanos>>() {
 
@@ -1391,7 +1392,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
-    public List<Ingresantes> traerListaDeIngresantesPorMes(){
+    public List<Ingresantes> traerListaDeIngresantesPorMes(Integer codcia){
 
         String sql = "select " +
                 "e.iexcodtra, " +
@@ -1407,7 +1408,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "to_char(CURRENT_DATE, 'Month') as mes_actual " +
                 "from iexempleado e " +
                 "where to_char(e.iexfecing, 'MM')=to_char(CURRENT_DATE, 'MM') " +
-                "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') "+
+                "and e.iexcodcia="+codcia+" ";
                 //"and to_char(e.iexfecing, 'yyyy')='2018' ";
 
         return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
@@ -1441,7 +1443,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
-    public List<Retirados> traerListaDeRetiradosPorMes(){
+    public List<Retirados> traerListaDeRetiradosPorMes(Integer codcia){
 
         String sql = "select " +
                 "e.iexcodtra, " +
@@ -1457,7 +1459,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "to_char(CURRENT_DATE, 'Month') as mes_actual " +
                 "from iexempleado e " +
                 "where to_char(e.iexfecret, 'MM')=to_char(CURRENT_DATE, 'MM') " +
-                "and to_char(e.iexfecret, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') ";
+                "and to_char(e.iexfecret, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') " +
+                "and e.iexcodcia="+codcia+" ";
                 //"and to_char(e.iexfecret, 'yyyy')='2021' ";
 
         return template.query(sql, new ResultSetExtractor<List<Retirados>>() {
@@ -1487,6 +1490,62 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     lista.add(p);
                 }
                 return lista;
+            }
+        });
+    }
+
+    public Integer getCantidadEmpl(Integer codcia){
+
+        final Integer[] cant = {0};
+
+        String sql = "select count(*) as cantidad " +
+                "from iexempleado e " +
+                "where e.iexflgest='1' " +
+                "and e.iexcodcia="+codcia+" ";
+
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    cant[0] =rs.getInt("cantidad");
+                }
+                return cant[0];
+            }
+        });
+    }
+
+
+    public Integer getCantidadAreas(Integer codcia){
+
+        final Integer[] cant = {0};
+
+        String sql = "select count(*) as cantidad " +
+                "from iexarea a " +
+                "where a.iexcodcia="+codcia+" ";
+
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    cant[0] =rs.getInt("cantidad");
+                }
+                return cant[0];
+            }
+        });
+    }
+
+    public Integer getCantidadBancos(Integer codcia){
+
+        final Integer[] cant = {0};
+
+        String sql = "select count(*) as cantidad " +
+                "from iexprobancos b " +
+                "where b.iexcodcia="+codcia+" ";
+
+        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+                while(rs.next()) {
+                    cant[0] =rs.getInt("cantidad");
+                }
+                return cant[0];
             }
         });
     }

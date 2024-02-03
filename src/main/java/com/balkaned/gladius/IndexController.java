@@ -242,9 +242,16 @@ public class IndexController {
         model.addAttribute("usuxsysxopc", listaMenus);
         model.addAttribute("ususys", usuxSystemaService.eligeSystema(idCompconv, idUsuarioconv, 1));
 
-        List<Cumpleanos> listCumpl = empleadoService.traerListaDeCumpleañosPorMes();
+        List<Cumpleanos> listCumpl = empleadoService.traerListaDeCumpleañosPorMes(Integer.valueOf(idComp));
         model.addAttribute("listCumple", listCumpl);
         model.addAttribute("cantCumpl", listCumpl.size());
+
+        if (listCumpl.size() == 0) {
+            model.addAttribute("mensaje3", "No hay ningun trabajador que cumpla años en este mes! ");
+        } else {
+            model.addAttribute("listCumple", listCumpl);
+            model.addAttribute("mensaje3",null);
+        }
 
         Month mes = LocalDate.now().getMonth();
         String nombreEnMes = mes.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
@@ -253,7 +260,7 @@ public class IndexController {
         model.addAttribute("nombreEnMes", mesCapitalizado);
         log.info("nombreEnMes: " + mesCapitalizado);
 
-        List<Ingresantes> listIngresantes = empleadoService.traerListaDeIngresantesPorMes();
+        List<Ingresantes> listIngresantes = empleadoService.traerListaDeIngresantesPorMes(Integer.valueOf(idComp));
         model.addAttribute("cantIngresantes", listIngresantes.size());
 
         log.info("ListIngresantes.size(): " + listIngresantes.size());
@@ -265,7 +272,7 @@ public class IndexController {
             model.addAttribute("mensaje",null);
         }
 
-        List<Retirados> listRetirados= empleadoService.traerListaDeRetiradosPorMes();
+        List<Retirados> listRetirados= empleadoService.traerListaDeRetiradosPorMes(Integer.valueOf(idComp));
         model.addAttribute("cantRetirados",listRetirados.size());
 
         if (listRetirados.size() == 0) {
@@ -274,6 +281,10 @@ public class IndexController {
             model.addAttribute("listRetirados", listRetirados);
             model.addAttribute("mensaje2",null);
         }
+
+        model.addAttribute("cantEmpl",empleadoService.getCantidadEmpl(Integer.valueOf(idComp)));
+        model.addAttribute("cantAreas",empleadoService.getCantidadAreas(Integer.valueOf(idComp)));
+        model.addAttribute("cantBancos",empleadoService.getCantidadBancos(Integer.valueOf(idComp)));
 
         return new ModelAndView("public/dashboard");
     }
