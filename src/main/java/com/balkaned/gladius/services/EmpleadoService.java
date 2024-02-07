@@ -1,9 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Cumpleanos;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Ingresantes;
-import com.balkaned.gladius.beans.Retirados;
+import com.balkaned.gladius.beans.*;
 
 import java.util.List;
 
@@ -62,5 +59,7 @@ public interface EmpleadoService {
     public Integer getCantidadAreas(Integer codcia);
 
     public Integer getCantidadBancos(Integer codcia);
+
+    public dashboardSexoPie obtenerDashboardPieSexo(Integer codcia);
 
 }

@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.Month;
@@ -40,6 +39,9 @@ public class IndexController {
 
     @Autowired
     EmpleadoService empleadoService;
+
+    @Autowired
+    LovsService lovsService;
 
     @RequestMapping("/login2")
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -284,7 +286,18 @@ public class IndexController {
 
         model.addAttribute("cantEmpl",empleadoService.getCantidadEmpl(Integer.valueOf(idComp)));
         model.addAttribute("cantAreas",empleadoService.getCantidadAreas(Integer.valueOf(idComp)));
-        model.addAttribute("cantBancos",empleadoService.getCantidadBancos(Integer.valueOf(idComp)));
+        //model.addAttribute("cantBancos",empleadoService.getCantidadBancos(Integer.valueOf(idComp)));
+        model.addAttribute("cantFondos", lovsService.getLovs("11", "%").size());
+        model.addAttribute("cantBancosHab", lovsService.getLovs("36", "%").size());
+
+        //Obtenemos los datos para el Grafico Pie por sexo
+        dashboardSexoPie ds=empleadoService.obtenerDashboardPieSexo(Integer.valueOf(idComp));
+        model.addAttribute("cantidad_total",ds.getCantidad_total());
+        model.addAttribute("cantidad_m",ds.getCantidad_m());
+        model.addAttribute("cantidad_f",ds.getCantidad_f());
+        model.addAttribute("cantidad_ma",ds.getCantidad_ma());
+
+        model.addAttribute("ds",ds);
 
         return new ModelAndView("public/dashboard");
     }

@@ -19,6 +19,7 @@
     <script src="resources/assets/js/projectmanagement-dashboard.js"></script>
     <script src="resources/assets/js/basic-bar-chart.js"></script>
     <script src="resources/assets/js/crm-dashboard.js"></script>
+    <script src="resources/assets/js/ecommerce-dashboard.js"></script>
   </head>
 
   <body>
@@ -59,9 +60,9 @@
                         <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-ticket text-success-500"></span>
                           <div class="ms-2">
                             <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">94</h2><span class="fs-1 fw-semi-bold text-900">Fondos</span>
+                              <h2 class="mb-0 me-2">${cantFondos}</h2><span class="fs-1 fw-semi-bold text-900">Fondos</span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Fondos colectivos y de inversión</p>
+                            <p class="text-800 fs--1 mb-0">Fondos de pensión colectivos y de inversión</p>
                           </div>
                         </div>
                       </div>
@@ -71,7 +72,7 @@
                             <div class="d-flex align-items-end">
                               <h2 class="mb-0 me-2">${cantAreas}</h2><span class="fs-1 fw-semi-bold text-900">Areas</span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Total Areas</p>
+                            <p class="text-800 fs--1 mb-0">Total areas</p>
                           </div>
                         </div>
                       </div>
@@ -79,9 +80,9 @@
                         <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-city text-danger-500"></span>
                           <div class="ms-2">
                             <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">${cantBancos}</h2><span class="fs-1 fw-semi-bold text-900">Bancos</span>
+                              <h2 class="mb-0 me-2">${cantBancosHab}</h2><span class="fs-1 fw-semi-bold text-900">Bancos</span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Bancos para pagos</p>
+                            <p class="text-800 fs--1 mb-0">Banco de haberes</p>
                           </div>
                         </div>
                       </div>
@@ -101,21 +102,25 @@
                           <p class="text-700 mb-md-7">Resumen de trabajadores por sexo</p>
                           <div class="d-flex align-items-center justify-content-between">
                             <p class="mb-0 fw-bold">Empleados activos </p>
-                            <p class="mb-0 fs--1">Total contados <span class="fw-bold">150</span></p>
+                            <p class="mb-0 fs--1">Total contados <span class="fw-bold">${ds.cantidad_total}</span></p>
                           </div>
                           <hr class="bg-200 mb-2 mt-2" />
                           <div class="d-flex align-items-center mb-1"><span class="d-inline-block bg-info-300 bullet-item me-2"></span>
-                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Masculino</p>
-                            <h5 class="mb-0 text-900">80</h5>
+                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Masculino M</p>
+                            <h5 class="mb-0 text-900">${ds.cantidad_m}</h5>
                           </div>
                           <div class="d-flex align-items-center mb-1"><span class="d-inline-block bg-warning-300 bullet-item me-2"></span>
-                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Femenino</p>
-                            <h5 class="mb-0 text-900">50</h5>
+                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Femenino F</p>
+                            <h5 class="mb-0 text-900">${ds.cantidad_f}</h5>
                           </div>
                           <div class="d-flex align-items-center mb-1"><span class="d-inline-block bg-danger-300 bullet-item me-2"></span>
-                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Sin Sexo</p>
-                            <h5 class="mb-0 text-900">20</h5>
+                            <p class="mb-0 fw-semi-bold text-900 lh-sm flex-1">Sin Sexo MA</p>
+                            <h5 class="mb-0 text-900">${ds.cantidad_ma}</h5>
                           </div>
+                          <input id="cantidad_total" type="hidden" value="${cantidad_total}" />
+                          <input id="cantidad_m" type="hidden" value="${cantidad_m}" />
+                          <input id="cantidad_f" type="hidden" value="${cantidad_f}" />
+                          <input id="cantidad_ma" type="hidden" value="${cantidad_ma}" />
 
                           <button class="btn btn-phoenix-secondary btn-sm mt-5">Detalle empl<span class="fas fa-angle-right ms-2 fs--2 text-center"></span></button>
                         </div>
@@ -127,10 +132,24 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-xl-5 col-xxl-6">
+                    <!--<div class="col-12 col-xl-5 col-xxl-6">
                       <h3>Fondos</h3>
                       <p class="text-700 mb-0 mb-xl-3">Fondos mutuos y de inversión</p>
                       <div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>
+                    </div>-->
+                    <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-6 pb-9 border-top border-300">
+                      <div class="row g-6">
+                        <div class="col-12 col-xl-6">
+                          <div class="me-xl-4">
+                            <div>
+                              <h3>Projection vs actual</h3>
+                              <p class="mb-1 text-700">Actual earnings vs projected earnings</p>
+                            </div>
+                            <div class="echart-projection-actual" style="height:300px; width:100%"></div>
+                          </div>
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>

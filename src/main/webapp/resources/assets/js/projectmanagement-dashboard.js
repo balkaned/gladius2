@@ -109,6 +109,12 @@
   /* -------------------------------------------------------------------------- */
 
   const issuesDiscoveredChartInit = () => {
+
+    var cantidad_total=document.getElementById("cantidad_total").value;
+    var cantidad_f=document.getElementById("cantidad_f").value;
+    var cantidad_m=document.getElementById("cantidad_m").value;
+    var cantidad_ma=document.getElementById("cantidad_ma").value;
+
     const { getColor, getData } = window.phoenix.utils;
     const issuesDiscoveredChartEl = document.querySelector('.echart-issue-chart');
 
@@ -169,9 +175,9 @@
               show: false
             },
             data: [
-              { value: 80, name: 'Masculino' },
-              { value: 50, name: 'Femenino' },
-              { value: 20, name: 'Sin sexo' }
+              { value: cantidad_m, name: 'Masculino' },
+              { value: cantidad_f, name: 'Femenino' },
+              { value: cantidad_ma, name: 'Sin sexo' }
             ]
           }
         ],

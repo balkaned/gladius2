@@ -1,10 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Cumpleanos;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Ingresantes;
-import com.balkaned.gladius.beans.Retirados;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
@@ -13,14 +10,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -1550,5 +1543,39 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         });
     }
 
+    public dashboardSexoPie obtenerDashboardPieSexo(Integer codcia) {
 
+        String sql = "select " +
+                "(select " +
+                "count(e1.iexcodsex) " +
+                "from iexempleado e1 " +
+                "where e1.iexcodcia="+codcia+" and e1.iexflgest='1' and e1.iexcodsex='M') as cantidad_m, " +
+                "(select " +
+                "count(e2.iexcodsex) " +
+                "from iexempleado e2 " +
+                "where e2.iexcodcia="+codcia+" and e2.iexflgest='1' and e2.iexcodsex='F') as cantidad_f, " +
+                "(select " +
+                "count(e3.iexcodsex) " +
+                "from iexempleado e3 " +
+                "where e3.iexcodcia="+codcia+" and e3.iexflgest='1' and e3.iexcodsex='MA') as cantidad_ma, " +
+                "(select " +
+                "count(e4.iexcodsex) " +
+                "from iexempleado e4 " +
+                "where e4.iexcodcia="+codcia+" and e4.iexflgest='1') as cantidad_total " +
+                "from iexempleado e " +
+                "group by cantidad_m ";
+
+        return (dashboardSexoPie) template.query(sql, new ResultSetExtractor<dashboardSexoPie>() {
+            public dashboardSexoPie extractData(ResultSet rs) throws SQLException, DataAccessException{
+                dashboardSexoPie p = new dashboardSexoPie();
+                while(rs.next()) {
+                    p.setCantidad_m(rs.getInt("cantidad_m"));
+                    p.setCantidad_f(rs.getInt("cantidad_f"));
+                    p.setCantidad_ma(rs.getInt("cantidad_ma"));
+                    p.setCantidad_total(rs.getInt("cantidad_total"));
+                }
+                return p;
+            }
+        });
+    }
 }

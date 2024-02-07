@@ -598,7 +598,7 @@
                                                   <select class="form-select" name="iextipban_hab" required>
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovTipCtaHab" items="${lovTipCtaHab}">
-                                                        <option value="${lovTipCtaHab.idLov}"    ${lovTipCtaHab.idLov == requestScope.emp3.iextipban_hab ? 'selected' : ''}   >${lovTipCtaHab.desLov}</option>
+                                                        <option value="${lovTipCtaHab.idLov}" ${lovTipCtaHab.idLov == requestScope.emp3.iextipban_hab ? 'selected' : ''}   >${lovTipCtaHab.desLov}</option>
                                                     </c:forEach>
                                                   </select>
                                             </div>
