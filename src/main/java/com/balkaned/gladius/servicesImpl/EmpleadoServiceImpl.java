@@ -122,7 +122,19 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return dao.getCantidadBancos(codcia);
     }
 
-    public dashboardSexoPie obtenerDashboardPieSexo(Integer codcia) {
+    public DashboardSexoPie obtenerDashboardPieSexo(Integer codcia) {
         return dao.obtenerDashboardPieSexo(codcia);
+    }
+
+    public List<DashboardAreaBar> obtenerDatosDashboardArea(Integer codcia) {
+        return dao.obtenerDatosDashboardArea(codcia);
+    }
+
+    public List<DashboardFondosBar> obtenerDatosDashboardFodos(Integer codcia){
+        return dao.obtenerDatosDashboardFodos(codcia);
+    }
+
+    public List<DashboardBancosPie> obtenerDatosDashboardBancos(Integer codcia){
+        return dao.obtenerDatosDashboardBancos(codcia);
     }
 }

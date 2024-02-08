@@ -98,7 +98,7 @@
                     <div class="col-12 col-xl-7 col-xxl-6">
                       <div class="row g-3 mb-3">
                         <div class="col-12 col-md-6">
-                          <h3 class="text-1100 text-nowrap">Gráfico Pie</h3>
+                          <h3 class="text-1100 text-nowrap">Empleados por sexo</h3>
                           <p class="text-700 mb-md-7">Resumen de trabajadores por sexo</p>
                           <div class="d-flex align-items-center justify-content-between">
                             <p class="mb-0 fw-bold">Empleados activos </p>
@@ -132,37 +132,79 @@
                         </div>
                       </div>
                     </div>
-                    <!--<div class="col-12 col-xl-5 col-xxl-6">
+                    <div class="col-12 col-xl-5 col-xxl-6">
                       <h3>Fondos</h3>
                       <p class="text-700 mb-0 mb-xl-3">Fondos mutuos y de inversión</p>
                       <div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>
-                    </div>-->
-                    <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-6 pb-9 border-top border-300">
-                      <div class="row g-6">
-                        <div class="col-12 col-xl-6">
-                          <div class="me-xl-4">
-                            <div>
-                              <h3>Projection vs actual</h3>
-                              <p class="mb-1 text-700">Actual earnings vs projected earnings</p>
-                            </div>
-                            <div class="echart-projection-actual" style="height:300px; width:100%"></div>
-                          </div>
-                        </div>
-
-                      </div>
                     </div>
                   </div>
                 </div>
+                <div class="col-xxl-6 mb-6 mt-6">
+                    <h3>Fondos de pensión</h3>
+                    <p class="text-700 mb-1">Fondos de pensión inversión y colectivos</p>
+                    <div class="echart-contacts-created" style="min-height:270px; width:100%"></div>
+                    <c:set var="cont2" value="${1}" />
+                    <c:forEach var="lsfnd" items="${lsFondBar}">
+                            <input id="cantidad2_${cont2}" type="hidden" value="${lsfnd.cantidad}" />
+                            <input id="desdet2_${cont2}" type="hidden" value="${lsfnd.desdet}" />
+                            <c:set var="cont2" value="${cont2 + 1}" />
+                    </c:forEach>
+                            <input id="contador2" type="hidden" value="${cont2-1}" />
+                </div>
 
-                <div class="col-6 ms-0 ps-0 mt-3">
+                <div class="col-6 ms-0 ps-0 mt-5 ms-5">
                     <div>
-                        <div class="card h-100">
-                            <div class="card-body">
+                        <div class="">
+                            <div class="">
                                 <h3>Areas</h3>
-                                <p>Cantidad de empleados por Areas</p>
+                                <p>Cantidad de empleados por areas</p>
                                 <div class="echart-revenue-target-conversion" style="min-height:200px"></div>
+                                <c:set var="cont" value="${1}" />
+                                <c:forEach var="lsarea" items="${lsAreaBar}">
+                                        <input id="cantidad_${cont}" type="hidden" value="${lsarea.cantidad}" />
+                                        <input id="desarea_${cont}" type="hidden" value="${lsarea.desarea}" />
+                                        <c:set var="cont" value="${cont + 1}" />
+                                </c:forEach>
+                                        <input id="contador" type="hidden" value="${cont-1}" />
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xxl-6 mb-3 mb-sm-0 mt-7">
+                    <div class="row">
+                      <div class="col-sm-7 col-md-8 col-xxl-8 mb-md-3 mb-lg-0">
+                        <h3>Bancos</h3>
+                        <p class="text-700">Cantidad de empleados asociados a bancos de haberes</p>
+                        <div class="row g-0">
+                            <c:forEach var="lsbnp" items="${lsBanPie}">
+                              <div class="col-6 col-xl-4">
+                                    <div class="d-flex flex-column flex-center align-items-sm-start flex-md-row justify-content-md-between flex-xxl-column p-3 ps-sm-3 ps-md-4 p-md-3 h-100 border-1 border-bottom border-end">
+                                      <div class="d-flex align-items-center mb-1"><span class="fa-solid fa-building-columns fs-0 me-2 text-primary" data-fa-transform="up-2"></span><span class="mb-0 fs--1 text-900">${lsbnp.desdet}</span></div>
+                                      <h3 class="fw-semi-bold ms-xl-3 ms-xxl-0 pe-md-2 pe-xxl-0 mb-0 mb-sm-3">${lsbnp.cantidad}</h3>
+                                    </div>
+                              </div>
+                            </c:forEach>
+                        </div>
+                      </div>
+                      <div class="col-sm-5 col-md-4 col-xxl-4 my-3 my-sm-0">
+                        <div class="position-relative d-flex flex-center mb-sm-4 mb-xl-0 echart-contact-by-source-container mt-sm-7 mt-lg-4 mt-xl-0">
+
+                          <c:set var="cont3" value="${1}" />
+                          <c:forEach var="lsbnp" items="${lsBanPie}">
+                                  <input id="cantidad3_${cont3}" type="hidden" value="${lsbnp.cantidad}" />
+                                  <input id="desdet3_${cont3}" type="hidden" value="${lsbnp.desdet}" />
+                                  <c:set var="cont3" value="${cont3 + 1}" />
+                          </c:forEach>
+                                  <input id="contador3" type="hidden" value="${cont3-1}" />
+
+                          <div class="echart-contact-by-source" style="min-height:245px;width:100%"></div>
+
+                          <div class="position-absolute rounded-circle bg-primary-100 top-50 start-50 translate-middle d-flex flex-center" style="height:100px; width:100px;">
+                            <h3 class="mb-0 text-primary-600 dark__text-primary-300 fw-bolder" data-label="data-label"></h3>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </div>
 

@@ -9,11 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class dashboardSexoPie {
+public class DashboardBancosPie {
 
-    private int cantidad_m;
-    private int cantidad_f;
-    private int cantidad_ma;
-    private int cantidad_total;
+    private int codtab;
+    private String desdet;
+    private int cantidad;
 
 }

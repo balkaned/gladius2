@@ -119,15 +119,31 @@
     if (chartEl) {
       const userOptions = getData(chartEl, 'echarts');
       const chart = window.echarts.init(chartEl);
-      const data = [
+      /*const data = [
         { value: 80, name: 'Organic Search' },
         { value: 65, name: 'Paid Search' },
         { value: 40, name: 'Direct Traffic' },
         { value: 220, name: 'Social Media' },
         { value: 120, name: 'Referrals' },
         { value: 35, name: 'Others Campaigns' },
-      ];
-      const totalSource = data.reduce((acc, val) => val.value + acc, 0);
+      ];*/
+      //const totalSource = data.reduce((acc, val) => val.value + acc, 0);
+      //const totalSource = 100;
+
+      var cont=document.getElementById("contador3").value;
+
+      const data=[];
+      var totalSource = 0;
+
+      for(var i=1; i<=cont;i++){
+          data.push(
+              { value: document.getElementById("cantidad3_"+i).value,
+              name: document.getElementById("desdet3_"+i).value}
+          );
+
+          totalSource=totalSource+parseInt(document.getElementById("cantidad3_"+i).value);
+      }
+
       if (chartLabel) {
         chartLabel.innerHTML = totalSource;
       }
@@ -144,11 +160,11 @@
           trigger: 'item',
         },
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
 
         series: [
           {
-            name: 'Contacts by Source',
+            name: 'Num empleados asociados a:',
             type: 'pie',
             radius: ['55%', '90%'],
             startAngle: 90,
@@ -195,11 +211,28 @@
     const { getColor, getData, getPastDates } = window.phoenix.utils;
     const $chartEl = document.querySelector('.echart-contacts-created');
 
-    const dates = getPastDates(9);
+    //const dates = getPastDates(9);
+    //var dates=['Prima','Profuturo'];
+    //const dates = ['Multident', 'Area', 'Sistemas', 'Comunicaciones'];
 
-    const data1 = [24, 14, 30, 24, 32, 32, 18, 12, 32];
+    var cont=document.getElementById("contador2").value;
 
-    const data2 = [36, 28, 36, 39, 54, 38, 22, 34, 52];
+    const dates=[];
+    const data1=[];
+    const data2=[];
+
+    for(var i=1; i<=cont;i++){
+        dates.push(document.getElementById("desdet2_"+i).value);
+        //data1.push(document.getElementById("cantidad2_"+i).value);
+        data2.push(document.getElementById("cantidad2_"+i).value);
+    }
+
+    //const data = ['Multident', 'Area', 'Sistemas', 'Comunicaciones'];
+    //const data1 = [20, 30, 70, 100];
+    //const data2 = [20, 30, 70, 100];
+
+    //const data1 = [];
+    //const data2 = [36, 28, 36, 39, 54, 38, 22, 34, 52];
 
     if ($chartEl) {
       const userOptions = getData($chartEl, 'echarts');
@@ -225,7 +258,8 @@
           // boundaryGap: false,
           axisLabel: {
             color: getColor('gray-800'),
-            formatter: value => window.dayjs(value).format('D MMM, YY'),
+            //formatter: value => window.dayjs(value).format('D MMM, YY'),
+            formatter: value => value,
             fontFamily: 'Nunito Sans',
             fontWeight: 600,
             fontSize: 10.24
@@ -245,11 +279,11 @@
               color: getColor('gray-300')
             }
           },
-          axisTick: false
+          axisTick: true
         },
         yAxis: {
           axisPointer: { type: 'none' },
-          position: 'right',
+          position: 'left',
           axisTick: 'none',
           splitLine: {
             interval: 5,
@@ -257,7 +291,7 @@
               color: getColor('gray-200')
             }
           },
-          axisLine: { show: false },
+          axisLine: { show: true },
           axisLabel: {
             fontFamily: 'Nunito Sans',
             fontWeight: 700,
@@ -289,7 +323,7 @@
             }
           },
           {
-            name: 'Projected revenue',
+            name: 'Total empl en este fondo',
             type: 'bar',
             barWidth: '4px',
             data: data2,
@@ -313,7 +347,7 @@
           top: '5%',
           containLabel: true
         },
-        animation: false
+        animation: true
       });
 
       const responsiveOptions = {
@@ -321,12 +355,12 @@
           series: [
             {
               label: {
-                show: false
+                show: true
               }
             },
             {
               label: {
-                show: false
+                show: true
               }
             }
           ]
@@ -1107,6 +1141,23 @@
   /* -------------------------------------------------------------------------- */
 
   const echartsRevenueTargetInit = () => {
+
+    var cont=document.getElementById("contador").value;
+
+    const data=[];
+    const data1=[];
+    const data2=[];
+
+    for(var i=1; i<=cont;i++){
+        data.push(document.getElementById("desarea_"+i).value);
+        data1.push(document.getElementById("cantidad_"+i).value);
+        data2.push(document.getElementById("cantidad_"+i).value);
+    }
+
+    //const data = ['Multident', 'Area', 'Sistemas', 'Comunicaciones'];
+    //const data1 = [20, 30, 70, 100];
+    //const data2 = [20, 30, 70, 100];
+
     const { getColor, getData } = window.phoenix.utils;
     const $leadConversionChartEl = document.querySelector(
       '.echart-revenue-target-conversion'
@@ -1128,9 +1179,6 @@
               ${tooltipItem}
             </div>`;
     };
-
-    const data1 = [40, 50, 90, 200];
-    const data2 = [20, 30, 70, 100];
 
     if ($leadConversionChartEl) {
       const userOptions = getData($leadConversionChartEl, 'echarts');
@@ -1164,7 +1212,7 @@
             fontWeight: 400,
             fontSize: 12.8,
             margin: 10,
-            formatter: value => `${value / 100}`
+            formatter: value => `${value}`
           },
           show: true,
           axisLine: {
@@ -1178,7 +1226,7 @@
           }
         },
         yAxis: {
-          data: ['Multident', 'Area', 'Sistemas', 'Comuniciones'],
+          data: data,
           type: 'category',
           axisPointer: { type: 'none' },
           axisTick: 'none',
@@ -1197,7 +1245,7 @@
         },
         series: [
           {
-            name: 'Target',
+            name: '',
             type: 'bar',
             label: {
               show: false
@@ -1219,7 +1267,7 @@
             }
           },
           {
-            name: 'Gained',
+            name: '',
             type: 'bar',
             emphasis: {
               disabled: true

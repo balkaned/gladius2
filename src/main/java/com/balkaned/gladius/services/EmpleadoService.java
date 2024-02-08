@@ -60,6 +60,12 @@ public interface EmpleadoService {
 
     public Integer getCantidadBancos(Integer codcia);
 
-    public dashboardSexoPie obtenerDashboardPieSexo(Integer codcia);
+    public DashboardSexoPie obtenerDashboardPieSexo(Integer codcia);
+
+    public List<DashboardAreaBar> obtenerDatosDashboardArea(Integer codcia);
+
+    public List<DashboardFondosBar> obtenerDatosDashboardFodos(Integer codcia);
+
+    public List<DashboardBancosPie> obtenerDatosDashboardBancos(Integer codcia);
 
 }
