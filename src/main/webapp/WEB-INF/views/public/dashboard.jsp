@@ -133,7 +133,7 @@
                       </div>
                     </div>
                     <div class="col-12 col-xl-5 col-xxl-6">
-                      <h3>Fondos</h3>
+                      <h3>Centros de Costo</h3>
                       <p class="text-700 mb-0 mb-xl-3">Fondos mutuos y de inversión</p>
                       <div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>
                     </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="col-xxl-6 mb-6 mt-6">
                     <h3>Fondos de pensión</h3>
-                    <p class="text-700 mb-1">Fondos de pensión inversión y colectivos</p>
+                    <p class="text-700 mb-1">Centro de costos por empleados</p>
                     <div class="echart-contacts-created" style="min-height:270px; width:100%"></div>
                     <c:set var="cont2" value="${1}" />
                     <c:forEach var="lsfnd" items="${lsFondBar}">
@@ -152,7 +152,7 @@
                             <input id="contador2" type="hidden" value="${cont2-1}" />
                 </div>
 
-                <div class="col-6 ms-0 ps-0 mt-5 ms-5">
+                <div class="col-sm-6 col-md-6 ms-0 ps-0 mt-5 ms-3">
                     <div>
                         <div class="">
                             <div class="">
@@ -272,7 +272,9 @@
                               </div>
                             </c:forEach>
                         </div>
-                        <a class="fw-bold fs--1 mt-4 btn btn-phoenix-secondary btn-sm col-4 ms-3 mb-3" href="valRegEmpleado"><span class="fas fa-plus me-1"></span>Add empleado</a>
+                        <div class="col-sm-6 col-md-6">
+                            <a class="fw-bold fs--1 mt-4 btn btn-phoenix-secondary btn-sm ms-3 mb-3" href="valRegEmpleado"><span class="fas fa-plus me-1"></span>Add empleado</a>
+                        </div>
                       </div>
                     </div>
 

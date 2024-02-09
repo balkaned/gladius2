@@ -1617,7 +1617,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public List<DashboardFondosBar> obtenerDatosDashboardFodos(Integer codcia) {
 
-        String sql = "select " +
+        /*String sql = "select " +
                 "tb.iexcodtab, " +
                 "tb.desdet, " +
                 "   (select " +
@@ -1629,7 +1629,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "   and e1.iexflgest='1' " +
                 "   and e1.iexcodafp=tb.iexkey) as cantidad " +
                 "from iexttabled tb " +
-                "where tb.iexcodtab='11' ";
+                "where tb.iexcodtab='11' ";*/
+
+        String sql="select " +
+                "tb1.iexcodtab, " +
+                "tb1.desdet, " +
+                "count(e1.iexcodtra) as cantidad " +
+                "from iexempleado e1 " +
+                "inner join iexttabled tb1 on tb1.iexkey=e1.iexcodafp " +
+                "where e1.iexcodcia="+codcia+" " +
+                "and tb1.iexcodtab='11' " +
+                "and e1.iexflgest='1' " +
+                "and e1.iexcodafp=tb1.iexkey " +
+                "group by tb1.iexcodtab,tb1.desdet ";
 
         return template.query(sql, new ResultSetExtractor<List<DashboardFondosBar>>() {
             public List<DashboardFondosBar> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -1655,7 +1667,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public List<DashboardBancosPie> obtenerDatosDashboardBancos(Integer codcia) {
 
-        String sql = "select " +
+        /*String sql = "select " +
                 "tb.iexcodtab, " +
                 "tb.desdet, " +
                 "   (select " +
@@ -1667,7 +1679,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "   and e1.iexflgest='1' " +
                 "   and e1.iexcodban_hab=tb.iexkey) as cantidad " +
                 "from iexttabled tb " +
-                "where tb.iexcodtab='36' ";
+                "where tb.iexcodtab='36' ";*/
+
+        String sql="select " +
+                "tb1.iexcodtab, " +
+                "tb1.desdet, " +
+                "count(e1.iexcodtra) as cantidad " +
+                "from iexempleado e1 " +
+                "inner join iexttabled tb1 on tb1.iexkey=e1.iexcodban_hab " +
+                "where e1.iexcodcia="+codcia+" " +
+                "and tb1.iexcodtab='36' " +
+                "and e1.iexflgest='1' " +
+                "and e1.iexcodban_hab=tb1.iexkey " +
+                "group by tb1.iexcodtab,tb1.desdet ";
 
         return template.query(sql, new ResultSetExtractor<List<DashboardBancosPie>>() {
             public List<DashboardBancosPie> extractData(ResultSet rs) throws SQLException, DataAccessException {
