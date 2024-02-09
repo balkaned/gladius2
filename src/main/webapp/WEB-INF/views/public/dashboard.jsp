@@ -20,6 +20,7 @@
     <script src="resources/assets/js/basic-bar-chart.js"></script>
     <script src="resources/assets/js/crm-dashboard.js"></script>
     <script src="resources/assets/js/ecommerce-dashboard.js"></script>
+    <script src="resources/assets/js/series-bar-chart.js"></script>
   </head>
 
   <body>
@@ -86,11 +87,38 @@
                           </div>
                         </div>
                       </div>
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-cash-register text-success-500"></span>
+                            <div class="ms-2">
+                              <div class="d-flex align-items-end">
+                                <h2 class="mb-0 me-2">${cantCcostos}</h2><span class="fs-1 fw-semi-bold text-900">C. costos</span>
+                              </div>
+                              <p class="text-800 fs--1 mb-0">Total centros de costos</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-house text-info-500"></span>
+                            <div class="ms-2">
+                              <div class="d-flex align-items-end">
+                                <h2 class="mb-0 me-2">${cantLocales}</h2><span class="fs-1 fw-semi-bold text-900">Locales</span>
+                              </div>
+                              <p class="text-800 fs--1 mb-0">Total Locales o sucursales</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-user-nurse text-secondary-500"></span>
+                            <div class="ms-2">
+                              <div class="d-flex align-items-end">
+                                <h2 class="mb-0 me-2">${cantPuestos}</h2><span class="fs-1 fw-semi-bold text-900">Puestos</span>
+                              </div>
+                              <p class="text-800 fs--1 mb-0">Total puestos</p>
+                            </div>
+                          </div>
+                      </div>
                     </div>
                   </div>
-                  <!--<div class="col-sm-6 col-md-12 border-200">
-                        <div class="echart-pie-chart-example" style="min-height:320px"></div>
-                  </div>-->
                 </div>
 
                 <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-7 pb-3 border-y border-300">
@@ -133,15 +161,17 @@
                       </div>
                     </div>
                     <div class="col-12 col-xl-5 col-xxl-6">
-                      <h3>Centros de Costo</h3>
-                      <p class="text-700 mb-0 mb-xl-3">Fondos mutuos y de inversión</p>
-                      <div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>
+                      <h3>C. Costos</h3>
+                      <p class="text-700 mb-0 mb-xl-3">Centro de costos por empleados</p>
+                      <!--<div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>-->
+                      <div class="echart-revenue-target-conversion-ccostos" style="min-height:200px;width:100%"></div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-xxl-6 mb-6 mt-6">
                     <h3>Fondos de pensión</h3>
-                    <p class="text-700 mb-1">Centro de costos por empleados</p>
+                    <p class="text-700 mb-1">Fondos de pensión asociados por empleados</p>
                     <div class="echart-contacts-created" style="min-height:270px; width:100%"></div>
                     <c:set var="cont2" value="${1}" />
                     <c:forEach var="lsfnd" items="${lsFondBar}">
@@ -152,24 +182,47 @@
                             <input id="contador2" type="hidden" value="${cont2-1}" />
                 </div>
 
-                <div class="col-sm-6 col-md-6 ms-0 ps-0 mt-5 ms-3">
-                    <div>
-                        <div class="">
-                            <div class="">
-                                <h3>Areas</h3>
-                                <p>Cantidad de empleados por areas</p>
-                                <div class="echart-revenue-target-conversion" style="min-height:200px"></div>
-                                <c:set var="cont" value="${1}" />
-                                <c:forEach var="lsarea" items="${lsAreaBar}">
-                                        <input id="cantidad_${cont}" type="hidden" value="${lsarea.cantidad}" />
-                                        <input id="desarea_${cont}" type="hidden" value="${lsarea.desarea}" />
-                                        <c:set var="cont" value="${cont + 1}" />
-                                </c:forEach>
-                                        <input id="contador" type="hidden" value="${cont-1}" />
+                <div class="col-12 row">
+                    <div class="col-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div>
+                                    <h3>Areas</h3>
+                                    <p>Cantidad de empleados por areas</p>
+                                    <div class="echart-revenue-target-conversion" style="min-height:200px"></div>
+                                    <c:set var="cont" value="${1}" />
+                                    <c:forEach var="lsarea" items="${lsAreaBar}">
+                                            <input id="cantidad_${cont}" type="hidden" value="${lsarea.cantidad}" />
+                                            <input id="desarea_${cont}" type="hidden" value="${lsarea.desarea}" />
+                                            <c:set var="cont" value="${cont + 1}" />
+                                    </c:forEach>
+                                            <input id="contador" type="hidden" value="${cont-1}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="">
+                                    <h3>C.costos</h3>
+                                    <p>Numero de empleados por centro de costos</p>
+                                    <div class="echart-revenue-target-conversion-ccosto" style="min-height:200px"></div>
+                                    <c:set var="cont_cc" value="${1}" />
+                                    <c:forEach var="lsCcostoBar" items="${lsCcostoBar}">
+                                            <input id="cantidad_cc_${cont_cc}" type="hidden" value="${lsCcostoBar.cantidad}" />
+                                            <input id="iexdesccosto_cc_${cont_cc}" type="hidden" value="${lsCcostoBar.iexdesccosto}" />
+                                            <c:set var="cont_cc" value="${cont_cc + 1}" />
+                                    </c:forEach>
+                                            <input id="contador_cc" type="hidden" value="${cont_cc-1}" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 col-md-6 ms-0 ps-0 mt-5 ms-3">
+
+                    </div>
 
                 <div class="col-12 col-xxl-6 mb-3 mb-sm-0 mt-7">
                     <div class="row">
@@ -180,7 +233,7 @@
                             <c:forEach var="lsbnp" items="${lsBanPie}">
                               <div class="col-6 col-xl-4">
                                     <div class="d-flex flex-column flex-center align-items-sm-start flex-md-row justify-content-md-between flex-xxl-column p-3 ps-sm-3 ps-md-4 p-md-3 h-100 border-1 border-bottom border-end">
-                                      <div class="d-flex align-items-center mb-1"><span class="fa-solid fa-building-columns fs-0 me-2 text-primary" data-fa-transform="up-2"></span><span class="mb-0 fs--1 text-900">${lsbnp.desdet}</span></div>
+                                      <div class="d-flex align-items-center mb-1"><span class="fa-solid fa-square fs--3 me-2 text-success" data-fa-transform="up-2"></span><span class="mb-0 fs--1 text-900">${lsbnp.desdet}</span></div>
                                       <h3 class="fw-semi-bold ms-xl-3 ms-xxl-0 pe-md-2 pe-xxl-0 mb-0 mb-sm-3">${lsbnp.cantidad}</h3>
                                     </div>
                               </div>

@@ -98,43 +98,4 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return dao.listarEmpleadoByCodTrab(empleado);
     }
 
-    public List<Cumpleanos> traerListaDeCumpleañosPorMes(Integer codcia) {
-        return dao.traerListaDeCumpleañosPorMes(codcia);
-    }
-
-    public List<Ingresantes> traerListaDeIngresantesPorMes(Integer codcia) {
-        return dao.traerListaDeIngresantesPorMes(codcia);
-    }
-
-    public List<Retirados> traerListaDeRetiradosPorMes(Integer codcia) {
-        return dao.traerListaDeRetiradosPorMes(codcia);
-    }
-
-    public Integer getCantidadEmpl(Integer codcia) {
-        return dao.getCantidadEmpl(codcia);
-    }
-
-    public Integer getCantidadAreas(Integer codcia) {
-        return dao.getCantidadAreas(codcia);
-    }
-
-    public Integer getCantidadBancos(Integer codcia) {
-        return dao.getCantidadBancos(codcia);
-    }
-
-    public DashboardSexoPie obtenerDashboardPieSexo(Integer codcia) {
-        return dao.obtenerDashboardPieSexo(codcia);
-    }
-
-    public List<DashboardAreaBar> obtenerDatosDashboardArea(Integer codcia) {
-        return dao.obtenerDatosDashboardArea(codcia);
-    }
-
-    public List<DashboardFondosBar> obtenerDatosDashboardFodos(Integer codcia){
-        return dao.obtenerDatosDashboardFodos(codcia);
-    }
-
-    public List<DashboardBancosPie> obtenerDatosDashboardBancos(Integer codcia){
-        return dao.obtenerDatosDashboardBancos(codcia);
-    }
 }

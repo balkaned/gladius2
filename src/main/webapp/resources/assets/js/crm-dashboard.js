@@ -149,10 +149,10 @@
       }
       const getDefaultOptions = () => ({
         color: [
-          getColor('primary'),
-          getColor('success'),
+          getColor('secondary'),
+          getColor('primary-300'),
           getColor('info'),
-          getColor('info-300'),
+          getColor('success-300'),
           getColor('danger-200'),
           getColor('warning-300'),
         ],
@@ -1307,6 +1307,179 @@
     }
   };
 
+
+    /* -------------------------------------------------------------------------- */
+    /*                             Echarts Total Sales  Ccostos                   */
+    /* -------------------------------------------------------------------------- */
+
+    const echartsRevenueTargetInitCcosto = () => {
+
+      var cont=document.getElementById("contador_cc").value;
+
+      const data=[];
+      const data1=[];
+      const data2=[];
+
+      for(var i=1; i<=cont;i++){
+          data.push(document.getElementById("iexdesccosto_cc_"+i).value);
+          data1.push(document.getElementById("cantidad_cc_"+i).value);
+          data2.push(document.getElementById("cantidad_cc_"+i).value);
+      }
+
+      //const data = ['Multident', 'Area', 'Sistemas', 'Comunicaciones'];
+      //const data1 = [20, 30, 70, 100];
+      //const data2 = [20, 30, 70, 100];
+
+      const { getColor, getData } = window.phoenix.utils;
+      const $leadConversionChartEl = document.querySelector(
+        '.echart-revenue-target-conversion-ccosto'
+      );
+
+      const tooltipFormatter = (params = 'MMM DD') => {
+        let tooltipItem = ``;
+        params.forEach(el => {
+          tooltipItem += `<div class='ms-1'>
+            <h6 class="text-700"><span class="fas fa-circle me-1 fs--2" style="color:${el.color}"></span>
+              ${el.seriesName} : ${el.value}
+            </h6>
+          </div>`;
+        });
+        return `<div>
+                <p class='mb-2 text-600'>
+                  ${params[0].axisValue}
+                </p>
+                ${tooltipItem}
+              </div>`;
+      };
+
+      if ($leadConversionChartEl) {
+        const userOptions = getData($leadConversionChartEl, 'echarts');
+        const chart = window.echarts.init($leadConversionChartEl);
+
+        const getDefaultOptions = () => ({
+          color: [getColor('primary'), getColor('gray-300')],
+          tooltip: {
+            trigger: 'axis',
+            padding: [7, 10],
+            backgroundColor: getColor('gray-100'),
+            borderColor: getColor('gray-300'),
+            textStyle: { color: getColor('dark') },
+            borderWidth: 1,
+            transitionDuration: 0,
+            axisPointer: {
+              type: 'none'
+            },
+            formatter: params => tooltipFormatter(params)
+          },
+          xAxis: {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 3,
+              showMinLabel: true,
+              showMaxLabel: false,
+              color: getColor('gray-500'),
+              align: 'left',
+              fontFamily: 'Nunito Sans',
+              fontWeight: 400,
+              fontSize: 12.8,
+              margin: 10,
+              formatter: value => `${value}`
+            },
+            show: true,
+            axisLine: {
+              lineStyle: {
+                color: getColor('gray-300')
+              }
+            },
+            axisTick: false,
+            splitLine: {
+              show: false
+            }
+          },
+          yAxis: {
+            data: data,
+            type: 'category',
+            axisPointer: { type: 'none' },
+            axisTick: 'none',
+            splitLine: {
+              interval: 5,
+              lineStyle: {
+                color: getColor('gray-200')
+              }
+            },
+            axisLine: { show: false },
+            axisLabel: {
+              show: true,
+              margin: 21,
+              color: getColor('gray-900')
+            }
+          },
+          series: [
+            {
+              name: '',
+              type: 'bar',
+              label: {
+                show: false
+              },
+              emphasis: {
+                disabled: true
+              },
+              showBackground: true,
+              backgroundStyle: {
+                color: getColor('gray-100')
+              },
+              barWidth: '30px',
+              barGap: '-100%',
+              data: data1,
+              itemStyle: {
+                borderWidth: 4,
+                color: getColor('gray-200'),
+                borderColor: getColor('gray-200')
+              }
+            },
+            {
+              name: '',
+              type: 'bar',
+              emphasis: {
+                disabled: true
+              },
+              label: {
+                show: true,
+                color: getColor('white'),
+                fontWeight: 700,
+                fontFamily: 'Nunito Sans',
+                fontSize: 12.8,
+                formatter: value => `${value.value.toLocaleString()}`
+              },
+              // showBackground: true,
+              backgroundStyle: {
+                color: getColor('gray-100')
+              },
+              barWidth: '30px',
+              data: data2,
+              itemStyle: {
+                borderWidth: 4,
+                color: getColor('success-300'),
+                borderColor: getColor('gray-200')
+              }
+            }
+          ],
+          grid: {
+            right: 0,
+            left: 0,
+            bottom: 8,
+            top: 0,
+            containLabel: true
+          },
+          animation: false
+        });
+
+        echartSetOption(chart, userOptions, getDefaultOptions);
+      }
+    };
+
+
   const { docReady } = window.phoenix.utils;
 
   docReady(contactsBySourceChartInit);
@@ -1316,6 +1489,7 @@
   docReady(addClicksChartInit);
   docReady(echartsLeadConversiontInit);
   docReady(echartsRevenueTargetInit);
+  docReady(echartsRevenueTargetInitCcosto);
 
 }));
 //# sourceMappingURL=crm-dashboard.js.map

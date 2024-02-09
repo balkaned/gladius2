@@ -121,6 +121,7 @@
                                 		  </div>
                                 		  <div class="col-auto d-flex">
                                 			<button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+
                                 			<ul class="mb-0 pagination"></ul>
                                 			<button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
                                 		  </div>

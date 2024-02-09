@@ -511,7 +511,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Ubicación</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Local</label>
                                                 <select class="form-select" name="iexubilocal" required>
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovUbicacion" items="${lovUbicacion}">
