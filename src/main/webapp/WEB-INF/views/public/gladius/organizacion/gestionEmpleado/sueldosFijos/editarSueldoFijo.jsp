@@ -48,28 +48,29 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar Sueldo Fijo</h2>
+                                <h2 id="h2top" class="mb-0">Editar Sueldo Fijo</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarSueldoFijo" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarSueldoFijo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                                             <input class="form-control" name="iexcodcon" type="hidden" value="${fsueldoupd.iexcodcon}" />
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
-                                                <select class="form-select" name="iexcodcon" required >
+                                                <select class="form-select" name="iexcodcon2" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
-                                                      <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>
+                                                      <option value="${lovConcepSue.codConcepto}" ${lovConcepSue.codConcepto == requestScope.fsueldoupd.iexcodcon ? 'selected' : ''} >${lovConcepSue.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor</label>
-                                                   <input class="form-control" name="iexvalcon" maxlength="18" type="number" step=0.01 value="" placeholder="0.00" required/>
+                                                   <input class="form-control" name="iexvalcon" maxlength="18" type="number" step=0.01 value="${requestScope.fsueldoupd.iexvalcon}" placeholder="0.00" required/>
                                             </div>
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -103,7 +104,7 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>

@@ -12,6 +12,17 @@
     <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+  </script>
+
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
@@ -101,7 +112,7 @@
                                		  <tbody class="list" id="customer-order-table-body">
                                			<c:forEach var="fdatavar" items="${requestScope.fdatavar}">
                                				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                               				  <td class="order align-middle white-space-nowrap ps-3 pe-3 text-start"><a class="fw-semi-bold" href="#!">#${fdatavar.iexcodpro}</a></td>
+                               				  <td class="order align-middle white-space-nowrap ps-3 pe-3 text-start"><a class="fw-semi-bold" href="#!">#${fdatavar.iexcodcon}</a></td>
                                				  <td class="total align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${fdatavar.coodescon}</span></td>
                                				  <td class="align-middle white-space-nowrap text-center text-800 ps-3 pe-3">${fdatavar.iexvalcon}</td>
 
@@ -111,9 +122,10 @@
                                                   data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                   <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
-                               						<a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                               						<a id="dropdownmenutable" class="dropdown-item" href="detalleSueldoVar@${idTrab}@${fdatavar.iexcodcon}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                               						<a id="dropdownmenutable" class="dropdown-item" href="editarSueldoVar@${idTrab}@${fdatavar.iexcodcon}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                						<div class="dropdown-divider"></div>
-                               						<a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                               						<a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteSueldoVar@${idTrab}@${fdatavar.iexcodcon}@${iexcodpro}@${iexperiodo}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                					  </div>
                                					</div>
                                				  </td>

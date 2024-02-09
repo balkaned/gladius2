@@ -401,6 +401,10 @@
     text-decoration:underline;
 }
 
+.alert p a{
+    text-decoration:underline;
+}
+
 .navbar-vertical-content{
     background-color:#111827;
 }

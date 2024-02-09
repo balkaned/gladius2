@@ -121,7 +121,6 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo</label>
                                                 <select class="form-select" name="iexperiodo" id="iexperiodo" required >
                                                 </select>
-
                                             </div>
 
 
@@ -151,8 +150,8 @@
                                             		</div>
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                                            		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>

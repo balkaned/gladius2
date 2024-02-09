@@ -46,16 +46,18 @@
                   <h2 id="h2top" class="mb-0">Insertar Usuario</h2>
                 </div>
               </div>
-              <c:if test="${msg!=null}">
-                   <div class="alert alert-danger alert-dismissible " role="alert">
-                      <strong>Error!</strong> ${msg}
-                   </div>
-                   <!--<div class="alert alert-danger alert-dismissible" role="alert">
-                        <span class="fas fa-times-outline-circle text-white fs-3 pe-2"></span>
-                        ${msg}
-                        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                   </div>-->
-              </c:if>
+              <div class="col-xl-7">
+                  <c:if test="${msg!=null}">
+                       <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
+                        <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                        <div class="col-11">
+                            <strong class="text-black">Error al guardar</strong>
+                             <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información</a></p>
+                        </div>
+                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                       </div>
+                  </c:if>
+              </div>
 
               <div class="row g-5">
                    <div class="col-xl-7">
@@ -88,14 +90,11 @@
                                     </select>
                               </div>
 
-                              <div class="alert alert-success" role="alert" id="alert" style="display:none;">
-                                  Se grabó exitosamente los cambios.
+                              <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                              	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                              	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                              	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                               </div>
-                              <!--<div class="alert alert-success alert-dismissible" role="alert" id="alert" style="display:none;">
-                                      <span class="fas fa-check-circle text-white fs-3 pe-2"></span>
-                                      Se grabó exitosamente los cambios.
-                                      <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>-->
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
@@ -121,8 +120,8 @@
                               		</div>
                               	  </form>
                               	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                              		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                              		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                              		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                              		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                               	  </div>
                               	</div>
                                 </div>

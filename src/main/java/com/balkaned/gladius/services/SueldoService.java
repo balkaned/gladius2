@@ -13,5 +13,11 @@ public interface SueldoService {
     public void insertarEmpSueldo(EmpSueldo empsueldo);
     public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl);
     public void insertarEmpDatvar(EmpDatvar empdatvar);
+    public EmpSueldo obtenerOneEmpSueldo(Empleado empleado , String concepto);
+    public void actualizarEmpSueldo(EmpSueldo empsueldo);
+    public void eliminarEmpSueldo(EmpSueldo empsueldo);
+    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto);
+    public void actualizarEmpDatvar(EmpDatvar empdatvar);
+    public void eliminarEmpDatvar(EmpDatvar empdatvar);
 
 }

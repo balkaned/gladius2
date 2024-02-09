@@ -167,4 +167,126 @@ public class SueldosDaoImpl implements SueldoDao {
                 empdatvar.getIexvalcon(),
                 empdatvar.getIexflgest());
     }
+
+    public EmpSueldo obtenerOneEmpSueldo(Empleado empleado , String concepto) {
+
+        String sql="select " +
+                "s.iexcodcia," +
+                "s.iexcodtra," +
+                "s.iexcodcon," +
+                "c.coodescon," +
+                "s.iexvalcon," +
+                "s.iexflgest " +
+                "from iexconcepto c, " +
+                "iexsueldos s " +
+                "where " +
+                "s.iexcodcia = "+empleado.getIexcodcia()+" and  " +
+                "s.iexcodtra= "+empleado.getIexcodtra()+"  and " +
+                "s.iexcodcon= '"+concepto+"'  and " +
+                "c.coocodcon=s.iexcodcon ";
+
+        return (EmpSueldo) template.query(sql, new ResultSetExtractor<EmpSueldo>() {
+            public EmpSueldo extractData(ResultSet rs) throws SQLException, DataAccessException{
+                EmpSueldo con = new EmpSueldo();
+                while(rs.next()) {
+                    con.setIexcodcia(rs.getInt("iexcodcia"));
+                    con.setIexcodtra(rs.getInt("iexcodtra"));
+                    con.setIexcodcon(rs.getString("iexcodcon"));
+                    con.setDescon(rs.getString("coodescon"));
+                    con.setIexvalcon(rs.getDouble("iexvalcon"));
+                    con.setIexflgest(rs.getString("iexflgest"));
+                }
+                return con;
+            }
+        });
+    }
+
+    public void actualizarEmpSueldo(EmpSueldo empsueldo) {
+
+        template.update("update  iexsueldos set iexvalcon=? where iexcodcia=? and iexcodtra=?  and iexcodcon=? ",
+
+        empsueldo.getIexvalcon(),
+        empsueldo.getIexcodcia(),
+        empsueldo.getIexcodtra(),
+        empsueldo.getIexcodcon());
+
+    }
+
+    public void eliminarEmpSueldo(EmpSueldo empsueldo){
+
+        template.update("delete from  iexsueldos  where iexcodcia=? and iexcodtra=?  and iexcodcon=? ",
+
+        empsueldo.getIexcodcia(),
+        empsueldo.getIexcodtra(),
+        empsueldo.getIexcodcon());
+    }
+
+    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto) {
+
+        String sql=" select  " +
+                "v.iexcodcia," +
+                "v.iexcodpro, " +
+                "v.iexnroper, " +
+                "v.iexcorrel, " +
+                "v.iexcodtra, " +
+                "v.iexcodcon, " +
+                "c.coodescon, " +
+                "v.iexvalcon, " +
+                "v.iexflgest, " +
+                "v.iexusucrea, " +
+                "v.iexfeccrea, " +
+                "v.iexusumod, " +
+                "v.iexfecmod " +
+                "from iexconcepto c , iexdatavar v " +
+                "where " +
+                "v.iexcodcia = "+cia+" and  " +
+                "v.iexcodpro= "+codpro+"  and " +
+                "v.iexnroper = '"+nroper+"' and " +
+                "v.iexcorrel = "+correl+"  and " +
+                "v.iexcodtra = "+codtra+"  and  v.iexcodcon='"+concepto+"'  ";
+
+        return (EmpDatvar) template.query(sql, new ResultSetExtractor<EmpDatvar>() {
+            public EmpDatvar extractData(ResultSet rs) throws SQLException, DataAccessException{
+                EmpDatvar con = new EmpDatvar();
+                while(rs.next()) {
+                    con.setIexcodcia(rs.getInt("iexcodcia"));
+                    con.setIexcodpro(rs.getInt("iexcodpro"));
+                    con.setIexnroper(rs.getString("iexnroper"));
+                    con.setIexcodtra(rs.getInt("iexcodtra"));
+                    con.setIexcorrel(rs.getInt("iexcorrel"));
+                    con.setIexcodcon(rs.getString("iexcodcon"));
+                    con.setCoodescon(rs.getString("coodescon"));
+                    con.setIexvalcon(rs.getDouble("iexvalcon"));
+                }
+                return con;
+            }
+        });
+    }
+
+    public void actualizarEmpDatvar(EmpDatvar empdatvar){
+
+        template.update(" update iexdatavar set iexvalcon=?  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=? and iexcodtra=?  and  iexcodcon=?  ",
+
+        empdatvar.getIexvalcon(),
+        empdatvar.getIexcodcia(),
+        empdatvar.getIexcodpro(),
+        empdatvar.getIexnroper(),
+        empdatvar.getIexcorrel(),
+        empdatvar.getIexcodtra(),
+        empdatvar.getIexcodcon());
+
+    }
+
+    public void eliminarEmpDatvar(EmpDatvar empdatvar){
+
+        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=? and iexcodtra=?  and  iexcodcon=?  ",
+
+        empdatvar.getIexcodcia(),
+        empdatvar.getIexcodpro(),
+        empdatvar.getIexnroper(),
+        empdatvar.getIexcorrel(),
+        empdatvar.getIexcodtra(),
+        empdatvar.getIexcodcon());
+
+    }
 }
