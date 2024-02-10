@@ -15,6 +15,14 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 <script>
 
+$(document).ready(function(){
+      var fechacargada=$("#iexfecinihidden").val();
+      $("#iexfecini").val(fechacargada);
+
+      var fechacargada2=$("#iexfecfinhidden").val();
+      $("#iexfecfin").val(fechacargada2);
+});
+
 function formatearFecha1(){
     var fechaSeleccionada = $('#iexfecini').val();
 
@@ -182,7 +190,7 @@ function enviaForm(variable){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevas vacaciones</h2>
+                                <h2 id="h2top" class="mb-0">Ver detalle vacaciones</h2>
                               </div>
                             </div>
                             <c:if test="${msg!=null}">
@@ -199,53 +207,54 @@ function enviaForm(variable){
                             <div class="row g-5">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertarVacaciones" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="modificarVacaciones" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-12">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
-                                              <select class="form-select"  name="iextipvac"  id="iextipvac" required>
-                                                <option value="" selected>Seleccionar</option>
-                                                <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
-                                                  <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
-                                                </c:forEach>
-                                              </select>
+                                            <div class="col-sm-6 col-md-3 ">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                                  <input class="form-control" id="iexcorreldis" name="iexcorreldis" type="text" value="${iexcorrel}" disabled readonly/>
+                                                  <input type="hidden" name="iexcorrel" id="iexcorrel" value="${iexcorrel}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Inicial</label>
-                                              <input class="form-control" id="iexpermesinidis" name="iexpermesinidis" type="text" value="${perini}" disabled readonly/>
-                                              <input type="hidden" name="iexpermesini" id="iexpermesini" value="${perini}" />
+                                            <div class="col-sm-6 col-md-9">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
+                                                  <select class="form-select"  name="iextipvac"  id="iextipvac" required disabled>
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
+                                                      <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov== requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''} > ${lovTipvaca.desLov} </option>
+                                                    </c:forEach>
+                                                  </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Final</label>
-                                              <input class="form-control" id="iexpermesfindis" name="iexpermesfindis" type="text" value="${perfin}" disabled readonly/>
-                                              <input type="hidden" name="iexpermesfin" id="iexpermesfin" value="${perfin}" />
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Saldo</label>
-                                              <input class="form-control" id="saldodis" name="saldodis" type="text" value="${saldo}" disabled readonly/>
-                                              <input type="hidden" name="saldo" id="saldo" value="${saldo}" />
+                                            <div class="col-sm-6 col-md-9">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo vacacional</label>
+                                                  <select class="form-select"  name="iexpermesini" required disabled>
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}"    >
+                                                       <option value="${LstVacacionesCtl.iexpermesini}"  ${LstVacacionesCtl.iexpermesini== requestScope.xVacacionesPrg.iexpermesini ? 'selected' : ''} >  ${LstVacacionesCtl.iexpermesini} - ${LstVacacionesCtl.iexpermesfin}  </option>
+                                                    </c:forEach>
+                                                  </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                              <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                                              <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" value="${requestScope.xVacacionesPrg.iexfecini}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
+                                              <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecini}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                              <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                                              <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" value="${requestScope.xVacacionesPrg.iexfecfin}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
+                                              <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecfin}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
-                                              <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="" disabled readonly/>
+                                              <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="${requestScope.xVacacionesPrg.iexnrodias}" disabled readonly/>
                                               <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.iexglosa}" />
+                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.xVacacionesPrg.iexglosa}" disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox"/>
+                                                <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox" disabled/>
                                                 <label class="form-label fs-0 text-1000 ps-2 text-none mb-2" for="flexChecked">No considerar saldo? </label>
                                             </div>
 
@@ -255,7 +264,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
                                                   </div>
                                                 </div>
                                             </div>

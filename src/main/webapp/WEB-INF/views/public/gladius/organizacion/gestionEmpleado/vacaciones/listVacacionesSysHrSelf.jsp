@@ -65,7 +65,7 @@
                                     <span class="fas fa-search search-box-icon"></span>
                                   </form>
                                 </div>
-                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":5,"pagination":true}'>
+                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["dealName","amount","stage","probability","date","type"],"page":10,"pagination":true}'>
                                   <div class="table-responsive scrollbar">
                                     <table class="table table-sm fs--1 mb-0">
                                       <thead>
@@ -103,8 +103,7 @@
                                                   <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
                                                     <a id="dropdownmenutable" class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a id="dropdownmenutable" class="dropdown-item disabled" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+
                                                   </div>
                                                 </div>
                                               </td>

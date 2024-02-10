@@ -2,6 +2,46 @@
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<script>
+
+function max(element){
+    /*alert("hola");*/
+    /*var
+              el = document.documentElement
+            , rfs =
+                   el.requestFullScreen
+                || el.webkitRequestFullScreen
+                || el.mozRequestFullScreen
+        ;
+        rfs.call(el);*/
+
+     if(element.requestFullScreen) {
+             element.requestFullScreen();
+         } else if(element.mozRequestFullScreen) {
+             element.mozRequestFullScreen();
+                } else if(element.webkitRequestFullScreen) {
+                         element.webkitRequestFullScreen();
+                     }
+                     // Lanza en pantalla completa en navegadores que lo soporten
+                     launchFullScreen(document.documentElement); // la página entera
+                 }
+}
+
+function launchFullScreen(element) {
+  if(element.requestFullScreen) {
+    element.requestFullScreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+
+// Launch fullscreen for browsers that support it!
+launchFullScreen(document.documentElement); // the whole page
+launchFullScreen(document.getElementById("videoElement"));
+
+</script>
     <!--<nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">-->
 
     <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
@@ -145,6 +185,11 @@
             </div>
           </div>
           <ul class="navbar-nav navbar-nav-icons flex-row">
+            <li class="nav-item">
+              <div class="me-2">
+                <a href="#" onclick="max(e);" class="fs-3 text" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
+              </div>
+            </li>
             <li class="nav-item">
               <div class="theme-control-toggle fa-icon-wait px-2">
                 <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox" data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
