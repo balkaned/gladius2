@@ -359,9 +359,22 @@
             }
 
             .alert{
-               padding-top:17px !important;
-               padding-bottom:17px !important;
-               height:auto !important;
+                /*padding-top:17px;
+                padding-bottom:17px;*/
+                height:auto;
+                /*color:white;*/
+                font-size:14px;
+                border-radius:0px;
+                /*font-weight:bold;*/
+                /*border:0px solid grey;*/
+            }
+
+            .alert div p a{
+                text-decoration:underline;
+            }
+
+            .alert p a{
+                text-decoration:underline;
             }
 
             #imgcompanyedit{

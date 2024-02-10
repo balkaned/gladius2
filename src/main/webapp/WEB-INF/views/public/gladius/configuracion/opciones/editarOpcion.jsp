@@ -103,8 +103,10 @@
                                     <input class="form-control" name="iexdescripcion" type="text" value="${requestScope.xOpcion.iexdescripcion}" required/>
                               </div>
 
-                              <div class="alert alert-success" role="alert" id="alert" style="display:none;">
-                                  Se grabó exitosamente los cambios.
+                              <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                              	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                              	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                              	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                               </div>
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
@@ -131,8 +133,8 @@
                               		</div>
                               	  </form>
                               	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                              		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                              		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                              		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                              		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                               	  </div>
                               	</div>
                                 </div>

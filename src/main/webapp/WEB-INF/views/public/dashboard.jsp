@@ -87,7 +87,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
                           <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-cash-register text-success-500"></span>
                             <div class="ms-2">
                               <div class="d-flex align-items-end">
@@ -97,7 +97,7 @@
                             </div>
                           </div>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
                           <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-house text-info-500"></span>
                             <div class="ms-2">
                               <div class="d-flex align-items-end">
@@ -107,7 +107,7 @@
                             </div>
                           </div>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
+                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
                           <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-user-nurse text-secondary-500"></span>
                             <div class="ms-2">
                               <div class="d-flex align-items-end">
@@ -161,10 +161,10 @@
                       </div>
                     </div>
                     <div class="col-12 col-xl-5 col-xxl-6">
-                      <h3>C. Costos</h3>
-                      <p class="text-700 mb-0 mb-xl-3">Centro de costos por empleados</p>
+                      <h3>Locales</h3>
+                      <p class="text-700 mb-0 mb-xl-3">Cantidad de empleados por locales</p>
                       <!--<div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>-->
-                      <div class="echart-revenue-target-conversion-ccostos" style="min-height:200px;width:100%"></div>
+                      <div class="echart-revenue-target-conversion-locales" style="min-height:200px;width:100%"></div>
                     </div>
                   </div>
                 </div>
@@ -182,8 +182,8 @@
                             <input id="contador2" type="hidden" value="${cont2-1}" />
                 </div>
 
-                <div class="col-12 row">
-                    <div class="col-6">
+                <div class="col-sm-6 col-md-12 row">
+                    <div class="col-sm-6 col-md-6 mt-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div>
@@ -201,12 +201,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-6 col-md-6 mt-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="">
                                     <h3>C.costos</h3>
-                                    <p>Numero de empleados por centro de costos</p>
+                                    <p>Número de empleados por centro de costos</p>
                                     <div class="echart-revenue-target-conversion-ccosto" style="min-height:200px"></div>
                                     <c:set var="cont_cc" value="${1}" />
                                     <c:forEach var="lsCcostoBar" items="${lsCcostoBar}">
