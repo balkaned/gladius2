@@ -150,6 +150,12 @@ public class DashboardController {
         List<DashboardCcosto> lsCcostoBar=dashboardService.obtenerDatosDashboardCCosto(Integer.valueOf(idComp));
         model.addAttribute("lsCcostoBar",lsCcostoBar);
 
+        List<DashboardPuestos> lsPuestosBar=dashboardService.obtenerDatosDashboardPuestos(Integer.valueOf(idComp));
+        model.addAttribute("lsPuestosBar",lsPuestosBar);
+
+        List<DashboardLocal> lsLocalBar=dashboardService.obtenerDatosDashboardLocales(Integer.valueOf(idComp));
+        model.addAttribute("lsLocalBar",lsLocalBar);
+
         return new ModelAndView("public/dashboard");
     }
 }

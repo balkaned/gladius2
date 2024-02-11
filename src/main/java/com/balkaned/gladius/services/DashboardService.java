@@ -14,6 +14,8 @@ public interface DashboardService {
     public Integer getCantidadEmpl(Integer codcia);
 
     public Integer getCantidadAreas(Integer codcia);
+    public List<DashboardPuestos> obtenerDatosDashboardPuestos(Integer codcia);
+    public List<DashboardLocal> obtenerDatosDashboardLocales(Integer codcia);
 
     public Integer getCantidadBancos(Integer codcia);
 

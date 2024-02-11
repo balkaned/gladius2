@@ -450,5 +450,75 @@ public class DashboardDaoImpl implements DashboardDao {
         });
     }
 
+    public List<DashboardPuestos> obtenerDatosDashboardPuestos(Integer codcia) {
+
+        String sql="select " +
+                "ps.iexpuesto, " +
+                "ps.iexdespuesto, " +
+                "count(e1.iexcodtra) as cantidad " +
+                "from iexempleado e1 " +
+                "inner join iexpuesto ps on ps.iexpuesto=e1.iexpuesto " +
+                "where e1.iexcodcia="+codcia+" " +
+                "and e1.iexflgest='1' " +
+                "and ps.iexcodcia="+codcia+" " +
+                "group by ps.iexpuesto,ps.iexdespuesto ";
+
+        return template.query(sql, new ResultSetExtractor<List<DashboardPuestos>>() {
+            public List<DashboardPuestos> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<DashboardPuestos> lista = new ArrayList<DashboardPuestos>();
+
+                while(rs.next()) {
+                    DashboardPuestos p = new DashboardPuestos();
+
+                    p.setIexpuesto(rs.getInt("iexpuesto"));
+
+                    p.setIexdespuesto(rs.getString("iexdespuesto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
+
+                    p.setCantidad(rs.getInt("cantidad"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<DashboardLocal> obtenerDatosDashboardLocales(Integer codcia) {
+
+        String sql="select " +
+                "u.iexubicod, " +
+                "u.iexubides, " +
+                "count(e1.iexcodtra) as cantidad " +
+                "from iexempleado e1 " +
+                "inner join iexubicacion u on u.iexubicod=e1.iexubilocal " +
+                "where e1.iexcodcia="+codcia+" " +
+                "and e1.iexflgest='1' " +
+                "and u.iexcodcia="+codcia+" " +
+                "group by u.iexubicod,u.iexubides ";
+
+        return template.query(sql, new ResultSetExtractor<List<DashboardLocal>>() {
+            public List<DashboardLocal> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<DashboardLocal> lista = new ArrayList<DashboardLocal>();
+
+                while(rs.next()) {
+                    DashboardLocal p = new DashboardLocal();
+
+                    p.setIexubicod(rs.getInt("iexubicod"));
+
+                    p.setIexubides(rs.getString("iexubides"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexubides(cap.letras(p.getIexubides()));
+
+                    p.setCantidad(rs.getInt("cantidad"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
 
 }

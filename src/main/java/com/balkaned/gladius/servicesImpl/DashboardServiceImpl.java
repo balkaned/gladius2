@@ -56,4 +56,11 @@ public class DashboardServiceImpl implements DashboardService {
     public List<DashboardCcosto> obtenerDatosDashboardCCosto(Integer codcia){
         return dao.obtenerDatosDashboardCcosto(codcia);
     }
+
+    public List<DashboardPuestos> obtenerDatosDashboardPuestos(Integer codcia){
+        return dao.obtenerDatosDashboardPuestos(codcia);
+    }
+    public List<DashboardLocal> obtenerDatosDashboardLocales(Integer codcia){
+        return dao.obtenerDatosDashboardLocales(codcia);
+    }
 }

@@ -161,10 +161,19 @@
                       </div>
                     </div>
                     <div class="col-12 col-xl-5 col-xxl-6">
-                      <h3>Locales</h3>
-                      <p class="text-700 mb-0 mb-xl-3">Cantidad de empleados por locales</p>
-                      <!--<div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>-->
-                      <div class="echart-revenue-target-conversion-locales" style="min-height:200px;width:100%"></div>
+                      <h3>Puestos</h3>
+                      <p class="text-700 mb-0 mb-xl-3">Cantidad de empleados por cada posición laboral</p>
+                        <!--<div class="echart-zero-burnout-chart" style="min-height:320px;width:100%"></div>-->
+
+                      <div class="echart-revenue-target-conversion-puestos" style="min-height:500px;width:100%"></div>
+                      <c:set var="cont_ps" value="${1}" />
+                      <c:forEach var="lsPuestosBar" items="${lsPuestosBar}">
+                              <input id="cantidad_ps_${cont_ps}" type="hidden" value="${lsPuestosBar.cantidad}" />
+                              <input id="iexdespuesto_ps_${cont_ps}" type="hidden" value="${lsPuestosBar.iexdespuesto}" />
+                              <c:set var="cont_ps" value="${cont_ps + 1}" />
+                      </c:forEach>
+                              <input id="contador_ps" type="hidden" value="${cont_ps-1}" />
+
                     </div>
                   </div>
                 </div>
@@ -220,9 +229,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 ms-0 ps-0 mt-5 ms-3">
+                <div class="col-sm-6 col-md-12 row">
+                    <div class="col-sm-6 col-md-6 mt-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="">
+                                    <h3>Locales</h3>
+                                    <p>Número de empleados por Locales o ubigeos</p>
 
+                                    <div class="echart-revenue-target-conversion-locales" style="min-height:350px"></div>
+                                    <c:set var="cont_lc" value="${1}" />
+                                    <c:forEach var="lsLocalBar" items="${lsLocalBar}">
+                                            <input id="cantidad_lc_${cont_lc}" type="hidden" value="${lsLocalBar.cantidad}" />
+                                            <input id="iexubides_lc_${cont_lc}" type="hidden" value="${lsLocalBar.iexubides}" />
+                                            <c:set var="cont_lc" value="${cont_lc + 1}" />
+                                    </c:forEach>
+                                            <input id="contador_lc" type="hidden" value="${cont_lc-1}" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                </div>
 
                 <div class="col-12 col-xxl-6 mb-3 mb-sm-0 mt-7">
                     <div class="row">

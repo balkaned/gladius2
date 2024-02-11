@@ -15,16 +15,16 @@ function max(element){
         ;
         rfs.call(el);*/
 
-     if(element.requestFullScreen) {
-             element.requestFullScreen();
-         } else if(element.mozRequestFullScreen) {
-             element.mozRequestFullScreen();
-                } else if(element.webkitRequestFullScreen) {
-                         element.webkitRequestFullScreen();
-                     }
-                     // Lanza en pantalla completa en navegadores que lo soporten
-                     launchFullScreen(document.documentElement); // la página entera
-                 }
+    if(element.requestFullScreen) {
+       element.requestFullScreen();
+    } else if(element.mozRequestFullScreen) {
+       element.mozRequestFullScreen();
+    } else if(element.webkitRequestFullScreen) {
+       element.webkitRequestFullScreen();
+    }
+
+    // Lanza en pantalla completa en navegadores que lo soporten
+    launchFullScreen(document.documentElement); // la página entera
 }
 
 function launchFullScreen(element) {
@@ -187,7 +187,7 @@ launchFullScreen(document.getElementById("videoElement"));
           <ul class="navbar-nav navbar-nav-icons flex-row">
             <li class="nav-item">
               <div class="me-2">
-                <a href="#" onclick="max(e);" class="fs-3 text" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
+                <a href="#" onclick="max(element);" class="fs-3 text" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
               </div>
             </li>
             <li class="nav-item">
