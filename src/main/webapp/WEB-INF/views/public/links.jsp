@@ -79,4 +79,8 @@
         linkRTL.setAttribute('disabled', true);
         userLinkRTL.setAttribute('disabled', true);
       }
+
+      function maximize(){
+          document.documentElement.requestFullscreen();
+      }
 </script>

@@ -2,52 +2,10 @@
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<script>
 
-function max(element){
-    /*alert("hola");*/
-    /*var
-              el = document.documentElement
-            , rfs =
-                   el.requestFullScreen
-                || el.webkitRequestFullScreen
-                || el.mozRequestFullScreen
-        ;
-        rfs.call(el);*/
-
-    if(element.requestFullScreen) {
-       element.requestFullScreen();
-    } else if(element.mozRequestFullScreen) {
-       element.mozRequestFullScreen();
-    } else if(element.webkitRequestFullScreen) {
-       element.webkitRequestFullScreen();
-    }
-
-    // Lanza en pantalla completa en navegadores que lo soporten
-    launchFullScreen(document.documentElement); // la página entera
-}
-
-function launchFullScreen(element) {
-  if(element.requestFullScreen) {
-    element.requestFullScreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullScreen) {
-    element.webkitRequestFullScreen();
-  }
-}
-
-// Launch fullscreen for browsers that support it!
-launchFullScreen(document.documentElement); // the whole page
-launchFullScreen(document.getElementById("videoElement"));
-
-</script>
     <!--<nav class="navbar navbar-top fixed-top navbar-expand bg-${schema}" id="navbarDefault">-->
-
     <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
-
         <div class="collapse navbar-collapse justify-content-between">
-
           <div class="navbar-logo">
             <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
             <a class="navbar-brand me-1 me-sm-3" href="home@${idComp}@${idusuario}">
@@ -186,9 +144,9 @@ launchFullScreen(document.getElementById("videoElement"));
           </div>
           <ul class="navbar-nav navbar-nav-icons flex-row">
             <li class="nav-item">
-              <div class="me-2">
-                <a href="#" onclick="max(element);" class="fs-3 text" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
-              </div>
+                  <div class="me-2">
+                    <a href="#" onclick="maximize();" class="fs-3 text" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
+                  </div>
             </li>
             <li class="nav-item">
               <div class="theme-control-toggle fa-icon-wait px-2">
