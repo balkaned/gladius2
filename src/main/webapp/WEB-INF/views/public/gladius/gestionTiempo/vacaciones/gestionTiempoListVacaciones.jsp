@@ -165,11 +165,11 @@
                             <!-- Buttons -->
                             <div class="">
                                 <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                                <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Agregar Vacación</a>
+                                <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Add Vacaciones</a>
 
                                 <div class="btn-group mb-1 me-1 ms-0 mt-1">
-                                  <button class="btn btn-sm btn-success" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-                                  <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-success" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                                  <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                                  <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                   <div class="dropdown-menu">
                                 	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null">
                                 		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación

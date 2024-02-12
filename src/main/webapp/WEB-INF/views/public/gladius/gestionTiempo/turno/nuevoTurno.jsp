@@ -56,17 +56,14 @@
                           <input class="form-control" name="iexcodturno" maxlength="18" type="number" value=""
                             placeholder="#" required />
                         </div>
-
                         <div class="col-sm-6 col-md-9">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Turno</label>
                           <input class="form-control" name="iexdesturno" type="text" value="" placeholder="TURNO SABADO" required />
                         </div>
-
                         <div class="col-sm-6 col-md-12">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Abreviación</label>
                           <input class="form-control" name="iexflgturno" type="text" value="" placeholder="TS" required />
                         </div>
-
                         <div class="col-sm-6 col-md-4">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Min Antes</label>
                           <input class="form-control" name="iextopminantes" type="text" value="" placeholder="00:00" required />
@@ -85,7 +82,7 @@
                         </div>
                         <div class="col-sm-6 col-md-12">
                             <input type="checkbox" name="flg_diasig" id="flg_diasig" class="form-check-input">
-                            <label class="form-label fs-0 text-1000 ps-2 text-none mb-2">* Dia sig?</label>
+                            <label class="form-check-label ms-2">* Dia sig?</label>
                         </div>
 
                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">

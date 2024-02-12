@@ -281,4 +281,21 @@ public class PrestamoDaoImpl implements PrestamoDao {
         });
     }
 
+    public void eliminarPrestamoDetAll(PrestamoCab prestcab){
+
+        template.update("  delete from iexprestamodet  " +
+                        " where  iexcodcia= ?  and  iexcodtra = ? and  iexcorrel= ?    ",
+        prestcab.getIexcodcia(),
+        prestcab.getIexcodtra(),
+        prestcab.getIexcorrel());
+    }
+
+    public void eliminarPrestamoCab(PrestamoCab prestcab){
+
+        template.update("  delete from iexprestamocab  where iexcodcia = ?  and   iexcodtra =?  and    iexcorrel=?  ",
+                prestcab.getIexcodcia(),
+                prestcab.getIexcodtra(),
+                prestcab.getIexcorrel());
+    }
+
 }

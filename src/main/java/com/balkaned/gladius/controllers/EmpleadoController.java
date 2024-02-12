@@ -178,7 +178,7 @@ public class EmpleadoController {
         log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
-            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonalesSyshrSelf/fichaTrabajadorSysHrSelf");
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajadorSysHrSelf");
         } else {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajador");
         }

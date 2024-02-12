@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-sm-6 col-md-12">
                           <input type="checkbox" name="flg_diasig" id="flg_diasig" class="form-check-input">
-                          <label class="form-label fs-0 text-1000 ps-2 text-none mb-2">* Dia sig?</label>
+                          <label class="form-check-label ms-2">* Dia sig?</label>
                         </div>
 
                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">

@@ -145,7 +145,7 @@ function formatearFecha2(){
                                 <h3 id="h2top" class="mb-0">Cronograma</h3>
                             </div>
 
-                            <div class="border-top border-bottom border-200 mt-4" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                            <div class="border-top border-bottom border-200 mt-4" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":12,"pagination":true}'>
                             	<div class="table-responsive scrollbar">
                             		<table class="table table-sm fs--1 mb-0">
                             		  <thead>

@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PrestamoCab;
+import com.balkaned.gladius.beans.PrestamoDet;
 import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
@@ -229,6 +230,34 @@ public class PrestamoController {
         model.addAttribute("xPrestDet", prestamoService.listarPrestamoDet(prestcab));
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/detallePrestamo");
+    }
+
+    @RequestMapping("/deletePrestamo@{idTrab}@{iexcorrel}")
+    public ModelAndView deletePrestamo(ModelMap model, HttpServletRequest request,
+                                    @PathVariable String idTrab,
+                                    @PathVariable String iexcorrel) {
+        log.info("/deletePrestamo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        PrestamoCab prestcab = new PrestamoCab();
+        prestcab.setIexcodcia(idCompania);
+        prestcab.setIexcodtra(Integer.valueOf(idTrab));
+        prestcab.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        PrestamoDet prestdet = new PrestamoDet();
+        prestdet.setIexcodcia(idCompania);
+        prestdet.setIexcodtra(Integer.valueOf(idTrab));
+        prestdet.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        prestamoService.eliminarPrestamoDetAll(prestcab);
+        prestamoService.eliminarPrestamoCab(prestcab);
+
+        return new ModelAndView("redirect:/prestamos@" + idTrab);
     }
 }
 

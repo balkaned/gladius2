@@ -11,6 +11,17 @@
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
   </head>
+
+   <script>
+  	  function remove() {
+  		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+  		if (opcion == true) {
+  			return true;
+  		} else {
+  			return false;
+  		}
+  	  }
+   </script>
   
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
@@ -100,7 +111,7 @@
                                                   <div class="dropdown-menu dropdown-menu-end py-2">
                                                     <a id="dropdownmenutable" class="dropdown-item" href="detalleCron@${idTrab}@${LstPrestCab.iexcorrel}"><span class="fa-solid fa-credit-card me-2"></span>Detalle y cronograma</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deletePrestamo@${idTrab}@${LstPrestCab.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </div>
                                                 </div>
                                               </td>
