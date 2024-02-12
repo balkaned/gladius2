@@ -15,6 +15,14 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
+$(document).ready(function(){
+      var fechacargada=$("#iexfecinihidden").val();
+      $("#iexfecini").val(fechacargada);
+
+      var fechacargada2=$("#iexfecfinhidden").val();
+      $("#iexfecfin").val(fechacargada2);
+});
+
 function formatearFecha1(){
     var fechaSeleccionada = $('#iexfecini').val();
 
@@ -170,51 +178,59 @@ function enviaForm(variable){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevo ausentismo</h2>
+                                <h2 id="h2top" class="mb-0">Editar ausentismo</h2>
                               </div>
                             </div>
                             <c:if test="${msg!=null}">
                                  <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
-                                    <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
-                                    <div class="col-11">
-                                        <strong class="text-black">Error al guardar</strong>
-                                         <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información</a></p>
-                                    </div>
-                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                 	<span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                                 	<div class="col-11">
+                                 		<strong class="text-black">Error al guardar</strong>
+                                 		 <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información</a></p>
+                                 	</div>
+                                 	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                  </div>
                             </c:if>
 
                             <div class="row g-5">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="insertarAusentismo" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="modificarAusentismo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
+
+                                            <div class="col-sm-6 col-md-3">
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                                   <input class="form-control" name="iexcorrel" maxlength="70" type="text" value="${iexcorrel}" disabled/>
+                                                   <input class="form-control" name="iexcorrel2" type="hidden" value="${iexcorrel}" />
+                                            </div>
+                                            <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
                                                 <select class="form-select" name="iextipaus" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipaus" items="${lovTipaus}">
-                                                      <option value="${lovTipaus.idLov}"   ${lovTipaus.idLov == requestScope.iextipaus ? 'selected' : ''}  >  ${lovTipaus.desLov} </option>
+                                                      <option value="${lovTipaus.idLov}"   ${lovTipaus.idLov== requestScope.xAusentismoDet.iextipaus ? 'selected' : ''}  >  ${lovTipaus.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" onchange="calcularDias();" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" value="${requestScope.xAusentismoDet.iexfecini}" onchange="formatearFecha1();" type="text"  placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecini}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" value="${requestScope.xAusentismoDet.iexfecfin}" type="text" onchange="calcularDias();" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                  <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecfin}" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
-                                                   <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" type="text" placeholder="0" disabled readonly/>
+                                                   <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" value="${requestScope.xAusentismoDet.iexnrodias}" type="text" placeholder="0" disabled readonly/>
                                                    <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                   <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="" />
+                                                   <input class="form-control" name="iexglosa" maxlength="70" type="text" value="${requestScope.xAusentismoDet.iexglosa}" />
                                             </div>
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">

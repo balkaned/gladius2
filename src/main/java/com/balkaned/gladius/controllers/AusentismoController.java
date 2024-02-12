@@ -485,5 +485,225 @@ public class AusentismoController {
         return new ModelAndView("public/gladius/gestionTiempo/ausentismo/gestionTiempoListAusentismo");
     }
 
+    @RequestMapping("/editarAusentismo@{idTrab}@{iexcorrel}")
+    public ModelAndView editarAusentismo(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTrab,
+                                         @PathVariable String iexcorrel) {
+        log.info("/editarAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+
+        log.info("user:" + user);
+        if (user == null || user.equals("") || user.equals("null")) {
+            log.info("Ingreso a user null");
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcorrel",iexcorrel);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+        ausprg.setIexcodcia(idCompania);
+        ausprg.setIexcodtra(Integer.valueOf(idTrab));
+        ausprg.setIexcorrel(Integer.valueOf(iexcorrel));
+        model.addAttribute("xAusentismoDet",ausentismoService.getAusentismoPrg(ausprg));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/editarAusentismo");
+    }
+
+    @RequestMapping("/modificarAusentismo")
+    public ModelAndView modificarAusentismo(ModelMap model, HttpServletRequest request) {
+        log.info("/modificarAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(iexcodtra));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        Integer codcorrel = 0;
+        Integer validador = 0;
+        String Msg_form_global = "";
+
+        String iexfecini = request.getParameter("iexfecini");
+        String iexfecfin = request.getParameter("iexfecfin");
+        codcorrel = Integer.valueOf(request.getParameter("iexcorrel2"));
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+        ausprg.setIexcodcia(emp.getIexcodcia());
+        ausprg.setIexcodtra(emp.getIexcodtra());
+
+        validador = ausentismoService.validaAus(emp.getIexcodcia(), emp.getIexcodtra(), iexfecini, iexfecfin, 0);
+        log.info("validador: " + validador);
+
+        if (validador == 0) {
+            ausprg.setIexcorrel(codcorrel);
+            ausprg.setIexfecini(iexfecini);
+            ausprg.setIexfecfin(iexfecfin);
+            ausprg.setIextipaus(request.getParameter("iextipaus"));
+            ausprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
+            ausprg.setIexglosa(request.getParameter("iexglosa"));
+            ausprg.setIexusucrea("1");
+
+            ausentismoService.actualizarAusentismoPrg(ausprg);
+            Msg_form_global = "OK";
+            return new ModelAndView("redirect:/ausentismo@" + iexcodtra);
+        } else {
+            Msg_form_global = "Error";
+            model.addAttribute("idTrab", iexcodtra);
+            model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
+            model.addAttribute("msg", "Error Las fechas se cruzan con programaciones anteriores");
+
+            AusentismoProgramacion ausprg2 = new AusentismoProgramacion();
+            ausprg2.setIexcodcia(idCompania);
+            ausprg2.setIexcodtra(Integer.valueOf(iexcodtra));
+            ausprg2.setIexcorrel(Integer.valueOf(codcorrel));
+
+            model.addAttribute("iexcorrel",codcorrel);
+            model.addAttribute("xAusentismoDet",ausentismoService.getAusentismoPrg(ausprg2));
+        }
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/editarAusentismo");
+    }
+
+    @RequestMapping("/detalleAusentismo@{idTrab}@{iexcorrel}")
+    public ModelAndView detalleAusentismo(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTrab,
+                                         @PathVariable String iexcorrel) {
+        log.info("/detalleAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcorrel",iexcorrel);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("lovTipaus", lovsService.getLovs("57", "%"));
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+        ausprg.setIexcodcia(idCompania);
+        ausprg.setIexcodtra(Integer.valueOf(idTrab));
+        ausprg.setIexcorrel(Integer.valueOf(iexcorrel));
+        model.addAttribute("xAusentismoDet",ausentismoService.getAusentismoPrg(ausprg));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/ausentismo/detalleAusentismo");
+    }
+
+    @RequestMapping("/deleteAusentismo@{idTrab}@{iexcorrel}")
+    public ModelAndView deleteAusentismo(ModelMap model, HttpServletRequest request,
+                                          @PathVariable String idTrab,
+                                          @PathVariable String iexcorrel) {
+        log.info("/deleteAusentismo");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        AusentismoProgramacion ausprg = new AusentismoProgramacion();
+        ausprg.setIexcodcia(idCompania);
+        ausprg.setIexcodtra(Integer.valueOf(idTrab));
+        ausprg.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        ausentismoService.eliminarAusentismoPrg(ausprg);
+
+        return new ModelAndView("redirect:/ausentismo@" + idTrab);
+    }
+
 }
 

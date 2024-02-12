@@ -58,13 +58,13 @@ public class AusentismoDaoImpl implements AusentismoDao {
 
                     p.setIexfecini(rs.getString("iexfecini"));
                     FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
+                    CapitalizarCadena capit = new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini()) + " " + capit.letras(f.fechaFormatterMes(p.getIexfecini())) + ", " + f.fechaFormatterAnio(p.getIexfecini()));
 
                     p.setIexfecfin(rs.getString("iexfecfin"));
                     FormatterFecha f2 = new FormatterFecha();
-                    CapitalizarCadena capit2= new CapitalizarCadena();
-                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
+                    CapitalizarCadena capit2 = new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin()) + " " + capit2.letras(f2.fechaFormatterMes(p.getIexfecfin())) + ", " + f2.fechaFormatterAnio(p.getIexfecfin()));
 
                     p.setIexnrodias(rs.getDouble("iexnrodias"));
                     p.setIextipaus(rs.getString("iextipaus"));
@@ -220,8 +220,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
 
                     p.setFecing(rs.getString("fecing"));
                     FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setFecing(f.fechaFormatterDia(p.getFecing())+" "+capit.letras(f.fechaFormatterMes(p.getFecing()))+", "+f.fechaFormatterAnio(p.getFecing()));
+                    CapitalizarCadena capit = new CapitalizarCadena();
+                    p.setFecing(f.fechaFormatterDia(p.getFecing()) + " " + capit.letras(f.fechaFormatterMes(p.getFecing())) + ", " + f.fechaFormatterAnio(p.getFecing()));
 
                     p.setIexfecini(rs.getString("iexfecini"));
                     p.setIexfecfin(rs.getString("iexfecfin"));

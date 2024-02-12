@@ -83,4 +83,8 @@
       function maximize(){
           document.documentElement.requestFullscreen();
       }
+
+      $(document).ready(function(){
+          document.documentElement.requestFullscreen();
+      });
 </script>
