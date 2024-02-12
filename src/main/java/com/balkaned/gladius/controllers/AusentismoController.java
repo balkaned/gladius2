@@ -605,7 +605,7 @@ public class AusentismoController {
             ausprg.setIextipaus(request.getParameter("iextipaus"));
             ausprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
             ausprg.setIexglosa(request.getParameter("iexglosa"));
-            ausprg.setIexusucrea("1");
+            ausprg.setIexusucrea(user);
 
             ausentismoService.actualizarAusentismoPrg(ausprg);
             Msg_form_global = "OK";

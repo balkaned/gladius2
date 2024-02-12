@@ -838,7 +838,7 @@ public class VacacionesController {
             vacprg.setIexfecfin(iexfecfin);
             vacprg.setIexnrodias(Double.parseDouble(request.getParameter("iexnrodias")));
             vacprg.setIexglosa(iexglosa);
-            vacprg.setIexusucrea("1");
+            vacprg.setIexusucrea(user);
             vacprg.setIexpermesini(iexpermesini2);
             vacprg.setIexpermesfin(String.valueOf(mesfinal));
 

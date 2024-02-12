@@ -133,4 +133,77 @@ public class ContratoDaoImpl implements ContratoDao {
 
     }
 
+    public ContratoEmp getContratoEmp(ContratoEmp contemp) {
+
+        String sql=" select  " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexcorrel, " +
+                "iextipcont, " +
+                " d.desdet as destipcont, "+
+                "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
+                "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
+                "iexmodcont, " +
+                "iexmodcont as desmodcont, " +
+                "iexusucrea, " +
+                "iexusumod,  " +
+                "iexfeccrea, " +
+                "iexfecmod , iexestado " +
+                "from iexcontctl,  ( " +
+                "                        select  iexkey, desdet from iexttabled where iexcodtab='12' " +
+                "                        ) d where iexcodcia="+contemp.getIexcodcia()+" and iexcodtra="+contemp.getIexcodtra()+"  and iexcorrel="+contemp.getIexcorrel()+" and iextipcont = d.iexkey ";
+
+        return (ContratoEmp) template.query(sql, new ResultSetExtractor<ContratoEmp>() {
+            public ContratoEmp extractData(ResultSet rs) throws SQLException, DataAccessException{
+                ContratoEmp p = new ContratoEmp();
+                while(rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcorrel(rs.getInt("iexcorrel"));
+                    p.setIextipcont(rs.getString("iextipcont"));
+                    p.setDestipcont(rs.getString("destipcont"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setIexmodcont(rs.getString("iexmodcont"));
+                    p.setDesmodcont(rs.getString("desmodcont"));
+
+                    p.setIexusucrea(rs.getString("iexusucrea"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexusumod(rs.getString("iexusumod"));
+                    p.setIexfecmod(rs.getString("iexfecmod"));
+                    p.setIexestado(rs.getString("iexestado"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizarContratoEmp(ContratoEmp contemp){
+
+        template.update("  update iexcontctl set " +
+                        " iextipcont=?, " +
+                        "iexfecini=to_date(?,'DD/MM/YYYY'),   iexfecfin=to_date(?,'DD/MM/YYYY'),     iexmodcont=?,     iexusumod=?, " +
+                        "   iexfecmod=current_date ,  iexestado = ?  where iexcodcia=? and   iexcodtra=? and     iexcorrel=?  ",
+
+        contemp.getIextipcont(),
+        contemp.getIexfecini(),
+        contemp.getIexfecfin(),
+        contemp.getIexmodcont(),
+        contemp.getIexusumod(),
+        contemp.getIexestado(),
+        contemp.getIexcodcia(),
+        contemp.getIexcodtra(),
+        contemp.getIexcorrel());
+    }
+
+    public void eliminarContratoEmp(ContratoEmp contemp){
+
+        template.update("  delete from   iexcontctl  where iexcodcia=? and   iexcodtra=? and     iexcorrel=?  ",
+
+        contemp.getIexcodcia(),
+        contemp.getIexcodtra(),
+        contemp.getIexcorrel());
+
+    }
+
 }

@@ -170,5 +170,164 @@ public class ContratoController {
 
         return new ModelAndView("redirect:/contrato@" + iexcodtra);
     }
+
+    @RequestMapping("/editarContrato@{idTrab}@{iexcorrel}")
+    public ModelAndView editarContrato(ModelMap model, HttpServletRequest request,
+                                       @PathVariable String idTrab,
+                                       @PathVariable String iexcorrel) {
+        log.info("/editarContrato");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcorrel",iexcorrel);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        model.addAttribute("lovTipcont", lovsService.getLovs("12", "%"));
+
+        ContratoEmp contr = new ContratoEmp();
+        contr.setIexcodcia(idCompania);
+        contr.setIexcodtra(Integer.valueOf(idTrab));
+        contr.setIexcorrel(Integer.valueOf(iexcorrel));
+        model.addAttribute("xContratoEmp",contratoService.getContratoEmp(contr));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/editarContrato");
+    }
+
+    @RequestMapping("/modificarContrato")
+    public ModelAndView modificarContrato(ModelMap model, HttpServletRequest request) {
+        log.info("/modificarContrato");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        Integer iexcodtra= Integer.valueOf(request.getParameter("iexcodtra"));
+
+        ContratoEmp contr = new ContratoEmp();
+        contr.setIexcodcia(idCompania);
+        contr.setIexcodtra(iexcodtra);
+        contr.setIexcorrel(Integer.valueOf(request.getParameter("iexcorrel2")));
+        contr.setIexfecini(request.getParameter("iexfecini"));
+        contr.setIexfecfin(request.getParameter("iexfecfin"));
+        contr.setIextipcont(request.getParameter("iextipcont"));
+        contr.setIexmodcont(request.getParameter("iexmodcont"));
+        contr.setIexestado(request.getParameter("iexestado"));
+        contr.setIexusucrea(user);
+
+        contratoService.actualizarContratoEmp(contr);
+
+        return new ModelAndView("redirect:/contrato@" + iexcodtra);
+    }
+
+    @RequestMapping("/detalleContrato@{idTrab}@{iexcorrel}")
+    public ModelAndView detalleContrato(ModelMap model, HttpServletRequest request,
+                                       @PathVariable String idTrab,
+                                       @PathVariable String iexcorrel) {
+        log.info("/detalleContrato");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcorrel",iexcorrel);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        model.addAttribute("lovTipcont", lovsService.getLovs("12", "%"));
+
+        ContratoEmp contr = new ContratoEmp();
+        contr.setIexcodcia(idCompania);
+        contr.setIexcodtra(Integer.valueOf(idTrab));
+        contr.setIexcorrel(Integer.valueOf(iexcorrel));
+        model.addAttribute("xContratoEmp",contratoService.getContratoEmp(contr));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/detalleContrato");
+    }
+
+    @RequestMapping("/deleteContrato@{idTrab}@{iexcorrel}")
+    public ModelAndView deleteContrato(ModelMap model, HttpServletRequest request,
+                                        @PathVariable String idTrab,
+                                        @PathVariable String iexcorrel) {
+        log.info("/deleteContrato");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        ContratoEmp contr = new ContratoEmp();
+        contr.setIexcodcia(idCompania);
+        contr.setIexcodtra(Integer.valueOf(idTrab));
+        contr.setIexcorrel(Integer.valueOf(iexcorrel));
+
+        contratoService.eliminarContratoEmp(contr);
+
+        return new ModelAndView("redirect:/contrato@" + idTrab);
+    }
 }
 

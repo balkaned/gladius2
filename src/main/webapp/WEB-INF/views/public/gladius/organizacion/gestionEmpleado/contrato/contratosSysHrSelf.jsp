@@ -97,6 +97,7 @@
                                                       data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                       <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                       <div class="dropdown-menu dropdown-menu-end py-2">
+                                						<a id="dropdownmenutable" class="dropdown-item" href="detalleContrato@${idTrab}@${LstContratoDet.iexcorrel}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                 						<a id="dropdownmenutable" class="dropdown-item disabled" href="#"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                 						<div class="dropdown-divider"></div>
                                 						<a id="dropdownmenutable" class="dropdown-item disabled" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
