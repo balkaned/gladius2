@@ -167,7 +167,7 @@
                                              <tr>
                                                  <div class="col-md-12">
                                                     <input type="checkbox" name="iexctlasipag" id="iexctlasipag"  value="1" class="form-check-input" ${requestScope.xempxturno.iexctlasipag =='1' ? 'checked=true' : ''}  disabled >
-                                                    <label class="form-label fs-0 text-1000 ps-2 text-none mb-2 pe-4">Control Asistenca para Pago?</label>
+                                                    <label class="form-check-label ms-2">Control Asistenca para Pago?</label>
                                                  </div>
                                              </tr>
                                              <tr>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -34,7 +35,9 @@ public class AcumuladoController {
         log.info("/acumulado");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -73,8 +76,8 @@ public class AcumuladoController {
         model.addAttribute("LstAcumEmp", acumuladoService.listarEmpAcum(emp.getIexcodcia(), emp.getIexcodtra()));
 
         UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
-        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
-        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+        log.info("ur.getIexdesrol(): " + ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): " + ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/acumuladosSysHrSelf");
@@ -136,15 +139,47 @@ public class AcumuladoController {
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
-        String iexcodcia = request.getParameter("iexcodcia");
         String iexcodtra = request.getParameter("iexcodtra");
 
-        EmpAcum empacum = new EmpAcum();
+        log.info("idTrab: " + iexcodtra);
+        model.addAttribute("idTrab", iexcodtra);
 
-        empacum.setIexcodcia(Integer.valueOf(iexcodcia));
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(iexcodtra));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+
+        String iexaniotrib = request.getParameter("iexaniotrib");
+
+        EmpAcum empacum = new EmpAcum();
+        empacum.setIexcodcia(idCompania);
         empacum.setIexcodtra(Integer.valueOf(iexcodtra));
-        empacum.setIexaniotrib(request.getParameter("iexaniotrib"));
+        empacum.setIexaniotrib(iexaniotrib);
         empacum.setIexrem_acum(Double.parseDouble(request.getParameter("iexrem_acum")));
         empacum.setIexrem5taafec_acum(Double.parseDouble(request.getParameter("iexrem5taafec_acum")));
         empacum.setIexrenta5ta_acum(Double.parseDouble(request.getParameter("iexrenta5ta_acum")));
@@ -156,9 +191,199 @@ public class AcumuladoController {
         empacum.setIexrenta_acum(Double.parseDouble(request.getParameter("iexrenta_acum")));
         empacum.setIexusucrea(user);
 
-        acumuladoService.insertarEmpAcum(empacum);
+        Integer result = acumuladoService.validarAnioTrib(empacum);
+        log.info("result: " + result);
+
+        if (result > 0) {
+            model.addAttribute("msg", "El año tributario ingresado ya existe, no se puede agregar uno nuevo con el mismo periodo, trate de editar ese año Tributario en la opción Editar.");
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/nuevoAcumulado");
+        } else {
+            acumuladoService.insertarEmpAcum(empacum);
+            return new ModelAndView("redirect:/acumulado@" + iexcodtra);
+        }
+    }
+
+    @RequestMapping("/editarAcumulado@{idTrab}@{iexaniotrib}")
+    public ModelAndView editarAcumulado(ModelMap model, HttpServletRequest request,
+                                        @PathVariable String idTrab,
+                                        @PathVariable String iexaniotrib) {
+        log.info("/editarAcumulado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        model.addAttribute("xEmpAcum", acumuladoService.getEmpAcum(idCompania, Integer.valueOf(idTrab),iexaniotrib));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/editarAcumulado");
+    }
+
+    @RequestMapping("/modificarAcumulado")
+    public ModelAndView modificarAcumulado(ModelMap model, HttpServletRequest request) {
+        log.info("/modificarAcumulado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        String iexcodtra = request.getParameter("iexcodtra");
+
+        log.info("idTrab: " + iexcodtra);
+        model.addAttribute("idTrab", iexcodtra);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(iexcodtra));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+
+        String iexaniotrib = request.getParameter("iexaniotrib2");
+
+        EmpAcum empacum = new EmpAcum();
+        empacum.setIexcodcia(idCompania);
+        empacum.setIexcodtra(Integer.valueOf(iexcodtra));
+        empacum.setIexaniotrib(iexaniotrib);
+        empacum.setIexrem_acum(Double.parseDouble(request.getParameter("iexrem_acum")));
+        empacum.setIexrem5taafec_acum(Double.parseDouble(request.getParameter("iexrem5taafec_acum")));
+        empacum.setIexrenta5ta_acum(Double.parseDouble(request.getParameter("iexrenta5ta_acum")));
+        empacum.setIexremafec5ta_otrcia(Double.parseDouble(request.getParameter("iexremafec5ta_otrcia")));
+        empacum.setIexrent5ta_otrcia(Double.parseDouble(request.getParameter("iexrent5ta_otrcia")));
+        empacum.setIexrem4ta_acum(Double.parseDouble(request.getParameter("iexrem4ta_acum")));
+        empacum.setIexrenta4ta_acum(Double.parseDouble(request.getParameter("iexrenta4ta_acum")));
+        empacum.setIexremotr_acum(Double.parseDouble(request.getParameter("iexremotr_acum")));
+        empacum.setIexrenta_acum(Double.parseDouble(request.getParameter("iexrenta_acum")));
+        empacum.setIexusucrea(user);
+
+        acumuladoService.actualizarEmpAcum(empacum);
 
         return new ModelAndView("redirect:/acumulado@" + iexcodtra);
+    }
+
+    @RequestMapping("/detalleAcumulado@{idTrab}@{iexaniotrib}")
+    public ModelAndView detalleAcumulado(ModelMap model, HttpServletRequest request,
+                                        @PathVariable String idTrab,
+                                        @PathVariable String iexaniotrib) {
+        log.info("/detalleAcumulado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+        log.info("sexo: " + sexo);
+
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("xEmpAcum", acumuladoService.getEmpAcum(idCompania, Integer.valueOf(idTrab),iexaniotrib));
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/acumulado/detalleAcumulado");
+    }
+
+    @RequestMapping("/deleteAcumulado@{idTrab}@{iexaniotrib}")
+    public ModelAndView deleteAcumulado(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTrab,
+                                         @PathVariable String iexaniotrib) {
+        log.info("/deleteAcumulado");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        EmpAcum empacum  = new EmpAcum();
+        empacum.setIexcodcia(idCompania);
+        empacum.setIexcodtra(Integer.valueOf(idTrab));
+        empacum.setIexaniotrib(iexaniotrib);
+
+        acumuladoService.eliminarEmpAcum(empacum);
+
+        return new ModelAndView("redirect:/acumulado@" + idTrab);
     }
 }
 
