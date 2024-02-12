@@ -67,7 +67,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -111,9 +111,9 @@
                                                       <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                       <div class="dropdown-menu dropdown-menu-end py-2">
                                 					    <a id="dropdownmenutable" class="dropdown-item" href="detalleRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
-                                					    <a id="dropdownmenutable" class="dropdown-item" href="editarRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                					    <a id="dropdownmenutable" class="dropdown-item disabled" href="editarRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                 						<div class="dropdown-divider"></div>
-                                						<a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                						<a id="dropdownmenutable" class="dropdown-item disabled" onclick="return remove();" href="deleteRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>

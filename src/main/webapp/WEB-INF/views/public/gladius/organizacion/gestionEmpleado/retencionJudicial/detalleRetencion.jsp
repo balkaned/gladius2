@@ -15,6 +15,14 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
+$(document).ready(function(){
+      var fechacargada=$("#iexfecinihidden").val();
+      $("#iexfecini").val(fechacargada);
+
+      var fechacargada2=$("#iexfecfinhidden").val();
+      $("#iexfecfin").val(fechacargada2);
+});
+
 function formatearFecha1(){
     var fechaSeleccionada = $('#iexfecini').val();
 
@@ -72,53 +80,61 @@ function formatearFecha2(){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nueva retención</h2>
+                                <h2 id="h2top" class="mb-0">Ver detalle retención</h2>
                               </div>
                             </div>
 
                             <div class="row g-5">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarRetencion" novalidate >
+                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarRetencion" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
+
+                                            <div class="col-sm-6 col-md-3 ">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                                <input type="text" name="iexcorrel"  value="${iexcorrel}"  class="form-control" disabled />
+                                                <input type="hidden" name="iexcorrel2"  value="${iexcorrel}"  />
+                                            </div>
+                                            <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Retencion</label>
-                                                <select class="form-select" name="iextipretjud" required >
+                                                <select class="form-select" name="iextipretjud" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipretj" items="${lovTipretj}">
-                                                      <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov == requestScope.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
+                                                      <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov== requestScope.xRetenJudEmp.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Resolucion</label>
-                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" required />
+                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" value="${requestScope.xRetenJudEmp.iexresolucion}" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso Planilla</label>
-                                                <select class="form-select" name="iexcodpro" required >
+                                                <select class="form-select" name="iexcodpro" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovProcesos" items="${lovProcesos}">
-                                                      <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
+                                                      <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso== requestScope.xRetenJudEmp.iexcodpro ? 'selected' : ''} >  ${lovProcesos.desProceso} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" value="${requestScope.xRetenJudEmp.iexfecini}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled />
+                                                <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xRetenJudEmp.iexfecini}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" value="${requestScope.xRetenJudEmp.iexfecfin}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled />
+                                                <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xRetenJudEmp.iexfecfin}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Porcentaje</label>
-                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 placeholder="10%-> 10.0" required />
+                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" value="${requestScope.xRetenJudEmp.iexpordesct}"  step=0.01 placeholder="10%-> 10.0" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Imp. Fijo</label>
-                                                <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
+                                                <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="${requestScope.xRetenJudEmp.ieximpfijo}" value="0.0" required disabled/>
                                             </div>
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -132,7 +148,7 @@ function formatearFecha2(){
                                                     <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Retencion</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Retencion</button>
                                                   </div>
                                                 </div>
                                             </div>

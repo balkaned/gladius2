@@ -86,7 +86,6 @@ public class ContratoController {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/contrato/contratos");
         }
 
-
     }
 
     @RequestMapping("/nuevoContrato@{idTrab}")
