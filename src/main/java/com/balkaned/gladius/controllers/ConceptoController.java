@@ -69,7 +69,16 @@ public class ConceptoController {
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
-        conceptoService.insertarConcepto(getConcepto(request));
+
+        Concepto c = new Concepto();
+        c.setCodConcepto(request.getParameter("codConcepto"));
+        c.setDesConcepto(request.getParameter("desConcepto"));
+        c.setDesVariable(request.getParameter("desVariable"));
+        c.setDesAbreviacion(request.getParameter("desAbreviacion"));
+        c.setDescripcion(request.getParameter("descripcion"));
+
+        conceptoService.insertarConcepto(c);
+
         return new ModelAndView("redirect:" + listConceptos);
     }
 
@@ -99,14 +108,34 @@ public class ConceptoController {
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
-        conceptoService.actualizarConcepto(getConcepto(request));
+
+        Concepto c = new Concepto();
+        c.setCodConcepto(request.getParameter("codConcepto"));
+        c.setDesConcepto(request.getParameter("desConcepto"));
+        c.setDesVariable(request.getParameter("desVariable"));
+        c.setDesAbreviacion(request.getParameter("desAbreviacion"));
+        c.setDescripcion(request.getParameter("descripcion"));
+
+        conceptoService.actualizarConcepto(c);
+
         return new ModelAndView("redirect:" + listConceptos);
     }
 
-    private static Concepto getConcepto(HttpServletRequest request) {
-        return Concepto.builder().idProceso(Integer.parseInt(request.getParameter("idProceso")))
-                .codConcepto(request.getParameter("codConcepto")).desConcepto(request.getParameter("desConcepto"))
-                .desVariable(request.getParameter("desVariable")).descripcion(request.getParameter("descripcion"))
-                .desAbreviacion(request.getParameter("desAbreviacion")).build();
+    @RequestMapping("deleteConcepto@{idParam}")
+    public ModelAndView deleteConcepto(
+            ModelMap model,
+            HttpServletRequest request,
+            @PathVariable String idParam) {
+        log.info("deleteConcepto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+
+        conceptoService.eliminar(idParam);
+
+        return new ModelAndView("redirect:" + listConceptos);
     }
+
 }

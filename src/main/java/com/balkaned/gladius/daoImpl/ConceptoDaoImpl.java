@@ -123,12 +123,12 @@ public class ConceptoDaoImpl implements ConceptoDao {
                         "coodesabrev, " +
                         "coodescripcion) " +
                         "VALUES (?, ?, ?, ?, ?)",
+
                 concepto.getCodConcepto(),
                 concepto.getDesConcepto(),
                 concepto.getDesVariable(),
                 concepto.getDesAbreviacion(),
-                concepto.getDescripcion()
-        );
+                concepto.getDescripcion());
     }
 
     @Override
@@ -163,6 +163,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
                         "coodesabrev = ?, " +
                         "coodescripcion = ? " +
                         "WHERE coocodcon = ? ",
+
                 concepto.getDesConcepto(),
                 concepto.getDesVariable(),
                 concepto.getDesAbreviacion(),
@@ -192,4 +193,11 @@ public class ConceptoDaoImpl implements ConceptoDao {
             return con;
         });
     }
+
+    public void eliminar(String id){
+
+        template.update("delete from  iexconcepto where trim(coocodcon) = trim(?) ",
+                id);
+    }
+
 }

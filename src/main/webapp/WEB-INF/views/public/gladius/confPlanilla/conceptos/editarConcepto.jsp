@@ -74,27 +74,22 @@
           <div class="row gx-3 gy-4">
             <form class="row g-4 mb-0 needs-validation" method="POST" action="actualizarConcepto" novalidate>
               <input class="form-control" name="codConcepto" type="hidden" value="${requestScope.xConcepto.codConcepto}"/>
-
               <div class="col-sm-6 col-md-3">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
                 <input class="form-control" name="codConcepto" type="text" value="${requestScope.xConcepto.codConcepto}" required disabled readonly/>
               </div>
-
               <div class="col-sm-6 col-md-9">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Concepto</label>
                 <input class="form-control" name="desConcepto" type="text" value="${requestScope.xConcepto.desConcepto}" required/>
               </div>
-
               <div class="col-sm-6 col-md-6">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Variable Formula</label>
                 <input class="form-control" name="desVariable" type="text" value="${requestScope.xConcepto.desVariable}" required/>
               </div>
-
               <div class="col-sm-6 col-md-6">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
                 <input class="form-control" name="desAbreviacion" type="text" value="${requestScope.xConcepto.desAbreviacion}"/>
               </div>
-
               <div class="col-sm-6 col-md-12">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                 <input class="form-control" name="descripcion" type="text" value="${requestScope.xConcepto.descripcion}"/>
@@ -105,10 +100,13 @@
               	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
               	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-              <div id="alert" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                <span class="fa-solid fa-triangle-exclamation text-warning fs-0 me-3"></span>
-                <p class="mb-0 fw-semi-bold text-1000 col-11">Por favor, complete todos los campos requeridos <a href="#">Mas información</a></p>
-                <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div id="incomplete" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                    <span class="fa-solid fa-triangle-exclamation text-warning fs-0 me-3"></span>
+                    <div class="col-11">
+                        <strong class="text-black">Advertencia</strong>
+                         <p class="mb-0 fw-semi-bold text-1000">Por favor, complete todos los campos requeridos <a href="#">Mas información</a></p>
+                    </div>
+                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-end">
@@ -116,9 +114,7 @@
                     <a class="btn btn-phoenix-primary px-5" href="listConceptos">Cancel</a>
                   </div>
                   <div class="col-auto">
-                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window"
-                            aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar Concepto
-                    </button>
+                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar Concepto</button>
                   </div>
                 </div>
               </div>
@@ -138,7 +134,7 @@
               	  </form>
               	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
               		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-              		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+              		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="validarCampos();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
               	  </div>
               	</div>
                 </div>
