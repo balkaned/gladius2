@@ -67,61 +67,60 @@
 		<div class="mb-9">
 			<div class="row g-3 mb-4">
 				<div class="col-auto">
-					<h2 id="h2top" class="mb-0">Insertar proceso y fórmula</h2>
+					<h2 id="h2top" class="mb-0">Editar proceso y fórmula</h2>
 				</div>
 			</div>
 
 			<div class="row g-5">
 				<div class="col-xl-7">
 					<div class="row gx-3 gy-4">
-						<form class="row g-4 mb-0 needs-validation" method="POST" action="addProcesoFormula" novalidate>
-							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="desProcesos">* Descripción de Procesos</label>
-								<input class="form-control" id="desProcesos" name="desProcesos" type="text" value="" placeholder="PLANILLA EMPLEADOS" required/>
+						<form class="row g-4 mb-0 needs-validation" method="POST" action="modificarProcesoFormula" novalidate>
+							<div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >ID</label>
+                                <input class="form-control" name="codProceso" type="text" value="${requestScope.pplanillax.idProceso}" placeholder="PLANILLA EMPLEADOS" required disabled />
+                                <input class="form-control" name="codProceso2" type="hidden" value="${requestScope.pplanillax.idProceso}" />
+                            </div>
+							<div class="col-sm-6 col-md-9">
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >* Descripción de Procesos</label>
+								<input class="form-control" id="desProcesos" name="desProcesos" type="text" maxlength="50" value="${requestScope.pplanillax.desProceso}" placeholder="PLANILLA EMPLEADOS" required/>
 							</div>
 							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="desCortoProcesos">Descripción Corto de Procesos</label>
-								<input class="form-control" id="desCortoProcesos" name="desCortoProcesos" type="text" value="" placeholder="PLANI EMPL"/>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Descripción Corto de Procesos</label>
+								<input class="form-control" id="desCortoProcesos" name="desCortoProcesos" maxlength="50" type="text" value="${requestScope.pplanillax.desProcesoCorto}" placeholder="PLANI EMPL"/>
 							</div>
 							<div class="col-sm-6 col-md-12">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="lov_grpplanilla">Grupo de Planilla</label>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Grupo de Planilla</label>
 								<select id="lov_grpplanilla" name="lov_grpplanilla" class="form-select">
 										<option value="">Seleccionar</option>
 										<c:forEach var="Lovs_grpplanilla" items="${Lovs_grpplanilla}">
-											<option value="${Lovs_grpplanilla.idLov}">${Lovs_grpplanilla.desLov}</option>
+											<option value="${Lovs_grpplanilla.idLov}" ${Lovs_grpplanilla.idLov == requestScope.pplanillax.desGrp ? 'selected' : ''} >${Lovs_grpplanilla.desLov}</option>
 										</c:forEach>
-									</select>
+								</select>
 							</div>
 							<div class="col-sm-6 col-md-12">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="lov_regimenlab">Regimen Laboral</label>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Regimen Laboral</label>
 								<select id="lov_regimenlab" name="lov_regimenlab" class="form-select">
 										<option value="">Seleccionar</option>
 										<c:forEach var="Lovs_reglaboral" items="${Lovs_reglaboral}">
-											<option value="${Lovs_reglaboral.idLov}">${Lovs_reglaboral.desLov}</option>
+											<option value="${Lovs_reglaboral.idLov}" ${Lovs_reglaboral.idLov == requestScope.pplanillax.idRegLab ? 'selected' : ''} >${Lovs_reglaboral.desLov}</option>
 										</c:forEach>
-									</select>
+								</select>
 							</div>
 							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="reporteBoleta">Reporte de Boleta</label>
-								<input class="form-control" id="reporteBoleta" name="reporteBoleta" type="text" value="" placeholder="BoletaEmp"/>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Reporte de Boleta</label>
+								<input class="form-control" id="reporteBoleta" name="reporteBoleta" type="text" value="${requestScope.pplanillax.bolProceso}" placeholder="BoletaEmp"/>
 							</div>
 							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="reporteIndividual">Reporte Individual</label>
-								<input class="form-control" id="reporteIndividual" name="reporteIndividual" type="text" value="" placeholder="BoletaEmpTra"/>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Reporte Individual</label>
+								<input class="form-control" id="reporteIndividual" name="reporteIndividual" type="text" value="${requestScope.pplanillax.bolProcesoind}" placeholder="BoletaEmpTra"/>
 							</div>
 							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="reporteResumen">Reporte Resumen
-								</label>
-								<input class="form-control" id="reporteResumen" name="reporteResumen" type="text" value=""
-											 placeholder="BoletaEmpRes"/>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Reporte Resumen</label>
+								<input class="form-control" id="reporteResumen" name="reporteResumen" type="text" value="${requestScope.pplanillax.bolProcesores}" placeholder="BoletaEmpRes"/>
 							</div>
-
 							<div class="col-sm-6 col-md-6">
-								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tipoProceso">
-									Tipo de Proceso
-								</label>
-								<input class="form-control" id="tipoProceso" name="tipoProceso" type="text" value=""
-											 placeholder="G"/>
+								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Tipo de Proceso</label>
+								<input class="form-control" id="tipoProceso" name="tipoProceso" type="text" value="${requestScope.pplanillax.idTipProceso}" placeholder="G"/>
 							</div>
 
 							<div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >

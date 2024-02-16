@@ -1,17 +1,16 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.FormulaXConcepto;
-import com.balkaned.gladius.beans.Proceso;
-import com.balkaned.gladius.beans.ProcesoForm;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -346,5 +345,58 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         } catch (DataAccessException e) {
             log.error("Error al eliminar proceso: " + e.getMessage());
         }
+    }
+
+    public ProcesoPlanilla recuperar(Integer id) {
+
+        String sql="select " +
+                "procodpro, " +
+                "prodespro, " +
+                "prodescorto, " +
+                "procodregimenlab, " +
+                " procodregimenlab desregimen, " +
+                "progrppro, " +
+                "bolproceso, " +
+                "idtipproceso, " +
+                "bolprocesoind, " +
+                "bolprocesores " +
+                "from iexprocesos p  " +
+                "where " +
+                " procodpro="+id+" order by 1 asc ";
+
+        return (ProcesoPlanilla) template.query(sql, new ResultSetExtractor<ProcesoPlanilla>() {
+            public ProcesoPlanilla extractData(ResultSet rs) throws SQLException, DataAccessException{
+                ProcesoPlanilla p = new ProcesoPlanilla();
+                while(rs.next()) {
+                    p.setIdProceso(rs.getInt("procodpro"));
+                    p.setDesProceso(rs.getString("prodespro"));
+                    p.setDesProcesoCorto(rs.getString("prodescorto"));
+                    p.setIdRegLab(rs.getString("procodregimenlab"));
+                    p.setDesRegLab(rs.getString("desregimen"));
+                    p.setDesGrp(rs.getString("progrppro"));
+                    p.setBolProceso(rs.getString("bolproceso"));
+                    p.setIdTipProceso(rs.getString("idtipproceso"));
+                    p.setBolProcesoind(rs.getString("bolprocesoind"));
+                    p.setBolProcesores(rs.getString("bolprocesores"));
+                }
+                return p;
+            }
+        });
+    }
+
+    public void actualizar(ProcesoPlanilla pplanilla){
+
+        template.update("call pl_gestion_procesos(?,?,?,?,?,?,?,? ,?,?) ",
+
+        pplanilla.getIdProceso(),
+        pplanilla.getDesProceso(),
+        pplanilla.getDesProcesoCorto(),
+        pplanilla.getIdRegLab(),
+        pplanilla.getDesGrp(),
+        "2",
+        pplanilla.getBolProceso(),
+        pplanilla.getIdTipProceso(),
+        pplanilla.getBolProcesoind(),
+        pplanilla.getBolProcesores());
     }
 }

@@ -15,4 +15,8 @@ public class FormulaServiceImpl implements FormulaService {
 	public FormulaPlanilla getByIdProcesoIdFormula(Integer idprod, Integer idformula) {
 		return dao.getByIdProcesoIdFormula(idprod, idformula);
 	}
+
+	public void actualizar(FormulaPlanilla fplanilla){
+		dao.actualizar(fplanilla);
+	}
 }

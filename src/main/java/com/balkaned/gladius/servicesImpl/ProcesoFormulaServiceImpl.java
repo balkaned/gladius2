@@ -1,9 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.FormulaXConcepto;
-import com.balkaned.gladius.beans.Proceso;
-import com.balkaned.gladius.beans.ProcesoForm;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +15,19 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
 
     @Override
     public List<ProcesoForm> listProcesoFormula() {
+
         return dao.listProcesoFormula();
     }
 
     @Override
     public List<FormulaXConcepto> listFormulaXConcepto() {
+
         return dao.listFormulaXConcepto();
     }
 
     @Override
     public List<Proceso> listProceso(String id) {
+
         return dao.listConcepto(id);
     }
 
@@ -43,21 +43,34 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
 
     @Override
     public void insertarConceptoXProceso(ConceptoXProceso cxp) {
+
         dao.insertarConceptoXProceso(cxp);
     }
 
     @Override
     public void editarConceptoXProceso(ConceptoXProceso cxp) {
+
         dao.editarConceptoXProceso(cxp);
     }
 
     @Override
     public void insertarProcesoFormula(ProcesoForm proFo) {
+
         dao.insertarProcesoFormula(proFo);
     }
 
     @Override
     public void eliminarProcesoFormula(Integer id) {
+
         dao.eliminarProcesoFormula(id);
+    }
+
+    public ProcesoPlanilla recuperar(Integer id) {
+        return dao.recuperar(id);
+    }
+
+    public void actualizar(ProcesoPlanilla pplanilla) {
+        dao.actualizar(pplanilla);
+
     }
 }

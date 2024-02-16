@@ -131,7 +131,11 @@
                 <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
                 <td class="total align-middle text-start fw-semi-bold text-600">${formxcon.conccoodescon}</td>
                 <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforflgest}</td>
+
+                <c:if test="${formxcon.formforflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">1: Creado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                <c:if test="${formxcon.formforflgest=='2'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">2: Error en compilación</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                <c:if test="${formxcon.formforflgest=='3'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">3: Compilado correctamente</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

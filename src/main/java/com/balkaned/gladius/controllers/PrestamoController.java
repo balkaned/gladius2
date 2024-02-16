@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -38,7 +39,9 @@ public class PrestamoController {
         log.info("/prestamos");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -77,8 +80,8 @@ public class PrestamoController {
         model.addAttribute("LstPrestCab", prestamoService.listarPrestamoCab(emp));
 
         UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
-        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
-        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+        log.info("ur.getIexdesrol(): " + ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): " + ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/prestamos/prestamosSysHrSelf");
@@ -92,7 +95,9 @@ public class PrestamoController {
         log.info("/nuevoPrestamo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -140,7 +145,9 @@ public class PrestamoController {
         log.info("/insertarPrestamo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -182,7 +189,9 @@ public class PrestamoController {
         log.info("/detalleCron");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -234,12 +243,14 @@ public class PrestamoController {
 
     @RequestMapping("/deletePrestamo@{idTrab}@{iexcorrel}")
     public ModelAndView deletePrestamo(ModelMap model, HttpServletRequest request,
-                                    @PathVariable String idTrab,
-                                    @PathVariable String iexcorrel) {
+                                       @PathVariable String idTrab,
+                                       @PathVariable String iexcorrel) {
         log.info("/deletePrestamo");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

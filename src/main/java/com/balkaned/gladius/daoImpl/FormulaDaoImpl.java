@@ -69,4 +69,21 @@ public class FormulaDaoImpl implements FormulaDao {
 			return null;
 		}
 	}
+
+	public void actualizar(FormulaPlanilla fplanilla){
+
+		template.update(" call pl_gestion_formula(?,?, ?, ?, ?, ?, ? ,? , '', '', '1', ?, ?, ?)  ",
+
+				fplanilla.getIdProceso(),
+		fplanilla.getIdFormula(),
+		fplanilla.getDesGlosa(),
+		fplanilla.getDesFormula(),
+		fplanilla.getIdConcepto(),
+		fplanilla.getFlgEstado(),
+		fplanilla.getNroOrden(),
+		fplanilla.getTipOut(),
+		fplanilla.getGrpeje(),
+		fplanilla.getSqlprogram(),
+		"2");
+	}
 }

@@ -55,9 +55,51 @@ public class FormulaController {
 		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
+
+		model.addAttribute("idProceso",idProceso);
+		model.addAttribute("idFormula",idFormula);
+
 		FormulaPlanilla fplanilla = formulaService.getByIdProcesoIdFormula(idProceso, idFormula);
-		request.setAttribute("fplanillax", fplanilla);
-		request.setAttribute("Lovs_conxprod", lovsService.getConceptoxProc(idProceso));
+		model.addAttribute("fplanillax", fplanilla);
+		model.addAttribute("Lovs_conxprod", lovsService.getConceptoxProc(idProceso));
+
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/formularCodigo");
+	}
+
+	@RequestMapping("/modificarFormula")
+	public ModelAndView modificarFormula(ModelMap model, HttpServletRequest request){
+		log.info("/modificarFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		sessionattributes.getVariablesSession(model, request);
+
+		Integer v_codpro = Integer.valueOf( request.getParameter("idprod2"));
+		Integer v_codfor = Integer.valueOf( request.getParameter("idfor2"));
+		String v_formula = request.getParameter("text-box");
+		String desestado = request.getParameter("desestado");
+		String codcon = request.getParameter("codcon");
+		Integer nroorden = Integer.valueOf(request.getParameter("nroorden2").trim());
+		String desglosa = request.getParameter("desglosa");
+		String tipofor = request.getParameter("tipofor");
+		String sqlprogram = request.getParameter("sqlprogram");
+		String grpeje = request.getParameter("grpeje");
+
+		FormulaPlanilla p = new FormulaPlanilla();
+		p.setIdProceso(v_codpro);
+		p.setIdFormula(v_codfor);
+		p.setDesFormula(v_formula);
+		p.setIdConcepto(codcon);
+		p.setDesGlosa(desglosa);
+		p.setNroOrden(nroorden);
+		p.setTipOut(tipofor);
+		p.setFlgEstado(desestado);
+		p.setSqlprogram(sqlprogram);
+		p.setGrpeje(grpeje);
+
+		formulaService.actualizar(p);
+
+		return new ModelAndView("redirect:/listFormulas@"+v_codpro);
 	}
 }

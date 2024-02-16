@@ -35,7 +35,7 @@
         <li class="breadcrumb-item active">Procesos y form</li>
       </ol>
     </nav>
-    <div class="mb-9">
+    <div class="mb-2">
       <div class="row g-3 mb-4">
         <div class="col-auto">
           <h2 id="h2top" class="mb-0">Procesos y fórmulas</h2>
@@ -130,7 +130,7 @@
                   </div>
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
-                <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-secondary"><span class="badge-label">${profo.prodespro}</span></td>
+                <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">${profo.prodespro}</span></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${profo.progrppro}</span></td>
                 <td class="total align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
@@ -139,13 +139,13 @@
                     data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                     <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a id="dropdownmenutable" class="dropdown-item " href="listConceptoXProceso@${profo.procodpro}@"><span class="fa-solid fa-trowel me-2"></span>Conceptos</a>
-                      <a id="dropdownmenutable" class="dropdown-item " href="listFormulas@${profo.procodpro}"><span class="fa-solid fa-code me-2"></span>Formulas</a>
-                      <a id="dropdownmenutable" class="dropdown-item " href="#!"><span class="fa-solid fa-calendar-day me-2"></span>Periodos</a>
-                      <a id="dropdownmenutable" class="dropdown-item " href="listAsignacionContable@${profo.procodpro}"><span class="fa-solid fa-cash-register me-2"></span>Asig. Contable</a>
-                      <a id="dropdownmenutable" class="dropdown-item " href="#!"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="listConceptoXProceso@${profo.procodpro}@"><span class="fa-solid fa-trowel me-2"></span>Conceptos</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="listFormulas@${profo.procodpro}"><span class="fa-solid fa-code me-2"></span>Formulas</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-calendar-day me-2"></span>Periodos</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="listAsignacionContable@${profo.procodpro}"><span class="fa-solid fa-cash-register me-2"></span>Asig. Contable</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="editarProcesoFormula@${profo.procodpro}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                       <div class="dropdown-divider"></div>
-                      <a id="dropdownmenutable" class="dropdown-item " onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
+                      <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
                   </div>
                 </td>
               </tr>
