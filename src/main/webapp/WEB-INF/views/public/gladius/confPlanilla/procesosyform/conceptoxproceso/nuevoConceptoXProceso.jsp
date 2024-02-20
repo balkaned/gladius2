@@ -40,7 +40,7 @@
 
 							<div class="col-sm-6 col-md-3">
                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
-                                 <input class="form-control" name="iexcodarea" type="text" value="${requestScope.idxproceso}" readonly disabled/>
+                                 <input class="form-control" name="idprocesodis" type="text" value="${requestScope.idxproceso}" readonly disabled/>
                             </div>
 							<input type="hidden" id="idproceso" name="idproceso" value="${requestScope.idxproceso}"/>
 
@@ -49,8 +49,7 @@
                                 <select name="idconcepto" class="form-select" required>
                                     <option value="">Seleccionar</option>
                                     <c:forEach var="LstConceptoIns" items="${requestScope.LstConceptoIns}">
-                                        <option value="${LstConceptoIns.codConcepto}"> ${LstConceptoIns.codConcepto}
-                                            - ${LstConceptoIns.desConcepto} </option>
+                                        <option value="${LstConceptoIns.codConcepto}"> ${LstConceptoIns.codConcepto} - ${LstConceptoIns.desConcepto} </option>
                                     </c:forEach>
                                 </select>
 							</div>
@@ -93,9 +92,9 @@
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro Meses Atras</label>
 								<input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="0"/>
 							</div>
-                            <div class="col-sm-6 col-md-12">
-							    <a class="btn btn-phoenix-secondary text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>
-                            </div>
+                            <!--<div class="col-sm-6 col-md-12">
+							    <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>
+                            </div>-->
 							<div class="col-sm-6 col-md-12">
 								<input type="checkbox" class="form-check-input" name="flg_agrupable" value="1" id="flg_agrupable"/>
 								<label class="form-check-label ms-2" for="flg_agrupable">Ver grupo de concepto</label>
@@ -234,12 +233,12 @@
 							<div class="col-12 gy-6">
                                 <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                        <a class="btn btn-phoenix-primary px-5" href="#">Cancel</a>
+                                        <a class="btn btn-phoenix-primary px-5" href="listConceptoXProceso@${proceso}">Cancel</a>
                                     </div>
                                     <div class="col-auto">
                                         <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal"
                                                         data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                                        aria-expanded="false" data-bs-reference="parent">Guardar Concepto
+                                                        aria-expanded="false" data-bs-reference="parent">Guardar Concepto x proceso
                                         </button>
                                     </div>
                                 </div>

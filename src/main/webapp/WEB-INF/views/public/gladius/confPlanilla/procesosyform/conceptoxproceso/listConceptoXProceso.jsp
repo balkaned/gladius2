@@ -14,45 +14,54 @@
         <jsp:include page="../../../../links.jsp"></jsp:include>
     </head>
     <script>
-    function obtenerLista(){
-        $.ajax({
-             url: "getConceptoXprocesoFormula",
-             data: {
-                 "accion": "#",
-                 "proceso": $("#proceso").val(),
-                 "select_concepto": $("#select_concepto").val()
-                 },
-             success: function (data) {
-                  var opt = "";
+        function obtenerLista(){
+            $.ajax({
+                 url: "getConceptoXprocesoFormula",
+                 data: {
+                     "accion": "#",
+                     "proceso": $("#proceso").val(),
+                     "select_concepto": $("#select_concepto").val()
+                     },
+                 success: function (data) {
+                      var opt = "";
 
-                  for (var i in data) {
-                       opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                                  "<td class='fs--1 align-middle px-0 py-3'>"+
-                        				"<div class='form-check mb-0 fs-0'>"+
-                        				   "<input class='form-check-input' type='checkbox'/>"+
-                        				"</div>"+
-                        	      "</td>"+
-                                  "<td class='order align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#!'>#"+data[i].procodcon+"</a></td>"+
-                                  "<td class='total align-middle text-start ps-5 fw-semi-bold text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-secondary'>"+data[i].coodescon+"</span></td>"+
-                                  "<td class='align-middle text-center white-space-nowrap pe-0 action'>"+
-                                        "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
-                                            "<button class='btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' "+
-                                                                 "data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>"+
-                                                                 "<span class='fas fa-plus'></span><span class='fas fa-caret-down ms-2'></span></button>"+
-                                            "<div class='dropdown-menu dropdown-menu-end py-2'>"+
-                                                "<a class='dropdown-item' href='#'>Editar</a>"+
-                                                "<div class='dropdown-divider'></div>"+
-                                                "<a class='dropdown-item text-danger' href='#!'>Eliminar</a>"+
+                      for (var i in data) {
+                           opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                      "<td class='fs--1 align-middle px-0 py-3'>"+
+                                            "<div class='form-check mb-0 fs-0'>"+
+                                               "<input class='form-check-input' type='checkbox'/>"+
                                             "</div>"+
-                                        "</div>"+
-                                  "</td>"+
-                               "<tr/>";
-                  }
+                                      "</td>"+
+                                      "<td class='order align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#!'>#"+data[i].procodcon+"</a></td>"+
+                                      "<td class='total align-middle text-start ps-5 fw-semi-bold text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-secondary'>"+data[i].coodescon+"</span></td>"+
+                                      "<td class='align-middle text-center white-space-nowrap pe-0 action'>"+
+                                            "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
+                                                "<button class='btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' "+
+                                                                     "data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>"+
+                                                                     "<span class='fas fa-plus'></span><span class='fas fa-caret-down ms-2'></span></button>"+
+                                                "<div class='dropdown-menu dropdown-menu-end py-2'>"+
+                                                    "<a id='dropdownmenutable' class='dropdown-item' href='editarConceptoXProceso@${proceso}@"+data[i].procodcon+"'><span class='fa-solid fa-pencil me-2'></span>Editar</a>"+
+                                                    "<div class='dropdown-divider'></div>"+
+                                                    "<a id='dropdownmenutable' class='dropdown-item' onclick='return remove();' href='deleteConceptoXProceso@${proceso}@"+data[i].procodcon+"'><span class='fa-solid fa-trash me-2'></span>Eliminar</a>"+
+                                                "</div>"+
+                                            "</div>"+
+                                      "</td>"+
+                                   "<tr/>";
+                      }
 
-                  $("#bodyConceptoxProceso").html(opt);
-             }
-        });
-      }
+                      $("#bodyConceptoxProceso").html(opt);
+                 }
+            });
+        }
+
+        function remove() {
+            var opcion = confirm("Esta seguro de Eliminar el Registro?");
+            if (opcion == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
     <body>
         <main class="main" id="top">
@@ -133,7 +142,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="bodyConceptoxProceso">
-
                                 </tbody>
                             </table>
                         </div>
