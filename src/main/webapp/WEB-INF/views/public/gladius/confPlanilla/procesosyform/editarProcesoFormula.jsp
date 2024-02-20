@@ -143,8 +143,8 @@
 									</div>
 									<div class="col-auto">
 										<button class="btn btn-primary px-5 px-sm-3" type="button" data-bs-toggle="modal"
-														data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-														aria-expanded="false" data-bs-reference="parent">Guardar Proceso o fórmula
+										data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent">Guardar Proceso o fórmula
 										</button>
 									</div>
 								</div>

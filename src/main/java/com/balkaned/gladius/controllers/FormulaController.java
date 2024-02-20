@@ -102,4 +102,134 @@ public class FormulaController {
 
 		return new ModelAndView("redirect:/listFormulas@"+v_codpro);
 	}
+
+	@RequestMapping("/nuevaFormula@{idProceso}")
+	public ModelAndView nuevaFormula(ModelMap model, HttpServletRequest request,
+									 @PathVariable("idProceso") Integer idProceso) {
+		log.info("/nuevaFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		sessionattributes.getVariablesSession(model, request);
+
+		model.addAttribute("idProceso",idProceso);
+		model.addAttribute("Lovs_conxprod", lovsService.getConceptoxProc(idProceso));
+
+		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/nuevaFormula");
+	}
+
+	@RequestMapping("/insertarNuevaFormula")
+	public ModelAndView insertarNuevaFormula(ModelMap model, HttpServletRequest request){
+		log.info("/insertarNuevaFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		sessionattributes.getVariablesSession(model, request);
+
+		Integer idprod = Integer.valueOf(request.getParameter("idprod2"));
+		Integer nroorden = Integer.valueOf(request.getParameter("nroorden"));
+		String desglosa = request.getParameter("desglosa");
+		String desformula = request.getParameter("text-box");
+		String codcon = request.getParameter("codcon");
+		String desestado = request.getParameter("desestado");
+		String tipofor = request.getParameter("tipofor");
+		//String vardes = request.getParameter("vardes");
+		String sqlprogram = request.getParameter("sqlprogram");
+		String grpeje = request.getParameter("grpeje");
+
+		FormulaPlanilla p = new FormulaPlanilla();
+		p.setIdProceso(idprod);
+		p.setDesGlosa(desglosa);
+		p.setDesFormula(desformula);
+		p.setIdConcepto(codcon);
+		p.setFlgEstado(desestado);
+		p.setNroOrden(nroorden);
+		p.setTipOut(tipofor);
+		p.setDesVar("var");
+		p.setSqlprogram(sqlprogram);
+		p.setGrpeje(grpeje);
+
+		formulaService.insertar(p);
+
+		return new ModelAndView("redirect:/listFormulas@"+idprod);
+	}
+
+	@RequestMapping("/deleteFormula@{idProceso}@{idForm}")
+	public ModelAndView deleteFormula(ModelMap model, HttpServletRequest request,
+									 @PathVariable("idProceso") Integer idProceso,
+									  @PathVariable("idForm") Integer idForm) {
+		log.info("/deleteFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		sessionattributes.getVariablesSession(model, request);
+
+		formulaService.eliminar(idProceso,idForm);
+
+		return new ModelAndView("redirect:/listFormulas@"+idProceso);
+	}
+
+	@RequestMapping("/compilarFormula@{idProceso}@{idForm}")
+	public ModelAndView compilarFormula(ModelMap model, HttpServletRequest request,
+									  @PathVariable("idProceso") Integer idProceso,
+									  @PathVariable("idForm") Integer idForm) {
+		log.info("/compilarFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		sessionattributes.getVariablesSession(model, request);
+
+		String v_result ="1";
+		String v_get_result=" $resultado$ ; $salto$ ";
+		String v_result_message ;
+		String v_script;
+		String v_script2;
+		String v_all_script="";
+
+		Integer v_codpro = idProceso;
+		Integer v_codfor = idForm;
+
+		FormulaPlanilla fplanilla = formulaService.recuperar(idProceso,idForm);
+
+		if(fplanilla.getTipOut().equals("1") || fplanilla.getTipOut().equals("3")){
+			// Parsear la  variables
+			v_script= formulaService.obtenerVariables(fplanilla.getDesFormula());
+
+			// Inicializar variables modo prueba
+			//   v_script2=dao.iniDeclareVariables(v_script);
+
+			// Unificar cabecera y el detalle
+			v_all_script=  v_script+" var $resultado$; var $salto$;  "+fplanilla.getDesFormula();
+
+			// Test de Ejecución del script
+			v_result=formulaService.testEjecucion(v_all_script);
+
+			// Capturar si la ejecución es correcta
+			// Si es corecta cambiar el estado a 3 de compilado
+			//log.info(v_script);
+
+			if (v_result.equals("1") ) {
+				v_result_message="Correcto" ;
+				formulaService.grabaVariableResultado(v_codpro,v_codfor,v_script,v_get_result);
+				// Insertar Variable inicial y resultado
+			}else if (v_result.equals("0") ){
+				v_result_message="Incorrecto" ;
+			}
+
+			// Si no es correcta colocar 9 como error al compilar.
+			v_result="";
+			v_script="";
+
+			model.addAttribute("codpro",v_codpro );
+		}else{
+			formulaService.grabaVariableResultado(v_codpro, v_codfor, "", "");
+		}
+
+		return new ModelAndView("redirect:/listFormulas@"+idProceso);
+	}
+
 }

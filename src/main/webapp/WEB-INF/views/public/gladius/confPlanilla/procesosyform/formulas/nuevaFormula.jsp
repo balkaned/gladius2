@@ -22,12 +22,12 @@
         }
 
         function mostrarAlert() {
-            let div = document.getElementById('alert');
-            div.style.display = '';
+                let div = document.getElementById('alert');
+                div.style.display = '';
 
-            setTimeout(function () {
-                $("#alerts").hide(6000);
-            }, 3000);
+                setTimeout(function () {
+                    $("#alerts").hide(6000);
+                }, 3000);
         }
 
         function valida_tipo_for(opcion) {
@@ -75,28 +75,27 @@
                 <div class="mb-0">
                     <div class="row g-3 mb-0">
                         <div class="col-auto">
-                            <h2 id="h2top" class="mb-0">Editar fórmula</h2>
+                            <h2 id="h2top" class="mb-0">Nueva fórmula</h2>
                         </div>
                     </div>
 
                     <div class="row g-5">
                         <div class="col-xl-12">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarFormula" novalidate >
+                                <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarNuevaFormula" novalidate >
                                     <div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
-                                        <input class="form-control" type="text" name="idprod" id="idprod" value="${idProceso}" disabled />
+                                        <input class="form-control" type="text" name="idprod" id="idprod" value="${idProceso}" disabled  required />
                                         <input type="hidden" name="idprod2" value="${idProceso}" />
                                     </div>
-                                    <div class="col-sm-6 col-md-2">
+                                    <!--<div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Formula</label>
-                                        <input class="form-control" type="text" name="idfor" id="idfor" value="${idFormula}" disabled />
+                                        <input class="form-control" type="text" name="idfor" id="idfor" value="${idFormula}"/>
                                         <input type="hidden" name="idfor2" value="${idFormula}" />
-                                    </div>
+                                    </div>-->
                                     <div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Orden</label>
-                                        <input class="form-control" type="text" name="nroorden" id="nroorden" value="${requestScope.fplanillax.nroOrden}" disabled />
-                                        <input type="hidden" name="nroorden2" value="${requestScope.fplanillax.nroOrden}" />
+                                        <input class="form-control" type="text" name="nroorden" id="nroorden" value="${requestScope.fplanillax.nroOrden}" required/>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
@@ -105,26 +104,28 @@
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto resultado</label>
                                         <select id="codcon" name="codcon" class="form-select" required >
+                                            <option value="">Seleccionar</option>
                                             <c:forEach var="Lovs_concept" items="${requestScope.Lovs_conxprod}">
                                                 <option value="${Lovs_concept.codConcepto}" ${Lovs_concept.codConcepto == requestScope.fplanillax.idConcepto ? 'selected' : ''} >${Lovs_concept.desConcepto} - ${Lovs_concept.desVariable}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
+                                    <!--<div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                        <select class="form-select" id="desestado" name="desestado" required>
+                                        <select class="form-select" id="desestado" name="desestado">
                                             <option class="text-info" value="1" ${requestScope.fplanillax.flgEstado=='1' ? 'selected' : ''} >1: Creado</option>
                                             <option class="text-danger" value="2" ${requestScope.fplanillax.flgEstado=='2' ? 'selected' : ''} >2: Error en compilación</option>
                                             <option class="text-success" value="3" ${requestScope.fplanillax.flgEstado=='3' ? 'selected' : ''} >3: Compilado correctamente</option>
                                         </select>
-                                    </div>
+                                    </div>-->
+                                        <input type="hidden" name="desestado"  id="desestado" value="1"/>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ejecución</label>
                                         <select class="form-select" name="tipofor" id="tipofor" onchange="valida_tipo_for(this)" required >
-                                            <option value="0"  ${requestScope.fplanillax.tipOut=='0' ? 'selected' : ''} > Seleccionar</option>
-                                            <option value="1" ${requestScope.fplanillax.tipOut=='1' ? 'selected' : ''} > Ejecucion Normal</option>
-                                            <option value="3" ${requestScope.fplanillax.tipOut=='3' ? 'selected' : ''} > Resultado Salto</option>
-                                            <option value="2" ${requestScope.fplanillax.tipOut=='2' ? 'selected' : ''} > Ejecucion Stored Procedure DB</option>
+                                            <option value=""> Seleccionar</option>
+                                            <option value="1" > Ejecucion Normal</option>
+                                            <option value="3" > Resultado Salto</option>
+                                            <option value="2" > Ejecucion Stored Procedure DB</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-8">
@@ -214,7 +215,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <h4 class="mb-3"> Editor de fórmulas</h4>
-                                                <textarea class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
+                                                <textarea class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25" placeholder="Ingrese su código aquí.." required></textarea>
                                             </div>
                                             <div class="col-sm-6 col-md-1">
                                                 <table class="navy">

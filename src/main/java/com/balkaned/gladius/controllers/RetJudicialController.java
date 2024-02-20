@@ -181,6 +181,7 @@ public class RetJudicialController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model,request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 
@@ -268,6 +269,7 @@ public class RetJudicialController {
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
+        sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
 

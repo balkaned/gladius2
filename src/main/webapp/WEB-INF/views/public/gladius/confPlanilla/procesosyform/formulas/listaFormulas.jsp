@@ -13,6 +13,26 @@
 <head>
   <jsp:include page="../../../../links.jsp"></jsp:include>
 </head>
+
+  <script>
+	  function remove() {
+		var opcion = confirm("Esta seguro de Eliminar el Registro?");
+		if (opcion == true) {
+			return true;
+		} else {
+			return false;
+		}
+	  }
+
+	  function compilar() {
+        var opcion = confirm("Esta seguro de que desea compilar la fórmula?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+      }
+  </script>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -82,7 +102,7 @@
             </div>
           </div>
           <div class="">
-            <a class="btn btn-primary btn-sm" href="#"><span class="fas fa-plus me-2"></span>Add Formula</a>
+            <a class="btn btn-primary btn-sm" href="nuevaFormula@${requestScope.idProceso}"><span class="fas fa-plus me-2"></span>Add Formula</a>
             <a class="btn btn-phoenix-secondary btn-sm ms-1" href="listProcesoFormulas"><span class="fas fa-reply me-2"></span>Atras</a>
             <div class="btn-group mb-1 me-1 ms-0 mt-1">
               <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
@@ -143,9 +163,9 @@
                     <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
                       <a id="dropdownmenutable" class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-square-root-variable me-2"></span>Formular</a>
-                      <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-diagram-project me-2"></span>Compilar</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="compilarFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-diagram-project me-2"></span>Compilar fórmula</a>
                       <div class="dropdown-divider"></div>
-                      <a id="dropdownmenutable" class="dropdown-item " href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                      <a id="dropdownmenutable" class="dropdown-item " onclick="return remove();" href="deleteFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                     </div>
                   </div>
                 </td>

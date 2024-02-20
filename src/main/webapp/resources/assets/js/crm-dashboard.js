@@ -1288,8 +1288,8 @@
             data: data2,
             itemStyle: {
               borderWidth: 0,
-              borderRadius: 5,
-              color: getColor('warning-300'),
+              borderRadius: 8,
+              color: getColor('primary-300'),
               borderColor: getColor('gray-200')
             }
           }
@@ -1461,8 +1461,8 @@
               data: data2,
               itemStyle: {
                 borderWidth: 0,
-                borderRadius: 5,
-                color: getColor('success-300'),
+                borderRadius: 8,
+                color: getColor('primary-300'),
                 borderColor: getColor('gray-200')
               }
             }
@@ -1634,7 +1634,7 @@
                   barWidth: '10px',
                   data: data2,
                   itemStyle: {
-                    borderRadius: 3,
+                    borderRadius: 5,
                     borderWidth: 0,
                     color: getColor('primary-300'),
                     borderColor: getColor('gray-200')
@@ -1808,8 +1808,8 @@
               data: data2,
               itemStyle: {
                 borderWidth: 0,
-                borderRadius: 3,
-                color: getColor('danger-300'),
+                borderRadius: 7,
+                color: getColor('primary-300'),
                 borderColor: getColor('gray-200')
               }
             }

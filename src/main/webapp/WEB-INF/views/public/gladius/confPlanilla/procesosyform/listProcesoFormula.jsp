@@ -139,7 +139,7 @@
                     data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                     <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a id="dropdownmenutable" class="dropdown-item" href="listConceptoXProceso@${profo.procodpro}@"><span class="fa-solid fa-trowel me-2"></span>Conceptos</a>
+                      <a id="dropdownmenutable" class="dropdown-item" href="listConceptoXProceso@${profo.procodpro}"><span class="fa-solid fa-trowel me-2"></span>Conceptos</a>
                       <a id="dropdownmenutable" class="dropdown-item" href="listFormulas@${profo.procodpro}"><span class="fa-solid fa-code me-2"></span>Formulas</a>
                       <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-calendar-day me-2"></span>Periodos</a>
                       <a id="dropdownmenutable" class="dropdown-item" href="listAsignacionContable@${profo.procodpro}"><span class="fa-solid fa-cash-register me-2"></span>Asig. Contable</a>

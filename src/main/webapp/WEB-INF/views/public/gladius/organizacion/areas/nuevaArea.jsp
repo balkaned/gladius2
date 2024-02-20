@@ -51,7 +51,7 @@
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
                        <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarArea" novalidate >
-                          <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
+                              <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
                               <div class="col-sm-6 col-md-3">

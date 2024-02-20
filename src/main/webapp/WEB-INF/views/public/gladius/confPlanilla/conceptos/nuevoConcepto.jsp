@@ -99,7 +99,7 @@
                     <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                     <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-              <div id="incomplete" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert">
+              <div id="incomplete" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
               	<span class="fa-solid fa-triangle-exclamation text-warning fs-0 me-3"></span>
               	<div class="col-11">
               		<strong class="text-black">Advertencia</strong>

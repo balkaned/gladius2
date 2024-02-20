@@ -6,17 +6,20 @@ import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 @RestController
 @Slf4j
@@ -25,7 +28,7 @@ public class ConceptoXProcesoController {
 	Sessionattributes sessionattributes;
 
 	@Autowired
-	ProcesoFormulaService service;
+	ProcesoFormulaService procesoFormulaService;
 
 	@Autowired
 	ProcesoPlanillaService procesoPlanillaService;
@@ -33,9 +36,9 @@ public class ConceptoXProcesoController {
 	@Autowired
 	ConceptoService conceptoService;
 
-	@RequestMapping("/listConceptoXProceso@{proceso}@{codigo}")
+	@RequestMapping("/listConceptoXProceso@{proceso}")
 	public ModelAndView listConcepto(
-	 ModelMap model, HttpServletRequest request, @PathVariable String proceso, @PathVariable String codigo) {
+	 ModelMap model, HttpServletRequest request, @PathVariable String proceso) {
 		log.info("/listConceptoXProceso");
 
 		String user = (String) request.getSession().getAttribute("user");
@@ -43,22 +46,33 @@ public class ConceptoXProcesoController {
 
 		sessionattributes.getVariablesSession(model, request);
 
-		if (proceso != null) {
-			//ProcesoPlanilla procesoPlanilla = procesoPlanillaService.listarPorProcodpro(Integer.parseInt(proceso));
-			model.addAttribute("slc_proceso", proceso);
-			//model.addAttribute("pplanillax", procesoPlanilla.getDesProceso());
-		}
-
-		if (codigo != null && !codigo.isEmpty()) {
-			List<ConceptoXProceso> conceptoXProcesoList = service.listConceptoXProceso(Integer.valueOf(proceso), codigo);
-			model.addAttribute("slc_grpconcepto", codigo);
-			model.addAttribute("conceptoXProcesoList", conceptoXProcesoList);
-		}
-		else {
-			model.addAttribute("slc_grpconcepto", '0');
-		}
+		model.addAttribute("proceso", proceso);
+		log.info("proceso: "+proceso);
 
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
+	}
+
+	@RequestMapping(value = "/getConceptoXprocesoFormula", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView getConceptoXprocesoFormula(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		log.info("/getConceptoXprocesoFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+		String proceso = request.getParameter("proceso");
+		String select_concepto = request.getParameter("select_concepto");
+		log.info("proceso:" +proceso);
+		log.info("select_concepto:" +select_concepto);
+
+		List<ConceptoXProceso> conceptoXProcesoList = procesoFormulaService.listConceptoXProceso(Integer.valueOf(proceso), select_concepto);
+		log.info("lista: "+conceptoXProcesoList.size());
+
+		String json = new Gson().toJson(conceptoXProcesoList);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+
+		return null;
 	}
 
 	@RequestMapping("/nuevoConceptoXProceso@{idProceso}")
@@ -157,12 +171,12 @@ public class ConceptoXProcesoController {
 			p.setFlg_agrupable(flg_agrupable);
 			p.setNro_meses_atras(nro_meses_atras);
 			log.info("ConceptoXProceso: " + p);
-			service.insertarConceptoXProceso(p);
+			procesoFormulaService.insertarConceptoXProceso(p);
 		}
 		catch (Exception e) {
 			log.info("Error: " + e.getMessage());
 		}
-		return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso + "@");
+		return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso);
 	}
 
 	@RequestMapping("/editarConceptoXProceso@{idProceso}@{idConcepto}")
@@ -183,7 +197,7 @@ public class ConceptoXProcesoController {
 
 		if (Objects.nonNull(idConcepto)) {
 			model.addAttribute("slc_grpconcepto", idConcepto);
-			ConceptoXProceso conceptoXProceso = service.getConceptoXProceso(Integer.valueOf(idProceso), idConcepto);
+			ConceptoXProceso conceptoXProceso = procesoFormulaService.getConceptoXProceso(Integer.valueOf(idProceso), idConcepto);
 			model.addAttribute("proconceptox", conceptoXProceso);
 		}
 
@@ -264,7 +278,7 @@ public class ConceptoXProcesoController {
 			p.setFlg_agrupable(flg_agrupable);
 			p.setNro_meses_atras(nro_meses_atras);
 			log.info("ConceptoXProceso: " + p);
-			service.editarConceptoXProceso(p);
+			procesoFormulaService.editarConceptoXProceso(p);
 		}
 		catch (Exception e) {
 			log.info("Error: " + e.getMessage());
