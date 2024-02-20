@@ -5,8 +5,8 @@ import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.services.ConceptoXProcesoService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
-import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -33,17 +32,14 @@ public class ConceptoXProcesoController {
     ProcesoFormulaService procesoFormulaService;
 
     @Autowired
-    ProcesoPlanillaService procesoPlanillaService;
-
-    @Autowired
     ConceptoService conceptoService;
 
     @Autowired
     ConceptoXProcesoService conceptoXProcesoService;
 
     @RequestMapping("/listConceptoXProceso@{proceso}")
-    public ModelAndView listConcepto(
-            ModelMap model, HttpServletRequest request, @PathVariable String proceso) {
+    public ModelAndView listConcepto(ModelMap model, HttpServletRequest request,
+                                     @PathVariable String proceso) {
         log.info("/listConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -52,6 +48,10 @@ public class ConceptoXProcesoController {
         sessionattributes.getVariablesSession(model, request);
 
         model.addAttribute("proceso", proceso);
+
+        CapitalizarCadena cap= new CapitalizarCadena();
+        /*String desproceso2=cap.letras(desproceso);
+        model.addAttribute("desproceso",desproceso2);*/
         log.info("proceso: " + proceso);
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
@@ -89,6 +89,7 @@ public class ConceptoXProcesoController {
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
         sessionattributes.getVariablesSession(model, request);
+
         if (Objects.nonNull(idProceso)) {
             model.addAttribute("idxproceso", idProceso);
             List<Concepto> lista = conceptoService.listarConceptoIns(Integer.parseInt(idProceso));

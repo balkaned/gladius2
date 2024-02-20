@@ -233,7 +233,7 @@
 							<div class="col-12 gy-6">
                                 <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                        <a class="btn btn-phoenix-primary px-5" href="listConceptoXProceso@${proceso}">Cancel</a>
+                                        <a class="btn btn-phoenix-primary px-5" href="listConceptoXProceso@${requestScope.idxproceso}">Cancel</a>
                                     </div>
                                     <div class="col-auto">
                                         <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal"

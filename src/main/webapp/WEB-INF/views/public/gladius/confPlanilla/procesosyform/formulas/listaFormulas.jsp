@@ -53,7 +53,8 @@
     <div class="mb-5">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Fórmulas</h2>
+          <h2 id="h2top" class="mb-2">Fórmulas</h2>
+          <h5 class="text-700 fw-semi-bold text-none">${desproceso}</h5>
         </div>
       </div>
     </div>
@@ -163,7 +164,7 @@
                     <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                     <div class="dropdown-menu dropdown-menu-end py-2">
                       <a id="dropdownmenutable" class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-square-root-variable me-2"></span>Formular</a>
-                      <a id="dropdownmenutable" class="dropdown-item" href="compilarFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-diagram-project me-2"></span>Compilar fórmula</a>
+                      <a id="dropdownmenutable" class="dropdown-item" onclick="return compilar();" href="compilarFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-diagram-project me-2"></span>Compilar fórmula</a>
                       <div class="dropdown-divider"></div>
                       <a id="dropdownmenutable" class="dropdown-item " onclick="return remove();" href="deleteFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                     </div>

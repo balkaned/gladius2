@@ -80,7 +80,8 @@
                 <div class="mb-3">
                     <div class="row g-3">
                         <div class="col-auto">
-                            <h2 id="h2top" class="mb-0">Concepto por proceso</h2>
+                            <h2 id="h2top" class="mb-2">Conceptos por proceso</h2>
+                            <h5 class="text-700 fw-semi-bold text-none">${desproceso}</h5>
                         </div>
                     </div>
                 </div>

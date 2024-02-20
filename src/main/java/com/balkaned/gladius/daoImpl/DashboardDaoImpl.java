@@ -31,6 +31,8 @@ public class DashboardDaoImpl implements DashboardDao {
 
         String sql = "select " +
                 "e.iexcodtra, "+
+                "e.iexlogo," +
+                "e.iexcodsex, "+
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
                 "e.iexapemat, " +
@@ -50,6 +52,8 @@ public class DashboardDaoImpl implements DashboardDao {
                     Cumpleanos p = new Cumpleanos();
 
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexlogo(rs.getString("iexlogo"));
+                    p.setSexo(rs.getString("iexcodsex"));
 
                     p.setIexnomtra(rs.getString("iexnomtra"));
                     CapitalizarCadena cap = new CapitalizarCadena();

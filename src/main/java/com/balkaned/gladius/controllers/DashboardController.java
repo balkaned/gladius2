@@ -36,16 +36,18 @@ public class DashboardController {
     UsuxSystemaService usuxSystemaService;
 
     @Autowired
-    EmpleadoService empleadoService;
-
-    @Autowired
     LovsService lovsService;
 
     @Autowired
     DashboardService dashboardService;
 
+    @Autowired
+    EmpleadoService empleadoService;
+
     @RequestMapping("/home@{idComp}@{idUser}")
-    public ModelAndView home(ModelMap model, HttpServletRequest request, @PathVariable String idComp, @PathVariable String idUser) {
+    public ModelAndView home(ModelMap model, HttpServletRequest request,
+                             @PathVariable String idComp,
+                             @PathVariable String idUser) {
         log.info("/home");
 
         String user = (String) request.getSession().getAttribute("user");

@@ -12,6 +12,8 @@ import lombok.Setter;
 public class Cumpleanos {
 
     private int iexcodtra;
+    private String iexlogo;
+    private String sexo;
     private String iexnomtra;
     private String iexapepat;
     private String iexapemat;

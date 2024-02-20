@@ -107,7 +107,7 @@ margin-top:10px !important;
                         <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
                       </div>
                     </div>
-                    <span class="badge badge-phoenix fs--1 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
+                    <span class="badge badge-phoenix fs--2 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
 
                     <img id="imgcompany"
                     src="AWSorFTP_flgsource@verLogo@${comp.id_companias}@null@${comp.urlLogo}@null@null@null@null@null@null"
@@ -135,7 +135,7 @@ margin-top:10px !important;
                     <div class="progress bg-success-100">
                       <div class="progress-bar rounded bg-${comp.schema}" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="d-flex align-items-center mt-4">
+                    <!--<div class="d-flex align-items-center mt-4">
                       <p class="mb-0 fw-bold fs--1">Started:<span class="fw-semi-bold text-600 ms-1">	17th Nov. 2020</span></p>
                     </div>
                     <div class="d-flex align-items-center mt-2">
@@ -144,7 +144,7 @@ margin-top:10px !important;
 
                     <div class="mt-lg-3 mt-xl-0"> <i class="fa-solid fa-list-check me-1"></i>
                         <p class="d-inline-block fw-bold mb-0">287<span class="fw-normal">	Task</span></p>
-                    </div>
+                    </div>-->
                   </div>
                 </div>
               </div>
