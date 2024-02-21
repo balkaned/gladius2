@@ -14,11 +14,18 @@
         <jsp:include page="../../../../links.jsp"/>
     </head>
     <script>
-        function addOperador(){
-            //var txt = $.trim($(this).text()).substring(0, 11));
-            //var txt = $(this).text();
-            //alert("txt: "+txt);
-            //$("#text-box").val($("#text-box").val() + txt);
+        function addOperador(value) {
+            //alert("value:"+value);
+
+            var campo = document.getElementById('text-box');
+            var insertar = value;
+
+            var inicio = campo.selectionStart;
+            var fin = campo.selectionEnd;
+            var texto = campo.value;
+            campo.value = texto.slice(0, inicio) + insertar + texto.slice(fin);
+            campo.selectionStart = campo.selectionEnd = inicio + insertar.length;
+            campo.focus();
         }
 
         function mostrarAlert() {
@@ -112,7 +119,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                        <select class="form-select" id="desestado" name="desestado" required>
+                                        <select class="form-select" id="desestado" name="desestado" required disabled>
                                             <option class="text-info" value="1" ${requestScope.fplanillax.flgEstado=='1' ? 'selected' : ''} >1: Creado</option>
                                             <option class="text-danger" value="2" ${requestScope.fplanillax.flgEstado=='2' ? 'selected' : ''} >2: Error en compilación</option>
                                             <option class="text-success" value="3" ${requestScope.fplanillax.flgEstado=='3' ? 'selected' : ''} >3: Compilado correctamente</option>
@@ -147,15 +154,15 @@
                                             <div class="col-auto">
                                               <a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>
                                               <div class="btn-group mb-1 me-1 ms-1 mt-1">
-                                                <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                                                <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                                 <div class="dropdown-menu">
-                                                  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-                                                    <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                                                  <a id="dropdownmenutable" class="dropdown-item" href="#">
+                                                    <span class="fa-solid fa-bolt fs--1 me-2"></span>Traducir
                                                   </a>
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                                                  <!--<a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
                                                   <div class="dropdown-divider"></div>
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>-->
                                                 </div>
                                               </div>
                                             </div>
@@ -180,8 +187,8 @@
                                                             </tr>
                                                           </thead>
                                                           <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">$salto$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag text-primary">$resultado$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag text-primary">$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                                   <!--<td class="align-middle text-start pe-0 ps-0">
@@ -194,7 +201,8 @@
                                                                         </div>
                                                                       </div>
                                                                   </td>-->
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a class="fw-semi-bold" href="#!">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>
+                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a class="fw-semi-bold" href="#!">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>-->
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag text-primary">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>
                                                                 </tr>
                                                             </c:forEach>
                                                           </tbody>
@@ -214,7 +222,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <h4 class="mb-3"> Editor de fórmulas</h4>
-                                                <textarea class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
+                                                <textarea id="text-box" class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
                                             </div>
                                             <div class="col-sm-6 col-md-1">
                                                 <table class="navy">
@@ -223,24 +231,24 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="align-middle white-space-nowrap text-center">
-                                                            <a href="#" onclick="addOperador();" class="hashtag text-danger">+</a>
-                                                            <div class="hashtag text-danger">-</div>
-                                                            <div class="hashtag text-danger">*</div>
-                                                            <div class="hashtag text-danger">/</div>
-                                                            <div class="hashtag text-danger">=</div>
+                                                            <a onclick="addOperador('+');" class="hashtag text-danger">+</a></br>
+                                                            <a onclick="addOperador('-');" class="hashtag text-danger">-</a></br>
+                                                            <a onclick="addOperador('*');" class="hashtag text-danger">*</a></br>
+                                                            <a onclick="addOperador('/');" class="hashtag text-danger">/</a></br>
+                                                            <a onclick="addOperador('=');" class="hashtag text-danger">=</a></br>
                                                             <br>
-                                                            <div class="hashtag text-primary">;</div>
-                                                            <div class="hashtag text-success">[</div>
-                                                            <div class="hashtag text-success">]</div>
-                                                            <div class="hashtag text-success">(</div>
-                                                            <div class="hashtag text-success">)</div>
-                                                            <div class="hashtag text-success">{</div>
-                                                            <div class="hashtag text-success">}</div>
+                                                            <a onclick="addOperador(';');" class="hashtag text-primary">;</a></br>
+                                                            <a onclick="addOperador('[');" class="hashtag text-success">[</a></br>
+                                                            <a onclick="addOperador(']');" class="hashtag text-success">]</a></br>
+                                                            <a onclick="addOperador('(');" class="hashtag text-success">(</a></br>
+                                                            <a onclick="addOperador(')');" class="hashtag text-success">)</a></br>
+                                                            <a onclick="addOperador('{');" class="hashtag text-success">{</a></br>
+                                                            <a onclick="addOperador('}');" class="hashtag text-success">}</a></br>
                                                             <br>
-                                                            <div class="hashtag text-primary">if</div>
-                                                            <div class="hashtag text-primary">else</div>
-                                                            <div class="hashtag text-primary">else if</div>
-                                                            <div class="hashtag text-primary">end if</div>
+                                                            <a onclick="addOperador('if');" class="hashtag text-primary">if</a></br>
+                                                            <a onclick="addOperador('else');" class="hashtag text-primary">else</a></br>
+                                                            <a onclick="addOperador('else if');" class="hashtag text-primary">else if</a></br>
+                                                            <a onclick="addOperador('end if');" class="hashtag text-primary">end if</a></br>
                                                         </td>
                                                     </tr>
                                                 </table>

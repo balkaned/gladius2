@@ -42,7 +42,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
               </ul>
-              <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+              <div id="orderTable" data-list='{"valueNames":["id","tipodoc","nrodoc","nombreyapp","sexo","´puesto","tipotrab","estado"],"page":15,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">
                     <div class="col-auto">
@@ -121,14 +121,14 @@
                               <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                             </div>
                           </th>
-                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">TIPO DOC</th>
-                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">NRO DOC</th>
-                          <th class="sort align-middle text-center ps-8" scope="col" data-sort="date">NOMBRES y APELLIDOS</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SEXO</th>
-                          <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">PUESTO</th>
-                          <th class="sort align-middle text-start pe-0" scope="col" data-sort="date">TIPO TRAB</th>
-                          <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">ESTADO</th>
+                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="tipodoc">TIPO DOC</th>
+                          <th class="sort align-middle text-center ps-6" scope="col" data-sort="nrodoc">NRO DOC</th>
+                          <th class="sort align-middle text-center ps-8" scope="col" data-sort="nombreyapp">NOMBRES y APELLIDOS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="sexo">SEXO</th>
+                          <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="puesto">PUESTO</th>
+                          <th class="sort align-middle text-start pe-0" scope="col" data-sort="tipotrab">TIPO TRAB</th>
+                          <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="estado">ESTADO</th>
                           <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI</th>
                           <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN</th>
                           <th class="sort align-middle text-center pe-0" scope="col" ></th>
@@ -142,10 +142,10 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
-                              <td class="total align-middle text-end fw-semi-bold text-600">${empl.iexnrodoc}</td>
-                              <td class="customer align-middle white-space-nowrap ps-8">
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
+                              <td class="tipodoc align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
+                              <td class="nrodoc align-middle text-end fw-semi-bold text-600">${empl.iexnrodoc}</td>
+                              <td class="nombreyapp align-middle white-space-nowrap ps-8">
                                 <a class="d-flex align-items-center" href="#!">
                                   <div class="avatar avatar-m">
                                     <div class="avatar-name rounded-circle"><span>${empl.letraIni}</span></div>
@@ -153,13 +153,14 @@
                                   <h6 class="mb-0 ms-3 text-900">${empl.nomCompactoUpper}</h6>
                                 </a>
                               </td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${empl.iexcodsex}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
-                              <td class="delivery_type align-middle white-space-nowrap text-600 fs--1 text-start">${empl.iexpuesto}</td>
-                                <c:if test="${empl.desestado=='Activo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                                <c:if test="${empl.desestado=='Inactivo'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                              <td class="sexo align-middle white-space-nowrap text-900 fs--1 text-center">${empl.iexcodsex}</td>
+                              <td class="puesto align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
+                              <td class="tipotrab align-middle white-space-nowrap text-600 fs--1 text-start">${empl.iexpuesto}</td>
+                                <c:if test="${empl.desestado=='Activo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                <c:if test="${empl.desestado=='Inactivo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                               <td class="delivery_type align-middle white-space-nowrap fw-semi-bold text-1000 fs--1 text-start"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
+
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>

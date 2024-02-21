@@ -84,10 +84,10 @@
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
 								<input class="form-control" id="des_custom" name="des_custom" type="text" maxlength="50" value=""/>
 							</div>
-							<div class="col-sm-6 col-md-12">
+							<!--<div class="col-sm-6 col-md-12">
 								<input type="checkbox" class="form-check-input" name="flg_promediable" value="1" id="flg_promediable"/>
 							    <label class="form-check-label ms-2" for="flg_promediable">Promediable</label>
-							</div>
+							</div>-->
 							<div class="col-sm-6 col-md-3">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro Meses Atras</label>
 								<input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="0"/>
@@ -95,10 +95,10 @@
                             <!--<div class="col-sm-6 col-md-12">
 							    <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>
                             </div>-->
-							<div class="col-sm-6 col-md-12">
+							<!--<div class="col-sm-6 col-md-12">
 								<input type="checkbox" class="form-check-input" name="flg_agrupable" value="1" id="flg_agrupable"/>
 								<label class="form-check-label ms-2" for="flg_agrupable">Ver grupo de concepto</label>
-							</div>
+							</div>-->
 							<div class="form-group row mt-8">
 								<label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Tipo de Ingreso
 									<br>

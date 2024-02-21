@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+    <div id="orderTable" data-list='{"valueNames":["ordej","idoper","codconcept","concept","glosa","estado"],"page":15,"pagination":true}'>
       <div class="mb-4">
         <div class="row g-3">
           <div class="col-auto">
@@ -102,7 +102,7 @@
               <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
             </div>
           </div>
-          <div class="">
+          <div>
             <a class="btn btn-primary btn-sm" href="nuevaFormula@${requestScope.idProceso}"><span class="fas fa-plus me-2"></span>Add Formula</a>
             <a class="btn btn-phoenix-secondary btn-sm ms-1" href="listProcesoFormulas"><span class="fas fa-reply me-2"></span>Atras</a>
             <div class="btn-group mb-1 me-1 ms-0 mt-1">
@@ -124,54 +124,55 @@
         <div class="table-responsive scrollbar mx-n1 px-1">
           <table class="table table-sm fs--1 mb-0">
             <thead>
-            <tr>
+                <tr>
                   <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
                         <div class="form-check mb-0 fs-0">
                           <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                         </div>
                   </th>
-                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ORD EJECUCION</th>
-                  <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">ID OPER</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">COD CONCEPTO</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">CONCEPTO</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GLOSA</th>
-                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">ESTADO</th>
+                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="ordej" style="width:5%;">ORD EJECUCION</th>
+                  <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="idoper">ID OPER</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="codconcept">COD CONCEPTO</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="concept">CONCEPTO</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="glosa">GLOSA</th>
+                  <th class="sort align-middle text-center pe-0" scope="col" data-sort="estado">ESTADO</th>
                   <th class="sort align-middle text-center pe-0" scope="col" ></th>
-            </tr>
+                </tr>
             </thead>
             <tbody class="list" id="order-table-body">
-            <c:forEach var="formxcon" items="${requestScope.formulaXConceptoList}">
-              <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                <td class="fs--1 align-middle px-0 py-3">
-                    <div class="form-check mb-0 fs-0">
-                      <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
-                    </div>
-                </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
-                <td class="total align-middle text-start fw-semi-bold text-600">${formxcon.conccoodescon}</td>
-                <td class="total align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
+                <c:forEach var="formxcon" items="${requestScope.formulaXConceptoList}">
+                  <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                    <td class="fs--1 align-middle px-0 py-3">
+                        <div class="form-check mb-0 fs-0">
+                          <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                        </div>
+                    </td>
+                    <td class="ordej align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
+                    <td class="idoper align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
+                    <td class="codconcept align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
+                    <td class="concept align-middle text-start fw-semi-bold text-600">${formxcon.conccoodescon}</td>
+                    <td class="glosa align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
 
-                <c:if test="${formxcon.formforflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">1: Creado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                <c:if test="${formxcon.formforflgest=='2'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">2: Error en compilación</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                <c:if test="${formxcon.formforflgest=='3'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">3: Compilado correctamente</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                    <c:if test="${formxcon.formforflgest=='1'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">1: Creado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                    <c:if test="${formxcon.formforflgest=='2'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">2: Error en compilación</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                    <c:if test="${formxcon.formforflgest=='3'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">3: Compilado correctamente</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
 
-                <td class="align-middle text-center white-space-nowrap pe-0 action">
-                  <div class="font-sans-serif btn-reveal-trigger position-static">
-                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
-                    data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                    <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
-                    <div class="dropdown-menu dropdown-menu-end py-2">
-                      <a id="dropdownmenutable" class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-square-root-variable me-2"></span>Formular</a>
-                      <a id="dropdownmenutable" class="dropdown-item" onclick="return compilar();" href="compilarFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-diagram-project me-2"></span>Compilar fórmula</a>
-                      <div class="dropdown-divider"></div>
-                      <a id="dropdownmenutable" class="dropdown-item " onclick="return remove();" href="deleteFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </c:forEach>
+                    <td class="align-middle text-center white-space-nowrap pe-0 action">
+                      <div class="font-sans-serif btn-reveal-trigger position-static">
+                        <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                        data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                        <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                        <div class="dropdown-menu dropdown-menu-end py-2">
+                          <a id="dropdownmenutable" class="dropdown-item" href="formularCodigo@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-square-root-variable me-2"></span>Formular</a>
+                          <a id="dropdownmenutable" class="dropdown-item" onclick="return compilar();" href="compilarFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-diagram-project me-2"></span>Compilar fórmula</a>
+                          <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-passport me-2"></span>Ver fórmula traductor</a>
+                          <div class="dropdown-divider"></div>
+                          <a id="dropdownmenutable" class="dropdown-item " onclick="return remove();" href="deleteFormula@${requestScope.idProceso}@${formxcon.formforcodfor}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </c:forEach>
             </tbody>
           </table>
         </div>

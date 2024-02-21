@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+    <div id="orderTable" data-list='{"valueNames":["id","pro","grup","reg"],"page":15,"pagination":true}'>
       <div class="mb-4">
         <div class="row g-3">
           <div class="col-auto">
@@ -113,10 +113,10 @@
                   <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}'/>
                 </div>
               </th>
-              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PROCESOS</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">GRUPO</th>
-              <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">REGIMEN LAB.</th>
+              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="pro">PROCESOS</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="grup">GRUPO</th>
+              <th class="sort align-middle text-center pe-0" scope="col" data-sort="reg">REGIMEN LAB.</th>
               <th class="sort align-middle text-center pe-0" scope="col" ></th>
             </tr>
             </thead>
@@ -129,10 +129,11 @@
                            data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                   </div>
                 </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
-                <td class="total align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">${profo.prodespro}</span></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${profo.progrppro}</span></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
+                <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${profo.procodpro}</a></td>
+                <td class="pro align-middle text-start fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">${profo.prodespro}</span></td>
+                <td class="grup align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${profo.progrppro}</span></td>
+                <td class="reg align-middle text-center fw-semi-bold text-1000">${profo.procodregimenlab}</td>
+
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
@@ -141,8 +142,8 @@
                     <div class="dropdown-menu dropdown-menu-end py-2">
                       <a id="dropdownmenutable" class="dropdown-item" href="listConceptoXProceso@${profo.procodpro}"><span class="fa-solid fa-trowel me-2"></span>Conceptos</a>
                       <a id="dropdownmenutable" class="dropdown-item" href="listFormulas@${profo.procodpro}"><span class="fa-solid fa-code me-2"></span>Formulas</a>
-                      <a id="dropdownmenutable" class="dropdown-item" href="#!"><span class="fa-solid fa-calendar-day me-2"></span>Periodos</a>
-                      <a id="dropdownmenutable" class="dropdown-item" href="listAsignacionContable@${profo.procodpro}"><span class="fa-solid fa-cash-register me-2"></span>Asig. Contable</a>
+                      <a id="dropdownmenutable" class="dropdown-item disabled" href="#!"><span class="fa-solid fa-calendar-day me-2"></span>Periodos</a>
+                      <a id="dropdownmenutable" class="dropdown-item disabled" href="listAsignacionContable@${profo.procodpro}"><span class="fa-solid fa-cash-register me-2" ></span>Asig. Contable</a>
                       <a id="dropdownmenutable" class="dropdown-item" href="editarProcesoFormula@${profo.procodpro}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                       <div class="dropdown-divider"></div>
                       <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarProcesoFormula@${profo.procodpro}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>

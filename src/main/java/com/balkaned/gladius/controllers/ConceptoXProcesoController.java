@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.Concepto;
 import com.balkaned.gladius.beans.ConceptoXProceso;
+import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.services.ConceptoXProcesoService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
@@ -37,9 +38,9 @@ public class ConceptoXProcesoController {
     @Autowired
     ConceptoXProcesoService conceptoXProcesoService;
 
-    @RequestMapping("/listConceptoXProceso@{proceso}")
+    @RequestMapping("/listConceptoXProceso@{codproceso}")
     public ModelAndView listConcepto(ModelMap model, HttpServletRequest request,
-                                     @PathVariable String proceso) {
+                                     @PathVariable String codproceso) {
         log.info("/listConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -47,12 +48,39 @@ public class ConceptoXProcesoController {
 
         sessionattributes.getVariablesSession(model, request);
 
-        model.addAttribute("proceso", proceso);
+        model.addAttribute("proceso", codproceso);
 
+        ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(codproceso));
         CapitalizarCadena cap= new CapitalizarCadena();
-        /*String desproceso2=cap.letras(desproceso);
-        model.addAttribute("desproceso",desproceso2);*/
-        log.info("proceso: " + proceso);
+        String desproceso2=cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso",desproceso2);
+
+        log.info("proceso: " + codproceso);
+
+        return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
+    }
+
+    @RequestMapping("/buscarConceptoProceso")
+    public ModelAndView buscarConceptoProceso(ModelMap model, HttpServletRequest request) {
+        log.info("/buscarConceptoProceso");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+
+        String codproceso= request.getParameter("proceso");
+        String slc_grpconcepto= request.getParameter("slc_grpconcepto");
+
+        model.addAttribute("proceso", codproceso);
+        model.addAttribute("slc_grpconcepto", slc_grpconcepto);
+
+        ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(codproceso));
+        CapitalizarCadena cap= new CapitalizarCadena();
+        String desproceso2=cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso",desproceso2);
+
+        model.addAttribute("conceptoXProcesoList",procesoFormulaService.listConceptoXProceso(Integer.valueOf(codproceso), slc_grpconcepto));
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
     }

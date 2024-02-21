@@ -2,6 +2,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.FormulaPlanilla;
 import com.balkaned.gladius.beans.FormulaXConcepto;
+import com.balkaned.gladius.beans.ProcesoPlanilla;
 import com.balkaned.gladius.services.FormulaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
@@ -32,6 +33,9 @@ public class FormulaController {
 	@Autowired
 	Sessionattributes sessionattributes;
 
+	@Autowired
+	ProcesoFormulaService procesoFormulaService;
+
 	@RequestMapping("/listFormulas@{idProceso}")
 	public ModelAndView listFormulas(ModelMap model, HttpServletRequest request,
 									 @PathVariable Integer idProceso) {
@@ -45,9 +49,10 @@ public class FormulaController {
 		model.addAttribute("formulaXConceptoList", formulaXConceptoList);
 		model.addAttribute("idProceso", idProceso);
 
-		/*CapitalizarCadena cap= new CapitalizarCadena();
-		String desproceso2=cap.letras(desproceso);
-		model.addAttribute("desproceso",desproceso2);*/
+		ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(idProceso));
+		CapitalizarCadena cap= new CapitalizarCadena();
+		String desproceso2=cap.letras(pro.getDesProceso());
+		model.addAttribute("desproceso",desproceso2);
 
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/listaFormulas");
 	}

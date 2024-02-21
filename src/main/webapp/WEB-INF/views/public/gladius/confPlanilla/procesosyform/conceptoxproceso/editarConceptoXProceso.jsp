@@ -44,13 +44,13 @@
                             </div>
 							<input type="hidden" id="idproceso" name="idproceso" value="${proceso}"/>
 
-							<div class="col-sm-6 col-md-7">
+							<div class="col-sm-6 col-md-4">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                 <input type="text" id="id_concepto" name="id_conceptdis" value="${requestScope.proconceptox.procodcon}"  class="form-control"  disabled />
                                 <label class="form-check-label fs--2 ms-2">${requestScope.proconceptox.coodescon}</label>
                                 <input type="hidden" name="id_concept" value="${requestScope.proconceptox.procodcon}"/>
 							</div>
-							<div class="col-sm-6 col-md-5">
+							<div class="col-sm-6 col-md-6">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de Concepto</label>
 								<select id="tip_concepto" name="tip_concepto" class="form-select" required>
 									<option value="0" ${requestScope.proconceptox.protipcon=='0' ? 'selected' : ''}>Parametro</option>
@@ -81,7 +81,7 @@
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
 								<input class="form-control" id="des_custom" name="des_custom" type="text" maxlength="50" value="${requestScope.proconceptox.prodescustom}" />
 							</div>
-							<div class="col-sm-6 col-md-12">
+							<div class="col-sm-6 col-md-3">
 								<input type="checkbox" class="form-check-input" name="flg_promediable" value="1" ${requestScope.proconceptox.flg_promediable=='1' ? 'checked=true' : ''} id="flg_promediable"/>
 							    <label class="form-check-label ms-2" for="flg_promediable">Promediable</label>
 							</div>
@@ -89,15 +89,19 @@
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro Meses Atras</label>
 								<input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="${requestScope.proconceptox.nro_meses_atras}"/>
 							</div>
-                            <div class="col-sm-6 col-md-12">
+                            <div class="col-sm-6 col-md-6">
 							    <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>
                             </div>
-							<div class="col-sm-6 col-md-12">
+							<div class="col-sm-6 col-md-4">
 								<input type="checkbox" class="form-check-input" name="flg_agrupable" value="1" ${requestScope.proconceptox.flg_agrupable=='1' ? 'checked=true' : ''} id="flg_agrupable"/>
-								<label class="form-check-label ms-2" for="flg_agrupable">Ver grupo de concepto</label>
+								<label class="form-check-label ms-2" for="flg_agrupable">Grupo de concepto</label>
 							</div>
+							<div class="col-sm-6 col-md-6">
+                                 <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver grupo de conceptos</a>
+                            </div>
 							<div class="col-sm-6 col-md-12">
-                            	 <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-sliders fs--1 me-2"></span>Configurar cuentas contables por compañia</a>
+							    <label class="form-check-label ms-2" for="flg_agrupable">Contabilidad</label>
+                            	 <a class="ms-2 btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-sliders fs--1 me-2"></span>Conf c.contables x compañia</a>
                             </div>
 							<div class="form-group row mt-8">
 								<label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Tipo de Ingreso
