@@ -1,6 +1,7 @@
 package com.balkaned.gladius.dao;
 
 import com.balkaned.gladius.beans.ConceptoXProceso;
+import com.balkaned.gladius.beans.ConceptoxAgrup;
 import com.balkaned.gladius.beans.ConceptoxProms;
 
 import java.util.List;
@@ -19,4 +20,10 @@ public interface ConceptoXProcesoDao {
     public void insertarProm(ConceptoxProms conxproms);
 
     public void eliminaProm(ConceptoxProms conxproms);
+
+    public List<ConceptoxAgrup> listarAgrupCon(Integer idproceso, String idconcepto);
+
+    public void insertarAgrup(ConceptoxAgrup conxagrup);
+
+    public void eliminaAgrup(ConceptoxAgrup conxagrup);
 }

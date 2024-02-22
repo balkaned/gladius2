@@ -241,6 +241,7 @@ public class ConceptoXProcesoController {
         model.addAttribute("slc_grpconcepto", idConcepto);
         model.addAttribute("proconceptox", conceptoXProcesoService.recuperar(Integer.valueOf(idProceso), idConcepto));
 
+        //Modal Coneptos Promediables
         List<ProcesoPlanilla> listap = procesoPlanillaService.listar("%");
         List<ConceptoxProms> listab = conceptoXProcesoService.listarPromCon(Integer.valueOf(idProceso), idConcepto);
 
@@ -248,6 +249,10 @@ public class ConceptoXProcesoController {
         model.addAttribute("idconcepto", idConcepto);
         model.addAttribute("LstPromProceso", listap);
         model.addAttribute("LstconceptoxProcesod", listab);
+
+        //Modal Grupo Conceptos
+        model.addAttribute("listaConAgrp",conceptoXProcesoService.listar(Integer.valueOf(idProceso),"%"));
+        model.addAttribute("listTblAgrpConc",conceptoXProcesoService.listarAgrupCon(Integer.valueOf(idProceso),idConcepto));
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/editarConceptoXProceso");
     }
@@ -443,6 +448,75 @@ public class ConceptoXProcesoController {
         p.setCodconceptaux(codconaux);
 
         conceptoXProcesoService.eliminaProm(p);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/addConceptoAgrup", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView addConceptoAgrup(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/addConceptoAgrup");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codconcepto = request.getParameter("codconcepto");
+        String codconceptoaux = request.getParameter("codconceptoaux");
+
+        ConceptoxAgrup p = new ConceptoxAgrup();
+        p.setIdproceso(codproceso);
+        p.setCodconcepto(codconcepto);
+        p.setCodconceptaux(codconceptoaux);
+
+        conceptoXProcesoService.insertarAgrup(p);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/actualizarTblConceptoAgrup", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView actualizarTblConceptoAgrup(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/actualizarTblConceptoAgrup");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codconcepto = request.getParameter("codconcepto");
+
+        List<ConceptoxAgrup> lstAgrup = conceptoXProcesoService.listarAgrupCon(Integer.valueOf(codproceso),codconcepto);
+
+        String json = new Gson().toJson(lstAgrup);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/deleteConceptoAgrup", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView deleteConceptoAgrup(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/deleteConceptoAgrup");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codconcepto = request.getParameter("codconcepto");
+        String codconaux = request.getParameter("codconceptoaux");
+
+        ConceptoxAgrup p = new ConceptoxAgrup();
+        p.setIdproceso(codproceso);
+        p.setCodconcepto(codconcepto);
+        p.setCodconceptaux(codconaux);
+
+        conceptoXProcesoService.eliminaAgrup(p);
 
         return null;
     }

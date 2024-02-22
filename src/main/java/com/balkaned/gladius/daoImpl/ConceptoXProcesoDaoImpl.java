@@ -1,6 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.ConceptoXProceso;
+import com.balkaned.gladius.beans.ConceptoxAgrup;
 import com.balkaned.gladius.beans.ConceptoxProms;
 import com.balkaned.gladius.dao.ConceptoXProcesoDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -240,5 +241,54 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
         conxproms.getCodconcepto(),
         conxproms.getIdprocesoaux(),
         conxproms.getCodconceptaux());
+    }
+
+    public List<ConceptoxAgrup> listarAgrupCon(Integer idproceso, String idconcepto){
+
+        String sql = "select "+
+                "grpidpro, " +
+                "grpidcon, " +
+                "grpidconaux," +
+                "coodescon " +
+                " from iexproxcon_agrup " +
+                "inner join iexconcepto  on coocodcon = grpidconaux  " +
+                "where grpidpro="+idproceso+" and grpidcon= trim('"+idconcepto+"')  ";
+
+        return template.query(sql, new ResultSetExtractor<List<ConceptoxAgrup>>() {
+
+            public List<ConceptoxAgrup> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ConceptoxAgrup> lista = new ArrayList<ConceptoxAgrup>();
+
+                while(rs.next()) {
+                    ConceptoxAgrup p = new ConceptoxAgrup();
+
+                    p.setIdproceso(rs.getInt("grpidpro"));
+                    p.setCodconcepto(rs.getString("grpidcon"));
+                    p.setCodconceptaux(rs.getString("grpidconaux"));
+                    p.setDesconceptaux(rs.getString("coodescon"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public void insertarAgrup(ConceptoxAgrup conxagrup){
+
+        template.update("  insert into iexproxcon_agrup( grpidpro, grpidcon , grpidconaux ) values (?,?,?) ",
+
+        conxagrup.getIdproceso(),
+        conxagrup.getCodconcepto(),
+        conxagrup.getCodconceptaux());
+    }
+
+    public void eliminaAgrup(ConceptoxAgrup conxagrup){
+
+        template.update(" delete from  iexproxcon_agrup where  grpidpro=? and trim(grpidcon)=trim(?)  and trim(grpidconaux) =trim(?) ",
+
+        conxagrup.getIdproceso(),
+        conxagrup.getCodconcepto(),
+        conxagrup.getCodconceptaux());
     }
 }
