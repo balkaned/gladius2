@@ -88,14 +88,7 @@
                 <div id="orderTable" data-list='{"valueNames":["id","concept"],"page":15,"pagination":true}'>
                       <div class="mb-3">
                         <div class="row g-3">
-                            <div class="col-auto">
-                                <div class="search-box">
-                                  <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                    <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
-                                    <span class="fas fa-search search-box-icon"></span>
-                                  </form>
-                                </div>
-                            </div>
+
 
                             <form class="mb-0 needs-validation" method="POST" action="buscarConceptoProceso" novalidate>
                                 <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
@@ -128,6 +121,14 @@
                                           <div class="dropdown-divider"></div>
                                           <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>-->
                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto mt-2 mb-2">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
                                     </div>
                                 </div>
 

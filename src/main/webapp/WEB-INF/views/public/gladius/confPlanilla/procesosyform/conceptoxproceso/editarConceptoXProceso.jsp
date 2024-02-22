@@ -13,6 +13,113 @@
 <head>
 	<jsp:include page="../../../../links.jsp"></jsp:include>
 </head>
+
+<script>
+    function buscarConceptos(){
+        $.ajax({
+             url: "getConceptoxProcesoPromediable",
+             data: {
+                 "codproceso": $("#codprocesoProm").val()
+                 },
+             success: function (data) {
+                 var opt = "";
+                      //opt += "<option value=0 >Seleccionar</option>";
+                      for (var i in data) {
+                       opt += "<option value="+data[i].procodcon+" > "+data[i].coodescon+" </option> ";
+                      }
+
+                 $("#idconceptoProm").html(opt);
+             }
+        });
+    }
+
+    function addConceptoPromediable(){
+        $.ajax({
+             url: "addConceptoPromediable",
+             data: {
+                 "codprocesoaux": $("#codprocesoProm").val(),
+                 "codconceptoaux": $("#idconceptoProm").val(),
+                 "codproceso": $("#idproceso").val(),
+                 "codconcepto": $("#id_concept").val()
+                 },
+             success: function (data) {
+                alert("Se agregó correctamente");
+                actualizarTabla();
+             }
+        });
+    }
+
+    function actualizarTabla(){
+        $.ajax({
+             url: "actualizarTblConceptoxProcesoPromediable",
+             data: {
+                 "codproceso": $("#idproceso").val(),
+                 "codconcepto": $("#id_concept").val()
+                 },
+             success: function (data) {
+                 var opt = "";
+                 var onclickchar="";
+
+                 for (var i in data) {
+                    onclickchar="onclick='return deleteConceptoPromediable('"+data[i].idproceso+"','"+data[i].codconcepto+"','"+data[i].idprocesoaux+"','"+data[i].codconceptaux+"');'";
+
+                    opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                              "<td class='align-middle white-space-nowrap ps-3 pe-3'><a class='fw-semi-bold' href='#!'>#</a></td>"+
+                              "<td class='align-middle text-start fw-semi-bold ps-3 pe-3 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-secondary'><span class='badge-label'>"+data[i].desprocesoaux+"</span></td>"+
+                              "<td class='align-middle white-space-nowrap text-center text-700 ps-3 pe-3'>"+data[i].codconceptaux+"</td>"+
+                              "<td class='align-middle white-space-nowrap text-center text-700 ps-3 pe-3'>"+data[i].desconceptaux+"</td>"+
+
+                              "<td class='align-middle text-center white-space-nowrap pe-0 action'>"+
+                                "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
+                                  "<button class='btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button'"+
+                                  "data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>"+
+                                  "<span class='fas fa-plus'></span><span class='fas fa-caret-down ms-2'></span></button>"+
+                                  "<div class='dropdown-menu dropdown-menu-end py-2'>"+
+
+                                    "<div class='dropdown-divider'></div>"+
+                                    "<a id='dropdownmenutable' class='dropdown-item' "+onclickchar+"><span class='fa-solid fa-trash me-2'></span>Eliminar</a></div>"+
+                                "</div>"+
+                              "</td>"+
+                            "</tr>";
+                 }
+
+                 $("#customer-order-table-body").html(opt);
+             }
+        });
+    }
+
+    function deleteConceptoPromediable(idproceso,codconcepto,idprocesoaux,codconceptaux){
+
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+
+        if (opcion == true) {
+            $.ajax({
+                 url: "deleteConceptoPromediable",
+                 data: {
+                     "codprocesoaux": idprocesoaux,
+                     "codconceptoaux": codconceptaux,
+                     "codproceso": idproceso,
+                     "codconcepto": codconcepto
+                     },
+                 success: function (data) {
+                    alert("Se eliminó exitosamente");
+                    actualizarTabla();
+                 }
+            });
+        } else {
+            return false;
+        }
+    }
+
+    function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -46,9 +153,9 @@
 
 							<div class="col-sm-6 col-md-4">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                <input type="text" id="id_concepto" name="id_conceptdis" value="${requestScope.proconceptox.procodcon}"  class="form-control"  disabled />
+                                <input type="text" id="id_conceptodis" name="id_conceptdis" value="${requestScope.proconceptox.procodcon}"  class="form-control"  disabled />
                                 <label class="form-check-label fs--2 ms-2">${requestScope.proconceptox.coodescon}</label>
-                                <input type="hidden" name="id_concept" value="${requestScope.proconceptox.procodcon}"/>
+                                <input type="hidden" id="id_concept" name="id_concept" value="${requestScope.proconceptox.procodcon}"/>
 							</div>
 							<div class="col-sm-6 col-md-6">
 								<label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de Concepto</label>
@@ -90,7 +197,8 @@
 								<input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="${requestScope.proconceptox.nro_meses_atras}"/>
 							</div>
                             <div class="col-sm-6 col-md-6">
-							    <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ver conceptos promediables</label>
+                                <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#conceptPromediableModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Conceptos promediables</button>
                             </div>
 							<div class="col-sm-6 col-md-4">
 								<input type="checkbox" class="form-check-input" name="flg_agrupable" value="1" ${requestScope.proconceptox.flg_agrupable=='1' ? 'checked=true' : ''} id="flg_agrupable"/>
@@ -262,8 +370,8 @@
                                     </div>
                                   </form>
                                   <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                                      <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                      <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                      <button class="btn btn-phoenix-primary btn-sm px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                      <button class="btn btn-primary btn-sm px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                   </div>
                                 </div>
                               </div>
@@ -274,11 +382,103 @@
 			</div>
 		</div>
 	</div>
-
 </main>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
 <jsp:include page="../../../../customize.jsp"></jsp:include>
 </body>
+
+<div class="modal fade" id="conceptPromediableModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-100">
+        <form class="needs-validation" action="javascript:addConceptoPromediable();" novalidate>
+          <div class="modal-header border-200 bg-soft p-4">
+             <h5 class="modal-title text-1000 fs-2 lh-sm">Gestión de conceptos promediables</h5>
+             <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-4">
+                <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Procesos</label>
+                      <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select" required >
+                          <option value="" selected >Seleccionar proceso</option>
+                          <c:forEach var="LstPromProceso" items="${LstPromProceso}">
+                              <option value="${LstPromProceso.idProceso}" >${LstPromProceso.desProceso}</option>
+                          </c:forEach>
+                      </select>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
+                      <select name="idconceptoProm" id="idconceptoProm" class="form-select" required >
+                            <option value="">Seleccionar</option>
+                      </select>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <button class="btn btn-phoenix-secondary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add concepto promediable</button>
+                </div>
+
+                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}'>
+                	<div class="table-responsive scrollbar">
+                		<table class="table table-sm fs--1 mb-0">
+                		  <thead>
+                			<tr>
+                			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" ></th>
+                			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">PROCESO</th>
+                			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >ID CONCEPTO</th>
+                			  <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >DESCONCEPTO</th>
+                			  <th class="sort text-end text-center align-middle ps-3 pe-3 text-uppercase" scope="col"></th>
+                			</tr>
+                		  </thead>
+                		  <tbody class="list" id="customer-order-table-body">
+                			<c:forEach var="LstconceptoxProcesod" items="${requestScope.LstconceptoxProcesod}">
+                				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
+                				  <td class="align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstconceptoxProcesod.desprocesoaux}</span></td>
+                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstconceptoxProcesod.codconceptaux}</td>
+                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstconceptoxProcesod.desconceptaux}</td>
+
+                				  <td class="align-middle text-center white-space-nowrap pe-0 action">
+                                    <div class="font-sans-serif btn-reveal-trigger position-static">
+                                      <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                      data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                      <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                      <div class="dropdown-menu dropdown-menu-end py-2">
+
+                                        <div class="dropdown-divider"></div>
+                                        <a id="dropdownmenutable" class="dropdown-item" onclick="return deleteConceptoPromediable('${LstconceptoxProcesod.idproceso}','${LstconceptoxProcesod.codconcepto}','${LstconceptoxProcesod.idprocesoaux}','${LstconceptoxProcesod.codconceptaux}');" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
+                                    </div>
+                                  </td>
+                				</tr>
+                			</c:forEach>
+                		  </tbody>
+                		</table>
+                	</div>
+                	<div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
+                		  <div class="col-auto d-flex">
+                			<p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                		  </div>
+                		  <div class="col-auto d-flex">
+                			<button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                			<ul class="mb-0 pagination"></ul>
+                			<button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                		  </div>
+                	</div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                <button class="btn btn-sm btn-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit">Guardar concepto prom</span></button>-->
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
 </html>

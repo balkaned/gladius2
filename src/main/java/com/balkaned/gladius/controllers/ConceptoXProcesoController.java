@@ -1,11 +1,10 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Concepto;
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.ConceptoService;
 import com.balkaned.gladius.services.ConceptoXProcesoService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
+import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.google.gson.Gson;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,22 +38,27 @@ public class ConceptoXProcesoController {
     @Autowired
     ConceptoXProcesoService conceptoXProcesoService;
 
+    @Autowired
+    ProcesoPlanillaService procesoPlanillaService;
+
     @RequestMapping("/listConceptoXProceso@{codproceso}")
     public ModelAndView listConcepto(ModelMap model, HttpServletRequest request,
                                      @PathVariable String codproceso) {
         log.info("/listConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
         model.addAttribute("proceso", codproceso);
 
-        ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(codproceso));
-        CapitalizarCadena cap= new CapitalizarCadena();
-        String desproceso2=cap.letras(pro.getDesProceso());
-        model.addAttribute("desproceso",desproceso2);
+        ProcesoPlanilla pro = procesoFormulaService.recuperar(Integer.valueOf(codproceso));
+        CapitalizarCadena cap = new CapitalizarCadena();
+        String desproceso2 = cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso", desproceso2);
 
         log.info("proceso: " + codproceso);
 
@@ -65,22 +70,24 @@ public class ConceptoXProcesoController {
         log.info("/buscarConceptoProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
-        String codproceso= request.getParameter("proceso");
-        String slc_grpconcepto= request.getParameter("slc_grpconcepto");
+        String codproceso = request.getParameter("proceso");
+        String slc_grpconcepto = request.getParameter("slc_grpconcepto");
 
         model.addAttribute("proceso", codproceso);
         model.addAttribute("slc_grpconcepto", slc_grpconcepto);
 
-        ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(codproceso));
-        CapitalizarCadena cap= new CapitalizarCadena();
-        String desproceso2=cap.letras(pro.getDesProceso());
-        model.addAttribute("desproceso",desproceso2);
+        ProcesoPlanilla pro = procesoFormulaService.recuperar(Integer.valueOf(codproceso));
+        CapitalizarCadena cap = new CapitalizarCadena();
+        String desproceso2 = cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso", desproceso2);
 
-        model.addAttribute("conceptoXProcesoList",procesoFormulaService.listConceptoXProceso(Integer.valueOf(codproceso), slc_grpconcepto));
+        model.addAttribute("conceptoXProcesoList", procesoFormulaService.listConceptoXProceso(Integer.valueOf(codproceso), slc_grpconcepto));
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/listConceptoXProceso");
     }
@@ -90,7 +97,9 @@ public class ConceptoXProcesoController {
         log.info("/getConceptoXprocesoFormula");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         String proceso = request.getParameter("proceso");
         String select_concepto = request.getParameter("select_concepto");
@@ -114,7 +123,9 @@ public class ConceptoXProcesoController {
         log.info("/nuevoConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -133,7 +144,9 @@ public class ConceptoXProcesoController {
         log.info("/addConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         try {
@@ -217,7 +230,9 @@ public class ConceptoXProcesoController {
         log.info("/editarConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -225,6 +240,14 @@ public class ConceptoXProcesoController {
         model.addAttribute("LstConceptoIns", conceptoService.listarConceptoIns(Integer.parseInt(idProceso)));
         model.addAttribute("slc_grpconcepto", idConcepto);
         model.addAttribute("proconceptox", conceptoXProcesoService.recuperar(Integer.valueOf(idProceso), idConcepto));
+
+        List<ProcesoPlanilla> listap = procesoPlanillaService.listar("%");
+        List<ConceptoxProms> listab = conceptoXProcesoService.listarPromCon(Integer.valueOf(idProceso), idConcepto);
+
+        model.addAttribute("idproceso", idProceso);
+        model.addAttribute("idconcepto", idConcepto);
+        model.addAttribute("LstPromProceso", listap);
+        model.addAttribute("LstconceptoxProcesod", listab);
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/editarConceptoXProceso");
     }
@@ -234,7 +257,9 @@ public class ConceptoXProcesoController {
         log.info("/modificarConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
@@ -318,12 +343,107 @@ public class ConceptoXProcesoController {
         log.info("/deleteConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
 
-        conceptoXProcesoService.eliminar(Integer.valueOf(idProceso),idConcepto);
+        conceptoXProcesoService.eliminar(Integer.valueOf(idProceso), idConcepto);
 
         return new ModelAndView("redirect:/listConceptoXProceso@" + idProceso);
+    }
+
+    @RequestMapping(value = "/getConceptoxProcesoPromediable", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView getConceptoxProcesoPromediable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/getConceptoxProcesoPromediable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        String codproceso = request.getParameter("codproceso");
+
+        List<ConceptoXProceso> listcp = conceptoXProcesoService.listar(Integer.valueOf(codproceso), "%");
+
+        String json = new Gson().toJson(listcp);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/addConceptoPromediable", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView addConceptoPromediable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/addConceptoPromediable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer codprocesoaux = Integer.valueOf(request.getParameter("codprocesoaux"));
+        String codconaux = request.getParameter("codconceptoaux");
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codcon = request.getParameter("codconcepto");
+
+        ConceptoxProms p = new ConceptoxProms();
+        p.setIdproceso(codproceso);
+        p.setCodconcepto(codcon);
+        p.setIdprocesoaux(codprocesoaux);
+        p.setCodconceptaux(codconaux);
+
+        conceptoXProcesoService.insertarProm(p);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/actualizarTblConceptoxProcesoPromediable", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView actualizarTblConceptoxProcesoPromediable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/actualizarTblConceptoxProcesoPromediable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codconcepto = request.getParameter("codconcepto");
+
+        List<ConceptoxProms> listabactTbl = conceptoXProcesoService.listarPromCon(Integer.valueOf(codproceso), codconcepto);
+
+        String json = new Gson().toJson(listabactTbl);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/deleteConceptoPromediable", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView deleteConceptoPromediable(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/deleteConceptoPromediable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer codprocesoaux = Integer.valueOf(request.getParameter("codprocesoaux"));
+        String codconaux = request.getParameter("codconceptoaux");
+        Integer codproceso = Integer.valueOf(request.getParameter("codproceso"));
+        String codcon = request.getParameter("codconcepto");
+
+        ConceptoxProms p = new ConceptoxProms();
+        p.setIdproceso(codproceso);
+        p.setCodconcepto(codcon);
+        p.setIdprocesoaux(codprocesoaux);
+        p.setCodconceptaux(codconaux);
+
+        conceptoXProcesoService.eliminaProm(p);
+
+        return null;
     }
 }
