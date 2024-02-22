@@ -65,6 +65,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="resources/vendors/tinymce/tinymce.min.js"></script>
+<script src="resources/vendors/choices/choices.min.js"></script>
 
 <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;

@@ -451,7 +451,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pliego [TT31]</label>
-                                                  <select class="form-select" name="iexpliego">
+                                                  <select class="form-select" name="iexpliego" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovPliego" items="${lovPliego}">
                                                         <option value="${lovPliego.idLov}"   ${lovPliego.idLov == requestScope.emp2.iexpliego ? 'selected' : ''}    >${lovPliego.desLov}</option>
@@ -468,8 +468,8 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupacion Reg. Publico [TT10]</label>
-                                                  <select class="form-select" name="iexocupacion_pub" >
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupacion Reg. Publico [TT10]2</label>
+                                                  <select class="form-select" name="iexocupacion_pub" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovOcupRegPub" items="${lovOcupRegPub}">
                                                         <option value="${lovOcupRegPub.idLov}"  ${lovOcupRegPub.idLov == requestScope.emp2.iexocupacion_pub ? 'selected' : ''}  >${lovOcupRegPub.desLov}</option>
@@ -478,7 +478,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupacion Reg. Privado [TT30]</label>
-                                                  <select class="form-select" name="iexocupacion_priv">
+                                                  <select class="form-select" name="iexocupacion_priv" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovOcupRegPrv" items="${lovOcupRegPrv}">
                                                         <option value="${lovOcupRegPrv.idLov}"  ${lovOcupRegPrv.idLov == requestScope.emp2.iexocupacion_priv ? 'selected' : ''}    >${lovOcupRegPrv.desLov}</option>
