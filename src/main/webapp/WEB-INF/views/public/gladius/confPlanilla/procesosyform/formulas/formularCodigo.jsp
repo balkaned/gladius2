@@ -100,13 +100,16 @@
                                 "</tr>";*/
                      }
 
-                     //Busca y remplaza operador if else elseif
+                     //Busca y remplaza operador if else elseif switch case break
                      nuevaFormula = nuevaFormula.replaceAll("if","<label class='text-warning'>if&nbsp</label>");
                      nuevaFormula = nuevaFormula.replaceAll("else","<label class='text-warning'>else&nbsp</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("switch","<label class='text-warning'>switch</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("case","<label class='text-warning'>case</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("break","<label class='text-warning'>break</label>");
                      nuevaFormula = nuevaFormula.replaceAll("  ","<label>&nbsp &nbsp</label>");
                      nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
                      nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
-                     /*nuevaFormula = nuevaFormula.replaceAll("0","<label class='text-primary'>0</label>");
+                     /*nuevaFormula = nuevaFormula.replaceAll("=0","<label class='text-primary'>0</label>");
                      nuevaFormula = nuevaFormula.replaceAll("1","<label class='text-primary'>1</label>");
                      nuevaFormula = nuevaFormula.replaceAll("2","<label class='text-primary'>2</label>");
                      nuevaFormula = nuevaFormula.replaceAll("3","<label class='text-primary'>3</label>");
@@ -117,7 +120,6 @@
                      nuevaFormula = nuevaFormula.replaceAll("8","<label class='text-primary'>8</label>");
                      nuevaFormula = nuevaFormula.replaceAll("9","<label class='text-primary'>9</label>");*/
 
-
                      //opt2 = "<textarea id='textAreaTraducido' style='font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</textarea>";
                      opt2 = "<div id='textAreaTraducido' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</div>";
 
@@ -127,7 +129,16 @@
             });
         }
 
-        CKEDITOR.replace('text-box');
+        $( document ).ready(function() {
+            var element=document.getElementById('operadorif');
+
+            var formulaPreConf = "if ($variable$ == 1){ }";
+
+            var dato="addOperador('"+formulaPreConf+"');";
+            element.setAttribute('onclick',dato);
+        });
+
+        //CKEDITOR.replace('text-box');
     </script>
     <style>
         #textAreaTraducido{
@@ -138,15 +149,18 @@
         }
 
         #labelvariableform{
+        font-family: 'JetBrains Mono';
             color:#9876AA !important;
         }
 
         #labelpuntoycoma{
-            font-size: 17px;
-            font-weight: 600;
+        font-family: 'JetBrains Mono';
+            font-size: 15px;
+            font-weight: 400;
         }
 
         #labelcomentario{
+        font-family: 'JetBrains Mono';
             color:#808080 !important;
         }
     </style>
@@ -255,23 +269,23 @@
                                           </div>
                                         </div>
 
-                                        <div class="row col-sm-6 col-md-12 mt-3">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
-                                                    <div class="table-responsive scrollbar">
-                                                        <table class="table table-sm fs--1 mb-0">
-                                                          <thead class="bg-200">
+                                        <div class="row col-sm-6 col-md-12 mt-4">
+                                            <div class="col-sm-6 col-md-5">
+                                                <div class="" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
+                                                    <div class="scrollbar">
+                                                        <table class="fs--1 mb-0">
+                                                          <thead>
                                                             <tr>
                                                               <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" style="width:5%;" scope="col" >#</th>-->
-                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" >Conceptos</th>
+                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" ><span class="badge badge-tag me-2 mb-2">Conceptos</span></th>
                                                             </tr>
                                                           </thead>
                                                           <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2  pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2  pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>$salto$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$resultado$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline text-primary">${Lovs_conxprod.desAbreviacionCapit}</span></td>
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                 </tr>
@@ -293,10 +307,14 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <h3 class="mb-4"> Editor de fórmulas</h3>
-                                                <textarea id="text-box" class="form-control text-1000" data-tinymce='{"placeholder":"Escribe la fórmula aquí..."}' placeholder="Escribe la fórmula aquí..." name="text-box" style="height:400px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
-                                                <a onclick="addOperador(' ');" class="btn btn-phoenix-secondary w-100 mb-4 mt-2">Espacio</a>
+                                                <!--<textarea id="text-box" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-1000" placeholder="Escribe la fórmula aquí..." name="text-box" row="15">${requestScope.fplanillax.desFormula}</textarea>-->
+                                                <!--id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"-->
+                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;color:black !important;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"
+                                                                        rows="15" placeholder="Escribe la fórmula aquí...">${requestScope.fplanillax.desFormula}</textarea>
+                                                <a onclick="addOperador(' ');" class="btn btn-phoenix-primary w-100 mb-1 mt-2">Espacio</a>
+                                                <!--<a onclick="addOperador('\n');" class="btn btn-phoenix-primary w-100 mb-0 mt-0">Enter</a>-->
                                             </div>
-                                            <div class="col-sm-6 col-md-1">
+                                            <div class="col-sm-6 col-md-2">
                                                 <table class="navy">
                                                     <tr>
                                                         <td colspan="2"><span class="badge badge-tag me-2 mb-2">Operador</span></td>
@@ -304,23 +322,25 @@
                                                     <tr>
                                                         <td class="align-middle white-space-nowrap text-center">
                                                             <a onclick="addOperador('+');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">+</a></br>
-                                                            <a onclick="addOperador('-');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">-</a></br>
+                                                            <a onclick="addOperador('-');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">-</a>
                                                             <a onclick="addOperador('*');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">*</a></br>
-                                                            <a onclick="addOperador('/');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">/</a></br>
+                                                            <a onclick="addOperador('/');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">/</a>
                                                             <a onclick="addOperador('=');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">=</a></br>
                                                             <br>
                                                             <a onclick="addOperador(';');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">;</a></br>
-                                                            <a onclick="addOperador('[');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">[</a></br>
+                                                            <a onclick="addOperador('[');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">[</a>
                                                             <a onclick="addOperador(']');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">]</a></br>
-                                                            <a onclick="addOperador('(');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">(</a></br>
+                                                            <a onclick="addOperador('(');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">(</a>
                                                             <a onclick="addOperador(')');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">)</a></br>
-                                                            <a onclick="addOperador('{');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">{</a></br>
+                                                            <a onclick="addOperador('{');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">{</a>
                                                             <a onclick="addOperador('}');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">}</a></br>
                                                             <br>
-                                                            <a onclick="addOperador('if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">if</a></br>
-                                                            <a onclick="addOperador('else');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">else</a></br>
-                                                            <a onclick="addOperador('else if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">else if</a></br>
-                                                            <a onclick="addOperador('end if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">end if</a></br>
+                                                            <a id="operadorif" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">if</a>
+                                                            <a onclick="addOperador('if ($variable$==1){} else{}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">else</a></br>
+                                                            <a onclick="addOperador('if ($variable$==1){} else if($variable$ < 20){}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">else if</a>
+                                                            <a onclick="addOperador('end if');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">end if</a></br>
+                                                            <a onclick="addOperador('switch ($variable$){case 1: $variable$ =1; break;}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">switch</a></br>
+                                                            <a onclick="addOperador('\n');" class="hashtag btn btn-phoenix-primary btn-sm pt-2 pb-2 ps-3 pe-3 mb-1 fs--1">Enter</a>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -424,15 +444,13 @@
                           </div>
                         </div>
 
-                        <div id="bodyTraducido" class="bg-dark">
-                        </div>
-                        <div id="bodyTraducido2">
-                        </div>
+                        <div id="bodyTraducido" class="bg-dark"></div>
+                        <div id="bodyTraducido2"></div>
                     </div>
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                    <a class="btn btn-sm btn-phoenix-secondary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <a class="btn btn-sm btn-phoenix-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit">Guardar concepto prom</span></button>-->
               </div>
             </form>
