@@ -12,6 +12,7 @@
 <html lang="en-US" dir="ltr">
     <head>
         <jsp:include page="../../../../links.jsp"/>
+        <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
     </head>
     <script>
         function addOperador(value) {
@@ -64,6 +65,8 @@
                document.getElementById("hashtag").disabled = true;
             }
         }
+
+
     </script>
     <body>
         <main class="main" id="top">
@@ -148,7 +151,7 @@
                                         </select>
                                     </div>
 
-                                    <div id="orderTable" data-list='{"valueNames":["concept"],"page":15,"pagination":true}'>
+                                    <div id="orderTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
                                         <div class="mb-0">
                                           <div class="row g-3">
                                             <div class="col-auto">
@@ -157,12 +160,7 @@
                                                 <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                                 <div class="dropdown-menu">
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#">
-                                                    <span class="fa-solid fa-bolt fs--1 me-2"></span>Traducir
-                                                  </a>
-                                                  <!--<a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
-                                                  <div class="dropdown-divider"></div>
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>-->
+                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#traductorModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-bolt fs--1 me-2"></span>Traducir</a>
                                                 </div>
                                               </div>
                                             </div>
@@ -177,32 +175,23 @@
 
                                         <div class="row col-sm-6 col-md-12 mt-3">
                                             <div class="col-sm-6 col-md-6">
-                                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":15,"pagination":true}'>
+                                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
                                                     <div class="table-responsive scrollbar">
                                                         <table class="table table-sm fs--1 mb-0">
-                                                          <thead>
+                                                          <thead class="bg-200">
                                                             <tr>
-                                                              <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" scope="col" ></th>-->
-                                                              <th class="sort white-space-nowrap align-middle ps-0 pe-0 text-uppercase" scope="col" data-sort="concept" >LISTA DE CONCEPTOS</th>
+                                                              <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" style="width:5%;" scope="col" >#</th>-->
+                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" >Conceptos</th>
                                                             </tr>
                                                           </thead>
                                                           <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag text-primary">$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag text-primary">$salto$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2  pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>$resultado$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2  pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <!--<td class="align-middle text-start pe-0 ps-0">
-                                                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                                                        <div class="dropdown-menu dropdown-menu-end py-2">
-                                                                          <a class="dropdown-item" href="#">Añadir</a>
-                                                                          <div class="dropdown-divider"></div>
-                                                                          <a class="dropdown-item text-danger" href="#!">Eliminar</a>
-                                                                        </div>
-                                                                      </div>
-                                                                  </td>-->
-                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a class="fw-semi-bold" href="#!">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>-->
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag text-primary">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 pt-1 pb-1 pe-2 ps-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline text-primary">${Lovs_conxprod.desAbreviacionCapit}</span></td>
+                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
+                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                 </tr>
                                                             </c:forEach>
                                                           </tbody>
@@ -221,8 +210,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                <h4 class="mb-3"> Editor de fórmulas</h4>
-                                                <textarea id="text-box" class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
+                                                <h3 class="mb-4"> Editor de fórmulas</h3>
+                                                <textarea id="text-box" class="form-control text-1000" data-tinymce='{"placeholder":"Escribe la fórmula aquí..."}' placeholder="Escribe la fórmula aquí..." name="text-box" style="height:400px;" row="25">${requestScope.fplanillax.desFormula}</textarea>
+                                                <a onclick="addOperador(' ');" class="btn btn-phoenix-secondary w-100 mb-4 mt-2">Espacio</a>
                                             </div>
                                             <div class="col-sm-6 col-md-1">
                                                 <table class="navy">
@@ -231,24 +221,24 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="align-middle white-space-nowrap text-center">
-                                                            <a onclick="addOperador('+');" class="hashtag text-danger">+</a></br>
-                                                            <a onclick="addOperador('-');" class="hashtag text-danger">-</a></br>
-                                                            <a onclick="addOperador('*');" class="hashtag text-danger">*</a></br>
-                                                            <a onclick="addOperador('/');" class="hashtag text-danger">/</a></br>
-                                                            <a onclick="addOperador('=');" class="hashtag text-danger">=</a></br>
+                                                            <a onclick="addOperador('+');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">+</a></br>
+                                                            <a onclick="addOperador('-');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">-</a></br>
+                                                            <a onclick="addOperador('*');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">*</a></br>
+                                                            <a onclick="addOperador('/');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">/</a></br>
+                                                            <a onclick="addOperador('=');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">=</a></br>
                                                             <br>
-                                                            <a onclick="addOperador(';');" class="hashtag text-primary">;</a></br>
-                                                            <a onclick="addOperador('[');" class="hashtag text-success">[</a></br>
-                                                            <a onclick="addOperador(']');" class="hashtag text-success">]</a></br>
-                                                            <a onclick="addOperador('(');" class="hashtag text-success">(</a></br>
-                                                            <a onclick="addOperador(')');" class="hashtag text-success">)</a></br>
-                                                            <a onclick="addOperador('{');" class="hashtag text-success">{</a></br>
-                                                            <a onclick="addOperador('}');" class="hashtag text-success">}</a></br>
+                                                            <a onclick="addOperador(';');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">;</a></br>
+                                                            <a onclick="addOperador('[');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">[</a></br>
+                                                            <a onclick="addOperador(']');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">]</a></br>
+                                                            <a onclick="addOperador('(');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">(</a></br>
+                                                            <a onclick="addOperador(')');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">)</a></br>
+                                                            <a onclick="addOperador('{');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">{</a></br>
+                                                            <a onclick="addOperador('}');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">}</a></br>
                                                             <br>
-                                                            <a onclick="addOperador('if');" class="hashtag text-primary">if</a></br>
-                                                            <a onclick="addOperador('else');" class="hashtag text-primary">else</a></br>
-                                                            <a onclick="addOperador('else if');" class="hashtag text-primary">else if</a></br>
-                                                            <a onclick="addOperador('end if');" class="hashtag text-primary">end if</a></br>
+                                                            <a onclick="addOperador('if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">if</a></br>
+                                                            <a onclick="addOperador('else');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">else</a></br>
+                                                            <a onclick="addOperador('else if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">else if</a></br>
+                                                            <a onclick="addOperador('end if');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs--1">end if</a></br>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -303,4 +293,63 @@
         </main>
         <jsp:include page="../../../../customize.jsp"/>
     </body>
+
+    <div class="modal fade" id="traductorModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-100">
+            <form class="needs-validation" action="javascript:addConceptoAgrup();" novalidate>
+              <div class="modal-header border-200 bg-soft p-4">
+                 <h5 class="modal-title text-1000 fs-2 lh-sm">Traductor de fórmula</h5>
+                 <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+              </div>
+              <div class="modal-body p-4">
+                <div class="">
+                    <div id="alertAgrupSuccess" class="mt-1 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                        <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                        <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div id="alertAgrupInfo" class="mt-1 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
+                        <span class="fa-solid fa-info text-info fs-0 me-3"></span>
+                        <div class="col-11">
+                            <strong class="text-black">Información</strong>
+                             <p class="mb-0 fw-semi-bold text-1000">Se eliminó exitosamente el elemento <a href="#">Mas información</a></p>
+                        </div>
+                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="card d-flex flex-column mb-1">
+                        <textarea id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 bg-dark rounded-bottom-0 border-0 flex-1"
+                        rows="12" placeholder="Fórmula traducida...">${requestScope.fplanillax.desFormula}</textarea>
+
+                        <div class="card-footer p-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn p-0 me-3"><span class="fa-solid fa-image fs-0"></span></button>
+                            <button class="btn p-0 me-3"><span class="fa-solid fa-calendar-alt fs-0"></span></button>
+                            <button class="btn p-0 me-3"><span class="fa-solid fa-map-marker-alt fs-0"></span></button>
+                            <button class="btn p-0 me-3"><span class="fa-solid fa-tag fs-0"></span></button>
+                            <div class="dropdown me-3 d-inline-block flex-1">
+                              <button class="btn p-0 dropdown-toggle dropdown-caret-none d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="fa-solid fa-globe-asia fs-0 me-1"></span><span class="me-1 lh-base d-none d-sm-block">public</span><span class="fa-solid fa-caret-down fs--2 text-500"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Public</a></li>
+                                <li><a class="dropdown-item" href="#">Private</a></li>
+                                <li><a class="dropdown-item" href="#">Draft</a></li>
+                              </ul>
+                            </div>
+                            <div class="d-flex align-items-center">
+                              <button class="btn btn-danger btn-sm px-6 px-sm-8"><span class="fa-solid fa-diagram-project me-2"></span>Compilar</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                    <a class="btn btn-sm btn-phoenix-secondary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit">Guardar concepto prom</span></button>-->
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
 </html>

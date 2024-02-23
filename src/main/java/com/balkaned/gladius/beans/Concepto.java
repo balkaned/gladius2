@@ -19,4 +19,6 @@ public class Concepto {
     private String desVariable;
     private String descripcion;
     private String desAbreviacion;
+    private String desAbreviacionCapit;
+
 }

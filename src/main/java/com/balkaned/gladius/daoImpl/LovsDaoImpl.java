@@ -110,6 +110,10 @@ public class LovsDaoImpl implements LovsDao {
                     p.setDesVariable(rs.getString("COOCODFORVAR"));
                     p.setDesConcepto(rs.getString("COODESCON"));
                     p.setDesAbreviacion(rs.getString("COODESABREV"));
+
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesAbreviacionCapit(cap.letras(p.getDesAbreviacion()));
+
                     p.setDescripcion(rs.getString("COODESCRIPCION"));
 
                     lista.add(p);
