@@ -13,10 +13,10 @@
     <head>
         <jsp:include page="../../../../links.jsp"/>
         <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+        <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
     </head>
     <script>
         function addOperador(value) {
-            //alert("value:"+value);
 
             var campo = document.getElementById('text-box');
             var insertar = value;
@@ -40,7 +40,6 @@
 
         function valida_tipo_for(opcion) {
             if (opcion.value=="0"){
-              //alert("valor="+opcion.value);
                document.getElementById("sqlprogram").value="";
                document.getElementById("grpeje").value="";
                document.getElementById("sqlprogram").disabled = true;
@@ -66,8 +65,91 @@
             }
         }
 
+        function traducirFormula(){
+            var formula=document.getElementById("textAreaTraductor").value;
+            //alert("var: "+formula);
 
+            $.ajax({
+                 url: "traducirFormulaAjax",
+                 data: {
+                     },
+                 success: function (data) {
+                     var opt = "";
+                     var opt2 = "";
+                     var onclickchar="";
+                     var formulaReplace="";
+                     var formulaResult="";
+                     var desVariableAux="";
+
+                     formula2=formula;
+                     nuevaFormula=formula2;
+
+                     var remplazarPor="";
+
+                     //Busca y remplaza variables de formula
+                     for (var i in data) {
+                        desVariableAux=data[i].desVariable.trim().toString();
+                        remplazarPor="["+"<label id='labelvariableform'>"+data[i].desVariable+"</label> "+"<label id='labelcomentario'>"+data[i].desAbreviacionCapit+"</label>]";
+
+                        nuevaFormula = nuevaFormula.replaceAll(desVariableAux,remplazarPor);
+
+                        /*opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                  "<td class='align-middle white-space-nowrap ps-3 pe-3'><a class='fw-semi-bold' href='#!'>"+i+"</a></td>"+
+                                  "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desVariable+"</td>"+
+                                  "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desAbreviacionCapit+"</td>"+
+                                "</tr>";*/
+                     }
+
+                     //Busca y remplaza operador if else elseif
+                     nuevaFormula = nuevaFormula.replaceAll("if","<label class='text-warning'>if&nbsp</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("else","<label class='text-warning'>else&nbsp</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("  ","<label>&nbsp &nbsp</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
+                     nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
+                     /*nuevaFormula = nuevaFormula.replaceAll("0","<label class='text-primary'>0</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("1","<label class='text-primary'>1</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("2","<label class='text-primary'>2</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("3","<label class='text-primary'>3</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("4","<label class='text-primary'>4</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("5","<label class='text-primary'>5</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("6","<label class='text-primary'>6</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("7","<label class='text-primary'>7</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("8","<label class='text-primary'>8</label>");
+                     nuevaFormula = nuevaFormula.replaceAll("9","<label class='text-primary'>9</label>");*/
+
+
+                     //opt2 = "<textarea id='textAreaTraducido' style='font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</textarea>";
+                     opt2 = "<div id='textAreaTraducido' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</div>";
+
+                     //$("#bodyTraducido").html(nuevaFormula);
+                     $("#bodyTraducido2").html(opt2);
+                 }
+            });
+        }
+
+        CKEDITOR.replace('text-box');
     </script>
+    <style>
+        #textAreaTraducido{
+            font-family: 'JetBrains Mono';
+            font-size: 15px;
+            font-weight: 400;
+            color:#97ADC1 !important;
+        }
+
+        #labelvariableform{
+            color:#9876AA !important;
+        }
+
+        #labelpuntoycoma{
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        #labelcomentario{
+            color:#808080 !important;
+        }
+    </style>
     <body>
         <main class="main" id="top">
             <jsp:include page="../../../../navsMenu.jsp"/>
@@ -299,7 +381,7 @@
         <div class="modal-content bg-100">
             <form class="needs-validation" action="javascript:addConceptoAgrup();" novalidate>
               <div class="modal-header border-200 bg-soft p-4">
-                 <h5 class="modal-title text-1000 fs-2 lh-sm">Traductor de fórmula</h5>
+                 <h5 class="modal-title text-1000 fs-2 lh-sm"><span class="fa-solid fa-passport me-2"></span>Traductor de fórmula</h5>
                  <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
               </div>
               <div class="modal-body p-4">
@@ -319,8 +401,8 @@
                     </div>
 
                     <div class="card d-flex flex-column mb-1">
-                        <textarea id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 bg-dark rounded-bottom-0 border-0 flex-1"
-                        rows="12" placeholder="Fórmula traducida...">${requestScope.fplanillax.desFormula}</textarea>
+                        <textarea id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"
+                        rows="10" placeholder="Fórmula traducida...">${requestScope.fplanillax.desFormula}</textarea>
 
                         <div class="card-footer p-3">
                           <div class="d-flex justify-content-between align-items-center">
@@ -329,17 +411,22 @@
                             <button class="btn p-0 me-3"><span class="fa-solid fa-map-marker-alt fs-0"></span></button>
                             <button class="btn p-0 me-3"><span class="fa-solid fa-tag fs-0"></span></button>
                             <div class="dropdown me-3 d-inline-block flex-1">
-                              <button class="btn p-0 dropdown-toggle dropdown-caret-none d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="fa-solid fa-globe-asia fs-0 me-1"></span><span class="me-1 lh-base d-none d-sm-block">public</span><span class="fa-solid fa-caret-down fs--2 text-500"></span></button>
+                              <button class="btn p-0 dropdown-toggle dropdown-caret-none d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="fa-solid fa-globe-asia fs-0 me-1"></span><span class="me-1 lh-base d-none d-sm-block">Ejecutar</span><span class="fa-solid fa-caret-down fs--2 text-500"></span></button>
                               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Public</a></li>
-                                <li><a class="dropdown-item" href="#">Private</a></li>
-                                <li><a class="dropdown-item" href="#">Draft</a></li>
+                                <li><a class="dropdown-item" href="#">Compilar</a></li>
+                                <li><a class="dropdown-item" href="#">Descargar</a></li>
+                                <!--<li><a class="dropdown-item" href="#">Draft</a></li>-->
                               </ul>
                             </div>
                             <div class="d-flex align-items-center">
-                              <button class="btn btn-danger btn-sm px-6 px-sm-8"><span class="fa-solid fa-diagram-project me-2"></span>Compilar</button>
+                              <a onclick="traducirFormula();" class="btn btn-primary btn-sm px-6 px-sm-8"><span class="fa-solid fa-bolt me-2"></span>Traducir</a>
                             </div>
                           </div>
+                        </div>
+
+                        <div id="bodyTraducido" class="bg-dark">
+                        </div>
+                        <div id="bodyTraducido2">
                         </div>
                     </div>
                 </div>

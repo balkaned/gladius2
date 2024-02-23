@@ -1,21 +1,23 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.FormulaPlanilla;
-import com.balkaned.gladius.beans.FormulaXConcepto;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.FormulaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -192,7 +194,7 @@ public class FormulaController {
 		String user = (String) request.getSession().getAttribute("user");
 		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
-		sessionattributes.getVariablesSession(model, request);
+		//sessionattributes.getVariablesSession(model, request);
 
 		String v_result ="1";
 		String v_get_result=" $resultado$ ; $salto$ ";
@@ -211,7 +213,6 @@ public class FormulaController {
 			v_script= formulaService.obtenerVariables(fplanilla.getDesFormula());
 
 			// Inicializar variables modo prueba
-			//   v_script2=dao.iniDeclareVariables(v_script);
 
 			// Unificar cabecera y el detalle
 			v_all_script=  v_script+" var $resultado$; var $salto$;  "+fplanilla.getDesFormula();
@@ -221,12 +222,11 @@ public class FormulaController {
 
 			// Capturar si la ejecución es correcta
 			// Si es corecta cambiar el estado a 3 de compilado
-			//log.info(v_script);
 
 			if (v_result.equals("1") ) {
 				v_result_message="Correcto" ;
-				formulaService.grabaVariableResultado(v_codpro,v_codfor,v_script,v_get_result);
 				// Insertar Variable inicial y resultado
+				formulaService.grabaVariableResultado(v_codpro,v_codfor,v_script,v_get_result);
 			}else if (v_result.equals("0") ){
 				v_result_message="Incorrecto" ;
 			}
@@ -241,6 +241,25 @@ public class FormulaController {
 		}
 
 		return new ModelAndView("redirect:/listFormulas@"+idProceso);
+	}
+
+	@RequestMapping(value = "/traducirFormulaAjax", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView traducirFormulaAjax(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		log.info("/traducirFormulaAjax");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {
+			return new ModelAndView("redirect:/login2");
+		}
+
+		List<Concepto> lsconcept = lovsService.getConceptoLov();
+
+		String json = new Gson().toJson(lsconcept);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+
+		return null;
 	}
 
 }

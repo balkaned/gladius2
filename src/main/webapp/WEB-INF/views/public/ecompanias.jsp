@@ -51,11 +51,12 @@ margin-top:10px !important;
 
           </ol>
         </nav>
-        <div class="row gx-6 gy-3 mb-4 align-items-center">
-          <div class="col-12 mb-2">
-            <h2 class="mb-0">Seleccionar compañia<span class="fw-normal text-700 ms-3"></span></h2>
+        <div class="row gx-6 gy-3 mb-2 align-items-center">
+          <div class="col-12 mb-0">
+            <h2 id="h2top" class="mb-2">Compañias</h2>
+            <h5 class="text-700 fw-semi-bold text-none">Seleccionar compañia a ingresar</h5>
           </div>
-          <div class="row col-12 mt-1">
+          <div class="row col-12 mt-2">
             <div class="col-auto pe-0">
                 <a class="btn btn-primary mb-1 btn-sm" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
             </div>
