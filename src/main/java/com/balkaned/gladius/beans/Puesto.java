@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Puesto {
 
-    Integer  iexcodcia;
-    String  iexpuesto;
-    String  iexdespuesto;
-    String iexcodcat;
-    String descodcat;
-    String iexusucrea;
-    String iexusumod;
-    String iexfeccrea;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private String iexpuesto;
+    private String iexdespuesto;
+    private String iexcodcat;
+    private String descodcat;
+    private String iexusucrea;
+    private String iexusumod;
+    private String iexfeccrea;
+    private String iexfecmod;
 
 }

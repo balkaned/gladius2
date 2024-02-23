@@ -11,21 +11,21 @@ import lombok.Setter;
 @NoArgsConstructor
 public class VacacionControl {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    String iexpermesini;
-    String iexpermesfin;
-    String iexfecini;
-    String iexfecfin;
-    Double iexdiasgan;
-    Double iexdiasgoz;
-    Double iexdiasven;
-    Double iexdiasper;
-    Double iexdiascom;
-    Double iexdiassaldo;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private String iexpermesini;
+    private String iexpermesfin;
+    private String iexfecini;
+    private String iexfecfin;
+    private Double iexdiasgan;
+    private Double iexdiasgoz;
+    private Double iexdiasven;
+    private Double iexdiasper;
+    private Double iexdiascom;
+    private Double iexdiassaldo;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
 
 }

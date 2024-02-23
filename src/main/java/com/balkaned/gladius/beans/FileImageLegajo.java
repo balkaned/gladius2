@@ -10,16 +10,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FileImageLegajo {
-    Integer iexcodcia ;
-    Integer iexcodgrpfile ;
-    Integer iexcodimage ;
-    String iexurlimage ;
-    String iexdesimage ;
-    String iexestado ;
-    String iexusucrea ;
-    String iexfeccrea ;
-    String iexusumod ;
-    String iexfecmod ;
-    String iexusuaprob ;
-    String iexfecaprob ;
+
+    private Integer iexcodcia;
+    private Integer iexcodgrpfile;
+    private Integer iexcodimage;
+    private String iexurlimage;
+    private String iexdesimage;
+    private String iexestado;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
+    private String iexusuaprob;
+    private String iexfecaprob;
 }

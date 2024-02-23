@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CentroCosto {
 
-    Integer iexcodcia;
-    String iexccosto;
-    String iexdesccosto;
-    String iexcodcat;
-    String descodcat;
-    String iexusucrea;
-    String iexusumod;
-    String iexfeccrea;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private String iexccosto;
+    private String iexdesccosto;
+    private String iexcodcat;
+    private String descodcat;
+    private String iexusucrea;
+    private String iexusumod;
+    private String iexfeccrea;
+    private String iexfecmod;
 
 }

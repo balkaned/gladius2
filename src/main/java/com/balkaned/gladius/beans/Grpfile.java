@@ -11,19 +11,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Grpfile {
 
-    Integer iexcodcia;
-    Integer iexcodgrpfile;
-    Integer iexcodtra;
-    String iexgrpfile;
-    String iexdesgrpfile;
-    String iexestado;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
-    String desgrangrupo;
-    Integer iexcodimage;
-    String iexurlimage;
-    String iexdesimage;
-    String iexestado_det;
+    private Integer iexcodcia;
+    private Integer iexcodgrpfile;
+    private Integer iexcodtra;
+    private String iexgrpfile;
+    private String iexdesgrpfile;
+    private String iexestado;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
+    private String desgrangrupo;
+    private Integer iexcodimage;
+    private String iexurlimage;
+    private String iexdesimage;
+    private String iexestado_det;
 }

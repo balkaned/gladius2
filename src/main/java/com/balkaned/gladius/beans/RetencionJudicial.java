@@ -11,21 +11,21 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RetencionJudicial {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    Integer iexcorrel;
-    Integer iexcodpro;
-    String descodpro;
-    String iextipretjud;
-    String destipretjud;
-    String  iexresolucion;
-    String iexfecini;
-    String iexfecfin;
-    Double iexpordesct;
-    Double ieximpfijo;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private Integer iexcorrel;
+    private Integer iexcodpro;
+    private String descodpro;
+    private String iextipretjud;
+    private String destipretjud;
+    private String  iexresolucion;
+    private String iexfecini;
+    private String iexfecfin;
+    private Double iexpordesct;
+    private Double ieximpfijo;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
 
 }

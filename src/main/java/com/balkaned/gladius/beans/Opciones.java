@@ -10,20 +10,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Opciones {
-    Integer iexcodopc;
-    String iexdesopc;
-    String iexurlopc;
-    String iexurlimg;
-    String iexflgest;
-    Integer iexcodsec;
-    String dessec;
-    String dessys;
-    String iexdescripcion;
-    String iexcodapps;
-    String iexaction;
-    String iexusucre;
-    String iexfeccre;
-    String iexusumod;
-    String iexfecmod;
-    String iexactionspring;
+
+    private Integer iexcodopc;
+    private String iexdesopc;
+    private String iexurlopc;
+    private String iexurlimg;
+    private String iexflgest;
+    private Integer iexcodsec;
+    private String dessec;
+    private String dessys;
+    private String iexdescripcion;
+    private String iexcodapps;
+    private String iexaction;
+    private String iexusucre;
+    private String iexfeccre;
+    private String iexusumod;
+    private String iexfecmod;
+    private String iexactionspring;
+
 }

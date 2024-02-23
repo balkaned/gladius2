@@ -11,10 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EmpSueldo {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    String iexcodcon;
-    String descon;
-    Double iexvalcon;
-    String iexflgest;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private String iexcodcon;
+    private String descon;
+    private Double iexvalcon;
+    private String iexflgest;
 }

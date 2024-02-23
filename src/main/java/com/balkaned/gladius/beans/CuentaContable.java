@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CuentaContable {
+
     private String iexccodcta;
     private String iexdescta;
     private String desdet;

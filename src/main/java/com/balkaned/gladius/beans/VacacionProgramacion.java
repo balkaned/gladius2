@@ -11,24 +11,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class VacacionProgramacion {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    Integer iexcorrel;
-    String iexfecini;
-    String iexfecfin;
-    Double iexnrodias;
-    String iextipvac;
-    String destipvac;
-    String iexglosa;
-    String iexpermesini;
-    String iexpermesfin;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
-    String desnomtra;
-    String fecing;
-    String nrodoc;
-    String desestado;
-    String fecfinrep;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private Integer iexcorrel;
+    private String iexfecini;
+    private String iexfecfin;
+    private Double iexnrodias;
+    private String iextipvac;
+    private String destipvac;
+    private String iexglosa;
+    private String iexpermesini;
+    private String iexpermesfin;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
+    private String desnomtra;
+    private String fecing;
+    private String nrodoc;
+    private String desestado;
+    private String fecfinrep;
+
 }

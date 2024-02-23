@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Sistemas {
 
-    Integer iexcodsys;
-    String iexdessys;
-    String iexactiondefault;
+    private Integer iexcodsys;
+    private String iexdessys;
+    private String iexactiondefault;
 
 }

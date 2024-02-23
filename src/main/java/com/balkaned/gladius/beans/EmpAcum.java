@@ -11,21 +11,21 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EmpAcum {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    String iexaniotrib;
-    Double iexrem_acum;
-    Double iexrem5taafec_acum;
-    Double iexrenta5ta_acum;
-    Double iexremafec5ta_otrcia;
-    Double iexrent5ta_otrcia;
-    Double iexrem4ta_acum;
-    Double iexrenta4ta_acum;
-    Double iexremotr_acum;
-    Double iexrenta_acum;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private String iexaniotrib;
+    private Double iexrem_acum;
+    private Double iexrem5taafec_acum;
+    private Double iexrenta5ta_acum;
+    private Double iexremafec5ta_otrcia;
+    private Double iexrent5ta_otrcia;
+    private Double iexrem4ta_acum;
+    private Double iexrenta4ta_acum;
+    private Double iexremotr_acum;
+    private Double iexrenta_acum;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
 
 }

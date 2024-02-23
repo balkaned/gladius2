@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Proceso {
+
     private String procodcon;
     private String coodescon;
 }

@@ -10,24 +10,25 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TTablaDetalle {
-    String 	iexcodtab;
-    String 	iexkey;
-    String 	desdet;
-    String 	des1det;
-    String 	des2det;
-    String 	des3det;
-    String 	des4det;
-    String 	des5det;
-    String 	des6det;
-    String 	des7det;
-    String 	des8det;
-    Double	val9det;
-    Double	val10det;
-    Double	val11det;
-    Double	val12det;
-    Double	val13det;
-    Double	val14det;
-    Double	val15det;
-    Double	val16det;
+
+    private String iexcodtab;
+    private String iexkey;
+    private String desdet;
+    private String des1det;
+    private String des2det;
+    private String des3det;
+    private String des4det;
+    private String des5det;
+    private String des6det;
+    private String des7det;
+    private String des8det;
+    private Double val9det;
+    private Double val10det;
+    private Double val11det;
+    private Double val12det;
+    private Double val13det;
+    private Double val14det;
+    private Double val15det;
+    private Double val16det;
 
 }

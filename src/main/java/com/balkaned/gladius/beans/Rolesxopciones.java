@@ -11,22 +11,22 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Rolesxopciones {
 
-    Integer iexcodrol;
-    String desrol;
-    Integer iexcodopc;
-    String desopc;
-    String dessec;
-    String dessys;
-    String iexflgest;
-    String iex_consultar;
-    String iex_registrar;
-    String iex_modificar;
-    String iex_eliminar;
-    String iex_descargar_pdf;
-    String iex_descargar_xls;
-    String iexusucre;
-    String iexfeccre;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodrol;
+    private String desrol;
+    private Integer iexcodopc;
+    private String desopc;
+    private String dessec;
+    private String dessys;
+    private String iexflgest;
+    private String iex_consultar;
+    private String iex_registrar;
+    private String iex_modificar;
+    private String iex_eliminar;
+    private String iex_descargar_pdf;
+    private String iex_descargar_xls;
+    private String iexusucre;
+    private String iexfeccre;
+    private String iexusumod;
+    private String iexfecmod;
 
 }

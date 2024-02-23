@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class FormulaPlanilla {
+
 	private Integer idProceso;
 	private Integer idFormula;
 	private String desGlosa;

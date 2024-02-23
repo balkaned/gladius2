@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Seccion {
 
-    Integer iexcodsec;
-    String iexdessec;
-    Integer iexordsec;
-    Integer iexcodsys;
-    String dessys;
-    String iexsecurl;
-    String iexsecimg;
-    String iexsecobs;
-    String iexactiondef;
+    private Integer iexcodsec;
+    private String iexdessec;
+    private Integer iexordsec;
+    private Integer iexcodsys;
+    private String dessys;
+    private String iexsecurl;
+    private String iexsecimg;
+    private String iexsecobs;
+    private String iexactiondef;
 
 }

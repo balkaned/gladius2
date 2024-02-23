@@ -11,12 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Local {
 
-    Integer iexcodcia;
-    String iexubicod;
-    String iexubides ;
-    String iexusucrea;
-    String iexusumod;
-    String iexfeccrea;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private String iexubicod;
+    private String iexubides;
+    private String iexusucrea;
+    private String iexusumod;
+    private String iexfeccrea;
+    private String iexfecmod;
 
 }

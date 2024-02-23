@@ -11,12 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Ubigeo {
 
-    String idpais;
-    String iddepartamento;
-    String desdepartamento;
-    String idprovincia;
-    String desprovincia;
-    String iddistrito;
-    String desdistrito;
+    private String idpais;
+    private String iddepartamento;
+    private String desdepartamento;
+    private String idprovincia;
+    private String desprovincia;
+    private String iddistrito;
+    private String desdistrito;
 
 }

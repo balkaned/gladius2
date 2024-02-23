@@ -11,17 +11,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Area {
 
-    Integer iexcodcia;
-    String iexcodarea;
-    String iexdesarea;
-    String iexdesarea_descripcion;
-    String iexcodcat;
-    String descodcat;
-    String iexareapadre;
-    String desareapadre;
-    String iexusucrea;
-    String iexusumod;
-    String iexfeccrea;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private String iexcodarea;
+    private String iexdesarea;
+    private String iexdesarea_descripcion;
+    private String iexcodcat;
+    private String descodcat;
+    private String iexareapadre;
+    private String desareapadre;
+    private String iexusucrea;
+    private String iexusumod;
+    private String iexfeccrea;
+    private String iexfecmod;
 
 }

@@ -12,11 +12,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Role {
 
-    Integer idRole;
-    String desRole;
-    String flgest;
-    String usuCreaRole;
-    String usuModRole;
-    Date fecCreaRole;
-    Date fecModRole;
+    private Integer idRole;
+    private String desRole;
+    private String flgest;
+    private String usuCreaRole;
+    private String usuModRole;
+    private Date fecCreaRole;
+    private Date fecModRole;
 }

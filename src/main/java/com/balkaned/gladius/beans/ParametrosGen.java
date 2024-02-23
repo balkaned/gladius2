@@ -10,15 +10,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParametrosGen {
-    String iexcodcon;
-    String descon;
-    Double iexvalcon;
-    String iexdesobs;
-    String iexflgest;
-    String iextippar;
-    String destippar;
-    String iexusucrea;
-    String iexusumod;
-    String iexfeccrea;
-    String iexfecmod;
+
+    private String iexcodcon;
+    private String descon;
+    private Double iexvalcon;
+    private String iexdesobs;
+    private String iexflgest;
+    private String iextippar;
+    private String destippar;
+    private String iexusucrea;
+    private String iexusumod;
+    private String iexfeccrea;
+    private String iexfecmod;
+
 }

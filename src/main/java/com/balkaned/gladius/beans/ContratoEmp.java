@@ -11,19 +11,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ContratoEmp {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    Integer iexcorrel;
-    String iextipcont;
-    String destipcont;
-    String iexfecini;
-    String iexfecfin;
-    String iexmodcont;
-    String desmodcont;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
-    String iexestado;
-
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private Integer iexcorrel;
+    private String iextipcont;
+    private String destipcont;
+    private String iexfecini;
+    private String iexfecfin;
+    private String iexmodcont;
+    private String desmodcont;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
+    private String iexestado;
 }

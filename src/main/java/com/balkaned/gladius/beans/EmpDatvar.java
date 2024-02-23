@@ -11,18 +11,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EmpDatvar {
 
-    Integer iexcodcia;
-    Integer iexcodpro;
-    String iexnroper;
-    Integer iexcorrel;
-    Integer iexcodtra;
-    String iexcodcon;
-    String nomdestra;
-    String coodescon;
-    Double iexvalcon;
-    String iexflgest;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private Integer iexcodpro;
+    private String iexnroper;
+    private Integer iexcorrel;
+    private Integer iexcodtra;
+    private String iexcodcon;
+    private String nomdestra;
+    private String coodescon;
+    private Double iexvalcon;
+    private String iexflgest;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
 }

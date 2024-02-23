@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ParametroReport {
 
-    String nombreParametro;
-    String valorParametro;
+    private String nombreParametro;
+    private String valorParametro;
 
 }

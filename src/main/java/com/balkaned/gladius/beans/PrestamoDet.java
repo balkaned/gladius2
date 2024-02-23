@@ -11,22 +11,22 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PrestamoDet {
 
-    Integer iexcodcia;
-    Integer iexcodtra;
-    Integer iexcorrel;
-    Integer iexidcuota;
-    String iexfecpre ;
-    Double ieximpbru;
-    Double iexinteres;
-    Double ieximptotal;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
-    String iexflgest;
-    Integer iexcodpropla;
-    String iexcodconpla;
-    Double ieximportepla;
-    String iexglosa;
+    private Integer iexcodcia;
+    private Integer iexcodtra;
+    private Integer iexcorrel;
+    private Integer iexidcuota;
+    private String iexfecpre ;
+    private Double ieximpbru;
+    private Double iexinteres;
+    private Double ieximptotal;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
+    private String iexflgest;
+    private Integer iexcodpropla;
+    private String iexcodconpla;
+    private Double ieximportepla;
+    private String iexglosa;
 
 }

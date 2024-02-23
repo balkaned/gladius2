@@ -10,10 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ciaxcon {
-    Integer iexcodcia ;
-    String iexcodcon;
-    String iexdescon;
-    String iexflgest;
-    Double iexdefval;
-    String iextipreg;
+
+    private Integer iexcodcia;
+    private String iexcodcon;
+    private String iexdescon;
+    private String iexflgest;
+    private Double iexdefval;
+    private String iextipreg;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FormulaXConcepto {
+    
     private String formprocodpro;
     private String formforcodfor;
     private String formproglosa;

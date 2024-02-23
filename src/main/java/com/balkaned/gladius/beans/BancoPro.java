@@ -11,17 +11,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BancoPro {
 
-    Integer iexcodcia;
-    String iexcodban;
-    String desban;
-    Integer iexcodpro;
-    String despro;
-    String iextipcta;
-    String destipcta;
-    String iexctaban;
-    String iexusucrea;
-    String iexfeccrea;
-    String iexusumod;
-    String iexfecmod;
+    private Integer iexcodcia;
+    private String iexcodban;
+    private String desban;
+    private Integer iexcodpro;
+    private String despro;
+    private String iextipcta;
+    private String destipcta;
+    private String iexctaban;
+    private String iexusucrea;
+    private String iexfeccrea;
+    private String iexusumod;
+    private String iexfecmod;
 
 }
