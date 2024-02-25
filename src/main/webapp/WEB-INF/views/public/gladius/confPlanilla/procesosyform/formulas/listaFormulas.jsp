@@ -111,6 +111,7 @@
       }
 
       function obtenerFormula(idProceso,idFormula){
+          $("#bodyTraducido2").html("<div></div>");
           $.ajax({
              url: "obtenerFormula",
              data: {

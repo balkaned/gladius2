@@ -70,7 +70,7 @@
                      var onclickchar="";
 
                      for (var i in data) {
-                        onclickchar="onclick='return deleteConceptoPromediable('"+data[i].idproceso+"','"+data[i].codconcepto+"','"+data[i].idprocesoaux+"','"+data[i].codconceptaux+"');'";
+                        //onclickchar=data[i].idproceso+"','"+data[i].codconcepto+"','"+data[i].idprocesoaux+"','"+data[i].codconceptaux;
 
                         opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
                                   "<td class='align-middle white-space-nowrap ps-3 pe-3'><a class='fw-semi-bold' href='#!'>#</a></td>"+
@@ -86,7 +86,11 @@
                                       "<div class='dropdown-menu dropdown-menu-end py-2'>"+
 
                                         "<div class='dropdown-divider'></div>"+
-                                        "<a id='dropdownmenutable' class='dropdown-item' "+onclickchar+"><span class='fa-solid fa-trash me-2'></span>Eliminar</a></div>"+
+                                        "<a id='dropdownmenutable' class='dropdown-item' onclick='return deleteConceptoPromediableAjax("+i+");'><span class='fa-solid fa-trash me-2'></span>Eliminar</a></div>"+
+                                        "<input type='hidden' id='varidproceso"+i+"' value="+data[i].idproceso+" />"+
+                                        "<input type='hidden' id='varcodconcepto"+i+"' value="+data[i].codconcepto+" />"+
+                                        "<input type='hidden' id='varidprocesoaux"+i+"' value="+data[i].idprocesoaux+" />"+
+                                        "<input type='hidden' id='varcodconceptaux"+i+"' value="+data[i].codconceptaux+" />"+
                                     "</div>"+
                                   "</td>"+
                                 "</tr>";
@@ -98,6 +102,34 @@
         }
 
         function deleteConceptoPromediable(idproceso,codconcepto,idprocesoaux,codconceptaux){
+
+            var opcion = confirm("Esta seguro de Eliminar el Registro?");
+
+            if (opcion == true) {
+                $.ajax({
+                     url: "deleteConceptoPromediable",
+                     data: {
+                         "codprocesoaux": idprocesoaux,
+                         "codconceptoaux": codconceptaux,
+                         "codproceso": idproceso,
+                         "codconcepto": codconcepto
+                         },
+                     success: function (data) {
+                        actualizarTabla();
+                        mostrarAlertPromInfo();
+                     }
+                });
+            } else {
+                return false;
+            }
+        }
+
+        function deleteConceptoPromediableAjax(indice){
+
+            var idproceso=$("#varidproceso"+indice).val();
+            var codconcepto=$("#varcodconcepto"+indice).val();
+            var idprocesoaux=$("#varidprocesoaux"+indice).val();
+            var codconceptaux=$("#varcodconceptaux"+indice).val();
 
             var opcion = confirm("Esta seguro de Eliminar el Registro?");
 
@@ -181,7 +213,10 @@
                                       "<div class='dropdown-menu dropdown-menu-end py-2'>"+
 
                                         "<div class='dropdown-divider'></div>"+
-                                        "<a id='dropdownmenutable' class='dropdown-item' "+onclickchar+"><span class='fa-solid fa-trash me-2'></span>Eliminar</a></div>"+
+                                        "<a id='dropdownmenutable' class='dropdown-item' onclick='return deleteConceptoAgrupAjax("+i+");' ><span class='fa-solid fa-trash me-2'></span>Eliminar</a></div>"+
+                                        "<input type='hidden' id='varAgrupidproceso"+i+"' value="+data[i].idproceso+" />"+
+                                        "<input type='hidden' id='varAgrupcodconcepto"+i+"' value="+data[i].codconcepto+" />"+
+                                        "<input type='hidden' id='varAgrupcodconceptaux"+i+"' value="+data[i].codconceptaux+" />"+
                                     "</div>"+
                                   "</td>"+
                                 "</tr>";
@@ -203,6 +238,32 @@
         }
 
         function deleteConceptoAgrup(idproceso,codconcepto,codconceptaux){
+
+            var opcion = confirm("Esta seguro de Eliminar el Registro?");
+
+            if (opcion == true) {
+                $.ajax({
+                     url: "deleteConceptoAgrup",
+                     data: {
+                         "codproceso": idproceso,
+                         "codconcepto": codconcepto,
+                         "codconceptoaux": codconceptaux
+                         },
+                     success: function (data) {
+                        actualizarTablaAgrup();
+                        mostrarAlertAgrupInfo();
+                     }
+                });
+            } else {
+                return false;
+            }
+        }
+
+        function deleteConceptoAgrupAjax(indice){
+
+            var idproceso=$("#varAgrupidproceso"+indice).val();
+        	var codconcepto=$("#varAgrupcodconcepto"+indice).val();
+        	var codconceptaux=$("#varAgrupcodconceptaux"+indice).val();
 
             var opcion = confirm("Esta seguro de Eliminar el Registro?");
 
@@ -499,12 +560,12 @@
               </div>
               <div class="modal-body p-4">
                 <div class="row g-4">
-                    <div id="alertPromSuccess" class="mt-1 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                    <div id="alertPromSuccess" class="mt-2 mb-0 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <div id="alertPromInfo" class="mt-1 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
+                    <div id="alertPromInfo" class="mt-2 mb-0 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
                         <span class="fa-solid fa-info text-info fs-0 me-3"></span>
                         <div class="col-11">
                             <strong class="text-black">Información</strong>
@@ -513,20 +574,22 @@
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Procesos</label>
-                          <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select" required >
-                              <option value="" selected >Seleccionar proceso</option>
-                              <c:forEach var="LstPromProceso" items="${LstPromProceso}">
-                                  <option value="${LstPromProceso.idProceso}" >${LstPromProceso.desProceso}</option>
-                              </c:forEach>
-                          </select>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
-                          <select name="idconceptoProm" id="idconceptoProm" class="form-select" required >
-                                <option value="">Seleccionar</option>
-                          </select>
+                    <div class="row col-12 mt-3">
+                        <div class="col-sm-6 col-md-6">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Procesos</label>
+                              <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select" required >
+                                  <option value="" selected >Seleccionar proceso</option>
+                                  <c:forEach var="LstPromProceso" items="${LstPromProceso}">
+                                      <option value="${LstPromProceso.idProceso}" >${LstPromProceso.desProceso}</option>
+                                  </c:forEach>
+                              </select>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
+                              <select name="idconceptoProm" id="idconceptoProm" class="form-select" required >
+                                    <option value="">Seleccionar</option>
+                              </select>
+                        </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <button class="btn btn-phoenix-secondary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add concepto promediable</button>
@@ -599,12 +662,12 @@
               </div>
               <div class="modal-body p-4">
                 <div class="row g-4">
-                    <div id="alertAgrupSuccess" class="mt-1 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                    <div id="alertAgrupSuccess" class="mt-2 mb-0 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <div id="alertAgrupInfo" class="mt-1 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
+                    <div id="alertAgrupInfo" class="mt-2 mb-0 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
                         <span class="fa-solid fa-info text-info fs-0 me-3"></span>
                         <div class="col-11">
                             <strong class="text-black">Información</strong>
@@ -613,7 +676,7 @@
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="col-sm-6 col-md-5">
+                    <div class="col-sm-6 col-md-5 mt-3">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
                           <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" required >
                             <option value="" selected >Seleccionar concepto</option>

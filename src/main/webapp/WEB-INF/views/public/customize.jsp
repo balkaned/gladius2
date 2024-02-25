@@ -1,4 +1,3 @@
-
     <div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1" aria-labelledby="settings-offcanvas">
       <div class="offcanvas-header align-items-start border-bottom flex-column">
         <div class="pt-1 w-100 mb-6 d-flex justify-content-between align-items-start">

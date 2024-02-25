@@ -52,13 +52,20 @@
              });
 
              var menunav = sessionStorage.getItem("menunav");
+             alert("menunav: "+menunav);
              $('#'+menunav).addClass("active");
 
              var navempl = sessionStorage.getItem("navempl");
-             $('#'+navempl).addClass("activelsempl");
+
+             alert("navempl: "+navempl);
+
+             if(menunav=="listEmpleados"){
+                $('#'+navempl).addClass("activelsempl");
+                document.getElementById(navempl).focus();
+             }
 
              document.getElementById(menunav).focus();
-             document.getElementById(navempl).focus();
+
           });
         </script>
         <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
