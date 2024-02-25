@@ -42,6 +42,7 @@
         </div>
       </div>
     </div>
+
     <div id="orderTable" data-list='{"valueNames":["id","pro","grup","reg"],"page":15,"pagination":true}'>
       <div class="mb-4">
         <div class="row g-3">

@@ -333,34 +333,51 @@
                                 </div>
                             </c:if>
                             <c:forEach var="listCumple" items="${requestScope.listCumple}">
-                              <div class="d-flex hover-actions-trigger py-3 border-top">
+                              <div class="d-flex hover-actions-trigger py-3 border-top border-dashed pt-0 pb-0">
                                 <input class="form-check-input form-check-input-todolist flex-shrink-0 my-1 me-2 form-check-input-undefined" type="checkbox" id="checkbox-todo-0" data-event-propagation-prevent="data-event-propagation-prevent" />
                                 <div class="row justify-content-between align-items-md-center btn-reveal-trigger border-200 gx-0 flex-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  <div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
-                                    <div class="mb-1 mb-md-0 d-flex align-items-center lh-1">
-                                      <div class="avatar avatar-xl pe-2">
-                                        <c:if test="${listCumple.iexlogo!=null}"><img id="imgCumple" class="rounded-circle" src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${listCumple.iexcodtra}@${listCumple.iexlogo}@null@null@null@null@null@null" alt="" /></c:if>
-                                        <c:if test="${listCumple.sexo.equals('MA') && listCumple.iexlogo==null}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/user_blank.jpg" alt="" /></c:if>
-                                        <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('M')}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/man_user.jpg" alt="" /></c:if>
-                                        <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('F')}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/woman_user.jpg" alt="" /></c:if>
+                                      <div class="d-flex py-3 align-items-center">
+                                        <div class="me-2">
+                                          <div class="avatar avatar-m status-online ">
+                                            <!--<img class="rounded-circle avatar-placeholder" src="resources/assets/img/team/avatar.webp" alt="" />-->
+                                            <c:if test="${listCumple.iexlogo!=null}"><img id="imgCumple" class="rounded-circle avatar-placeholder" src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${listCumple.iexcodtra}@${listCumple.iexlogo}@null@null@null@null@null@null" alt="" /></c:if>
+                                            <c:if test="${listCumple.sexo.equals('MA') && listCumple.iexlogo==null}"><img id="imgCumple" class="rounded-circle avatar-placeholder" src="resources/assets/img/team/avatar.webp" alt="" /></c:if>
+                                            <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('M')}"><img id="imgCumple" class="rounded-circle avatar-placeholder" src="resources/assets/img/man_user.jpg" alt="" /></c:if>
+                                            <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('F')}"><img id="imgCumple" class="rounded-circle avatar-placeholder" src="resources/assets/img/woman_user.jpg" alt="" /></c:if>
+                                          </div>
+                                        </div>
+                                        <a class="text-decoration-none flex-1" href="#">
+                                            <h5>${listCumple.iexnomtra} ${listCumple.iexapepat}<span class="badge badge-phoenix ms-2 fs--2 badge-phoenix-primary">${listCumple.edad} años</span><span class="fa-solid fa-cake-candles text-warning me-2 ms-2"></span></h5>
+                                            <p class="text-700 fw-semi-bold fs--1 mb-0 lh-sm line-clamp-1">Fec Nac: ${listCumple.iexfecnac}, Sexo: ${listCumple.sexo}</p>
+                                            <p><a class="text-700 fs--1 me-2 text-primary" href="detalleEmpl@${listCumple.iexcodtra}">codtra: #${listCumple.iexcodtra}</a></p>
+                                        </a>
                                       </div>
-                                      <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">${listCumple.iexnomtra} ${listCumple.iexapepat} ${listCumple.iexapemat}</label><span class="fa-solid fa-cake-candles text-warning me-2 ms-2"></span><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-primary">${listCumple.edad} años</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-12 col-md-auto col-xl-12 col-xxl-auto mt-2">
-                                    <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--0 me-2 text-primary" href="detalleEmpl@${listCumple.iexcodtra}"><span class="fas fa-paperclip me-1"></span>Codtra: ${listCumple.iexcodtra}</a>
-                                      <p class="text-700 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fec Nac: ${listCumple.iexfecnac}, Sexo: ${listCumple.sexo}</p>
-                                      <div class="hover-md-hide hover-xl-show hover-xxl-hide">
-                                        <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300"></p>
+
+                                      <!--<div class="col-12 col-md-auto col-xl-12 col-xxl-auto">
+                                        <div class="mb-1 mb-md-0 d-flex align-items-center lh-1">
+                                          <div class="avatar avatar-xl pe-2">
+                                            <c:if test="${listCumple.iexlogo!=null}"><img id="imgCumple" class="rounded-circle" src="AWSorFTP_flgsource@verFotoEmpl@${idComp}@${listCumple.iexcodtra}@${listCumple.iexlogo}@null@null@null@null@null@null" alt="" /></c:if>
+                                            <c:if test="${listCumple.sexo.equals('MA') && listCumple.iexlogo==null}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/user_blank.jpg" alt="" /></c:if>
+                                            <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('M')}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/man_user.jpg" alt="" /></c:if>
+                                            <c:if test="${listCumple.iexlogo==null && listCumple.sexo.equals('F')}"><img id="imgCumple" class="rounded-circle" src="resources/assets/img/woman_user.jpg" alt="" /></c:if>
+                                          </div>
+                                          <label class="form-check-label mb-1 mb-md-0 mb-xl-1 mb-xxl-0 fs-0 me-2 line-clamp-1 text-900 cursor-pointer">${listCumple.iexnomtra} ${listCumple.iexapepat} ${listCumple.iexapemat}</label><span class="fa-solid fa-cake-candles text-warning me-2 ms-2"></span><span class="badge badge-phoenix ms-auto fs--2 badge-phoenix-primary">${listCumple.edad} años</span>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </div>
+                                      <div class="col-12 col-md-auto col-xl-12 col-xxl-auto mt-2">
+                                        <div class="d-flex lh-1 align-items-center"><a class="text-700 fw-bold fs--0 me-2 text-primary" href="detalleEmpl@${listCumple.iexcodtra}"><span class="fas fa-paperclip me-1"></span>Codtra: ${listCumple.iexcodtra}</a>
+                                          <p class="text-700 fw-semi-bold fs--2 mb-md-0 me-2 me-md-3 me-xl-2 me-xxl-3 mb-0">Fec Nac: ${listCumple.iexfecnac}, Sexo: ${listCumple.sexo}</p>
+                                          <div class="hover-md-hide hover-xl-show hover-xxl-hide">
+                                            <p class="text-700 fs--2 fw-bold mb-md-0 mb-0 ps-md-3 ps-xl-0 ps-xxl-3 border-start-md border-xl-0 border-start-xxl border-300"></p>
+                                          </div>
+                                        </div>
+                                      </div>-->
                                 </div>
                               </div>
                             </c:forEach>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <a class="fw-bold fs--1 mt-4 btn btn-phoenix-secondary btn-sm ms-3 mb-3" href="valRegEmpleado"><span class="fas fa-plus me-1"></span>Add empleado</a>
+                            <a class="fw-bold fs--1 mt-4 btn btn-primary btn-sm ms-3 mb-3" href="valRegEmpleado"><span class="fas fa-plus me-1"></span>Add empleado</a>
                         </div>
                       </div>
                     </div>

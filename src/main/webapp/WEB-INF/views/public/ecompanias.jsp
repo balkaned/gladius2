@@ -57,8 +57,8 @@ margin-top:10px !important;
             <h5 class="text-700 fw-semi-bold text-none">Seleccionar compañia a ingresar</h5>
           </div>
           <div class="row col-12 mt-2">
-            <div class="col-auto pe-0">
-                <a class="btn btn-primary mb-1 btn-sm" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
+            <div class="col-auto ps-2 pe-0">
+                <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
             </div>
             <div class="col-auto ps-2 pe-0">
                 <a class="btn btn-phoenix-secondary mb-1 btn-sm" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>

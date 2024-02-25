@@ -22,12 +22,12 @@
         }
 
         function mostrarAlert() {
-                let div = document.getElementById('alert');
-                div.style.display = '';
+            let div = document.getElementById('alert');
+            div.style.display = '';
 
-                setTimeout(function () {
-                    $("#alerts").hide(6000);
-                }, 3000);
+            setTimeout(function () {
+                $("#alerts").hide(6000);
+            }, 3000);
         }
 
         function valida_tipo_for(opcion) {
@@ -142,60 +142,42 @@
                                         </select>
                                     </div>
 
-                                    <div id="orderTable" data-list='{"valueNames":["concept"],"page":15,"pagination":true}'>
+                                    <div id="orderTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
                                         <div class="mb-0">
                                           <div class="row g-3">
                                             <div class="col-auto">
                                               <a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>
-                                              <div class="btn-group mb-1 me-1 ms-1 mt-1">
-                                                <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-                                                <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
-                                                <div class="dropdown-menu">
-                                                  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-                                                    <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
-                                                  </a>
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
-                                                  <div class="dropdown-divider"></div>
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
-                                                </div>
-                                              </div>
                                             </div>
                                             <div class="col-auto">
                                               <div class="search-box">
-                                                  <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search" />
-                                                  <span class="fas fa-search search-box-icon"></span>
+                                                  <div class="col-10">
+                                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search" />
+                                                      <span class="fas fa-search search-box-icon"></span>
+                                                  </div>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
 
-                                        <div class="row col-sm-6 col-md-12 mt-3">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":15,"pagination":true}'>
-                                                    <div class="table-responsive scrollbar">
-                                                        <table class="table table-sm fs--1 mb-0">
+                                        <div class="row col-sm-6 col-md-12 mt-4">
+                                            <div class="col-sm-6 col-md-5">
+                                                <div class="" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
+                                                    <div class="scrollbar">
+                                                        <table class="fs--1 mb-0">
                                                           <thead>
                                                             <tr>
-                                                              <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" scope="col" ></th>-->
-                                                              <th class="sort white-space-nowrap align-middle ps-0 pe-0 text-uppercase" scope="col" data-sort="concept" >LISTA DE CONCEPTOS</th>
+                                                              <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" style="width:5%;" scope="col" >#</th>-->
+                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" ><span class="badge badge-tag me-2 mb-2">Conceptos</span></th>
                                                             </tr>
                                                           </thead>
                                                           <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">$salto$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$resultado$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <!--<td class="align-middle text-start pe-0 ps-0">
-                                                                      <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                                        <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                                                                        <div class="dropdown-menu dropdown-menu-end py-2">
-                                                                          <a class="dropdown-item" href="#">Añadir</a>
-                                                                          <div class="dropdown-divider"></div>
-                                                                          <a class="dropdown-item text-danger" href="#!">Eliminar</a>
-                                                                        </div>
-                                                                      </div>
-                                                                  </td>-->
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a class="fw-semi-bold" href="#!">${Lovs_conxprod.desVariable}</a> - ${Lovs_conxprod.desAbreviacion}</td>
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
+                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
+                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                 </tr>
                                                             </c:forEach>
                                                           </tbody>
@@ -214,34 +196,41 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                <h4 class="mb-3"> Editor de fórmulas</h4>
-                                                <textarea class="form-control text-700" data-tinymce='{"placeholder":"Write a description here..."}' name="text-box" style="height:460px;" row="25" placeholder="Ingrese su código aquí.." required></textarea>
+                                                <h3 class="mb-4"> Editor de fórmulas</h3>
+                                                <!--<textarea id="text-box" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-1000" placeholder="Escribe la fórmula aquí..." name="text-box" row="15">${requestScope.fplanillax.desFormula}</textarea>-->
+                                                <!--id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"-->
+                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-secondary"
+                                                                        rows="15" placeholder="Escribe la fórmula aquí...">${requestScope.fplanillax.desFormula}</textarea>
+                                                <a onclick="addOperador(' ');" class="btn btn-phoenix-primary w-100 mb-1 mt-2">Espacio</a>
+                                                <!--<a onclick="addOperador('\n');" class="btn btn-phoenix-primary w-100 mb-0 mt-0">Enter</a>-->
                                             </div>
-                                            <div class="col-sm-6 col-md-1">
+                                            <div class="col-sm-6 col-md-2">
                                                 <table class="navy">
                                                     <tr>
                                                         <td colspan="2"><span class="badge badge-tag me-2 mb-2">Operador</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="align-middle white-space-nowrap text-center">
-                                                            <a href="#" onclick="addOperador();" class="hashtag text-danger">+</a>
-                                                            <div class="hashtag text-danger">-</div>
-                                                            <div class="hashtag text-danger">*</div>
-                                                            <div class="hashtag text-danger">/</div>
-                                                            <div class="hashtag text-danger">=</div>
+                                                        <td class="align-middle white-space-nowrap text-start">
+                                                            <a onclick="addOperador('+');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">+</a></br>
+                                                            <a onclick="addOperador('-');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">-</a>
+                                                            <a onclick="addOperador('*');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">*</a></br>
+                                                            <a onclick="addOperador('/');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">/</a>
+                                                            <a onclick="addOperador('=');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">=</a></br>
                                                             <br>
-                                                            <div class="hashtag text-primary">;</div>
-                                                            <div class="hashtag text-success">[</div>
-                                                            <div class="hashtag text-success">]</div>
-                                                            <div class="hashtag text-success">(</div>
-                                                            <div class="hashtag text-success">)</div>
-                                                            <div class="hashtag text-success">{</div>
-                                                            <div class="hashtag text-success">}</div>
+                                                            <a onclick="addOperador(';');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">;</a></br>
+                                                            <a onclick="addOperador('[');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">[</a>
+                                                            <a onclick="addOperador(']');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">]</a></br>
+                                                            <a onclick="addOperador('(');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">(</a>
+                                                            <a onclick="addOperador(')');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">)</a></br>
+                                                            <a onclick="addOperador('{');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">{</a>
+                                                            <a onclick="addOperador('}');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">}</a></br>
                                                             <br>
-                                                            <div class="hashtag text-primary">if</div>
-                                                            <div class="hashtag text-primary">else</div>
-                                                            <div class="hashtag text-primary">else if</div>
-                                                            <div class="hashtag text-primary">end if</div>
+                                                            <a id="operadorif" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">if</a>
+                                                            <a onclick="addOperador('if ($variable$==1){} else{}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">else</a></br>
+                                                            <a onclick="addOperador('if ($variable$==1){} else if($variable$ < 20){}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">else if</a>
+                                                            <a onclick="addOperador('end if');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">end if</a></br>
+                                                            <a onclick="addOperador('switch ($variable$){case 1: $variable$ =1; break;}');" class="hashtag btn btn-phoenix-warning btn-sm pt-1 pb-1 ps-2 pe-2 mb-1 fs--1">switch</a></br>
+                                                            <a onclick="addOperador('\n');" class="hashtag btn btn-phoenix-primary btn-sm pt-2 pb-2 ps-3 pe-3 mb-1 fs--1">Enter</a>
                                                         </td>
                                                     </tr>
                                                 </table>

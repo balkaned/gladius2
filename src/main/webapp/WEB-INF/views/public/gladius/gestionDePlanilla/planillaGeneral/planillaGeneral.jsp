@@ -219,7 +219,7 @@
                                                   <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECINI</th>
                                                   <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECFIN</th>
                                                   <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECHA PROCESO</th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ESTADO</th>
+                                                  <th class="sort align-middle text-center ps-5" scope="col" >ESTADO</th>
                                                   <th></th>
                                              </tr>
                                           </thead>
@@ -227,7 +227,7 @@
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                     <td class="fs--1 align-middle px-0 py-3">
                                       <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ps-2"><span class="badge badge-tag me-2 mb-2">${List_Procesos.desgrppla}</span></td>
@@ -250,7 +250,7 @@
                                               <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                          </div>
                                        </div>
-                                     </td>
+                                    </td>
                                   </tr>
                                 <c:set var="permes_cur" value="${List_Procesos.iexpermes}" />
                             </c:forEach>
@@ -308,6 +308,7 @@
                     <div class="col-sm-6 col-md-6">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                           <select name="idproceso" id="idproceso" class="form-select" required >
+                              <option value="">Seccionar proceso</option>
                           </select>
                     </div>
                     <div class="col-sm-6 col-md-4">
@@ -354,7 +355,8 @@
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                     <button class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
+                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><span class="ms-2">Guardar Periodo</span></button>
               </div>
             </form>
         </div>

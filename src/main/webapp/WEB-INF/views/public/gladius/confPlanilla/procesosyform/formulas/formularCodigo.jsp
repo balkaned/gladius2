@@ -17,7 +17,6 @@
     </head>
     <script>
         function addOperador(value) {
-
             var campo = document.getElementById('text-box');
             var insertar = value;
 
@@ -67,7 +66,6 @@
 
         function traducirFormula(){
             var formula=document.getElementById("textAreaTraductor").value;
-            //alert("var: "+formula);
 
             $.ajax({
                  url: "traducirFormulaAjax",
@@ -109,6 +107,7 @@
                      nuevaFormula = nuevaFormula.replaceAll("  ","<label>&nbsp &nbsp</label>");
                      nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
                      nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
+
                      /*nuevaFormula = nuevaFormula.replaceAll("=0","<label class='text-primary'>0</label>");
                      nuevaFormula = nuevaFormula.replaceAll("1","<label class='text-primary'>1</label>");
                      nuevaFormula = nuevaFormula.replaceAll("2","<label class='text-primary'>2</label>");
@@ -129,7 +128,7 @@
             });
         }
 
-        $( document ).ready(function() {
+        $(document).ready(function() {
             var element=document.getElementById('operadorif');
 
             var formulaPreConf = "if ($variable$ == 1){ }";
@@ -143,7 +142,7 @@
     <style>
         #textAreaTraducido{
             font-family: 'JetBrains Mono';
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 400;
             color:#97ADC1 !important;
         }
@@ -155,7 +154,7 @@
 
         #labelpuntoycoma{
         font-family: 'JetBrains Mono';
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 400;
         }
 
@@ -252,7 +251,7 @@
                                           <div class="row g-3">
                                             <div class="col-auto">
                                               <a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>
-                                              <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                                              <div class="btn-group mb-1 me-1 ms-0 mt-1">
                                                 <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                                 <div class="dropdown-menu">
@@ -262,8 +261,10 @@
                                             </div>
                                             <div class="col-auto">
                                               <div class="search-box">
-                                                  <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search" />
-                                                  <span class="fas fa-search search-box-icon"></span>
+                                                  <div class="col-10">
+                                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search" />
+                                                      <span class="fas fa-search search-box-icon"></span>
+                                                  </div>
                                               </div>
                                             </div>
                                           </div>
@@ -285,7 +286,7 @@
                                                             <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                 </tr>
@@ -309,7 +310,7 @@
                                                 <h3 class="mb-4"> Editor de fórmulas</h3>
                                                 <!--<textarea id="text-box" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-1000" placeholder="Escribe la fórmula aquí..." name="text-box" row="15">${requestScope.fplanillax.desFormula}</textarea>-->
                                                 <!--id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"-->
-                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;color:black !important;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"
+                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-secondary"
                                                                         rows="15" placeholder="Escribe la fórmula aquí...">${requestScope.fplanillax.desFormula}</textarea>
                                                 <a onclick="addOperador(' ');" class="btn btn-phoenix-primary w-100 mb-1 mt-2">Espacio</a>
                                                 <!--<a onclick="addOperador('\n');" class="btn btn-phoenix-primary w-100 mb-0 mt-0">Enter</a>-->
@@ -320,7 +321,7 @@
                                                         <td colspan="2"><span class="badge badge-tag me-2 mb-2">Operador</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="align-middle white-space-nowrap text-center">
+                                                        <td class="align-middle white-space-nowrap text-start">
                                                             <a onclick="addOperador('+');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">+</a></br>
                                                             <a onclick="addOperador('-');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">-</a>
                                                             <a onclick="addOperador('*');" class="hashtag btn btn-phoenix-secondary btn-sm pt-0 pb-1 ps-2 pe-2 mb-1 fs-1 fw-semi-bold">*</a></br>
@@ -426,9 +427,9 @@
 
                         <div class="card-footer p-3">
                           <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn p-0 me-3"><span class="fa-solid fa-image fs-0"></span></button>
+                            <!--<button class="btn p-0 me-3"><span class="fa-solid fa-image fs-0"></span></button>-->
                             <button class="btn p-0 me-3"><span class="fa-solid fa-calendar-alt fs-0"></span></button>
-                            <button class="btn p-0 me-3"><span class="fa-solid fa-map-marker-alt fs-0"></span></button>
+                            <!--<button class="btn p-0 me-3"><span class="fa-solid fa-map-marker-alt fs-0"></span></button>-->
                             <button class="btn p-0 me-3"><span class="fa-solid fa-tag fs-0"></span></button>
                             <div class="dropdown me-3 d-inline-block flex-1">
                               <button class="btn p-0 dropdown-toggle dropdown-caret-none d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="fa-solid fa-globe-asia fs-0 me-1"></span><span class="me-1 lh-base d-none d-sm-block">Ejecutar</span><span class="fa-solid fa-caret-down fs--2 text-500"></span></button>

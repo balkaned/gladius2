@@ -23,8 +23,6 @@ import java.util.List;
 @RestController
 @Slf4j
 public class FormulaController {
-	@Autowired
-	ProcesoFormulaService service;
 
 	@Autowired
 	FormulaService formulaService;
@@ -47,7 +45,7 @@ public class FormulaController {
 		if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
 
 		sessionattributes.getVariablesSession(model, request);
-		List<FormulaXConcepto> formulaXConceptoList = service.listFormulaXConcepto();
+		List<FormulaXConcepto> formulaXConceptoList = procesoFormulaService.listFormulaXConcepto();
 		model.addAttribute("formulaXConceptoList", formulaXConceptoList);
 		model.addAttribute("idProceso", idProceso);
 
@@ -255,6 +253,28 @@ public class FormulaController {
 		List<Concepto> lsconcept = lovsService.getConceptoLov();
 
 		String json = new Gson().toJson(lsconcept);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+
+		return null;
+	}
+
+	@RequestMapping(value = "/obtenerFormula", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView obtenerFormula(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		log.info("/obtenerFormula");
+
+		String user = (String) request.getSession().getAttribute("user");
+		if (user == null || user.equals("") || user.equals("null")) {
+			return new ModelAndView("redirect:/login2");
+		}
+
+		Integer idproceso = Integer.valueOf(request.getParameter("idproceso"));
+		Integer idformula = Integer.valueOf(request.getParameter("idformula"));
+
+		FormulaPlanilla fplanilla = formulaService.getByIdProcesoIdFormula(idproceso, idformula);
+
+		String json = new Gson().toJson(fplanilla);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);

@@ -26,18 +26,22 @@ public class FormulaServiceImpl implements FormulaService {
     }
 
     public void actualizar(FormulaPlanilla fplanilla) {
+
         dao.actualizar(fplanilla);
     }
 
     public void insertar(FormulaPlanilla fplanilla) {
+
         dao.insertar(fplanilla);
     }
 
     public void eliminar(Integer idprod, Integer idfor) {
+
         dao.eliminar(idprod, idfor);
     }
 
     public FormulaPlanilla recuperar(Integer idprod, Integer idformula){
+
         return dao.recuperar(idprod,idformula);
     }
 
