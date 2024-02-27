@@ -1,9 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Role;
 import com.balkaned.gladius.beans.Rolesxopciones;
 import com.balkaned.gladius.dao.RolDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,12 +15,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("RolDao")
+@Slf4j
 public class RolDaoImpl implements RolDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -243,7 +241,8 @@ public class RolDaoImpl implements RolDao {
                     rol.setIex_descargar_pdf(rs.getString("iex_descargar_pdf"));
                     rol.setIexusucre(rs.getString("iexusucre"));
                     rol.setIexfeccre(rs.getString("iexfeccre"));
-                    logger.info("rol.getIexflgest():"+rol.getIexflgest());
+
+                    log.info("rol.getIexflgest():" + rol.getIexflgest());
                 }
                 return rol;
             }

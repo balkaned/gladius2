@@ -1,28 +1,25 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.AusentismoDao;
-import com.balkaned.gladius.dao.VacacionesDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 @Repository("AusentismoDao")
+@Slf4j
 public class AusentismoDaoImpl implements AusentismoDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 

@@ -1,31 +1,27 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.AsientoContableCab;
-import com.balkaned.gladius.beans.BancoPro;
+import com.balkaned.gladius.beans.PlaProPeriodo;
 import com.balkaned.gladius.beans.ProcesoPeriodo;
 import com.balkaned.gladius.beans.ProcesoPlanilla;
-import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("ProcesoPlanillaDao")
+@Slf4j
 public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -227,8 +223,85 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
         "1",
         pperiodo.getIexanio(),
         pperiodo.getIexfeccerti());
-
     }
 
+    @Override
+    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo) {
+
+        String sql=" select  " +
+                "e.iexcodcia, " +
+                "e.iexcodpro, " +
+                "p.prodespro," +
+                "t.desdet," +
+                "e.iexnroper, e.iexpermes," +
+                "to_char(e.iexfecini,'DD/MM/YYYY') iexfecini, " +
+                "to_char(e.iexfecfin,'DD/MM/YYYY') iexfecfin, " +
+                "TO_CHAR(e.timerfecini,'DD/MM/YYYY') timerfecini, " +
+                "TO_CHAR(e.timerfecfin,'DD/MM/YYYY') timerfecfin, " +
+                "TO_CHAR(e.iexfecpago,'DD/MM/YYYY') iexfecpago, " +
+                "to_char(e.timeini_iniciar,'yy-mm-dd hh24:mi:ss') timeini_iniciar,"+
+                "to_char(e.timefin_iniciar,'yy-mm-dd hh24:mi:ss') timefin_iniciar,"+
+                "timenroimp, "+
+                "to_char(e.timeini_proc,'yy-mm-dd hh24:mi:ss') timeini_proc,"+
+                "to_char(e.timefin_proc,'yy-mm-dd hh24:mi:ss') timefin_proc, "+
+                "timenroimp_proc, "+
+                "e.flgestado, "+
+                "   case e.flgestado " +
+                "   when  '1' Then 'Iniciado' " +
+                "   when  '2' Then 'Procesado' " +
+                "   when  '3' Then 'Cerrado' " +
+                "   when  '0' Then 'Creado' " +
+                "   end desestado, " +
+                " e.iexfecope, e.iexanio , e.utiltotal , p.progrppro, to_char(e.iexfeccerti,'DD/MM/YYYY') iexfeccerti , p.procodregimenlab, e.iextcmb  " +
+                " from iexproperiodo e, iexprocesos p , (  " +
+                " select  iexkey, desdet from  iexttabled where iexcodtab='33'   " +
+                " ) t  " +
+                " where " +
+                " e.iexcodpro =  p.procodpro and  " +
+                " p.procodregimenlab= t.iexkey and  " +
+                " e.iexcodcia= "+codcia+" AND " +
+                " e.iexcodpro="+idproceso+" and  " +
+                " e.iexnroper='"+pperiodo+"' ";
+
+        return (ProcesoPeriodo) template.query(sql, new ResultSetExtractor<ProcesoPeriodo>() {
+            public ProcesoPeriodo extractData(ResultSet rs) throws SQLException, DataAccessException{
+                ProcesoPeriodo p = new ProcesoPeriodo();
+
+                while(rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodpro(rs.getInt("iexcodpro"));
+                    p.setIexanio(rs.getString("iexanio"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+                    p.setIexpermes(rs.getString("iexpermes"));
+                    p.setIexfecini(rs.getString("iexfecini"));
+                    p.setIexfecfin(rs.getString("iexfecfin"));
+                    p.setTimerfecini(rs.getString("timerfecini"));
+                    p.setTimerfecfin(rs.getString("timerfecfin"));
+                    p.setIexfecpago(rs.getString("iexfecpago"));
+                    p.setFlgestado(rs.getString("flgestado"));
+                    p.setDesestado(rs.getString("desestado"));
+                    p.setIexfecope(rs.getString("iexfecope"));
+                    p.setTimerfecini_iniciar(rs.getString("timeini_iniciar"));
+                    p.setTimerfecfin_iniciar(rs.getString("timefin_iniciar"));
+                    p.setTimerimp_iniciar(rs.getDouble("timenroimp"));
+                    p.setTimerfecini_proc(rs.getString("timeini_proc"));
+                    p.setTimerfecfin_proc(rs.getString("timefin_proc"));
+                    p.setTimerimp_proc(rs.getDouble("timenroimp_proc"));
+                    p.setDesproceso(rs.getString("prodespro"));
+
+                    p.setDesregimen(rs.getString("desdet"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setDesregimen(cap.letras(p.getDesregimen()));
+
+                    p.setUtiltotal(rs.getDouble("utiltotal"));
+                    p.setDesgrppla(rs.getString("progrppro"));
+                    p.setIexfeccerti(rs.getString("iexfeccerti"));
+                    p.setCodregimen(rs.getString("procodregimenlab"));
+                    p.setTcmb(rs.getDouble("iextcmb"));
+                }
+                return p;
+            }
+        });
+    }
 
 }

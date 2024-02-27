@@ -19,7 +19,6 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.listPla5ta(codcia, anio, codtra);
     }
 
-
     public List<ConceptoxProcesoxTra> listPlaProperDetCon(Integer codcia, Integer idproceso, String perpro, String codcon) {
         return dao.listPlaProperDetCon(codcia, idproceso, perpro, codcon);
     }
@@ -33,10 +32,20 @@ public class PlanillaServiceImpl implements PlanillaService {
     }
 
     public void PlameExe(Integer codcia, String permes , String file ) {
+
         dao.PlameExe(codcia, permes, file);
-    } ;
+    }
 
-    public List<String> PlameMes(Integer codcia, String permes , String file  ){return dao.PlameMes(codcia,permes, file);}
+    public List<String> PlameMes(Integer codcia, String permes , String file  ){
+        return dao.PlameMes(codcia,permes, file);
+    }
 
-    public void AfpNetExe(Integer codcia, String permes  ){ dao.AfpNetExe(codcia,permes);}
+    public void AfpNetExe(Integer codcia, String permes  ){
+        dao.AfpNetExe(codcia,permes);
+    }
+
+    public List<PlaProPeriodo> listPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt){
+        return dao.listPlaProper(codcia,idproceso,perpro,codtra,correl,txt);
+    }
+
 }

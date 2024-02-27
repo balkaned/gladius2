@@ -32,4 +32,8 @@ public class ProcesoPlanillaServiceImpl implements ProcesoPlanillaService {
         dao.insertarProper(pperiodo);
     }
 
+    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo){
+        return dao.recuperarPeriodo2(codcia,idproceso,pperiodo);
+    }
+
 }

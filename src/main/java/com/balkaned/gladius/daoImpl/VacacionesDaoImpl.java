@@ -2,29 +2,26 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.*;
-import com.balkaned.gladius.dao.SueldoDao;
 import com.balkaned.gladius.dao.VacacionesDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Repository("VacacionesDao")
+@Slf4j
 public class VacacionesDaoImpl implements VacacionesDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -57,13 +54,13 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
                     p.setIexfecini(rs.getString("iexfecini"));
                     FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
+                    CapitalizarCadena capit = new CapitalizarCadena();
+                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini()) + " " + capit.letras(f.fechaFormatterMes(p.getIexfecini())) + ", " + f.fechaFormatterAnio(p.getIexfecini()));
 
                     p.setIexfecfin(rs.getString("iexfecfin"));
                     FormatterFecha f2 = new FormatterFecha();
-                    CapitalizarCadena capit2= new CapitalizarCadena();
-                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
+                    CapitalizarCadena capit2 = new CapitalizarCadena();
+                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin()) + " " + capit2.letras(f2.fechaFormatterMes(p.getIexfecfin())) + ", " + f2.fechaFormatterAnio(p.getIexfecfin()));
 
                     p.setIexdiasgan(rs.getDouble("iexdiasgan"));
                     p.setIexdiasgoz(rs.getDouble("iexdiasgoz"));
@@ -295,8 +292,8 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
                     p.setFecing(rs.getString("fecing"));
                     FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setFecing(f.fechaFormatterDia(p.getFecing())+" "+capit.letras(f.fechaFormatterMes(p.getFecing()))+", "+f.fechaFormatterAnio(p.getFecing()));
+                    CapitalizarCadena capit = new CapitalizarCadena();
+                    p.setFecing(f.fechaFormatterDia(p.getFecing()) + " " + capit.letras(f.fechaFormatterMes(p.getFecing())) + ", " + f.fechaFormatterAnio(p.getFecing()));
 
                     p.setIexfecini(rs.getString("iexfecini"));
                     p.setIexfecfin(rs.getString("iexfecfin"));
@@ -444,7 +441,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 vacprg.getIexcorrel());
     }
 
-    public void eliminarVacacionPrg (VacacionProgramacion vacprg) {
+    public void eliminarVacacionPrg(VacacionProgramacion vacprg) {
 
         template.update("  delete from iexvacprg  where iexcodcia=?  and  iexcodtra=?   and  iexcorrel= ? ",
 
@@ -453,4 +450,5 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 vacprg.getIexcorrel());
 
     }
+
 }

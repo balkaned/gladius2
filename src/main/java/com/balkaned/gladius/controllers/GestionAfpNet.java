@@ -1,36 +1,19 @@
 package com.balkaned.gladius.controllers;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.*;
-import com.balkaned.gladius.beans.Compania;
+
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.io.*;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.*;
+
 @RestController
 @Slf4j
 public class GestionAfpNet {
@@ -42,19 +25,7 @@ public class GestionAfpNet {
     }
 
     @Autowired
-    EmpleadoService empleadoService;
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-    @Autowired
-    LovsService lovsService;
-    @Autowired
-    VacacionesService vacacionesService;
-    @Autowired
-    ProcesoPlanillaService procesoPlanillaService;
-    @Autowired
     PlanillaService planillaService;
-    @Autowired
-    CompaniaService companiaService;
     @Autowired
     Sessionattributes sessionattributes;
 

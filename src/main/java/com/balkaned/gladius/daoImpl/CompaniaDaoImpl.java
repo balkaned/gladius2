@@ -4,12 +4,12 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Ciaxcon;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.dao.CompaniaDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Repository("CompaniaDao")
+@Slf4j
 public class CompaniaDaoImpl implements CompaniaDao {
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -230,7 +230,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                     cia.setIexsourcedes(rs.getString("iexsourcedes"));
                     cia.setIexregiondes(rs.getString("iexregiondes"));
                     cia.setIexportsource(rs.getString("iexportsource"));
-                    logger.info("urlLogo: " + cia.getUrlLogo());
+                    log.info("urlLogo: " + cia.getUrlLogo());
                 }
                 return cia;
             }

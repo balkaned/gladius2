@@ -1,26 +1,23 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Local;
 import com.balkaned.gladius.dao.LocalDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("LocalDao")
+@Slf4j
 public class LocalDaoImpl implements LocalDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -40,8 +37,6 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
                 "from iexubicacion a  where a.iexcodcia=" + codcia + "  ";
-
-        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Local>>() {
 
@@ -80,8 +75,6 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
                 "from iexubicacion a  where a.iexcodcia=" + codcia + " and iexubicod ='" + codubicacion + "'  ";
-
-        //System.out.println(sql);
 
         return (Local) template.query(sql, new ResultSetExtractor<Local>() {
             public Local extractData(ResultSet rs) throws SQLException, DataAccessException {

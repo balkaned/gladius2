@@ -1,28 +1,25 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Area;
+
 import com.balkaned.gladius.beans.BancoPro;
-import com.balkaned.gladius.dao.AreaDao;
 import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("BancoProDao")
+@Slf4j
 public class BancoProDaoImpl implements BancoProDao {
 
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -122,8 +119,8 @@ public class BancoProDaoImpl implements BancoProDao {
                     p.setIexusumod(rs.getString("iexusumod"));
                     p.setIexfecmod(rs.getString("iexfecmod"));
 
-                    logger.info("iexcodpro: " + p.getIexcodpro());
-                    logger.info("Iexctaban: " + p.getIexctaban());
+                    log.info("iexcodpro: " + p.getIexcodpro());
+                    log.info("Iexctaban: " + p.getIexctaban());
                 }
                 return p;
             }

@@ -1,8 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
+
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,12 +15,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 @Repository("TurnoDiarioDao")
+@Slf4j
 public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -166,7 +167,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         });
     }
 
-    public List<Empleado> listarTurMasTra(Integer codcia,  String fecini, String fecfin ) {
+    public List<Empleado> listarTurMasTra(Integer codcia, String fecini, String fecfin) {
 
         String sql = " select  " +
                 "e.iexcodcia,  e.iexcodtra, " +
@@ -176,7 +177,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "from  " +
                 "iexempleado e " +
                 "where  " +
-                "e.iexcodcia="+codcia+" and  " +
+                "e.iexcodcia=" + codcia + " and  " +
                 "e.iexflgest='1' " +
                 "group by  " +
                 "e.iexcodcia, e.iexcodtra, " +
@@ -191,8 +192,8 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     Empleado p = new Empleado();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"))  ;
-                    p.setIexapepat(rs.getString("iexapepat")) ;
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexapepat(rs.getString("iexapepat"));
                     p.setIexapemat(rs.getString("iexapemat"));
                     p.setIexnomtra(rs.getString("iexnomtra"));
                     p.setIexfecing(rs.getString("iexfecing"));
@@ -267,7 +268,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
     public void actualizarTurno(Turno turno) {
 
         template.update(
-                   "  update iexturno  set  " +
+                "  update iexturno  set  " +
                         "	iexflgturno =?, iexdesturno =?, iexhorini =?, iexhorfin =?,  " +
                         "	iexflgdiasig =?, iextopminantes =?, iextopmaxpost =?, " +
                         "	iexdesusumod =?, iexfecmod =current_timestamp  " +
@@ -285,7 +286,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 turno.getIexcodturno());
     }
 
-    public void eliminarTurno (Turno turno) {
+    public void eliminarTurno(Turno turno) {
 
         template.update("  delete from  iexturno  where  iexcodcia=? and  iexcodturno =? ",
 

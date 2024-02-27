@@ -2,23 +2,22 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.EmpAcum;
-import com.balkaned.gladius.beans.VacacionProgramacion;
 import com.balkaned.gladius.dao.EmpAcumDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
 @Repository("EmpAcumDao")
+@Slf4j
 public class EmpAcumDaoImpl implements EmpAcumDao {
 
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 

@@ -1,10 +1,5 @@
 package com.balkaned.gladius.utils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static java.lang.String.join;
 
 public class CapitalizarCadena {
 

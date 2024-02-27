@@ -7,9 +7,11 @@ import java.util.Date;
 public class FormatterFecha {
 
     public String fechaFormatter(String fecha) {
+
         if (fecha == null) {
             return null;
         }
+
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaDate = formatoOriginal.parse(fecha);
@@ -25,9 +27,11 @@ public class FormatterFecha {
     }
 
     public String fechaFormatterDia(String fecha) {
+
         if (fecha == null) {
             return null;
         }
+
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaDate = formatoOriginal.parse(fecha);
@@ -43,9 +47,11 @@ public class FormatterFecha {
     }
 
     public String fechaFormatterMes(String fecha) {
+
         if (fecha == null) {
             return null;
         }
+
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaDate = formatoOriginal.parse(fecha);
@@ -61,9 +67,11 @@ public class FormatterFecha {
     }
 
     public String fechaFormatterAnio(String fecha) {
+
         if (fecha == null) {
             return null;
         }
+
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaDate = formatoOriginal.parse(fecha);
@@ -79,9 +87,11 @@ public class FormatterFecha {
     }
 
     public String fechaFormatterIngltoEsp(String fecha) {
+
         if (fecha == null) {
             return null;
         }
+
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-mm-dd");
             Date fechaDate = formatoOriginal.parse(fecha);

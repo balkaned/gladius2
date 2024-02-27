@@ -1,10 +1,11 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
+
 import com.balkaned.gladius.beans.Usuario;
 import com.balkaned.gladius.dao.UsuarioDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,12 +17,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("UsuarioDao")
+@Slf4j
 public class UsuarioDaoImpl implements UsuarioDao {
 
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -72,8 +72,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
                     p.setFechaCrea(rs.getString("iexfeccre"));
                     FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setFechaCrea(f.fechaFormatterDia(p.getFechaCrea())+" "+capit.letras(f.fechaFormatterMes(p.getFechaCrea()))+", "+f.fechaFormatterAnio(p.getFechaCrea()));
+                    CapitalizarCadena capit = new CapitalizarCadena();
+                    p.setFechaCrea(f.fechaFormatterDia(p.getFechaCrea()) + " " + capit.letras(f.fechaFormatterMes(p.getFechaCrea())) + ", " + f.fechaFormatterAnio(p.getFechaCrea()));
 
                     p.setFechaModfica(rs.getString("iexfecmod"));
                     p.setEstado(rs.getString("estado"));

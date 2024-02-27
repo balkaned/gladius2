@@ -1,0 +1,212 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jean Quiroz
+  Date: 23/10/2023
+  Time: 12:23
+  To change this template use File | Settings | File Templates.
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+      <jsp:include page="../../../links.jsp"></jsp:include>
+    </head>
+
+    <script>
+      function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el Registro?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+      }
+    </script>
+    <body>
+        <!-- ===============================================-->
+        <!--    Main Content-->
+        <!-- ===============================================-->
+        <main class="main" id="top">
+          <jsp:include page="../../../navsMenu.jsp"></jsp:include>
+          <jsp:include page="../../../navTop.jsp"></jsp:include>
+          <jsp:include page="../../../modalFade.jsp"></jsp:include>
+
+          <div class="content">
+            <nav class="mb-2" aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>
+                <li class="breadcrumb-item active">Planilla General</li>
+              </ol>
+            </nav>
+            <div class="mb-3">
+              <div class="row g-3 mb-4">
+                <div class="col-auto">
+                  <h2 id="h2top" class="mb-2">Gestión de planillas</h2>
+                  <span class="badge badge-tag me-2 mb-2">${requestScope.xproplaper.desregimen}</span>
+                  <p class="mb-0 mt-0 fs--1">Proceso: ${requestScope.xproplaper.desproceso} ${requestScope.xproplaper.iexnroper} [${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin}] <span class="badge badge-phoenix fs--2 badge-phoenix-primary ms-2"><span class="badge-label">${requestScope.xproplaper.desestado}</span></p>
+                </div>
+              </div>
+            </div>
+            <div id="orderTable" data-list='{"valueNames":["id","concept","var","des","abr"],"page":10,"pagination":true}'>
+              <div class="mb-3">
+                <div class="row g-3">
+                  <div class="col-auto">
+                    <div class="search-box">
+                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                        <input class="form-control search-input search" type="search" placeholder="Search trabajadores" aria-label="Search"/>
+                        <span class="fas fa-search search-box-icon"></span>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
+                    <div class="btn-group position-static" role="group">
+                      <div class="btn-group position-static text-nowrap" role="group">
+                        <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+                                aria-expanded="false" data-bs-reference="parent">
+                          Payment status<span class="fas fa-angle-down ms-2"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li>
+                            <hr class="dropdown-divider"/>
+                          </li>
+                          <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                      </div>
+                      <div class="btn-group position-static text-nowrap" role="group">
+                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window"
+                                aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                          Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li>
+                            <hr class="dropdown-divider"/>
+                          </li>
+                          <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                      </div>
+                      <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <a class="btn btn-phoenix-primary btn-sm" href="nuevoConcepto"><span class="fas fa-play me-2"></span>1. Iniciar</a>
+                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConcepto"><span class="fas fa-square-root-variable me-2"></span>Variables</a>
+                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConcepto"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
+                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConcepto"><span class="fas fa-database me-2"></span>4. Consolida</a>
+                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConcepto"><span class="fas fa-wrench me-2"></span>5. Procesar</a>
+                    <a class="btn btn-phoenix-secondary btn-sm" href="nuevoConcepto"><span class="fas fa-vault me-2"></span>5. Bancos</a>
+                    <a class="btn btn-phoenix-danger btn-sm" href="nuevoConcepto"><span class="fas fa-trash me-2"></span>0. Borrar</a>
+                    <a class="btn btn-primary btn-sm ms-3" href="nuevoConcepto"><span class="fas fa-magnifying-glass me-2"></span>Consultar todo</a>
+
+                    <!--<div class="btn-group mb-1 me-1 ms-1 mt-1">
+                      <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                      <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                      <div class="dropdown-menu">
+                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
+                            <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
+                          </a>
+                          <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                          <div class="dropdown-divider"></div>
+                          <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
+                      </div>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+
+              <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","concept","var","des","abr"],"page":10, "pagination":true }'>
+                <div class="table-responsive scrollbar mx-n1 px-1">
+                  <table class="table table-sm fs--1 mb-0">
+                    <thead>
+                        <tr>
+                          <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                            <div class="form-check mb-0 fs-0">
+                              <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                            </div>
+                          </th>
+                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                          <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="concept">TRABAJADOR</th>
+                          <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="var">I/T/P</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="des">ESTADO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">FECINI</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">DTEO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">DTOT</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">VAC</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">DME</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">SUB</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">LIC</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">FAL</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">D.E</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">DOM</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="abr">DPAG</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" ></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list" id="customer-order-table-body">
+                        <c:forEach var="LstPlanillaRes" items="${requestScope.LstPlanillaRes}">
+                          <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                            <td class="fs--1 align-middle px-0 py-3">
+                              <div class="form-check mb-0 fs-0">
+                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" />
+                              </div>
+                            </td>
+                            <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${LstPlanillaRes.iexcodtra}</a></td>
+                            <td class="concept align-middle text-start fw-semi-bold ps-3 pe-0 text-1000">${LstPlanillaRes.destra}</td>
+                            <td class="concept align-middle text-start fw-semi-bold ps-3 pe-0 text-1000">ITP</td>
+                            <td class="var align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap"><a href="#">Proc</a></td>
+                            <td class="des align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexfecini}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiasteorico}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiasub}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdialic}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiafalta}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaefectivo}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdominical}</td>
+                            <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaspago}</td>
+
+                            <td class="align-middle text-center white-space-nowrap pe-0 action">
+                              <div class="font-sans-serif btn-reveal-trigger position-static">
+                                <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                <div class="dropdown-menu dropdown-menu-end py-2">
+                                  <a id="dropdownmenutable" class="dropdown-item" href="editarConcepto@${concepto.codConcepto}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteConcepto@${concepto.codConcepto}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
+                              </div>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
+                    <div class="col-auto d-flex">
+                      <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                    </div>
+                    <div class="col-auto d-flex">
+                      <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                      <ul class="mb-0 pagination"></ul>
+                      <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <jsp:include page="../../../demoWidget.jsp"></jsp:include>
+        </main>
+        <!-- ===============================================-->
+        <!--    End of Main Content-->
+        <!-- ===============================================-->
+
+        <jsp:include page="../../../customize.jsp"></jsp:include>
+    </body>
+</html>

@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Sistemas;
 import com.balkaned.gladius.dao.SistemaDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,9 +18,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Repository("SistemaDao")
+@Slf4j
 public class SistemaDaoImpl implements SistemaDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -34,6 +34,7 @@ public class SistemaDaoImpl implements SistemaDao {
                 "iexcodsys, " +
                 "iexdessys " +
                 "from iexsystemas ";
+
         return template.query(sql, new ResultSetExtractor<List<Sistemas>>() {
 
             public List<Sistemas> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -71,6 +72,7 @@ public class SistemaDaoImpl implements SistemaDao {
                 "iexdessys, " +
                 "iexactiondefault " +
                 "from iexsystemas where iexcodsys = " + codsis + " ";
+
         return (Sistemas) template.query(sql, new ResultSetExtractor<Sistemas>() {
             public Sistemas extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Sistemas p = new Sistemas();

@@ -2,20 +2,21 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Log4j2
 @Repository("ProFoDao")
+@Slf4j
 public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     JdbcTemplate template;
 
@@ -39,6 +40,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "	diasteo " +
                 "FROM iexprocesos " +
                 "ORDER BY procodpro ASC";
+
         return template.query(sqlQuery, rs -> {
             List<ProcesoForm> list = new ArrayList<>();
 
@@ -91,6 +93,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "on frm.forcodcon = con.coocodcon " +
                 "where frm.procodpro = 1 " +
                 "order by frm.fororden asc";
+
         return template.query(sqlQuery, rs -> {
             List<FormulaXConcepto> list = new ArrayList<>();
 
@@ -134,6 +137,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "on a.procodcon = b.coocodcon " +
                 "where a.procodpro = 1 " +
                 "and a.protipcon = '" + id + "'";
+
         return template.query(sqlQuery, rs -> {
             List<Proceso> list = new ArrayList<>();
 
@@ -151,17 +155,18 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     @Override
     public List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon) {
         String sqlQuery = "select " +
-                        "procodpro, " +
-                        "procodcon, " +
-                        "coodescon, " +
-                        "procodconpdt, " +
-                        "proflgbol, " +
-                        "proorden, " +
-                        "provalor, " +
-                        "protipcon, " +
-                        "prodescustom " +
-                        "from iexproxconcepto inner join iexconcepto on procodcon = coocodcon"
-                + "  where procodpro="+idproceso+"  and  protipcon='"+tipcon+"'";
+                "procodpro, " +
+                "procodcon, " +
+                "coodescon, " +
+                "procodconpdt, " +
+                "proflgbol, " +
+                "proorden, " +
+                "provalor, " +
+                "protipcon, " +
+                "prodescustom " +
+                "from iexproxconcepto inner join iexconcepto on procodcon = coocodcon"
+                + "  where procodpro=" + idproceso + "  and  protipcon='" + tipcon + "'";
+
         return template.query(sqlQuery, rs -> {
             List<ConceptoXProceso> list = new ArrayList<>();
 
@@ -186,36 +191,37 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     @Override
     public ConceptoXProceso getConceptoXProceso(Integer idproceso, String idconcepto) {
         String sqlQuery = "select " +
-                        "procodpro, " +
-                        "procodcon,  coodescon ," +
-                        "procodconpdt, " +
-                        "proflgbol, " +
-                        "proorden, " +
-                        "provalor, " +
-                        "protipcon, " +
-                        "prodescustom, " +
-                        "tip_ingreso ,  " +
-                        "flg_pry_5ta,  " +
-                        "flg_des_5ta_mes,  " +
-                        "flg_ess_reg ,  " +
-                        "flg_ess_pesq ,  " +
-                        "flg_ess_agrac ,  " +
-                        "flg_ess_sctr ,  " +
-                        "flg_extra_solid,  " +
-                        "flg_fondo_art ,  " +
-                        "flg_apo_senati ,  " +
-                        "flg_onp ,  " +
-                        "flg_afp ,  " +
-                        "flg_fond_compl_jub ,  " +
-                        "flg_esp_pens_pesq ,  " +
-                        "flg_5ta   ,  " +
-                        "flg_ess_seg_pen ,  " +
-                        "flg_cont_asis_previs ,  " +
-                        " flg_promediable ,"+
-                        " flg_agrupable ,"+
-                        " nro_meses_prom_atras "+
-                        "from iexproxconcepto ,  iexconcepto where  procodcon =coocodcon " +
-         "and procodpro="+idproceso+"  and  trim(procodcon) = trim('"+idconcepto+"') ";
+                "procodpro, " +
+                "procodcon,  coodescon ," +
+                "procodconpdt, " +
+                "proflgbol, " +
+                "proorden, " +
+                "provalor, " +
+                "protipcon, " +
+                "prodescustom, " +
+                "tip_ingreso ,  " +
+                "flg_pry_5ta,  " +
+                "flg_des_5ta_mes,  " +
+                "flg_ess_reg ,  " +
+                "flg_ess_pesq ,  " +
+                "flg_ess_agrac ,  " +
+                "flg_ess_sctr ,  " +
+                "flg_extra_solid,  " +
+                "flg_fondo_art ,  " +
+                "flg_apo_senati ,  " +
+                "flg_onp ,  " +
+                "flg_afp ,  " +
+                "flg_fond_compl_jub ,  " +
+                "flg_esp_pens_pesq ,  " +
+                "flg_5ta   ,  " +
+                "flg_ess_seg_pen ,  " +
+                "flg_cont_asis_previs ,  " +
+                " flg_promediable ," +
+                " flg_agrupable ," +
+                " nro_meses_prom_atras " +
+                "from iexproxconcepto ,  iexconcepto where  procodcon =coocodcon " +
+                "and procodpro=" + idproceso + "  and  trim(procodcon) = trim('" + idconcepto + "') ";
+
         return template.query(sqlQuery, rs -> {
             ConceptoXProceso p = new ConceptoXProceso();
             while (rs.next()) {
@@ -256,30 +262,32 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     @Override
     public void insertarConceptoXProceso(ConceptoXProceso cxp) {
-        String sqlQuery = "  insert into iexproxconcepto(procodpro,procodcon,procodconpdt,proflgbol,proorden,provalor,protipcon,prodescustom, "+
-                " tip_ingreso , flg_pry_5ta ,  flg_des_5ta_mes ,   flg_ess_reg , flg_ess_pesq ,  flg_ess_agrac,  flg_ess_sctr, flg_extra_solid , flg_fondo_art ,  flg_apo_senati , flg_onp, flg_afp,  flg_fond_compl_jub,   flg_esp_pens_pesq , flg_5ta ,  flg_ess_seg_pen , flg_cont_asis_previs , flg_promediable, flg_agrupable, nro_meses_prom_atras "+
-                  " ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+
+        String sqlQuery = "  insert into iexproxconcepto(procodpro,procodcon,procodconpdt,proflgbol,proorden,provalor,protipcon,prodescustom, " +
+                " tip_ingreso , flg_pry_5ta ,  flg_des_5ta_mes ,   flg_ess_reg , flg_ess_pesq ,  flg_ess_agrac,  flg_ess_sctr, flg_extra_solid , flg_fondo_art ,  flg_apo_senati , flg_onp, flg_afp,  flg_fond_compl_jub,   flg_esp_pens_pesq , flg_5ta ,  flg_ess_seg_pen , flg_cont_asis_previs , flg_promediable, flg_agrupable, nro_meses_prom_atras " +
+                " ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+
         try {
             template.update(sqlQuery, cxp.getProcodpro(), cxp.getProcodcon(), cxp.getProcodconpdt(), cxp.getProflgbol(),
-             cxp.getProorden(), cxp.getProvalor()
-             , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
-             cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
-             cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
-             cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
-             cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
-             cxp.getFlg_agrupable(), cxp.getNro_meses_atras());
-        }
-        catch (DataAccessException e) {
+                    cxp.getProorden(), cxp.getProvalor()
+                    , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
+                    cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
+                    cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
+                    cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
+                    cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
+                    cxp.getFlg_agrupable(), cxp.getNro_meses_atras());
+        } catch (DataAccessException e) {
             log.error("Error al insertar proceso: " + e.getMessage());
         }
     }
 
     @Override
     public void editarConceptoXProceso(ConceptoXProceso cxp) {
+
         String sqlQuery = "  update  iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, provalor = ?, protipcon = ?, prodescustom = ? , "
                 + "tip_ingreso = ?, " +
-                  "flg_pry_5ta = ?, " +
-                 " flg_des_5ta_mes = ?, " +
+                "flg_pry_5ta = ?, " +
+                " flg_des_5ta_mes = ?, " +
                 " flg_ess_reg = ?, " +
                 " flg_ess_pesq = ?, " +
                 " flg_ess_agrac = ?, " +
@@ -294,40 +302,42 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 " flg_5ta  = ? , " +
                 " flg_ess_seg_pen = ?, " +
                 " flg_cont_asis_previs= ? ," +
-                " flg_promediable = ? ,"+
-                " flg_agrupable = ? ,"+
-                " nro_meses_prom_atras = ? "+
+                " flg_promediable = ? ," +
+                " flg_agrupable = ? ," +
+                " nro_meses_prom_atras = ? " +
                 "where procodpro = ? and trim(procodcon)=trim(?) ";
+
         try {
             template.update(sqlQuery, cxp.getProcodconpdt(), cxp.getProflgbol(), cxp.getProorden(), cxp.getProvalor()
-             , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
-             cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
-             cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
-             cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
-             cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
-             cxp.getFlg_agrupable(), cxp.getNro_meses_atras(), cxp.getProcodpro(), cxp.getProcodcon());
-        }
-        catch (DataAccessException e) {
+                    , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
+                    cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
+                    cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
+                    cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
+                    cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
+                    cxp.getFlg_agrupable(), cxp.getNro_meses_atras(), cxp.getProcodpro(), cxp.getProcodcon());
+        } catch (DataAccessException e) {
             log.error("Error al editar proceso: " + e.getMessage());
         }
     }
 
     @Override
     public void insertarProcesoFormula(ProcesoForm proFo) {
+
         String sqlQuery = "call pl_gestion_procesos(?,?,?,?,?,?,?,?,?,?)";
+
         try {
             template.update(
-             sqlQuery,
-             0,
-             proFo.getProdespro(),
-             proFo.getProdescorto(),
-             proFo.getProcodregimenlab(),
-             proFo.getProgrppro(),
-             "1",
-             proFo.getBolproceso(),
-             proFo.getIdtipproceso(),
-             proFo.getBolprocesoind(),
-             proFo.getBolprocesores()
+                    sqlQuery,
+                    0,
+                    proFo.getProdespro(),
+                    proFo.getProdescorto(),
+                    proFo.getProcodregimenlab(),
+                    proFo.getProgrppro(),
+                    "1",
+                    proFo.getBolproceso(),
+                    proFo.getIdtipproceso(),
+                    proFo.getBolprocesoind(),
+                    proFo.getBolprocesores()
             );
         } catch (DataAccessException e) {
             log.error("Error al insertar proceso: " + e.getMessage());
@@ -336,11 +346,13 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     @Override
     public void eliminarProcesoFormula(Integer id) {
+
         String sqlQuery = "call pl_gestion_procesos(?,'','','0','','3','','','','')";
+
         try {
             template.update(
-             sqlQuery,
-             id
+                    sqlQuery,
+                    id
             );
         } catch (DataAccessException e) {
             log.error("Error al eliminar proceso: " + e.getMessage());
@@ -349,7 +361,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     public ProcesoPlanilla recuperar(Integer id) {
 
-        String sql="select " +
+        String sql = "select " +
                 "procodpro, " +
                 "prodespro, " +
                 "prodescorto, " +
@@ -362,12 +374,12 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "bolprocesores " +
                 "from iexprocesos p  " +
                 "where " +
-                " procodpro="+id+" order by 1 asc ";
+                " procodpro=" + id + " order by 1 asc ";
 
         return (ProcesoPlanilla) template.query(sql, new ResultSetExtractor<ProcesoPlanilla>() {
-            public ProcesoPlanilla extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public ProcesoPlanilla extractData(ResultSet rs) throws SQLException, DataAccessException {
                 ProcesoPlanilla p = new ProcesoPlanilla();
-                while(rs.next()) {
+                while (rs.next()) {
                     p.setIdProceso(rs.getInt("procodpro"));
                     p.setDesProceso(rs.getString("prodespro"));
                     p.setDesProcesoCorto(rs.getString("prodescorto"));
@@ -384,19 +396,19 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         });
     }
 
-    public void actualizar(ProcesoPlanilla pplanilla){
+    public void actualizar(ProcesoPlanilla pplanilla) {
 
         template.update("call pl_gestion_procesos(?,?,?,?,?,?,?,? ,?,?) ",
 
-        pplanilla.getIdProceso(),
-        pplanilla.getDesProceso(),
-        pplanilla.getDesProcesoCorto(),
-        pplanilla.getIdRegLab(),
-        pplanilla.getDesGrp(),
-        "2",
-        pplanilla.getBolProceso(),
-        pplanilla.getIdTipProceso(),
-        pplanilla.getBolProcesoind(),
-        pplanilla.getBolProcesores());
+                pplanilla.getIdProceso(),
+                pplanilla.getDesProceso(),
+                pplanilla.getDesProcesoCorto(),
+                pplanilla.getIdRegLab(),
+                pplanilla.getDesGrp(),
+                "2",
+                pplanilla.getBolProceso(),
+                pplanilla.getIdTipProceso(),
+                pplanilla.getBolProcesoind(),
+                pplanilla.getBolProcesores());
     }
 }

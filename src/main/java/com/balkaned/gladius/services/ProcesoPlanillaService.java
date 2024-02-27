@@ -13,4 +13,5 @@ public interface ProcesoPlanillaService {
     public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper);
     public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes);
     public void insertarProper(ProcesoPeriodo pperiodo);
+    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo);
 }

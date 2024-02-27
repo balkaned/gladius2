@@ -1,12 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.beans.UsuxOpciones;
-import com.balkaned.gladius.dao.UsuxCompaniaDao;
 import com.balkaned.gladius.dao.UsuxOpcionesDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,12 +15,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("UsuxOpcionesDao")
+@Slf4j
 public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -106,7 +101,7 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                 "                           WHEN S.IEXCODSEC = '7' THEN 'layers' " +
                 "                           WHEN S.IEXCODSEC = '11' THEN 'codesandbox' " +
                 "                        END as icon, " +
-                "                        iexactionspring "+
+                "                        iexactionspring " +
                 "                        FROM " +
                 "                        IEXUSUXCIA  U " +
                 "                        INNER JOIN IEXROLXOPC R ON U.IEXCODROL = R.IEXCODROL  " +
@@ -114,9 +109,9 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                 "                        INNER JOIN IEXSECCION S  ON O.IEXCODSEC = S.IEXCODSEC " +
                 "                        INNER JOIN IEXSYSTEMAS Y ON S.IEXCODSYS = Y.IEXCODSYS  " +
                 "						WHERE " +
-                "                        U.IEXCODCIA = "+codcia+" AND " +
-                "                        U.IEXCODUSU = "+codusu+" AND " +
-                "                        S.IEXCODSYS= "+codsys+" " +
+                "                        U.IEXCODCIA = " + codcia + " AND " +
+                "                        U.IEXCODUSU = " + codusu + " AND " +
+                "                        S.IEXCODSYS= " + codsys + " " +
                 "                        ORDER BY s.iexordsec, R.IEXCODOPC ASC ";
 
         return template.query(sql, new ResultSetExtractor<List<UsuxOpciones>>() {
@@ -144,8 +139,8 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                     usuxopc.setPath(rs.getString("iexactionspring"));
                     usuxopc.setDessecCapi(cap.letras(usuxopc.getDessec()));
 
-                    String cadena=usuxopc.getPath();
-                    String nuevacadena= usuxopc.getPath().substring(1,cadena.length());
+                    String cadena = usuxopc.getPath();
+                    String nuevacadena = usuxopc.getPath().substring(1, cadena.length());
                     usuxopc.setPath(nuevacadena);
 
                     lista.add(usuxopc);

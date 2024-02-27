@@ -13,17 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @Slf4j
 public class LovsController {
-
-    @Autowired
-    UsuarioConeccionService usuarioConeccionService;
-
-    @Autowired
-    CompaniaService companiaService;
 
     @Autowired
     LovsService lovsService;

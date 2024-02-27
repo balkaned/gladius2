@@ -1,10 +1,11 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
+
 import com.balkaned.gladius.beans.DerechoHabiente;
 import com.balkaned.gladius.dao.DerechoHabientesDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,12 +16,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("DerechoHabientesDao")
+@Slf4j
 public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
-
-    static Logger logger = Logger.getLogger(IndexController.class.getName());
 
     JdbcTemplate template;
 
@@ -157,7 +156,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                     p.setIexnrotelf(rs.getString("iexnrotelf"));
                     p.setIexemail(rs.getString("iexemail"));
 
-                    logger.info("Iexfecnac: " + p.getIexfecnac());
+                    log.info("Iexfecnac: " + p.getIexfecnac());
 
                     lista.add(p);
                 }

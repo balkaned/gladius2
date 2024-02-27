@@ -2,7 +2,6 @@ package com.balkaned.gladius.services;
 
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.PlaProPeriodo;
-
 import java.util.List;
 
 public interface PlanillaService {
@@ -14,8 +13,9 @@ public interface PlanillaService {
 
     public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin);
 
-    public void PlameExe(Integer codcia, String permes , String file ) ;
-    public List<String> PlameMes(Integer codcia, String permes , String file  );
-    public void AfpNetExe(Integer codcia, String permes  );
+    public void PlameExe(Integer codcia, String permes , String file) ;
+    public List<String> PlameMes(Integer codcia, String permes , String file);
+    public void AfpNetExe(Integer codcia, String permes);
+    public List<PlaProPeriodo> listPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
 }
 

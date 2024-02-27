@@ -1,16 +1,20 @@
 package com.balkaned.gladius.controllers;
 
+import com.balkaned.gladius.beans.PlaProPeriodo;
 import com.balkaned.gladius.beans.ProcesoPeriodo;
 import com.balkaned.gladius.services.LovsService;
+import com.balkaned.gladius.services.PlanillaService;
 import com.balkaned.gladius.services.ProcesoPlanillaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -23,6 +27,9 @@ public class PlanillaController {
 
     @Autowired
     Sessionattributes sessionattributes;
+
+    @Autowired
+    PlanillaService planillaService;
 
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
@@ -52,6 +59,7 @@ public class PlanillaController {
         String iexcodreg = request.getParameter("iexcodreg");
         String iexpermes = request.getParameter("iexpermes");
 
+        model.addAttribute("iexcodreg",iexcodreg);
         model.addAttribute("Lovs_regimen",lovsService.getRegimenProc());
         model.addAttribute("List_Procesos",procesoPlanillaService.listarProRegpla(idCompania,iexcodreg,iexpermes));
 
@@ -104,6 +112,26 @@ public class PlanillaController {
         procesoPlanillaService.insertarProper(p);
 
         return new ModelAndView("redirect:/listPlanillaGeneral");
+    }
+
+    @RequestMapping("/listarDetallePlanillaGen@{codreg}@{codproceso}@{periodo}")
+    public ModelAndView listarDetallePlanillaGen(ModelMap model, HttpServletRequest request,
+                                                 @PathVariable Integer codreg,
+                                                 @PathVariable Integer codproceso,
+                                                 @PathVariable String periodo) {
+        log.info("/listarDetallePlanillaGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("xproplaper",procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso),periodo));
+        List<PlaProPeriodo> lista = planillaService.listPlaProper(idCompania,codproceso,periodo,-1,1,"%");
+        model.addAttribute("LstPlanillaRes", lista);
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaGeneral");
     }
 }
 

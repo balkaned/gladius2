@@ -30,9 +30,6 @@ public class DashboardController {
     UsuxOpcionesService usuxOpcionesService;
 
     @Autowired
-    Sessionattributes sessionattributes;
-
-    @Autowired
     UsuxSystemaService usuxSystemaService;
 
     @Autowired
@@ -41,8 +38,6 @@ public class DashboardController {
     @Autowired
     DashboardService dashboardService;
 
-    @Autowired
-    EmpleadoService empleadoService;
 
     @RequestMapping("/home@{idComp}@{idUser}")
     public ModelAndView home(ModelMap model, HttpServletRequest request,

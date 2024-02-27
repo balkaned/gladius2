@@ -30,7 +30,7 @@
         });
      }
 
-     function mostrarModalEditarPeriodo(){
+     function editarPeriodo(){
         alert("ingrese a la funcion");
      }
 
@@ -153,8 +153,10 @@
                         	<input class="form-control" name="iexpermes" type="text" placeholder="202301 or 2023" required/>
                         </div>
 
-                        <div class="alert alert-success" role="alert" id="alert" style="display:none;">
-                                Se grabó exitosamente los cambios.
+                        <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                        	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                        	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                        	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         <div class="col-12 gy-6">
                             <div class="row g-3 justify-content-end">
@@ -232,7 +234,7 @@
                                     </td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ps-2"><span class="badge badge-tag me-2 mb-2">${List_Procesos.desgrppla}</span></td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ps-2">
-                                        <a onclick="mostrarModalEditarPeriodo();" href="#" type="button" data-bs-toggle="modal" data-bs-target="#periodoModalEditar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-pencil me-2"></span>${List_Procesos.iexnroper}</a>
+                                        <a onclick="editarPeriodo();" href="#" type="button" data-bs-toggle="modal" data-bs-target="#periodoModalEditar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-pencil me-2"></span>${List_Procesos.iexnroper}</a>
                                     </td>
                                     <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-600 ps-2">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-2"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecini}</td>
@@ -245,7 +247,7 @@
                                          data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                          <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                          <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                              <a id="dropdownmenutable" class="dropdown-item" href="listarDetallePlanillaGen@${iexcodreg}@${List_Procesos.iexcodpro}@${List_Procesos.iexnroper}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                               <div class="dropdown-divider"></div>
                                               <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                          </div>

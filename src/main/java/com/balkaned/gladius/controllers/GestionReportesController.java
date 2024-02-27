@@ -5,10 +5,8 @@ import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.export.HtmlExporterOutput;
 import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -24,22 +22,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Logger;
 
 @Slf4j
 @RestController
@@ -55,8 +46,6 @@ public class GestionReportesController {
     PlanillaService planillaService;
     @Autowired
     ProcesoPlanillaService procesoPlanillaService;
-    @Autowired
-    LovsService lovsService;
     @Autowired
     EmpleadoService empleadoService;
     @Autowired

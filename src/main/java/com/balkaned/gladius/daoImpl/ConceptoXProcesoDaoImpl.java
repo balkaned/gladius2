@@ -4,12 +4,12 @@ import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.ConceptoxAgrup;
 import com.balkaned.gladius.beans.ConceptoxProms;
 import com.balkaned.gladius.dao.ConceptoXProcesoDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Repository("ConceptoXProcesoDao")
+@Slf4j
 public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
     static Logger logger = Logger.getLogger(ConceptoXProcesoDaoImpl.class.getName());
 
