@@ -13,9 +13,36 @@ public class DerechoHabientesServiceImpl implements DerechoHabientesService {
 
     @Autowired
     DerechoHabientesDao dao;
-    public List<DerechoHabiente> listar(Integer codcia, Integer codtra){return dao.listar(codcia,codtra);}
-    public Integer validarDerhabiente(DerechoHabiente derhab){return dao.validarDerhabiente(derhab);}
-    public Integer getIdDerechoHab(DerechoHabiente derhab){return dao.getIdDerechoHab(derhab);}
-    public void insertar(DerechoHabiente derhab){dao.insertar(derhab);}
 
+    public List<DerechoHabiente> listar(Integer codcia, Integer codtra) {
+
+        return dao.listar(codcia, codtra);
+    }
+
+    public Integer validarDerhabiente(DerechoHabiente derhab) {
+
+        return dao.validarDerhabiente(derhab);
+    }
+
+    public Integer getIdDerechoHab(DerechoHabiente derhab) {
+
+        return dao.getIdDerechoHab(derhab);
+    }
+
+    public void insertar(DerechoHabiente derhab) {
+
+        dao.insertar(derhab);
+    }
+
+    public DerechoHabiente recuperar(DerechoHabiente derhab) {
+        return dao.recuperar(derhab);
+    }
+
+    public void actualizar(DerechoHabiente derhab) {
+        dao.actualizar(derhab);
+    }
+
+    public void eliminar(DerechoHabiente derhab) {
+        dao.eliminar(derhab);
+    }
 }

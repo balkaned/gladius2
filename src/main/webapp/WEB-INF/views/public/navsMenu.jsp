@@ -52,19 +52,21 @@
              });
 
              var menunav = sessionStorage.getItem("menunav");
-             alert("menunav: "+menunav);
+             //alert("menunav: "+menunav);
              $('#'+menunav).addClass("active");
 
              var navempl = sessionStorage.getItem("navempl");
 
-             alert("navempl: "+navempl);
+             //alert("navempl: "+navempl);
 
              if(menunav=="listEmpleados"){
                 $('#'+navempl).addClass("activelsempl");
                 document.getElementById(navempl).focus();
              }
 
-             document.getElementById(menunav).focus();
+             if(menunav!=null){
+                document.getElementById(menunav).focus();
+             }
 
           });
         </script>

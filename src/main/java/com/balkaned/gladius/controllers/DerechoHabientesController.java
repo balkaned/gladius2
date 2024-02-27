@@ -304,5 +304,304 @@ public class DerechoHabientesController {
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/nuevoDerechoHab");
     }
+
+    @RequestMapping("/editarDerechoHab@{idTrab}@{iexcoddep}")
+    public ModelAndView editarDerechoHab(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTrab,
+                                         @PathVariable String iexcoddep) {
+        log.info("/editarDerechoHab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcoddep",iexcoddep);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
+        model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
+        model.addAttribute("lovPaisEmisor", lovsService.getLovs("26", "%"));
+        model.addAttribute("lovVincul", lovsService.getLovs("19", "%"));
+        model.addAttribute("lovAcredVincul", lovsService.getLovs("27", "%"));
+        model.addAttribute("lovTipVia", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovTipVia2", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona2", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovLarDistancia", lovsService.getLovs("29", "%"));
+
+        DerechoHabiente derhab2 = new DerechoHabiente();
+        derhab2.setIexcodcia(idCompania);
+        derhab2.setIexcodtra(Integer.valueOf(idTrab));
+        derhab2.setIexcoddep(Integer.valueOf(iexcoddep));
+
+        DerechoHabiente derhab3=derechoHabientesService.recuperar(derhab2);
+
+        model.addAttribute("derhabx",derhab3);
+        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", derhab3.getIexnacion_origen1()));  // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", derhab3.getIexdepart_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", derhab3.getIexprovin_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
+
+        model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", derhab3.getIexnacion_origen2()));  // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", derhab3.getIexdepart_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", derhab3.getIexprovin_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/editarDerechoHab");
+    }
+
+    @RequestMapping("/modificarDerechoHab")
+    public ModelAndView modificarDerechoHab(ModelMap model, HttpServletRequest request) {
+        log.info("/modificarDerechoHab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        Integer iexcoddep = Integer.parseInt(request.getParameter("iexcoddep"));
+        String iextipnroiddep = request.getParameter("iextipnroiddep");
+        String iexnroiddep = request.getParameter("iexnroiddep");
+        String iexpaisemisor = request.getParameter("iexpaisemisor");
+        String iexfecnac = request.getParameter("iexfecnac");
+        String iexapepatdep = request.getParameter("iexapepatdep");
+        String iexapematdep = request.getParameter("iexapematdep");
+        String iexnomdep = request.getParameter("iexnomdep");
+        String iexsexo = request.getParameter("iexsexo");
+        String iextipvinculo = request.getParameter("iextipvinculo");
+        String iextipdocacredit = request.getParameter("iextipdocacredit");
+        String iexnrodocacredit = request.getParameter("iexnrodocacredit");
+        String iexmesconcep = request.getParameter("iexmesconcep");
+        String iextipvia_dom1 = request.getParameter("iextipvia_dom1");
+        String iexnomvia_dom1 = request.getParameter("iexnomvia_dom1");
+        String iexnrovia_dom1 = request.getParameter("iexnrovia_dom1");
+        String iexdeptin_dom1 = request.getParameter("iexdeptin_dom1");
+        String iexinterior_dom1 = request.getParameter("iexinterior_dom1");
+        String iexmanzana_dom1 = request.getParameter("iexmanzana_dom1");
+        String iexlote_dom1 = request.getParameter("iexlote_dom1");
+        String iexkilometro_dom1 = request.getParameter("iexkilometro_dom1");
+        String iexblock_dom1 = request.getParameter("iexblock_dom1");
+        String iexetapa_dom1 = request.getParameter("iexetapa_dom1");
+        String iextipzona_dom1 = request.getParameter("iextipzona_dom1");
+        String iexnomzona_dom1 = request.getParameter("iexnomzona_dom1");
+        String iexreferencia_dom1 = request.getParameter("iexreferencia_dom1");
+        String iexubigeo_dom1 = request.getParameter("iexubigeo_dom1");
+        String iextipvia_dom2 = request.getParameter("iextipvia_dom2");
+        String iexnomvia_dom2 = request.getParameter("iexnomvia_dom2");
+        String iexnrovia_dom2 = request.getParameter("iexnrovia_dom2");
+        String iexdeptin_dom2 = request.getParameter("iexdeptin_dom2");
+        String iexinterior_dom2 = request.getParameter("iexinterior_dom2");
+        String iexmanzana_dom2 = request.getParameter("iexmanzana_dom2");
+        String iexlote_dom2 = request.getParameter("iexlote_dom2");
+        String iexkilometro_dom2 = request.getParameter("iexkilometro_dom2");
+        String iexblock_dom2 = request.getParameter("iexblock_dom2");
+        String iexetapa_dom2 = request.getParameter("iexetapa_dom2");
+        String iextipzona_dom2 = request.getParameter("iextipzona_dom2");
+        String iexnomzona_dom2 = request.getParameter("iexnomzona_dom2");
+        String iexreferencia_dom2 = request.getParameter("iexreferencia_dom2");
+        String iexubigeo_dom2 = request.getParameter("iexubigeo_dom2");
+        String iexcenasis = request.getParameter("iexcenasis");
+        String iexcodlar = request.getParameter("iexcodlar");
+        String iexnrotelf = request.getParameter("iexnrotelf");
+        String iexemail = request.getParameter("iexemail");
+        String iexnacion_origen1 = request.getParameter("iexpaisemisor1");
+        String iexdepart_origen1 = request.getParameter("iexdepart_origen1");
+        String iexprovin_origen1 = request.getParameter("iexprovin_origen1");
+        String iexnacion_origen2 = request.getParameter("iexpaisemisor2");
+        String iexdepart_origen2 = request.getParameter("iexdepart_origen2");
+        String iexprovin_origen2 = request.getParameter("iexprovin_origen2");
+
+        DerechoHabiente derhab = new DerechoHabiente();
+        derhab.setIexcodcia(idCompania);
+        derhab.setIexcodtra(iexcodtra);
+        derhab.setIexcoddep(iexcoddep);
+        derhab.setIextipnroiddep(iextipnroiddep);
+        derhab.setIexnroiddep(iexnroiddep);
+        derhab.setIexpaisemisor(iexpaisemisor);
+        derhab.setIexfecnac(iexfecnac);
+        derhab.setIexapepatdep(iexapepatdep);
+        derhab.setIexapematdep(iexapematdep);
+        derhab.setIexnomdep(iexnomdep);
+        derhab.setIexsexo(iexsexo);
+        derhab.setIextipvinculo(iextipvinculo);
+        derhab.setIextipdocacredit(iextipdocacredit);
+        derhab.setIexnrodocacredit(iexnrodocacredit);
+        derhab.setIexmesconcep(iexmesconcep);
+        derhab.setIextipvia_dom1(iextipvia_dom1);
+        derhab.setIexnomvia_dom1(iexnomvia_dom1);
+        derhab.setIexnrovia_dom1(iexnrovia_dom1);
+        derhab.setIexdeptin_dom1(iexdeptin_dom1);
+        derhab.setIexinterior_dom1(iexinterior_dom1);
+        derhab.setIexmanzana_dom1(iexmanzana_dom1);
+        derhab.setIexlote_dom1(iexlote_dom1);
+        derhab.setIexkilometro_dom1(iexkilometro_dom1);
+        derhab.setIexblock_dom1(iexblock_dom1);
+        derhab.setIexetapa_dom1(iexetapa_dom1);
+        derhab.setIextipzona_dom1(iextipzona_dom1);
+        derhab.setIexnomzona_dom1(iexnomzona_dom1);
+        derhab.setIexreferencia_dom1(iexreferencia_dom1);
+        derhab.setIexubigeo_dom1(iexubigeo_dom1);
+        derhab.setIextipvia_dom2(iextipvia_dom2);
+        derhab.setIexnomvia_dom2(iexnomvia_dom2);
+        derhab.setIexnrovia_dom2(iexnrovia_dom2);
+        derhab.setIexdeptin_dom2(iexdeptin_dom2);
+        derhab.setIexinterior_dom2(iexinterior_dom2);
+        derhab.setIexmanzana_dom2(iexmanzana_dom2);
+        derhab.setIexlote_dom2(iexlote_dom2);
+        derhab.setIexkilometro_dom2(iexkilometro_dom2);
+        derhab.setIexblock_dom2(iexblock_dom2);
+        derhab.setIexetapa_dom2(iexetapa_dom2);
+        derhab.setIextipzona_dom2(iextipzona_dom2);
+        derhab.setIexnomzona_dom2(iexnomzona_dom2);
+        derhab.setIexreferencia_dom2(iexreferencia_dom2);
+        derhab.setIexubigeo_dom2(iexubigeo_dom2);
+        derhab.setIexcenasis(iexcenasis);
+        derhab.setIexcodlar(iexcodlar);
+        derhab.setIexnrotelf(iexnrotelf);
+        derhab.setIexemail(iexemail);
+        derhab.setIexnacion_origen1(iexnacion_origen1);
+        derhab.setIexdepart_origen1(iexdepart_origen1);
+        derhab.setIexprovin_origen1(iexprovin_origen1);
+        derhab.setIexnacion_origen2(iexnacion_origen2);
+        derhab.setIexdepart_origen2(iexdepart_origen2);
+        derhab.setIexprovin_origen2(iexprovin_origen2);
+
+        derechoHabientesService.actualizar(derhab);
+
+        return new ModelAndView("redirect:/derechoHab@" + iexcodtra);
+    }
+
+    @RequestMapping("/detalleDerechoHab@{idTrab}@{iexcoddep}")
+    public ModelAndView detalleDerechoHab(ModelMap model, HttpServletRequest request,
+                                         @PathVariable String idTrab,
+                                         @PathVariable String iexcoddep) {
+        log.info("/detalleDerechoHab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcoddep",iexcoddep);
+
+        Empleado empleado = new Empleado();
+        model.addAttribute("empleado", empleado);
+
+        Empleado emp = empleadoService.recuperarCabecera(idCompania, Integer.parseInt(idTrab));
+        model.addAttribute("emp", emp);
+        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("direccion", emp.getDireccion1());
+        model.addAttribute("telefono", emp.getIexnrotelf());
+        model.addAttribute("email", emp.getIexemail());
+        model.addAttribute("nrodoc", emp.getIexnrodoc());
+        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("fechaMod", emp.getIexfeccmod());
+        model.addAttribute("estado", emp.getIexflgest());
+        model.addAttribute("idComp", idCompania);
+        model.addAttribute("iexlogo", emp.getIexlogo());
+        model.addAttribute("urlLogo", urlLogo);
+
+        String sexo;
+        log.info("emp.getIexcodsex(): " + emp.getIexcodsex());
+
+        if (emp.getIexcodsex() == null) {
+            sexo = "NA";
+        } else {
+            sexo = emp.getIexcodsex();
+        }
+
+        log.info("sexo: " + sexo);
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("lovTipdoc", lovsService.getLovs("3", "%"));
+        model.addAttribute("lovSexo", lovsService.getLovs("50", "%"));
+        model.addAttribute("lovPaisEmisor", lovsService.getLovs("26", "%"));
+        model.addAttribute("lovVincul", lovsService.getLovs("19", "%"));
+        model.addAttribute("lovAcredVincul", lovsService.getLovs("27", "%"));
+        model.addAttribute("lovTipVia", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovTipVia2", lovsService.getLovs("5", "%"));
+        model.addAttribute("lovTipZona2", lovsService.getLovs("6", "%"));
+        model.addAttribute("lovLarDistancia", lovsService.getLovs("29", "%"));
+
+        DerechoHabiente derhab2 = new DerechoHabiente();
+        derhab2.setIexcodcia(idCompania);
+        derhab2.setIexcodtra(Integer.valueOf(idTrab));
+        derhab2.setIexcoddep(Integer.valueOf(iexcoddep));
+
+        DerechoHabiente derhab3=derechoHabientesService.recuperar(derhab2);
+
+        model.addAttribute("derhabx",derhab3);
+        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", derhab3.getIexnacion_origen1()));  // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", derhab3.getIexdepart_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", derhab3.getIexprovin_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
+
+        model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", derhab3.getIexnacion_origen2()));  // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", derhab3.getIexdepart_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", derhab3.getIexprovin_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
+
+        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/detalleDerechoHab");
+    }
+
+    @RequestMapping("/deleteDerechoHab@{idTrab}@{iexcoddep}")
+    public ModelAndView deleteDerechoHab(ModelMap model, HttpServletRequest request,
+                                          @PathVariable String idTrab,
+                                          @PathVariable String iexcoddep) {
+        log.info("/deleteDerechoHab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        log.info("idTrab: " + idTrab);
+        model.addAttribute("idTrab", idTrab);
+        model.addAttribute("iexcoddep",iexcoddep);
+
+        DerechoHabiente derhab = new DerechoHabiente();
+        derhab.setIexcodcia(idCompania);
+        derhab.setIexcodtra(Integer.valueOf(idTrab));
+        derhab.setIexcoddep(Integer.valueOf(iexcoddep));
+
+        derechoHabientesService.eliminar(derhab);
+
+        return new ModelAndView("redirect:/derechoHab@" + idTrab);
+    }
 }
 

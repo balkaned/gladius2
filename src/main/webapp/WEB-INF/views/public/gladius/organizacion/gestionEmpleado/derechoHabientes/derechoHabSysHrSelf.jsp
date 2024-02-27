@@ -91,10 +91,10 @@
                                                             src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null@null@null@null@null"
                                                             alt="" />
                                                         </div>
-                                                        <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} ${LovDerhab.iexnomdep}</h6>
+                                                        <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexnomdep} ${LovDerhab.iexapepatdep} ${LovDerhab.iexapematdep} </h6>
                                                       </a>
                                                   </td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
@@ -106,9 +106,10 @@
                                                       <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                       <div class="dropdown-menu dropdown-menu-end py-2">
                                 					    <a id="dropdownmenutable"  href="#" class="dropdown-item disabled" data-bs-toggle="modal" data-bs-target="#subirDerechoHabFoto${LovDerhab.iexcoddep}" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-camera me-2"></span>Agregar foto</a>
-                                						<a id="dropdownmenutable"  class="dropdown-item disabled" href="#!"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
-                                						<div class="dropdown-divider"></div>
-                                						<a id="dropdownmenutable"  class="dropdown-item disabled" href="#!"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                						<a id="dropdownmenutable"  class="dropdown-item" href="detalleDerechoHab@${idTrab}@${LovDerhab.iexcoddep}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                                        <a id="dropdownmenutable"  class="dropdown-item disabled" href="editarDerechoHab@${idTrab}@${LovDerhab.iexcoddep}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a id="dropdownmenutable"  class="dropdown-item disabled" onclick="return remove();" href="deleteDerechoHab@${idTrab}@${LovDerhab.iexcoddep}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                 					  </div>
                                 					</div>
                                 				  </td>

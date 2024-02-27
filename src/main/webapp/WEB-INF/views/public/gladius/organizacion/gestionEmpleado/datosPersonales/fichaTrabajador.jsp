@@ -1048,7 +1048,6 @@
                                               </select>
                                           </div>
 
-
                                           <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                           	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                           	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
