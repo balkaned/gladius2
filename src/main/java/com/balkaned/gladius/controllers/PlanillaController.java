@@ -127,11 +127,58 @@ public class PlanillaController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
+        model.addAttribute("iexcodreg",codreg);
+        model.addAttribute("iexcodpro",codproceso);
+        model.addAttribute("iexperiodo",periodo);
+
         model.addAttribute("xproplaper",procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso),periodo));
         List<PlaProPeriodo> lista = planillaService.listPlaProper(idCompania,codproceso,periodo,-1,1,"%");
         model.addAttribute("LstPlanillaRes", lista);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaGeneral");
     }
+
+    @RequestMapping("/procesarPlanilla")
+    public ModelAndView procesarPlanilla(ModelMap model, HttpServletRequest request) {
+        log.info("/procesarPlanilla");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+
+        String accion = request.getParameter("accion");
+        String iexcodreg = request.getParameter("iexcodreg");
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String grupopla = request.getParameter("grppla");
+
+        if(accion.equals("INIPRO")){
+            planillaService.iniPlaProper(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,grupopla,user);
+        }
+
+        if(accion.equals("CALFASIST")){
+            planillaService.calificacion_tiempo_mas(idCompania,iexcodpro,iexperiodo,-1,1);
+        }
+
+        if(accion.equals("EXEPRO")){
+            planillaService.iniPlaProper_proc(idCompania,iexcodpro,iexperiodo,-1,1,grupopla,user);
+        }
+
+        model.addAttribute("iexcodreg",iexcodreg);
+        model.addAttribute("iexcodpro",iexcodpro);
+        model.addAttribute("iexperiodo",iexperiodo);
+        model.addAttribute("xproplaper",procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(iexcodpro),iexperiodo));
+
+        List<PlaProPeriodo> lista = planillaService.listPlaProper(idCompania,iexcodpro,iexperiodo,-1,1,"%");
+        model.addAttribute("LstPlanillaRes", lista);
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaGeneral");
+    }
+
 }
 

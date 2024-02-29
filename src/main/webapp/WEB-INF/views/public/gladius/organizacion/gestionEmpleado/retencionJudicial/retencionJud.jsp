@@ -101,7 +101,7 @@
                                 				  <td class="align-middle white-space-nowrap text-center text-1000">${LstRetencionDet.descodpro}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecini}</td>
                                 				  <td class="date align-middle white-space-nowrap fw-semi-bold text-1000 text-center pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecfin}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-tag fs--1 me-2 mb-2">${LstRetencionDet.iexpordesct} %</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${LstRetencionDet.iexpordesct} %</span></td>
                                 				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000">${LstRetencionDet.ieximpfijo}</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">

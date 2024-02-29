@@ -1,9 +1,8 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.PlaProPeriodo;
-import com.balkaned.gladius.dao.PlanillaDAO;
+import com.balkaned.gladius.dao.PlanillaDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -15,11 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("PlanillaDAO")
 @Slf4j
-public class PlanillaDaoImpl implements PlanillaDAO {
+public class PlanillaDaoImpl implements PlanillaDao {
 
     JdbcTemplate template;
 
@@ -538,6 +536,43 @@ public class PlanillaDaoImpl implements PlanillaDAO {
                 return lista;
             }
         });
+    }
+
+    public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
+
+        template.update(" call pl_ini_exe(?,?,?,?,?,?,?) ",
+
+        codcia,
+        idproceso,
+        perpro,
+        codtra,
+        correl,
+        grppla,
+        usu);
+    }
+
+    public void calificacion_tiempo_mas(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl){
+
+        template.update(" call pl_exe_cons_tiempos(?,?,?,?,?,'') ",
+
+        codcia,
+        idproceso,
+        idPeriodo,
+        codtra,
+        correl);
+    }
+
+    public void iniPlaProper_proc(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
+
+        template.update(" call pl_ini_exe_for_proc(?,?,?,?,?,?,?) ",
+
+        codcia,
+        idproceso,
+        perpro,
+        codtra,
+        correl,
+        grppla,
+        usu);
     }
 
 }

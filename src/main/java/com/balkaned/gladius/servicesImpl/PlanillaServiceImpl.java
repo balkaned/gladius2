@@ -2,7 +2,7 @@ package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.PlaProPeriodo;
-import com.balkaned.gladius.dao.PlanillaDAO;
+import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 public class PlanillaServiceImpl implements PlanillaService {
 
     @Autowired
-    PlanillaDAO dao;
+    PlanillaDao dao;
 
     public List<PlaProPeriodo> listPla5ta(Integer codcia, String anio, Integer codtra) {
         return dao.listPla5ta(codcia, anio, codtra);
@@ -46,6 +46,18 @@ public class PlanillaServiceImpl implements PlanillaService {
 
     public List<PlaProPeriodo> listPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt){
         return dao.listPlaProper(codcia,idproceso,perpro,codtra,correl,txt);
+    }
+
+    public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
+        dao.iniPlaProper(codcia,idproceso,perpro,codtra,correl,grppla,usu);
+    }
+
+    public void calificacion_tiempo_mas(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl){
+        dao.calificacion_tiempo_mas(codcia,idproceso,idPeriodo,codtra,correl);
+    }
+
+    public void iniPlaProper_proc(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
+        dao.iniPlaProper_proc(codcia,idproceso,perpro,codtra,correl,grppla,usu);
     }
 
 }

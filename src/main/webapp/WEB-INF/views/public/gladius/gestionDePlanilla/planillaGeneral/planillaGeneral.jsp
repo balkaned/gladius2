@@ -140,7 +140,7 @@
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />
 
                         <div class="col-sm-6 col-md-8">
-                        	  <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>-->
+                        	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
                         	  <select name="iexcodreg" id="iexcodreg" class="form-select" required >
                         		  <option value="" selected >Seleccionar regimen</option>
                         		  <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">

@@ -99,7 +99,7 @@
                                               <td class="total align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstPrestCab.destippres}</span></td>
                                               <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.ieximpbru}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.iexnrocuotas}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>
+                                              <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>
                                               <td class="date align-middle white-space-nowrap fs--1 fw-bold text-1000 text-center pe-4">${LstPrestCab.ieximptotal}</td>
                                               <td class="align-middle white-space-nowrap text-start text-700">${LstPrestCab.iexglosa}</td>
 

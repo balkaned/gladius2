@@ -115,11 +115,13 @@
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso de Planilla</label>
                                                 <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
+                                                    <option value="">Seleccionar</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo</label>
                                                 <select class="form-select" name="iexperiodo" id="iexperiodo" required >
+                                                    <option value="">Seleccionar</option>
                                                 </select>
                                             </div>
 
