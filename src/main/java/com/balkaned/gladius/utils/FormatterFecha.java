@@ -105,4 +105,24 @@ public class FormatterFecha {
             return null;
         }
     }
+
+    public String fechaFormatterIngltoEspConHora(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
 }

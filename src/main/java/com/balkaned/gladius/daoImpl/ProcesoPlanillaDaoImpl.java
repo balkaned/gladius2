@@ -281,11 +281,25 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     p.setFlgestado(rs.getString("flgestado"));
                     p.setDesestado(rs.getString("desestado"));
                     p.setIexfecope(rs.getString("iexfecope"));
+
                     p.setTimerfecini_iniciar(rs.getString("timeini_iniciar"));
+                    FormatterFecha f = new FormatterFecha();
+                    p.setTimerfecini_iniciar(f.fechaFormatterIngltoEspConHora(p.getTimerfecini_iniciar()));
+
                     p.setTimerfecfin_iniciar(rs.getString("timefin_iniciar"));
+                    FormatterFecha f2 = new FormatterFecha();
+                    p.setTimerfecfin_iniciar(f2.fechaFormatterIngltoEspConHora(p.getTimerfecfin_iniciar()));
+
                     p.setTimerimp_iniciar(rs.getDouble("timenroimp"));
+
                     p.setTimerfecini_proc(rs.getString("timeini_proc"));
+                    FormatterFecha f3 = new FormatterFecha();
+                    p.setTimerfecini_proc(f3.fechaFormatterIngltoEspConHora(p.getTimerfecini_proc()));
+
                     p.setTimerfecfin_proc(rs.getString("timefin_proc"));
+                    FormatterFecha f4 = new FormatterFecha();
+                    p.setTimerfecfin_proc(f4.fechaFormatterIngltoEspConHora(p.getTimerfecfin_proc()));
+
                     p.setTimerimp_proc(rs.getDouble("timenroimp_proc"));
                     p.setDesproceso(rs.getString("prodespro"));
 
@@ -302,6 +316,24 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 return p;
             }
         });
+    }
+
+    public void actualizarProper(ProcesoPeriodo pperiodo){
+
+        template.update(" update iexproperiodo  set  iexpermes=?, iexfecini=TO_DATE(?,'DD/MM/YYYY'), iexfecfin=TO_DATE(?,'DD/MM/YYYY'), timerfecini=TO_DATE(?,'DD/MM/YYYY'), timerfecfin=TO_DATE(?,'DD/MM/YYYY'), iexfecpago=TO_DATE(?,'DD/MM/YYYY'), flgestado=?, iexfecope=current_date, iexanio=?, iexfeccerti=TO_DATE(?,'DD/MM/YYYY')  where  iexcodcia=? and iexcodpro=? and  iexnroper=? ",
+
+        pperiodo.getIexpermes(),
+        pperiodo.getIexfecini(),
+        pperiodo.getIexfecfin(),
+        pperiodo.getTimerfecini(),
+        pperiodo.getTimerfecfin(),
+        pperiodo.getIexfecpago(),
+        pperiodo.getFlgestado(),
+        pperiodo.getIexanio(),
+        pperiodo.getIexfeccerti(),
+        pperiodo.getIexcodcia(),
+        pperiodo.getIexcodpro(),
+        pperiodo.getIexnroper());
     }
 
 }

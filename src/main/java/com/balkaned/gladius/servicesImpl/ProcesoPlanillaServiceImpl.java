@@ -35,5 +35,8 @@ public class ProcesoPlanillaServiceImpl implements ProcesoPlanillaService {
     public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo){
         return dao.recuperarPeriodo2(codcia,idproceso,pperiodo);
     }
+    public void actualizarProper(ProcesoPeriodo pperiodo){
+        dao.actualizarProper(pperiodo);
+    }
 
 }

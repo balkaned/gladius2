@@ -13,5 +13,6 @@ public interface ProcesoPlanillaDao {
     public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes);
     public void insertarProper(ProcesoPeriodo pperiodo);
     public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo);
+    public void actualizarProper(ProcesoPeriodo pperiodo);
 
 }

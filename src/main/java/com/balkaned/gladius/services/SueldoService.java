@@ -19,5 +19,7 @@ public interface SueldoService {
     public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto);
     public void actualizarEmpDatvar(EmpDatvar empdatvar);
     public void eliminarEmpDatvar(EmpDatvar empdatvar);
+    public List<Concepto> ListConcepProVar(Integer codcia, Integer codpro, String Tipo);
+    public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl);
 
 }

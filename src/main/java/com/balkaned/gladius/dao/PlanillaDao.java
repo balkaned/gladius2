@@ -17,4 +17,9 @@ public interface PlanillaDao {
     public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
     public void calificacion_tiempo_mas(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);
     public void iniPlaProper_proc(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+    public void timeIniexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+    public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl, Integer thread);
+    public void guardarNomina2020(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);
+    public void timeFinexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+    public void delPlaProper(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
 }

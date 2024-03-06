@@ -288,4 +288,83 @@ public class SueldosDaoImpl implements SueldoDao {
                 empdatvar.getIexcodcon());
 
     }
+
+    public List<Concepto> ListConcepProVar(Integer codcia, Integer codpro, String Tipo) {
+
+        String sql = "select  " +
+                "coocodcon, coodescon " +
+                "from iexciaxcon, iexconcepto , iexproxconcepto where " +
+                " procodcon =  iexcodcon and  iexcodcia=" + codcia + " and  " +
+                "iexcodcon=coocodcon and iextipreg='" + Tipo + "'  and procodpro =" + codpro + " ";
+
+        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
+
+            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Concepto> lista = new ArrayList<Concepto>();
+
+                while (rs.next()) {
+                    Concepto con = new Concepto();
+
+                    con.setCodConcepto(rs.getString("coocodcon"));
+                    con.setDesConcepto(rs.getString("coodescon"));
+
+                    lista.add(con);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl) {
+
+        String sql = " select  " +
+                "v.iexcodcia," +
+                "v.iexcodpro, " +
+                "v.iexnroper, " +
+                "v.iexcorrel, " +
+                "v.iexcodtra, " +
+                " a.iexapepat||' '||a.iexapemat||' '||a.iexnomtra as desnomtra, " +
+                "v.iexcodcon, " +
+                "c.coodescon, " +
+                "v.iexvalcon, " +
+                "v.iexflgest, " +
+                "v.iexusucrea, " +
+                "v.iexfeccrea, " +
+                "v.iexusumod, " +
+                "v.iexfecmod " +
+                "from iexconcepto c , iexdatavar v , iexempleado a " +
+                "where " +
+                "v.iexcodcia = " + cia + " and  " +
+                "v.iexcodpro= " + codpro + "  and " +
+                "v.iexnroper = '" + nroper + "' and " +
+                "v.iexcorrel = " + correl + "  and v.iexcodcon = c.coocodcon and a.iexcodcia = v.iexcodcia  and  a.iexcodtra = v.iexcodtra order by 6 asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<EmpDatvar>>() {
+
+            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<EmpDatvar> lista = new ArrayList<EmpDatvar>();
+
+                while (rs.next()) {
+                    EmpDatvar con = new EmpDatvar();
+
+                    con.setIexcodcia(rs.getInt("iexcodcia"));
+                    con.setIexcodpro(rs.getInt("iexcodpro"));
+                    con.setIexnroper(rs.getString("iexnroper"));
+                    con.setIexcodtra(rs.getInt("iexcodtra"));
+                    con.setNomdestra(rs.getString("desnomtra"));
+                    con.setIexcorrel(rs.getInt("iexcorrel"));
+                    con.setIexcodcon(rs.getString("iexcodcon"));
+                    con.setCoodescon(rs.getString("coodescon"));
+                    con.setIexvalcon(rs.getDouble("iexvalcon"));
+                    con.setIexusucrea(rs.getString("iexusucrea"));
+                    con.setIexusumod(rs.getString("iexusumod"));
+                    con.setIexfeccrea(rs.getString("iexfeccrea"));
+                    con.setIexfecmod(rs.getString("iexfecmod"));
+
+                    lista.add(con);
+                }
+                return lista;
+            }
+        });
+    }
 }

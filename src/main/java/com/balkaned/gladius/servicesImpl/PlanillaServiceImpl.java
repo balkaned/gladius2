@@ -60,4 +60,21 @@ public class PlanillaServiceImpl implements PlanillaService {
         dao.iniPlaProper_proc(codcia,idproceso,perpro,codtra,correl,grppla,usu);
     }
 
+    public void timeIniexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl){
+        dao.timeIniexe(codcia,idproceso,perpro,codtra,correl);
+    }
+
+    public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl, Integer thread){
+        dao.procesarPla2020(Persona,codcia,idproceso,idPeriodo,codtra,correl,thread);
+    }
+    public void guardarNomina2020(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl){
+        dao.guardarNomina2020(codcia,idproceso,idPeriodo,codtra,correl);
+    }
+    public void timeFinexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl){
+        dao.timeFinexe(codcia,idproceso,perpro,codtra,correl);
+    }
+
+    public void delPlaProper(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
+        dao.delPlaProper(codcia,idproceso,perpro,codtra,correl,grppla,usu);
+    }
 }
