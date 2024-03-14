@@ -25,4 +25,5 @@ public class EmpDatvar {
     private String iexfeccrea;
     private String iexusumod;
     private String iexfecmod;
+    private String iexcodtra2;
 }

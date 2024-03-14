@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository("SueldoDao")
@@ -366,5 +367,37 @@ public class SueldosDaoImpl implements SueldoDao {
                 return lista;
             }
         });
+    }
+
+    public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl) {
+
+        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=?  ",
+
+                cia,
+                codpro,
+                nroper,
+                correl);
+    }
+
+    public void insertarDatvarmas(List<EmpDatvar> empdatvar) {
+
+        for(EmpDatvar empdat:empdatvar) {
+
+            template.update("  insert into iexdatavar ( " +
+                            "		 iexcodcia, iexcodpro, iexnroper, iexcorrel, iexcodtra, iexcodcon, iexvalcon , iexusucrea, iexfeccrea, iexfecmod, iexusumod" +
+                            "		 ) values( " +
+                            "		 ?,    ?,     ?,     ?,     ? ,     ? ,     ?  , ? , current_timestamp, current_timestamp, ? " +
+                            "		 ) ",
+
+                    empdat.getIexcodcia(),
+                    empdat.getIexcodpro(),
+                    empdat.getIexnroper(),
+                    empdat.getIexcorrel(),
+                    empdat.getIexcodtra(),
+                    empdat.getIexcodcon(),
+                    empdat.getIexvalcon(),
+                    empdat.getIexusucrea(),
+                    empdat.getIexusucrea());
+        }
     }
 }

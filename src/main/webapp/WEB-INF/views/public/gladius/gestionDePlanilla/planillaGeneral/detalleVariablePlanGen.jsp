@@ -14,24 +14,24 @@
 
   <script>
      $(document).ready(function() {
-           $('#lov_compania').change(function(event){
-               $.ajaxSetup({cache:false});
-                    $.ajax({
-                      url: "getLovsLOVCODTRAxUSU",
-                      data: {
-                            "accion": "getLovsLOVCODTRAxUSU",
-                            "iexcodcia": $("#lov_compania").val()
-                      },
-                      success: function (data) {
-                           var opt = "";
-                           opt += "<option value='' >Seleccionar trabajador</option>";
-                           for (var i in data) {
-                                opt += "<option value="+data[i].iexcodtra+" > "+data[i].iexapepat+" "+data[i].iexapemat+" "+data[i].iexnomtra+" - "+data[i].iexfecing+" </option> ";
-                           }
-                          $("#iexcodtra").html(opt);
-                      }
-                    });
-           });
+       $('#lov_compania').change(function(event){
+           $.ajaxSetup({cache:false});
+                $.ajax({
+                  url: "getLovsLOVCODTRAxUSU",
+                  data: {
+                        "accion": "getLovsLOVCODTRAxUSU",
+                        "iexcodcia": $("#lov_compania").val()
+                  },
+                  success: function (data) {
+                       var opt = "";
+                       opt += "<option value='' >Seleccionar trabajador</option>";
+                       for (var i in data) {
+                            opt += "<option value="+data[i].iexcodtra+" > "+data[i].iexapepat+" "+data[i].iexapemat+" "+data[i].iexnomtra+" - "+data[i].iexfecing+" </option> ";
+                       }
+                      $("#iexcodtra").html(opt);
+                  }
+                });
+       });
      });
 
      function remove() {
@@ -41,6 +41,45 @@
         } else {
             return false;
         }
+     }
+
+     function actualizar(id,iexcodtra,iexcodpro,iexperiodo,iexcodcon,iexcodreg) {
+
+         var opcion = confirm("Esta seguro de actualizar el Registro?");
+         if (opcion == true) {
+             var valorActualizar=$("#"+id+"_valor").val();
+             var id2="dropdownmenutable_"+id;
+             document.getElementById(id2).href="actualizarValorTrabConcept@"+iexcodtra+"@"+iexcodpro+"@"+iexperiodo+"@"+iexcodcon+"@1@"+iexcodreg+"@"+valorActualizar;
+             //return true;
+         } else {
+             return false;
+         }
+     }
+
+     function enviaForm(variable){
+
+          if(variable==14){
+            var opcion = confirm("Esta seguro de eliminar toda la tabla?");
+
+            if (opcion == true) {
+               document.getElementById("accion").value="DELMASVAR";
+               document.getElementById ("formVariable").encoding="multipart/form-data";
+               document.getElementById("uploadFile").value="text";
+               document.getElementById("formVariable").submit();
+               return true;
+            } else {
+               return false;
+            }
+          }else if(variable==15){
+              document.getElementById("accion").value="INSTRAVAR";
+              document.getElementById("uploadFile").value="text";
+              document.getElementById("formVariable").submit();
+          }else if(variable==13){
+              document.getElementById ("formVariable").encoding="multipart/form-data";
+              document.getElementById("accion").value="UPXLSVAR";
+              //document.getElementById("uploadFile").value="text";
+              document.getElementById("formVariable").submit();
+          }
      }
   </script>
 
@@ -71,7 +110,7 @@
               <div class="row g-5">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="asignarRolxCiaIns" novalidate >
+                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="asginarTrabPlanConcept" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -104,7 +143,7 @@
                         <c:if test="${requestScope.xproplaper.flgestado eq '1'  ||  requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
                             <div class="col-sm-6 col-md-7">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                  <select name="iexcodtra" id="iexcodtra" class="form-select" required>
+                                  <select name="slc_codtra" id="slc_codtra" class="form-select" required>
                                       <option value="" selected >Seleccionar trabajador</option>
                                       <c:forEach var="LstPlanillaRes" items="${requestScope.LstPlanillaRes}">
                                           <option value="${LstPlanillaRes.iexcodtra}">[${LstPlanillaRes.iexcodtra}] - ${LstPlanillaRes.destra}</option>
@@ -113,7 +152,7 @@
                             </div>
                             <div class="col-sm-6 col-md-7">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                  <select name="iexcodtra" id="iexcodtra" class="form-select" required>
+                                  <select name="slc_codcon" id="slc_codcon" class="form-select" required>
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovConcepProVar" items="${requestScope.lovConcepProVar}">
                                           <option value="${lovConcepProVar.codConcepto}">[${lovConcepProVar.codConcepto}] - ${lovConcepProVar.desConcepto}</option>
@@ -122,11 +161,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe</label>
-                                <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="" required/>
+                                <input class="form-control" name="txt_importe" id="txt_importe" maxlength="15" type="text" placeholder="1200.00" value="" required/>
                             </div>
                             <div class="col-sm-6 col-md-8">
                             	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
-                            	<input class="form-control" name="desfile" type="file" placeholder="" />
+                            	<input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
                             </div>
                         </c:if>
 
@@ -137,10 +176,10 @@
                         </div>
                         <div class="col-12 gy-6">
                             <div class="col-12">
-                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="#"><span class="fas fa-reply me-2"></span>Atras</a>
+                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
-                                <a class="btn btn-phoenix-success btn-sm " href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
-                                <a class="btn btn-phoenix-danger btn-sm " href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                                <a class="btn btn-phoenix-secondary btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
+                                <a class="btn btn-phoenix-danger btn-sm " onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
 
                                 <div class="btn-group mb-1 me-1 ms-1 mt-1">
                                     <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
@@ -169,9 +208,30 @@
                         	  </form>
                         	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                         		  <button class="btn btn-sm btn-phoenix-primary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                         	  </div>
                         	</div>
+                          </div>
+                        </div>
+                        <div class="modal fade" id="confirmModalCargarExcel" tabindex="-1">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border">
+                              <form id="addEventForm" autocomplete="off">
+                                <div class="modal-header border-200 p-4">
+                                  <h5 class="modal-title text-1000 fs-4 lh-sm">Importar Excel</h5>
+                                  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                </div>
+                                <div class="modal-body pt-4 pb-2 px-4">
+                                  <div class="mb-3">
+                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea importar el excel?</label>
+                                  </div>
+                                </div>
+                              </form>
+                              <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                  <button class="btn btn-sm btn-phoenix-secondary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                  <button class="btn btn-sm btn-success px-9  my-0 mt-1" onclick="enviaForm('13')" type="submit" data-bs-dismiss="modal" ><span class="fa-solid fa-upload fs--1 me-2"></span>Subir</button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </form>
@@ -179,19 +239,19 @@
                  </div>
               </div>
 
-              <div class="mt-4" id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10,"pagination":true}'>
                   <div class="mb-3">
-                  	<div class="row g-3">
-                  	  <div class="col-auto">
-                  		<div class="search-box">
-                  		  <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                  			<input class="form-control search-input search" type="search" placeholder="Search trabajador" aria-label="Search"/>
-                  			<span class="fas fa-search search-box-icon"></span>
-                  		  </form>
-                  		</div>
-                  	  </div>
+                    <div class="g-3">
+                      <div class="col-auto">
+                        <div class="search-box">
+                          <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                            <input class="form-control search-input search" type="search" placeholder="Search trabajador" aria-label="Search"/>
+                            <span class="fas fa-search search-box-icon"></span>
+                          </form>
+                        </div>
+                      </div>
 
-                      <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10, "pagination":true }' >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -201,10 +261,10 @@
                                     <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                                   </div>
                                 </th>
-                                <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order">ID</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">TRABAJADOR</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ID CONCEPT</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DESC CONCEPT</th>
+                                <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="trab">TRABAJADOR</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">ID CONCEPT</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept">DESC CONCEPT</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" >VALOR</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" ></th>
                               </tr>
@@ -217,12 +277,12 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${fdatavar.iexcodtra}</a></td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.nomdestra}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
-                                    <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">
-                                         <input class="form-control" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${fdatavar.iexcodtra}</a></td>
+                                    <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.nomdestra}</td>
+                                    <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
+                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
+                                         <input class="form-control" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
                                          <c:if test="${requestScope.xproplaper.flgestado eq '3' }" > readonly </c:if> >
                                     </td>
 
@@ -232,11 +292,12 @@
                                          data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                          <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                          <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <!--<div class="dropdown-divider"></div>-->
-                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarRolXciaUsu@${usuxciaxrol.codusu}@${usuxciaxrol.codrol}@${usuxciaxrol.codcia}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                              <a id="dropdownmenutable_${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatavar.iexcodtra}_${fdatavar.iexcodcon}','${fdatavar.iexcodtra}','${requestScope.iexcodpro}','${requestScope.iexperiodo}','${fdatavar.iexcodcon}','${requestScope.iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                              <div class="dropdown-divider"></div>
+                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                          </div>
                                        </div>
-                                     </td>
+                                    </td>
                                   </tr>
                                 </c:forEach>
                             </tbody>

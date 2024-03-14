@@ -217,7 +217,6 @@ public class UsuariosController {
 
         model.addAttribute("idUsu", idUsu);
         model.addAttribute("usuxciaxrol", usuxCompaniaService.listar(Integer.valueOf(idUsu)));
-        //usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idUsu));
         model.addAttribute("listacia", companiaService.listarTodo());
         model.addAttribute("listarol", rolService.listarRoles());
 

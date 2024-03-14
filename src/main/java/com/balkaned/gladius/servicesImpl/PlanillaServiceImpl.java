@@ -77,4 +77,12 @@ public class PlanillaServiceImpl implements PlanillaService {
     public void delPlaProper(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu){
         dao.delPlaProper(codcia,idproceso,perpro,codtra,correl,grppla,usu);
     }
+
+    public PlaProPeriodo listPlaProperTra(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl){
+        return dao.listPlaProperTra(codcia,idproceso,perpro,codtra,correl);
+    }
+
+    public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon){
+        return dao.listProperconConZeros(codcia,idproceso,perpro,codtra,correl,flgcon);
+    }
 }

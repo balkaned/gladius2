@@ -22,6 +22,8 @@ public interface PlanillaService {
     public void guardarNomina2020(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);
     public void timeFinexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
     public void delPlaProper(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+    public PlaProPeriodo listPlaProperTra(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+    public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
 
 }
 

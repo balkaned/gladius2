@@ -348,8 +348,8 @@
                                         </div>
                                         <a class="text-decoration-none flex-1" href="#">
                                             <h5>${listCumple.iexnomtra} ${listCumple.iexapepat}<span class="badge badge-phoenix ms-2 fs--2 badge-phoenix-primary">${listCumple.edad} años</span><span class="fa-solid fa-cake-candles text-warning me-2 ms-2"></span></h5>
-                                            <p class="text-700 fw-semi-bold fs--1 mb-0 lh-sm line-clamp-1">Fec Nac: ${listCumple.iexfecnac}, Sexo: ${listCumple.sexo}</p>
-                                            <p><a class="text-700 fs--1 me-2 text-primary" href="detalleEmpl@${listCumple.iexcodtra}">codtra: #${listCumple.iexcodtra}</a></p>
+                                            <p class="text-700 fw-semi-bold fs--1 mb-0 lh-sm line-clamp-1">Fec nac: ${listCumple.iexfecnacFormat}, Sexo: ${listCumple.sexo}</p>
+                                            <p><a class="text-700 fs--1 me-2 text-primary" target="_blank" href="detalleEmpl@${listCumple.iexcodtra}">codtra: #${listCumple.iexcodtra}</a></p>
                                         </a>
                                       </div>
 

@@ -76,4 +76,12 @@ public class SueldoServiceImpl implements SueldoService {
         return dao.obtenerEmpResvar(cia,codpro,nroper,correl);
     }
 
+    public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl){
+        dao.eliminarAllDatvar(cia,codpro,nroper,correl);
+    }
+
+    public void insertarDatvarmas(List<EmpDatvar> empdatvar){
+        dao.insertarDatvarmas(empdatvar);
+    }
+
 }

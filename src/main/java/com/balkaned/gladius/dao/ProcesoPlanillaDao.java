@@ -1,10 +1,8 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.AsientoContableCab;
-import com.balkaned.gladius.beans.PlaProPeriodo;
-import com.balkaned.gladius.beans.ProcesoPeriodo;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.beans.*;
+
 import java.util.List;
 
 public interface ProcesoPlanillaDao {
@@ -14,5 +12,6 @@ public interface ProcesoPlanillaDao {
     public void insertarProper(ProcesoPeriodo pperiodo);
     public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo);
     public void actualizarProper(ProcesoPeriodo pperiodo);
+    public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro);
 
 }

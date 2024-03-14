@@ -61,7 +61,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                                                            @PathVariable String idComp,
                                                            @PathVariable String idTrab,
                                                            @PathVariable String carpetaLectura,
-                                                           @RequestParam("uploadFile") MultipartFile uploadFile) throws ServletException, IOException, NoSuchFileException, UncheckedIOException {
+                                                           @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
         log.info("\n\n\n/AWSorFTP_flgsource_MultipartUpload");
 
         //Parametros que vienen por GET url

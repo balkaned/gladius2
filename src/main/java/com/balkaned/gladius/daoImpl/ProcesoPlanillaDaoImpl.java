@@ -1,9 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.beans.AsientoContableCab;
-import com.balkaned.gladius.beans.PlaProPeriodo;
-import com.balkaned.gladius.beans.ProcesoPeriodo;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
@@ -334,6 +331,33 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
         pperiodo.getIexcodcia(),
         pperiodo.getIexcodpro(),
         pperiodo.getIexnroper());
+    }
+
+    public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro) {
+
+        String sql="  select  " +
+                "  procodpro, bolproceso, bolproindividual, bolproresumen , rep_parameter  , " +
+                "  rep_ingresos ,   " +
+                "  rep_descuentos, " +
+                "  rep_aportes  " +
+                "  from iexprocesosxcia where procodcia ="+codcia+" and procodpro ="+codpro+"  ";
+
+        return (ProcesoPlanillaxCia) template.query(sql, new ResultSetExtractor<ProcesoPlanillaxCia>() {
+            public ProcesoPlanillaxCia extractData(ResultSet rs) throws SQLException, DataAccessException{
+                ProcesoPlanillaxCia p = new ProcesoPlanillaxCia();
+
+                while(rs.next()) {
+                    p.setBolproceso(rs.getString("bolproceso"));
+                    p.setBolproindividual(rs.getString("bolproindividual"));
+                    p.setBolproresumen(rs.getString("bolproresumen"));
+                    p.setRep_parameter(rs.getString("rep_parameter"));
+                    p.setRep_ingresos(rs.getString("rep_ingresos"));
+                    p.setRep_descuentos(rs.getString("rep_descuentos"));
+                    p.setRep_aportes(rs.getString("rep_aportes"));
+                }
+                return p;
+            }
+        });
     }
 
 }

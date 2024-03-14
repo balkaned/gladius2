@@ -18,6 +18,7 @@ public class Cumpleanos {
     private String iexapepat;
     private String iexapemat;
     private String iexfecnac;
+    private String iexfecnacFormat;
     private String mesActual;
     private int edad;
 

@@ -7,13 +7,11 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
-import com.balkaned.gladius.beans.Compania;
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.FileImageLegajo;
-import com.balkaned.gladius.beans.ParametroReport;
+import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.services.CompaniaService;
 import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.LegajoService;
+import com.balkaned.gladius.services.ProcesoPlanillaService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
@@ -61,6 +59,9 @@ public class AWS_FTP_FlgSourceController {
 
     @Autowired
     LegajoService legajoService;
+
+    @Autowired
+    ProcesoPlanillaService procesoPlanillaService;
 
     @SneakyThrows
     @RequestMapping(value = "/AWSorFTP_flgsource@{accion}@{idComp}@{idTrab}@{urlLogo}@{idDerHab}@{nombreJasper}@{parametrosJasper}@{carpetaLectura}@{idGrpfileLegajo}@{idImageLegajo}")
@@ -407,40 +408,45 @@ public class AWS_FTP_FlgSourceController {
                     InputStream inputStreamlogo = null;
                     InputStream inputStreamRep = null;
 
-                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="") {
-                        Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
+                    // Obtiene fot empleado y logo solo para FichaTrabajador
+                    if(nombreJasper.equals("FichaTrabajador")) {
+                        if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
+                            Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
 
-                        if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
-                            logo = "cia.jpg";
-                        } else {
-                            logo = ciainfo.getUrlLogo();
-                        }
+                            if (ciainfo.getUrlLogo() == null || ciainfo.getUrlLogo().equals("")) {
+                                logo = "cia.jpg";
+                            } else {
+                                logo = ciainfo.getUrlLogo();
+                            }
 
-                        if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
-                            fotoemp = "fotoemp.png";
-                        } else {
-                            fotoemp = empleado.getIexlogo();
+                            if (empleado.getIexlogo() == null || empleado.getIexlogo().equals("")) {
+                                fotoemp = "fotoemp.png";
+                            } else {
+                                fotoemp = empleado.getIexlogo();
+                            }
                         }
                     }
 
-                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="") {
+                    // Obtiene fot empleado y logo solo para FichaTrabajador
+                    if(nombreJasper.equals("FichaTrabajador")) {
+                        if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
 
-                        fileName = codciax + "/fotoemp/" + fotoemp;
-                        credentials = new BasicAWSCredentials(key_name, passPhrase);
-                        S3Object o = null;
-                        s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        o = s3.getObject(bucket_name, fileName);
-                        inputStreamfotoemp = o.getObjectContent();
-                        log.info("Obtiene FotoEmpl Path: " + fileName);
+                            fileName = codciax + "/fotoemp/" + fotoemp;
+                            credentials = new BasicAWSCredentials(key_name, passPhrase);
+                            S3Object o = null;
+                            s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                            o = s3.getObject(bucket_name, fileName);
+                            inputStreamfotoemp = o.getObjectContent();
+                            log.info("Obtiene FotoEmpl Path: " + fileName);
 
-
-                        AmazonS3 s4 = null;
-                        S3Object o2 = null;
-                        fileName = "img/" + logo;
-                        s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        o2 = s4.getObject(bucket_name, fileName);
-                        inputStreamlogo = o2.getObjectContent();
-                        log.info("Obtiene Logo Path: " + fileName);
+                            AmazonS3 s4 = null;
+                            S3Object o2 = null;
+                            fileName = "img/" + logo;
+                            s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                            o2 = s4.getObject(bucket_name, fileName);
+                            inputStreamlogo = o2.getObjectContent();
+                            log.info("Obtiene Logo Path: " + fileName);
+                        }
                     }
 
                     AmazonS3 s5 = null;
@@ -454,20 +460,50 @@ public class AWS_FTP_FlgSourceController {
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
-                    parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                    //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
 
-                    if(idTrabx!=null || !idTrabx.equals("") || idTrabx!="")  {
-                        parametros.put("P_LOGO", inputStreamlogo);
-                        parametros.put("P_FOTO", inputStreamfotoemp);
+                    // Añade parametros solo para FichaTrabajador
+                    if(nombreJasper.equals("FichaTrabajador")) {
+                        if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
+                            parametros.put("P_LOGO", inputStreamlogo);
+                            parametros.put("P_FOTO", inputStreamfotoemp);
+                        }
                     }
 
-                    //Agregamos mas parametros al Reporte que vienen desde la url
+                    // Agregamos mas parametros al Reporte que vienen desde la url
                     if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
                             log.info("item.getValorParametro(): " + item.getValorParametro());
 
-                            parametros.put(item.getNombreParametro(), item.getValorParametro());
+                            parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
+                        }
+                    }
+
+                    // Parámetro Subreporte solo para BoletaEmpleados
+                    if (nombreJasper.equals("BoletaEmpTra")) {
+                        for (ParametroReport item2 : lspreport) {
+                            log.info("item.getNombreParametro(): " + item2.getNombreParametro());
+                            log.info("item.getValorParametro(): " + item2.getValorParametro());
+                            if(item2.getNombreParametro().equals("P_CODPRO")) {
+                                log.info("Ingreso if cuando parametro es P_CODPRO");
+
+                                ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
+
+                                InputStream inputStreamSubReport = null;
+                                String reportejaspSubReport=pro.getRep_parameter().trim();
+                                log.info("reportejaspSubReport: "+pro.getRep_parameter());
+
+                                AmazonS3 s7 = null;
+                                S3Object o7 = null;
+                                s7 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/BoletaEmpTra.jasper";
+                                o7 = s7.getObject(bucket_name, fileName);
+                                inputStreamSubReport = o7.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                                parametros.put("SUBREPORT_DIR", inputStreamSubReport);
+                            }
                         }
                     }
 

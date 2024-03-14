@@ -5,6 +5,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.dao.UsuxCompaniaDao;
+import com.balkaned.gladius.utils.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -79,7 +80,11 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
                     usuxcia.setCodrol(rs.getInt("codrol"));
                     usuxcia.setDesrol(rs.getString("desrol"));
                     usuxcia.setUsucreades(rs.getString("usucrea"));
+
                     usuxcia.setFeccrea(rs.getString("feccrea"));
+                    FormatterFecha f = new FormatterFecha();
+                    usuxcia.setFeccrea(f.fechaFormatterIngltoEsp(usuxcia.getFeccrea()));
+
                     usuxcia.setUsumod(rs.getInt("usumod"));
                     usuxcia.setFecmod(rs.getString("fecmod"));
                     usuxcia.setCodusu(rs.getInt("codusu"));

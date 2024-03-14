@@ -168,7 +168,7 @@
                                   </div>
                                 </td>
                                 <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.descia}</td>
-                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${usuxciaxrol.desrol}</span></td>
+                                <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${usuxciaxrol.desrol}</span></td>
                                 <td class="total align-middle text-center fw-semi-bold text-1000 ps-5">${usuxciaxrol.codtra}</td>
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.destra}</td>
                                 <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${usuxciaxrol.usucreades} <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${usuxciaxrol.feccrea}</td>

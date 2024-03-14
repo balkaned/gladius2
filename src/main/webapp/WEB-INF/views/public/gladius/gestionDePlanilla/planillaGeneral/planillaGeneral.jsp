@@ -237,10 +237,6 @@
           $("#alerts").hide(6000);
          }, 3000);
      }
-
-     $(document).ready(function(){
-
-     });
   </script>
 
   <body>
@@ -373,7 +369,7 @@
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-2"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecini}</td>
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecfin}</td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ">${List_Procesos.iexfecope}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${List_Procesos.desestado}</span></td>
+                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${List_Procesos.desestado}</span></td>
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">
                                          <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
@@ -486,7 +482,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                    <button class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <a class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
                     <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModal();" type="submit"><span class="ms-2">Guardar Periodo</span></button>
               </div>
@@ -568,7 +564,7 @@
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                      <button class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                      <a class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                       <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
                       <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>
                 </div>
