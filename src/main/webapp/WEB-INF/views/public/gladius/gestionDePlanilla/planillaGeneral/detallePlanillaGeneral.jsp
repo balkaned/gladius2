@@ -94,22 +94,17 @@
 
             document.getElementById("iexcodtra").value=trab ;
             document.getElementById("frmplaserv").submit();
-            //alert("ejecuta "+variable+" , trab:"+trab)
         }
 
         function consulBol(codtra){
-            //document.getElementById("frmplaserv").submit();
             document.getElementById("accion").value="VERBOLTRA";
             document.getElementById("iexcodtra").value=codtra ;
-            //alert("codtra :"+codtra);
             document.getElementById("frmplaserv").submit();
         }
 
         function verdetcon(codtra){
-            //document.getElementById("frmplaserv").submit();
             document.getElementById("accion").value="VERDETCONCEP";
             document.getElementById("iexcodtra").value=codtra ;
-            //alert("codtra :"+codtra);
             document.getElementById("frmplaserv").submit();
             myWindow = window.open("", "myWindow", "width=200,height=100");
         }
@@ -136,8 +131,6 @@
         }
 
         function generarBoleta(iexcodpro,iexcodtra,iexperiodo,iexcorrel,xgrppla,iexcodreg){
-            //alert("GenerarBoleta");
-
             $.ajax({
             	 url: "traerDatosDeBoleta",
             	 data: {
@@ -209,6 +202,42 @@
 
             document.getElementById("botonDescargarBoletaTrab").href="AWSorFTP_flgsource@verReportePDF@${idComp}@"+codtra+"@null@null@BoletaEmpTra@"+params+"@null@null@null";
         }
+
+        function descargarReporte5ta(){
+            var codtra = $("#idTrabBolHidden").val();
+            var iexcodpro = $("#iexcodpro").val();
+            var iexperiodo = $("#iexperiodo").val();
+            var iexcorrel = $("#iexcorrel").val();
+
+            var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
+
+            document.getElementById("botonDescargarRep5ta").href="AWSorFTP_flgsource@verReportePDF@${idComp}@"+codtra+"@null@null@Boleta5taper@"+params+"@null@null@null";
+        }
+
+        function eliminarPlanTrab(){
+            var iexcodpro = $("#iexcodpro").val();
+            var codtra = $("#idTrabBolHidden").val();
+            var iexperiodo = $("#iexperiodo").val();
+            var iexcorrel = $("#iexcorrel").val();
+            var xgrppla = $("#grppla").val();
+            var iexcodreg = $("#iexcodreg").val();
+
+            $.ajax({
+                 url: "botonEliminarPlanTrab",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": codtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla
+                 },
+                 success: function (data) {
+                     alert("Trabajador eliminado exitosamente!");
+                     //document.getElementById("botonEliminarPlanTrab").href="listarDetallePlanillaGen@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo;
+                     location.href="listarDetallePlanillaGen@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo+"";
+                 }
+            });
+        }
     </script>
 
     <body>
@@ -258,9 +287,7 @@
                   <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
                     <div class="btn-group position-static" role="group">
                       <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">
-                          Payment status<span class="fas fa-angle-down ms-2"></span></button>
+                        <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Payment status<span class="fas fa-angle-down ms-2"></span></button>
                         <ul class="dropdown-menu dropdown-menu-end">
                           <li><a class="dropdown-item" href="#">Action</a></li>
                           <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -272,9 +299,7 @@
                         </ul>
                       </div>
                       <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                          Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
+                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
                         <ul class="dropdown-menu dropdown-menu-end">
                           <li><a class="dropdown-item" href="#">Action</a></li>
                           <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -304,10 +329,10 @@
                 </div>
               </div>
 
-              <form name="frmplaserv" id="frmplaserv" action="procesarPlanilla" method="POST">
+              <form name="frmplaserv" id="frmplaserv" action="procesarPlanilla" method="POST" >
                   <input type="hidden" name="iexcodreg" id="iexcodreg" value="${iexcodreg}">
                   <input type="hidden" name="accion" id="accion" value="">
-                  <input type="hidden" name="grppla" value="${xproplaper.iexcodpro}">
+                  <input type="hidden" name="grppla" id="grppla" value="${xproplaper.desgrppla}">
                   <input type="hidden" name="tipfile" id="tipfile" value="">
                   <input type="hidden" name="iexcodpro" id="iexcodpro" value="${iexcodpro}">
                   <input type="hidden" name="iexperiodo" id="iexperiodo" value="${iexperiodo}">
@@ -315,7 +340,7 @@
                   <input type="hidden" name="iexcorrel" id="iexcorrel" value="1">
 
                   <c:if test="${requestScope.xproplaper.desgrppla=='PLA' || requestScope.xproplaper.desgrppla=='ADE'}">
-                      <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5, "pagination":true }'>
+                      <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5, "pagination":true }' >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -631,9 +656,9 @@
 
                       <div class="row g-4">
                           <div class="col-auto">
-                              <a class="btn btn-phoenix-secondary btn-sm" onclick="#" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
-                              <a id="botonDescargarBoletaTrab" onclick="descargarBoleta();" target="_blank" class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-download me-2"></span>Boleta</a>
-                              <a class="btn btn-phoenix-danger btn-sm" href="#" target="_blank"><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
+                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
+                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
+                              <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>
                       <div class="row mt-3">

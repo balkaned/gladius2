@@ -292,8 +292,6 @@ public class PlanillaController {
             List<PlaProPeriodo> lp_persona = planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, txt_buscar);
 
             // Ejecuta la formulacion
-            // daoplanilla.procesarFormulaMix(lp_persona,v_codcia , Integer.parseInt(v_idproceso), v_idperiodo ,Integer.parseInt(iexcodtra), Integer.parseInt(iexcorrel));
-
             Iterator<PlaProPeriodo> pi;
             PlaProPeriodo pi_persona = null;
             Integer counter = 0;
@@ -645,6 +643,37 @@ public class PlanillaController {
         List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"0");
 
         String json = new Gson().toJson(listap);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/botonEliminarPlanTrab", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView botonEliminarPlanTrab(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/botonEliminarPlanTrab");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        //List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"0");
+        //daoplanilla.delPlaProper((Integer) session.getAttribute("codcia"), Integer.parseInt(iexcodpro),iexperiodo,Integer.parseInt(iexcodtra), Integer.parseInt(iexcorrel) , grupopla, (String)session.getAttribute("desusu"));
+
+        planillaService.delPlaProper(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,xgrppla,user);
+
+        String json = new Gson().toJson(null);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

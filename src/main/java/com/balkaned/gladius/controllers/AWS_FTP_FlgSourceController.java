@@ -408,7 +408,9 @@ public class AWS_FTP_FlgSourceController {
                     InputStream inputStreamlogo = null;
                     InputStream inputStreamRep = null;
 
-                    // Obtiene fot empleado y logo solo para FichaTrabajador
+                    credentials = new BasicAWSCredentials(key_name, passPhrase);
+
+                    // Obtiene foto empleado y logo solo para FichaTrabajador
                     if(nombreJasper.equals("FichaTrabajador")) {
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
                             Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
@@ -427,34 +429,34 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    // Obtiene fot empleado y logo solo para FichaTrabajador
+                    // Obtiene foto empleado y logo solo para FichaTrabajador
                     if(nombreJasper.equals("FichaTrabajador")) {
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
 
+                            AmazonS3 s10 = null;
+                            S3Object o10 = null;
                             fileName = codciax + "/fotoemp/" + fotoemp;
-                            credentials = new BasicAWSCredentials(key_name, passPhrase);
-                            S3Object o = null;
-                            s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                            o = s3.getObject(bucket_name, fileName);
-                            inputStreamfotoemp = o.getObjectContent();
+                            s10 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                            o10 = s10.getObject(bucket_name, fileName);
+                            inputStreamfotoemp = o10.getObjectContent();
                             log.info("Obtiene FotoEmpl Path: " + fileName);
 
-                            AmazonS3 s4 = null;
-                            S3Object o2 = null;
+                            AmazonS3 s11 = null;
+                            S3Object o11 = null;
                             fileName = "img/" + logo;
-                            s4 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                            o2 = s4.getObject(bucket_name, fileName);
-                            inputStreamlogo = o2.getObjectContent();
+                            s11 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                            o11 = s11.getObject(bucket_name, fileName);
+                            inputStreamlogo = o11.getObjectContent();
                             log.info("Obtiene Logo Path: " + fileName);
                         }
                     }
 
-                    AmazonS3 s5 = null;
-                    S3Object o3 = null;
-                    s5 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                    AmazonS3 s12 = null;
+                    S3Object o12 = null;
+                    s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                     fileName = "reportes/" + nombreJasper + ".jasper";
-                    o3 = s5.getObject(bucket_name, fileName);
-                    inputStreamRep = o3.getObjectContent();
+                    o12 = s12.getObject(bucket_name, fileName);
+                    inputStreamRep = o12.getObjectContent();
                     log.info("Obtiene Reporte jasper Path: " + fileName);
 
                     Map parametros = new HashMap();
@@ -462,7 +464,7 @@ public class AWS_FTP_FlgSourceController {
                     parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
                     //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
 
-                    // Añade parametros solo para FichaTrabajador
+                    // Añade parámetros solo para FichaTrabajador
                     if(nombreJasper.equals("FichaTrabajador")) {
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
                             parametros.put("P_LOGO", inputStreamlogo);
@@ -470,7 +472,7 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    // Agregamos mas parametros al Reporte que vienen desde la url
+                    // Agregamos mas parámetros al Reporte que vienen desde la url
                     if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
@@ -491,20 +493,25 @@ public class AWS_FTP_FlgSourceController {
                                 ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
 
                                 InputStream inputStreamSubReport = null;
-                                String reportejaspSubReport=pro.getRep_parameter().trim();
+                                String reportejaspSubReport=pro.getRep_parameter();
                                 log.info("reportejaspSubReport: "+pro.getRep_parameter());
 
-                                AmazonS3 s7 = null;
-                                S3Object o7 = null;
-                                s7 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                AmazonS3 s13 = null;
+                                S3Object o13 = null;
+                                s13 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
                                 fileName = "reportes/BoletaEmpTra.jasper";
-                                o7 = s7.getObject(bucket_name, fileName);
-                                inputStreamSubReport = o7.getObjectContent();
+                                o13 = s13.getObject(bucket_name, fileName);
+                                inputStreamSubReport = o13.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
 
                                 parametros.put("SUBREPORT_DIR", inputStreamSubReport);
                             }
                         }
+                    }
+
+                    // Parámetro Subreporte solo para Boleta5taper
+                    if (nombreJasper.equals("Boleta5taper")) {
+                        parametros.put("SUBREPORT_DIR", "");
                     }
 
                     log.info("Ruta reporte:" + path);
