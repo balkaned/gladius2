@@ -309,6 +309,7 @@
                             <div class="row gx-3 gy-4">
                                 <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarConceptoXProceso" novalidate>
                                     <h2>Editar concepto x proceso</h2>
+                                    <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
 
                                     <div class="col-sm-6 col-md-3">
                                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
@@ -373,10 +374,10 @@
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ver grupo de conceptos</label>
                                         <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#grupoConceptosModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Grupo de conceptos</button>
                                     </div>
-                                    <div class="col-sm-6 col-md-12">
+                                    <!--<div class="col-sm-6 col-md-12">
                                         <label class="form-check-label ms-2" for="flg_agrupable">Contabilidad</label>
                                          <a class="ms-2 btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-sliders fs--1 me-2"></span>Conf c.contables x compañia</a>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group row mt-8">
                                         <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Tipo de Ingreso
                                             <br>

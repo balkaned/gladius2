@@ -117,8 +117,7 @@ public class ConceptoXProcesoController {
     }
 
     @RequestMapping("/nuevoConceptoXProceso@{idProceso}")
-    public ModelAndView nuevoConceptoXProceso(
-            ModelMap model, HttpServletRequest request, @PathVariable String idProceso) {
+    public ModelAndView nuevoConceptoXProceso(ModelMap model, HttpServletRequest request, @PathVariable String idProceso) {
         log.info("/nuevoConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -133,13 +132,17 @@ public class ConceptoXProcesoController {
             List<Concepto> lista = conceptoService.listarConceptoIns(Integer.parseInt(idProceso));
             model.addAttribute("LstConceptoIns", lista);
         }
+
+        ProcesoPlanilla pro = procesoFormulaService.recuperar(Integer.valueOf(idProceso));
+        CapitalizarCadena cap = new CapitalizarCadena();
+        String desproceso2 = cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso", desproceso2);
+
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/nuevoConceptoXProceso");
     }
 
     @RequestMapping("/addConceptoXProceso@{idProceso}")
-    public ModelAndView addConceptoXProceso(
-            ModelMap model, HttpServletRequest request, @PathVariable String idProceso
-    ) {
+    public ModelAndView addConceptoXProceso(ModelMap model, HttpServletRequest request, @PathVariable String idProceso) {
         log.info("/addConceptoXProceso");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -173,16 +176,19 @@ public class ConceptoXProcesoController {
             String flg_promediable = request.getParameter("flg_promediable");
             String flg_agrupable = request.getParameter("flg_agrupable");
             int nro_meses_atras;
+
             if (request.getParameter("nro_meses_atras") == null) {
                 nro_meses_atras = 0;
             } else {
                 nro_meses_atras = Integer.parseInt(request.getParameter("nro_meses_atras"));
             }
+
             ConceptoXProceso p = new ConceptoXProceso();
             p.setProcodpro(codproceso);
             p.setProcodcon(codcon);
             p.setProcodconpdt(codcon_pdt);
             p.setProflgbol(flg_bol);
+
             if (request.getParameter("id_orden_bol") == null) {
                 p.setProorden(0);
             } else {
@@ -193,6 +199,7 @@ public class ConceptoXProcesoController {
             } else {
                 p.setProvalor(Double.valueOf(request.getParameter("valor_bol")));
             }
+
             p.setProtipcon(tip_con);
             p.setProdescustom(des_custom);
             p.setTip_ingreso(tip_ingreso);
@@ -240,7 +247,7 @@ public class ConceptoXProcesoController {
         model.addAttribute("slc_grpconcepto", idConcepto);
         model.addAttribute("proconceptox", conceptoXProcesoService.recuperar(Integer.valueOf(idProceso), idConcepto));
 
-        //Modal Coneptos Promediables
+        //Modal Conceptos Promediables
         List<ProcesoPlanilla> listap = procesoPlanillaService.listar("%");
         List<ConceptoxProms> listab = conceptoXProcesoService.listarPromCon(Integer.valueOf(idProceso), idConcepto);
 
@@ -252,6 +259,11 @@ public class ConceptoXProcesoController {
         //Modal Grupo Conceptos
         model.addAttribute("listaConAgrp",conceptoXProcesoService.listar(Integer.valueOf(idProceso),"%"));
         model.addAttribute("listTblAgrpConc",conceptoXProcesoService.listarAgrupCon(Integer.valueOf(idProceso),idConcepto));
+
+        ProcesoPlanilla pro = procesoFormulaService.recuperar(Integer.valueOf(idProceso));
+        CapitalizarCadena cap = new CapitalizarCadena();
+        String desproceso2 = cap.letras(pro.getDesProceso());
+        model.addAttribute("desproceso", desproceso2);
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/conceptoxproceso/editarConceptoXProceso");
     }

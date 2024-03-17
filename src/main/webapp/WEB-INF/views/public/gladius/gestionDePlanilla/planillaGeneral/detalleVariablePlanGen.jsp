@@ -44,8 +44,8 @@
      }
 
      function actualizar(id,iexcodtra,iexcodpro,iexperiodo,iexcodcon,iexcodreg) {
-
          var opcion = confirm("Esta seguro de actualizar el Registro?");
+
          if (opcion == true) {
              var valorActualizar=$("#"+id+"_valor").val();
              var id2="dropdownmenutable_"+id;
@@ -62,22 +62,22 @@
             var opcion = confirm("Esta seguro de eliminar toda la tabla?");
 
             if (opcion == true) {
-               document.getElementById("accion").value="DELMASVAR";
                document.getElementById ("formVariable").encoding="multipart/form-data";
-               document.getElementById("uploadFile").value="text";
+               document.getElementById("accion").value="DELMASVAR";
+               //document.getElementById("uploadFile").value="text";
                document.getElementById("formVariable").submit();
                return true;
             } else {
                return false;
             }
           }else if(variable==15){
+              document.getElementById ("formVariable").encoding="multipart/form-data";
               document.getElementById("accion").value="INSTRAVAR";
               document.getElementById("uploadFile").value="text";
               document.getElementById("formVariable").submit();
           }else if(variable==13){
               document.getElementById ("formVariable").encoding="multipart/form-data";
               document.getElementById("accion").value="UPXLSVAR";
-              //document.getElementById("uploadFile").value="text";
               document.getElementById("formVariable").submit();
           }
      }
@@ -110,7 +110,7 @@
               <div class="row g-5">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="asginarTrabPlanConcept" novalidate >
+                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="gestionarTrabPlanConcept" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -161,7 +161,7 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe</label>
-                                <input class="form-control" name="txt_importe" id="txt_importe" maxlength="15" type="text" placeholder="1200.00" value="" required/>
+                                <input class="form-control" name="txt_importe" id="txt_importe" maxlength="15" type="number" step=0.01 placeholder="1200.00" value="" required/>
                             </div>
                             <div class="col-sm-6 col-md-8">
                             	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
@@ -208,7 +208,7 @@
                         	  </form>
                         	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                         		  <button class="btn btn-sm btn-phoenix-primary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" onclick="enviaForm('15')" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                         	  </div>
                         	</div>
                           </div>
@@ -282,7 +282,7 @@
                                     <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
                                     <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
                                     <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
-                                         <input class="form-control" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
+                                         <input class="form-control" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
                                          <c:if test="${requestScope.xproplaper.flgestado eq '3' }" > readonly </c:if> >
                                     </td>
 

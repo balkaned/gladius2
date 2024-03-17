@@ -233,7 +233,6 @@
                  },
                  success: function (data) {
                      alert("Trabajador eliminado exitosamente!");
-                     //document.getElementById("botonEliminarPlanTrab").href="listarDetallePlanillaGen@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo;
                      location.href="listarDetallePlanillaGen@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo+"";
                  }
             });
@@ -284,7 +283,7 @@
                       </form>
                     </div>
                   </div>
-                  <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
+                  <!--<div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
                     <div class="btn-group position-static" role="group">
                       <div class="btn-group position-static text-nowrap" role="group">
                         <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Payment status<span class="fas fa-angle-down ms-2"></span></button>
@@ -312,14 +311,14 @@
                       </div>
                       <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
                     </div>
-                  </div>
+                  </div>-->
 
                   <c:if test="${requestScope.xproplaper.flgestado!='3'}">
                       <div class="col-auto">
                         <a class="btn btn-phoenix-primary btn-sm" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>1. Iniciar</a>
-                        <a class="btn btn-phoenix-secondary btn-sm" href="verDetalleVariable@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-square-root-variable me-2"></span>Variables</a>
-                        <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
-                        <a class="btn btn-phoenix-secondary btn-sm" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>
+                        <a class="btn btn-phoenix-secondary btn-sm" href="verDetalleVariable@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-code-compare me-2"></span>Variables</a>
+                        <!--<a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
+                        <a class="btn btn-phoenix-secondary btn-sm" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
                         <a class="btn btn-phoenix-secondary btn-sm" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>5. Procesar</a>
                         <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-vault me-2"></span>5. Bancos</a>
                         <a class="btn btn-phoenix-danger btn-sm" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>0. Borrar</a>
@@ -571,7 +570,7 @@
                   </c:if>
 
                   <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-primary btn-sm" href="#"><span class="fas fa-briefcase me-2"></span>1. Otros datos</a>
+                      <a class="btn btn-phoenix-primary btn-sm" href="#"><span class="fas fa-briefcase me-2"></span>Otros datos</a>
                       <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-1 mt-1">
@@ -678,6 +677,55 @@
                               <!--<input class="form-control" name="feciniBol" id="feciniBol" type="hidden" value="" />-->
                           </div>
                       </div>
+
+                      <div class=" mt-3 border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}'>
+                          <div class="table-responsive scrollbar">
+                              <table class="table table-sm fs--1 mb-0">
+                                <thead>
+                                  <tr>
+                                    <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" ></th>
+                                    <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >ID CONCEPTO</th>
+                                    <th class="sort align-middle text-center white-space-nowrap text-start ps-3 pe-3 text-uppercase" scope="col" data-sort="fulfilment_status" >DESCONCEPTO</th>
+                                    <th class="sort text-end text-center align-middle ps-3 pe-3 text-uppercase" scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody class="list" id="customer-order-table-body_param">
+                                </tbody>
+                                <!--<tbody class="list" id="customer-order-table-body-agrup">
+                                  <c:forEach var="listTblAgrpConc" items="${requestScope.listTblAgrpConc}">
+                                      <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                        <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
+                                        <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${listTblAgrpConc.codconceptaux}</span></td>
+                                        <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${listTblAgrpConc.desconceptaux}</td>
+
+                                        <td class="align-middle text-center white-space-nowrap pe-0 action">
+                                          <div class="font-sans-serif btn-reveal-trigger position-static">
+                                            <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                            data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                            <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                            <div class="dropdown-menu dropdown-menu-end py-2">
+
+                                              <div class="dropdown-divider"></div>
+                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return deleteConceptoAgrup('${listTblAgrpConc.idproceso}','${listTblAgrpConc.codconcepto}','${listTblAgrpConc.codconceptaux}');" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                  </c:forEach>
+                                </tbody>-->
+                              </table>
+                          </div>
+                          <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
+                                <div class="col-auto d-flex">
+                                  <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                </div>
+                                <div class="col-auto d-flex">
+                                  <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                  <ul class="mb-0 pagination"></ul>
+                                  <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                </div>
+                          </div>
+                      </div>
+
                       <div id="orderTable" data-list='{"valueNames":["id","concept","var","des","abr"],"page":10,"pagination":true}'>
                         <h4 class="mb-2 mt-4">Parámetros</h4>
                         <div class="mb-3">
@@ -725,6 +773,8 @@
                             </div>
                         </div>
                       </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">

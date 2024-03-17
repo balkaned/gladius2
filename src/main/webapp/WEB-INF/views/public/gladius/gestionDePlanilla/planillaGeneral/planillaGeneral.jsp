@@ -344,13 +344,13 @@
                                                       <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                                                     </div>
                                                   </th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">GRUPO</th>
+                                                  <th class="sort align-middle text-center ps-1" scope="col" data-sort="date">GRUPO</th>
                                                   <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">PERIODO</th>
                                                   <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">PROCESO</th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECINI</th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECFIN</th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">FECHA PROCESO</th>
-                                                  <th class="sort align-middle text-center ps-5" scope="col" >ESTADO</th>
+                                                  <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">FECINI</th>
+                                                  <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="date">FECFIN</th>
+                                                  <th class="sort align-middle text-center " scope="col" data-sort="date">FECHA PROCESO</th>
+                                                  <th class="sort align-middle text-center " scope="col" >ESTADO</th>
                                                   <th></th>
                                              </tr>
                                           </thead>
@@ -369,7 +369,12 @@
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-2"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecini}</td>
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${List_Procesos.iexfecfin}</td>
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ">${List_Procesos.iexfecope}</td>
-                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${List_Procesos.desestado}</span></td>
+
+                                    <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2">
+                                        <c:if test="${List_Procesos.desestado=='Creado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">CREADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                                        <c:if test="${List_Procesos.desestado=='Procesado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">PROCESADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                                   </td>
+
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">
                                          <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

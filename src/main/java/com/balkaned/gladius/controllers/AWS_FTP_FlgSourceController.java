@@ -472,7 +472,7 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    // Agregamos mas parámetros al Reporte que vienen desde la url
+                    // Agregamos más parámetros al Reporte que vienen desde la url
                     if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
@@ -492,19 +492,65 @@ public class AWS_FTP_FlgSourceController {
 
                                 ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
 
-                                InputStream inputStreamSubReport = null;
-                                String reportejaspSubReport=pro.getRep_parameter();
-                                log.info("reportejaspSubReport: "+pro.getRep_parameter());
+                                // Subreporte parámetros
+                                InputStream inputStreamParam = null;
+                                String reportejaspSubReportParam=pro.getRep_parameter();
+                                log.info("reportejaspSubReportParam: "+reportejaspSubReportParam);
 
                                 AmazonS3 s13 = null;
                                 S3Object o13 = null;
                                 s13 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                fileName = "reportes/BoletaEmpTra.jasper";
+                                fileName = "reportes/"+reportejaspSubReportParam+".jasper";
                                 o13 = s13.getObject(bucket_name, fileName);
-                                inputStreamSubReport = o13.getObjectContent();
+                                inputStreamParam = o13.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
 
-                                parametros.put("SUBREPORT_DIR", inputStreamSubReport);
+                                parametros.put("SUBREPORT_DIR", inputStreamParam);
+
+                                // Subreporte ingresos
+                                InputStream inputStreamIngresos = null;
+                                String reportejaspSubReportIngresos=pro.getRep_ingresos();
+                                log.info("reportejaspSubReportIngresos: "+reportejaspSubReportIngresos);
+
+                                AmazonS3 s14 = null;
+                                S3Object o14 = null;
+                                s14 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/"+reportejaspSubReportIngresos+".jasper";
+                                o14 = s14.getObject(bucket_name, fileName);
+                                inputStreamIngresos = o14.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                                parametros.put("SUBREPORT_DIR02", inputStreamIngresos);
+
+                                // Subreporte descuentos
+                                InputStream inputStreamDescuentos = null;
+                                String reportejaspSubReportDescuentos=pro.getRep_descuentos();
+                                log.info("reportejaspSubReportDescuentos: "+reportejaspSubReportDescuentos);
+
+                                AmazonS3 s15 = null;
+                                S3Object o15 = null;
+                                s15= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/"+reportejaspSubReportDescuentos+".jasper";
+                                o15 = s15.getObject(bucket_name, fileName);
+                                inputStreamDescuentos = o15.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                                parametros.put("SUBREPORT_DIR03", inputStreamDescuentos);
+
+                                // Subreporte aportes
+                                InputStream inputStreamAportes = null;
+                                String reportejaspSubReportAportes=pro.getRep_aportes();
+                                log.info("reportejaspSubReportAportes: "+reportejaspSubReportAportes);
+
+                                AmazonS3 s16 = null;
+                                S3Object o16 = null;
+                                s16= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/"+reportejaspSubReportAportes+".jasper";
+                                o16 = s16.getObject(bucket_name, fileName);
+                                inputStreamAportes = o16.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                                parametros.put("SUBREPORT_DIR04", inputStreamAportes);
                             }
                         }
                     }

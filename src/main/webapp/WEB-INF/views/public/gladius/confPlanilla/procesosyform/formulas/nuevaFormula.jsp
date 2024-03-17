@@ -14,11 +14,16 @@
         <jsp:include page="../../../../links.jsp"/>
     </head>
     <script>
-        function addOperador(){
-            //var txt = $.trim($(this).text()).substring(0, 11));
-            //var txt = $(this).text();
-            //alert("txt: "+txt);
-            //$("#text-box").val($("#text-box").val() + txt);
+        function addOperador(value) {
+            var campo = document.getElementById('text-box');
+            var insertar = value;
+
+            var inicio = campo.selectionStart;
+            var fin = campo.selectionEnd;
+            var texto = campo.value;
+            campo.value = texto.slice(0, inicio) + insertar + texto.slice(fin);
+            campo.selectionStart = campo.selectionEnd = inicio + insertar.length;
+            campo.focus();
         }
 
         function mostrarAlert() {
@@ -39,7 +44,7 @@
                document.getElementById("grpeje").disabled = true;
                document.getElementById("Layer1").disabled = false;
                document.getElementById("hashtag").disabled = false;
-               document.getElementById("text-box").disabled = false;
+               //document.getElementById("text-box").disabled = false;
             }else if (opcion.value=="1"){
                document.getElementById("sqlprogram").value="";
                document.getElementById("grpeje").value="";
@@ -47,10 +52,10 @@
                document.getElementById("grpeje").disabled = true;
                document.getElementById("Layer1").disabled = false;
                document.getElementById("hashtag").disabled = false;
-               document.getElementById("text-box").disabled = false;
+               //document.getElementById("text-box").disabled = false;
             }else if (opcion.value=="2") {
-               document.getElementById("text-box").value="";
-               document.getElementById("text-box").disabled = true;
+               //document.getElementById("text-box").value="";
+               //document.getElementById("text-box").disabled = true;
                document.getElementById("sqlprogram").disabled = false;
                document.getElementById("grpeje").disabled = false;
                document.getElementById("Layer1").disabled = true;
@@ -145,9 +150,9 @@
                                     <div id="orderTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
                                         <div class="mb-0">
                                           <div class="row g-3">
-                                            <div class="col-auto">
+                                            <!--<div class="col-auto">
                                               <a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>
-                                            </div>
+                                            </div>-->
                                             <div class="col-auto">
                                               <div class="search-box">
                                                   <div class="col-10">

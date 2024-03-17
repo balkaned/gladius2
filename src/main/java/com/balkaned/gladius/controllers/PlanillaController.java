@@ -396,10 +396,10 @@ public class PlanillaController {
     }
 
     @SneakyThrows
-    @RequestMapping(value ="/asginarTrabPlanConcept", method = RequestMethod.POST)
-    public ModelAndView asginarTrabPlanConcept(ModelMap model, HttpServletRequest request,HttpServletResponse response,
+    @RequestMapping(value ="/gestionarTrabPlanConcept", method = RequestMethod.POST)
+    public ModelAndView gestionarTrabPlanConcept(ModelMap model, HttpServletRequest request,HttpServletResponse response,
                                                @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
-        log.info("/asginarTrabPlanConcept");
+        log.info("/gestionarTrabPlanConcept");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -410,14 +410,12 @@ public class PlanillaController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         String accion = request.getParameter("accion");
-
         String iexcodreg = request.getParameter("iexcodreg");
         Integer v_codpro = Integer.valueOf(request.getParameter("iexcodpro"));
         String periodo = request.getParameter("iexperiodo");
         Integer v_correl = Integer.valueOf(request.getParameter("iexcorrel"));
         String codtra = request.getParameter("slc_codtra");
         String codcon = request.getParameter("slc_codcon");
-
         String importe = request.getParameter("txt_importe");
 
         Double valor = 0.00;
@@ -455,7 +453,6 @@ public class PlanillaController {
             InputStream file = uploadFile.getInputStream();
 
             tipo_excel = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
-            log.info("extension: "+tipo_excel);
 
             log.info("Tipo excel " + tipo_excel);
             // Create Workbook instance holding reference to .xlsx file
@@ -486,10 +483,6 @@ public class PlanillaController {
             } catch (IOException ex2) {
                 model.addAttribute("message", "el archivo debe ser de extensión xls y/o xlsx");
             }
-
-            workbook = new XSSFWorkbook(file);
-            sheet = workbook.getSheetAt(0);
-            rowIterator = sheet.iterator();
 
             String result = null;
             StringBuilder sql = new StringBuilder();
@@ -667,9 +660,6 @@ public class PlanillaController {
         String xgrppla = request.getParameter("xgrppla");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
-
-        //List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"0");
-        //daoplanilla.delPlaProper((Integer) session.getAttribute("codcia"), Integer.parseInt(iexcodpro),iexperiodo,Integer.parseInt(iexcodtra), Integer.parseInt(iexcorrel) , grupopla, (String)session.getAttribute("desusu"));
 
         planillaService.delPlaProper(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,xgrppla,user);
 

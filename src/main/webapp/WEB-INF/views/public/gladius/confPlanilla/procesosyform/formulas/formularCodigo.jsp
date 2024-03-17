@@ -45,7 +45,7 @@
                document.getElementById("grpeje").disabled = true;
                document.getElementById("Layer1").disabled = false;
                document.getElementById("hashtag").disabled = false;
-               document.getElementById("text-box").disabled = false;
+               //document.getElementById("text-box").disabled = false;
             }else if (opcion.value=="1"){
                document.getElementById("sqlprogram").value="";
                document.getElementById("grpeje").value="";
@@ -53,10 +53,10 @@
                document.getElementById("grpeje").disabled = true;
                document.getElementById("Layer1").disabled = false;
                document.getElementById("hashtag").disabled = false;
-               document.getElementById("text-box").disabled = false;
+               //document.getElementById("text-box").disabled = false;
             }else if (opcion.value=="2") {
-               document.getElementById("text-box").value="";
-               document.getElementById("text-box").disabled = true;
+               //document.getElementById("text-box").value="";
+               //document.getElementById("text-box").disabled = true;
                document.getElementById("sqlprogram").disabled = false;
                document.getElementById("grpeje").disabled = false;
                document.getElementById("Layer1").disabled = true;
@@ -250,7 +250,7 @@
                                         <div class="mb-0">
                                           <div class="row g-3">
                                             <div class="col-auto">
-                                              <a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>
+                                              <!--<a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>-->
                                               <div class="btn-group mb-1 me-1 ms-0 mt-1">
                                                 <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
