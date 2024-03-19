@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.util.JRFontNotFoundException;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -354,21 +355,88 @@ public class AWS_FTP_FlgSourceController {
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", -1);
-                    parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                    //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+
                     //Agregamos mas parametros al Reporte que vienen desde la url
                     if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
                             log.info("item.getNombreParametro(): " + item.getNombreParametro());
                             log.info("item.getValorParametro(): " + item.getValorParametro());
 
-                            parametros.put(item.getNombreParametro(), item.getValorParametro());
+                            parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                         }
+                    }
+
+                    // Parámetro Subreporte solo para ExcelPlanillaMensualResumen
+                    if (nombreJasper.equals("BoletaEmpCtl")) {
+
+                        // Subreporte parámetros
+                        InputStream inputStreamParam = null;
+                        String reportejaspSubReportParam="BoletaEmpCons";
+                        log.info("reportejaspSubReportParam: "+reportejaspSubReportParam);
+
+                        AmazonS3 s17 = null;
+                        S3Object o17 = null;
+                        s17 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/"+reportejaspSubReportParam+".jasper";
+                        o17 = s17.getObject(bucket_name, fileName);
+                        inputStreamParam = o17.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR", inputStreamParam);
+
+                        // Subreporte ingresos
+                        InputStream inputStreamIngresos = null;
+                        String reportejaspSubReportIngresos="BoletaEmpResVac03";
+                        log.info("reportejaspSubReportIngresos: "+reportejaspSubReportIngresos);
+
+                        AmazonS3 s18 = null;
+                        S3Object o18 = null;
+                        s18 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/"+reportejaspSubReportIngresos+".jasper";
+                        o18 = s18.getObject(bucket_name, fileName);
+                        inputStreamIngresos = o18.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR02", inputStreamIngresos);
+
+                        // Subreporte descuentos
+                        InputStream inputStreamDescuentos = null;
+                        String reportejaspSubReportDescuentos="BoletaEmpRes";
+                        log.info("reportejaspSubReportDescuentos: "+reportejaspSubReportDescuentos);
+
+                        AmazonS3 s19 = null;
+                        S3Object o19 = null;
+                        s19= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/"+reportejaspSubReportDescuentos+".jasper";
+                        o19 = s19.getObject(bucket_name, fileName);
+                        inputStreamDescuentos = o19.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR03", inputStreamDescuentos);
+
+                        // Subreporte aportes
+                        InputStream inputStreamAportes = null;
+                        String reportejaspSubReportAportes="BoletaEmpResNeto";
+                        log.info("reportejaspSubReportAportes: "+reportejaspSubReportAportes);
+
+                        AmazonS3 s20 = null;
+                        S3Object o20 = null;
+                        s20= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/"+reportejaspSubReportAportes+".jasper";
+                        o20 = s20.getObject(bucket_name, fileName);
+                        inputStreamAportes = o20.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR04", inputStreamAportes);
                     }
 
                     Connection conn = template.getDataSource().getConnection();
 
                     try {
                         JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
+                        jasperPrint.setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
+                        jasperPrint.setProperty("net.sf.jasperreports.default.font.name", "Sans Serif");
 
                         log.info("jasperPrint: " + jasperPrint.getName());
 
@@ -376,7 +444,6 @@ public class AWS_FTP_FlgSourceController {
                             log.info("Se encontró jasper");
 
                             JRXlsExporter exporter = new JRXlsExporter();
-                            //JRProperties.setProperty("net.sf.jasperreports.default.font.name", "Sans Serif");
                             ServletOutputStream ouputStream = response.getOutputStream();
                             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
                             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(ouputStream));
@@ -388,8 +455,8 @@ public class AWS_FTP_FlgSourceController {
                             exporter.setConfiguration(configuration);
                             exporter.exportReport();
                         }
-                    } catch (JRException ex) {
-                        log.info("No compila ");
+                    } catch (JRFontNotFoundException ex) {
+                        log.info("Mensaje: "+ex.getMessage());
                     }
                 }
 
@@ -483,7 +550,7 @@ public class AWS_FTP_FlgSourceController {
                     }
 
                     // Parámetro Subreporte solo para BoletaEmpleados
-                    if (nombreJasper.equals("BoletaEmpTra")) {
+                    if (nombreJasper.equals("BoletaEmpTra") || nombreJasper.equals("BoletaEmp")) {
                         for (ParametroReport item2 : lspreport) {
                             log.info("item.getNombreParametro(): " + item2.getNombreParametro());
                             log.info("item.getValorParametro(): " + item2.getValorParametro());
