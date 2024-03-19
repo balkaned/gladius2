@@ -110,13 +110,13 @@
 
                             <div class="">
                                 <a id="submit1" href="#" i-02d="procesarBtn" class="btn btn-primary btn-sm"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Ver reporte</a>
+                                        class="fa-solid fa-eye me-2"></span>Traer embedded-reporting</a>
                                 <INPUT TYPE="HIDDEN" NAME="ReportName" Value="DynamicTableExample.rpttemplate">
                                 <INPUT TYPE="HIDDEN" NAME="accion" Value="lisReportePdf">
                             </div>
                         </form>
 
-                        <div id="idresult" style="width:1000px; height:600px; overflow: scroll;"></div>
+                        <div id="idresult" class="col-12 bg-200 border border-200 rounded-1" style="height:600px; overflow: scroll;"></div>
                     </div>
                 </div>
             </div>

@@ -284,6 +284,31 @@
                  }
             });
         }
+
+        function traerDatosReporteResumenPlanilla(){
+
+            var iexcodpro = $("#iexcodpro").val();
+            var iexperiodo = $("#iexperiodo").val();
+
+            var opcion = confirm("Esta seguro de Traer la data del reporte?");
+
+            if (opcion == true) {
+                $.ajax({
+                     url: "traerDatosReporteResumenPlanilla",
+                     data: {
+                        "iexcodpro": iexcodpro,
+                        "nroper": iexperiodo,
+                        "nroper2": iexperiodo
+                     },
+                     success: function (data) {
+                         $("#idresult").html(data);
+                     }
+                });
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
 
     <body>
@@ -665,11 +690,38 @@
                     </tr>
                   </table>
 
-                  <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-arrow-down me-2"></span>Traer Reporte</a>
+                  <div class="card shadow-none border border-300 my-5 overflow-docs overflow-hidden" data-component-card="data-component-card" style="min-height: 250px;">
+                    <div class="card-header p-4 border-bottom border-300 bg-soft">
+                      <div class="row g-3 justify-content-between align-items-end">
+                        <div class="col-12 col-md">
+                          <h4 class="text-900 mb-0" data-anchor="data-anchor">Reporte embedded</h4>
+                          <p class="mb-0 mt-2 text-800">Click en Preview para traer los datos planilla general o click en exportar para generar un archivo excel de salida en formato .xls</p>
+                        </div>
+                        <div class="col col-md-auto">
+                          <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
+                            <a  class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span class="fas fa-download me-1"></span>Exportar excel</a>
+                            <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
+                          </nav>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="p-4">
+                        <div class="col-12 d-flex mt-2">
+                            <div id="idresult" class="col-12 overflow-auto border border-200 rounded-1" style="height:600px;"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  <!--<div class="col-auto mt-4">
+                      <a class="btn btn-primary btn-sm" onclick="traerDatosReporteResumenPlanilla();" href="#"><span class="fas fa-arrow-down me-2"></span>Traer embedded-reporting</a>
+                      <a class="btn btn-phoenix-secondary btn-sm" onclick="#" href="#"><span class="fas fa-download me-2"></span>Exportar a excel</a>
+                  </div>-->
                   <!--<div id="idresult" style="width:700px; height:600px; overflow: scroll;" ></div>-->
-                  <div id="idresult" class="mt-2 bg-300" style="height:600px; overflow: scroll;" ></div>
+                  <!--<div class="d-flex mt-2 bg-200 border border-200 rounded-1 ">
+                    <div id="idresult" class="overflow-auto" style="height:600px;"></div>
+                  </div>-->
               </form>
             </div>
           </div>

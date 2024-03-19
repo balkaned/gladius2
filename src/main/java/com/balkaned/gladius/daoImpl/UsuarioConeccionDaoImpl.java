@@ -78,7 +78,7 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 }
             });
         } catch (DataAccessException sa) {
-            log.info("Error de base de datos entré aqui");
+            log.info("Error de base de datos no hay conexión");
             uc.setUser("sinbd");
         }
         return uc;

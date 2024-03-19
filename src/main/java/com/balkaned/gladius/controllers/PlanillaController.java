@@ -1,14 +1,25 @@
 package com.balkaned.gladius.controllers;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.beans.*;
-import com.balkaned.gladius.services.LovsService;
-import com.balkaned.gladius.services.PlanillaService;
-import com.balkaned.gladius.services.ProcesoPlanillaService;
-import com.balkaned.gladius.services.SueldoService;
+import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,26 +29,34 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UncheckedIOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @RestController
 @Slf4j
 public class PlanillaController {
+
+    JdbcTemplate template;
+    @Autowired
+    public void setDataSource(DataSource datasource) {
+        template = new JdbcTemplate(datasource);
+    }
+
     @Autowired
     ProcesoPlanillaService procesoPlanillaService;
 
@@ -52,6 +71,9 @@ public class PlanillaController {
 
     @Autowired
     SueldoService sueldoService;
+
+    @Autowired
+    CompaniaService companiaService;
 
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
@@ -667,6 +689,84 @@ public class PlanillaController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping("/traerDatosReporteResumenPlanilla")
+    public ModelAndView traerDatosReporteResumenPlanilla(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        log.info("/traerDatosReporteResumenPlanilla");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer nroper = Integer.valueOf(request.getParameter("nroper"));
+        Integer nroper2 = Integer.valueOf(request.getParameter("nroper2"));
+
+        String fileName_pdf = "";
+
+        Regions cliRegion = null;
+        String bucket_name_pdf = "";
+        String key_name_pdf = "";
+        String passPhrase_pdf = "";
+
+        InputStream inputStream = null;
+
+        Compania ciainfo = companiaService.getCompaniaAll(Integer.valueOf(idCompania));
+
+        cliRegion = Regions.valueOf(ciainfo.getIexregiondes().trim());
+        bucket_name_pdf = ciainfo.getIexsourcedes().trim();
+        key_name_pdf = ciainfo.getIexususource().trim();
+        passPhrase_pdf = ciainfo.getIexpasssource().trim();
+
+        fileName_pdf = "reportes/ReportResumenPla02.jasper";
+
+        AWSCredentials credentials = new BasicAWSCredentials(key_name_pdf, passPhrase_pdf);
+        AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(cliRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        S3Object o = s3.getObject(bucket_name_pdf, fileName_pdf);
+        inputStream = o.getObjectContent();
+
+        Map parametros = new HashMap();
+        parametros.put("P_CODCIA", idCompania);
+        parametros.put("P_CODPRO", iexcodpro);
+        parametros.put("P_NROPER", nroper);
+        parametros.put("P_NROPER2", nroper2);
+        parametros.put("P_XNROPER", "");
+        parametros.put("P_XCODCON", "");
+        parametros.put("SUBREPORT_DIR", "");
+
+        Connection conn = template.getDataSource().getConnection();
+
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
+
+            if (jasperPrint != null) {
+                log.info("Jasper encontrado");
+                try (PrintWriter writer = response.getWriter()) {
+                    HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
+                    exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                    exporter.setExporterOutput(new SimpleHtmlExporterOutput(writer));
+                    exporter.exportReport();
+                    writer.flush();
+                } catch (IOException e) {
+                    log.info("Error de entrada/salida al escribir en el flujo de salida: " + e.getMessage());
+                    throw new RuntimeException(e);
+                }
+            } else {
+                log.info("JasperPrint es nulo");
+            }
+        } catch (JRException ex) {
+            log.info("Error al procesar el informe Jasper: " + ex.getMessage());
+        } catch (Exception e) {
+            log.info("Otro error inesperado: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
 
         return null;
     }
