@@ -84,4 +84,8 @@ public class SueldoServiceImpl implements SueldoService {
         dao.insertarDatvarmas(empdatvar);
     }
 
+    public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto){
+        dao.eliminarAllDatvarEmp(cia,codpro,nroper,correl,codtra,concepto);
+    }
+
 }

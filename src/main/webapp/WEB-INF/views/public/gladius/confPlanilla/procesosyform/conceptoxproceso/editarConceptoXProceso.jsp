@@ -691,7 +691,7 @@
                             <button class="btn btn-phoenix-secondary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add grupo concepto</button>
                         </div>
                     </div>
-                    <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}'>
+                    <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}' >
                         <div class="table-responsive scrollbar">
                             <table class="table table-sm fs--1 mb-0">
                               <thead>

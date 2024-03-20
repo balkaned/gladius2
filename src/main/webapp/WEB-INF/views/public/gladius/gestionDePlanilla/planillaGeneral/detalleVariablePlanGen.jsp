@@ -294,7 +294,7 @@
                                          <div class="dropdown-menu dropdown-menu-end py-2">
                                               <a id="dropdownmenutable_${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatavar.iexcodtra}_${fdatavar.iexcodcon}','${fdatavar.iexcodtra}','${requestScope.iexcodpro}','${requestScope.iexperiodo}','${fdatavar.iexcodcon}','${requestScope.iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
                                               <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarPlanConcepVariable@${requestScope.iexcodpro}@${requestScope.iexperiodo}@1@${fdatavar.iexcodtra}@${fdatavar.iexcodcon}@${requestScope.iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                          </div>
                                        </div>
                                     </td>

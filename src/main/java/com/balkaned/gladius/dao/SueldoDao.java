@@ -22,5 +22,6 @@ public interface SueldoDao {
     public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl);
     public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl);
     public void insertarDatvarmas(List<EmpDatvar> empdatvar);
+    public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto);
 
 }

@@ -113,7 +113,7 @@ public class DashboardController {
         model.addAttribute("cantRetirados", listRetirados.size());
 
         if (listRetirados.size() == 0) {
-            model.addAttribute("mensaje2", "Este mes no cesó ningún trabajador! ");
+            model.addAttribute("mensaje2", "Este mes no se realizó liquidación de ningún trabajador! ");
         } else {
             model.addAttribute("listRetirados", listRetirados);
             model.addAttribute("mensaje2", null);

@@ -56,7 +56,7 @@ margin-top:10px !important;
             <h2 id="h2top" class="mb-2">Compañias</h2>
             <h5 class="text-700 fw-semi-bold text-none">Seleccionar compañia a ingresar</h5>
           </div>
-          <div class="row col-12 mt-2">
+          <div class="row col-12 mt-2 ms-0">
             <div class="col-auto ps-2 pe-0">
                 <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
             </div>

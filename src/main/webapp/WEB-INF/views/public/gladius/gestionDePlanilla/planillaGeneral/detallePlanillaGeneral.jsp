@@ -162,80 +162,87 @@
                  success: function (data) {
                       var opt = "";
 
-                      opt += "<div data-list='{'valueNames':['id','concept','var','des','abr'],'page':10,'pagination':true}'>"+
-                                  "<h4 class='mb-2 mt-4'>Parámetros</h4>"+
-                                  "<div class='mb-3'>"+
-                                      "<div class='row g-3'>"+
-                                        "<div class='col-auto'>"+
-                                          "<div class='search-box'>"+
-                                            "<form class='position-relative' data-bs-toggle='search' data-bs-display='static'>"+
-                                              "<input class='form-control search-input search' type='search' placeholder='Search parámetros' aria-label='Search'/>"+
-                                              "<span class='fas fa-search search-box-icon'></span>"+
-                                            "</form>"+
-                                          "</div>"+
-                                        "</div>"+
-                                      "</div>"+
-                                  "</div>"+
-                                  "<div id='customerOrdersTable_param' class='mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1' data-list='{'valueNames':['id','concept','var','des','abr'],'page':10, 'pagination':true }'>"+
-                                    "<div class='table-responsive scrollbar mx-n1 px-1'>"+
-                                      "<table class='table table-sm fs--1 mb-0'>"+
-                                        "<thead>"+
-                                            "<tr>"+
-                                              "<th class='white-space-nowrap fs--1 align-middle ps-0' style='width:26px;'>"+
-                                                "<div class='form-check mb-0 fs-0'>"+
-                                                  "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' data-bulk-select='{'body':'order-table-body'}' />"+
-                                                "</div>"+
-                                              "</th>"+
-                                              "<th class='sort white-space-nowrap align-middle pe-3' scope='col' data-sort='id' style='width:5%;'>CODCON</th>"+
-                                              "<th class='sort align-middle text-center pe-0 ps-0' scope='col' data-sort='concept'>DESCON</th>"+
-                                              "<th class='sort align-middle text-center pe-0 ps-0 white-space-nowrap' scope='col' data-sort='var'>VALOR</th>"+
-                                              "<th class='sort align-middle text-center pe-0' scope='col' ></th>"+
-                                            "</tr>"+
-                                        "</thead>"+
-                                        "<tbody class='list' id='customer-order-table-body_param'>";
-
                       for (var i in data) {
-                                      opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                                                   "<td class='fs--1 align-middle px-0 py-3'>"+
-                                                     "<div class='form-check mb-0 fs-0'>"+
-                                                       "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
-                                                     "</div>"+
-                                                   "</td>"+
-                                                   "<td class='id align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
-                                                   "<td class='concept align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
-                                                   "<td class='var align-middle text-end fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap'>"+data[i].provalor+"</td>"+
-
-                                                   "<td class='align-middle white-space-nowrap text-end pe-0 ps-5'>"+
-                                                      "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
-                                                        "<button class='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'><span class='fas fa-ellipsis-h fs--2'></span></button>"+
-                                                        "<div class='dropdown-menu dropdown-menu-end py-2'>"+
-                                                          "<a class='dropdown-item' href='detalleEmpl@${empl.iexcodtra}'>Ver Detalle</a>"+
-                                                          "<div class='dropdown-divider'></div>"+
-                                                          "<a class='dropdown-item text-danger' href='#!'>Remove</a>"+
-                                                        "</div>"+
-                                                      "</div>"+
-                                                   "</td>"+
-                                                "</tr>";
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
                       }
 
-                                  opt += "</tbody>"+
-                                    "</table>"+
-                                  "</div>"+
-                                  "<div class='row align-items-center justify-content-between py-2 pe-0 fs--1'>"+
-                                      "<div class='col-auto d-flex'>"+
-                                        "<p class='mb-0 d-none d-sm-block me-3 fw-semi-bold text-900' data-list-info='data-list-info'></p><a class='fw-semi-bold' href='#!' data-list-view='*'>View all<span class='fas fa-angle-right ms-1' data-fa-transform='down-1'></span></a><a class='fw-semi-bold d-none' href='#!' data-list-view='less'>View Less<span class='fas fa-angle-right ms-1' data-fa-transform='down-1'></span></a>"+
-                                      "</div>"+
-                                      "<div class='col-auto d-flex'>"+
-                                        "<button class='page-link' data-list-pagination='prev'><span class='fas fa-chevron-left'></span></button>"+
-                                        "<ul class='mb-0 pagination'></ul>"+
-                                        "<button class='page-link pe-0' data-list-pagination='next'><span class='fas fa-chevron-right'></span></button>"+
-                                      "</div>"+
-                                  "</div>"+
-                              "</div>";
-
-                      $("#parametros").html(opt);
+                      $("#customer-order-table-body-param").html(opt);
                  }
             });
+
+            $.ajax({
+                 url: "traerDatosDeBoletaIngresos",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": iexcodtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla,
+                     "iexcodreg": iexcodreg
+                 },
+                 success: function (data) {
+                      var opt = "";
+
+                      for (var i in data) {
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
+                      }
+
+                      $("#customer-order-table-body-ingresos").html(opt);
+                 }
+            });
+
+            $.ajax({
+                 url: "traerDatosDeBoletaDescuentos",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": iexcodtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla,
+                     "iexcodreg": iexcodreg
+                 },
+                 success: function (data) {
+                      var opt = "";
+
+                      for (var i in data) {
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
+                      }
+
+                      $("#customer-order-table-body-descuentos").html(opt);
+                 }
+            });
+        }
+
+        function obtenerData(){
+            var data=$("#element1").val();
+            return data;
         }
 
         function descargarBoleta(){
@@ -454,7 +461,7 @@
                                             <button class="btn btn-phoenix-secondary pt-1 pb-1 ps-0 pe-2 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-caret-down ms-2"></span></button>
                                             <div class="dropdown-menu dropdown-menu-end py-2">
                                               <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="detalleEmpl@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-person me-2"></span>Detalle Empleado</a>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoFijo@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-transfer fs--1 me-2"></span>Sueldo Fijo</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoFijo@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-1-wave fs--1 me-2"></span>Sueldo Fijo</a>
                                               <div class="dropdown-divider"></div>
                                               <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoVariable@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-trend-up me-2"></span>Sueldo Variable</a>
                                             </div>
@@ -775,10 +782,122 @@
                           </div>
                       </div>
 
-                      <div class="row g-4 content">
-                          <div id="parametros">
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Parámetros</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-param" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
                           </div>
                       </div>
+
+                      <div class="row g-4">
+                        <h4 class="mb-0 mt-7">Ingresos</h4>
+                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                          <div class="mb-3" class="mt-0">
+                              <div class="row g-3">
+                                <div class="col-auto">
+                                  <div class="search-box">
+                                    <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <span class="fas fa-search search-box-icon"></span>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                  <div class="table-responsive scrollbar mx-n1 px-1" >
+                                    <table class="table table-sm fs--1 mb-0">
+                                      <thead>
+                                          <tr>
+                                            <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                              <div class="form-check mb-0 fs-0">
+                                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                              </div>
+                                            </th>
+                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody class="list" id="customer-order-table-body-ingresos" >
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Descuentos</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-descuentos" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+
+
+
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">

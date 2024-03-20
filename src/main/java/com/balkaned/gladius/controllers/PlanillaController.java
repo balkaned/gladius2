@@ -771,5 +771,82 @@ public class PlanillaController {
         return null;
     }
 
+    @RequestMapping("/eliminarPlanConcepVariable@{iexcodpro}@{iexperiodo}@{iexcorrel}@{iexcodtra}@{iexcodcon}@{iexcodreg}")
+    public ModelAndView eliminarPlanConcepVariable(ModelMap model, HttpServletRequest request,
+                                                   @PathVariable Integer iexcodpro,
+                                                   @PathVariable String iexperiodo,
+                                                   @PathVariable Integer iexcorrel,
+                                                   @PathVariable Integer iexcodtra,
+                                                   @PathVariable String iexcodcon,
+                                                   @PathVariable String iexcodreg) {
+        log.info("/eliminarPlanConcepVariable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        sueldoService.eliminarAllDatvarEmp(idCompania,iexcodpro,iexperiodo,iexcorrel,iexcodtra,iexcodcon);
+
+        return new ModelAndView("redirect:/verDetalleVariable@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+    }
+
+    @RequestMapping(value = "/traerDatosDeBoletaIngresos", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaIngresos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaIngresos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        List<ConceptoxProcesoxTra> listai = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"1");
+
+        String json = new Gson().toJson(listai);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosDeBoletaDescuentos", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaDescuentos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaDescuentos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        List<ConceptoxProcesoxTra> listad = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"2");
+
+        String json = new Gson().toJson(listad);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
 }
 

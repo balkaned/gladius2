@@ -400,4 +400,16 @@ public class SueldosDaoImpl implements SueldoDao {
                     empdat.getIexusucrea());
         }
     }
+
+    public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto) {
+
+        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=?  and iexcodtra=? and iexcodcon =? ",
+
+        cia,
+        codpro,
+        nroper,
+        correl,
+        codtra,
+        concepto);
+    }
 }

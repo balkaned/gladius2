@@ -1047,5 +1047,52 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         });
     }
+
+    public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon){
+
+        String sql = " select " +
+                "j.iexcodcia, " +
+                "j.iexcodpro, " +
+                "j.iexnroper, " +
+                "j.iexcodtra, " +
+                "j.iexcorrel, " +
+                "j.protipcon, " +
+                "j.procodcon, " +
+                "c.coodescon, " +
+                "j.provalor " +
+                "from iexpropertra_nomina j, iexconcepto c " +
+                "where " +
+                "j.procodcon = c.coocodcon and " +
+                "iexcodcia= "+codcia+" and " +
+                "iexcodpro= "+idproceso+"  and " +
+                "iexnroper= '"+perpro+"' and " +
+                "iexcodtra= "+codtra+" and " +
+                "iexcorrel= "+correl+" and " +
+                "j.protipcon='"+flgcon+"' and provalor<>0 ";
+
+        return template.query(sql, new ResultSetExtractor<List<ConceptoxProcesoxTra>>() {
+
+            public List<ConceptoxProcesoxTra> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ConceptoxProcesoxTra> lista = new ArrayList<ConceptoxProcesoxTra>();
+
+                while(rs.next()) {
+                    ConceptoxProcesoxTra p = new ConceptoxProcesoxTra();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setProcodpro(rs.getInt("iexcodpro"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setCorrel(rs.getInt("iexcorrel"));
+                    p.setProtipcon(rs.getString("protipcon"));
+                    p.setProcodcon(rs.getString("procodcon"));
+                    p.setCoodescon(rs.getString("coodescon"));
+                    p.setProvalor(rs.getDouble("provalor"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
 }
 
