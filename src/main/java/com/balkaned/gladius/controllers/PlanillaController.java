@@ -848,5 +848,89 @@ public class PlanillaController {
         return null;
     }
 
+    @RequestMapping(value = "/traerDatosDeBoletaAportes", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaAportes(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaAportes");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        List<ConceptoxProcesoxTra> listaa = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"3");
+
+        String json = new Gson().toJson(listaa);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosDeBoletaNeto", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaNeto(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaNeto");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        List<ConceptoxProcesoxTra> listan = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"4");
+
+        String json = new Gson().toJson(listan);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosDeBoletaTotales", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaTotales(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaTotales");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        String xgrppla = request.getParameter("xgrppla");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String iexcodreg = request.getParameter("iexcodreg");
+
+        List<ConceptoxProcesoxTra> listao = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"5");
+
+        String json = new Gson().toJson(listao);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
 }
 

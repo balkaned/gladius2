@@ -238,6 +238,96 @@
                       $("#customer-order-table-body-descuentos").html(opt);
                  }
             });
+
+            $.ajax({
+                 url: "traerDatosDeBoletaAportes",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": iexcodtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla,
+                     "iexcodreg": iexcodreg
+                 },
+                 success: function (data) {
+                      var opt = "";
+
+                      for (var i in data) {
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
+                      }
+
+                      $("#customer-order-table-body-aportes").html(opt);
+                 }
+            });
+
+            $.ajax({
+                 url: "traerDatosDeBoletaNeto",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": iexcodtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla,
+                     "iexcodreg": iexcodreg
+                 },
+                 success: function (data) {
+                      var opt = "";
+
+                      for (var i in data) {
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
+                      }
+
+                      $("#customer-order-table-body-neto").html(opt);
+                 }
+            });
+
+            $.ajax({
+                 url: "traerDatosDeBoletaTotales",
+                 data: {
+                     "iexcodpro": iexcodpro,
+                     "iexcodtra": iexcodtra,
+                     "iexperiodo": iexperiodo,
+                     "iexcorrel": iexcorrel,
+                     "xgrppla": xgrppla,
+                     "iexcodreg": iexcodreg
+                 },
+                 success: function (data) {
+                      var opt = "";
+
+                      for (var i in data) {
+                          opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                       "<td class='fs--1 align-middle px-0 py-3'>"+
+                                         "<div class='form-check mb-0 fs-0'>"+
+                                           "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                         "</div>"+
+                                       "</td>"+
+                                       "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                                       "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                                       "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                                    "</tr>";
+                      }
+
+                      $("#customer-order-table-body-totales").html(opt);
+                 }
+            });
         }
 
         function obtenerData(){
@@ -297,9 +387,9 @@
             var iexcodpro = $("#iexcodpro").val();
             var iexperiodo = $("#iexperiodo").val();
 
-            var opcion = confirm("Esta seguro de Traer la data del reporte?");
+            //var opcion = confirm("Esta seguro de Traer la data del reporte?");
 
-            if (opcion == true) {
+            //if (opcion == true) {
                 $.ajax({
                      url: "traerDatosReporteResumenPlanilla",
                      data: {
@@ -311,10 +401,10 @@
                          $("#idresult").html(data);
                      }
                 });
-                return true;
-            } else {
-                return false;
-            }
+                //return true;
+            //} else {
+                //return false;
+            //}
         }
     </script>
 
@@ -650,7 +740,7 @@
 
                   <div class="col-auto mt-4">
                       <a class="btn btn-phoenix-primary btn-sm" href="#"><span class="fas fa-briefcase me-2"></span>Otros datos</a>
-                      <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-handshake me-2"></span>Afp</a>
+                      <a class="btn btn-phoenix-secondary btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-0 mt-1">
                         <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
@@ -896,8 +986,119 @@
                           </div>
                       </div>
 
+                      <div class="row g-4">
+                        <h4 class="mb-0 mt-7">Aportes</h4>
+                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                          <div class="mb-3" class="mt-0">
+                              <div class="row g-3">
+                                <div class="col-auto">
+                                  <div class="search-box">
+                                    <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <span class="fas fa-search search-box-icon"></span>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                  <div class="table-responsive scrollbar mx-n1 px-1" >
+                                    <table class="table table-sm fs--1 mb-0">
+                                      <thead>
+                                          <tr>
+                                            <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                              <div class="form-check mb-0 fs-0">
+                                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                              </div>
+                                            </th>
+                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody class="list" id="customer-order-table-body-aportes" >
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
 
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Neto</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-neto" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
 
+                      <div class="row g-4">
+                            <h4 class="mb-0 mt-7">Totales</h4>
+                            <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                              <div class="mb-3" class="mt-0">
+                                  <div class="row g-3">
+                                    <div class="col-auto">
+                                      <div class="search-box">
+                                        <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                          <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                          <span class="fas fa-search search-box-icon"></span>
+                                        </form>
+                                      </div>
+                                    </div>
+                                    <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                      <div class="table-responsive scrollbar mx-n1 px-1" >
+                                        <table class="table table-sm fs--1 mb-0">
+                                          <thead>
+                                              <tr>
+                                                <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                  <div class="form-check mb-0 fs-0">
+                                                    <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                  </div>
+                                                </th>
+                                                <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                                <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                                <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody class="list" id="customer-order-table-body-totales" >
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
