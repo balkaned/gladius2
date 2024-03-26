@@ -754,7 +754,7 @@
                       </div>
 
                       <a class="btn btn-phoenix-secondary btn-sm" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>6. Boletas PDF</a>
-                      <a class="btn btn-phoenix-primary btn-sm" href="#"><span class="fas fa-diagram-successor me-2"></span>Migración planilla</a>
+                      <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migración planilla</a>
                   </div>
 
                   <table class="w-100 table-stats table-stats mt-4">

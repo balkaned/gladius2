@@ -24,5 +24,6 @@ public interface SueldoService {
     public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl);
     public void insertarDatvarmas(List<EmpDatvar> empdatvar);
     public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto);
+    public void migraInsertarPla(List<EmpDatvar> empdatvar);
 
 }

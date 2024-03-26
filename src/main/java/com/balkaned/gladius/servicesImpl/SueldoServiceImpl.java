@@ -88,4 +88,8 @@ public class SueldoServiceImpl implements SueldoService {
         dao.eliminarAllDatvarEmp(cia,codpro,nroper,correl,codtra,concepto);
     }
 
+    public void migraInsertarPla(List<EmpDatvar> empdatvar){
+        dao.migraInsertarPla(empdatvar);
+    }
+
 }

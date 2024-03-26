@@ -1,3 +1,4 @@
+
 package com.balkaned.gladius.controllers;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -932,5 +933,219 @@ public class PlanillaController {
         return null;
     }
 
-}
+    @RequestMapping("/migracionPlanilla@{iexcodreg}@{iexcodpro}@{iexperiodo}")
+    public ModelAndView migracionPlanilla(ModelMap model, HttpServletRequest request,
+                                           @PathVariable Integer iexcodreg,
+                                           @PathVariable Integer iexcodpro,
+                                           @PathVariable String iexperiodo) {
+        log.info("/migracionPlanilla");
 
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("iexcodreg", iexcodreg);
+        model.addAttribute("iexcodpro", iexcodpro);
+        model.addAttribute("iexperiodo", iexperiodo);
+        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(iexcodpro), iexperiodo));
+        model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, -1, 1, "%"));
+
+        model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, iexcodpro, "2"));
+        model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, iexcodpro, iexperiodo, 1));
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/migracionPlanilla");
+    }
+
+    @SneakyThrows
+    @RequestMapping(value ="/gestionarMigracionTrabConcepValor", method = RequestMethod.POST)
+    public ModelAndView gestionarMigracionTrabConcepValor(ModelMap model, HttpServletRequest request,HttpServletResponse response,
+                                                 @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
+        log.info("/gestionarMigracionTrabConcepValor");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String accion = request.getParameter("accion");
+        String iexcodreg = request.getParameter("iexcodreg");
+        Integer v_codpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String periodo = request.getParameter("iexperiodo");
+        Integer v_correl = Integer.valueOf(request.getParameter("iexcorrel"));
+        String codtra = request.getParameter("slc_codtra");
+        String codcon = request.getParameter("slc_codcon");
+        String importe = request.getParameter("txt_importe");
+
+        if (accion.equals("UPXLSVAR")) {
+            // Process only if its multipart content
+            PrintWriter out = response.getWriter();
+
+            Integer v_codcab = 1;
+            String v_codtra = "0";
+            String tipo_excel = "";
+
+            InputStream file = uploadFile.getInputStream();
+
+            tipo_excel = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+
+            log.info("Tipo excel " + tipo_excel);
+            // Create Workbook instance holding reference to .xlsx file
+            // XSSFWorkbook workbook = new XSSFWorkbook(file);
+            // Get first/desired sheet from the workbook
+            // XSSFSheet sheet = workbook.getSheetAt(1);
+
+            XSSFWorkbook workbook;
+            XSSFSheet sheet;
+
+            HSSFWorkbook workbook2;
+            HSSFSheet sheet2;
+
+            Iterator<Row> rowIterator = null;
+
+            try {
+                if (tipo_excel.equals("xls") || tipo_excel.equals("XLS")) {
+                    workbook2 = new HSSFWorkbook(file);
+                    sheet2 = workbook2.getSheetAt(0);
+                    rowIterator = sheet2.iterator();
+                } else if (tipo_excel.equals("xlsx") || tipo_excel.equals("XLSX")) {
+                    workbook = new XSSFWorkbook(file);
+                    sheet = workbook.getSheetAt(0);
+                    rowIterator = sheet.iterator();
+                } else {
+                    model.addAttribute("message", "El archivo debe ser de extensión xls y/o xlsx");
+                }
+            } catch (IOException ex2) {
+                model.addAttribute("message", "el archivo debe ser de extensión xls y/o xlsx");
+            }
+
+            String result = null;
+            StringBuilder sql = new StringBuilder();
+            String inputName = null;
+
+            ArrayList<String> v_con = new ArrayList<String>(35);
+            EmpDatvar empvar = null;
+            List<EmpDatvar> l_empvar = new ArrayList<>();
+
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+
+                log.info("Fila <" + v_codcab + ">");
+
+                for (int cn = 0; cn < row.getLastCellNum(); cn++) {
+                    Cell cell = row.getCell(cn, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+
+                    // Print the cell for debugging
+                    if (cn == 0 && v_codcab >= 3) {
+
+                        if (cell.getCellType() != CellType.NUMERIC) { //si el valor es numérico
+                            v_codtra = cell.getStringCellValue();
+                        } else {
+                            int num = (int) cell.getNumericCellValue();
+                            v_codtra = Integer.toString(num);
+                        }
+                        log.info("v_codtra: "+v_codtra);
+                    }
+
+                    if (v_codcab == 2 && cn >= 2) {
+                        v_con.add(cell.toString());
+                        log.info("i: " + cn + " --> " + cell.toString() + "  ");
+                    } else if (v_codcab < 2) {
+                        log.info("i: " + cn + " --> " + cell.toString() + "  ");
+                    } else if (v_codcab >= 3 && cn >= 2) {
+                        log.info("i: " + cn + " --> " + cell.toString() + "  con:(" + v_con.get(cn - 2) + ") <-->  codtra :" + v_codtra + " -- ");
+
+                        empvar = new EmpDatvar();
+
+                        // Insertar valor
+                        empvar.setIexcodcia(idCompania);
+                        empvar.setIexcodpro(v_codpro);
+                        empvar.setIexnroper(periodo);
+                        empvar.setIexcodtra(Integer.valueOf(v_codtra));
+                        empvar.setIexcodcon(v_con.get(cn - 2));
+                        empvar.setIexvalcon(Double.parseDouble(cell.toString()));
+                        empvar.setIexcorrel(v_correl);
+                        empvar.setIexusucrea(user);
+                        l_empvar.add(empvar);
+                    }
+                }
+
+                v_codcab++;
+            }
+
+            sueldoService.migraInsertarPla(l_empvar);
+        }
+
+        model.addAttribute("iexcodreg", iexcodreg);
+        model.addAttribute("iexcodpro", v_codpro);
+        model.addAttribute("iexperiodo", periodo);
+        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(v_codpro), periodo));
+        model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, v_codpro, periodo, -1, 1, "%"));
+        model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, v_codpro, "2"));
+        model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, v_codpro, periodo, 1));
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/migracionPlanilla");
+    }
+
+    @RequestMapping("/actualizarMigValorTrabConcept@{codtra}@{codproceso}@{periodo}@{iexcodcon}@{iexcorrel}@{iexcodreg}@{valor}")
+    public ModelAndView actualizarMigValorTrabConcept(ModelMap model, HttpServletRequest request,
+                                                   @PathVariable String codtra,
+                                                   @PathVariable Integer codproceso,
+                                                   @PathVariable String periodo,
+                                                   @PathVariable String iexcodcon,
+                                                   @PathVariable Integer iexcorrel,
+                                                   @PathVariable Integer iexcodreg,
+                                                   @PathVariable String valor) {
+        log.info("/actualizarMigValorTrabConcept");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        EmpDatvar Datvar = new EmpDatvar();
+        Datvar.setIexcodcia(idCompania);
+        Datvar.setIexcodtra(Integer.parseInt(codtra));
+        Datvar.setIexcodpro(codproceso);
+        Datvar.setIexnroper(periodo);
+        Datvar.setIexcodcon(iexcodcon);
+        Datvar.setIexcorrel(iexcorrel);
+        Datvar.setIexvalcon(Double.valueOf(valor));
+        Datvar.setIexflgest("1");
+
+        sueldoService.actualizarEmpDatvar(Datvar);
+
+        return new ModelAndView("redirect:/migracionPlanilla@" + iexcodreg + "@" + codproceso + "@" + periodo);
+    }
+
+    @RequestMapping("/eliminarMigPlanConcepVariable@{iexcodpro}@{iexperiodo}@{iexcorrel}@{iexcodtra}@{iexcodcon}@{iexcodreg}")
+    public ModelAndView eliminarMigPlanConcepVariable(ModelMap model, HttpServletRequest request,
+                                                   @PathVariable Integer iexcodpro,
+                                                   @PathVariable String iexperiodo,
+                                                   @PathVariable Integer iexcorrel,
+                                                   @PathVariable Integer iexcodtra,
+                                                   @PathVariable String iexcodcon,
+                                                   @PathVariable String iexcodreg) {
+        log.info("/eliminarMigPlanConcepVariable");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        sueldoService.eliminarAllDatvarEmp(idCompania,iexcodpro,iexperiodo,iexcorrel,iexcodtra,iexcodcon);
+
+        return new ModelAndView("redirect:/migracionPlanilla@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+    }
+
+}

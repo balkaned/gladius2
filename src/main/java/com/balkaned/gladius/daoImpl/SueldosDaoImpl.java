@@ -412,4 +412,21 @@ public class SueldosDaoImpl implements SueldoDao {
         codtra,
         concepto);
     }
+
+    public void migraInsertarPla(List<EmpDatvar> empdatvar) {
+
+        for(EmpDatvar empdat:empdatvar) {
+
+            template.update(" call pl_migra_datapla_tra(?,?,?,?,?,?,?,?) ",
+
+                    empdat.getIexcodcia(),
+                    empdat.getIexcodpro(),
+                    empdat.getIexnroper(),
+                    empdat.getIexcodtra(),
+                    empdat.getIexcorrel(),
+                    empdat.getIexcodcon(),
+                    empdat.getIexvalcon(),
+                    empdat.getIexusucrea());
+        }
+    }
 }
