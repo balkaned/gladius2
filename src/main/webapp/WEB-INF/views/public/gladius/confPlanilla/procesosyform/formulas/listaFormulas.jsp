@@ -90,17 +90,6 @@
                    nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
                    nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
 
-                   /*nuevaFormula = nuevaFormula.replaceAll("=0","<label class='text-primary'>0</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("1","<label class='text-primary'>1</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("2","<label class='text-primary'>2</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("3","<label class='text-primary'>3</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("4","<label class='text-primary'>4</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("5","<label class='text-primary'>5</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("6","<label class='text-primary'>6</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("7","<label class='text-primary'>7</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("8","<label class='text-primary'>8</label>");
-                   nuevaFormula = nuevaFormula.replaceAll("9","<label class='text-primary'>9</label>");*/
-
                    //opt2 = "<textarea id='textAreaTraducido' style='font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</textarea>";
                    opt2 = "<div id='textAreaTraducido' class='form-control border-200 bg-1000 text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</div>";
 
@@ -173,11 +162,14 @@
                 <li class="breadcrumb-item active">Fórmulas</li>
               </ol>
             </nav>
-            <div class="mb-5">
+            <div class="mb-2">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
                   <h2 id="h2top" class="mb-2">Fórmulas</h2>
-                  <h5 class="text-700 fw-semi-bold text-none">${desproceso}</h5>
+                  <div class="col-12">
+                      <span class="badge badge-tag me-2 mb-2">Regimen: ${desregimen}</span>
+                  </div>
+                  <p class="col-12 mb-0 mt-0 fs--1">Proceso: ${desproceso}</p>
                 </div>
               </div>
             </div>
@@ -192,54 +184,10 @@
                       </form>
                     </div>
                   </div>
-                  <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-                    <div class="btn-group position-static" role="group">
-                      <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                aria-expanded="false" data-bs-reference="parent">
-                          Payment status<span class="fas fa-angle-down ms-2"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          <li>
-                            <hr class="dropdown-divider"/>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                      </div>
-                      <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window"
-                                aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                          Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          <li>
-                            <hr class="dropdown-divider"/>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                      </div>
-                      <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
-                    </div>
-                  </div>
+
                   <div>
                     <a class="btn btn-primary btn-sm" href="nuevaFormula@${requestScope.idProceso}"><span class="fas fa-plus me-2"></span>Add Formula</a>
                     <a class="btn btn-phoenix-secondary btn-sm ms-1" href="listProcesoFormulas"><span class="fas fa-reply me-2"></span>Atras</a>
-                    <div class="btn-group mb-1 me-1 ms-0 mt-1">
-                      <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-                      <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
-                      <div class="dropdown-menu">
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-                            <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
-                          </a>
-                          <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
-                          <div class="dropdown-divider"></div>
-                          <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -258,7 +206,7 @@
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="codconcept">COD CONCEPTO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="concept">CONCEPTO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" data-sort="glosa">GLOSA</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="estado">ESTADO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" >ESTADO</th>
                           <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                     </thead>

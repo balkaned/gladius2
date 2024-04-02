@@ -48,8 +48,8 @@
                         <span class="fw-normal fs-0 col-12">${puesto}</span>
                         <a href="#!" class="fs--1" data-bs-toggle="modal" data-bs-target="#reportsFilterModal" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Informacion de contacto</a>
                         <div class="col-12 mt-2">
-                            <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix badge-phoenix-success">Activo</span></c:if>
-                            <c:if test="${estado.equals('0')}"><span class="badge badge-phoenix badge-phoenix-danger">Inactivo</span></c:if>
+                            <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix fs--2 badge-phoenix-success">Activo</span></c:if>
+                            <c:if test="${estado.equals('0')}"><span class="badge badge-phoenix fs--2 badge-phoenix-danger">Inactivo</span></c:if>
                         </div>
                       </div>
                       <!--<div class="mb-3">

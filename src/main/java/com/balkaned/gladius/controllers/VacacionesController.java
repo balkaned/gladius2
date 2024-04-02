@@ -473,6 +473,61 @@ public class VacacionesController {
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
     }
 
+    @RequestMapping("/buscarTiempoListVacaciones")
+    public ModelAndView buscarTiempoListVacaciones(ModelMap model, HttpServletRequest request) {
+        log.info("/buscarTiempoListVacaciones");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String estado = request.getParameter("slc_estado");
+        String reglab = request.getParameter("iexcodreg");
+        String regimen = request.getParameter("iexcodreg");
+        String codtra = request.getParameter("iexcodtra");
+        String fecini = request.getParameter("fecini");
+        String fecfin = request.getParameter("fecfin");
+
+        FormatterFecha formatter = new FormatterFecha();
+        String fechaFormatterini = formatter.fechaFormatter(fecini);
+        String fechaFormatterfin = formatter.fechaFormatter(fecfin);
+
+        Integer xcodtra = 0;
+        if (codtra == null || codtra.isEmpty()) {
+            xcodtra = 0;
+        } else {
+            try {
+                xcodtra = Integer.parseInt(codtra);
+            } catch (NumberFormatException e) {
+                xcodtra = 0;
+            }
+        }
+
+        log.info("fecini" + fecini);
+        log.info("fecfin" + fecfin);
+        log.info("P_FECINI " + fechaFormatterini);
+        log.info("P_FECFIN " + fechaFormatterfin);
+        log.info("P_REGLAB " + reglab);
+        log.info("P_FLGEST " + estado);
+
+        model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+        if (fecini != null && fecfin != null) {
+            model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, regimen, fecini, fecfin, xcodtra));
+        }
+
+        model.addAttribute("fecini", fecini);
+        model.addAttribute("fecfin", fecfin);
+        model.addAttribute("iexcodreg", regimen);
+        model.addAttribute("P_FECINI", fechaFormatterini);
+        model.addAttribute("P_FECFIN", fechaFormatterfin);
+        model.addAttribute("P_REGLAB", reglab);
+        model.addAttribute("P_FLGEST", estado);
+
+        return new ModelAndView("public/gladius/gestionTiempo/vacaciones/gestionTiempoListVacaciones");
+    }
+
     @RequestMapping("/nuevoGestionVacaciones")
     public ModelAndView nuevoGestionVacaciones(ModelMap model, HttpServletRequest request) {
         log.info("/nuevoGestionVacaciones");

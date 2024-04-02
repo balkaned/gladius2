@@ -351,19 +351,32 @@ public class AWS_FTP_FlgSourceController {
 
                     inputStream = o.getObjectContent();
 
-                    //Parametros de Reporte
+                    //Parámetros de Reporte
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", -1);
-                    //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
+                    parametros.put("SUBREPORT_DIR", "");
 
-                    //Agregamos mas parametros al Reporte que vienen desde la url
+                    //Agregamos más parámetros al Reporte desde la url
                     if (lspreport.size() > 0) {
                         for (ParametroReport item : lspreport) {
-                            log.info("item.getNombreParametro(): " + item.getNombreParametro());
-                            log.info("item.getValorParametro(): " + item.getValorParametro());
-
-                            parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
+                            if (item.getNombreParametro().contains("FEC") || item.getNombreParametro().contains("fec") || item.getNombreParametro().contains("Fec")) {
+                                parametros.put(item.getNombreParametro(), item.getValorParametro());
+                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                            } else if(item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
+                                parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
+                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                            }else if(item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
+                                parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
+                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                            }else{
+                                parametros.put(item.getNombreParametro(), item.getValorParametro());
+                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                            }
                         }
                     }
 
@@ -435,8 +448,6 @@ public class AWS_FTP_FlgSourceController {
 
                     try {
                         JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, conn);
-                        jasperPrint.setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
-                        jasperPrint.setProperty("net.sf.jasperreports.default.font.name", "Sans Serif");
 
                         log.info("jasperPrint: " + jasperPrint.getName());
 
@@ -455,7 +466,7 @@ public class AWS_FTP_FlgSourceController {
                             exporter.setConfiguration(configuration);
                             exporter.exportReport();
                         }
-                    } catch (JRFontNotFoundException ex) {
+                    } catch (Exception ex) {
                         log.info("Mensaje: "+ex.getMessage());
                     }
                 }

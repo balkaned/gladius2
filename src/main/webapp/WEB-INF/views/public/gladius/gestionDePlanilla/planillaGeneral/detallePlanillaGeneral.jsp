@@ -739,7 +739,7 @@
                   </c:if>
 
                   <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-primary btn-sm" href="#"><span class="fas fa-briefcase me-2"></span>Otros datos</a>
+                      <a class="btn btn-phoenix-primary btn-sm" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
                       <a class="btn btn-phoenix-secondary btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-0 mt-1">
@@ -898,6 +898,291 @@
                                               <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
                                               <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
                                               <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-param" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="row g-4">
+                        <h4 class="mb-0 mt-7">Ingresos</h4>
+                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                          <div class="mb-3" class="mt-0">
+                              <div class="row g-3">
+                                <div class="col-auto">
+                                  <div class="search-box">
+                                    <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <span class="fas fa-search search-box-icon"></span>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                  <div class="table-responsive scrollbar mx-n1 px-1" >
+                                    <table class="table table-sm fs--1 mb-0">
+                                      <thead>
+                                          <tr>
+                                            <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                              <div class="form-check mb-0 fs-0">
+                                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                              </div>
+                                            </th>
+                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody class="list" id="customer-order-table-body-ingresos" >
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Descuentos</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-descuentos" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="row g-4">
+                        <h4 class="mb-0 mt-7">Aportes</h4>
+                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                          <div class="mb-3" class="mt-0">
+                              <div class="row g-3">
+                                <div class="col-auto">
+                                  <div class="search-box">
+                                    <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <span class="fas fa-search search-box-icon"></span>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                  <div class="table-responsive scrollbar mx-n1 px-1" >
+                                    <table class="table table-sm fs--1 mb-0">
+                                      <thead>
+                                          <tr>
+                                            <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                              <div class="form-check mb-0 fs-0">
+                                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                              </div>
+                                            </th>
+                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody class="list" id="customer-order-table-body-aportes" >
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Neto</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list" id="customer-order-table-body-neto" >
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="row g-4">
+                            <h4 class="mb-0 mt-7">Totales</h4>
+                            <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                              <div class="mb-3" class="mt-0">
+                                  <div class="row g-3">
+                                    <div class="col-auto">
+                                      <div class="search-box">
+                                        <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                          <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                          <span class="fas fa-search search-box-icon"></span>
+                                        </form>
+                                      </div>
+                                    </div>
+                                    <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                      <div class="table-responsive scrollbar mx-n1 px-1" >
+                                        <table class="table table-sm fs--1 mb-0">
+                                          <thead>
+                                              <tr>
+                                                <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                  <div class="form-check mb-0 fs-0">
+                                                    <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                  </div>
+                                                </th>
+                                                <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
+                                                <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
+                                                <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody class="list" id="customer-order-table-body-totales" >
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                    <a class="btn btn-sm btn-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>-->
+                </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="modalOtrosDatos" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content bg-100">
+                <div class="modal-header border-200 bg-soft p-4">
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Otros datos</h5>
+                   <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form class="needs-validation" method="POST" action="modificarPeriodoPlan" novalidate >
+                      <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                          <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                          <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                          <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+                      <div class="row mt-2">
+                          <div class="col-sm-6 col-md-2">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                                <input class="form-control" name="idTrabBol" id="idTrabBol" type="text" required disabled />
+                                <input class="form-control" name="idTrabBolHidden" id="idTrabBolHidden" type="hidden" value="" />
+                          </div>
+                          <div class="col-sm-6 col-md-6">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
+                                <input class="form-control" name="trabBol" id="trabBol" type="text" required disabled />
+                                <!--<input class="form-control" name="idprocesoEdit" id="idprocesoEdit" type="hidden" value="" />-->
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                              <input class="form-control" name="feciniBol" id="feciniBol" type="text" required disabled />
+                              <!--<input class="form-control" name="feciniBol" id="feciniBol" type="hidden" value="" />-->
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mt-3 mb-2">Estado</label>
+                            <input class="form-control" name="feciniBol" id="feciniBol" type="text" required disabled />
+                            <!--<input class="form-control" name="feciniBol" id="feciniBol" type="hidden" value="" />-->
+                          </div>
+                      </div>
+
+                      <div class="row g-4">
+                          <h4 class="mb-0 mt-7">Vacaciones</h4>
+                          <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                            <div class="mb-3" class="mt-0">
+                                <div class="row g-3">
+                                  <div class="col-auto">
+                                    <div class="search-box">
+                                      <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                        <input class="form-control search-input search" type="search" placeholder="Search vacaciones" aria-label="Search"/>
+                                        <span class="fas fa-search search-box-icon"></span>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  <div class="row g-4 mt-0">
+                                    <div class="col-auto">
+                                        <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Vacaciones</a>
+                                    </div>
+                                  </div>
+                                  <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                    <div class="table-responsive scrollbar mx-n1 px-1" >
+                                      <table class="table table-sm fs--1 mb-0">
+                                        <thead>
+                                            <tr>
+                                              <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
+                                                <div class="form-check mb-0 fs-0">
+                                                  <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                                </div>
+                                              </th>
+                                              <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">ID</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">TRABJADOR</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >TIPO</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >FECINI</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >FECFIN</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >NRO DIA</th>
+                                              <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >CODCON</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list" id="customer-order-table-body-param" >

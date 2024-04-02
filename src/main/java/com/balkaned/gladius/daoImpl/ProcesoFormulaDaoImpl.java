@@ -366,15 +366,17 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "prodespro, " +
                 "prodescorto, " +
                 "procodregimenlab, " +
-                " procodregimenlab desregimen, " +
+                "t.desdet desregimen, " +
                 "progrppro, " +
                 "bolproceso, " +
                 "idtipproceso, " +
                 "bolprocesoind, " +
                 "bolprocesores " +
-                "from iexprocesos p  " +
+                "from iexprocesos p, " +
+                " (select  iexkey, desdet from  iexttabled where iexcodtab='33') t " +
                 "where " +
-                " procodpro=" + id + " order by 1 asc ";
+                " p.procodregimenlab = t.iexkey and " +
+                " procodpro = " + id + " order by 1 asc ";
 
         return (ProcesoPlanilla) template.query(sql, new ResultSetExtractor<ProcesoPlanilla>() {
             public ProcesoPlanilla extractData(ResultSet rs) throws SQLException, DataAccessException {

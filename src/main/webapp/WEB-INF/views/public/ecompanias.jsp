@@ -45,10 +45,9 @@ margin-top:3px;
 margin-top:10px !important;
 }
 </style>
-      <div class="content">
+      <div class="content ">
         <nav class="mb-2" aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
-
           </ol>
         </nav>
         <div class="row gx-6 gy-3 mb-2 align-items-center">
@@ -61,7 +60,7 @@ margin-top:10px !important;
                 <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
             </div>
             <div class="col-auto ps-2 pe-0">
-                <a class="btn btn-phoenix-secondary mb-1 btn-sm" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
+                <a class="btn btn-phoenix-secondary mb-1 btn-sm" target="_blank" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
             </div>
             <div class="col-auto ps-2 pe-0">
                 <a class="btn btn-phoenix-secondary mb-1 text-900  btn-sm" href="logoff"><span class="fa-solid fa-key fs--1 me-2"></span>Log out</a>

@@ -53,6 +53,7 @@ public class FormulaController {
 		CapitalizarCadena cap= new CapitalizarCadena();
 		String desproceso2=cap.letras(pro.getDesProceso());
 		model.addAttribute("desproceso",desproceso2);
+		model.addAttribute("desregimen", pro.getDesRegLab());
 
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/listaFormulas");
 	}

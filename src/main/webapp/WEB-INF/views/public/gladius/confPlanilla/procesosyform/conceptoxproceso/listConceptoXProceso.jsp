@@ -81,7 +81,10 @@
                     <div class="row g-3">
                         <div class="col-auto">
                             <h2 id="h2top" class="mb-2">Conceptos por proceso</h2>
-                            <h5 class="text-700 fw-semi-bold">${desproceso}</h5>
+                            <div class="col-12">
+                                <span class="badge badge-tag me-2 mb-2">Regimen: ${desregimen}</span>
+                            </div>
+                            <p class="col-12 mb-0 mt-0 fs--1">Proceso: ${desproceso}</p>
                         </div>
                     </div>
                 </div>
@@ -111,7 +114,7 @@
                               <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                               <div class="dropdown-menu">
                                   <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-                                    <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Afectaciones
+                                    <span class="fa-solid fa-download fs--1 me-2"></span>Reporte de Afectaciones
                                   </a>
                                   <!--<a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
                                   <div class="dropdown-divider"></div>

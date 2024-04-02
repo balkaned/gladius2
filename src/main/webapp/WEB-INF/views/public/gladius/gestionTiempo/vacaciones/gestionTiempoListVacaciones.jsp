@@ -65,7 +65,7 @@
         });
 
         function consultaDet() {
-            document.getElementById("accion").value = "gestionTiempoListVacaciones";
+            document.getElementById("accion").value = "buscarTiempoListVacaciones";
         }
 
         function modificarDet(codtra, correl) {
@@ -76,7 +76,6 @@
 
             console.log(codtra, correl);
         }
-
 
         function formatearFecha(fecha) {
             var partesFecha = fecha.split('/');
@@ -92,7 +91,6 @@
                 return false;
             }
         }
-
     </script>
 
     <body>
@@ -138,14 +136,13 @@
                                         <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>-->
                                         <select class="form-select" name="slc_estado" required>
                                             <option value="" selected>Seleccionar estado</option>
-                                            <option value="0">Activos</option>
-                                            <option value="1">Inactivo</option>
+                                            <option value="0" ${P_FLGEST == 0 ? 'selected' : '' } >Activos</option>
+                                            <option value="1" ${P_FLGEST == 1 ? 'selected' : '' } >Inactivo</option>
                                         </select>
                                     </div>
                                     <!-- Fecha Inicio -->
                                     <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha
-                                            Inicio</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         <input class="form-control datetimepicker" name="fecini" id="fecini"
                                                onchange="formatearFecha1();" type="text"
@@ -153,8 +150,7 @@
                                     </div>
                                     <!-- Fecha Fin -->
                                     <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha
-                                            Fin</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         <input class="form-control datetimepicker" name="fecfin" id="fecfin"
                                                onchange="formatearFecha2();" type="text"
@@ -170,24 +166,10 @@
                                           <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                           <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                           <div class="dropdown-menu">
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null">
-                                                <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación
-                                              </a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=1UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación</a>
                                               <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Saldo</a>
-                                              <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
                                           </div>
                                         </div>
-
-                                        <!--<a class="btn btn-link text-900 me-4 px-0"
-                                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}PP_FECINI=${P_FECINI}PP_FECFIN=${P_FECFIN}@null@null@null" target="_blank">
-                                            <span class="fa-solid fa-file-export fs--1 ms-3 me-2"></span>Exportar Programación
-                                        </a>
-
-                                        <a class="btn btn-link text-900 me-4 px-0"
-                                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2PP_REGLAB=${P_REGLAB}PP_FLGEST=${P_FLGEST}@null@null@null@null@null" target="_blank">
-                                            <span class="fa-solid fa-file-export fs--1 me-2"></span>Exportar Saldo
-                                        </a>-->
                                     </div>
                                 </form>
                             </div>

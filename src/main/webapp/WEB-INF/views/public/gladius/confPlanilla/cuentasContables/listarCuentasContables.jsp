@@ -39,18 +39,6 @@
           </div>
           <div class="col-auto">
             <a class="btn btn-primary btn-sm" href="insertarCuentasContables"><span class="fas fa-plus me-2"></span>Add cuenta contable</a>
-            <div class="btn-group mb-1 me-1 ms-1 mt-1">
-              <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-              <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
-              <div class="dropdown-menu">
-            	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-            		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
-            	  </a>
-            	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
-            	  <div class="dropdown-divider"></div>
-            	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -80,8 +68,8 @@
                   </div>
                 </td>
                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarCuentaContable@${ccontable.iexccodcta}">#${ccontable.iexccodcta}</a></td>
-                <td class="total align-middle text-center fw-semi-bold text-1000">${ccontable.iexdescta}</td>
-                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--1 badge-phoenix-primary"><span class="badge-label">${ccontable.desdet}</span></td>
+                <td class="total align-middle text-start fw-semi-bold text-1000 ps-7">${ccontable.iexdescta}</td>
+                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${ccontable.desdet}</span></td>
                 <td class="align-middle text-center white-space-nowrap pe-0 action">
                   <div class="font-sans-serif btn-reveal-trigger position-static">
                     <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

@@ -67,8 +67,8 @@
                                      <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Categoria de Area</label>
-                                  <select class="form-select" name="iexcodcat" required >
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria de Area</label>
+                                  <select class="form-select" name="iexcodcat" >
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovCatArea" items="${lovCatArea}">
                                         <option value="${lovCatArea.idLov}" >${lovCatArea.desLov}</option>
@@ -76,8 +76,8 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Area Padre</label>
-                                    <select class="form-select" name="iexareapadre" required >
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area Padre</label>
+                                    <select class="form-select" name="iexareapadre" >
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">
                                           <option value="${lovArea.iexcodarea}" >${lovArea.iexdesarea}</option>

@@ -1,10 +1,7 @@
 package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.beans.*;
-import com.balkaned.gladius.services.ConceptoService;
-import com.balkaned.gladius.services.ConceptoXProcesoService;
-import com.balkaned.gladius.services.ProcesoFormulaService;
-import com.balkaned.gladius.services.ProcesoPlanillaService;
+import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.google.gson.Gson;
@@ -40,6 +37,9 @@ public class ConceptoXProcesoController {
     @Autowired
     ProcesoPlanillaService procesoPlanillaService;
 
+    @Autowired
+    LovsService lovsService;
+
     @RequestMapping("/listConceptoXProceso@{codproceso}")
     public ModelAndView listConcepto(ModelMap model, HttpServletRequest request,
                                      @PathVariable String codproceso) {
@@ -58,6 +58,7 @@ public class ConceptoXProcesoController {
         CapitalizarCadena cap = new CapitalizarCadena();
         String desproceso2 = cap.letras(pro.getDesProceso());
         model.addAttribute("desproceso", desproceso2);
+        model.addAttribute("desregimen", pro.getDesRegLab());
 
         log.info("proceso: " + codproceso);
 
@@ -85,6 +86,7 @@ public class ConceptoXProcesoController {
         CapitalizarCadena cap = new CapitalizarCadena();
         String desproceso2 = cap.letras(pro.getDesProceso());
         model.addAttribute("desproceso", desproceso2);
+        model.addAttribute("desregimen", pro.getDesRegLab());
 
         model.addAttribute("conceptoXProcesoList", procesoFormulaService.listConceptoXProceso(Integer.valueOf(codproceso), slc_grpconcepto));
 

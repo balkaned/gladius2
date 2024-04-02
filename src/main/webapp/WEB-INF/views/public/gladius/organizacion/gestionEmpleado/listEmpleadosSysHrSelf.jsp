@@ -25,7 +25,7 @@
           <div class="content">
             <nav class="mb-2" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#!">Gestión de empleados</a></li>
+                <li class="breadcrumb-item"><a href="#!">Organización</a></li>
                 <li class="breadcrumb-item active">Trabajadores</li>
               </ol>
             </nav>

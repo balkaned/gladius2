@@ -57,51 +57,10 @@
                         </form>
                       </div>
                     </div>
-                    <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-                      <div class="btn-group position-static" role="group">
-                        <div class="btn-group position-static text-nowrap" role="group">
-                          <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                            Payment status<span class="fas fa-angle-down ms-2"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                              <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                          </ul>
-                        </div>
-                        <div class="btn-group position-static text-nowrap" role="group">
-                          <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                            Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                              <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                          </ul>
-                        </div>
-                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
-                      </div>
-                    </div>
+
                     <div class="col-auto">
                       <a class="btn btn-primary btn-sm" href="nuevaTablaGen" ><span class="fas fa-plus me-2"></span>Add Tabla Gen</a>
-                      <div class="btn-group mb-1 me-1 ms-1 mt-1">
-                        <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-                        <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
-                        <div class="dropdown-menu">
-                      	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
-                      		<span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
-                      	  </a>
-                      	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
-                      	  <div class="dropdown-divider"></div>
-                      	  <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
                 </div>
