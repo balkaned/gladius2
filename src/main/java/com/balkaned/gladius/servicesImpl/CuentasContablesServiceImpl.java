@@ -22,4 +22,16 @@ public class CuentasContablesServiceImpl implements CuentasContablesService {
     public void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania) {
         dao.insertarCuentaContable(cuentaContable, idCompania);
     }
+
+    public CuentaContable getCuentaContable(Integer codcia, String ccontable){
+        return dao.getCuentaContable(codcia,ccontable);
+    }
+
+    public void actualizarCuentaContable(CuentaContable ccontable){
+        dao.actualizarCuentaContable(ccontable);
+    }
+
+    public void eliminarCuentaContable(CuentaContable ccontable){
+        dao.eliminarCuentaContable(ccontable);
+    }
 }

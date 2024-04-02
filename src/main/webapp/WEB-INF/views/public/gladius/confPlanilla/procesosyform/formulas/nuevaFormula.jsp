@@ -81,6 +81,7 @@
                     <div class="row g-3 mb-0">
                         <div class="col-auto">
                             <h2 id="h2top" class="mb-0">Nueva fórmula</h2>
+                            <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
                         </div>
                     </div>
 

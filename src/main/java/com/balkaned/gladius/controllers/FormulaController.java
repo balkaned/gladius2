@@ -75,6 +75,12 @@ public class FormulaController {
 		model.addAttribute("fplanillax", fplanilla);
 		model.addAttribute("Lovs_conxprod", lovsService.getConceptoxProc(idProceso));
 
+		ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(idProceso));
+		CapitalizarCadena cap= new CapitalizarCadena();
+		String desproceso2=cap.letras(pro.getDesProceso());
+		model.addAttribute("desproceso",desproceso2);
+		model.addAttribute("desregimen", pro.getDesRegLab());
+
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/formularCodigo");
 	}
 
@@ -127,6 +133,12 @@ public class FormulaController {
 
 		model.addAttribute("idProceso",idProceso);
 		model.addAttribute("Lovs_conxprod", lovsService.getConceptoxProc(idProceso));
+
+		ProcesoPlanilla pro=procesoFormulaService.recuperar(Integer.valueOf(idProceso));
+		CapitalizarCadena cap= new CapitalizarCadena();
+		String desproceso2=cap.letras(pro.getDesProceso());
+		model.addAttribute("desproceso",desproceso2);
+		model.addAttribute("desregimen", pro.getDesRegLab());
 
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/nuevaFormula");
 	}

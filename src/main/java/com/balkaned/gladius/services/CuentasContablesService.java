@@ -5,7 +5,13 @@ import com.balkaned.gladius.beans.CuentaContable;
 import java.util.List;
 
 public interface CuentasContablesService {
-    List<CuentaContable> listarCuentasContables();
+    public List<CuentaContable> listarCuentasContables();
 
-    void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania);
+    public void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania);
+
+    public CuentaContable getCuentaContable(Integer codcia, String ccontable);
+
+    public void actualizarCuentaContable(CuentaContable ccontable);
+
+    public void eliminarCuentaContable(CuentaContable ccontable);
 }

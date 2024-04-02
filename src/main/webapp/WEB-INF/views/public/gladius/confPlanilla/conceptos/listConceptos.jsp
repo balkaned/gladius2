@@ -92,8 +92,8 @@
                       </div>
                     </td>
                     <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${concepto.codConcepto}</a></td>
-                    <td class="concept align-middle text-start fw-semi-bold ps-3 pe-0 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger">${concepto.desConcepto}</span></td>
-                    <td class="var align-middle text-start fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap"><a href="#">${concepto.desVariable}</a></td>
+                    <td class="concept align-middle text-start fw-semi-bold ps-5 pe-0 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">${concepto.desConcepto}</span></td>
+                    <td class="var align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap"><a href="#">${concepto.desVariable}</a></td>
                     <td class="des align-middle text-start fw-semi-bold text-600">${concepto.desAbreviacion}</td>
                     <td class="abr al align-middle text-start fw-semi-bold text-600">${concepto.descripcion}</td>
 

@@ -72,12 +72,6 @@
                       remplazarPor="["+"<label id='labelvariableform'>"+data[i].desVariable+"</label> "+"<label id='labelcomentario'>"+data[i].desAbreviacionCapit+"</label>]";
 
                       nuevaFormula = nuevaFormula.replaceAll(desVariableAux,remplazarPor);
-
-                      /*opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                                "<td class='align-middle white-space-nowrap ps-3 pe-3'><a class='fw-semi-bold' href='#!'>"+i+"</a></td>"+
-                                "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desVariable+"</td>"+
-                                "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desAbreviacionCapit+"</td>"+
-                              "</tr>";*/
                    }
 
                    //Busca y remplaza operador if else elseif switch case break
@@ -90,10 +84,8 @@
                    nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
                    nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
 
-                   //opt2 = "<textarea id='textAreaTraducido' style='font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</textarea>";
                    opt2 = "<div id='textAreaTraducido' class='form-control border-200 bg-1000 text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</div>";
 
-                   //$("#bodyTraducido").html(nuevaFormula);
                    $("#bodyTraducido2").html(opt2);
                }
           });
@@ -109,6 +101,7 @@
                  },
              success: function (data) {
                  document.getElementById("textAreaTraductor").value=data.desFormula;
+                 traducirFormula();
              }
           });
       }

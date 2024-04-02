@@ -90,12 +90,6 @@
                         remplazarPor="["+"<label id='labelvariableform'>"+data[i].desVariable+"</label> "+"<label id='labelcomentario'>"+data[i].desAbreviacionCapit+"</label>]";
 
                         nuevaFormula = nuevaFormula.replaceAll(desVariableAux,remplazarPor);
-
-                        /*opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                                  "<td class='align-middle white-space-nowrap ps-3 pe-3'><a class='fw-semi-bold' href='#!'>"+i+"</a></td>"+
-                                  "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desVariable+"</td>"+
-                                  "<td class='align-middle white-space-nowrap text-start text-700 ps-3 pe-3'>"+data[i].desAbreviacionCapit+"</td>"+
-                                "</tr>";*/
                      }
 
                      //Busca y remplaza operador if else elseif switch case break
@@ -108,21 +102,8 @@
                      nuevaFormula = nuevaFormula.replaceAll("\n","</br>");
                      nuevaFormula = nuevaFormula.replaceAll(";","<label id='labelpuntoycoma' class='text-warning'>;</label>");
 
-                     /*nuevaFormula = nuevaFormula.replaceAll("=0","<label class='text-primary'>0</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("1","<label class='text-primary'>1</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("2","<label class='text-primary'>2</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("3","<label class='text-primary'>3</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("4","<label class='text-primary'>4</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("5","<label class='text-primary'>5</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("6","<label class='text-primary'>6</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("7","<label class='text-primary'>7</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("8","<label class='text-primary'>8</label>");
-                     nuevaFormula = nuevaFormula.replaceAll("9","<label class='text-primary'>9</label>");*/
-
-                     //opt2 = "<textarea id='textAreaTraducido' style='font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</textarea>";
                      opt2 = "<div id='textAreaTraducido' class='form-control border-200 bg-dark text-white rounded-top-0 border-0 flex-1' rows='10'>"+nuevaFormula+"</div>";
 
-                     //$("#bodyTraducido").html(nuevaFormula);
                      $("#bodyTraducido2").html(opt2);
                  }
             });
@@ -181,6 +162,7 @@
                     <div class="row g-3 mb-0">
                         <div class="col-auto">
                             <h2 id="h2top" class="mb-0">Editar fórmula</h2>
+                            <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
                         </div>
                     </div>
 
