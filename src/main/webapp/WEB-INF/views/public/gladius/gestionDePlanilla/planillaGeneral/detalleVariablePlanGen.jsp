@@ -123,19 +123,19 @@
                         <input type="hidden" name="idcodcon" id="idcodcon" value="" />
                         <input type="hidden" name="idvalcon" id="idvalcon" value="" />
 
-                        <div class="col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-5">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desregimen}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-6 col-md-5">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desproceso}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-6 col-md-5">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.iexnroper}  - [ ${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin} ]" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-4">
+                        <div class="col-sm-6 col-md-3">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desestado}" disabled/>
                         </div>
@@ -178,7 +178,7 @@
                             <div class="col-12">
                                 <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
-                                <a class="btn btn-phoenix-secondary btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
+                                <a class="btn btn-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
                                 <a class="btn btn-phoenix-danger btn-sm " onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
 
                                 <div class="btn-group mb-1 me-1 ms-1 mt-1">

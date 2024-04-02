@@ -8,7 +8,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
     <head>
         <jsp:include page="../../../links.jsp"></jsp:include>
     </head>
-    <script>
+    <script>|
         function mostrarAlert() {
             var div = document.getElementById('alert');
             div.style.display = '';
