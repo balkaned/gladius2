@@ -499,12 +499,12 @@ public class EmpleadoController {
         String iexnacion_origen1 = request.getParameter("iexnacion_origen1");
         String iexdepart_origen1 = request.getParameter("iexdepart_origen1");
         String iexprovin_origen1 = request.getParameter("iexprovin_origen1");
-        //String iexdistri_origen1 = request.getParameter("iexdistri_origen1");
+        String iexdistri_origen1 = request.getParameter("iexdistri_origen1");
 
         String iexnacion_origen2 = request.getParameter("iexnacion_origen2");
         String iexdepart_origen2 = request.getParameter("iexdepart_origen2");
         String iexprovin_origen2 = request.getParameter("iexprovin_origen2");
-        //String iexdistri_origen2 = request.getParameter("iexdistri_origen2");
+        String iexdistri_origen2 = request.getParameter("iexdistri_origen2");
 
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.parseInt(iexcodtra.trim()));
@@ -542,9 +542,20 @@ public class EmpleadoController {
         p.setIexnacion_origen1(iexnacion_origen1);
         p.setIexdepart_origen1(iexdepart_origen1);
         p.setIexprovin_origen1(iexprovin_origen1);
+        p.setIexdistri_origen1(iexdistri_origen1);
+
         p.setIexnacion_origen2(iexnacion_origen2);
         p.setIexdepart_origen2(iexdepart_origen2);
         p.setIexprovin_origen2(iexprovin_origen2);
+        p.setIexdistri_origen2(iexdistri_origen2);
+
+        log.info("p.getIexdepart_origen1(): "+p.getIexdepart_origen1());
+        log.info("p.getIexprovin_origen1: "+p.getIexprovin_origen1());
+        log.info("p.getIexdistri_origen1(): "+p.getIexdistri_origen1());
+
+        log.info("p.getIexdepart_origen2: "+p.getIexdepart_origen2());
+        log.info("p.getIexprovin_origen2(): "+p.getIexprovin_origen2());
+        log.info("p.getIexdistri_origen2(): "+p.getIexdistri_origen2());
 
         empleadoService.actualizarDireccion(p);
 

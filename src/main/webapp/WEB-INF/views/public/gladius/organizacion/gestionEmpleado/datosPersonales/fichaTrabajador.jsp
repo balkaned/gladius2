@@ -522,7 +522,7 @@
                                                 </select>
                                             </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                            <div id="alertLab" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                                             	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -621,12 +621,12 @@
                                                    <label class="form-check-label ms-2" for="flexChecked">Es interbancario?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Cuenta de Bancos</label>
-                                                <input class="form-control" name="iexnrocta_hab" maxlength="50" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="#" required/>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Cuenta de Bancos</label>
+                                                <input class="form-control" name="iexnrocta_hab" maxlength="50" value="${requestScope.emp3.iexnrocta_hab}" type="text" placeholder="#" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Banco de CTS [TT36]</label>
-                                                  <select class="form-select" name="iexcodban_cts" required>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de CTS [TT36]</label>
+                                                  <select class="form-select" name="iexcodban_cts" >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovBancoCts" items="${lovBancoCts}">
                                                         <option value="${lovBancoCts.idLov}" ${lovBancoCts.idLov == requestScope.emp3.iexcodban_cts ? 'selected' : ''}   >${lovBancoCts.desLov}</option>
@@ -634,8 +634,8 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Banco Cts [TT53]</label>
-                                                  <select class="form-select" name="iextipban_cts" required>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Banco Cts [TT53]</label>
+                                                  <select class="form-select" name="iextipban_cts" >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovTipCtaCts" items="${lovTipCtaCts}">
                                                         <option value="${lovTipCtaCts.idLov}"  ${lovTipCtaCts.idLov == requestScope.emp3.iextipban_cts ? 'selected' : ''}  >${lovTipCtaCts.desLov}</option>
@@ -643,8 +643,8 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Moneda de Cts [TT52]</label>
-                                                  <select class="form-select" name="iexcodmon_cts" required>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de Cts [TT52]</label>
+                                                  <select class="form-select" name="iexcodmon_cts" >
                                                     <option value="" selected >Seleccionar</option>
                                                     <c:forEach var="lovMonedaCts" items="${lovMonedaCts}">
                                                         <option value="${lovMonedaCts.idLov}"     ${lovMonedaCts.idLov == requestScope.emp3.iexcodmon_cts ? 'selected' : ''}    >${lovMonedaCts.desLov}</option>
@@ -657,9 +657,8 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Cuenta CTS</label>
-                                                <input id="validationCustom01" class="form-control" maxlength="50" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" type="text" placeholder="#" required />
+                                                <input id="validationCustom01" class="form-control" maxlength="50" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" type="text" placeholder="#" />
                                             </div>
-
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -856,6 +855,9 @@
                                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                           <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
+                                          <div class="col-12">
+                                              <span class="col-4 badge badge-tag me-2 mb-2">Dirección Principal</span>
+                                          </div>
                                           <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
                                               <select class="form-select" name="iextipvia_dom1" required>
@@ -867,39 +869,39 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nom. Via</label>
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="40" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="" required />
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="30" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="Los Girasoles" required />
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Via</label>
-                                                <input class="form-control" name="iexnrovia_dom1" maxlength="6" value="${requestScope.emp5.iexnrovia_dom1}" type="text" placeholder="435" required />
+                                                <input class="form-control" name="iexnrovia_dom1" maxlength="6" value="${requestScope.emp5.iexnrovia_dom1}" type="number" placeholder="435" required />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
+                                          <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept</label>
                                                 <input class="form-control" name="iexdeptin_dom1" maxlength="6" value="${requestScope.emp5.iexdeptin_dom1}" type="text" placeholder="203" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
+                                          <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior</label>
                                                 <input class="form-control" name="iexinterior_dom1" maxlength="6" value="${requestScope.emp5.iexinterior_dom1}" type="text" placeholder="1" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana domicilio 1</label>
+                                          <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana</label>
                                                 <input class="form-control" name="iexmanzana_dom1" maxlength="6" value="${requestScope.emp5.iexmanzana_dom1}" type="text" placeholder="A" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote</label>
+                                          <div class="col-sm-6 col-md-3">
+                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Lote</label>
                                                <input class="form-control" name="iexlote_dom1" maxlength="6" value="${requestScope.emp5.iexlote_dom1}" type="text" placeholder="10" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia</label>
                                                 <input class="form-control" name="iexkilometro_dom1" maxlength="6" value="${requestScope.emp5.iexkilometro_dom1}" type="text" placeholder="21" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa dom1</label>
+                                          <div class="col-sm-6 col-md-2">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa</label>
                                               <input class="form-control" name="iexetapa_dom1" maxlength="6" value="${requestScope.emp5.iexetapa_dom1}" type="text" placeholder="E2" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona dom1</label>
-                                                <select class="form-select" name="iextipzona_dom1" required >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona</label>
+                                                <select class="form-select" name="iextipzona_dom1" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona" items="${lovTipZona}">
                                                       <option value="${lovTipZona.idLov}"    ${lovTipZona.idLov == requestScope.emp5.iextipzona_dom1 ? 'selected' : ''}   >${lovTipZona.desLov}</option>
@@ -907,11 +909,11 @@
                                                 </select>
                                           </div>
                                           <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia dom1</label>
-                                                <input class="form-control" name="iexreferencia_dom1" maxlength="40" value="${requestScope.emp5.iexreferencia_dom1}" type="text" placeholder="" required/>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia</label>
+                                                <input class="form-control" name="iexreferencia_dom1" maxlength="40" value="${requestScope.emp5.iexreferencia_dom1}" type="text" placeholder="" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 1 [TT26]</label>
+                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor [TT26]</label>
                                                <select class="form-select" id="iexpaisemisor1" name="iexnacion_origen1" required >
                                                  <option value="" selected >Seleccionar</option>
                                                  <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
@@ -920,8 +922,8 @@
                                                </select>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 1</label>
-                                                <select class="form-select" id="iexdepart_origen1" name="iexdepart_origen1" >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Departamento</label>
+                                                <select class="form-select" id="iexdepart_origen1" name="iexdepart_origen1" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDept_origen" items="${lovDept_origen}">
                                                       <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp5.iexdepart_origen1 ? 'selected' : ''}>${lovDept_origen.desLov}</option>
@@ -929,7 +931,7 @@
                                                 </select>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
                                                 <select class="form-select" id="iexprovin_origen1" name="iexprovin_origen1" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
@@ -938,13 +940,17 @@
                                                 </select>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito</label>
                                                 <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1">
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
                                                   </c:forEach>
                                                 </select>
+                                          </div>
+
+                                          <div class="col-12">
+                                            <span class="mt-5 col-4 badge badge-tag me-2 mb-2">Dirección Secundaria</span>
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>
@@ -957,42 +963,42 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via 2</label>
-                                                <input class="form-control" name="iexnomvia_dom2" maxlength="40" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="" />
+                                                <input class="form-control" name="iexnomvia_dom2" maxlength="30" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="Los Girasoles" />
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
-                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" value="${requestScope.emp5.iexnrovia_dom2}" type="text" placeholder="435" />
+                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" value="${requestScope.emp5.iexnrovia_dom2}" type="number" placeholder="435" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
+                                          <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept 2</label>
                                                 <input class="form-control" name="iexdeptin_dom2" maxlength="6" value="${requestScope.emp5.iexdeptin_dom2}" type="text" placeholder="203" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
+                                          <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior 2</label>
                                                 <input class="form-control" name="iexinterior_dom2" maxlength="6" value="${requestScope.emp5.iexinterior_dom2}" type="text" placeholder="1" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana domicilio 2</label>
+                                          <div class="col-sm-6 col-md-3">
+                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana 2</label>
                                                <input class="form-control" name="iexmanzana_dom2" maxlength="6" value="${requestScope.emp5.iexmanzana_dom2}" type="text" placeholder="A" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote 2</label>
+                                          <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Lote 2</label>
                                                 <input class="form-control" name="iexlote_dom2" maxlength="6" value="${requestScope.emp5.iexlote_dom2}" type="text" placeholder="10" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia 2</label>
                                               <input class="form-control" name="iexkilometro_dom2" maxlength="6" value="${requestScope.emp5.iexkilometro_dom2}" type="text" placeholder="21" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
+                                          <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 2</label>
                                                 <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexblock_dom2}" placeholder="B3" />
                                           </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa dom 2</label>
+                                          <div class="col-sm-6 col-md-2">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 2</label>
                                                 <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexetapa_dom2}" placeholder="E2" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona dom 2</label>
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona 2</label>
                                               <select class="form-select" name="iextipzona_dom2" >
                                                 <option value="" selected >Seleccionar</option>
                                                 <c:forEach var="lovTipZona2" items="${lovTipZona2}">
@@ -1001,12 +1007,12 @@
                                               </select>
                                           </div>
                                           <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia dom 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia 2</label>
                                                 <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 2 [TT26]</label>
-                                                <select class="form-select" id="iexpaisemisor2" name="iexnacion_origen2" required >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor 2 [TT26]</label>
+                                                <select class="form-select" id="iexpaisemisor2" name="iexnacion_origen2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp5.iexnacion_origen2 ? 'selected' : ''}>${lovPaisEmisor.desLov}</option>
@@ -1036,12 +1042,13 @@
                                                 <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                           </div>
+                                          <hr class="hr mt-8" />
                                           <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio 2</label>
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio </label>
                                               <select class="form-select" name="iexflgdomicilio" required >
                                                 <option value="1"  ${requestScope.emp5.iexflgdomicilio=='1' ? 'selected' : ''} >Direccion Principal</option>
                                                 <option value="2" ${requestScope.emp5.iexflgdomicilio=='2' ? 'selected' : ''} >Direccion Secundaria</option>

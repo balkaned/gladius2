@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_concepto_pdt">Codigo PDT</label>
-                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" type="text" value=""/>
+                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" maxlength="6" type="text" value="" />
                                     </div>
                                     <div class="col-sm-6 col-md-12">
                                         <input type="checkbox" class="form-check-input" name="flg_boleta" value="1" id="flg_boleta"/>
@@ -86,11 +86,11 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_orden_bol">Orden</label>
-                                        <input class="form-control" id="id_orden_bol" name="id_orden_bol" type="text" maxlength="50" value="0"/>
+                                        <input class="form-control" id="id_orden_bol" name="id_orden_bol" type="number" maxlength="50" value="0"/>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="valor_bol">Valor</label>
-                                        <input class="form-control" id="valor_bol" name="valor_bol" type="text" maxlength="50" value="0"/>
+                                        <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="0"/>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
@@ -102,7 +102,7 @@
                                     </div>-->
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro Meses Atras</label>
-                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="0"/>
+                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="number" maxlength="50" value="0"/>
                                     </div>
                                     <!--<div class="col-sm-6 col-md-12">
                                         <a class="btn btn-phoenix-secondary btn-sm text-900 me-4 px-0 ps-3 pe-4" href="#"><span class="fa-solid fa-magnifying-glass fs--1 me-2"></span>Ver conceptos promediables</a>

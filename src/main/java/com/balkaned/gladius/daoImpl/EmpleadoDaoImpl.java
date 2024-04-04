@@ -820,12 +820,17 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                         " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?, " +
                         " iexflgdomicilio =? , " +
                         " iexfecmoddom=CURRENT_TIMESTAMP,  iexusumoddom=?  , " +
+
                         " iexnacion_origen1 =?  ,   " +
                         " iexdepart_origen1 =?  , " +
                         " iexprovin_origen1 =?  , " +
+                        " iexubigeo_dom1 =? , "+
+
                         " iexnacion_origen2 =?  , " +
                         " iexdepart_origen2  =? ,  " +
-                        " iexprovin_origen2 =?  " +
+                        " iexprovin_origen2 =?,  " +
+                        " iexubigeo_dom2 =? " +
+
                         " where  iexcodcia=?   and  iexcodtra=?  ",
 
                 empleado.getIextipvia_dom1(),
@@ -841,7 +846,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIextipzona_dom1(),
                 empleado.getIexnomzona_dom1(),
                 empleado.getIexreferencia_dom1(),
-                //empleado.getIexubigeo_dom1(),
                 empleado.getIextipvia_dom2(),
                 empleado.getIexnomvia_dom2(),
                 empleado.getIexnrovia_dom2(),
@@ -855,15 +859,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIextipzona_dom2(),
                 empleado.getIexnomzona_dom2(),
                 empleado.getIexreferencia_dom2(),
-                //empleado.getIexubigeo_dom2(),
                 empleado.getIexflgdomicilio(),
                 empleado.getIexusumod(),
+
                 empleado.getIexnacion_origen1(),
                 empleado.getIexdepart_origen1(),
                 empleado.getIexprovin_origen1(),
+                empleado.getIexdistri_origen1(),
+
                 empleado.getIexnacion_origen2(),
                 empleado.getIexdepart_origen2(),
                 empleado.getIexprovin_origen2(),
+                empleado.getIexdistri_origen2(),
+
                 empleado.getIexcodcia(),
                 empleado.getIexcodtra());
 

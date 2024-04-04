@@ -153,11 +153,12 @@ public class ConceptoXProcesoController {
         }
 
         sessionattributes.getVariablesSession(model, request);
+
         try {
             Integer codproceso = Integer.valueOf(idProceso);
             String codcon = request.getParameter("idconcepto");
             String tip_con = request.getParameter("tip_concepto");
-            String codcon_pdt = request.getParameter("id_concept_pdt");
+            String codcon_pdt = request.getParameter("id_concepto_pdt");
             String flg_bol = request.getParameter("flg_boleta");
             String des_custom = request.getParameter("des_custom");
             String tip_ingreso = request.getParameter("tip_ingreso");
@@ -175,6 +176,8 @@ public class ConceptoXProcesoController {
             String flg_fond_compl_jub = request.getParameter("flg_fond_compl_jub");
             String flg_esp_pens_pesq = request.getParameter("flg_esp_pens_pesq");
             String flg_5ta = request.getParameter("flg_5ta");
+            String flg_ess_seg_reg_pen = request.getParameter("flg_ess_seg_pen");
+            String flg_contr_solid_asis = request.getParameter("flg_cont_asis_previs");
             String flg_promediable = request.getParameter("flg_promediable");
             String flg_agrupable = request.getParameter("flg_agrupable");
             int nro_meses_atras;
@@ -222,9 +225,13 @@ public class ConceptoXProcesoController {
             p.setFlg_promediable(flg_promediable);
             p.setFlg_agrupable(flg_agrupable);
             p.setNro_meses_atras(nro_meses_atras);
-            log.info("ConceptoXProceso: " + p);
+            p.setFlg_ess_seg_pen(flg_ess_seg_reg_pen);
+            p.setFlg_cont_asis_previs(flg_contr_solid_asis);
 
-            procesoFormulaService.insertarConceptoXProceso(p);
+            log.info("p: "+p);
+            log.info("p.getProdconpdt: "+p.getProcodconpdt());
+
+            procesoFormulaService.insertar(p);
         } catch (Exception e) {
             log.info("Error: " + e.getMessage());
         }
@@ -347,9 +354,10 @@ public class ConceptoXProcesoController {
         p.setFlg_agrupable(flg_agrupable);
         p.setNro_meses_atras(nro_meses_atras);
 
-        log.info("ConceptoXProceso: " + p);
+        //log.info("ConceptoXProceso: " + p);
 
-        procesoFormulaService.editarConceptoXProceso(p);
+        //procesoFormulaService.editarConceptoXProceso(p);
+        procesoFormulaService.actualizar(p);
 
         return new ModelAndView("redirect:/listConceptoXProceso@" + codproceso);
     }

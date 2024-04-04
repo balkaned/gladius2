@@ -169,12 +169,17 @@ public class Empleado {
     private String iexfecmodseg;
     private String iexusumodpag;
     private String iexfecmodpag;
+
     private String iexnacion_origen1;
     private String iexdepart_origen1;
     private String iexprovin_origen1;
+    private String iexdistri_origen1;
+
     private String iexnacion_origen2;
     private String iexdepart_origen2;
     private String iexprovin_origen2;
+    private String iexdistri_origen2;
+
     private String direccion1;
     private String direccion2;
     private String letraIni;

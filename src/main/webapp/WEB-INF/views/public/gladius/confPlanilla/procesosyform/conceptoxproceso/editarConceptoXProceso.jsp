@@ -336,7 +336,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_concepto_pdt">Codigo PDT</label>
-                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" type="text" value="${requestScope.proconceptox.procodconpdt}" />
+                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" type="text" maxlength="6" value="${requestScope.proconceptox.procodconpdt}" />
                                     </div>
                                     <div class="col-sm-6 col-md-12">
                                         <input type="checkbox" class="form-check-input" name="flg_boleta" value="1" ${requestScope.proconceptox.proflgbol=='1' ? 'checked=true' : ''} id="flg_boleta"/>
@@ -344,11 +344,11 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_orden_bol">Orden</label>
-                                        <input class="form-control" id="id_orden_bol" name="id_orden_bol" type="text" maxlength="50" value="${requestScope.proconceptox.proorden}" />
+                                        <input class="form-control" id="id_orden_bol" name="id_orden_bol" type="number" maxlength="50" value="${requestScope.proconceptox.proorden}" />
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="valor_bol">Valor</label>
-                                        <input class="form-control" id="valor_bol" name="valor_bol" type="text" maxlength="50" value="${requestScope.proconceptox.provalor}" />
+                                        <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="${requestScope.proconceptox.provalor}" />
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
@@ -359,8 +359,8 @@
                                         <label class="form-check-label ms-2" for="flg_promediable">Promediable</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro Meses Atras</label>
-                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="text" maxlength="50" value="${requestScope.proconceptox.nro_meses_atras}"/>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro meses atras</label>
+                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="number" maxlength="50" value="${requestScope.proconceptox.nro_meses_atras}"/>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ver conceptos promediables</label>

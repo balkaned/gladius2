@@ -7,7 +7,7 @@ import com.balkaned.gladius.beans.ConceptoxProms;
 import java.util.List;
 
 public interface ConceptoXProcesoDao {
-    List<ConceptoXProceso> listarTipconCtb(Integer xcodcia, Integer idProceso, String slc_grpconcepto);
+    public List<ConceptoXProceso> listarTipconCtb(Integer xcodcia, Integer idProceso, String slc_grpconcepto);
 
     public ConceptoXProceso recuperar(Integer idproceso, String idconcepto);
 

@@ -260,65 +260,97 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         });
     }
 
-    @Override
-    public void insertarConceptoXProceso(ConceptoXProceso cxp) {
+    public void insertar(ConceptoXProceso cproceso){
 
-        String sqlQuery = "  insert into iexproxconcepto(procodpro,procodcon,procodconpdt,proflgbol,proorden,provalor,protipcon,prodescustom, " +
-                " tip_ingreso , flg_pry_5ta ,  flg_des_5ta_mes ,   flg_ess_reg , flg_ess_pesq ,  flg_ess_agrac,  flg_ess_sctr, flg_extra_solid , flg_fondo_art ,  flg_apo_senati , flg_onp, flg_afp,  flg_fond_compl_jub,   flg_esp_pens_pesq , flg_5ta ,  flg_ess_seg_pen , flg_cont_asis_previs , flg_promediable, flg_agrupable, nro_meses_prom_atras " +
-                " ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+        template.update("  insert into iexproxconcepto(procodpro,procodcon,procodconpdt,proflgbol,proorden,provalor,protipcon,prodescustom, "+
+                        " tip_ingreso , flg_pry_5ta ,  flg_des_5ta_mes ,   flg_ess_reg , flg_ess_pesq ,  flg_ess_agrac,  flg_ess_sctr, flg_extra_solid , flg_fondo_art ,  flg_apo_senati , flg_onp, flg_afp,  flg_fond_compl_jub,   flg_esp_pens_pesq , flg_5ta ,  flg_ess_seg_pen , flg_cont_asis_previs , flg_promediable, flg_agrupable, nro_meses_prom_atras "+
+                        " ) values (?,?,?,?,?,?,?,?,  ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? ) ",
 
-        try {
-            template.update(sqlQuery, cxp.getProcodpro(), cxp.getProcodcon(), cxp.getProcodconpdt(), cxp.getProflgbol(),
-                    cxp.getProorden(), cxp.getProvalor()
-                    , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
-                    cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
-                    cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
-                    cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
-                    cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
-                    cxp.getFlg_agrupable(), cxp.getNro_meses_atras());
-        } catch (DataAccessException e) {
-            log.error("Error al insertar proceso: " + e.getMessage());
-        }
+        cproceso.getProcodpro(),
+        cproceso.getProcodcon(),
+        cproceso.getProcodconpdt(),
+        cproceso.getProflgbol(),
+        cproceso.getProorden(),
+        cproceso.getProvalor(),
+        cproceso.getProtipcon(),
+        cproceso.getProdescustom(),
+        cproceso.getTip_ingreso(),
+        cproceso.getFlg_pry_5ta(),
+        cproceso.getFlg_des_5ta_mes(),
+        cproceso.getFlg_ess_reg(),
+        cproceso.getFlg_ess_pesq(),
+        cproceso.getFlg_ess_agrac(),
+        cproceso.getFlg_ess_sctr(),
+        cproceso.getFlg_extra_solid(),
+        cproceso.getFlg_fondo_art(),
+        cproceso.getFlg_apo_senati(),
+        cproceso.getFlg_onp(),
+        cproceso.getFlg_afp(),
+        cproceso.getFlg_fond_compl_jub(),
+        cproceso.getFlg_esp_pens_pesq(),
+        cproceso.getFlg_5ta(),
+        cproceso.getFlg_ess_seg_pen(),
+        cproceso.getFlg_cont_asis_previs(),
+        cproceso.getFlg_promediable(),
+        cproceso.getFlg_agrupable(),
+        cproceso.getNro_meses_atras());
     }
 
-    @Override
-    public void editarConceptoXProceso(ConceptoXProceso cxp) {
+    public void actualizar(ConceptoXProceso cproceso){
 
-        String sqlQuery = "  update  iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, provalor = ?, protipcon = ?, prodescustom = ? , "
-                + "tip_ingreso = ?, " +
-                "flg_pry_5ta = ?, " +
-                " flg_des_5ta_mes = ?, " +
-                " flg_ess_reg = ?, " +
-                " flg_ess_pesq = ?, " +
-                " flg_ess_agrac = ?, " +
-                " flg_ess_sctr = ?, " +
-                " flg_extra_solid = ?, " +
-                " flg_fondo_art = ?, " +
-                " flg_apo_senati  = ?, " +
-                "  flg_onp = ?, " +
-                " flg_afp = ?, " +
-                " flg_fond_compl_jub = ?, " +
-                " flg_esp_pens_pesq = ?, " +
-                " flg_5ta  = ? , " +
-                " flg_ess_seg_pen = ?, " +
-                " flg_cont_asis_previs= ? ," +
-                " flg_promediable = ? ," +
-                " flg_agrupable = ? ," +
-                " nro_meses_prom_atras = ? " +
-                "where procodpro = ? and trim(procodcon)=trim(?) ";
+        template.update("  update  iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, provalor = ?, protipcon = ?, prodescustom = ? , "
+                        + "tip_ingreso = ?, " +
+                        "flg_pry_5ta = ?, " +
+                        " flg_des_5ta_mes = ?, " +
+                        " flg_ess_reg = ?, " +
+                        " flg_ess_pesq = ?, " +
+                        " flg_ess_agrac = ?, " +
+                        " flg_ess_sctr = ?, " +
+                        " flg_extra_solid = ?, " +
+                        " flg_fondo_art = ?, " +
+                        " flg_apo_senati  = ?, " +
+                        "  flg_onp = ?, " +
+                        " flg_afp = ?, " +
+                        " flg_fond_compl_jub = ?, " +
+                        " flg_esp_pens_pesq = ?, " +
+                        " flg_5ta  = ? , " +
+                        " flg_ess_seg_pen = ?, " +
+                        " flg_cont_asis_previs= ? ," +
+                        " flg_promediable = ? ,"+
+                        " flg_agrupable = ? ,"+
+                        " nro_meses_prom_atras = ? "+
+                        "where procodpro = ? and trim(procodcon)=trim(?) ",
 
-        try {
-            template.update(sqlQuery, cxp.getProcodconpdt(), cxp.getProflgbol(), cxp.getProorden(), cxp.getProvalor()
-                    , cxp.getProtipcon(), cxp.getProdescustom(), cxp.getTip_ingreso(), cxp.getFlg_pry_5ta(),
-                    cxp.getFlg_des_5ta_mes(), cxp.getFlg_ess_reg(), cxp.getFlg_ess_pesq(), cxp.getFlg_ess_agrac(),
-                    cxp.getFlg_ess_sctr(), cxp.getFlg_extra_solid(), cxp.getFlg_fondo_art(), cxp.getFlg_apo_senati(),
-                    cxp.getFlg_onp(), cxp.getFlg_afp(), cxp.getFlg_fond_compl_jub(), cxp.getFlg_esp_pens_pesq(),
-                    cxp.getFlg_5ta(), cxp.getFlg_ess_seg_pen(), cxp.getFlg_cont_asis_previs(), cxp.getFlg_promediable(),
-                    cxp.getFlg_agrupable(), cxp.getNro_meses_atras(), cxp.getProcodpro(), cxp.getProcodcon());
-        } catch (DataAccessException e) {
-            log.error("Error al editar proceso: " + e.getMessage());
-        }
+        cproceso.getProcodconpdt(),
+        cproceso.getProflgbol(),
+        cproceso.getProorden(),
+        cproceso.getProvalor(),
+        cproceso.getProtipcon(),
+        cproceso.getProdescustom(),
+        cproceso.getTip_ingreso(),
+        cproceso.getFlg_pry_5ta(),
+        cproceso.getFlg_des_5ta_mes(),
+        cproceso.getFlg_ess_reg(),
+        cproceso.getFlg_ess_pesq(),
+        cproceso.getFlg_ess_agrac(),
+        cproceso.getFlg_ess_sctr(),
+        cproceso.getFlg_extra_solid(),
+        cproceso.getFlg_fondo_art(),
+        cproceso.getFlg_apo_senati(),
+        cproceso.getFlg_onp(),
+        cproceso.getFlg_afp(),
+        cproceso.getFlg_fond_compl_jub(),
+        cproceso.getFlg_esp_pens_pesq(),
+        cproceso.getFlg_5ta(),
+        cproceso.getFlg_ess_seg_pen(),
+        cproceso.getFlg_cont_asis_previs(),
+        cproceso.getFlg_promediable(),
+        cproceso.getFlg_agrupable(),
+        cproceso.getNro_meses_atras(),
+        cproceso.getProcodpro(),
+        cproceso.getProcodcon());
     }
+
 
     @Override
     public void insertarProcesoFormula(ProcesoForm proFo) {

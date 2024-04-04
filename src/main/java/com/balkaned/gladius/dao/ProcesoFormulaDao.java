@@ -5,23 +5,23 @@ import com.balkaned.gladius.beans.*;
 import java.util.List;
 
 public interface ProcesoFormulaDao {
-    List<ProcesoForm> listProcesoFormula();
+    public List<ProcesoForm> listProcesoFormula();
 
-    List<FormulaXConcepto> listFormulaXConcepto();
+    public List<FormulaXConcepto> listFormulaXConcepto();
 
-    List<Proceso> listConcepto(String id);
+    public List<Proceso> listConcepto(String id);
 
-    List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon);
+    public List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon);
 
-    ConceptoXProceso getConceptoXProceso(Integer idproceso, String idconcepto);
+    public ConceptoXProceso getConceptoXProceso(Integer idproceso, String idconcepto);
 
-    void insertarConceptoXProceso(ConceptoXProceso cxp);
+    public void insertar(ConceptoXProceso cproceso);
 
-    void editarConceptoXProceso(ConceptoXProceso cxp);
+    public void actualizar(ConceptoXProceso cproceso);
 
-    void insertarProcesoFormula(ProcesoForm proFo);
+    public void insertarProcesoFormula(ProcesoForm proFo);
 
-    void eliminarProcesoFormula(Integer id);
+    public void eliminarProcesoFormula(Integer id);
 
     public ProcesoPlanilla recuperar(Integer id);
 

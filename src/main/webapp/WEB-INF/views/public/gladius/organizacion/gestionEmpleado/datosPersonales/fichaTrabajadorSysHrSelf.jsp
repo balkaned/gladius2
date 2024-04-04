@@ -845,6 +845,8 @@
                                         <form class="row g-4 mb-0 needs-validation" method="POST" action="updateEmplDatDomic" novalidate >
                                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                           <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+
+                                          <span class="badge badge-tag me-2 mb-2">Dirección Principal</span>
                                           <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
                                               <select class="form-select" name="iextipvia_dom1" required disabled>
@@ -935,6 +937,8 @@
                                                   </c:forEach>
                                                 </select>
                                           </div>
+
+                                          <span class="badge badge-tag me-2 mb-2">Dirección Secundaria</span>
                                           <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>
                                                 <select class="form-select" name="iextipvia_dom2" disabled>
@@ -1029,8 +1033,9 @@
                                                   </c:forEach>
                                                 </select>
                                           </div>
+                                          <hr class="hr" />
                                           <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio 2</label>
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio</label>
                                               <select class="form-select" name="iexflgdomicilio" required disabled >
                                                 <option value="1"  ${requestScope.emp5.iexflgdomicilio=='1' ? 'selected' : ''} >Direccion Principal</option>
                                                 <option value="2" ${requestScope.emp5.iexflgdomicilio=='2' ? 'selected' : ''} >Direccion Secundaria</option>
