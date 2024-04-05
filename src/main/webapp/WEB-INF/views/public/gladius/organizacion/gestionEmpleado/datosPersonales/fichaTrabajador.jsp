@@ -60,25 +60,25 @@
   }
 
   function formatearFecha5(){
-          var fechaSeleccionada = $('#iexfecfin_cont').val();
+      var fechaSeleccionada = $('#iexfecfin_cont').val();
 
-          var anio=fechaSeleccionada.substring(0, 4);
-          var mes=fechaSeleccionada.substring(5, 7);
-          var dia=fechaSeleccionada.substring(8, 10);
+      var anio=fechaSeleccionada.substring(0, 4);
+      var mes=fechaSeleccionada.substring(5, 7);
+      var dia=fechaSeleccionada.substring(8, 10);
 
-          var fechaFormat=dia+"/"+mes+"/"+anio;
-          $("#iexfecfin_cont").val(fechaFormat);
+      var fechaFormat=dia+"/"+mes+"/"+anio;
+      $("#iexfecfin_cont").val(fechaFormat);
   }
 
   function formatearFecha6(){
-          var fechaSeleccionada = $('#iexfecafp').val();
+      var fechaSeleccionada = $('#iexfecafp').val();
 
-          var anio=fechaSeleccionada.substring(0, 4);
-          var mes=fechaSeleccionada.substring(5, 7);
-          var dia=fechaSeleccionada.substring(8, 10);
+      var anio=fechaSeleccionada.substring(0, 4);
+      var mes=fechaSeleccionada.substring(5, 7);
+      var dia=fechaSeleccionada.substring(8, 10);
 
-          var fechaFormat=dia+"/"+mes+"/"+anio;
-          $("#iexfecafp").val(fechaFormat);
+      var fechaFormat=dia+"/"+mes+"/"+anio;
+      $("#iexfecafp").val(fechaFormat);
   }
 
   $(document).ready(function(){
@@ -99,7 +99,55 @@
 
       var fechacargada6=$("#iexfecafphidden").val();
       $("#iexfecafp").val(fechacargada6);
+
+      $('#myTab li a').click(function(){
+          $(this).addClass('active');
+          var thisselc=this.id;
+
+          sessionStorage.setItem("myTabTrab",thisselc);
+      });
+
+      var myTabTrab = sessionStorage.getItem("myTabTrab");
+      $('#'+myTabTrab).tab('show');
   });
+
+  function mostrarAlertLab(){
+    var div=document.getElementById('alertLab');
+    div.style.display = '';
+
+    setTimeout(function() {
+  	  $("#alerts").hide(6000);
+    }, 3000);
+  }
+
+  function mostrarAlertPago(){
+      var div=document.getElementById('alertPago');
+      div.style.display = '';
+
+      setTimeout(function() {
+    	  $("#alerts").hide(6000);
+      }, 3000);
+  }
+
+  function mostrarAlertSeg(){
+    var div=document.getElementById('alertSeg');
+    div.style.display = '';
+
+    setTimeout(function() {
+      $("#alerts").hide(6000);
+    }, 3000);
+  }
+
+  function mostrarAlertDom(){
+      var div=document.getElementById('alertDom');
+      div.style.display = '';
+
+      setTimeout(function() {
+          $("#alerts").hide(6000);
+      }, 3000);
+  }
+
+
 </script>
 
   <body>
@@ -149,18 +197,23 @@
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
-                       <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTab" role="tablist" style="overflow-y: hidden;">
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"> <span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos personales</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"> <span class="fa-solid fas fa-graduation-cap me-2 tab-icon-color"></span>Datos laborales</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"> <span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de pago</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad social</a></li>
-                            <li class="nav-item text-nowrap me-2" role="presentation"><a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"> <span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos domicilio</a></li>
-                       </ul>
-                       <!--<div class="col-12 mb-2">
-                           <div class="col-sm-6 col-md-12 d-flex justify-content-end">
-                               <a class="col-4 btn btn-phoenix-primary" href="listEmpleados">Atras</a>
-                           </div>
-                       </div>-->
+                      <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTab" role="tablist" style="overflow-y: hidden;">
+                        <li class="nav-item text-nowrap me-2" role="presentation">
+                            <a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"><span class="fa-solid fa-archive me-2 tab-icon-color"></span>Datos personales</a>
+                        </li>
+                        <li class="nav-item text-nowrap me-2" role="presentation">
+                            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#tab-notes" role="tab" aria-controls="tab-notes" aria-selected="false" tabindex="-1"><span class="fa-solid fas fa-graduation-cap me-2 tab-icon-color"></span>Datos laborales</a>
+                        </li>
+                        <li class="nav-item text-nowrap me-2" role="presentation">
+                            <a class="nav-link" id="meeting-tab" data-bs-toggle="tab" href="#tab-meeting" role="tab" aria-controls="tab-meeting" aria-selected="true"><span class="fa-solid fa-credit-card me-2 tab-icon-color"></span>Información de pago</a>
+                        </li>
+                        <li class="nav-item text-nowrap me-2" role="presentation">
+                            <a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#tab-task" role="tab" aria-controls="tab-task" aria-selected="true"> <span class="fa-solid fas fa-medkit me-2 tab-icon-color"></span>Seguridad social</a>
+                        </li>
+                        <li class="nav-item text-nowrap me-2" role="presentation">
+                            <a class="nav-link" id="call-tab" data-bs-toggle="tab" href="#tab-call" role="tab" aria-controls="tab-call" aria-selected="true"><span class="fa-solid fa-truck me-2 tab-icon-color"></span>Datos domicilio</a>
+                        </li>
+                      </ul>
 
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
@@ -223,10 +276,10 @@
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo [TT50]</label>
                                             <select name="iexcodsex" class="form-select" required >
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovSexo" items="${lovSexo}">
-                                                        <option value="${lovSexo.idLov}"  ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}   >${lovSexo.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovSexo" items="${lovSexo}">
+                                                    <option value="${lovSexo.idLov}"  ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}   >${lovSexo.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
@@ -241,19 +294,19 @@
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modalidad Formativa [TT18]</label>
                                             <select name="iexmodform" class="form-select" >
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovModForm" items="${lovModForm}">
-                                                        <option value="${lovModForm.idLov}"  ${lovModForm.idLov == requestScope.emp.iexmodform ? 'selected' : ''}   >${lovModForm.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovModForm" items="${lovModForm}">
+                                                    <option value="${lovModForm.idLov}"  ${lovModForm.idLov == requestScope.emp.iexmodform ? 'selected' : ''}   >${lovModForm.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nacionalidad Origen [TT4]</label>
                                             <select name="iexnacion_origen" class="form-select" required >
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovNacionalidad" items="${lovNacionalidad}">
-                                                        <option value="${lovNacionalidad.idLov}"  ${lovNacionalidad.idLov == requestScope.emp.iexnacion_origen ? 'selected' : ''}   >${lovNacionalidad.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovNacionalidad" items="${lovNacionalidad}">
+                                                    <option value="${lovNacionalidad.idLov}"  ${lovNacionalidad.idLov == requestScope.emp.iexnacion_origen ? 'selected' : ''}   >${lovNacionalidad.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
@@ -277,37 +330,37 @@
                                         <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
                                               <select name="iexprovin_origen" id="iexprovin_origen" class="form-select">
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
-                                                        <option value="${lovProvin_origen.idLov}"  ${lovProvin_origen.idLov == requestScope.emp.iexprovin_origen ? 'selected' : ''}   >${lovProvin_origen.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
+                                                    <option value="${lovProvin_origen.idLov}"  ${lovProvin_origen.idLov == requestScope.emp.iexprovin_origen ? 'selected' : ''}   >${lovProvin_origen.desLov}</option>
+                                                </c:forEach>
                                               </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito</label>
                                             <select name="iexdistri_origen" id="iexdistri_origen" class="form-select">
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                        <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovDist_origen" items="${lovDist_origen}">
+                                                    <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grado Instruccion [TT9]</label>
                                             <select name="iexgrdinstruccion" class="form-select" required >
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovGrdInstruccion" items="${lovGrdInstruccion}">
-                                                        <option value="${lovGrdInstruccion.idLov}"  ${lovGrdInstruccion.idLov == requestScope.emp.iexgrdinstruccion ? 'selected' : ''}   >${lovGrdInstruccion.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovGrdInstruccion" items="${lovGrdInstruccion}">
+                                                    <option value="${lovGrdInstruccion.idLov}"  ${lovGrdInstruccion.idLov == requestScope.emp.iexgrdinstruccion ? 'selected' : ''}   >${lovGrdInstruccion.desLov}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Centro de Formacion [TT51]</label>
                                               <select name="iexcentroform" class="form-select" >
-                                                    <option value="" selected >Seleccionar</option>
-                                                    <c:forEach var="lovCenForm" items="${lovCenForm}">
-                                                        <option value="${lovCenForm.idLov}"  ${lovCenForm.idLov == requestScope.emp.iexcentroform ? 'selected' : ''}   >${lovCenForm.desLov}</option>
-                                                    </c:forEach>
+                                                <option value="" selected >Seleccionar</option>
+                                                <c:forEach var="lovCenForm" items="${lovCenForm}">
+                                                    <option value="${lovCenForm.idLov}"  ${lovCenForm.idLov == requestScope.emp.iexcentroform ? 'selected' : ''}   >${lovCenForm.desLov}</option>
+                                                </c:forEach>
                                               </select>
                                         </div>
                                         <div class="col-sm-6 col-md-12">
@@ -549,7 +602,7 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlertLab();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>
@@ -660,7 +713,7 @@
                                                 <input id="validationCustom01" class="form-control" maxlength="50" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" type="text" placeholder="#" />
                                             </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                            <div id="alertPago" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                                             	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -687,7 +740,7 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlertPago();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>
@@ -806,7 +859,7 @@
                                                 <label class="form-check-label ms-2" for="flexChecked">Madre de responsaibilidad Limitada</label>
                                             </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                            <div id="alertSeg" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                                             	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -833,7 +886,7 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlertSeg();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>
@@ -948,7 +1001,6 @@
                                                   </c:forEach>
                                                 </select>
                                           </div>
-
                                           <div class="col-12">
                                             <span class="mt-5 col-4 badge badge-tag me-2 mb-2">Dirección Secundaria</span>
                                           </div>
@@ -1055,7 +1107,7 @@
                                               </select>
                                           </div>
 
-                                          <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                          <div id="alertDom" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                           	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                           	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                                           	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -1068,23 +1120,23 @@
                                           </div>
                                           <div class="modal fade" id="confirmModal5" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
-                                          	<div class="modal-content border">
-                                          	  <form id="addEventForm" autocomplete="off">
-                                          		<div class="modal-header border-200 p-4">
-                                          		  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                          		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                          		</div>
-                                          		<div class="modal-body pt-4 pb-2 px-4">
-                                          		  <div class="mb-3">
-                                          			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                          		  </div>
-                                          		</div>
-                                          	  </form>
-                                          	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                                          		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                          		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                          	  </div>
-                                          	</div>
+                                                <div class="modal-content border">
+                                                  <form id="addEventForm" autocomplete="off">
+                                                    <div class="modal-header border-200 p-4">
+                                                      <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                                                      <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                                    </div>
+                                                    <div class="modal-body pt-4 pb-2 px-4">
+                                                      <div class="mb-3">
+                                                        <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                                                      </div>
+                                                    </div>
+                                                  </form>
+                                                  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                                      <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                                      <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlertDom();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                                  </div>
+                                                </div>
                                             </div>
                                           </div>
                                         </form>

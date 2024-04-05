@@ -207,7 +207,16 @@ public class EmpleadoController {
         String iexnomtra = request.getParameter("iexnomtra");
         String iexapepat = request.getParameter("iexapepat");
         String iexapemat = request.getParameter("iexapemat");
+
         String iexfecnac = request.getParameter("iexfecnac");
+        log.info("iexfecnac: "+iexfecnac);
+
+        if(iexfecnac.equals("//")){
+            iexfecnac=null;
+        }else{
+            iexfecnac=iexfecnac;
+        }
+
         String iexcodsex = request.getParameter("iexcodsex");
         String iextiptra = request.getParameter("iextiptra");
         String iexfecing = request.getParameter("iexfecing");
@@ -282,11 +291,41 @@ public class EmpleadoController {
 
         String iextiptra = request.getParameter("iextiptra");
         String iexsituapen = request.getParameter("iexsituapen");
+
         String iexfecing = request.getParameter("iexfecing");
+
+        if(iexfecing.equals("//")){
+            iexfecing=null;
+        }else{
+            iexfecing=iexfecing;
+        }
+
         String iexfecret = request.getParameter("iexfecret");
+
+        if(iexfecret.equals("//")){
+            iexfecret=null;
+        }else{
+            iexfecret=iexfecret;
+        }
+
         String iextipcont = request.getParameter("iextipcont");
+
         String iexfecini_cont = request.getParameter("iexfecini_cont");
+
+        if(iexfecini_cont.equals("//")){
+            iexfecini_cont=null;
+        }else{
+            iexfecini_cont=iexfecini_cont;
+        }
+
         String iexfecfin_cont = request.getParameter("iexfecfin_cont");
+
+        if(iexfecfin_cont.equals("//")){
+            iexfecfin_cont=null;
+        }else{
+            iexfecfin_cont=iexfecfin_cont;
+        }
+
         String iexpliego = request.getParameter("iexpliego");
         String iexsituaesp = request.getParameter("iexsituaesp");
         String iexocupacion_pub = request.getParameter("iexocupacion_pub");
@@ -398,7 +437,15 @@ public class EmpleadoController {
 
         String iexcodafp = request.getParameter("iexcodafp");
         String iexflgcomi_mix = request.getParameter("iexflgcomi_mix");
+
         String iexfecafp = request.getParameter("iexfecafp");
+
+        if(iexfecafp.equals("//")){
+            iexfecafp=null;
+        }else{
+            iexfecafp=iexfecafp;
+        }
+
         String iexcussp = request.getParameter("iexcussp");
         String iexessalud = request.getParameter("iexessalud");
         String iexsenati = request.getParameter("iexsenati");
@@ -548,14 +595,6 @@ public class EmpleadoController {
         p.setIexdepart_origen2(iexdepart_origen2);
         p.setIexprovin_origen2(iexprovin_origen2);
         p.setIexdistri_origen2(iexdistri_origen2);
-
-        log.info("p.getIexdepart_origen1(): "+p.getIexdepart_origen1());
-        log.info("p.getIexprovin_origen1: "+p.getIexprovin_origen1());
-        log.info("p.getIexdistri_origen1(): "+p.getIexdistri_origen1());
-
-        log.info("p.getIexdepart_origen2: "+p.getIexdepart_origen2());
-        log.info("p.getIexprovin_origen2(): "+p.getIexprovin_origen2());
-        log.info("p.getIexdistri_origen2(): "+p.getIexdistri_origen2());
 
         empleadoService.actualizarDireccion(p);
 

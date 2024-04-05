@@ -52,12 +52,9 @@
              });
 
              var menunav = sessionStorage.getItem("menunav");
-             //alert("menunav: "+menunav);
              $('#'+menunav).addClass("active");
 
              var navempl = sessionStorage.getItem("navempl");
-
-             //alert("navempl: "+navempl);
 
              if(menunav=="listEmpleados"){
                 $('#'+navempl).addClass("activelsempl");

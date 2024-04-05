@@ -99,6 +99,16 @@
 
       var fechacargada6=$("#iexfecafphidden").val();
       $("#iexfecafp").val(fechacargada6);
+
+      $('#myTab li a').click(function(){
+            $(this).addClass('active');
+            var thisselc=this.id;
+
+            sessionStorage.setItem("myTabTrab",thisselc);
+      });
+
+      var myTabTrab = sessionStorage.getItem("myTabTrab");
+      $('#'+myTabTrab).tab('show');
   });
 </script>
 
@@ -177,7 +187,7 @@
                                             <input class="form-control" name="iexcodtra" type="text" value="${requestScope.emp.iexcodtra}" readonly="true" required disabled />
                                         </div>
                                         <div class="col-sm-6 col-md-5">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Ti2wpo de Documento</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Documento</label>
                                             <select name="iextipdocid" class="form-select" required disabled>
                                                <option value="" selected >Seleccionar</option>
                                                <c:forEach var="lovTipdoc" items="${lovTipdoc}">
@@ -846,233 +856,237 @@
                                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                           <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                          <span class="badge badge-tag me-2 mb-2">Dirección Principal</span>
-                                          <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
-                                              <select class="form-select" name="iextipvia_dom1" required disabled>
-                                                <option value="" selected >Seleccionar</option>
-                                                <c:forEach var="lovTipVia" items="${lovTipVia}">
-                                                    <option value="${lovTipVia.idLov}"   ${lovTipVia.idLov == requestScope.emp5.iextipvia_dom1 ? 'selected' : ''}   >${lovTipVia.desLov}</option>
-                                                </c:forEach>
-                                              </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nom. Via</label>
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="40" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="" required disabled />
-                                          </div>
-                                          <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Via</label>
-                                                <input class="form-control" name="iexnrovia_dom1" maxlength="6" value="${requestScope.emp5.iexnrovia_dom1}" type="text" placeholder="435" required disabled />
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept</label>
-                                                <input class="form-control" name="iexdeptin_dom1" maxlength="6" value="${requestScope.emp5.iexdeptin_dom1}" type="text" placeholder="203" disabled />
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior</label>
-                                                <input class="form-control" name="iexinterior_dom1" maxlength="6" value="${requestScope.emp5.iexinterior_dom1}" type="text" placeholder="1" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana domicilio 1</label>
-                                                <input class="form-control" name="iexmanzana_dom1" maxlength="6" value="${requestScope.emp5.iexmanzana_dom1}" type="text" placeholder="A" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote</label>
-                                               <input class="form-control" name="iexlote_dom1" maxlength="6" value="${requestScope.emp5.iexlote_dom1}" type="text" placeholder="10" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia</label>
-                                                <input class="form-control" name="iexkilometro_dom1" maxlength="6" value="${requestScope.emp5.iexkilometro_dom1}" type="text" placeholder="21" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa dom1</label>
-                                              <input class="form-control" name="iexetapa_dom1" maxlength="6" value="${requestScope.emp5.iexetapa_dom1}" type="text" placeholder="E2" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona dom1</label>
-                                                <select class="form-select" name="iextipzona_dom1" required disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovTipZona" items="${lovTipZona}">
-                                                      <option value="${lovTipZona.idLov}"    ${lovTipZona.idLov == requestScope.emp5.iextipzona_dom1 ? 'selected' : ''}   >${lovTipZona.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia dom1</label>
-                                                <input class="form-control" name="iexreferencia_dom1" maxlength="40" value="${requestScope.emp5.iexreferencia_dom1}" type="text" placeholder="" required disabled />
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 1 [TT26]</label>
-                                               <select class="form-select" id="iexpaisemisor1" name="iexnacion_origen1" required disabled>
-                                                 <option value="" selected >Seleccionar</option>
-                                                 <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
-                                                     <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp5.iexnacion_origen1 ? 'selected' : ''}>${lovPaisEmisor.desLov}</option>
-                                                 </c:forEach>
-                                               </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 1</label>
-                                                <select class="form-select" id="iexdepart_origen1" name="iexdepart_origen1" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovDept_origen" items="${lovDept_origen}">
-                                                      <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp5.iexdepart_origen1 ? 'selected' : ''}>${lovDept_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 1</label>
-                                                <select class="form-select" id="iexprovin_origen1" name="iexprovin_origen1" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
-                                                      <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
-                                                <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-
-                                          <span class="badge badge-tag me-2 mb-2">Dirección Secundaria</span>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>
-                                                <select class="form-select" name="iextipvia_dom2" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovTipVia2" items="${lovTipVia2}">
-                                                      <option value="${lovTipVia2.idLov}"  ${lovTipVia2.idLov == requestScope.emp5.iextipvia_dom2 ? 'selected' : ''}    >${lovTipVia2.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via 2</label>
-                                                <input class="form-control" name="iexnomvia_dom2" maxlength="40" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
-                                                <input class="form-control" name="iexnrovia_dom2" maxlength="6" value="${requestScope.emp5.iexnrovia_dom2}" type="text" placeholder="435" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept 2</label>
-                                                <input class="form-control" name="iexdeptin_dom2" maxlength="6" value="${requestScope.emp5.iexdeptin_dom2}" type="text" placeholder="203" disabled />
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior 2</label>
-                                                <input class="form-control" name="iexinterior_dom2" maxlength="6" value="${requestScope.emp5.iexinterior_dom2}" type="text" placeholder="1" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana domicilio 2</label>
-                                               <input class="form-control" name="iexmanzana_dom2" maxlength="6" value="${requestScope.emp5.iexmanzana_dom2}" type="text" placeholder="A" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote 2</label>
-                                                <input class="form-control" name="iexlote_dom2" maxlength="6" value="${requestScope.emp5.iexlote_dom2}" type="text" placeholder="10" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia 2</label>
-                                              <input class="form-control" name="iexkilometro_dom2" maxlength="6" value="${requestScope.emp5.iexkilometro_dom2}" type="text" placeholder="21" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 2</label>
-                                                <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexblock_dom2}" placeholder="B3" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa dom 2</label>
-                                                <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexetapa_dom2}" placeholder="E2" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona dom 2</label>
-                                              <select class="form-select" name="iextipzona_dom2" disabled>
-                                                <option value="" selected >Seleccionar</option>
-                                                <c:forEach var="lovTipZona2" items="${lovTipZona2}">
-                                                    <option value="${lovTipZona2.idLov}"    ${lovTipZona2.idLov == requestScope.emp5.iextipzona_dom2 ? 'selected' : ''}   >${lovTipZona2.desLov}</option>
-                                                </c:forEach>
-                                              </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia dom 2</label>
-                                                <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="" disabled/>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 2 [TT26]</label>
-                                                <select class="form-select" id="iexpaisemisor2" name="iexnacion_origen2" required disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
-                                                      <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp5.iexnacion_origen2 ? 'selected' : ''}>${lovPaisEmisor.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 2</label>
-                                                <select class="form-select" id="iexdepart_origen2" name="iexdepart_origen2" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovDept_origen" items="${lovDept_origen}">
-                                                      <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp5.iexdepart_origen2 ? 'selected' : ''}>${lovDept_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 2</label>
-                                                <select class="form-select" id="iexprovin_origen2" name="iexprovin_origen2" disabled >
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
-                                                      <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
-                                                <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" disabled>
-                                                  <option value="" selected >Seleccionar</option>
-                                                  <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                          </div>
-                                          <hr class="hr" />
-                                          <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio</label>
-                                              <select class="form-select" name="iexflgdomicilio" required disabled >
-                                                <option value="1"  ${requestScope.emp5.iexflgdomicilio=='1' ? 'selected' : ''} >Direccion Principal</option>
-                                                <option value="2" ${requestScope.emp5.iexflgdomicilio=='2' ? 'selected' : ''} >Direccion Secundaria</option>
-                                              </select>
-                                          </div>
-
-
-                                          <div class="alert alert-success" role="alert" id="alert5" style="display:none;">
-                                                Se grabó exitosamente los cambios.
-                                          </div>
-                                          <div class="col-12 d-flex justify-content-end mt-6">
-                                                <div class="col-sm-6 col-md-6">
-                                                    <a class="btn btn-phoenix-primary disabled" href="listEmpleados">Cancel</a>
-                                                    <button class="btn btn-primary col-6 disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal5" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
-                                                </div>
-                                          </div>
-                                          <div class="modal fade" id="confirmModal5" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                          	<div class="modal-content border">
-                                          	  <form id="addEventForm" autocomplete="off">
-                                          		<div class="modal-header border-200 p-4">
-                                          		  <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                          		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                          		</div>
-                                          		<div class="modal-body pt-4 pb-2 px-4">
-                                          		  <div class="mb-3">
-                                          			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                          		  </div>
-                                          		</div>
-                                          	  </form>
-                                          	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                                          		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                          		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                          	  </div>
-                                          	</div>
+                                            <div class="col-12">
+                                                <span class="col-4 badge badge-tag me-2 mb-2">Dirección Principal</span>
                                             </div>
-                                          </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
+                                                <select class="form-select" name="iextipvia_dom1" required disabled >
+                                                  <option value="" selected >Seleccionar</option>
+                                                  <c:forEach var="lovTipVia" items="${lovTipVia}">
+                                                      <option value="${lovTipVia.idLov}"   ${lovTipVia.idLov == requestScope.emp5.iextipvia_dom1 ? 'selected' : ''}   >${lovTipVia.desLov}</option>
+                                                  </c:forEach>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nom. Via</label>
+                                                  <input class="form-control" name="iexnomvia_dom1" maxlength="30" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="Los Girasoles" required disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Via</label>
+                                                  <input class="form-control" name="iexnrovia_dom1" maxlength="6" value="${requestScope.emp5.iexnrovia_dom1}" type="number" placeholder="435" required disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept</label>
+                                                  <input class="form-control" name="iexdeptin_dom1" maxlength="6" value="${requestScope.emp5.iexdeptin_dom1}" type="text" placeholder="203" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior</label>
+                                                  <input class="form-control" name="iexinterior_dom1" maxlength="6" value="${requestScope.emp5.iexinterior_dom1}" type="text" placeholder="1" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana</label>
+                                                  <input class="form-control" name="iexmanzana_dom1" maxlength="6" value="${requestScope.emp5.iexmanzana_dom1}" type="text" placeholder="A" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Lote</label>
+                                                 <input class="form-control" name="iexlote_dom1" maxlength="6" value="${requestScope.emp5.iexlote_dom1}" type="text" placeholder="10" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia</label>
+                                                  <input class="form-control" name="iexkilometro_dom1" maxlength="6" value="${requestScope.emp5.iexkilometro_dom1}" type="text" placeholder="21" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-2">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa</label>
+                                                <input class="form-control" name="iexetapa_dom1" maxlength="6" value="${requestScope.emp5.iexetapa_dom1}" type="text" placeholder="E2" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona</label>
+                                                  <select class="form-select" name="iextipzona_dom1" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovTipZona" items="${lovTipZona}">
+                                                        <option value="${lovTipZona.idLov}"    ${lovTipZona.idLov == requestScope.emp5.iextipzona_dom1 ? 'selected' : ''}   >${lovTipZona.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-8">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia</label>
+                                                  <input class="form-control" name="iexreferencia_dom1" maxlength="40" value="${requestScope.emp5.iexreferencia_dom1}" type="text" placeholder="" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor [TT26]</label>
+                                                 <select class="form-select" id="iexpaisemisor1" name="iexnacion_origen1" required disabled >
+                                                   <option value="" selected >Seleccionar</option>
+                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
+                                                       <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp5.iexnacion_origen1 ? 'selected' : ''}>${lovPaisEmisor.desLov}</option>
+                                                   </c:forEach>
+                                                 </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Departamento</label>
+                                                  <select class="form-select" id="iexdepart_origen1" name="iexdepart_origen1" required disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovDept_origen" items="${lovDept_origen}">
+                                                        <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp5.iexdepart_origen1 ? 'selected' : ''}>${lovDept_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
+                                                  <select class="form-select" id="iexprovin_origen1" name="iexprovin_origen1" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
+                                                        <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito</label>
+                                                  <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovDist_origen" items="${lovDist_origen}">
+                                                        <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-12">
+                                              <span class="mt-5 col-4 badge badge-tag me-2 mb-2">Dirección Secundaria</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>
+                                                  <select class="form-select" name="iextipvia_dom2" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovTipVia2" items="${lovTipVia2}">
+                                                        <option value="${lovTipVia2.idLov}"  ${lovTipVia2.idLov == requestScope.emp5.iextipvia_dom2 ? 'selected' : ''}    >${lovTipVia2.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via 2</label>
+                                                  <input class="form-control" name="iexnomvia_dom2" maxlength="30" value="${requestScope.emp5.iexnomvia_dom2}" type="text" placeholder="Los Girasoles" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
+                                                  <input class="form-control" name="iexnrovia_dom2" maxlength="6" value="${requestScope.emp5.iexnrovia_dom2}" type="number" placeholder="435" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept 2</label>
+                                                  <input class="form-control" name="iexdeptin_dom2" maxlength="6" value="${requestScope.emp5.iexdeptin_dom2}" type="text" placeholder="203" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interior 2</label>
+                                                  <input class="form-control" name="iexinterior_dom2" maxlength="6" value="${requestScope.emp5.iexinterior_dom2}" type="text" placeholder="1" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana 2</label>
+                                                 <input class="form-control" name="iexmanzana_dom2" maxlength="6" value="${requestScope.emp5.iexmanzana_dom2}" type="text" placeholder="A" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Lote 2</label>
+                                                  <input class="form-control" name="iexlote_dom2" maxlength="6" value="${requestScope.emp5.iexlote_dom2}" type="text" placeholder="10" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia 2</label>
+                                                <input class="form-control" name="iexkilometro_dom2" maxlength="6" value="${requestScope.emp5.iexkilometro_dom2}" type="text" placeholder="21" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 2</label>
+                                                  <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexblock_dom2}" placeholder="B3" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-2">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 2</label>
+                                                  <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.emp5.iexetapa_dom2}" placeholder="E2" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona 2</label>
+                                                <select class="form-select" name="iextipzona_dom2" disabled >
+                                                  <option value="" selected >Seleccionar</option>
+                                                  <c:forEach var="lovTipZona2" items="${lovTipZona2}">
+                                                      <option value="${lovTipZona2.idLov}"    ${lovTipZona2.idLov == requestScope.emp5.iextipzona_dom2 ? 'selected' : ''}   >${lovTipZona2.desLov}</option>
+                                                  </c:forEach>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-8">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia 2</label>
+                                                  <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="" disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor 2 [TT26]</label>
+                                                  <select class="form-select" id="iexpaisemisor2" name="iexnacion_origen2" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
+                                                        <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp5.iexnacion_origen2 ? 'selected' : ''}>${lovPaisEmisor.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 2</label>
+                                                  <select class="form-select" id="iexdepart_origen2" name="iexdepart_origen2" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovDept_origen" items="${lovDept_origen}">
+                                                        <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp5.iexdepart_origen2 ? 'selected' : ''}>${lovDept_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 2</label>
+                                                  <select class="form-select" id="iexprovin_origen2" name="iexprovin_origen2" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
+                                                        <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
+                                                  <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" disabled >
+                                                    <option value="" selected >Seleccionar</option>
+                                                    <c:forEach var="lovDist_origen" items="${lovDist_origen}">
+                                                        <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                            </div>
+                                            <hr class="hr mt-8" />
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Domicilio </label>
+                                                <select class="form-select" name="iexflgdomicilio" required disabled >
+                                                  <option value="1"  ${requestScope.emp5.iexflgdomicilio=='1' ? 'selected' : ''} >Direccion Principal</option>
+                                                  <option value="2" ${requestScope.emp5.iexflgdomicilio=='2' ? 'selected' : ''} >Direccion Secundaria</option>
+                                                </select>
+                                            </div>
+
+                                            <div id="alertDom" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                                <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                                                <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                                                <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-end mt-6">
+                                                  <div class="col-sm-6 col-md-6">
+                                                      <a class="btn btn-phoenix-primary disabled" href="listEmpleados">Cancel</a>
+                                                      <button class="btn btn-primary col-6 disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal5" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar</button>
+                                                  </div>
+                                            </div>
+                                            <div class="modal fade" id="confirmModal5" tabindex="-1">
+                                              <div class="modal-dialog modal-dialog-centered">
+                                                  <div class="modal-content border">
+                                                    <form id="addEventForm" autocomplete="off">
+                                                      <div class="modal-header border-200 p-4">
+                                                        <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
+                                                        <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                                      </div>
+                                                      <div class="modal-body pt-4 pb-2 px-4">
+                                                        <div class="mb-3">
+                                                          <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
+                                                        </div>
+                                                      </div>
+                                                    </form>
+                                                    <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                                        <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                                        <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlertDom();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                            </div>
                                         </form>
                                      </div>
                                    </div>
