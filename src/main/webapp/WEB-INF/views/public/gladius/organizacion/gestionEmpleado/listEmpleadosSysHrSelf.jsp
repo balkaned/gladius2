@@ -50,41 +50,10 @@
                         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                           <input class="form-control search-input search" type="search" placeholder="Search empleados" aria-label="Search" />
                           <span class="fas fa-search search-box-icon"></span>
-
                         </form>
                       </div>
                     </div>
-                    <div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-                      <div class="btn-group position-static" role="group">
-                        <div class="btn-group position-static text-nowrap" role="group">
-                          <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                            Payment status<span class="fas fa-angle-down ms-2"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                              <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                          </ul>
-                        </div>
-                        <div class="btn-group position-static text-nowrap" role="group">
-                          <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                            Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                              <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                          </ul>
-                        </div>
-                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters </button>
-                      </div>
-                    </div>
+
                     <div>
                           <a class="btn btn-primary btn-sm disabled" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
                           <a class="btn btn-phoenix-secondary btn-sm ms-1 disabled" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>

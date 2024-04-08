@@ -65,7 +65,8 @@
                               <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null">
                                 <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Todos
                               </a>
-                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+                              <a id="dropdownmenutable" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadoresActivos@null@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
+
                               <!--<div class="dropdown-divider"></div>
                               <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>-->
                             </div>

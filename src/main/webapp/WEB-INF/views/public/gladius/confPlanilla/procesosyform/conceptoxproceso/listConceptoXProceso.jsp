@@ -113,9 +113,10 @@
                               <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                               <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                               <div class="dropdown-menu">
-                                  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#">
+                                  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ConceptoxProcesoDet@1UP_CODPRO=${proceso}@null@null@null">
                                     <span class="fa-solid fa-download fs--1 me-2"></span>Reporte de Afectaciones
                                   </a>
+
                                   <!--<a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Solo Activos</a>
                                   <div class="dropdown-divider"></div>
                                   <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Otros</a>-->

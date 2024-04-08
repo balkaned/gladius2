@@ -185,13 +185,13 @@
                             <div class="">
                                 <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                                 <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionAusentismo"><span class="fas fa-plus me-2"></span>Add Ausentismo</a>
-                                <div class="btn-group mb-1 me-1 ms-0 mt-1">
+                                <!--<div class="btn-group mb-1 me-1 ms-0 mt-1">
                                   <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                   <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                   <div class="dropdown-menu">
                                 	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Ausentismo</a>
                                   </div>
-                                </div>
+                                </div>-->
                             </div>
                         </form>
                      </div>

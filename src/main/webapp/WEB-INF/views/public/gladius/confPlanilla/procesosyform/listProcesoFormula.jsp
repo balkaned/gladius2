@@ -57,13 +57,13 @@
 
           <div class="col-auto">
             <a class="btn btn-primary btn-sm" href="nuevoProcesoFormula"><span class="fas fa-plus me-2"></span>Add proceso</a>
-            <div class="btn-group mb-1 me-1 ms-1 mt-1">
+            <!--<div class="btn-group mb-1 me-1 ms-1 mt-1">
               <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
               <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
               <div class="dropdown-menu">
             	  <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Reporte completo</a>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
