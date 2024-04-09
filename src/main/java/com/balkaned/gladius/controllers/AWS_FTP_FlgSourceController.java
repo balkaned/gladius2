@@ -633,6 +633,23 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
+                    // Obtiene subreport para PDF depósito bancos BancoProper
+                    if(nombreJasper.equals("BancoProper")){
+                        InputStream inputStreamDetBank = null;
+
+                        AmazonS3 s14 = null;
+                        S3Object o14 = null;
+                        s14 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/detbank.jasper";
+                        o14 = s14.getObject(bucket_name, fileName);
+                        inputStreamDetBank = o14.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR", inputStreamDetBank);
+
+                        parametros.put("P_CODMON","S/.");
+                    }
+
                     // Parámetro Subreporte solo para Boleta5taper
                     if (nombreJasper.equals("Boleta5taper")) {
                         parametros.put("SUBREPORT_DIR", "");

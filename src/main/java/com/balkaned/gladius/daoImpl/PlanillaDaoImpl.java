@@ -1094,5 +1094,49 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         });
     }
+
+    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl){
+
+        String sql = " select  " +
+                "	   c.iexcodcia, c.iexcodpro, c.iexnroper, c.iexcorrel, " +
+                "	   c.iexpermes, c.codbank,  " +
+                "		  j.desban, " +
+                "		  c.moneda, " +
+                "		  m.desmon, " +
+                "		  c.nroctabank_gen,  " +
+                "	   c.totalneto, c.heads " +
+                " from iexpropertra_resbank c  " +
+                "		 full outer join ( SELECT  iexkey codban, desdet desban  FROM IEXTTABLED WHERE IEXCODTAB='36' )  j " +
+                "		  on j.codban = c.codbank " +
+                "		  full outer join ( SELECT  iexkey codmon, desdet desmon  FROM IEXTTABLED WHERE IEXCODTAB='52' )  m " +
+                "		  on m.codmon  = c.moneda " +
+                "		  where c.iexcodcia="+codcia+" and c.iexcodpro="+idproceso+"  and c.iexnroper='"+perpro+"' and c.iexcorrel="+correl+" ";
+
+        return template.query(sql, new ResultSetExtractor<List<BancoResumenPer>>() {
+
+            public List<BancoResumenPer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<BancoResumenPer> lista = new ArrayList<BancoResumenPer>();
+
+                while(rs.next()) {
+                    BancoResumenPer p = new BancoResumenPer();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodpro(rs.getInt("iexcodpro"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+                    p.setPermes(rs.getString("iexpermes"));
+                    p.setCodbank(rs.getString("codbank"));
+                    p.setDesbank(rs.getString("desban"));
+                    p.setMoneda(rs.getString("moneda"));
+                    p.setDesmoneda(rs.getString("desmon"));
+                    p.setNroctabank(rs.getString("nroctabank_gen"));
+                    p.setHeads(rs.getDouble("heads"));
+                    p.setImpneto(rs.getDouble("totalneto"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
 }
 

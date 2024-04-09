@@ -1148,4 +1148,33 @@ public class PlanillaController {
         return new ModelAndView("redirect:/migracionPlanilla@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
     }
 
+    @RequestMapping("/verDetalleBancos@{iexcodreg}@{iexcodpro}@{iexperiodo}")
+    public ModelAndView verDetalleBancos(ModelMap model, HttpServletRequest request,
+                                           @PathVariable Integer iexcodreg,
+                                           @PathVariable Integer iexcodpro,
+                                           @PathVariable String iexperiodo) {
+        log.info("/verDetalleBancos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("iexcodreg", iexcodreg);
+        model.addAttribute("iexcodpro", iexcodpro);
+        model.addAttribute("iexperiodo", iexperiodo);
+        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(iexcodpro), iexperiodo));
+        model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, -1, 1, "%"));
+
+        //model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, iexcodpro, "2"));
+        //model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, iexcodpro, iexperiodo, 1));
+        //request.setAttribute("xbankproper",  daoplanilla.listBankProper((Integer) session.getAttribute("codcia"), Integer.parseInt(iexcodpro), iexperiodo, Integer.parseInt(iexcorrel)));
+        model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detalleBancos");
+    }
+
 }

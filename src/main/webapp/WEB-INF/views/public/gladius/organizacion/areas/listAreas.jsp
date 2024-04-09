@@ -44,9 +44,6 @@
                   <h2 id="h2top" class="mb-0">Areas</h2>
                 </div>
               </div>
-              <!--<ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <li class="nav-item"><a class="nav-link" href="#">Organigrama<span class="text-700 fw-semi-bold"></span></a></li>
-              </ul>-->
               <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">

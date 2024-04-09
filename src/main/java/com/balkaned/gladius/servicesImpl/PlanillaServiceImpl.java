@@ -1,5 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
+import com.balkaned.gladius.beans.BancoResumenPer;
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.PlaProPeriodo;
 import com.balkaned.gladius.dao.PlanillaDao;
@@ -88,5 +89,9 @@ public class PlanillaServiceImpl implements PlanillaService {
 
     public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon){
         return dao.listProperconSinZeros(codcia,idproceso,perpro,codtra,correl,flgcon);
+    }
+
+    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl){
+        return dao.listBankProper(codcia,idproceso,perpro,correl);
     }
 }

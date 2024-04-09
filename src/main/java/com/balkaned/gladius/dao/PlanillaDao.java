@@ -1,5 +1,6 @@
 package com.balkaned.gladius.dao;
 
+import com.balkaned.gladius.beans.BancoResumenPer;
 import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
 import com.balkaned.gladius.beans.PlaProPeriodo;
 import java.util.List;
@@ -25,4 +26,5 @@ public interface PlanillaDao {
     public PlaProPeriodo listPlaProperTra(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
     public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
     public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
+    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl);
 }

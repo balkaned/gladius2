@@ -387,24 +387,17 @@
             var iexcodpro = $("#iexcodpro").val();
             var iexperiodo = $("#iexperiodo").val();
 
-            //var opcion = confirm("Esta seguro de Traer la data del reporte?");
-
-            //if (opcion == true) {
-                $.ajax({
-                     url: "traerDatosReporteResumenPlanilla",
-                     data: {
-                        "iexcodpro": iexcodpro,
-                        "nroper": iexperiodo,
-                        "nroper2": iexperiodo
-                     },
-                     success: function (data) {
-                         $("#idresult").html(data);
-                     }
-                });
-                //return true;
-            //} else {
-                //return false;
-            //}
+            $.ajax({
+                 url: "traerDatosReporteResumenPlanilla",
+                 data: {
+                    "iexcodpro": iexcodpro,
+                    "nroper": iexperiodo,
+                    "nroper2": iexperiodo
+                 },
+                 success: function (data) {
+                     $("#idresult").html(data);
+                 }
+            });
         }
     </script>
 
@@ -426,7 +419,6 @@
             </nav>
             <div class="mb-1">
               <div class="g-3 mb-2">
-
                 <div class="col-12">
                   <h2 id="h2top" class="mb-2">Gestión de planillas </h2>
 
@@ -451,37 +443,8 @@
                       </form>
                     </div>
                   </div>
-                  <!--<div class="col-auto scrollbar overflow-hidden-y flex-grow-1">
-                    <div class="btn-group position-static" role="group">
-                      <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Payment status<span class="fas fa-angle-down ms-2"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          <li>
-                            <hr class="dropdown-divider"/>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                      </div>
-                      <div class="btn-group position-static text-nowrap" role="group">
-                        <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Fulfilment status<span class="fas fa-angle-down ms-2"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          <li>
-                            <hr class="dropdown-divider"/>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                      </div>
-                      <button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
-                    </div>
-                  </div>-->
 
-                  <c:if test="${requestScope.xproplaper.flgestado!='3'}">
+                  <c:if test="${requestScope.xproplaper.flgestado!='3'}" >
                       <div class="col-auto">
                          <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
                         <a class="btn btn-phoenix-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>1. Iniciar</a>
@@ -489,7 +452,7 @@
                         <!--<a class="btn btn-phoenix-secondary btn-sm mt-1" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>5. Procesar</a>
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="#"><span class="fas fa-vault me-2"></span>5. Bancos</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>5. Bancos</a>
                         <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>0. Borrar</a>
                         <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('35')" href="#"><span class="fas fa-magnifying-glass me-2"></span>Buscar todo</a>
                       </div>
