@@ -1138,5 +1138,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         });
     }
+
+    public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago){
+
+        template.update("  call pl_reichbank_res(?,?,?,?,?,?,?)  ",
+
+        codcia,
+        idproceso,
+        perpro,
+        correl,
+        usu,
+        tmcb,
+        fecpago);
+    }
 }
 

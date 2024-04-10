@@ -33,12 +33,10 @@ public class SunatFileController {
         log.info("/gestionPlame");
 
         String user = (String) request.getSession().getAttribute("user");
-
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
+
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
@@ -49,7 +47,6 @@ public class SunatFileController {
         String file2 = request.getParameter("file");
 
         planillaService.PlameExe(v_codcia, v_idperiodo, file2);
-
 
         log.info("PLAMEEXEv_codcia " + v_codcia);
         log.info("PLAMEEXEv_idperiodo " + v_idperiodo);
@@ -65,9 +62,7 @@ public class SunatFileController {
         log.info("/expPlameFile");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -89,13 +84,11 @@ public class SunatFileController {
         file2 = request.getParameter("file");
         String idplame = "0601" + v_idperiodo + ruc;
 
-
         log.info("v_codcia " + v_codcia);
         log.info("v_ruc " + ruc);
         log.info("v_idperiodo " + v_idperiodo);
         log.info("v_file2 " + file2);
         log.info("v_idPlame " + idplame + v_idperiodo + ruc);
-
 
         switch (file2) {
             case "14":   //  el preingreso carga todas as listas de valores para el registro
@@ -142,16 +135,12 @@ public class SunatFileController {
         log.info("/gestionAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
 
@@ -164,9 +153,7 @@ public class SunatFileController {
         log.info("/buscarAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -198,15 +185,12 @@ public class SunatFileController {
         log.info("/nuevoAsientosContables");
 
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-
 
         model.addAttribute("lovProcesos", procesoPlanillaService.listar("%"));
         log.info("lovProcesos" + procesoPlanillaService.listar("%"));

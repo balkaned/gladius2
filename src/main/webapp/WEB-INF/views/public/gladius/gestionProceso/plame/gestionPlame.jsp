@@ -78,7 +78,6 @@
 
 </script>
 
-
 <body>
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -105,6 +104,7 @@
             <form class="row g-4 mb-0 needs-validation" method="POST" action="" name="frmsunatfile" id="frmsunatfile" novalidate>
                 <input type="hidden" name="file" id="file">
                 <input type="hidden" name="accion" id="accion" value="">
+
                 <div class="table-responsive scrollbar mx-n1 px-1">
                     <table class="table table-hover">
                         <span class="badge badge-tag me-2 mb-1 mt-3">Generar archivos Plame</span>
@@ -167,7 +167,6 @@
                     </table>
                 </div>
             </form>
-
         </div>
     </div>
 
@@ -180,5 +179,4 @@
 
 <jsp:include page="../../../customize.jsp"></jsp:include>
 </body>
-
 </html>

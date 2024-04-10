@@ -28,6 +28,18 @@
         var fecpago=$("#fpagohidden").val();
         $("#fpago").val(fecpago);
     });
+
+    function enviaForm(variable){
+        if(variable==11){
+            document.getElementById("accion").value="EXERESBAN";
+            document.getElementById("tipfile").value="text";
+        }else if(variable==10){
+         document.getElementById("accion").value="QRYRESBAN";
+         document.getElementById("tipfile").value="text";
+        }
+
+        document.getElementById("frmBanks").submit();
+    }
   </script>
 
   <body>
@@ -57,7 +69,7 @@
               <div class="row g-5">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="gestionarTrabPlanConcept" novalidate >
+                      <form id="fmrBanks" class="row g-4 mb-0 needs-validation" method="POST" action="gestionarBankPlan" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -67,8 +79,6 @@
                         <input type="hidden" name="iexcodtra" id="iexcodtra" value="-1" />
                         <input type="hidden" name="iexcorrel" id="iexcorrel" value="1" />
                         <input type="hidden" name="idcodtra" id="idcodtra" value="" />
-                        <input type="hidden" name="idcodcon" id="idcodcon" value="" />
-                        <input type="hidden" name="idvalcon" id="idvalcon" value="" />
 
                         <div class="col-sm-6 col-md-5">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
@@ -101,7 +111,10 @@
                             <div class="col-12">
                                 <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-magnifying-glass me-2"></span>Consultar</button>
-                                <a class="btn btn-phoenix-secondary btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-bolt me-2"></span>Generar</a>
+
+                                <c:if test="${requestScope.xproplaper.flgestado eq '1'  ||  requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
+                                    <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-bolt me-2"></span>Generar</button>
+                                </c:if>
 
                                 <div class="btn-group mb-1 me-1 ms-1 mt-1">
                                     <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
@@ -114,6 +127,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal fade" id="confirmModal" tabindex="-1">
                           <div class="modal-dialog modal-dialog-centered">
                         	<div class="modal-content border">
@@ -130,7 +144,7 @@
                         	  </form>
                         	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                         		  <button class="btn btn-sm btn-phoenix-primary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" onclick="enviaForm('15')" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                        		  <button class="btn btn-sm btn-primary px-9  my-0 mt-1" onclick="enviaForm('11')" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                         	  </div>
                         	</div>
                           </div>
@@ -194,9 +208,9 @@
                                           data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                           <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-                                               <a id="dropdownmenutable" class="dropdown-item" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download me-2"></span>PDF Resumen depósito banco</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download me-2"></span>PDF Resumen depósito bancario</a>
                                                <div class="dropdown-divider"></div>
-                                               <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteArea@${area.iexcodarea}"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" href="expDepBancJor"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
                                           </div>
                                        </div>
                                     </td>

@@ -27,4 +27,5 @@ public interface PlanillaDao {
     public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
     public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
     public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl);
+    public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago);
 }

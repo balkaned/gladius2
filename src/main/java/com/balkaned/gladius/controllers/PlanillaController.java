@@ -1169,12 +1169,43 @@ public class PlanillaController {
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(iexcodpro), iexperiodo));
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, -1, 1, "%"));
 
-        //model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, iexcodpro, "2"));
-        //model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, iexcodpro, iexperiodo, 1));
-        //request.setAttribute("xbankproper",  daoplanilla.listBankProper((Integer) session.getAttribute("codcia"), Integer.parseInt(iexcodpro), iexperiodo, Integer.parseInt(iexcorrel)));
         model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detalleBancos");
+    }
+
+    @RequestMapping("/gestionarBankPlan")
+    public ModelAndView gestionarBankPlan(ModelMap model, HttpServletRequest request) {
+        log.info("/gestionarBankPlan");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String accion = request.getParameter("accion");
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexcodreg = request.getParameter("iexcodreg");
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String grupopla = request.getParameter("grppla");
+        String tcmb = request.getParameter("tcmb");
+        Double v_tcmb = Double.parseDouble(tcmb);
+        String fecpago = request.getParameter("fpago");
+
+        if (accion.equals("EXERESBAN")) {
+            planillaService.exeBankProper(idCompania,iexcodpro,iexperiodo,iexcorrel,user,v_tcmb,fecpago);
+        }
+
+        if(accion.equals("QRYRESBAN")){
+            model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
+        }
+
+        return new ModelAndView("redirect:/verDetalleBancos@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
     }
 
 }
