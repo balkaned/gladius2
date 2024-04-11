@@ -1151,5 +1151,30 @@ public class PlanillaDaoImpl implements PlanillaDao {
         tmcb,
         fecpago);
     }
+
+    public List<String> txtBancos(Integer codcia, Integer idproceso, String nroper, Integer correl, String codbank, String codmon){
+
+        String sql = " select  " +
+                " glosatxt " +
+                " from " +
+                "iexpropertra_txtbank  " +
+                "where iexcodcia="+codcia+" and iexcodpro="+idproceso+" and iexnroper='"+nroper+"'  and iexcorrel ="+correl+"   and codbank='"+codbank+"' and moneda='"+codmon+"'  ";
+
+        return template.query(sql, new ResultSetExtractor<List<String>>() {
+
+            public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<String> lista = new ArrayList<String>();
+
+                while(rs.next()) {
+                    String p=null;
+
+                    p = rs.getString("glosatxt");
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
 }
 

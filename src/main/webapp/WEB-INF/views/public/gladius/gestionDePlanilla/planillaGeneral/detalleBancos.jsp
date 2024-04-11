@@ -120,7 +120,8 @@
                                     <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
                                     <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                     <div class="dropdown-menu">
-                                      <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null">
+                                      <a id="dropdownmenutable" target="_blank" class="dropdown-item"
+                                        href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Resdetbank@2UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}@null@null@null">
                                         <span class="fa-solid fa-download fs--1 me-2"></span>Descargar Excel
                                       </a>
                                     </div>
@@ -154,7 +155,7 @@
                  </div>
               </div>
 
-              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10,"pagination":true}'>
+              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","banc","desmon","nro_cuenta","import"],"page":10,"pagination":true}'>
                   <div class="mb-3">
                     <div class="g-3">
                       <div class="col-auto">
@@ -166,7 +167,7 @@
                         </div>
                       </div>
 
-                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10, "pagination":true }' >
+                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","banc","desmon","nro_cuenta","import"],"page":10, "pagination":true }' >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -177,12 +178,12 @@
                                   </div>
                                 </th>
                                 <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="trab">BANCO</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">ABRV. MONEDA</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept">MONEDA</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept" >NRO CUENTA</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept">IMPORTE</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept">HEADS</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="banc">BANCO</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="">ABRV. MONEDA</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="desmon">MONEDA</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="nro_cuenta" >NRO CUENTA</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="import">IMPORTE</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="">HEADS</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" ></th>
                               </tr>
                             </thead>
@@ -194,13 +195,13 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${xbankproper.codbank}</a></td>
-                                    <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desbank}</td>
-                                    <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${xbankproper.moneda}</span></td>
-                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desmoneda}</td>
-                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.nroctabank}</td>
-                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.impneto}</td>
-                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.heads}</td>
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0">#${xbankproper.codbank}</td>
+                                    <td class="banc align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desbank}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${xbankproper.moneda}</span></td>
+                                    <td class="desmon align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desmoneda}</td>
+                                    <td class="nro_cuenta align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.nroctabank}</td>
+                                    <td class="import align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.impneto}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.heads}</td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -208,9 +209,9 @@
                                           data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                           <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-                                               <a id="dropdownmenutable" class="dropdown-item" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download me-2"></span>PDF Resumen depósito bancario</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download me-2"></span>Resumen depósito bancario PDF</a>
                                                <div class="dropdown-divider"></div>
-                                               <a id="dropdownmenutable" class="dropdown-item" href="expDepBancJor"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" href="expDepBancJor@${requestScope.iexcodpro}@${requestScope.iexperiodo}@1@${xbankproper.codbank}@${xbankproper.moneda}"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
                                           </div>
                                        </div>
                                     </td>

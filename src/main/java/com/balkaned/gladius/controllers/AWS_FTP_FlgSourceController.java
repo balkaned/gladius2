@@ -362,20 +362,20 @@ public class AWS_FTP_FlgSourceController {
                         for (ParametroReport item : lspreport) {
                             if (item.getNombreParametro().contains("FEC") || item.getNombreParametro().contains("fec") || item.getNombreParametro().contains("Fec")) {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
                             } else if(item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             }else if(item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             }else{
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
                             }
                         }
                     }
@@ -557,20 +557,20 @@ public class AWS_FTP_FlgSourceController {
                         for (ParametroReport item : lspreport) {
                             if (item.getNombreParametro().contains("FEC") || item.getNombreParametro().contains("fec") || item.getNombreParametro().contains("Fec")) {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
                             } else if(item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             }else if(item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             }else{
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parametro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parametro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
                             }
                         }
                     }

@@ -98,4 +98,8 @@ public class PlanillaServiceImpl implements PlanillaService {
     public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago){
         dao.exeBankProper(codcia,idproceso,perpro,correl,usu,tmcb,fecpago);
     }
+
+    public List<String> txtBancos(Integer codcia, Integer idproceso, String nroper, Integer correl, String codbank, String codmon){
+        return dao.txtBancos(codcia,idproceso,nroper,correl,codbank,codmon);
+    }
 }
