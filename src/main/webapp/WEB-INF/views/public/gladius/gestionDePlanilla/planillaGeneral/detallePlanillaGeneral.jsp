@@ -399,6 +399,13 @@
                  }
             });
         }
+
+        function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
+            document.getElementById("idTrabAsis").value=codtra;
+            document.getElementById("trabAsis").value=nombretrab;
+            document.getElementById("feciniAsis").value=fecini;
+            document.getElementById("fecfinAsis").value=fecfin;
+        }
     </script>
 
     <body>
@@ -525,9 +532,9 @@
                                         <a href="#" onclick="enviaForm_ind('34', '${LstPlanillaRes.iexcodtra}')" >T</a>
                                         <a href="#" onclick="enviaForm_ind('3', '${LstPlanillaRes.iexcodtra}')" >P</a>
                                     </td>
-                                    <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap"><a href="#">Proc</a></td>
+                                    <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
                                     <td class="fecini align-middle text-start fw-semi-bold text-600"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstPlanillaRes.iexfecini}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiasteorico}</td>
+                                    <td class="al align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
@@ -1062,6 +1069,79 @@
                               </div>
                             </div>
                       </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                    <a class="btn btn-sm btn-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>-->
+                </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="modalAsistencias" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content bg-100">
+                <div class="modal-header border-200 bg-soft p-4">
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Asistencias por periodo planilla/ empleado</h5>
+                   <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form class="needs-validation" method="POST" action="" novalidate >
+                      <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                          <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                          <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                          <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+                      <div class="row mt-3">
+                          <div class="col-sm-6 col-md-2">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID trab</label>
+                                <input class="form-control" name="idTrabAsis" id="idTrabAsis" type="text" required disabled />
+                                <input class="form-control" name="idTrabAsisHidden" id="idTrabAsislHidden" type="hidden" value="" />
+                          </div>
+                          <div class="col-sm-6 col-md-6">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                                <input class="form-control" name="trabAsis" id="trabAsis" type="text" required disabled />
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio</label>
+                              <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
+                              <!--<input class="form-control" name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />-->
+                          </div>
+                          <div class="col-sm-6 col-md-3 mt-2">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label>
+                            <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
+                            <!--<input class="form-control" name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />-->
+                          </div>
+                      </div>
+                      <div class="row g-4 mt-0">
+                            <div class="col-auto">
+                                <a id="botonDescargarRep5ta" class="btn btn-phoenix-primary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
+                                <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-wrench me-2"></span>P. Turnos</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Borrar T.</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-right-left me-2"></span>Consolidar</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-download me-2"></span>Reporte</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" >Cancelar</a>
+                            </div>
+                      </div>
+                      <div class="row g-4">
+                        <h4 class="mb-0 mt-7">Calendario</h4>
+                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                          <div class="mb-3" class="mt-0">
+                              <div class="row g-3">
+                                <div id="customerOrdersTable" class="bg-white border border-200 rounded-2 position-relative top-1 overflow-auto" style="height:240px;" data-list='{"valueNames":["codcon","descon","valor"],"page":10, "pagination":true }'>
+                                  <div class="table-responsive scrollbar mx-n1 px-1" >
+
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
