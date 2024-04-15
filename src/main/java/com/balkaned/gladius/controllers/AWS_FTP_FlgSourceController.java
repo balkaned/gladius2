@@ -567,7 +567,18 @@ public class AWS_FTP_FlgSourceController {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else{
+                            }else if(item.getNombreParametro().contains("CODMON") || item.getNombreParametro().contains("codmon") || item.getNombreParametro().contains("Codmon")) {
+                                if(item.getValorParametro().equals("S")){
+                                    parametros.put("P_CODMON","S/.");
+                                    log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                    log.info("Se insertó parámetro item.getValorParametro(): S/.");
+                                }else if(item.getValorParametro().equals("E")){
+                                    parametros.put("P_CODMON","EU");
+                                    log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
+                                    log.info("Se insertó parámetro item.getValorParametro(): EU");
+                                }
+                            }
+                            else{
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
@@ -663,8 +674,6 @@ public class AWS_FTP_FlgSourceController {
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
 
                         parametros.put("SUBREPORT_DIR", inputStreamDetBank);
-
-                        parametros.put("P_CODMON","S/.");
                     }
 
                     // Parámetro Subreporte solo para Boleta5taper

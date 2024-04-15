@@ -1175,7 +1175,7 @@ public class PlanillaController {
     }
 
     @RequestMapping("/gestionarBankPlan")
-    public ModelAndView gestionarBankPlan(ModelMap model, HttpServletRequest request) {
+    public ModelAndView gestionarBankPlan(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
         log.info("/gestionarBankPlan");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -1196,6 +1196,8 @@ public class PlanillaController {
         String tcmb = request.getParameter("tcmb");
         Double v_tcmb = Double.parseDouble(tcmb);
         String fecpago = request.getParameter("fpago");
+        String codbank = request.getParameter("codbank");
+        String codmon = request.getParameter("codmon");
 
         if (accion.equals("EXERESBAN")) {
             planillaService.exeBankProper(idCompania,iexcodpro,iexperiodo,iexcorrel,user,v_tcmb,fecpago);
@@ -1205,71 +1207,29 @@ public class PlanillaController {
             model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
         }
 
-        return new ModelAndView("redirect:/verDetalleBancos@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
-    }
+        if(accion.equals("VERTXTBAN")){
+            response.setContentType("text/plain");
+            response.setHeader("Content-Disposition", "attachment; filename=\"ctm.jor\"");
 
-    @RequestMapping("/expDepBancJor@{idproceso}@{idperiodo}@{iexcorrel}@{codbank}@{codmon}")
-    public ModelAndView expDepBancJor(ModelMap model, HttpServletRequest request, HttpServletResponse response,
-                                      @PathVariable String idproceso,
-                                      @PathVariable String idperiodo,
-                                      @PathVariable String iexcorrel,
-                                      @PathVariable String codbank,
-                                      @PathVariable String codmon) {
-        log.info("/expDepBancJor");
+            List<String> lista = planillaService.txtBancos(idCompania,iexcodpro,iexperiodo,iexcorrel,codbank,codmon);
 
-        String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {
-            return new ModelAndView("redirect:/login2");
-        }
-
-        sessionattributes.getVariablesSession(model, request);
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
-        //String rucComp = (String) request.getSession().getAttribute("ruccomp");
-
-        response.setContentType("text/plain");
-        response.setHeader("Content-Disposition", "attachment; filename=\"ctm.jor\"");
-
-        /*String file = "C://ctm.jor";
-        String file2 = "";
-        String v_idproceso = "";
-        String v_idperiodo = "";
-
-        Integer v_codcia = idCompania;
-        String ruc =rucComp;
-        v_idperiodo = request.getParameter("permes");
-        file2 = request.getParameter("file");
-        String idplame = "0601" + v_idperiodo + ruc;*/
-
-        //response.setHeader("Content-Disposition", "attachment; filename=\"" + idplame + ".jor\"");
-
-        //Map<String, Object> parametros = new HashMap<>();
-
-        //List<String> lista = planillaService.PlameMes(idCompania, v_idperiodo, file2);
-
-        log.info("idproceso: "+idproceso);
-        log.info("iexcorrel: "+iexcorrel);
-        log.info("idperiodo: "+idperiodo);
-        log.info("codbank: "+codbank);
-        log.info("codmon: "+codmon);
-
-        List<String> lista = planillaService.txtBancos(idCompania,Integer.parseInt(idproceso),idperiodo,Integer.parseInt(iexcorrel),codbank,codmon);
-
-        try {
-            PrintWriter writer = response.getWriter();
-            String plaproper;
-            Iterator<String> l_propertra = lista.iterator();
-            while (l_propertra.hasNext()) {
-                plaproper = l_propertra.next();
-                log.info(" Codtra :" + plaproper);
-                writer.println(plaproper);
+            try {
+                PrintWriter writer = response.getWriter();
+                String plaproper;
+                Iterator<String> l_propertra = lista.iterator();
+                while (l_propertra.hasNext()) {
+                    plaproper = l_propertra.next();
+                    log.info(" Codtra :" + plaproper);
+                    writer.println(plaproper);
+                }
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                log.error("Error ", e);
             }
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            log.error("Error ", e);
         }
 
-        return new ModelAndView("public/gladius/gestionProceso/plame/gestionPlame");
+        return new ModelAndView("redirect:/verDetalleBancos@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
     }
 
 }

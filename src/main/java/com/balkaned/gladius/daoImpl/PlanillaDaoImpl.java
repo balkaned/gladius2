@@ -1128,6 +1128,16 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setDesbank(rs.getString("desban"));
                     p.setMoneda(rs.getString("moneda"));
                     p.setDesmoneda(rs.getString("desmon"));
+
+                    log.info("p.getDesmoneda():"+p.getDesmoneda());
+                    log.info("p.getMoneda():"+p.getMoneda());
+
+                    if(p.getMoneda().equals("S/.")){
+                        p.setDesmonReport("S");
+                    }else if(p.getMoneda().equals("EU")){
+                        p.setDesmonReport("E");
+                    }
+
                     p.setNroctabank(rs.getString("nroctabank_gen"));
                     p.setHeads(rs.getDouble("heads"));
                     p.setImpneto(rs.getDouble("totalneto"));

@@ -23,5 +23,6 @@ public class BancoResumenPer {
     private String nroctabank;
     private Double impneto;
     private Double heads;
+    private String desmonReport;
 
 }

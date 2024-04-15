@@ -40,6 +40,14 @@
 
         document.getElementById("frmBanks").submit();
     }
+
+    function SendText(codbank, codmon){
+        document.getElementById("accion").value="VERTXTBAN";
+        document.getElementById("codbank").value=codbank;
+        document.getElementById("codmon").value=codmon;
+
+        document.getElementById("fmrBanks").submit();
+    }
   </script>
 
   <body>
@@ -79,6 +87,8 @@
                         <input type="hidden" name="iexcodtra" id="iexcodtra" value="-1" />
                         <input type="hidden" name="iexcorrel" id="iexcorrel" value="1" />
                         <input type="hidden" name="idcodtra" id="idcodtra" value="" />
+                        <input type="hidden" name="codbank" id="codbank" value="" />
+                        <input type="hidden" name="codmon" id="codmon" value="" />
 
                         <div class="col-sm-6 col-md-5">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
@@ -112,7 +122,7 @@
                                 <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-magnifying-glass me-2"></span>Consultar</button>
 
-                                <c:if test="${requestScope.xproplaper.flgestado eq '1'  ||  requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
+                                <c:if test="${requestScope.xproplaper.flgestado eq '1' || requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
                                     <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-bolt me-2"></span>Generar</button>
                                 </c:if>
 
@@ -209,9 +219,9 @@
                                           data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                           <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-                                               <a id="dropdownmenutable" class="dropdown-item" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download me-2"></span>Resumen depósito bancario PDF</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@1@null@null@BancoProper@5UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1UP_CODMON=${xbankproper.desmonReport}@null@null@null"><span class="fa-solid fa-download me-2"></span>Resumen depósito bancario PDF</a>
                                                <div class="dropdown-divider"></div>
-                                               <a id="dropdownmenutable" class="dropdown-item" href="expDepBancJor@${requestScope.iexcodpro}@${requestScope.iexperiodo}@1@${xbankproper.codbank}@${xbankproper.moneda}"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
+                                               <a id="dropdownmenutable" class="dropdown-item" onclick="SendText('${xbankproper.codbank}', '${xbankproper.moneda}')" href="#"><span class="fa-solid fa-download me-2"></span>Descargar en formato .jor</a>
                                           </div>
                                        </div>
                                     </td>
