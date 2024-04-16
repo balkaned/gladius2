@@ -76,6 +76,9 @@ public class PlanillaController {
     @Autowired
     CompaniaService companiaService;
 
+    @Autowired
+    TurnoDiarioService turnoDiarioService;
+
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
         log.info("/listPlanillaGeneral");
@@ -1230,6 +1233,27 @@ public class PlanillaController {
         }
 
         return new ModelAndView("redirect:/verDetalleBancos@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+    }
+
+    @RequestMapping(value = "/traerLstTurnosModal", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerLstTurnosModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerLstTurnosModal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        List<Turno> lstTurnos = turnoDiarioService.listarTurnos(idCompania);
+
+        String json = new Gson().toJson(lstTurnos);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
     }
 
 }
