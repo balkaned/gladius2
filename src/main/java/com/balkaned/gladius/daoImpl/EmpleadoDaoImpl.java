@@ -72,8 +72,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexusumod " +
                 "from iexempleado where iexcodcia=" + empleado.getIexcodcia() + " and iexcodtra=" + empleado.getIexcodtra() + " ";
 
-
-        //System.out.println(sql);
         return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
 
             public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -328,7 +326,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " ( select   p.iexdespuesto from iexpuesto p where p.iexcodcia= e.iexcodcia  and p.iexpuesto = e.iexpuesto    ) despuesto " +
                 "from iexempleado e where e.iexcodcia=" + ciaid + " and e.iexcodtra=" + codtra + " ";
 
-        //System.out.println(sql);
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
@@ -338,8 +335,17 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap1= new CapitalizarCadena();
+                    p.setIexnomtra(cap1.letras(p.getIexnomtra()));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexapepat(cap2.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexapemat(cap3.letras(p.getIexapemat()));
+
                     p.setIextipdocid(rs.getString("iextipdocid"));
                     p.setIexnrodoc(rs.getString("iexnrodoc"));
                     p.setIexfecnac(rs.getString("iexfecnac"));
@@ -407,8 +413,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " iexubilocal ,        iexcateg_trabajador,  iexreglab , to_char(iexfecmodlab,'dd/mm/yyyy hh24:mi:ss') iexfecmodlab , iexusumodlab   " +
                 " from iexempleado where iexcodcia=" + ciaid + " and iexcodtra=" + codtra + " ";
 
-        //System.out.println(sql);
-
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
@@ -460,8 +464,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexflgbancci_cts,  " +
                 "iexnrocta_cts , to_char(iexfecmodpag,'dd/mm/yyyy hh24:mi:ss') iexfecmodpag , iexusumodpag   " +
                 " from iexempleado where iexcodcia=" + ciaid + " and iexcodtra=" + codtra + " ";
-
-        //System.out.println(sql);
 
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -519,7 +521,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "   iexflgmas_vida , to_char(iexfecmodseg,'dd/mm/yyyy hh24:mi:ss') iexfecmodseg , iexusumodseg " +
                 "from iexempleado where iexcodcia=" + ciaid + " and iexcodtra=" + codtra + " ";
 
-        //System.out.println(sql);
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
@@ -579,7 +580,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "   iexprovin_origen2   " +
                 " from iexempleado where iexcodcia=" + ciaid + " and iexcodtra=" + codtra + " ";
 
-        //System.out.println(sql);
         return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();

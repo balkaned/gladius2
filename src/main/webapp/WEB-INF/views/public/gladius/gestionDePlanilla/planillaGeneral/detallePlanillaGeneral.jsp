@@ -416,8 +416,8 @@
                       opt += "<thead class='mt-1'>"+
                                  "<tr>"+
                                      "<td>"+
-                                         "<select name='id_domingo' id='id_domingo' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'1')'>"+
-                                             "<option value='-1' selected>-- --</option>";
+                                         "<select name='id_domingo' id='id_domingo' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
+                                             "<option value='-1' selected>-</option>";
                                              for (var i in data) {
                                                  opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                              }
@@ -425,8 +425,8 @@
                                      "</td>"+
 
                                      "<td>"+
-                                         "<select name='id_lunes' id='id_lunes' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'2')'>"+
-                                             "<option value='-1' selected>-- --</option>";
+                                         "<select name='id_lunes' id='id_lunes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
+                                             "<option value='-1' selected>-</option>";
                                              for (var i in data) {
                                                  opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                              }
@@ -434,8 +434,8 @@
                                      "</td>"+
 
                                      "<td>"+
-                                        "<select name='id_martes' id='id_martes' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'3')'>"+
-                                              "<option value='-1' selected>-- --</option>";
+                                        "<select name='id_martes' id='id_martes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
+                                              "<option value='-1' selected>-</option>";
                                               for (var i in data) {
                                                   opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                               }
@@ -443,8 +443,8 @@
                                      "</td>"+
 
                                      "<td>"+
-                                        "<select name='id_miercoles' id='id_miercoles' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'4')'>"+
-                                           "<option value='-1' selected>-- --</option>";
+                                        "<select name='id_miercoles' id='id_miercoles' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
+                                           "<option value='-1' selected>-</option>";
                                            for (var i in data) {
                                                opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                            }
@@ -452,8 +452,8 @@
                                     "</td>"+
 
                                     "<td>"+
-                                       "<select name='id_jueves' id='id_jueves' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'5')'>"+
-                                          "<option value='-1' selected>-- --</option>";
+                                       "<select name='id_jueves' id='id_jueves' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                                          "<option value='-1' selected>-</option>";
                                           for (var i in data) {
                                               opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                           }
@@ -461,8 +461,8 @@
                                     "</td>"+
 
                                     "<td>"+
-                                       "<select name='id_viernes' id='id_viernes' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'6')'>"+
-                                           "<option value='-1' selected>-- --</option>";
+                                       "<select name='id_viernes' id='id_viernes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
+                                           "<option value='-1' selected>-</option>";
                                            for (var i in data) {
                                                opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                            }
@@ -470,8 +470,8 @@
                                     "</td>"+
 
                                     "<td>"+
-                                        "<select name='id_sabado' id='id_sabado' style='width: 100px;' class='form-select' onchange='program_tur_col(this,'7')'>"+
-                                            "<option value='-1' selected>-- --</option>";
+                                        "<select name='id_sabado' id='id_sabado' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
+                                            "<option value='-1' selected>-</option>";
                                             for (var i in data) {
                                                 opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                             }
@@ -604,7 +604,7 @@
                                         <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${LstPlanillaRes.iexcodtra}</a></td>
+                                    <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
                                     <td class="trab align-middle text-start fw-semi-bold ps-3 white-space-nowrap pe-3 text-1000">
                                         ${LstPlanillaRes.destra}
                                         <div class="btn-group font-sans-serif btn-reveal-trigger position-static ms-2">
@@ -624,16 +624,16 @@
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
                                     <td class="fecini align-middle text-start fw-semi-bold text-600"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstPlanillaRes.iexfecini}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">${LstPlanillaRes.iexdiasteorico}</a></td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiasub}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdialic}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiafalta}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaefectivo}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdominical}</td>
-                                    <td class="al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaspago}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiasub}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdialic}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiafalta}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaefectivo}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdominical}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiaspago}</td>
 
                                     <td class="align-middle text-center white-space-nowrap pe-0 action">
                                       <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -1185,9 +1185,9 @@
                           <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
 
-                      <div class="row mt-3">
+                      <div class="row g-3 mt-1">
                           <div class="col-sm-6 col-md-2">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID trab</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
                                 <input class="form-control" name="idTrabAsis" id="idTrabAsis" type="text" required disabled />
                                 <input class="form-control" name="idTrabAsisHidden" id="idTrabAsislHidden" type="hidden" value="" />
                           </div>
@@ -1196,34 +1196,36 @@
                                 <input class="form-control" name="trabAsis" id="trabAsis" type="text" required disabled />
                           </div>
                           <div class="col-sm-6 col-md-3">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
                               <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
                               <!--<input class="form-control" name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />-->
                           </div>
-                          <div class="col-sm-6 col-md-3 mt-2">
-                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label>
+                          <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
                             <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
                             <!--<input class="form-control" name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />-->
                           </div>
-                          <div class="col-sm-6 col-md-8 mt-2">
+                          <div class="col-sm-6 col-md-6">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
                             <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                              <a class="btn btn-success btn-sm mt-5" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
                           </div>
                       </div>
                       <div class="row g-4 mt-0">
                             <div class="col-auto">
-                                <a class="btn btn-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
-                                <a id="botonDescargarRep5ta" class="btn btn-phoenix-primary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
+                                <a id="botonDescargarRep5ta" class="btn btn-primary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
                                 <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-wrench me-2"></span>P. Turnos</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Borrar T.</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-right-left me-2"></span>Consolidar</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-download me-2"></span>Reporte</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-xmark me-2"></span>Cancelar</a>
+                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-primary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-xmark me-2"></span>Cancelar</a>
                             </div>
                       </div>
-                      <div class="row g-4 bg-100">
+                      <div class="row g-4 bg-100 mt-0">
                         <!--<h4 class="mb-0 mt-7">Calendario</h4>-->
                         <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
                           <div class="mb-3" class="mt-0">
@@ -1232,7 +1234,7 @@
                                         <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-100">
                                           <div class="row py-3 gy-3 gx-0">
                                             <div class="col-6 col-md-4 order-1 d-flex align-items-center">
-                                              <button class="btn btn-sm btn-phoenix-primary px-4" data-event="today">Today</button>
+                                              <button class="btn btn-sm btn-phoenix-primary px-4" data-event="today">Hoy</button>
                                             </div>
                                             <div class="col-12 col-md-4 order-md-1 d-flex align-items-center justify-content-center">
                                               <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="prev" title="Previous"><span class="fas fa-chevron-left"></span></button>
@@ -1242,8 +1244,8 @@
                                             <div class="col-6 col-md-4 ms-auto order-1 d-flex justify-content-end">
                                               <div>
                                                 <div class="btn-group btn-group-sm" role="group">
-                                                  <button class="btn btn-phoenix-secondary active-view" data-fc-view="dayGridMonth">Month</button>
-                                                  <button class="btn btn-phoenix-secondary" data-fc-view="timeGridWeek">Week</button>
+                                                  <button class="btn btn-phoenix-secondary active-view" data-fc-view="dayGridMonth">Mes</button>
+                                                  <button class="btn btn-phoenix-secondary" data-fc-view="timeGridWeek">Semana</button>
                                                 </div>
                                               </div>
                                             </div>
@@ -1252,7 +1254,6 @@
                                   </div>
                                    <div id="calendarbody2" class="table-responsive scrollbar mx-n1 px-1 bg-100" >
                                    </div>
-
                               </div>
                           </div>
                         </div>

@@ -43,10 +43,12 @@ public class LovsDaoImpl implements LovsDao {
 
                 while (rs.next()) {
                     Lovs p = new Lovs();
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIdLov(rs.getString("cod"));
                     p.setDesLov(rs.getString("des"));
+
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setDesLov(cap.letras(p.getDesLov()));
 
                     lista.add(p);
                 }
@@ -137,7 +139,10 @@ public class LovsDaoImpl implements LovsDao {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodarea(rs.getString("iexcodarea"));
+
                     p.setIexdesarea(rs.getString("iexdesarea"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesarea(cap.letras(p.getIexdesarea()));
 
                     lista.add(p);
                 }
@@ -161,7 +166,10 @@ public class LovsDaoImpl implements LovsDao {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexpuesto(rs.getString("iexpuesto"));
+
                     p.setIexdespuesto(rs.getString("iexdespuesto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
 
                     lista.add(p);
                 }
@@ -185,7 +193,10 @@ public class LovsDaoImpl implements LovsDao {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexccosto(rs.getString("iexccosto"));
+
                     p.setIexdesccosto(rs.getString("iexdesccosto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
 
                     lista.add(p);
                 }
@@ -209,7 +220,10 @@ public class LovsDaoImpl implements LovsDao {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexubicod(rs.getString("iexubicod"));
+
                     p.setIexubides(rs.getString("iexubides"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexubides(cap.letras(p.getIexubides()));
 
                     lista.add(p);
                 }
@@ -439,6 +453,9 @@ public class LovsDaoImpl implements LovsDao {
                     p.setIdLov(rs.getString("cod"));
                     p.setDesLov(rs.getString("des"));
 
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesLov(cap.letras(p.getDesLov()));
+
                     lista.add(p);
                 }
                 return lista;
@@ -465,6 +482,9 @@ public class LovsDaoImpl implements LovsDao {
                     p.setIdLov(rs.getString("cod"));
                     p.setDesLov(rs.getString("des"));
 
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesLov(cap.letras(p.getDesLov()));
+
                     lista.add(p);
                 }
                 return lista;
@@ -490,6 +510,9 @@ public class LovsDaoImpl implements LovsDao {
 
                     p.setIdLov(rs.getString("cod"));
                     p.setDesLov(rs.getString("des"));
+
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesLov(cap.letras(p.getDesLov()));
 
                     lista.add(p);
                 }

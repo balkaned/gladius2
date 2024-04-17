@@ -89,17 +89,17 @@
                             <div class="row g-5">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarDerechoHab" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarDerechoHab" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-sm-6 col-md-2">
-                                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                             	<input class="form-control" name="iexcoddepdis" type="text" value="${iexcoddep}" disabled />
                                                 <input class="form-control" name="iexcoddep" type="hidden" value="${iexcoddep}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Documento</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de documento</label>
                                                 <select class="form-select" name="iextipnroiddep" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipdoc" items="${lovTipdoc}">
@@ -108,11 +108,11 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Doc</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro doc</label>
                                                 <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="#" value="${requestScope.derhabx.iexnroiddep}" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* País emisor</label>
                                                 <select class="form-select" name="iexpaisemisor" id="iexpaisemisor" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
@@ -121,11 +121,11 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Paterno</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido paterno</label>
                                                 <input class="form-control" name="iexapepatdep" maxlength="100" type="text" value="${requestScope.derhabx.iexapepatdep}" placeholder="Reynoso" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Materno</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido materno</label>
                                                 <input class="form-control" name="iexapematdep" maxlength="100" type="text" value="${requestScope.derhabx.iexapematdep}" placeholder="Dominguez" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
@@ -133,7 +133,7 @@
                                                 <input class="form-control" name="iexnomdep" maxlength="100" type="text" value="${requestScope.derhabx.iexnomdep}" placeholder="Alberto Gabriel" required />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${requestScope.derhabx.iexfecnac}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                                 <input class="form-control" id="iexfecnachidden" type="hidden" value="${requestScope.derhabx.iexfecnac}" />
                                             </div>
@@ -147,7 +147,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Vinculo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Vínculo</label>
                                                 <select class="form-select" name="iextipvinculo" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovVincul" items="${lovVincul}">
@@ -156,7 +156,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento Acredito Vinculo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo documento acredito vínculo</label>
                                                 <select class="form-select" name="iextipdocacredit" required >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovAcredVincul" items="${lovAcredVincul}">
@@ -165,15 +165,15 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Doc Acredito Vinculo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de doc acredito vínculo</label>
                                                 <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" value="${requestScope.derhabx.iexnrodocacredit}" required placeholder="#"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de Concepcion</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de concepción</label>
                                                 <input class="form-control" name="iexmesconcep" maxlength="50" type="text" value="${requestScope.derhabx.iexmesconcep}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Larga distancia</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País</label>
                                                 <select class="form-select" name="iexcodlar">
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovLarDistancia" items="${lovLarDistancia}">
@@ -181,17 +181,17 @@
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Telefono</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Número de telefono</label>
                                                  <input class="form-control" name="iexnrotelf" maxlength="50" type="text" value="${requestScope.derhabx.iexnrotelf}" placeholder="+51 987 893556" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Email</label>
-                                                <input class="form-control" name="iexemail" maxlength="50" type="text" value="${requestScope.derhabx.iexemail}" placeholder="usuario@gmail.com"/>
+                                                <input class="form-control" name="iexemail" maxlength="50" type="text" value="${requestScope.derhabx.iexemail}" placeholder="Ingrese su correo"/>
                                             </div>
                                             <hr/>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de via 1</label>
                                                 <select class="form-select" name="iextipvia_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipVia" items="${lovTipVia}">
@@ -200,15 +200,15 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. Via 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. via 1</label>
                                                 <input class="form-control" name="iexnomvia_dom1" maxlength="20" type="text" value="${requestScope.derhabx.iexnomvia_dom1}" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Via 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de via 1</label>
                                                 <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexnrovia_dom1}" placeholder="435" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Depto 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dpto 1</label>
                                                 <input class="form-control" name="iexdeptin_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexdeptin_dom1}" placeholder="143"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
@@ -220,23 +220,23 @@
                                                 <input class="form-control" name="iexmanzana_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexmanzana_dom1}" placeholder="A"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de lote 1</label>
                                                 <input class="form-control" name="iexlote_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexlote_dom1}" placeholder="LT3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Km Referencia 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Km referencia 1</label>
                                                 <input class="form-control" name="iexkilometro_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexkilometro_dom1}" placeholder="21"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 1</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de bloque 1</label>
                                                   <input class="form-control" name="iexblock_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexblock_dom1}" placeholder="B3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa Del Domicilio 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 1</label>
                                                 <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexetapa_dom1}" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona dom 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona 1</label>
                                                 <select class="form-select" name="iextipzona_dom1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona" items="${lovTipZona}">
@@ -245,11 +245,11 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia dom 1</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia 1</label>
                                                  <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" value="${requestScope.derhabx.iexreferencia_dom1}" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Pais Emisor 1 [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* País emisor 1 [TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor1" id="iexpaisemisor1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor1" items="${lovPaisEmisor}">
@@ -286,7 +286,7 @@
                                             </div>
                                             <hr/>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo via 2</label>
                                                 <select class="form-select" name="iextipvia_dom2" id="iextipvia_dom2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipVia2" items="${lovTipVia2}">
@@ -295,15 +295,15 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom Via 2</label>
-                                                <input class="form-control" name="iexnomvia_dom2" maxlength="20" value="${requestScope.derhabx.iexnomvia_dom2}" type="text" />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom via 2</label>
+                                                <input class="form-control" name="iexnomvia_dom2" maxlength="20" value="${requestScope.derhabx.iexnomvia_dom2}" type="text" placeholder="Ingrese el nombre de la vía" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Via 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro via 2</label>
                                                 <input class="form-control" name="iexnrovia_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexnrovia_dom2}" placeholder="435"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Dept 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro dept 2</label>
                                                 <input class="form-control" name="iexdeptin_dom2" maxlength="6" type="text" placeholder="143" value="${requestScope.derhabx.iexdeptin_dom2}"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
@@ -311,27 +311,27 @@
                                                 <input class="form-control" name="iexinterior_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexinterior_dom2}" placeholder="1"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana Domicilio 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Manzana 2</label>
                                                 <input class="form-control" name="iexmanzana_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexmanzana_dom2}" placeholder="A"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Lote 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de lote 2</label>
                                                 <input class="form-control" name="iexlote_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexlote_dom2}" placeholder="LT3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Kilometro de Referencia 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Km de referencia 2</label>
                                                 <input class="form-control" name="iexkilometro_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexkilometro_dom2}" placeholder="21"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de Bloque 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de bloque 2</label>
                                                 <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexblock_dom2}" placeholder="B3"/>
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa Domicilio 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 2</label>
                                                 <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexetapa_dom2}" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona dom 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona 2</label>
                                                 <select class="form-select" name="iextipzona_dom2" id="iextipzona_dom2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipZona2" items="${lovTipZona2}">
@@ -340,11 +340,11 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia Dom 2</label>
-                                                <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia 2</label>
+                                                <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" placeholder="Ingrese una referencia"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pais Emisor 2 [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2 [TT26]</label>
                                                 <select class="form-select" name="iexpaisemisor2" id="iexpaisemisor2" >
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor2" items="${lovPaisEmisor}">
@@ -384,8 +384,8 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Domicilio</label>
                                                 <select class="form-select" name="iexcenasis" id="iexcenasis">
                                                   <option value="" selected >Seleccionar</option>
-                                                  <option value="1" ${requestScope.derhabx.iexcenasis=='1' ? 'selected' : ''} >Direccion Principal</option>
-                                                  <option value="2" ${requestScope.derhabx.iexcenasis=='2' ? 'selected' : ''} >Direccion Secundaria</option>
+                                                  <option value="1" ${requestScope.derhabx.iexcenasis=='1' ? 'selected' : ''} >Direccion principal</option>
+                                                  <option value="2" ${requestScope.derhabx.iexcenasis=='2' ? 'selected' : ''} >Direccion secundaria</option>
                                                 </select>
                                             </div>
 
@@ -400,7 +400,7 @@
                                                     <a class="btn btn-phoenix-primary" href="derechoHab@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar DerechoHab</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar derecho hab</button>
                                                   </div>
                                                 </div>
                                             </div>

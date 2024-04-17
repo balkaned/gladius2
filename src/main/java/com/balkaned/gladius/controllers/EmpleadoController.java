@@ -239,9 +239,9 @@ public class EmpleadoController {
 
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.valueOf(iexcodtra));
-        p.setIexnomtra(iexnomtra);
-        p.setIexapepat(iexapepat);
-        p.setIexapemat(iexapemat);
+        p.setIexnomtra(iexnomtra.toUpperCase());
+        p.setIexapepat(iexapepat.toUpperCase());
+        p.setIexapemat(iexapemat.toUpperCase());
         p.setIextipdocid(iextipdocid);
         p.setIexnrodoc(iexnrodoc);
         p.setIexfecnac(iexfecnac);

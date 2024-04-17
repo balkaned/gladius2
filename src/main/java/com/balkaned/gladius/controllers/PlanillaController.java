@@ -1046,7 +1046,6 @@ public class PlanillaController {
 
                     // Print the cell for debugging
                     if (cn == 0 && v_codcab >= 3) {
-
                         if (cell.getCellType() != CellType.NUMERIC) { //si el valor es numérico
                             v_codtra = cell.getStringCellValue();
                         } else {

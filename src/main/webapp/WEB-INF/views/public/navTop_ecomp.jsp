@@ -350,9 +350,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-l ">
-                  <img id="imgtop2" class="rounded-circle"
-                  src="resources/assets/img/user_blank.jpg"
-                  alt="" />
+                  <img id="imgtop2" class="rounded-circle" src="resources/assets/img/team/avatar.webp" alt="" />
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border border-300" aria-labelledby="navbarDropdownUser">
@@ -360,9 +358,7 @@
                   <div class="card-body p-0">
                     <div class="text-center pt-4 pb-0">
                       <div class="avatar avatar-xl ">
-                        <img class="rounded-circle "
-                        src="resources/assets/img/user_blank.jpg"
-                        alt="" />
+                        <img class="rounded-circle " src="resources/assets/img/team/avatar.webp" alt="" />
                       </div>
                       <h6 class="mt-2 text-black">${usuario}</h6>
                       <ul class="nav d-flex flex-column mb-2 pb-1">
@@ -382,8 +378,8 @@
                   </div>
                   <div class="overflow-auto scrollbar" style="height: 6rem;">
                     <ul class="nav d-flex flex-column mb-2 pb-1">
-                      <li class="nav-item"><a class="nav-link px-3" href="#"> <span class="me-2 text-900" data-feather="pocket"></span><span>Perfil</span></a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="selcompaniasChange@${idusuario}"><span class="me-2 text-900" data-feather="repeat"></span>Cambiar Instancia</a></li>
+                      <!--<li class="nav-item"><a class="nav-link px-3" href="#"> <span class="me-2 text-900" data-feather="pocket"></span><span>Perfil</span></a></li>
+                      <li class="nav-item"><a class="nav-link px-3" href="selcompaniasChange@${idusuario}"><span class="me-2 text-900" data-feather="repeat"></span>Cambiar Instancia</a></li>-->
                       <!--<li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="lock"></span>Posts &amp; Activity</a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-900" data-feather="help-circle"></span>Help Center</a></li>
