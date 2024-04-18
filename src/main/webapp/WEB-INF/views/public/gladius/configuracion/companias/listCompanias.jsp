@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevaCompania" ><span class="fas fa-plus me-2"></span>Add Compañia</a>
+                      <a class="btn btn-primary btn-sm" href="nuevaCompania" ><span class="fas fa-plus me-2"></span>Add compañia</a>
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarCompania@${LstCompania.idCodcia}">#${LstCompania.idCodcia}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${LstCompania.descCia}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${LstCompania.nroRuc}</td>
+                              <td class="total align-middle text-start fw-semi-bold text-1000">${LstCompania.nroRuc}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${LstCompania.apepatRepesentante} ${LstCompania.nomRepesentante}</td>
                               <td class="fulfilment_status align-middle white-space-nowrap text-center fw-bold text-700">${LstCompania.desCargoRep}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">

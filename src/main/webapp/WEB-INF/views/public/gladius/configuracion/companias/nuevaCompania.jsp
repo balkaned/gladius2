@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -43,42 +42,42 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Compañia</h2>
+                  <h2 id="h2top" class="mb-0">Insertar compañia</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarCompania" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarCompania" novalidate >
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                              <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                              <div class="col-sm-6 col-md-2">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="iexcodcia" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion CIA</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción cia</label>
                                  <input class="form-control" name="iexdescia" type="text"  placeholder="Company ABC" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Corta CIA</label>
-                                   <input class="form-control" name="iexdescorto" type="text"  placeholder="" required/>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción corta cia</label>
+                                   <input class="form-control" name="iexdescorto" type="text"  placeholder="Ingrese la descripción corta cia" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* RUC</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ruc</label>
                                  <input class="form-control" name="iexnroruc" type="text" maxlength="17" placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Direccion</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dirección</label>
                                    <input class="form-control" name="iexdireccion" type="text" placeholder="Jr. Los Álamos #456, San Isidro, Lima, Perú" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Telefono</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Teléfono</label>
                                      <input class="form-control" name="iexnrotelf" type="text" placeholder="+51 987 844921" required/>
                               </div>
-                              <div class="col-sm-6 col-md-8">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Actividad Comercial</label>
+                              <div class="col-sm-6 col-md-5">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Actividad comercial</label>
                                   <select class="form-select" name="iexcodact" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipAct" items="${lovTipAct}">
@@ -87,23 +86,23 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Representante</label>
-                                     <input class="form-control" name="iexrepnombre" type="text"  placeholder="" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del representante</label>
+                                     <input class="form-control" name="iexrepnombre" type="text"  placeholder="Ingrese el nombre del representante" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cargo del Representante</label>
-                                    <input class="form-control" name="iexrepcargo" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cargo del representante</label>
+                                    <input class="form-control" name="iexrepcargo" type="text" value="" placeholder="Ingrese el cargo del representante" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento Identidad del Rep</label>
+                              <div class="col-sm-6 col-md-5">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro doc identidad del rep</label>
                                     <input class="form-control" name="iexrepdocid" maxlength="17" type="text" value="" placeholder="#" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Logo </label>
+                              <div class="col-sm-6 col-md-7">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo</label>
                                   <input class="form-control" name="iexreplogo" type="text" value="" placeholder="ID.jpg" required />
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Report</label>
+                              <div class="col-sm-6 col-md-7">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url file report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="" placeholder="" />
                               </div>
 
@@ -118,7 +117,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listCompanias">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Compania</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar compania</button>
                                     </div>
                                   </div>
                               </div>

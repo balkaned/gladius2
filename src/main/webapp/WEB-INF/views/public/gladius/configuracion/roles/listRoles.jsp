@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevoRol" ><span class="fas fa-plus me-2"></span>Add Rol</a>
+                      <a class="btn btn-primary btn-sm" href="nuevoRol" ><span class="fas fa-plus me-2"></span>Add rol</a>
                     </div>
                   </div>
                 </div>

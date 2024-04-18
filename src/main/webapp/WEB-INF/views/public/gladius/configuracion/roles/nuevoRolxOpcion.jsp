@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -44,21 +43,21 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Rol x Opcion</h2>
+                  <h2 id="h2top" class="mb-0">Insertar rol x opcion</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-6">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarRolxOpcion@${idRol}" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarRolxOpcion@${idRol}" novalidate >
                               <input class="form-control" name="iexcodrol" type="hidden" value="${idRol}" />
-                              <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                              <div class="col-sm-6 col-md-3">
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                      <input class="form-control" name="iexcodrol" type="number"  placeholder="#" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
+                              <div class="col-sm-6 col-md-6">
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones</label>
                               	  <select name="iexcodopc" class="form-select" required >
                               		  <option value="" selected >Seleccionar</option>
                               		  <c:forEach var="lovOpcion" items="${lovOpcion}">
@@ -66,50 +65,50 @@
                               		  </c:forEach>
                               	  </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cons</label>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cons</label>
                                   <select name="iex_consultar" class="form-select" required >
                                       <option value="1" >Si</option>
                                       <option value="0" >No</option>
                                   </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Reg</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Reg</label>
                                     <select name="iex_registrar" class="form-select" required >
                                         <option value="1" >Si</option>
                                         <option value="0" >No</option>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Mod</label>
+                              <div class="col-sm-6 col-md-4">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mod</label>
                                   <select name="iex_modificar" class="form-select" required >
                                       <option value="1" >Si</option>
                                       <option value="0" >No</option>
                                   </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Eli</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Eli</label>
                                     <select name="iex_eliminar" class="form-select" required >
                                         <option value="1" >Si</option>
                                         <option value="0" >No</option>
                                     </select>
                                 </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rep</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rep</label>
                                     <select name="iex_descargar_pdf" class="form-select" required >
                                         <option value="1" >Si</option>
                                         <option value="0" >No</option>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Exp</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Exp</label>
                                     <select name="iex_descargar_xls" class="form-select" required >
                                         <option value="1" >Si</option>
                                         <option value="0" >No</option>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Est</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Est</label>
                                     <select name="iexflgest" class="form-select" required >
                                         <option value="1" >Activo</option>
                                         <option value="0" >Inactivo</option>

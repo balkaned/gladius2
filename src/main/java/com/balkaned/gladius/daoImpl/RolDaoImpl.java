@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.beans.Role;
 import com.balkaned.gladius.beans.Rolesxopciones;
 import com.balkaned.gladius.dao.RolDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -113,7 +114,11 @@ public class RolDaoImpl implements RolDao {
                     rol.setDesrol(rs.getString("iexdesrol"));
                     rol.setIexcodopc(rs.getInt("iexcodopc"));
                     rol.setDesopc(rs.getString("iexdesopc"));
+
                     rol.setDessec(rs.getString("iexdessec"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    rol.setDessec(cap.letras(rol.getDessec()));
+
                     rol.setDessys(rs.getString("iexdessys"));
                     rol.setIexflgest(rs.getString("iexflgest"));
                     rol.setIex_consultar(rs.getString("iex_consultar"));

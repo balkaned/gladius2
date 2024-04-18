@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -43,23 +42,23 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Editar Sistema</h2>
+                  <h2 id="h2top" class="mb-0">Editar sistema</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarSistema" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarSistema" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodsys2" type="hidden" value="${idSis}" />
 
-                              <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                              <div class="col-sm-6 col-md-2">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="iexcodsys" type="number" value="${requestScope.xSys.iexcodsys}" required disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
+                              <div class="col-sm-6 col-md-8">
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                                  <input class="form-control" name="iexdessys" type="text"  value="${requestScope.xSys.iexdessys}" required/>
                               </div>
 
@@ -74,7 +73,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listSistemas">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Sistemas</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar sistemas</button>
                                     </div>
                                   </div>
                               </div>

@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevoParametro" ><span class="fas fa-plus me-2"></span>Add Parametro</a>
+                      <a class="btn btn-primary btn-sm" href="nuevoParametro" ><span class="fas fa-plus me-2"></span>Add parametro</a>
 
                     </div>
                   </div>
@@ -93,8 +93,8 @@
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarParametro@${par.iexcodcon}">#${par.iexcodcon}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${par.descon}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${par.destippar}</span></td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">${par.iexvalcon}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${par.iexdesobs}</td>
+                              <td class="delivery_type align-middle white-space-nowrap text-body fs-9 text-end">${par.iexvalcon}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-body fs-9 text-end">${par.iexdesobs}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

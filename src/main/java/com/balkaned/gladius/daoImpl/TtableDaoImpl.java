@@ -4,6 +4,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.beans.TTablaCabecera;
 import com.balkaned.gladius.beans.TTablaDetalle;
 import com.balkaned.gladius.dao.TtableDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -77,7 +78,11 @@ public class TtableDaoImpl implements TtableDao {
                     TTablaCabecera p = new TTablaCabecera();
 
                     p.setIexcodtab(rs.getString("iexcodtab"));
+
                     p.setIexdestab(rs.getString("iexdestab"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdestab(cap.letras(p.getIexdestab()));
+
                     p.setIexlbl1(rs.getString("iexlbl1"));
                     p.setIexlbl2(rs.getString("iexlbl2"));
                     p.setIexlbl3(rs.getString("iexlbl3"));
@@ -341,7 +346,11 @@ public class TtableDaoImpl implements TtableDao {
 
                     p.setIexcodtab(rs.getString("iexcodtab"));
                     p.setIexkey(rs.getString("iexkey"));
+
                     p.setDesdet(rs.getString("desdet"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesdet(cap.letras(p.getDesdet()));
+
                     p.setDes1det(rs.getString("des1det"));
                     p.setDes2det(rs.getString("des2det"));
                     p.setDes3det(rs.getString("des3det"));

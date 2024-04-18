@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevaSeccion" ><span class="fas fa-plus me-2"></span>Add Seccion</a>
+                      <a class="btn btn-primary btn-sm" href="nuevaSeccion" ><span class="fas fa-plus me-2"></span>Add sección</a>
                     </div>
                   </div>
                 </div>
@@ -95,9 +95,9 @@
                               <td class="align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-5 pe-5">${LstSeccion.iexdessec}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${LstSeccion.iexordsec}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${LstSeccion.dessys}</span></td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700">${LstSeccion.iexsecurl}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700 ps-5">${LstSeccion.iexactiondef}</td>
-                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-1000 ps-5">${LstSeccion.iexsecobs}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-body fs-9">${LstSeccion.iexsecurl}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-body fs-9 ps-5">${LstSeccion.iexactiondef}</td>
+                              <td class="fulfilment_status align-middle white-space-nowrap text-start text-body fs-9 ps-5">${LstSeccion.iexsecobs}</td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                   <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

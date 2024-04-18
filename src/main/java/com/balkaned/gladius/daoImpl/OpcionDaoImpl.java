@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.Opciones;
 import com.balkaned.gladius.dao.OpcionDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -52,8 +53,15 @@ public class OpcionDaoImpl implements OpcionDao {
                     p.setIexurlimg(rs.getString("iexurlimg"));
                     p.setIexflgest(rs.getString("iexflgest"));
                     p.setIexcodsec(rs.getInt("iexcodsec"));
+
                     p.setDessec(rs.getString("iexdessec"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDessec(cap.letras(p.getDessec()));
+
                     p.setDessys(rs.getString("iexdessys"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDessys(cap2.letras(p.getDessys()));
+
                     p.setIexdescripcion(rs.getString("iexdescripcion"));
                     p.setIexcodapps(rs.getString("iexcodapps"));
                     p.setIexaction(rs.getString("iexaction"));

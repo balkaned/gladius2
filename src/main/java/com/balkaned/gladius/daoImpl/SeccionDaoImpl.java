@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.Seccion;
 import com.balkaned.gladius.dao.SeccionDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -52,10 +53,18 @@ public class SeccionDaoImpl implements SeccionDao {
                     Seccion p = new Seccion();
 
                     p.setIexcodsec(rs.getInt("iexcodsec"));
+
                     p.setIexdessec(rs.getString("iexdessec"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdessec(cap.letras(p.getIexdessec()));
+
                     p.setIexordsec(rs.getInt("iexordsec"));
                     p.setIexcodsys(rs.getInt("iexcodsys"));
+
                     p.setDessys(rs.getString("iexdessys"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDessys(cap2.letras(p.getDessys()));
+
                     p.setIexsecurl(rs.getString("iexsecurl"));
                     p.setIexsecimg(rs.getString("iexsecimg"));
                     p.setIexsecobs(rs.getString("iexsecobs"));

@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -43,11 +42,11 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Editar Compañia</h2>
+                  <h2 id="h2top" class="mb-0">Editar compañia</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
                        <div class="form-group row mt-4">
@@ -68,35 +67,35 @@
                                  </form>
                             </div>
                        </div>
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarCompania" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarCompania" novalidate >
                               <input class="form-control" name="iexcodcia2" type="hidden" value="${idCia}" />
 
-                              <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                              <div class="col-sm-6 col-md-2">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="iexcodcia" type="number" value="${idCia}" required disabled required/>
                               </div>
                               <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion CIA</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción cia</label>
                                  <input class="form-control" name="iexdescia" type="text" value="${requestScope.xCia.descCia}" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Corta CIA</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción corta cia</label>
                                    <input class="form-control" name="iexdescorto" type="text" value="${requestScope.xCia.descCiaCorto}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* RUC</label>
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ruc</label>
                                  <input class="form-control" name="iexnroruc" type="text" maxlength="17" value="${requestScope.xCia.nroRuc}" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Direccion</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dirección</label>
                                    <input class="form-control" name="iexdireccion" type="text" value="${requestScope.xCia.direccionCia}" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Telefono</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Teléfono</label>
                                      <input class="form-control" name="iexnrotelf" type="text" value="${requestScope.xCia.nroTelfCia}" required/>
                               </div>
-                              <div class="col-sm-6 col-md-8">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Actividad Comercial</label>
+                              <div class="col-sm-6 col-md-6">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Actividad comercial</label>
                                   <select class="form-select" name="iexcodact" required>
                                     <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovTipAct" items="${lovTipAct}">
@@ -105,27 +104,27 @@
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Representante</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del representante</label>
                                      <input class="form-control" name="iexrepnombre" type="text"  value="${requestScope.xCia.nomRepesentante}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Cargo del Representante</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cargo del representante</label>
                                     <input class="form-control" name="iexrepcargo" type="text" value="${requestScope.xCia.desCargoRep}" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento Identidad del Rep</label>
+                              <div class="col-sm-6 col-md-5">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de doc identidad del rep</label>
                                     <input class="form-control" name="iexrepdocid" maxlength="17" type="text" value="${requestScope.xCia.nroDocuRep}" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Logo</label>
+                              <div class="col-sm-6 col-md-7">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Logo</label>
                                   <input class="form-control" name="iexreplogo" type="text" value="${requestScope.xCia.urlLogo}" placeholder="ID.jpg" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url File Report</label>
+                              <div class="col-sm-6 col-md-7">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url file report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
                               </div>
                               <div class="col-sm-6 col-md-5">
-                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Flag Source</label>
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo conexión flag source</label>
                               	  <select name="iexflgsource" class="form-select" required >
                               		  <option value="1" ${1 == requestScope.xCia.iexflgsource ? 'selected' : ''} >1: AWS S3</option>
                               		  <option value="2" ${2 == requestScope.xCia.iexflgsource ? 'selected' : ''} >2: FTP</option>
@@ -168,7 +167,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listCompanias">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Compania</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar compania</button>
                                     </div>
                                   </div>
                               </div>
@@ -201,7 +200,7 @@
 
                            <div class="col-sm-6 col-md-7">
                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                               <select name="id_concepto" id="id_concepto"  class="form-select" required>
+                               <select name="id_concepto" id="id_concepto"  class="form-select form-select-sm" required>
                                    <option value="">Seleccionar Concepto</option>
                                    <c:forEach  var="lovConcepto" items="${lovConcepto}">
                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
@@ -210,7 +209,7 @@
                            </div>
                            <div class="col-sm-6 col-md-4 mt-3">
                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Registro</label>-->
-                               <select name="tipo_reg" id="tipo_reg" class="form-select" required>
+                               <select name="tipo_reg" id="tipo_reg" class="form-select form-select-sm" required>
                                    <option value="">Tipo de registro</option>
                                    <option value="1">Datos Dijos</option>
                                    <option value="2">Datos Variable</option>
@@ -241,7 +240,7 @@
                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
                                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaFij.iexcodcon}</span></td>
-                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
+                                                              <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
                                                               <td><a href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
                                                             </tr>
                                                         </c:forEach>
@@ -258,7 +257,7 @@
                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
                                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaVar.iexcodcon}</span></td>
-                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
+                                                             <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
                                                              <td><a href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
                                                            </tr>
                                                        </c:forEach>

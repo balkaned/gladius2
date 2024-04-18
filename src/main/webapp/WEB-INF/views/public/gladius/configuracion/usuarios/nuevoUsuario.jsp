@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -43,7 +42,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Usuario</h2>
+                  <h2 id="h2top" class="mb-0">Insertar usuario</h2>
                 </div>
               </div>
               <div class="col-xl-7">
@@ -59,30 +58,30 @@
                   </c:if>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarUsuario" novalidate>
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarUsuario" novalidate>
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                              <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Usuario</label>
+                              <div class="col-sm-6 col-md-4">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Usuario</label>
                                    <input class="form-control" name="txt_usuario" maxlength="15"  type="text"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Contraseña</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Contraseña</label>
                                      <input class="form-control" name="txt_password" maxlength="15" type="password"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Confirmar Contraseña</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar Contraseña</label>
                                    <input class="form-control" name="txt_password2" maxlength="15" type="password"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Email</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Email</label>
                                      <input class="form-control" name="txt_email" maxlength="60" type="text"  placeholder="usuario@gmail.com" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
+                              <div class="col-sm-6 col-md-4">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
                                     <select class="form-select" name="lov_estado" required>
                                       <option value="1" >Activo</option>
@@ -101,7 +100,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listUsuarios">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Usuario</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar usuario</button>
                                     </div>
                                   </div>
                               </div>

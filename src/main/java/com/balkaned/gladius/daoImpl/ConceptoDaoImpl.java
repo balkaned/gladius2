@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.Concepto;
 import com.balkaned.gladius.dao.ConceptoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -44,7 +45,11 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 while (rs.next()) {
                     Concepto con = new Concepto();
                     con.setCodConcepto(rs.getString("coocodcon"));
+
                     con.setDesConcepto(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
+
                     con.setDesVariable(rs.getString("coocodforvar"));
                     con.setDesAbreviacion(rs.getString("coodesabrev"));
                     con.setDescripcion(rs.getString("coodescripcion"));

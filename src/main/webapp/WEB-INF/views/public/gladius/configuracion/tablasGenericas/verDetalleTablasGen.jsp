@@ -36,7 +36,7 @@
             <nav class="mb-2" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#!">Configuración</a></li>
-                <li class="breadcrumb-item active">Tablas Genéricas</li>
+                <li class="breadcrumb-item active">Tablas genéricas</li>
               </ol>
             </nav>
             <div class="mb-12">
@@ -46,27 +46,27 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                  <div class="col-xl-7">
                    <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarTblGenDetalle" novalidate >
+                      <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarTblGenDetalle" novalidate >
                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                         <input class="form-control" name="iexcodtab2" type="hidden" value="${sessionScope.ttablaclbl.iexcodtab}" />
 
-                        <div class="col-sm-6 col-md-3">
-                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                        <div class="col-sm-6 col-md-2">
+                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                <input class="form-control" name="iexcodtab" type="number"  value="${sessionScope.ttablaclbl.iexcodtab}" required readonly disabled/>
                         </div>
                         <div class="col-sm-6 col-md-9">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre de la Tabla</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la tabla</label>
                               <input class="form-control" name="iexdestab" type="text" value="${sessionScope.ttablaclbl.iexdestab}" placeholder="" required readonly disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID Key</label>
+                        <div class="col-sm-6 col-md-2">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id key</label>
                               <input class="form-control" name="iexkey" type="text" value="${ttabladxx.iexkey}" placeholder="" required/>
                         </div>
                         <div class="col-sm-6 col-md-9">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion Key</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción key</label>
                               <input class="form-control" name="desdet" type="text" value="${ttabladxx.desdet}" placeholder="" required/>
                         </div>
                         <table class="navy" >

@@ -121,7 +121,7 @@
                               <td class="tipotrab align-middle white-space-nowrap text-body fs-9 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                              <td class="delivery_type align-middle white-space-nowrap text-body-tertiary fs-9 ps-4 text-start"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${empl.iexfecing}</td>
+                              <td class="delivery_type align-middle white-space-nowrap text-body-tertiary fs-9 ps-4 text-start"><span class="fa-regular fa-calendar fs-0 me-2"></span>${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">

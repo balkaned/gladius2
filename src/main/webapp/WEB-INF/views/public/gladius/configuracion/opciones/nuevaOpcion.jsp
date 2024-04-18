@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -43,34 +42,34 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Opcion</h2>
+                  <h2 id="h2top" class="mb-0">Insertar opción</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarOpcion" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarOpcion" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                              <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                              <div class="col-sm-6 col-md-2">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="iexcodopc" type="number"  placeholder="#" required/>
                               </div>
-                              <div class="col-sm-6 col-md-9">
-                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Opciones</label>
+                              <div class="col-sm-6 col-md-6">
+                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones</label>
                                  <input class="form-control" name="iexdesopc" type="text"  placeholder="Gestión AFP" required/>
                               </div>
-                              <div class="col-sm-6 col-md-4">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
+                              <div class="col-sm-6 col-md-3">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                   <select class="form-select" name="iexflgest" required>
                                     <option value="1" >Activo</option>
                                     <option value="2" >Inactivo</option>
                                   </select>
                               </div>
-                              <div class="col-sm-6 col-md-8">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Seccion Sistemas</label>
+                              <div class="col-sm-6 col-md-6">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sección sistemas</label>
                                     <select class="form-select" name="iexcodsec" required>
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lovSeccion" items="${lovSeccion}">
@@ -79,28 +78,28 @@
                                     </select>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Opc</label>
-                                     <input class="form-control" name="iexurlopc" type="text"  placeholder="" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url opc</label>
+                                     <input class="form-control" name="iexurlopc" type="text"  placeholder="Ingrese la url de la opción" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Url Img</label>
-                                    <input class="form-control" name="iexurlimg" type="text" value="" placeholder="" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url img</label>
+                                    <input class="form-control" name="iexurlimg" type="text" value="" placeholder="Ingrese la url de la imagen" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* NEW Action</label>
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">NEW action</label>
                                       <input class="form-control" name="iexactionspring" type="text" value="" placeholder="/ListPruebas" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action OLD</label>
-                                  <input class="form-control" name="iexaction" type="text" value="" placeholder="" />
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Action old</label>
+                                  <input class="form-control" name="iexaction" type="text" value="" placeholder="Ingrese ActionOld" />
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Code Apps</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Code apps</label>
                                     <input class="form-control" name="iexcodapps" type="text" value="" placeholder="PAR0000" required/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
-                                    <input class="form-control" name="iexdescripcion" type="text" value="" placeholder="" required/>
+                              <div class="col-sm-6 col-md-8">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
+                                    <input class="form-control" name="iexdescripcion" type="text" value="" placeholder="Ingrese la descripción" required/>
                               </div>
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -114,7 +113,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listOpciones">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Opcion</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar opción</button>
                                     </div>
                                   </div>
                               </div>

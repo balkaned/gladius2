@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevoSistema"><span class="fas fa-plus me-2"></span>Add Sistema</a>
+                      <a class="btn btn-primary btn-sm" href="nuevoSistema"><span class="fas fa-plus me-2"></span>Add sistema</a>
                     </div>
                   </div>
                 </div>

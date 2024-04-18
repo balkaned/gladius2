@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.ParametrosGen;
 import com.balkaned.gladius.dao.ParametroDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -53,7 +54,11 @@ public class ParametroDaoImpl implements ParametroDao {
                     ParametrosGen rol = new ParametrosGen();
 
                     rol.setIexcodcon(rs.getString("iexcodcon"));
+
                     rol.setDescon(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    rol.setDescon(cap.letras(rol.getDescon()));
+
                     rol.setIextippar(rs.getString("iextippar"));
                     rol.setDestippar(rs.getString("desdet"));
                     rol.setIexvalcon(rs.getDouble("iexvalcon"));

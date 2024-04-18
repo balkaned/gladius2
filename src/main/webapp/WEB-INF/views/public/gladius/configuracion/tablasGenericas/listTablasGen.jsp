@@ -42,7 +42,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Tablas Genéricas</h2>
+                  <h2 id="h2top" class="mb-0">Tablas genéricas</h2>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevaTablaGen" ><span class="fas fa-plus me-2"></span>Add Tabla Gen</a>
+                      <a class="btn btn-primary btn-sm" href="nuevaTablaGen" ><span class="fas fa-plus me-2"></span>Add tabla genérica</a>
 
                     </div>
                   </div>
