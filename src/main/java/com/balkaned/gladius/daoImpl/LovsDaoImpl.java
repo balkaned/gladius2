@@ -291,7 +291,10 @@ public class LovsDaoImpl implements LovsDao {
                     Lovs p = new Lovs();
 
                     p.setIdLov(rs.getString("cod"));
+
                     p.setDesLov(rs.getString("des"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesLov(cap.letras(p.getDesLov()));
 
                     lista.add(p);
                 }
@@ -317,7 +320,10 @@ public class LovsDaoImpl implements LovsDao {
                     ProcesoPlanilla p = new ProcesoPlanilla();
 
                     p.setIdProceso(rs.getInt("procodpro"));
+
                     p.setDesProceso(rs.getString("prodespro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesProceso(cap.letras(p.getDesProceso()));
 
                     lista.add(p);
                 }

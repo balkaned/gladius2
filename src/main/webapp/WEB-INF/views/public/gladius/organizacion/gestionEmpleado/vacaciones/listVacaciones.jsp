@@ -56,7 +56,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-warning btn-sm ms-1 " href="actualizarVacEmpl@${idTrab}"><span class="fa-solid fas fa-arrows-rotate me-2"></span>Actualizar</a>
+                                      <a class="btn btn-primary btn-sm ms-1 " href="actualizarVacEmpl@${idTrab}"><span class="fa-solid fas fa-arrows-rotate me-2"></span>Actualizar</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -74,27 +74,28 @@
                                           <th class="sort align-middle pe-4 text-uppercase text-center" scope="col" data-sort="amount" >Per. Fin</th>
                                           <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="stage" >Fecha Inicio</th>
                                           <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="probability" >Fecha Fin</th>
+                                          <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Saldo</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Gan</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Pag y Goz</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Ven</th>
-                                          <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="probability">Dias Saldo</th>
                                           <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" ></th>
                                         </tr>
                                       </thead>
                                       <tbody class="list" id="customer-order-table-body">
                                         <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}">
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                              <td class="order align-middle white-space-nowrap ps-0 text-center"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesini}</a></td>
-                                              <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><a class="fw-semi-bold" href="#!">${LstVacacionesCtl.iexpermesfin}</a></td>
+                                              <td class="order align-middle white-space-nowrap ps-0 text-center">${LstVacacionesCtl.iexpermesini}</td>
+                                              <td class="total align-middle text-center fw-semi-bold pe-20 text-1000">${LstVacacionesCtl.iexpermesfin}</td>
                                               <td class="align-middle white-space-nowrap text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
                                               <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
+                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ">
+                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="badgecirclered">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                              </td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>
-                                              <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ">
-                                                <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="badgecirclered">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
-                                                <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
-                                              </td>
+
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">

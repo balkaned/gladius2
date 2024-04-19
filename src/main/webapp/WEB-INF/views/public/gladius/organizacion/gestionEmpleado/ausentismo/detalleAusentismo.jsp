@@ -191,20 +191,20 @@ function enviaForm(variable){
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="modificarAusentismo" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="modificarAusentismo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-3">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                            <div class="col-sm-6 col-md-2">
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                                    <input class="form-control" name="iexcorrel" maxlength="70" type="text" value="${iexcorrel}" disabled/>
                                                    <input class="form-control" name="iexcorrel2" type="hidden" value="${iexcorrel}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de ausentismo</label>
                                                 <select class="form-select" name="iextipaus" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipaus" items="${lovTipaus}">
@@ -212,18 +212,18 @@ function enviaForm(variable){
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" value="${requestScope.xAusentismoDet.iexfecini}" onchange="formatearFecha1();" type="text"  placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                                 <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecini}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" value="${requestScope.xAusentismoDet.iexfecfin}" type="text" onchange="calcularDias();" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                                   <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xAusentismoDet.iexfecfin}" />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                                                    <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" value="${requestScope.xAusentismoDet.iexnrodias}" type="text" placeholder="0" disabled readonly/>
                                                    <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
@@ -243,7 +243,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="ausentismo@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Ausentismo</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar ausentismo</button>
                                                   </div>
                                                 </div>
                                             </div>

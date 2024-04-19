@@ -330,10 +330,10 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Empleado p = new Empleado();
                 while (rs.next()) {
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
                     CapitalizarCadena cap1= new CapitalizarCadena();
                     p.setIexnomtra(cap1.letras(p.getIexnomtra()));
@@ -388,7 +388,12 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIexlogo(rs.getString("iexlogo"));
                     p.setIexestcivil(rs.getString("iexestcivil"));
                     p.setIexreglab(rs.getString("iexreglab"));
+
                     p.setDireccion1(rs.getString("direccion"));
+                    CapitalizarCadena cap4= new CapitalizarCadena();
+                    p.setDireccion1(cap4.letras(p.getDireccion1()));
+
+                    CapitalizarCadena cap= new CapitalizarCadena();
                     p.setDespuesto(cap.letras(rs.getString("despuesto")));
 
                     String nombrecompleto = cap.letras(p.getIexnomtra()) + " " + cap.letras(p.getIexapepat()) + " " + cap.letras(p.getIexapemat());

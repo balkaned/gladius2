@@ -67,43 +67,42 @@ function validate_fecha(fecha){
 }
 
 function calcularDias(){
-        formatearFecha2();
+    formatearFecha2();
 
-		var fechaInicial=document.getElementById("iexfecini").value;
-		var fechaFinal=document.getElementById("iexfecfin").value;
-		var resultado="";
-		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-		{
-			inicial=fechaInicial.split("/");
-			final=fechaFinal.split("/");
-			// obtenemos las fechas en milisegundos
-			var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
-            var dateEnd=new Date(final[2],(final[1]-1),final[0]);
-            if(dateStart<=dateEnd)
-            {
-				// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
-				// que tiene un dia, y posteriormente entre 1000 ya que estamos
-				// trabajando con milisegundos.
-				//resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
-                                resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
-			}else{
-				resultado="La fecha inicial es posterior a la fecha final";
-			}
-		}else{
-			if(!validate_fecha(fechaInicial))
-				//resultado="La fecha inicial es incorrecta";
-                                    resultado="0";
-			if(!validate_fecha(fechaFinal))
-				//resultado="La fecha final es incorrecta";
-                                     resultado="0";
-		}
+    var fechaInicial=document.getElementById("iexfecini").value;
+    var fechaFinal=document.getElementById("iexfecfin").value;
+    var resultado="";
 
-		document.getElementById("iexnrodias").value=Number(resultado)+1;
-		document.getElementById("iexnrodias2").value=Number(resultado)+1;
+    if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
+        inicial=fechaInicial.split("/");
+        final=fechaFinal.split("/");
+
+        // obtenemos las fechas en milisegundos
+        var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
+        var dateEnd=new Date(final[2],(final[1]-1),final[0]);
+        if(dateStart<=dateEnd){
+            // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+            // que tiene un dia, y posteriormente entre 1000 ya que estamos
+            // trabajando con milisegundos.
+            //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+            resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
+        }else{
+            resultado="La fecha inicial es posterior a la fecha final";
+        }
+    }else{
+        if(!validate_fecha(fechaInicial))
+            //resultado="La fecha inicial es incorrecta";
+            resultado="0";
+        if(!validate_fecha(fechaFinal))
+            //resultado="La fecha final es incorrecta";
+            resultado="0";
+    }
+
+    document.getElementById("iexnrodias").value=Number(resultado)+1;
+    document.getElementById("iexnrodias2").value=Number(resultado)+1;
 }
 
 function enviaForm(variable){
-    //document.getElementById("frmplaserv").submit();
 
     var fechaInicial=document.getElementById("iexfecini").value;
     var fechaFinal=document.getElementById("iexfecfin").value;
@@ -129,14 +128,14 @@ function enviaForm(variable){
                 if(document.getElementById("saldo").value >= resultado){
                         document.getElementById("accion").value="INSVAC";
                         document.getElementById("formvacaciones").submit();
-                        mostrarAlert()
+                        mostrarAlert();
                 }else{
                     if(document.getElementById("iexflgnosaldo").checked ){
                         document.getElementById("accion").value="INSVAC";
                         document.getElementById("formvacaciones").submit();
-                        mostrarAlert()
+                        mostrarAlert();
                      }else{
-                    alert("Numero de Dias Programados es superior al Saldo de Dias");
+                        alert("Numero de Dias Programados es superior al Saldo de Dias");
                      }
                 }*/
 
@@ -204,20 +203,20 @@ function enviaForm(variable){
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="modificarVacaciones" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="modificarVacaciones" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-3 ">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                            <div class="col-sm-6 col-md-2 ">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                                   <input class="form-control" id="iexcorreldis" name="iexcorreldis" type="text" value="${iexcorrel}" disabled readonly/>
                                                   <input type="hidden" name="iexcorrel" id="iexcorrel" value="${iexcorrel}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo vacaciones</label>
                                                   <select class="form-select"  name="iextipvac"  id="iextipvac" required disabled>
                                                     <option value="" selected>Seleccionar</option>
                                                     <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
@@ -225,7 +224,7 @@ function enviaForm(variable){
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
+                                            <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo vacacional</label>
                                                   <select class="form-select"  name="iexpermesini" required disabled>
                                                     <option value="" selected>Seleccionar</option>
@@ -234,18 +233,18 @@ function enviaForm(variable){
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" value="${requestScope.xVacacionesPrg.iexfecini}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                               <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecini}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" value="${requestScope.xVacacionesPrg.iexfecfin}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                               <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecfin}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                                            <div class="col-sm-6 col-md-3">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                                               <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="${requestScope.xVacacionesPrg.iexnrodias}" disabled readonly/>
                                               <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
@@ -264,7 +263,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar vacaciones</button>
                                                   </div>
                                                 </div>
                                             </div>

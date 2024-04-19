@@ -38,6 +38,9 @@ public class DashboardController {
     @Autowired
     DashboardService dashboardService;
 
+    @Autowired
+    UsuxCompaniaService usuxCompaniaService;
+
 
     @RequestMapping("/home@{idComp}@{idUser}")
     public ModelAndView home(ModelMap model, HttpServletRequest request,
@@ -153,6 +156,20 @@ public class DashboardController {
         List<DashboardLocal> lsLocalBar=dashboardService.obtenerDatosDashboardLocales(Integer.valueOf(idComp));
         model.addAttribute("lsLocalBar",lsLocalBar);
 
-        return new ModelAndView("public/dashboard");
+
+        //Obtiene datos del usuario y rol si es SYSHRSELF redirecciona listaTrabajadores
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(Integer.valueOf(idComp), Integer.valueOf(idusuario));
+        Empleado emp = new Empleado();
+        emp.setIexcodcia(Integer.valueOf(idComp));
+        emp.setIexcodtra(ur.getIexcodtra());
+
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("redirect:/listEmpleados");
+        } else {
+            return new ModelAndView("public/dashboard");
+        }
     }
 }

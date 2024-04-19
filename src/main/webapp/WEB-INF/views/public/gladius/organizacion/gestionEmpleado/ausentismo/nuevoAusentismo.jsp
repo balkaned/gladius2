@@ -38,24 +38,23 @@ function formatearFecha2(){
 }
 
 function isValidDate(day,month,year){
-		var dteDate;
-		month=month-1;
-		dteDate=new Date(year,month,day);
-		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+    var dteDate;
+    month=month-1;
+    dteDate=new Date(year,month,day);
+    return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
 }
 
 function validate_fecha(fecha){
-		var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
+    var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
 
-		if(fecha.search(patron)==0)
-		{
-			var values=fecha.split("/");
-			if(isValidDate(values[0],values[1],values[2]))
-			{
-				return true;
-			}
-		}
-		return false;
+    if(fecha.search(patron)==0){
+        var values=fecha.split("/");
+        if(isValidDate(values[0],values[1],values[2]))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 function calcularDias(){
@@ -184,37 +183,38 @@ function enviaForm(variable){
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="insertarAusentismo" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" id="formausentismo" name="formausentismo" action="insertarAusentismo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de ausentismo</label>
                                                 <select class="form-select" name="iextipaus" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo ausentismo</option>
                                                   <c:forEach var="lovTipaus" items="${lovTipaus}">
                                                       <option value="${lovTipaus.idLov}"   ${lovTipaus.idLov == requestScope.iextipaus ? 'selected' : ''}  >  ${lovTipaus.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" onchange="calcularDias();" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                                                    <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" type="text" placeholder="0" disabled readonly/>
                                                    <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                   <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="" />
+                                                   <input class="form-control" name="iexglosa" maxlength="70" type="text" placeholder="Ingrese glosa" />
                                             </div>
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -228,7 +228,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="ausentismo@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Ausentismo</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar ausentismo</button>
                                                   </div>
                                                 </div>
                                             </div>

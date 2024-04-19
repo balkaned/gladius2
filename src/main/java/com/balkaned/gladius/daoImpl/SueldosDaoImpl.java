@@ -5,6 +5,7 @@ import com.balkaned.gladius.beans.EmpDatvar;
 import com.balkaned.gladius.beans.EmpSueldo;
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.dao.SueldoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -88,7 +89,10 @@ public class SueldosDaoImpl implements SueldoDao {
                     Concepto con = new Concepto();
 
                     con.setCodConcepto(rs.getString("coocodcon"));
+
                     con.setDesConcepto(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
 
                     lista.add(con);
                 }

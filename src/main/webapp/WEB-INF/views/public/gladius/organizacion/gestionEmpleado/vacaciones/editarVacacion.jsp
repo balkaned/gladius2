@@ -46,65 +46,62 @@ function formatearFecha2(){
 }
 
 function isValidDate(day,month,year){
-		var dteDate;
-		month=month-1;
-		dteDate=new Date(year,month,day);
-		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+    var dteDate;
+    month=month-1;
+    dteDate=new Date(year,month,day);
+    return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
 }
 
 function validate_fecha(fecha){
-		var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
+    var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
 
-		if(fecha.search(patron)==0)
-		{
-			var values=fecha.split("/");
-			if(isValidDate(values[0],values[1],values[2]))
-			{
-				return true;
-			}
-		}
-		return false;
+    if(fecha.search(patron)==0){
+        var values=fecha.split("/");
+        if(isValidDate(values[0],values[1],values[2])){
+            return true;
+        }
+    }
+    return false;
 }
 
 function calcularDias(){
-        formatearFecha2();
+    formatearFecha2();
 
-		var fechaInicial=document.getElementById("iexfecini").value;
-		var fechaFinal=document.getElementById("iexfecfin").value;
-		var resultado="";
-		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-		{
-			inicial=fechaInicial.split("/");
-			final=fechaFinal.split("/");
-			// obtenemos las fechas en milisegundos
-			var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
-            var dateEnd=new Date(final[2],(final[1]-1),final[0]);
-            if(dateStart<=dateEnd)
-            {
-				// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
-				// que tiene un dia, y posteriormente entre 1000 ya que estamos
-				// trabajando con milisegundos.
-				//resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
-                                resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
-			}else{
-				resultado="La fecha inicial es posterior a la fecha final";
-			}
-		}else{
-			if(!validate_fecha(fechaInicial))
-				//resultado="La fecha inicial es incorrecta";
-                                    resultado="0";
-			if(!validate_fecha(fechaFinal))
-				//resultado="La fecha final es incorrecta";
-                                     resultado="0";
-		}
+    var fechaInicial=document.getElementById("iexfecini").value;
+    var fechaFinal=document.getElementById("iexfecfin").value;
+    var resultado="";
 
-		document.getElementById("iexnrodias").value=Number(resultado)+1;
-		document.getElementById("iexnrodias2").value=Number(resultado)+1;
+    if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
+        inicial=fechaInicial.split("/");
+        final=fechaFinal.split("/");
+
+        // obtenemos las fechas en milisegundos
+        var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
+        var dateEnd=new Date(final[2],(final[1]-1),final[0]);
+
+        if(dateStart<=dateEnd){
+            // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+            // que tiene un dia, y posteriormente entre 1000 ya que estamos
+            // trabajando con milisegundos.
+            //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+            resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
+        }else{
+            resultado="La fecha inicial es posterior a la fecha final";
+        }
+    }else{
+        if(!validate_fecha(fechaInicial))
+            //resultado="La fecha inicial es incorrecta";
+            resultado="0";
+        if(!validate_fecha(fechaFinal))
+            //resultado="La fecha final es incorrecta";
+            resultado="0";
+    }
+
+    document.getElementById("iexnrodias").value=Number(resultado)+1;
+    document.getElementById("iexnrodias2").value=Number(resultado)+1;
 }
 
 function enviaForm(variable){
-    //document.getElementById("frmplaserv").submit();
-
     var fechaInicial=document.getElementById("iexfecini").value;
     var fechaFinal=document.getElementById("iexfecfin").value;
     var tipvac=document.getElementById("iextipvac").value;
@@ -114,6 +111,7 @@ function enviaForm(variable){
         if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
             inicial=fechaInicial.split("/");
             final=fechaFinal.split("/");
+
             // obtenemos las fechas en milisegundos
             var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
             var dateEnd=new Date(final[2],(final[1]-1),final[0]);
@@ -123,6 +121,7 @@ function enviaForm(variable){
                 // que tiene un dia, y posteriormente entre 1000 ya que estamos
                 // trabajando con milisegundos.
                 //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+
                 resultado=(((dateEnd-dateStart)/86400)/1000)+1;
 
                 /*
@@ -136,7 +135,7 @@ function enviaForm(variable){
                         document.getElementById("formvacaciones").submit();
                         mostrarAlert()
                      }else{
-                    alert("Numero de Dias Programados es superior al Saldo de Dias");
+                        alert("Numero de Dias Programados es superior al Saldo de Dias");
                      }
                 }*/
 
@@ -204,54 +203,54 @@ function enviaForm(variable){
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="modificarVacaciones" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="modificarVacaciones" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-3 ">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                            <div class="col-sm-6 col-md-2">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                                   <input class="form-control" id="iexcorreldis" name="iexcorreldis" type="text" value="${iexcorrel}" disabled readonly/>
                                                   <input type="hidden" name="iexcorrel" id="iexcorrel" value="${iexcorrel}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo vacaciones</label>
                                                   <select class="form-select"  name="iextipvac"  id="iextipvac" required>
-                                                    <option value="" selected>Seleccionar</option>
+                                                    <option value="" selected>Seleccionar tipo vacaciones</option>
                                                     <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
                                                       <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov== requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''} > ${lovTipvaca.desLov} </option>
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
+                                            <div class="col-sm-6 col-md-5">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo vacacional</label>
                                                   <select class="form-select"  name="iexpermesini" required>
-                                                    <option value="" selected>Seleccionar</option>
+                                                    <option value="" selected>Seleccionar periodo</option>
                                                     <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}"    >
                                                        <option value="${LstVacacionesCtl.iexpermesini}"  ${LstVacacionesCtl.iexpermesini== requestScope.xVacacionesPrg.iexpermesini ? 'selected' : ''} >  ${LstVacacionesCtl.iexpermesini} - ${LstVacacionesCtl.iexpermesfin}  </option>
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" value="${requestScope.xVacacionesPrg.iexfecini}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                               <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecini}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" value="${requestScope.xVacacionesPrg.iexfecfin}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                               <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xVacacionesPrg.iexfecfin}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                                            <div class="col-sm-6 col-md-3">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                                               <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="${requestScope.xVacacionesPrg.iexnrodias}" disabled readonly/>
                                               <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.xVacacionesPrg.iexglosa}" />
+                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.xVacacionesPrg.iexglosa}" placeholder="Ingrese glosa"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox"/>
@@ -264,7 +263,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar vacaciones</button>
                                                   </div>
                                                 </div>
                                             </div>

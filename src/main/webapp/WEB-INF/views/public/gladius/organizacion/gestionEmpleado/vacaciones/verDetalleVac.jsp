@@ -65,7 +65,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="vacaciones@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add Vacaciones</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add vacaciones</a>
                                   </div>
                                 </div>
                                 <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
@@ -77,7 +77,7 @@
                                     <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
                                       <h5 class="mb-0">Año</h5>
                                     </div>
-                                    <p class="mb-0 text-800"><span class="badge bg-danger fs--1">${perini} - ${perfin}<span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
+                                    <p class="mb-0 text-800"><span class="badge bg-danger fs--2">${perini} - ${perfin}<span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></p>
                                 </div>
                                 <div class="search-box w-100 mb-3">
                                   <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
@@ -110,7 +110,7 @@
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecfin}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesPer.iexnrodias}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--1 badge-phoenix-info"><span class="badge-label">${LstVacacionesPer.destipvac}</span></td>
+                                				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${LstVacacionesPer.destipvac}</span></td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">

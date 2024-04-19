@@ -98,12 +98,12 @@
               <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-phone"> </span>
                   <span class="text-1000 mb-0">Telefono</span>
-                </div><a href="tel:+1234567890">+${telefono}</a>
+                </div>+${telefono}
               </div>
               <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-directions"></span>
                   <span class="text-1000 mb-0">Dirección</span>
-                </div><a href="#!">${direccion}</a>
+                </div>${direccion}
               </div>
               <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-postcard"></span>
@@ -161,7 +161,7 @@
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                        <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
                     </div>
                   </div>
               </form>

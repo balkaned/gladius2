@@ -48,18 +48,19 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Ver detalle Sueldo Fijo</h2>
+                                <h2 id="h2top" class="mb-0">Ver detalle dueldo fijo</h2>
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarSueldoFijo" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarSueldoFijo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                                 <select class="form-select" name="iexcodcon" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
@@ -67,8 +68,8 @@
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor</label>
                                                    <input class="form-control" name="iexvalcon" maxlength="18" type="number" step=0.01 value="${requestScope.fsueldoupd.iexvalcon}" placeholder="0.00" required disabled/>
                                             </div>
 

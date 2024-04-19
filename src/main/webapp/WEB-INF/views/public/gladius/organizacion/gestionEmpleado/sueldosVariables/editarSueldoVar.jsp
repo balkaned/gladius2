@@ -48,38 +48,39 @@
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Editar Sueldo Variable</h2>
+                                <h2 id="h2top" class="mb-0">Editar sueldo variable</h2>
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-8">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarConceptoVar" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarConceptoVar" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${idCompania}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${idTrab}" />
                                             <input class="form-control" name="iexcodpro2" type="hidden" value="${codpro}" />
                                             <input class="form-control" name="iexperiodo2" type="hidden" value="${nroper}" />
                                             <input class="form-control" name="iexcodcon" type="hidden" value="${fdatvarupd.iexcodcon}" />
+
                                             <div class="col-sm-6 col-md-6">
-                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso de Planilla</label>
+                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
                                                      <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo</label>
+                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
                                                     <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                                 <select class="form-select" name="iexcodcon2" required disabled>
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar concepto</option>
                                                   <c:forEach var="lovConcepVar" items="${lovConcepVar}">
                                                       <option value="${lovConcepVar.codConcepto}" ${lovConcepVar.codConcepto == requestScope.fdatvarupd.iexcodcon ? 'selected' : ''} >${lovConcepVar.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Valor Concepto</label>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Valor concepto</label>
                                                  <input class="form-control" name="iexvalcon" maxlength="70" type="number" step=0.01 value="${fdatvarupd.iexvalcon}" placeholder="0.00" required/>
                                             </div>
 
@@ -94,7 +95,7 @@
                                                     <a class="btn btn-phoenix-primary" href="verDataSueldoVarBack@${idTrab}@${codpro}@${nroper}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Concepto</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar concepto</button>
                                                   </div>
                                                 </div>
                                             </div>

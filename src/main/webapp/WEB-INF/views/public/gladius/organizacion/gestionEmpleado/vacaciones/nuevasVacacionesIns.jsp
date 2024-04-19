@@ -38,24 +38,23 @@ function formatearFecha2(){
 }
 
 function isValidDate(day,month,year){
-		var dteDate;
-		month=month-1;
-		dteDate=new Date(year,month,day);
-		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+    var dteDate;
+    month=month-1;
+    dteDate=new Date(year,month,day);
+    return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
 }
 
 function validate_fecha(fecha){
-		var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
+    var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
 
-		if(fecha.search(patron)==0)
-		{
-			var values=fecha.split("/");
-			if(isValidDate(values[0],values[1],values[2]))
-			{
-				return true;
-			}
-		}
-		return false;
+    if(fecha.search(patron)==0){
+        var values=fecha.split("/");
+
+        if(isValidDate(values[0],values[1],values[2])){
+            return true;
+        }
+    }
+    return false;
 }
 
 function calcularDias(){
@@ -64,8 +63,8 @@ function calcularDias(){
 		var fechaInicial=document.getElementById("iexfecini").value;
 		var fechaFinal=document.getElementById("iexfecfin").value;
 		var resultado="";
-		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-		{
+
+		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
 			inicial=fechaInicial.split("/");
 			final=fechaFinal.split("/");
 			// obtenemos las fechas en milisegundos
@@ -83,11 +82,9 @@ function calcularDias(){
 			}
 		}else{
 			if(!validate_fecha(fechaInicial))
-				//resultado="La fecha inicial es incorrecta";
-                                    resultado="0";
+                resultado="0";
 			if(!validate_fecha(fechaFinal))
-				//resultado="La fecha final es incorrecta";
-                                     resultado="0";
+                resultado="0";
 		}
 
 		document.getElementById("iexnrodias").value=Number(resultado)+1;
@@ -95,8 +92,6 @@ function calcularDias(){
 }
 
 function enviaForm(variable){
-    //document.getElementById("frmplaserv").submit();
-
     var fechaInicial=document.getElementById("iexfecini").value;
     var fechaFinal=document.getElementById("iexfecfin").value;
     var tipvac=document.getElementById("iextipvac").value;
@@ -106,6 +101,7 @@ function enviaForm(variable){
         if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
             inicial=fechaInicial.split("/");
             final=fechaFinal.split("/");
+
             // obtenemos las fechas en milisegundos
             var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
             var dateEnd=new Date(final[2],(final[1]-1),final[0]);
@@ -115,20 +111,21 @@ function enviaForm(variable){
                 // que tiene un dia, y posteriormente entre 1000 ya que estamos
                 // trabajando con milisegundos.
                 //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+
                 resultado=(((dateEnd-dateStart)/86400)/1000)+1;
 
                 /*
                 if(document.getElementById("saldo").value >= resultado){
                         document.getElementById("accion").value="INSVAC";
                         document.getElementById("formvacaciones").submit();
-                        mostrarAlert()
+                        mostrarAlert();
                 }else{
                     if(document.getElementById("iexflgnosaldo").checked ){
                         document.getElementById("accion").value="INSVAC";
                         document.getElementById("formvacaciones").submit();
-                        mostrarAlert()
+                        mostrarAlert();
                      }else{
-                    alert("Numero de Dias Programados es superior al Saldo de Dias");
+                        alert("Numero de Dias Programados es superior al Saldo de Dias");
                      }
                 }*/
 
@@ -196,53 +193,53 @@ function enviaForm(variable){
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertarVacaciones" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertarVacaciones" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-12">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
+                                            <div class="col-sm-6 col-md-6">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo vacaciones</label>
                                               <select class="form-select"  name="iextipvac"  id="iextipvac" required>
-                                                <option value="" selected>Seleccionar</option>
+                                                <option value="" selected>Seleccionar tipo vacaciones</option>
                                                 <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
                                                   <option value="${lovTipvaca.idLov}" ${lovTipvaca.idLov==requestScope.iextipvac ? 'selected' : '' }> ${lovTipvaca.desLov} </option>
                                                 </c:forEach>
                                               </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Inicial</label>
+                                            <div class="col-sm-6 col-md-3 ">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo inicial</label>
                                               <input class="form-control" id="iexpermesinidis" name="iexpermesinidis" type="text" value="${perini}" disabled readonly/>
                                               <input type="hidden" name="iexpermesini" id="iexpermesini" value="${perini}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Final</label>
+                                            <div class="col-sm-6 col-md-3 ">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo final</label>
                                               <input class="form-control" id="iexpermesfindis" name="iexpermesfindis" type="text" value="${perfin}" disabled readonly/>
                                               <input type="hidden" name="iexpermesfin" id="iexpermesfin" value="${perfin}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4 ">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Saldo</label>
+                                            <div class="col-sm-6 col-md-2 ">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo</label>
                                               <input class="form-control" id="saldodis" name="saldodis" type="text" value="${saldo}" disabled readonly/>
                                               <input type="hidden" name="saldo" id="saldo" value="${saldo}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                               <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                                            <div class="col-sm-6 col-md-3">
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                                               <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" type="text" value="" disabled readonly/>
                                               <input type="hidden" name="iexnrodias" id="iexnrodias" value="" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.iexglosa}" />
+                                                <input class="form-control" name="iexglosa" type="text" value="${requestScope.iexglosa}" placeholder="Ingrese glosa"/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <input class="form-check-input" name="iexflgnosaldo" id="iexflgnosaldo" value="1" type="checkbox"/>
@@ -255,7 +252,7 @@ function enviaForm(variable){
                                                     <a class="btn btn-phoenix-primary" href="verDetalleVac@${idTrab}@${perini}@${perfin}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Vacaciones</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar vacaciones</button>
                                                   </div>
                                                 </div>
                                             </div>
