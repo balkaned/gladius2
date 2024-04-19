@@ -82,8 +82,8 @@ public class AreaController {
         Area area = new Area();
         area.setIexcodcia(iexcodcia);
         area.setIexcodarea(iexcodarea);
-        area.setIexdesarea(iexdesarea);
-        area.setIexdesarea_descripcion(iexdesarea_des);
+        area.setIexdesarea(iexdesarea.toUpperCase());
+        area.setIexdesarea_descripcion(iexdesarea_des.toUpperCase());
         area.setIexcodcat(iexcodcat);
         area.setIexareapadre(iexareapadre);
         area.setIexusucrea(iexusucrea);
@@ -133,8 +133,8 @@ public class AreaController {
         Area area = new Area();
         area.setIexcodcia(iexcodcia);
         area.setIexcodarea(iexcodarea);
-        area.setIexdesarea(iexdesarea);
-        area.setIexdesarea_descripcion(iexdesarea_des);
+        area.setIexdesarea(iexdesarea.toUpperCase());
+        area.setIexdesarea_descripcion(iexdesarea_des.toUpperCase());
         area.setIexcodcat(iexcodcat);
         area.setIexareapadre(iexareapadre);
         area.setIexusumod(iexusucrea);

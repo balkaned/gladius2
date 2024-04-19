@@ -4,6 +4,7 @@ import com.balkaned.gladius.IndexController;
 import com.balkaned.gladius.beans.Ciaxcon;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.dao.CompaniaDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -208,13 +209,27 @@ public class CompaniaDaoImpl implements CompaniaDao {
                     cia.setIdCodcia(rs.getInt("codcia"));
                     cia.setDescCia(rs.getString("descia"));
                     cia.setNroRuc(rs.getString("nroruc"));
+
                     cia.setDescCiaCorto(rs.getString("descorto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    cia.setDescCiaCorto(cap.letras(cia.getDescCiaCorto()));
+
                     cia.setDireccionCia(rs.getString("direccion"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    cia.setDireccionCia(cap2.letras(cia.getDireccionCia()));
+
                     cia.setNroTelfCia(rs.getString("telefono"));
                     cia.setIdActividadCia(rs.getString("codactividad"));
                     cia.setDesActividadCia(rs.getString("desdet"));
+
                     cia.setNomRepesentante(rs.getString("nombreRepresentante"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    cia.setNomRepesentante(cap3.letras(cia.getNomRepesentante()));
+
                     cia.setDesCargoRep(rs.getString("cargoRepresentante"));
+                    CapitalizarCadena cap4= new CapitalizarCadena();
+                    cia.setDesCargoRep(cap4.letras(cia.getDesCargoRep()));
+
                     cia.setNroDocuRep(rs.getString("nrodocRepresentante"));
                     cia.setUrlLogo(rs.getString("urllogo"));
                     cia.setUsuCrea(rs.getString("iexusucre"));

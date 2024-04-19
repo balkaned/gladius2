@@ -71,7 +71,7 @@
                                      <input class="form-control" name="txt_password" maxlength="15" type="password"  value="${requestScope.usuariox.password}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar Contraseña</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar contraseña</label>
                                    <input class="form-control" name="txt_password2" maxlength="15" type="password"  value="${requestScope.usuariox.password}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">

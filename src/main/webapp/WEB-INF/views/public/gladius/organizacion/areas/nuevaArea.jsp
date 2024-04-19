@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -22,7 +21,6 @@
           }, 3000);
       }
   </script>
-
 
   <body>
     <!-- ===============================================-->
@@ -43,40 +41,41 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Area</h2>
+                  <h2 id="h2top" class="mb-0">Insertar area</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarArea" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarArea" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexcodarea2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-3">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Codigo</label>
+
+                              <div class="col-sm-6 col-md-2">
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                      <input class="form-control" name="iexcodarea" type="text" value="${idx}" placeholder="" readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-9">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Area</label>
-                                    <input class="form-control" name="iexdesarea" type="text" value="" placeholder="RECURSOS HUMANOS" required/>
+                              <div class="col-sm-6 col-md-10">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area</label>
+                                    <input class="form-control" name="iexdesarea" type="text" value="" placeholder="Recursos humanos" required/>
                               </div>
                               <div class="col-sm-6 col-md-12">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
-                                     <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="" required/>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
+                                     <input class="form-control" name="iexdesarea_descripcion" maxlength="18" type="text" value="" placeholder="Ingrese la descripción del area" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria de Area</label>
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria de area</label>
                                   <select class="form-select" name="iexcodcat" >
-                                    <option value="" selected >Seleccionar</option>
+                                    <option value="" selected >Seleccionar categoria</option>
                                     <c:forEach var="lovCatArea" items="${lovCatArea}">
                                         <option value="${lovCatArea.idLov}" >${lovCatArea.desLov}</option>
                                     </c:forEach>
                                   </select>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area Padre</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Area padre</label>
                                     <select class="form-select" name="iexareapadre" >
                                       <option value="" selected >Ninguno</option>
                                       <c:forEach var="lovArea" items="${lovArea}">
@@ -84,7 +83,6 @@
                                       </c:forEach>
                                     </select>
                               </div>
-
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                               	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -97,7 +95,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listAreas">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Area</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar area</button>
                                     </div>
                                   </div>
                               </div>

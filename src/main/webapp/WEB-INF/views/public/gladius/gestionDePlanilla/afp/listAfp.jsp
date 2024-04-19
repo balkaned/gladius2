@@ -125,7 +125,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                                           <td class="idafp align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="#">#${LstAfpPer.iexcodafp}</a></td>
                                           <td class="desafp align-middle text-center fw-semi-bold text-1000">${LstAfpPer.iexdesafp}</td>
                                           <td class="align-middle white-space-nowrap text-900 fs--1 text-center">${LstAfpPer.iexremmax_asegu}</td>
-                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexaporte_oblig}</td>
+                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig}%</span></td>
                                           <td class="align-middle white-space-nowrap text-center ps-3fw-bold text-700">${LstAfpPer.iexcomis_sflu}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_sflu_mix}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_anual_mix}</td>
@@ -200,7 +200,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                     <a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-0 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido Afp</span></button>
+                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido Afp</span></button>
                 </div>
             </form>
           </div>

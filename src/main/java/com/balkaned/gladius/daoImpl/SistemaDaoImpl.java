@@ -79,7 +79,11 @@ public class SistemaDaoImpl implements SistemaDao {
                 Sistemas p = new Sistemas();
                 while (rs.next()) {
                     p.setIexcodsys(rs.getInt("iexcodsys"));
+
                     p.setIexdessys(rs.getString("iexdessys"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdessys(cap.letras(p.getIexdessys()));
+
                     p.setIexactiondefault(rs.getString("iexactiondefault"));
                 }
                 return p;

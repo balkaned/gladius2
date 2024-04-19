@@ -50,7 +50,6 @@ public class AreaDaoImpl implements AreaDao {
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='62' ) d  on a.iexcodcat = d.iexkey " +
                 " where a.iexcodcia=" + codcia + "  order by a.iexcodcia, a.iexcodarea asc  ";
 
-        //System.out.println(sql);
 
         return template.query(sql, new ResultSetExtractor<List<Area>>() {
 
@@ -59,15 +58,25 @@ public class AreaDaoImpl implements AreaDao {
 
                 while (rs.next()) {
                     Area p = new Area();
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodarea(rs.getString("iexcodarea"));
+
                     p.setIexdesarea(rs.getString("iexdesarea"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexdesarea(cap3.letras(p.getIexdesarea()));
+
                     p.setIexdesarea_descripcion(rs.getString("iexdesarea_descripcion"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesarea_descripcion(cap.letras(p.getIexdesarea_descripcion()));
+
                     p.setIexareapadre(rs.getString("iexareapadre"));
                     p.setIexcodcat(rs.getString("iexcodcat"));
+
                     p.setDescodcat(rs.getString("descodcat"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDescodcat(cap2.letras(p.getDescodcat()));
+
                     p.setDesareapadre(rs.getString("desareapadre"));
 
                     p.setIexusucrea(rs.getString("iexusucrea"));

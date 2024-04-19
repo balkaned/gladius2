@@ -32,7 +32,6 @@
             <jsp:include page="../../../../navsMenu.jsp"></jsp:include>
             <jsp:include page="../../../../navTop.jsp"></jsp:include>
             <jsp:include page="../../../../modalFade.jsp"></jsp:include>
-            <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
 
             <div class="content">
                 <nav class="mb-2" aria-label="breadcrumb">
@@ -43,30 +42,30 @@
                     </ol>
                 </nav>
                 <div class="mb-9">
-                    <div class="row g-5">
+                    <div class="row g-3">
                         <div class="col-xl-8">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="addConceptoXProceso@${requestScope.idxproceso}" novalidate>
+                                <form class="row g-3 mb-0 needs-validation" method="POST" action="addConceptoXProceso@${requestScope.idxproceso}" novalidate>
                                     <h2>Insertar concepto x proceso</h2>
                                     <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
 
-                                    <div class="col-sm-6 col-md-3">
-                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
+                                    <div class="col-sm-6 col-md-2">
+                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id proceso</label>
                                          <input class="form-control" name="idprocesodis" type="text" value="${requestScope.idxproceso}" readonly disabled/>
                                     </div>
                                     <input type="hidden" id="idproceso" name="idproceso" value="${requestScope.idxproceso}"/>
 
-                                    <div class="col-sm-6 col-md-7">
+                                    <div class="col-sm-6 col-md-4">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                         <select name="idconcepto" class="form-select" required>
-                                            <option value="">Seleccionar</option>
+                                            <option value="">Seleccionar concepto</option>
                                             <c:forEach var="LstConceptoIns" items="${requestScope.LstConceptoIns}">
                                                 <option value="${LstConceptoIns.codConcepto}"> ${LstConceptoIns.codConcepto} - ${LstConceptoIns.desConcepto} </option>
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6 col-md-5">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de Concepto</label>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de concepto</label>
                                         <select id="tip_concepto" name="tip_concepto" class="form-select" required>
                                             <option value="0">Parametro</option>
                                             <option value="1">Ingresos</option>
@@ -76,9 +75,9 @@
                                             <option value="5">Otros</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_concepto_pdt">Codigo PDT</label>
-                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" maxlength="6" type="text" value="" />
+                                        <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" maxlength="6" type="text" placeholder="Ingrese codigo PDT" />
                                     </div>
                                     <div class="col-sm-6 col-md-12">
                                         <input type="checkbox" class="form-check-input" name="flg_boleta" value="1" id="flg_boleta"/>
@@ -93,8 +92,8 @@
                                         <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="0"/>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
-                                        <input class="form-control" id="des_custom" name="des_custom" type="text" maxlength="50" value=""/>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripción customizada</label>
+                                        <input class="form-control" id="des_custom" name="des_custom" type="text" maxlength="50" value="" placeholder="Ingrese descripcion customizada"/>
                                     </div>
                                     <!--<div class="col-sm-6 col-md-12">
                                         <input type="checkbox" class="form-check-input" name="flg_promediable" value="1" id="flg_promediable"/>
@@ -250,7 +249,7 @@
                                             <div class="col-auto">
                                                 <button class="btn btn-primary px-5 px-sm-6" type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                                                aria-expanded="false" data-bs-reference="parent">Guardar Concepto x proceso
+                                                                aria-expanded="false" data-bs-reference="parent">Guardar concepto x proceso
                                                 </button>
                                             </div>
                                         </div>
@@ -283,6 +282,7 @@
                 </div>
             </div>
 
+        <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
         </main>
         <!-- ===============================================-->
         <!--    End of Main Content-->

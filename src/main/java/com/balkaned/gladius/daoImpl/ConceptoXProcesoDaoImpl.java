@@ -4,6 +4,7 @@ import com.balkaned.gladius.beans.ConceptoXProceso;
 import com.balkaned.gladius.beans.ConceptoxAgrup;
 import com.balkaned.gladius.beans.ConceptoxProms;
 import com.balkaned.gladius.dao.ConceptoXProcesoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -175,8 +176,14 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
                     p.setCodconcepto(rs.getString("idcodcon"));
                     p.setIdprocesoaux(rs.getInt("idcodproaux"));
                     p.setCodconceptaux(rs.getString("idcodconaux"));
+
                     p.setDesprocesoaux(rs.getString("prodespro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesprocesoaux(cap.letras(p.getDesprocesoaux()));
+
                     p.setDesconceptaux(rs.getString("coodescon"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDesconceptaux(cap2.letras(p.getDesconceptaux()));
 
                     lista.add(p);
                 }
@@ -210,7 +217,11 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
 
                     p.setProcodpro(rs.getInt("procodpro"));
                     p.setProcodcon(rs.getString("procodcon"));
+
                     p.setCoodescon(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setCoodescon(cap.letras(p.getCoodescon()));
+
                     p.setProcodconpdt(rs.getString("procodconpdt"));
                     p.setProflgbol(rs.getString("proflgbol"));
                     p.setProorden(rs.getInt("proorden"));
@@ -266,7 +277,10 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
                     p.setIdproceso(rs.getInt("grpidpro"));
                     p.setCodconcepto(rs.getString("grpidcon"));
                     p.setCodconceptaux(rs.getString("grpidconaux"));
+
                     p.setDesconceptaux(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesconceptaux(cap.letras(p.getDesconceptaux()));
 
                     lista.add(p);
                 }

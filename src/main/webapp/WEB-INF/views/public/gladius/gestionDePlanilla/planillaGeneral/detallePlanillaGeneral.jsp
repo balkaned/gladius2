@@ -909,12 +909,12 @@
 
                       <div class="row g-4">
                           <div class="col-auto">
-                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
-                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
-                              <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
+                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
+                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
+                              <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>
-                      <div class="row mt-3">
+                      <div class="row mt-3 g-3">
                           <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID trab</label>
                                 <input class="form-control" name="idTrabBol" id="idTrabBol" type="text" required disabled />

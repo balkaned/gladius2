@@ -65,7 +65,7 @@ public class SistemasController {
 
         Sistemas sis = new Sistemas();
         sis.setIexcodsys(Integer.parseInt(codsys));
-        sis.setIexdessys(request.getParameter("iexdessys"));
+        sis.setIexdessys(request.getParameter("iexdessys").toUpperCase());
 
         sistemaService.insertarSistemas(sis);
 
@@ -101,7 +101,7 @@ public class SistemasController {
         String codsys2 = request.getParameter("iexcodsys2");
         Sistemas sis = new Sistemas();
         sis.setIexcodsys(Integer.parseInt(codsys2));
-        sis.setIexdessys(request.getParameter("iexdessys"));
+        sis.setIexdessys(request.getParameter("iexdessys").toUpperCase());
 
         sistemaService.actualizarSistemas(sis);
 

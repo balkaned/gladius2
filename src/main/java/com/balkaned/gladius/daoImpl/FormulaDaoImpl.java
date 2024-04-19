@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.FormulaPlanilla;
 import com.balkaned.gladius.dao.FormulaDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -55,7 +56,11 @@ public class FormulaDaoImpl implements FormulaDao {
                     p.setIdFormula(rs.getInt("forcodfor"));
                     p.setIdConcepto(rs.getString("forcodcon"));
                     p.setDesConcepto(rs.getString("coodescon"));
+
                     p.setDesGlosa(rs.getString("proglosa"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesGlosa(cap.letras(p.getDesGlosa()));
+
                     p.setDesFormula(rs.getString("fordesfor"));
                     p.setNroOrden(rs.getInt("fororden"));
                     p.setDesVar(rs.getString("FORVARDES"));

@@ -135,7 +135,11 @@ public class SeccionDaoImpl implements SeccionDao {
                 Seccion p = new Seccion();
                 while (rs.next()) {
                     p.setIexcodsec(rs.getInt("iexcodsec"));
+
                     p.setIexdessec(rs.getString("iexdessec"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdessec(cap.letras(p.getIexdessec()));
+
                     p.setIexordsec(rs.getInt("iexordsec"));
                     p.setIexcodsys(rs.getInt("iexcodsys"));
                     p.setDessys(rs.getString("iexdessys"));

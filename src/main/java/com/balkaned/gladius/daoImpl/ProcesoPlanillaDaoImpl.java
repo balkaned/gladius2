@@ -54,7 +54,11 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     ProcesoPlanilla p = new ProcesoPlanilla();
 
                     p.setIdProceso(rs.getInt("procodpro"));
+
                     p.setDesProceso(rs.getString("prodespro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesProceso(cap.letras(p.getDesProceso()));
+
                     p.setDesProcesoCorto(rs.getString("prodescorto"));
                     p.setIdRegLab(rs.getString("procodregimenlab"));
                     p.setDesRegLab(rs.getString("desregimen"));

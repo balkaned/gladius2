@@ -107,10 +107,10 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="gestionarTrabPlanConcept" novalidate >
+                      <form id="formVariable" class="row g-3 mb-0 needs-validation" method="POST" action="gestionarTrabPlanConcept" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -176,12 +176,12 @@
                         </div>
                         <div class="col-12 gy-6">
                             <div class="col-12">
-                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
-                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
-                                <a class="btn btn-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
-                                <a class="btn btn-phoenix-danger btn-sm " onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                                <a class="btn btn-phoenix-secondary btn-sm px-5 mt-1" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
+                                <button class="btn btn-primary btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
+                                <a class="btn btn-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
+                                <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
 
-                                <div class="btn-group mb-1 me-1 ms-1 mt-1">
+                                <div class="btn-group mb-0 me-1 ms-0 mt-1">
                                     <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
                                     <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                     <div class="dropdown-menu">

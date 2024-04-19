@@ -166,17 +166,17 @@
                         </div>
                     </div>
 
-                    <div class="row g-5">
+                    <div class="row g-3">
                         <div class="col-xl-12">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarFormula" novalidate >
+                                <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarFormula" novalidate >
                                     <div class="col-sm-6 col-md-2">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id proceso</label>
                                         <input class="form-control" type="text" name="idprod" id="idprod" value="${idProceso}" disabled />
                                         <input type="hidden" name="idprod2" value="${idProceso}" />
                                     </div>
                                     <div class="col-sm-6 col-md-2">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Formula</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id fórmula</label>
                                         <input class="form-control" type="text" name="idfor" id="idfor" value="${idFormula}" disabled />
                                         <input type="hidden" name="idfor2" value="${idFormula}" />
                                     </div>
@@ -185,7 +185,7 @@
                                         <input class="form-control" type="text" name="nroorden" id="nroorden" value="${requestScope.fplanillax.nroOrden}" disabled />
                                         <input type="hidden" name="nroorden2" value="${requestScope.fplanillax.nroOrden}" />
                                     </div>
-                                    <div class="col-sm-6 col-md-6">
+                                    <div class="col-sm-6 col-md-5">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
                                         <input class="form-control" type="text" name="desglosa" id="desglosa" value="${requestScope.fplanillax.desGlosa}" required/>
                                     </div>
@@ -206,23 +206,23 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Ejecución</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de ejecución</label>
                                         <select class="form-select" name="tipofor" id="tipofor" onchange="valida_tipo_for(this)" required >
-                                            <option value="0"  ${requestScope.fplanillax.tipOut=='0' ? 'selected' : ''} > Seleccionar</option>
+                                            <option value="0"  ${requestScope.fplanillax.tipOut=='0' ? 'selected' : ''} > Seleccionar tipo ejecucion</option>
                                             <option value="1" ${requestScope.fplanillax.tipOut=='1' ? 'selected' : ''} > Ejecucion Normal</option>
                                             <option value="3" ${requestScope.fplanillax.tipOut=='3' ? 'selected' : ''} > Resultado Salto</option>
                                             <option value="2" ${requestScope.fplanillax.tipOut=='2' ? 'selected' : ''} > Ejecucion Stored Procedure DB</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6 col-md-8">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sql Program / Func</label>
-                                        <input class="form-control" type="text" name="sqlprogram" id="sqlprogram" value="${requestScope.fplanillax.sqlprogram}" maxlength="180">
+                                    <div class="col-sm-6 col-md-6">
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sql program / func</label>
+                                        <input class="form-control" type="text" name="sqlprogram" id="sqlprogram" value="${requestScope.fplanillax.sqlprogram}" maxlength="180" placeholder="Ingrese el nombre del SP o función sql">
                                         <label class="form-check-label ms-2" for="flexChecked">Params required : (Numeric :p_codcia, Numeric :p_codpro, Varchar :p_nroper, Number :p_codtra, Varchar :p_concepFin, Varchar :p_grpeje)</label>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2 ">Grupo de Ejecución</label>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2 ">Grupo de ejecución</label>
                                         <select class="form-select" name="grpeje" id="grpeje" />
-                                            <option value="0" ${requestScope.fplanillax.grpeje=='0' ? 'selected' : ''} >Seleccionar</option>
+                                            <option value="0" ${requestScope.fplanillax.grpeje=='0' ? 'selected' : ''} >Seleccionar grupo ejecucion</option>
                                             <option value="1" ${requestScope.fplanillax.grpeje=='1' ? 'selected' : ''} >x Trabajador</option>
                                             <option value="2"  ${requestScope.fplanillax.grpeje=='2' ? 'selected' : ''} >x Grupo</option>
                                         </select>

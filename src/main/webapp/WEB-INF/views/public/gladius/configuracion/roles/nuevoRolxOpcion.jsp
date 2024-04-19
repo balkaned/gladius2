@@ -43,7 +43,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar rol x opcion</h2>
+                  <h2 id="h2top" class="mb-0">Insertar rol x opción</h2>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@
                               <div class="col-sm-6 col-md-6">
                               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Opciones</label>
                               	  <select name="iexcodopc" class="form-select" required >
-                              		  <option value="" selected >Seleccionar</option>
+                              		  <option value="" selected >Seleccionar opcion</option>
                               		  <c:forEach var="lovOpcion" items="${lovOpcion}">
                               			  <option value="${lovOpcion.iexcodopc}"  >${lovOpcion.iexdesopc}</option>
                               		  </c:forEach>

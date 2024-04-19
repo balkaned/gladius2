@@ -52,7 +52,7 @@
                        <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarNuevaTblGen" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
 
-                              <div class="col-sm-6 col-md-3">
+                              <div class="col-sm-6 col-md-2">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                      <input class="form-control" name="iexcodtab" type="number"  placeholder="#" required/>
                               </div>

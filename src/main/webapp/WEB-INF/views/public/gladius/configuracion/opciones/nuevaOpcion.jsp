@@ -71,7 +71,7 @@
                               <div class="col-sm-6 col-md-6">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sección sistemas</label>
                                     <select class="form-select" name="iexcodsec" required>
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar seccion</option>
                                       <c:forEach var="lovSeccion" items="${lovSeccion}">
                                           <option value="${lovSeccion.iexcodsec}" >${lovSeccion.iexdessec} - ${lovSeccion.dessys}</option>
                                       </c:forEach>

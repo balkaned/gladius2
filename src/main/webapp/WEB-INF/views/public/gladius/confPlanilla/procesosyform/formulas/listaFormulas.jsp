@@ -179,8 +179,8 @@
                   </div>
 
                   <div>
-                    <a class="btn btn-primary btn-sm" href="nuevaFormula@${requestScope.idProceso}"><span class="fas fa-plus me-2"></span>Add Formula</a>
                     <a class="btn btn-phoenix-secondary btn-sm ms-1" href="listProcesoFormulas"><span class="fas fa-reply me-2"></span>Atras</a>
+                    <a class="btn btn-primary btn-sm" href="nuevaFormula@${requestScope.idProceso}"><span class="fas fa-plus me-2"></span>Add formula</a>
                   </div>
                 </div>
               </div>
@@ -214,14 +214,14 @@
                             <td class="ordej align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
                             <td class="idoper align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
                             <td class="codconcept align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
-                            <td class="concept align-middle text-start fw-semi-bold text-600">${formxcon.conccoodescon}</td>
-                            <td class="glosa align-middle text-start fw-semi-bold text-1000">${formxcon.formproglosa}</td>
+                            <td class="concept align-middle text-start text-body fs-9">${formxcon.conccoodescon}</td>
+                            <td class="glosa align-middle text-start text-body fs-9">${formxcon.formproglosa}</td>
 
                             <c:if test="${formxcon.formforflgest=='1'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">1: Creado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="info" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                             <c:if test="${formxcon.formforflgest=='2'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">2: Error</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="x" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                             <c:if test="${formxcon.formforflgest=='3'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">3: Compilado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
 
-                            <td class="align-middle text-center white-space-nowrap pe-0 action">
+                            <td class="align-middle text-center white-space-nowrap ps-3 action">
                               <div class="font-sans-serif btn-reveal-trigger position-static">
                                 <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
                                 data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">

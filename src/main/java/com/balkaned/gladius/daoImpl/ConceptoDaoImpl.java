@@ -75,6 +75,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coodesabrev, " +
                 "coodescripcion " +
                 "FROM iexconcepto order by coodescon asc";
+
         return template.query(sqlQuery, rs -> {
             List<Concepto> list = new ArrayList<>();
 
@@ -83,8 +84,14 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 con.setCodConcepto(rs.getString("coocodcon"));
                 con.setDesConcepto(rs.getString("coodescon"));
                 con.setDesVariable(rs.getString("coocodforvar"));
+
                 con.setDesAbreviacion(rs.getString("coodesabrev"));
+                CapitalizarCadena cap= new CapitalizarCadena();
+                con.setDesAbreviacion(cap.letras(con.getDesAbreviacion()));
+
                 con.setDescripcion(rs.getString("coodescripcion"));
+                CapitalizarCadena cap2= new CapitalizarCadena();
+                con.setDescripcion(cap2.letras(con.getDescripcion()));
 
                 list.add(con);
             }
@@ -104,7 +111,10 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 while (rs.next()) {
                     Concepto con = new Concepto();
                     con.setCodConcepto(rs.getString("coocodcon"));
+
                     con.setDesConcepto(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
 
                     list.add(con);
                 }
@@ -144,14 +154,21 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coodescripcion " +
                 "FROM iexconcepto " +
                 "WHERE coocodcon = '" + id + "' ";
+
         return template.query(sqlQuery, rs -> {
             Concepto con = new Concepto();
             while (rs.next()) {
                 con.setCodConcepto(rs.getString("coocodcon"));
                 con.setDesConcepto(rs.getString("coodescon"));
                 con.setDesVariable(rs.getString("coocodforvar"));
+
                 con.setDesAbreviacion(rs.getString("coodesabrev"));
+                CapitalizarCadena cap= new CapitalizarCadena();
+                con.setDesAbreviacion(cap.letras(con.getDesAbreviacion()));
+
                 con.setDescripcion(rs.getString("coodescripcion"));
+                CapitalizarCadena cap2= new CapitalizarCadena();
+                con.setDescripcion(cap.letras(con.getDescripcion()));
             }
 
             return con;

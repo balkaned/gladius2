@@ -71,13 +71,13 @@ public class CompaniasController {
 
         cia.setIdCodcia(Integer.parseInt(request.getParameter("iexcodcia")));
         cia.setDescCia(request.getParameter("iexdescia"));
-        cia.setDescCiaCorto(request.getParameter("iexdescorto"));
+        cia.setDescCiaCorto(request.getParameter("iexdescorto").toUpperCase());
         cia.setNroRuc(request.getParameter("iexnroruc"));
-        cia.setDireccionCia(request.getParameter("iexdireccion"));
+        cia.setDireccionCia(request.getParameter("iexdireccion").toUpperCase());
         cia.setNroTelfCia(request.getParameter("iexnrotelf"));
         cia.setIdActividadCia(request.getParameter("iexcodact"));
-        cia.setNomRepesentante(request.getParameter("iexrepnombre"));
-        cia.setDesCargoRep(request.getParameter("iexrepcargo"));
+        cia.setNomRepesentante(request.getParameter("iexrepnombre").toUpperCase());
+        cia.setDesCargoRep(request.getParameter("iexrepcargo").toUpperCase());
         cia.setNroDocuRep(request.getParameter("iexrepdocid"));
         cia.setUrlLogo(request.getParameter("iexreplogo"));
         cia.setUsuCrea(usuario);
@@ -123,13 +123,13 @@ public class CompaniasController {
         Compania cia = new Compania();
         cia.setIdCodcia(Integer.parseInt(request.getParameter("iexcodcia2")));
         cia.setDescCia(request.getParameter("iexdescia"));
-        cia.setDescCiaCorto(request.getParameter("iexdescorto"));
+        cia.setDescCiaCorto(request.getParameter("iexdescorto").toUpperCase());
         cia.setNroRuc(request.getParameter("iexnroruc"));
-        cia.setDireccionCia(request.getParameter("iexdireccion"));
+        cia.setDireccionCia(request.getParameter("iexdireccion").toUpperCase());
         cia.setNroTelfCia(request.getParameter("iexnrotelf"));
         cia.setIdActividadCia(request.getParameter("iexcodact"));
-        cia.setNomRepesentante(request.getParameter("iexrepnombre"));
-        cia.setDesCargoRep(request.getParameter("iexrepcargo"));
+        cia.setNomRepesentante(request.getParameter("iexrepnombre").toUpperCase());
+        cia.setDesCargoRep(request.getParameter("iexrepcargo").toUpperCase());
         cia.setNroDocuRep(request.getParameter("iexrepdocid"));
         cia.setUrlLogo(request.getParameter("iexreplogo"));
         cia.setUsuCrea(usuario);

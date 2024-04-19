@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevaArea"><span class="fas fa-plus me-2"></span>Add Area</a>
+                      <a class="btn btn-primary btn-sm" href="nuevaArea"><span class="fas fa-plus me-2"></span>Add area</a>
                       <a class="btn btn-phoenix-secondary btn-sm" href="#"><span class="fas fa-sitemap me-2"></span>Organigrama</a>
                     </div>
                   </div>
@@ -90,8 +90,8 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarArea@${area.iexcodarea}">#${area.iexcodarea}</a></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${area.iexdesarea}</span></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000">${area.iexdesarea_descripcion}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${area.descodcat}</td>
+                              <td class="total align-middle text-start text-body fs-9">${area.iexdesarea_descripcion}</td>
+                              <td class="total align-middle text-center text-body fs-9">${area.descodcat}</td>
                               <td class="total align-middle text-end fw-semi-bold text-1000"></td>
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                 <div class="font-sans-serif btn-reveal-trigger position-static">

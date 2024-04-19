@@ -857,7 +857,7 @@
                                           <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-12">
-                                                <span class="col-4 badge badge-tag me-2 mb-2">Dirección Principal</span>
+                                                <span class="col-5 badge badge-tag me-2 mb-2">Dirección Principal</span>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Via</label>
@@ -950,7 +950,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-12">
-                                              <span class="mt-5 col-4 badge badge-tag me-2 mb-2">Dirección Secundaria</span>
+                                              <span class="mt-5 col-5 badge badge-tag me-2 mb-2">Dirección Secundaria</span>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Via 2</label>

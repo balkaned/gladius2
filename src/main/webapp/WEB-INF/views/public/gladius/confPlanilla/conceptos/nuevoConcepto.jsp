@@ -65,33 +65,33 @@
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Insertar Concepto</h2>
+          <h2 id="h2top" class="mb-0">Insertar concepto</h2>
         </div>
       </div>
 
-      <div class="row g-5">
+      <div class="row g-3">
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
-            <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
+            <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
               <div class="col-sm-6 col-md-3">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID </label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                 <input class="form-control" name="codConcepto" type="text" maxlength="5" value="" placeholder="#" required/>
               </div>
               <div class="col-sm-6 col-md-9">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre del Concepto</label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del concepto</label>
                 <input class="form-control" name="desConcepto" type="text" value="" placeholder="# DIA DE LIC. GOCE" required/>
               </div>
-              <div class="col-sm-6 col-md-6">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Variable Formula</label>
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Variable fórmula</label>
                 <input class="form-control" name="desVariable" type="text" value="" placeholder="$VAL_P0144$" required/>
               </div>
               <div class="col-sm-6 col-md-6">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
-                <input class="form-control" name="desAbreviacion" type="text" value="" placeholder=""/>
+                <input class="form-control" name="desAbreviacion" type="text" value="" placeholder="Ingrese una abreviación"/>
               </div>
               <div class="col-sm-6 col-md-12">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
-                <input class="form-control" name="descripcion" type="text" value="" placeholder=""/>
+                <input class="form-control" name="descripcion" type="text" value="" placeholder="Ingrese una descripción"/>
               </div>
 
               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -113,7 +113,7 @@
                     <a class="btn btn-phoenix-primary px-5" href="listConceptos">Cancel</a>
                   </div>
                   <div class="col-auto">
-                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar Concepto</button>
+                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar concepto</button>
                   </div>
                 </div>
               </div>

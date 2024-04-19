@@ -64,8 +64,8 @@ public class ProcesoFormulaController {
 
 		sessionattributes.getVariablesSession(model, request);
 		ProcesoForm procesoForm = new ProcesoForm();
-		procesoForm.setProdespro(request.getParameter("desProcesos"));
-		procesoForm.setProdescorto(request.getParameter("desCortoProcesos"));
+		procesoForm.setProdespro(request.getParameter("desProcesos").toUpperCase());
+		procesoForm.setProdescorto(request.getParameter("desCortoProcesos").toUpperCase());
 		procesoForm.setProcodregimenlab(request.getParameter("lov_regimenlab"));
 		procesoForm.setProgrppro(request.getParameter("lov_grpplanilla"));
 		procesoForm.setBolproceso(request.getParameter("reporteBoleta"));

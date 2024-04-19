@@ -63,12 +63,12 @@
                               </div>
                               <div class="col-sm-6 col-md-2">
                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ord</label>
-                                 <input class="form-control" name="iexordsec" type="number"  alue="${requestScope.xSeccion.iexordsec}"  required/>
+                                 <input class="form-control" name="iexordsec" type="number"  value="${requestScope.xSeccion.iexordsec}"  required/>
                               </div>
                               <div class="col-sm-6 col-md-5">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sistemas</label>
                                   <select class="form-select" name="iexcodsys" required>
-                                    <option value="" selected >Seleccionar</option>
+                                    <option value="" selected >Seleccionar sistema</option>
                                     <c:forEach var="lovSys" items="${lovSys}">
                                         <option value="${lovSys.iexcodsys}" ${lovSys.iexcodsys== requestScope.xSeccion.iexcodsys ? 'selected' : ''} >${lovSys.iexdessys}</option>
                                     </c:forEach>

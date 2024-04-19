@@ -42,7 +42,7 @@
                   <div class="col-12">
                     <div class="search-box">
                       <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                        <input class="form-control search-input search" type="search" placeholder="Search Cuenta Contable" aria-label="Search"/>
+                        <input class="form-control search-input search" type="search" placeholder="Search cuenta contable" aria-label="Search"/>
                         <span class="fas fa-search search-box-icon"></span>
                       </form>
                     </div>

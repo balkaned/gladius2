@@ -200,8 +200,8 @@
 
                            <div class="col-sm-6 col-md-7">
                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                               <select name="id_concepto" id="id_concepto"  class="form-select form-select-sm" required>
-                                   <option value="">Seleccionar Concepto</option>
+                               <select name="id_concepto" id="id_concepto"  class="form-select form-select-sm" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
+                                   <option value="">Seleccionar concepto</option>
                                    <c:forEach  var="lovConcepto" items="${lovConcepto}">
                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
                                     </c:forEach>
@@ -218,7 +218,7 @@
                            <div class="ln_solid"></div>
                            <div class="form-group">
                                 <div class="col-md-6 col-sm-6 mt-3">
-                                     <button class="btn btn-phoenix-secondary btn-sm" type="submit"><span class="fas fa-plus me-2"></span>Añadir Concepto</button>
+                                     <button class="btn btn-phoenix-secondary btn-sm" type="submit"><span class="fas fa-plus me-2"></span>Add concepto</button>
                                 </div>
                            </div>
                        </form>
@@ -228,8 +228,8 @@
                            <div class="col-md-6 col-sm-6 ">
                                <table width="750">
                                    <tr>
-                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos Fijos</td>
-                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos Variables</td>
+                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos fijos</td>
+                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos variables</td>
                                    </tr>
                                    <tr>
                                        <td>

@@ -63,7 +63,7 @@ public class RolesController {
 
         Role rol = new Role();
         rol.setIdRole(Integer.parseInt(request.getParameter("iexcodrol")));
-        rol.setDesRole(request.getParameter("iexdesrol"));
+        rol.setDesRole(request.getParameter("iexdesrol").toUpperCase());
 
         rolService.insertarRole(rol);
 
@@ -131,9 +131,9 @@ public class RolesController {
         return new ModelAndView("redirect:/verOpcion@" + idRol);
     }
 
-    @RequestMapping("/editarOpcion@{idRol}")
-    public ModelAndView editarOpcion(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
-        log.info("/editarOpcion");
+    @RequestMapping("/editarRol@{idRol}")
+    public ModelAndView editarRol(ModelMap model, HttpServletRequest request, @PathVariable String idRol) {
+        log.info("/editarRol");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
@@ -163,7 +163,7 @@ public class RolesController {
 
         Role rol = new Role();
         rol.setIdRole(Integer.parseInt(request.getParameter("iexcodrol")));
-        rol.setDesRole(request.getParameter("iexdesrol"));
+        rol.setDesRole(request.getParameter("iexdesrol").toUpperCase());
         rolService.actualizarRole(rol);
 
         return new ModelAndView("redirect:/listRoles");

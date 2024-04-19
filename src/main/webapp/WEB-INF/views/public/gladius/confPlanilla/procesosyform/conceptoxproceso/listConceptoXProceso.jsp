@@ -94,9 +94,9 @@
                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}"/>
                         <input class="form-control" id="proceso" name="proceso" type="hidden" value="${proceso}"/>
 
-                        <div class="col-sm-6 col-md-3 mb-2">
+                        <div class="col-sm-6 col-md-2 mb-2">
                             <select class="form-select" id="select_concepto" name="slc_grpconcepto" required>
-                                <option value="">Seleccionar concepto</option>
+                                <!--<option value="">Seleccionar concepto</option>-->
                                 <option value="0" ${requestScope.slc_grpconcepto  == '0' ? 'selected' : ''}>Parametros</option>
                                 <option value="1" ${requestScope.slc_grpconcepto  == '1' ? 'selected' : ''}>Haberes</option>
                                 <option value="2" ${requestScope.slc_grpconcepto  == '2' ? 'selected' : ''}>Descuentos</option>
@@ -156,7 +156,7 @@
                                               </div>
                                             </td>
                                             <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${conceptoXProcesoList.procodcon}</a></td>
-                                            <td class="concept align-middle text-start fw-semi-bold ps-3 pe-0 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-primary">${conceptoXProcesoList.coodescon}</span></td>
+                                            <td class="concept align-middle text-start text-body fs-9 ps-5 pe-0">${conceptoXProcesoList.coodescon}</td>
 
                                             <td class="align-middle text-center white-space-nowrap pe-0 action">
                                               <div class="font-sans-serif btn-reveal-trigger position-static">

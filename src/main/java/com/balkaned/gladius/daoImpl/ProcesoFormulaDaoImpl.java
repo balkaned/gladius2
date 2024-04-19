@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.ProcesoFormulaDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -101,7 +102,11 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 FormulaXConcepto proFo = new FormulaXConcepto();
                 proFo.setFormprocodpro(rs.getString("procodpro"));
                 proFo.setFormforcodfor(rs.getString("forcodfor"));
+
                 proFo.setFormproglosa(rs.getString("proglosa"));
+                CapitalizarCadena cap= new CapitalizarCadena();
+                proFo.setFormproglosa(cap.letras(proFo.getFormproglosa()));
+
                 proFo.setFormfordesfor(rs.getString("fordesfor"));
                 proFo.setFormforcodcon(rs.getString("forcodcon"));
                 proFo.setFormforflgest(rs.getString("forflgest"));
@@ -116,7 +121,11 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 proFo.setFormsqlprogram(rs.getString("sqlprogram"));
                 proFo.setFormgrpeje(rs.getString("grpeje"));
                 proFo.setConccoocodcon(rs.getString("coocodcon"));
+
                 proFo.setConccoodescon(rs.getString("coodescon"));
+                CapitalizarCadena cap2= new CapitalizarCadena();
+                proFo.setConccoodescon(cap2.letras(proFo.getConccoodescon()));
+
                 proFo.setConccoocodforvar(rs.getString("coocodforvar"));
                 proFo.setConccoodesabrev(rs.getString("coodesabrev"));
                 proFo.setConccoodescripcion(rs.getString("coodescripcion"));
@@ -174,7 +183,11 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 ConceptoXProceso p = new ConceptoXProceso();
                 p.setProcodpro(rs.getInt("procodpro"));
                 p.setProcodcon(rs.getString("procodcon"));
+
                 p.setCoodescon(rs.getString("coodescon"));
+                CapitalizarCadena cap= new CapitalizarCadena();
+                p.setCoodescon(cap.letras(p.getCoodescon()));
+
                 p.setProcodconpdt(rs.getString("procodconpdt"));
                 p.setProflgbol(rs.getString("proflgbol"));
                 p.setProorden(rs.getInt("proorden"));
@@ -415,8 +428,15 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 ProcesoPlanilla p = new ProcesoPlanilla();
                 while (rs.next()) {
                     p.setIdProceso(rs.getInt("procodpro"));
+
                     p.setDesProceso(rs.getString("prodespro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesProceso(cap.letras(p.getDesProceso()));
+
                     p.setDesProcesoCorto(rs.getString("prodescorto"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDesProcesoCorto(cap2.letras(p.getDesProcesoCorto()));
+
                     p.setIdRegLab(rs.getString("procodregimenlab"));
                     p.setDesRegLab(rs.getString("desregimen"));
                     p.setDesGrp(rs.getString("progrppro"));

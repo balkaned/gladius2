@@ -5,6 +5,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.UsuarioxRol;
 import com.balkaned.gladius.beans.UsuxCompania;
 import com.balkaned.gladius.dao.UsuxCompaniaDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +90,10 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
                     usuxcia.setFecmod(rs.getString("fecmod"));
                     usuxcia.setCodusu(rs.getInt("codusu"));
                     usuxcia.setCodtra(rs.getInt("iexcodtra"));
+
                     usuxcia.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    usuxcia.setDestra(cap.letras(usuxcia.getDestra()));
 
                     lista.add(usuxcia);
                 }
@@ -115,9 +119,19 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
                     Empleado p = new Empleado();
 
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexapepat(cap.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexapemat(cap2.letras(p.getIexapemat()));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexnomtra(cap2.letras(p.getIexnomtra()));
+
                     p.setIexfecing(rs.getString("fecing"));
 
                     lista.add(p);

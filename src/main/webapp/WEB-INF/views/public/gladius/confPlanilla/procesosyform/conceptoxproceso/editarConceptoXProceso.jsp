@@ -304,15 +304,15 @@
                     </ol>
                 </nav>
                 <div class="mb-9">
-                    <div class="row g-5">
+                    <div class="row g-3">
                         <div class="col-xl-8">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarConceptoXProceso" novalidate>
+                                <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarConceptoXProceso" novalidate>
                                     <h2>Editar concepto x proceso</h2>
                                     <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
 
-                                    <div class="col-sm-6 col-md-3">
-                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID Proceso</label>
+                                    <div class="col-sm-6 col-md-2">
+                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id Proceso</label>
                                          <input class="form-control" name="idprocesodis" type="text" value="${proceso}" readonly disabled/>
                                     </div>
                                     <input type="hidden" id="idproceso" name="idproceso" value="${proceso}"/>
@@ -323,8 +323,8 @@
                                         <label class="form-check-label fs--2 ms-2">${requestScope.proconceptox.coodescon}</label>
                                         <input type="hidden" id="id_concept" name="id_concept" value="${requestScope.proconceptox.procodcon}"/>
                                     </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de Concepto</label>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de concepto</label>
                                         <select id="tip_concepto" name="tip_concepto" class="form-select" required>
                                             <option value="0" ${requestScope.proconceptox.protipcon=='0' ? 'selected' : ''}>Parametro</option>
                                             <option value="1" ${requestScope.proconceptox.protipcon=='1' ? 'selected' : ''}>Ingresos</option>
@@ -334,7 +334,7 @@
                                             <option value="5" ${requestScope.proconceptox.protipcon=='5' ? 'selected' : ''}>Otros</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_concepto_pdt">Codigo PDT</label>
                                         <input class="form-control" id="id_concepto_pdt" name="id_concepto_pdt" type="text" maxlength="6" value="${requestScope.proconceptox.procodconpdt}" />
                                     </div>
@@ -560,7 +560,7 @@
                  <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
               </div>
               <div class="modal-body p-4">
-                <div class="row g-4">
+                <div class="row g-3">
                     <div id="alertPromSuccess" class="mt-2 mb-0 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
@@ -575,25 +575,25 @@
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="row col-12 mt-3">
-                        <div class="col-sm-6 col-md-6">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Procesos</label>
-                              <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select" required >
+                    <div class="row g-3 col-12 mt-3">
+                        <div class="col-sm-6 col-md-4">
+                              <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Procesos</label>-->
+                              <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select form-select-sm" required >
                                   <option value="" selected >Seleccionar proceso</option>
                                   <c:forEach var="LstPromProceso" items="${LstPromProceso}">
                                       <option value="${LstPromProceso.idProceso}" >${LstPromProceso.desProceso}</option>
                                   </c:forEach>
                               </select>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
-                              <select name="idconceptoProm" id="idconceptoProm" class="form-select" required >
-                                    <option value="">Seleccionar</option>
+                        <div class="col-sm-6 col-md-5">
+                              <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
+                              <select name="idconceptoProm" id="idconceptoProm" class="form-select form-select-sm" required >
+                                    <option value="">Seleccionar concepto</option>
                               </select>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <button class="btn btn-phoenix-secondary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add concepto promediable</button>
+                    <div class="col-12">
+                        <button class="btn btn-primary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add concepto promediable</button>
                     </div>
                     <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}'>
                         <div class="table-responsive scrollbar">
@@ -611,9 +611,9 @@
                                 <c:forEach var="LstconceptoxProcesod" items="${requestScope.LstconceptoxProcesod}">
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                       <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
-                                      <td class="align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstconceptoxProcesod.desprocesoaux}</span></td>
-                                      <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstconceptoxProcesod.codconceptaux}</td>
-                                      <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstconceptoxProcesod.desconceptaux}</td>
+                                      <td class="align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><a href="#">${LstconceptoxProcesod.desprocesoaux}</a></td>
+                                      <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${LstconceptoxProcesod.codconceptaux}</span></td>
+                                      <td class="align-middle white-space-nowrap text-start text-body fs-9 ps-3 pe-3">${LstconceptoxProcesod.desconceptaux}</td>
 
                                       <td class="align-middle text-center white-space-nowrap pe-0 action">
                                         <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -645,7 +645,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-0 pt-0">
-                    <a class="btn btn-sm btn-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <a class="btn btn-sm btn-phoenix-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit">Guardar concepto prom</span></button>-->
               </div>
             </form>
@@ -662,7 +662,7 @@
                  <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
               </div>
               <div class="modal-body p-4">
-                <div class="row g-4">
+                <div class="row g-3">
                     <div id="alertAgrupSuccess" class="mt-2 mb-0 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
@@ -677,9 +677,9 @@
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="col-sm-6 col-md-5 mt-3">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Concepto</label>
-                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" required >
+                    <div class="col-sm-6 col-md-4 mt-3">
+                          <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
+                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select form-select-sm" required >
                             <option value="" selected >Seleccionar concepto</option>
                             <c:forEach var="listaConAgrp" items="${listaConAgrp}">d
                                 <option value="${listaConAgrp.procodcon}" >${listaConAgrp.coodescon}</option>
@@ -688,7 +688,7 @@
                     </div>
                     <div class="col-12">
                         <div class="col-sm-6 col-md-4">
-                            <button class="btn btn-phoenix-secondary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add grupo concepto</button>
+                            <button class="btn btn-primary btn-sm" type="submit" ><span class="fas fa-plus me-2"></span>Add grupo concepto</button>
                         </div>
                     </div>
                     <div class="border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":4,"pagination":true}' >
@@ -707,7 +707,7 @@
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                       <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
                                       <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${listTblAgrpConc.codconceptaux}</span></td>
-                                      <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${listTblAgrpConc.desconceptaux}</td>
+                                      <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3"><a href="#">${listTblAgrpConc.desconceptaux}</a></td>
 
                                       <td class="align-middle text-center white-space-nowrap pe-0 action">
                                         <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -739,7 +739,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-0 pt-0">
-                    <a class="btn btn-sm btn-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                    <a class="btn btn-sm btn-phoenix-primary px-9 my-0 ps-6 pe-6" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit">Guardar concepto prom</span></button>-->
               </div>
             </form>

@@ -44,7 +44,10 @@ public class RolDaoImpl implements RolDao {
                     Role rol = new Role();
 
                     rol.setIdRole(rs.getInt("codrol"));
+
                     rol.setDesRole(rs.getString("desrol"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    rol.setDesRole(cap.letras(rol.getDesRole()));
 
                     lista.add(rol);
                 }
@@ -173,7 +176,10 @@ public class RolDaoImpl implements RolDao {
                 Role rol = new Role();
                 while (rs.next()) {
                     rol.setIdRole(rs.getInt("codrol"));
+
                     rol.setDesRole(rs.getString("desrol"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    rol.setDesRole(cap.letras(rol.getDesRole()));
                 }
                 return rol;
             }

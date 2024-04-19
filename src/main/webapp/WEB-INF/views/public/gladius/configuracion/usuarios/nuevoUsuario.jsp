@@ -71,10 +71,10 @@
                               </div>
                               <div class="col-sm-6 col-md-6">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Contraseña</label>
-                                     <input class="form-control" name="txt_password" maxlength="15" type="password"  placeholder="" required/>
+                                     <input class="form-control" name="txt_password" maxlength="15" type="password"  placeholder="Repita la misma contraseña" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar Contraseña</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Confirmar contraseña</label>
                                    <input class="form-control" name="txt_password2" maxlength="15" type="password"  placeholder="" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
@@ -82,7 +82,7 @@
                                      <input class="form-control" name="txt_email" maxlength="60" type="text"  placeholder="usuario@gmail.com" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                     <select class="form-select" name="lov_estado" required>
                                       <option value="1" >Activo</option>
                                       <option value="0" >Inactivo</option>

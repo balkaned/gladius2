@@ -32,24 +32,24 @@
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Insertar Cuenta Contable</h2>
+          <h2 id="h2top" class="mb-0">Insertar cuenta contable</h2>
         </div>
       </div>
 
-      <div class="row g-5">
+      <div class="row g-3">
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
-            <form class="row g-4 mb-0 needs-validation" method="POST" action="addCuentaContable" novalidate>
+            <form class="row g-3 mb-0 needs-validation" method="POST" action="addCuentaContable" novalidate>
               <div class="col-sm-6 col-md-5">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Codigo agrupador</label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código agrupador</label>
                 <input class="form-control" name="iexccodcta" type="number" value="" step=0.01 placeholder="103.1" required/>
               </div>
               <div class="col-sm-6 col-md-9">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombre de la cuenta</label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la cuenta</label>
                 <input class="form-control" name="iexdescta" type="text" value="" placeholder="Inversiones temporales" required/>
               </div>
               <div class="col-sm-6 col-md-4">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de cuenta</label>
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta</label>
                 <select class="form-select" name="desdet" required>
                   <option value="" selected>Ninguno</option>
                   <c:forEach var="lovConcepto" items="${lovConcepto}">
@@ -75,7 +75,7 @@
                   </div>
                   <div class="col-auto">
                     <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                            aria-expanded="false" data-bs-reference="parent">Guardar Cuenta Contable
+                            aria-expanded="false" data-bs-reference="parent">Guardar cuenta contable
                     </button>
                   </div>
                 </div>

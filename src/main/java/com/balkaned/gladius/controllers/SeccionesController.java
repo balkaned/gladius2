@@ -69,7 +69,7 @@ public class SeccionesController {
         Seccion sec = new Seccion();
         Integer idsec = seccionService.getIdSeccion();
         sec.setIexcodsec(idsec);
-        sec.setIexdessec(request.getParameter("iexdessec"));
+        sec.setIexdessec(request.getParameter("iexdessec").toUpperCase());
         sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
         sec.setIexordsec(Integer.parseInt(request.getParameter("iexordsec")));
         sec.setIexsecimg(request.getParameter("iexsecimg"));
@@ -112,7 +112,7 @@ public class SeccionesController {
         Seccion sec = new Seccion();
 
         sec.setIexcodsec(Integer.parseInt(request.getParameter("iexcodsec")));
-        sec.setIexdessec(request.getParameter("iexdessec"));
+        sec.setIexdessec(request.getParameter("iexdessec").toUpperCase());
         sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
         sec.setIexordsec(Integer.parseInt(request.getParameter("iexordsec")));
         sec.setIexsecimg(request.getParameter("iexsecimg"));
