@@ -116,12 +116,17 @@ public class AreaDaoImpl implements AreaDao {
                 Area p = new Area();
                 while (rs.next()) {
 
-                    CapitalizarCadena cap = new CapitalizarCadena();
-
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodarea(rs.getString("iexcodarea"));
+
                     p.setIexdesarea(rs.getString("iexdesarea"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesarea(cap.letras(p.getIexdesarea()));
+
                     p.setIexdesarea_descripcion(rs.getString("iexdesarea_descripcion"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexdesarea_descripcion(cap2.letras(p.getIexdesarea_descripcion()));
+
                     p.setIexareapadre(rs.getString("iexareapadre"));
                     p.setIexcodcat(rs.getString("iexcodcat"));
                     p.setDescodcat(rs.getString("descodcat"));

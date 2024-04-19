@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -85,32 +84,32 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form name ="forms01"  id ="forms01" class="row g-4 mb-0 needs-validation" method="POST" action="procesarEmpleadoInactivo" novalidate>
+                       <form name ="forms01"  id ="forms01" class="row g-3 mb-0 needs-validation" method="POST" action="procesarEmpleadoInactivo" novalidate>
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input type="hidden"  id="accion" name="accion" value="VAL">
 
                               <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nuevo ID Trab</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nuevo id trab</label>
                                    <input class="form-control" name="idtrabajador" id="idtrabajador"  type="text" value="${requestScope.xtrabnuevo.iexcodtra}" required readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-9">
+                              <div class="col-sm-6 col-md-6">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                                      <input class="form-control" name="nombres"  id="nombres" type="text" value="${requestScope.xtrabnuevo.iexapepat} ${requestScope.xtrabnuevo.iexapemat} ${requestScope.xtrabnuevo.iexnomtra}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo documento</label>
                                     <input class="form-control" name="tipodocumento"  id="tipodocumento" type="text" value="${requestScope.xtrabnuevo.iextipdocid}" required readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-5">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Documento</label>
+                              <div class="col-sm-6 col-md-4">
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
                                       <input class="form-control" name="nrodoc"   id="nrodoc" type="text" value="${requestScope.xtrabnuevo.iexnrodoc}" required readonly disabled/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha Ingreso</label>
+                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha ingreso</label>
                                  	  <input class="form-control" name="fechaing"  id="fechaing"  type="text" value="${requestScope.xtrabnuevo.iexfecing}" required readonly disabled/>
                               </div>
 
@@ -122,7 +121,7 @@
                               <div class="col-12 gy-6">
                                   <div class="row g-3 justify-content-end">
                                     <div class="col-auto">
-                                      <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Ir a Lista Trabajadores</a>
+                                      <a class="btn btn-phoenix-secondary btn-sm px-5" href="listEmpleados"><span class="fa-regular fa-address-card me-2"></span>Ir a lista de trabajadores</a>
                                     </div>
                                     <div class="col-auto">
                                       <!--<button class="btn btn-primary px-5 px-sm-9" onclick="return reingtra();" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Reingresar Trabajador</button>-->

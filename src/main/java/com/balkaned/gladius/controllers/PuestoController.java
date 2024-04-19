@@ -78,7 +78,7 @@ public class PuestoController {
         Puesto puesto = new Puesto();
         puesto.setIexcodcia(iexcodcia);
         puesto.setIexpuesto(iexpuesto);
-        puesto.setIexdespuesto(iexdespuesto);
+        puesto.setIexdespuesto(iexdespuesto.toUpperCase());
         puesto.setIexcodcat(iexcodcat);
         puesto.setIexusucrea(iexusucrea);
 
@@ -124,7 +124,7 @@ public class PuestoController {
         Puesto puesto = new Puesto();
         puesto.setIexcodcia(iexcodcia);
         puesto.setIexpuesto(iexpuesto);
-        puesto.setIexdespuesto(iexdespuesto);
+        puesto.setIexdespuesto(iexdespuesto.toUpperCase());
         puesto.setIexcodcat(iexcodcat);
         puesto.setIexusumod(iexusucrea);
 

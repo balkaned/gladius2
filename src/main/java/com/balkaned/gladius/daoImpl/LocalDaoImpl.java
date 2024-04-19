@@ -45,10 +45,13 @@ public class LocalDaoImpl implements LocalDao {
 
                 while (rs.next()) {
                     Local p = new Local();
-                    CapitalizarCadena cap = new CapitalizarCadena();
+
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexubicod(rs.getString("iexubicod"));
+
                     p.setIexubides(rs.getString("iexubides"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexubides(cap.letras(p.getIexubides()));
 
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
@@ -80,11 +83,13 @@ public class LocalDaoImpl implements LocalDao {
             public Local extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Local p = new Local();
                 while (rs.next()) {
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexubicod(rs.getString("iexubicod"));
+
                     p.setIexubides(rs.getString("iexubides"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexubides(cap.letras(p.getIexubides()));
 
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));

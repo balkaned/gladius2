@@ -73,7 +73,7 @@ public class LocalesController {
         Local ubic = new Local();
         ubic.setIexcodcia(iexcodcia);
         ubic.setIexubicod(iexcodubi);
-        ubic.setIexubides(iexdesubi);
+        ubic.setIexubides(iexdesubi.toUpperCase());
         ubic.setIexusucrea(iexusucrea);
 
         localService.insertarUbicacion(ubic);
@@ -117,7 +117,7 @@ public class LocalesController {
         Local ubic = new Local();
         ubic.setIexcodcia(iexcodcia);
         ubic.setIexubicod(iexcodubi);
-        ubic.setIexubides(iexdesubi);
+        ubic.setIexubides(iexdesubi.toUpperCase());
         ubic.setIexusucrea(iexusucrea);
 
         localService.actualizarUbicaion(ubic);

@@ -44,14 +44,6 @@
                   <h2 id="h2top" class="mb-0">Centro de costos</h2>
                 </div>
               </div>
-              <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
-                <!--<li class="nav-item"><a class="nav-link" href="#">Reingreso<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Consultar Todos<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Todos Xls<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Descargar Activos XIS<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
-              </ul>
               <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">
@@ -60,13 +52,12 @@
                         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
                           <input class="form-control search-input search" type="search" placeholder="Search Ccostos" aria-label="Search" />
                           <span class="fas fa-search search-box-icon"></span>
-
                         </form>
                       </div>
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevoCcosto"><span class="fas fa-plus me-2"></span>Add C. Costo</a>
+                      <a class="btn btn-primary btn-sm" href="nuevoCcosto"><span class="fas fa-plus me-2"></span>Add c. costo</a>
                     </div>
                   </div>
                 </div>

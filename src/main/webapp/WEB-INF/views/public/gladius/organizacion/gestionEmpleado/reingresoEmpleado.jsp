@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -85,55 +84,55 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form name ="forms01"  id ="forms01" class="row g-4 mb-0 needs-validation" method="POST" action="procesarEmpleadoInactivo" novalidate>
+                       <form name ="forms01"  id ="forms01" class="row g-3 mb-0 needs-validation" method="POST" action="procesarEmpleadoInactivo" novalidate>
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input type="hidden"  id="accion" name="accion" value="VAL">
 
-                              <div class="col-sm-6 col-md-12">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador Inactivo</label>
+                              <div class="col-sm-6 col-md-7">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador inactivo</label>
                                   <select class="form-select" name="iexempid" required onchange="gettra();" >
-                                    <option value="-1" >Seleccionar</option>
+                                    <option value="-1" >Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoInactivo" items="${requestScope.LstEmpleadoInactivo}">
                                          <option value="${LstEmpleadoInactivo.iexcodtra}" ${LstEmpleadoInactivo.iexcodtra == requestScope.iexempid ? 'selected' : ''}   >${LstEmpleadoInactivo.iexfecret} - [${LstEmpleadoInactivo.iexcodtra}] - ${LstEmpleadoInactivo.iexapepat} ${LstEmpleadoInactivo.iexapemat} ${LstEmpleadoInactivo.iexnomtra}</option>
                                     </c:forEach>
                                   </select>
                               </div>
-                              <div class="col-sm-6 col-md-3">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id Trabajador</label>
+                              <div class="col-sm-6 col-md-2">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trabajador</label>
                                    <input class="form-control" name="idtrabajadordis" id="idtrabajadordis"  type="text" value="${requestScope.xtrainactivo.iexcodtra}" required readonly disabled/>
                                    <input class="form-control" name="idtrabajador"  id="idtrabajador" type="hidden" value="${requestScope.xtrainactivo.iexcodtra}" />
                               </div>
-                              <div class="col-sm-6 col-md-9">
+                              <div class="col-sm-6 col-md-6">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                                      <input class="form-control" name="nombresdis"  id="nombresdis" type="text" value="${requestScope.xtrainactivo.iexapepat} ${requestScope.xtrainactivo.iexapemat} ${requestScope.xtrainactivo.iexnomtra}" required readonly disabled/>
                                      <input class="form-control" name="nombres"  id="nombres" type="hidden" value="${requestScope.xtrainactivo.iexapepat} ${requestScope.xtrainactivo.iexapemat} ${requestScope.xtrainactivo.iexnomtra}" />
                               </div>
                               <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo Documento</label>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo documento</label>
                                     <input class="form-control" name="tipodocumentodis"  id="tipodocumentodis" type="text" value="${requestScope.xtrainactivo.iextipdocid}" required readonly disabled/>
                                     <input class="form-control" name="tipodocumento"  id="tipodocumento" type="hidden" value="${requestScope.xtrainactivo.iextipdocid}" />
                               </div>
                               <div class="col-sm-6 col-md-5">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro Documento</label>
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
                                       <input class="form-control" name="nrodocdis" id="nrodocdis" type="text" value="${requestScope.xtrainactivo.iexnrodoc}" required readonly disabled/>
                                       <input class="form-control" name="nrodoc"  id="nrodoc" type="hidden" value="${requestScope.xtrainactivo.iexnrodoc}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Inicio</label>
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
                                      <input class="form-control" name="fechaingdis"  id="ultfecharetdis" type="text" value="${requestScope.xtrainactivo.iexfecing}" required readonly disabled/>
                                      <input class="form-control" name="fechaing"  id="ultfecharet" type="hidden" value="${requestScope.xtrainactivo.iexfecing}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ultima fecha Retiro</label>
+                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Última fecha retiro</label>
                                       <input class="form-control" name="ultfecharet"  id="ultfecharet" type="text" value="${requestScope.xtrainactivo.iexfecret}" required readonly disabled/>
                                       <input class="form-control" name="ultfecharet"  id="ultfecharet" type="hidden" value="${requestScope.xtrainactivo.iexfecret}" />
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >* Fecha Reingreso</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha reingreso</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                  	  <input class="form-control datetimepicker" name="fechaing"  id="fechaing" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                               </div>
 
@@ -148,7 +147,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-9" onclick="return reingtra();" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Reingresar Trabajador</button>
+                                      <button class="btn btn-primary px-5 px-sm-9" onclick="return reingtra();" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Reingresar trabajador</button>
                                     </div>
                                   </div>
                               </div>

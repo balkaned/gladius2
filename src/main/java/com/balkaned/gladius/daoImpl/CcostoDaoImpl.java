@@ -54,11 +54,14 @@ public class CcostoDaoImpl implements CcostoDao {
 
                 while (rs.next()) {
                     CentroCosto p = new CentroCosto();
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexccosto(rs.getString("iexccosto"));
+
                     p.setIexdesccosto(rs.getString("iexdesccosto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
+
                     p.setIexcodcat(rs.getString("iexcodcat"));
                     p.setDescodcat(rs.getString("desdet"));
 
@@ -95,11 +98,14 @@ public class CcostoDaoImpl implements CcostoDao {
             public CentroCosto extractData(ResultSet rs) throws SQLException, DataAccessException {
                 CentroCosto p = new CentroCosto();
                 while (rs.next()) {
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexccosto(rs.getString("iexccosto"));
+
                     p.setIexdesccosto(rs.getString("iexdesccosto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
+
                     p.setIexcodcat(rs.getString("iexcodcat"));
                     p.setDescodcat(rs.getString("desdet"));
 

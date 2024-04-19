@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-              //alert("se grabo exitosamente");
               var div=document.getElementById('alert');
               div.style.display = '';
 
@@ -43,45 +42,46 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Editar Banco</h2>
+                  <h2 id="h2top" class="mb-0">Editar banco</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarBanco" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarBanco" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Banco</label>
+
+                              <div class="col-sm-6 col-md-5">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco</label>
                                     <select class="form-select" name="iexcodban" required >
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar banco</option>
                                       <c:forEach var="lovBancos" items="${lovBancos}">
                                           <option value="${lovBancos.idLov}" ${lovBancos.idLov== requestScope.xCcontable.iexcodban ? 'selected' : ''} >${lovBancos.desLov}</option>
                                       </c:forEach>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                                     <select class="form-select" name="iexcodpro" required >
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar proceso</option>
                                       <c:forEach var="lovProcesos" items="${lovProcesos}">
                                           <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso == requestScope.xCcontable.iexcodpro ? 'selected' : ''} >${lovProcesos.desProceso}</option>
                                       </c:forEach>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Cuenta</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta</label>
                                     <select class="form-select" name="iextipcta" required >
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar tipo cuenta</option>
                                       <c:forEach var="lovTipCta" items="${lovTipCta}">
                                           <option value="${lovTipCta.idLov}" ${lovTipCta.idLov== requestScope.xCcontable.iextipcta ? 'selected' : ''} >${lovTipCta.desLov}</option>
                                       </c:forEach>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Numero de Cuenta</label>
-                                   <input class="form-control" name="iexctaban" maxlength="20" type="text" value="${requestScope.xCcontable.iexctaban}" required/>
+                              <div class="col-sm-6 col-md-8">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Numero de cuenta</label>
+                                   <input class="form-control" name="iexctaban" maxlength="20" type="number" value="${requestScope.xCcontable.iexctaban}" required/>
                               </div>
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -95,7 +95,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listBancos">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Banco</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar banco</button>
                                     </div>
                                   </div>
                               </div>

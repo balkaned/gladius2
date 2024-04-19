@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-              //alert("se grabo exitosamente");
               var div=document.getElementById('alert');
               div.style.display = '';
 
@@ -43,24 +42,25 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar Local</h2>
+                  <h2 id="h2top" class="mb-0">Insertar local</h2>
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-6">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarLocal" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarLocal" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input class="form-control" name="iexubicod2" type="hidden" value="${idx}" />
-                              <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+
+                              <div class="col-sm-6 col-md-2">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                     <input class="form-control" name="iexubicod" type="text" value="${idx}" placeholder="street" readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion del local</label>
-                                    <input class="form-control" name="iexubides" type="text" value="" placeholder="LOCAL SAN MIGUEL" required/>
+                              <div class="col-sm-6 col-md-8">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripcion del local</label>
+                                    <input class="form-control" name="iexubides" type="text" value="" placeholder="Local San Miguel" required/>
                               </div>
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -74,7 +74,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listLocales">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Local</button>
+                                      <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar local</button>
                                     </div>
                                   </div>
                               </div>

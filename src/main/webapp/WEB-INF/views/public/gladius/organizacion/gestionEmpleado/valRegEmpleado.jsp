@@ -12,7 +12,6 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
-
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -37,22 +36,22 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-5">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="validarNroDoc" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="validarNroDoc" novalidate >
                           <input class="form-control" name="accion" type="hidden" value="VAL" />
-                          <div class="col-sm-6 col-md-12">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento</label>
+                          <div class="col-sm-6 col-md-6">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo documento</label>
                                 <select name="iextipdocid" class="form-select" required >
-                                    <option value="01">DNI</option>
-                                    <option value="02">RUC</option>
-                                    <option value="04">CE</option>
+                                    <option value="01">Dni</option>
+                                    <option value="02">Ruc</option>
+                                    <option value="04">Carent de extranjeria</option>
                                 </select>
                           </div>
-                          <div class="col-sm-6 col-md-9">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento</label>
-                              <input class="form-control" name="iexnrodocid" maxlength="15" type="text" value="" placeholder="#" required/>
+                          <div class="col-sm-6 col-md-8">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de documento</label>
+                              <input class="form-control" name="iexnrodocid" maxlength="15" type="number" value="" placeholder="#" required/>
                           </div>
 
                           <div class="col-12 d-flex justify-content-end mt-6">

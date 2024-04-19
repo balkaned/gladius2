@@ -1148,9 +1148,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     Empleado p = new Empleado();
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexapepat(cap2.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexapemat(cap3.letras(p.getIexapemat()));
+
                     p.setIextipdocid(rs.getString("iextipdocid"));
                     p.setIexnrodoc(rs.getString("iexnrodoc"));
                     p.setIexfecnac(rs.getString("iexfecnac"));

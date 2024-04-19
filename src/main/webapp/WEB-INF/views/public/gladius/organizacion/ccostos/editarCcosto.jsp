@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-              //alert("se grabo exitosamente");
               var div=document.getElementById('alert');
               div.style.display = '';
 
@@ -47,30 +46,30 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-7">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarCcosto" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarCcosto" novalidate >
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexccosto2" type="hidden" value="${idCosto}" />
-                              <div class="col-sm-6 col-md-3">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+
+                              <div class="col-sm-6 col-md-2">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                     <input class="form-control" name="iexccosto" type="text" value="${idCosto}" placeholder="" readonly disabled/>
                               </div>
-                              <div class="col-sm-6 col-md-12">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion</label>
+                              <div class="col-sm-6 col-md-8">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción</label>
                                     <input class="form-control" name="iexdesccosto" type="text" value="${requestScope.xCcosto.iexdesccosto}" required/>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Categoria Centro de Costos</label>
+                              <div class="col-sm-6 col-md-5">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoria centro de costos</label>
                                   <select class="form-select" name="iexcodcat" required >
-                                    <option value="" selected >Seleccionar</option>
+                                    <option value="" selected >Seleccionar categoria</option>
                                     <c:forEach var="lovCatCencos" items="${lovCatCencos}">
                                         <option value="${lovCatCencos.idLov}" ${lovCatCencos.idLov== requestScope.xCcosto.iexcodcat ? 'selected' : ''} >${lovCatCencos.desLov}</option>
                                     </c:forEach>
                                   </select>
                               </div>
-
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                               	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>

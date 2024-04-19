@@ -57,13 +57,20 @@ public class BancoProDaoImpl implements BancoProDao {
 
                 while (rs.next()) {
                     BancoPro p = new BancoPro();
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodban(rs.getString("iexcodban"));
+
                     p.setDesban(rs.getString("desban"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesban(cap.letras(p.getDesban()));
+
                     p.setIexcodpro(rs.getInt("iexcodpro"));
+
                     p.setDespro(rs.getString("prodespro"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDespro(cap2.letras(p.getDespro()));
+
                     p.setIextipcta(rs.getString("iextipcta"));
                     p.setDestipcta(rs.getString("destipcta"));
                     p.setIexctaban(rs.getString("iexctaban"));

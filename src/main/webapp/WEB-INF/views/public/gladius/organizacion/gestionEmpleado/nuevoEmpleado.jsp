@@ -13,7 +13,6 @@
   </head>
   <script>
       function mostrarAlert(){
-          //alert("se grabo exitosamente");
           var div=document.getElementById('alert');
           div.style.display = '';
 
@@ -70,66 +69,67 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                    <div class="col-xl-8">
                      <div class="row gx-3 gy-4">
-                       <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarEmpleado" novalidate >
+                       <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarEmpleado" novalidate >
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                              <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Documento</label>
+
+                              <div class="col-sm-6 col-md-5">
+                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo documento</label>
                                   <select class="form-select" name="iextipdocid" required >
-                                    <option value="" selected >Seleccionar</option>
+                                    <option value="" selected >Seleccionar tipo documento</option>
                                     <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                         <option value="${lovTipdoc.idLov}" ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}  >${lovTipdoc.desLov}</option>
                                     </c:forEach>
                                   </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de Documento</label>
-                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="#" required/>
+                              <div class="col-sm-6 col-md-4">
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de documento</label>
+                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="Ingrese solo numeros" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Paterno </label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno </label>
                                    <input class="form-control" name="iexapepat" type="text" value="" placeholder="Gutierrez" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido Materno</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
                                    <input class="form-control" name="iexapemat" type="text" value="" placeholder="Aravena" required/>
                               </div>
                               <div class="col-sm-6 col-md-8">
-                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombres</label>
+                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
                                    <input class="form-control" name="iexnomtra" type="text" value="" placeholder="Gabriel Pedro" required/>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                     <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo</label>
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo</label>
                                     <select class="form-select" name="iexcodsex" required>
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar sexo</option>
                                       <c:forEach var="lovSexo" items="${lovSexo}">
                                           <option value="${lovSexo.idLov}" ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}  >${lovSexo.desLov}</option>
                                       </c:forEach>
                                     </select>
                               </div>
-                              <div class="col-sm-6 col-md-6">
-                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Trabajador</label>
+                              <div class="col-sm-6 col-md-5">
+                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de trabajador</label>
                                      <select class="form-select" name="iextiptra" required>
-                                        <option value="" selected >Seleccionar</option>
+                                        <option value="" selected >Seleccionar tipo trabajador</option>
                                         <c:forEach var="lovTipTra" items="${lovTipTra}">
                                             <option value="${lovTipTra.idLov}" ${lovTipTra.idLov == requestScope.emp.iextiptra ? 'selected' : ''}  >${lovTipTra.desLov}</option>
                                         </c:forEach>
                                      </select>
                               </div>
                               <div class="col-sm-6 col-md-4">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Ingreso </label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de ingreso </label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                     <input class="form-control datetimepicker" name="iexfecing" id="iexfecing" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                               </div>
-                              <div class="col-sm-6 col-md-5">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo Anterior</label>
-                                    <input class="form-control" name="iexcodant" type="text" value="" placeholder="#" />
+                              <div class="col-sm-6 col-md-4">
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código anterior</label>
+                                    <input class="form-control" name="iexcodant" type="text" value="" placeholder="Ingrese código anterior" />
                               </div>
 
                               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -143,7 +143,7 @@
                                       <a class="btn btn-phoenix-primary px-5" href="listEmpleados">Cancel</a>
                                     </div>
                                     <div class="col-auto">
-                                      <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Trabajador</button>
+                                      <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar trabajador</button>
                                     </div>
                                   </div>
                               </div>
@@ -161,9 +161,9 @@
                                           </div>
                                         </div>
                                       </form>
-                                      <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-                                          <button class="btn btn-sm btn-phoenix-primary px-4 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                          <button class="btn btn-sm btn-primary px-9 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                      <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                                          <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                          <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                       </div>
                                     </div>
                                   </div>

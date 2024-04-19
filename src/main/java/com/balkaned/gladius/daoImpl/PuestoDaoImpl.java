@@ -53,11 +53,14 @@ public class PuestoDaoImpl implements PuestoDao {
 
                 while (rs.next()) {
                     Puesto p = new Puesto();
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexpuesto(rs.getString("iexpuesto"));
+
                     p.setIexdespuesto(rs.getString("iexdespuesto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
+
                     p.setIexcodcat(rs.getString("iexcodcat"));
                     p.setDescodcat(rs.getString("desdet"));
 
@@ -95,11 +98,14 @@ public class PuestoDaoImpl implements PuestoDao {
             public Puesto extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Puesto p = new Puesto();
                 while (rs.next()) {
-                    CapitalizarCadena cap = new CapitalizarCadena();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexpuesto(rs.getString("iexpuesto"));
+
                     p.setIexdespuesto(rs.getString("iexdespuesto"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
+
                     p.setIexcodcat(rs.getString("iexcodcat"));
                     p.setDescodcat(rs.getString("desdet"));
 

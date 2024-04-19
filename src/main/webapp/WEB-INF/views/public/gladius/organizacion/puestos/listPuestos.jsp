@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-auto">
-                      <a class="btn btn-primary btn-sm" href="nuevoPuesto"><span class="fas fa-plus me-2"></span>Add Puesto</a>
+                      <a class="btn btn-primary btn-sm" href="nuevoPuesto"><span class="fas fa-plus me-2"></span>Add puesto</a>
                     </div>
                   </div>
                 </div>
