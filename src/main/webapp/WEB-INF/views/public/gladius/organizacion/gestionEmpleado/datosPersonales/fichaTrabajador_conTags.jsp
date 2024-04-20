@@ -239,7 +239,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado [TT54]</label>
                                             <select name="iexflgest" class="form-select" required>
                                                 <option value="" selected >Seleccionar estado</option>
                                                 <c:forEach var="lovEstados" items="${lovEstados}">
@@ -274,7 +274,7 @@
                                             <input class="form-control" id="iexfecnachidden" type="hidden" value="${fecnacIEX}" />
                                         </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo [TT50]</label>
                                             <select name="iexcodsex" class="form-select" required >
                                                 <option value="" selected >Seleccionar sexo</option>
                                                 <c:forEach var="lovSexo" items="${lovSexo}">
@@ -283,7 +283,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado civil</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado civil [TT68]</label>
                                             <select name="iexestcivil" class="form-select" required >
                                                 <option value="" selected >Seleccionar estado civil</option>
                                                 <c:forEach var="lovEstcivil" items="${lovEstcivil}">
@@ -292,7 +292,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modalidad formativa</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modalidad formativa [TT18]</label>
                                             <select name="iexmodform" class="form-select" >
                                                 <option value="" selected >Seleccionar modalidad formativa</option>
                                                 <c:forEach var="lovModForm" items="${lovModForm}">
@@ -301,7 +301,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nacionalidad origen</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nacionalidad origen [TT4]</label>
                                             <select name="iexnacion_origen" class="form-select" required >
                                                 <option value="" selected >Seleccionar nacionalidad</option>
                                                 <c:forEach var="lovNacionalidad" items="${lovNacionalidad}">
@@ -310,7 +310,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor [TT26]</label>
                                             <select name="iexpaisemisor" id="iexpaisemisor" class="form-select" required >
                                                 <option value="" selected >Seleccionar pais</option>
                                                 <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
@@ -346,7 +346,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grado instrucción</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grado instrucción [TT9]</label>
                                             <select name="iexgrdinstruccion" class="form-select" required >
                                                 <option value="" selected >Seleccionar grado isntruccion</option>
                                                 <c:forEach var="lovGrdInstruccion" items="${lovGrdInstruccion}">
@@ -355,7 +355,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-5">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Centro de formación</label>
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Centro de formación [TT51]</label>
                                               <select name="iexcentroform" class="form-select" >
                                                 <option value="" selected >Seleccionar centro de formacion</option>
                                                 <c:forEach var="lovCenForm" items="${lovCenForm}">
@@ -368,7 +368,7 @@
                                             <label class="form-check-label ms-2" for="flexChecked">Es domiciliado?</label>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País [TT29]</label>
                                              <select name="iexcodlardist" class="form-select" >
                                                  <option value="" selected >Seleccionar</option>
                                                  <c:forEach var="lovLarDistancia" items="${lovLarDistancia}">
@@ -439,7 +439,7 @@
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral [TT33]</label>
                                                 <select class="form-select" name="iexreglab" required>
                                                   <option value="" selected >Seleccionar regimen</option>
                                                   <c:forEach var="lovRegLab" items="${lovRegLab}">
@@ -448,7 +448,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de trabajador</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de trabajador [TT8]</label>
                                                   <select class="form-select" name="iextiptra" required>
                                                     <option value="" selected >Seleccionar tipo trabajador</option>
                                                     <c:forEach var="lovTipTra" items="${lovTipTra}">
@@ -457,7 +457,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoría trabajador</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Categoría trabajador [TT24]</label>
                                                   <select class="form-select" name="iexcateg_trabajador" required>
                                                     <option value="" selected >Seleccionar categoria trabajador</option>
                                                     <c:forEach var="lovCateTra" items="${lovCateTra}">
@@ -466,7 +466,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Situación del pensionista</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Situación del pensionista [TT15]</label>
                                                   <select class="form-select" name="iexsituapen" required>
                                                     <option value="" selected >Seleccionar situacion pensionista</option>
                                                     <c:forEach var="lovSitPen" items="${lovSitPen}">
@@ -485,7 +485,7 @@
                                                   <input class="form-control" id="iexfecrethidden" type="hidden" value="${requestScope.emp2.iexfecret}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de contrato</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de contrato [TT12]</label>
                                                   <select class="form-select" name="iextipcont" required>
                                                     <option value="" selected >Seleccionar tipo contrato</option>
                                                     <c:forEach var="lovTipCont" items="${lovTipCont}">
@@ -504,7 +504,7 @@
                                                   <input class="form-control" id="iexfecfin_conthidden" type="hidden" value="${requestScope.emp2.iexfecfin_cont}" />
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pliego</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pliego [TT31]</label>
                                                   <select class="form-select" name="iexpliego" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar pliego</option>
                                                     <c:forEach var="lovPliego" items="${lovPliego}">
@@ -513,7 +513,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Situación especial</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Situación especial [TT35]</label>
                                                   <select class="form-select" name="iexsituaesp" required >
                                                     <option value="" selected >Seleccionar situacion especial</option>
                                                     <c:forEach var="lovSituesp" items="${lovSituesp}">
@@ -522,7 +522,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-7">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupación reg. público</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupación reg. público [TT10]</label>
                                                   <select class="form-select" name="iexocupacion_pub" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar ocupacion reg. publico</option>
                                                     <c:forEach var="lovOcupRegPub" items="${lovOcupRegPub}">
@@ -531,7 +531,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-7">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupación reg. privado</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ocupación reg. privado [TT30]</label>
                                                   <select class="form-select" name="iexocupacion_priv" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar ocupacion reg. privado</option>
                                                     <c:forEach var="lovOcupRegPrv" items="${lovOcupRegPrv}">
@@ -626,7 +626,7 @@
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de pago</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de pago [TT19]</label>
                                                 <select class="form-select" name="iextippago" required>
                                                   <option value="" selected >Seleccionar tipo pago</option>
                                                   <c:forEach var="lovTipPago" items="${lovTipPago}">
@@ -635,7 +635,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo remuneración</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo remuneración [TT13]</label>
                                                   <select class="form-select" name="iexperrem" required>
                                                     <option value="" selected >Seleccionar periodo remuneracion</option>
                                                     <c:forEach var="lovPerRem" items="${lovPerRem}">
@@ -644,7 +644,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de haberes</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de haberes [TT36]</label>
                                                   <select class="form-select" name="iexcodban_hab" required>
                                                     <option value="" selected >Seleccionar banco</option>
                                                     <c:forEach var="lovBancoHab" items="${lovBancoHab}">
@@ -653,7 +653,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta de haberes</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta de haberes [TT53]</label>
                                                   <select class="form-select" name="iextipban_hab" required>
                                                     <option value="" selected >Seleccionar tipo cuenta</option>
                                                     <c:forEach var="lovTipCtaHab" items="${lovTipCtaHab}">
@@ -662,7 +662,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de haberes</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de haberes [TT52]</label>
                                                   <select class="form-select" name="iexcodmon_hab" required>
                                                     <option value="" selected >Seleccionar moneda</option>
                                                     <c:forEach var="lovMonedaHab" items="${lovMonedaHab}">
@@ -679,7 +679,7 @@
                                                 <input class="form-control" name="iexnrocta_hab" type="number" maxlength="50" value="${requestScope.emp3.iexnrocta_hab}" placeholder="Ingrese el número de cuenta bancaria" />
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de cts [TT36]</label>
                                                   <select class="form-select" name="iexcodban_cts" >
                                                     <option value="" selected >Seleccionar banco cts</option>
                                                     <c:forEach var="lovBancoCts" items="${lovBancoCts}">
@@ -688,7 +688,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta cts [TT53]</label>
                                                   <select class="form-select" name="iextipban_cts" >
                                                     <option value="" selected >Seleccionar tipo cuenta cts</option>
                                                     <c:forEach var="lovTipCtaCts" items="${lovTipCtaCts}">
@@ -697,7 +697,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de cts [TT52]</label>
                                                   <select class="form-select" name="iexcodmon_cts" >
                                                     <option value="" selected >Seleccionar moneda cts</option>
                                                     <c:forEach var="lovMonedaCts" items="${lovMonedaCts}">
@@ -768,7 +768,7 @@
                                                 <label class="form-check-label ms-2" for="flexChecked">Es jubilado?</label>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fondo pensiones</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fondo pensiones [TT11]</label>
                                                 <select class="form-select" name="iexcodafp" required>
                                                   <option value="" selected >Seleccionar fondo pension</option>
                                                   <c:forEach var="lovCodAfp" items="${lovCodAfp}">
@@ -790,7 +790,7 @@
                                                 <input class="form-control" maxlength="50"name="iexcussp" value="${requestScope.emp4.iexcussp}" type="text" placeholder="Ingrese el número de cussp" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Essalud</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Essalud [TT32]</label>
                                                 <select class="form-select" name="iexessalud" required>
                                                     <option value="" selected >Seleccionar tipo seguro salud</option>
                                                     <c:forEach var="lovEssalud" items="${lovEssalud}">
@@ -807,7 +807,7 @@
                                                 <label class="form-check-label ms-2" for="flexChecked">Tiene eps</label>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proveedor de eps</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proveedor de eps [TT14]</label>
                                                 <select class="form-select" name="iexcodeps" required >
                                                     <option value="" selected >Seleccionar proveedor eps</option>
                                                     <c:forEach var="lovProvEps" items="${requestScope.lovProvEps}">
@@ -967,7 +967,7 @@
                                                 <input class="form-control" name="iexreferencia_dom1" maxlength="40" value="${requestScope.emp5.iexreferencia_dom1}" type="text" placeholder="Ingrese una referencia" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor</label>
+                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor [TT26]</label>
                                                <select class="form-select" id="iexpaisemisor1" name="iexnacion_origen1" required >
                                                  <option value="" selected >Seleccionar pais</option>
                                                  <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
@@ -1064,7 +1064,7 @@
                                                 <input class="form-control" name="iexreferencia_dom2" maxlength="40" value="${requestScope.emp5.iexreferencia_dom2}" type="text" placeholder="Ingrese una referencia" />
                                           </div>
                                           <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2 [TT26]</label>
                                                 <select class="form-select" id="iexpaisemisor2" name="iexnacion_origen2" >
                                                   <option value="" selected >Seleccionar pais</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">

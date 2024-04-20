@@ -36,6 +36,14 @@ function formatearFecha2(){
     var fechaFormat=dia+"/"+mes+"/"+anio;
     $("#iexfecinivig").val(fechaFormat);
 }
+
+$(document).ready(function(){
+      var fechacargada=$("#iexfecpreshidden").val();
+      $("#iexfecpres").val(fechacargada);
+
+      var fechacargada2=$("#iexfecinivighidden").val();
+      $("#iexfecinivig").val(fechacargada2);
+});
 </script>
 
   <body>
@@ -72,18 +80,19 @@ function formatearFecha2(){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Información de prestamo</h2>
+                                <h2 id="h2top" class="mb-0">Información de préstamo</h2>
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPrestamo" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarPrestamo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Tipo de Prestamo</label>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo de préstamo</label>
                                                 <select class="form-select" name="iextipprestamo" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovTippres" items="${lovTippres}">
@@ -91,16 +100,16 @@ function formatearFecha2(){
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Importe Bruto</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Importe bruto</label>
                                                 <input class="form-control" name="ieximpbruto" maxlength="10" type="number" value="${requestScope.xPrestCab.ieximpbru}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Nro Cuotas</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Nro cuotas</label>
                                                 <input class="form-control" name="iexnrocuota" maxlength="2" type="text" value="${requestScope.xPrestCab.iexnrocuotas}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Tipo Interes</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Tipo interés</label>
                                                 <select class="form-select" name="iextipinteres" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovTipInteres" items="${lovTipInteres}">
@@ -108,28 +117,30 @@ function formatearFecha2(){
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">* Interes</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Interés</label>
                                                  <input class="form-control" name="iexinteres" maxlength="4" value="${requestScope.xPrestCab.iexinteres}" type="text" required disabled placeholder="%"/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Importe Total</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Importe total</label>
                                                 <input class="form-control" name="ieximptotal" maxlength="15" value="${requestScope.xPrestCab.ieximptotal}" type="number" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none">Glosa</label>
                                                 <input class="form-control" name="iexglosa" maxlength="50" value="${requestScope.xPrestCab.iexglosa}" type="text" disabled />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">* Fecha de Prestamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha de préstamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" value="${requestScope.xPrestCab.iexfecpres}" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
+                                                  <input class="form-control" id="iexfecpreshidden" type="hidden" value="${requestScope.xPrestCab.iexfecpres}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">* Fecha Ini Vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none">Fecha ini vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" value="${requestScope.xPrestCab.iexfecinivig}" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
+                                                  <input class="form-control" id="iexfecinivighidden" type="hidden" value="${requestScope.xPrestCab.iexfecinivig}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none">* Frecuencia Préstamo</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none">Frecuencia préstamo</label>
                                                 <select class="form-select" name="iexfrecuencia" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
@@ -141,7 +152,7 @@ function formatearFecha2(){
                                    </div>
                                  </div>
                             </div>
-                            <div class="col-auto mt-4">
+                            <div class="col-auto mt-6">
                                 <h3 id="h2top" class="mb-0">Cronograma</h3>
                             </div>
 
@@ -161,11 +172,11 @@ function formatearFecha2(){
                             		  <tbody class="list" id="customer-order-table-body">
                             			<c:forEach var="xPrestDet" items="${requestScope.xPrestDet}">
                             				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                            				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${xPrestDet.iexidcuota}</a></td>
+                            				  <td class="align-middle white-space-nowrap ps-3 pe-3">${xPrestDet.iexidcuota}</td>
                             				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${xPrestDet.iexfecpre}</td>
-                            				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xPrestDet.ieximpbru}</td>
-                            				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${xPrestDet.iexinteres}</td>
-                            				  <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ps-3 pe-3">${xPrestDet.ieximptotal}</td>
+                            				  <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3">${xPrestDet.ieximpbru}</td>
+                            				  <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3">${xPrestDet.iexinteres}</td>
+                            				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000 ps-3 pe-3">${xPrestDet.ieximptotal}</td>
 
                             				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                             					<div class="font-sans-serif btn-reveal-trigger position-static">

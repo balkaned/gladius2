@@ -76,48 +76,49 @@ function formatearFecha2(){
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarRetencion" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarRetencion" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Retencion</label>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de retención</label>
                                                 <select class="form-select" name="iextipretjud" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo retencion</option>
                                                   <c:forEach var="lovTipretj" items="${lovTipretj}">
                                                       <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov == requestScope.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Resolucion</label>
-                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" required />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Resolución</label>
+                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" placeholder="Ingrese resolución" required />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso Planilla</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso planilla</label>
                                                 <select class="form-select" name="iexcodpro" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar proceso planilla</option>
                                                   <c:forEach var="lovProcesos" items="${lovProcesos}">
                                                       <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Porcentaje</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje %</label>
                                                 <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 placeholder="10%-> 10.0" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Imp. Fijo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. fijo</label>
                                                 <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
                                             </div>
 
@@ -132,7 +133,7 @@ function formatearFecha2(){
                                                     <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Retencion</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar retencion</button>
                                                   </div>
                                                 </div>
                                             </div>

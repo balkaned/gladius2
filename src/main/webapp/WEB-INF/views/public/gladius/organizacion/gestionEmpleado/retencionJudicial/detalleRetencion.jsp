@@ -84,20 +84,20 @@ function formatearFecha2(){
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarRetencion" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarRetencion" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-sm-6 col-md-3 ">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                                 <input type="text" name="iexcorrel"  value="${iexcorrel}"  class="form-control" disabled />
                                                 <input type="hidden" name="iexcorrel2"  value="${iexcorrel}"  />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Retencion</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de retención</label>
                                                 <select class="form-select" name="iextipretjud" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipretj" items="${lovTipretj}">
@@ -106,11 +106,11 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Resolucion</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Resolución</label>
                                                 <input class="form-control" name="iexresolucion" maxlength="50" type="text" value="${requestScope.xRetenJudEmp.iexresolucion}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso Planilla</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso planilla</label>
                                                 <select class="form-select" name="iexcodpro" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovProcesos" items="${lovProcesos}">
@@ -119,21 +119,21 @@ function formatearFecha2(){
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" value="${requestScope.xRetenJudEmp.iexfecini}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled />
                                                 <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xRetenJudEmp.iexfecini}" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" value="${requestScope.xRetenJudEmp.iexfecfin}" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled />
                                                 <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xRetenJudEmp.iexfecfin}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Porcentaje</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje %</label>
                                                 <input class="form-control" name="iexpordesct" maxlength="10" type="number" value="${requestScope.xRetenJudEmp.iexpordesct}"  step=0.01 placeholder="10%-> 10.0" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Imp. Fijo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. fijo</label>
                                                 <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="${requestScope.xRetenJudEmp.ieximpfijo}" value="0.0" required disabled/>
                                             </div>
 
@@ -148,7 +148,7 @@ function formatearFecha2(){
                                                     <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Retencion</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar retencion</button>
                                                   </div>
                                                 </div>
                                             </div>

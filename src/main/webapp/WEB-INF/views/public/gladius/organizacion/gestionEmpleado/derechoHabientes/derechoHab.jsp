@@ -68,7 +68,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoDerechoHab@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Derch Hab</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoDerechoHab@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add derecho hab</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -108,7 +108,7 @@
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${LovDerhab.destipvinculo}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700">${LovDerhab.destipnroiddep}</td>
                                 				  <td class="date align-middle white-space-nowrap fs--1 text-700 text-center pe-4">${LovDerhab.iexnroiddep}</td>
-                                				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
+                                				  <td class="align-middle white-space-nowrap text-end fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LovDerhab.iexfecnac}</td>
 
                                 				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                 					<div class="font-sans-serif btn-reveal-trigger position-static">
@@ -147,7 +147,7 @@
 
                                                                     <div class="col-sm-6 col-md-12 mt-2 mb-4">
                                                                       <div class="form-floating">
-                                                                          <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir Foto</span></button>
+                                                                          <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
                                                                       </div>
                                                                     </div>
                                                                 </form>

@@ -66,16 +66,17 @@
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="buscarLegajo@${idTrab}" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="buscarLegajo@${idTrab}" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de archivos</label>
                                                 <select class="form-select" name="codgrpfile" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar grupo archivo</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
                                                       <option value="${lovGrpFile.idLov}"   ${lovGrpFile.idLov == requestScope.codgrpfile ? 'selected' : ''}  >  ${lovGrpFile.desLov} </option>
                                                   </c:forEach>
@@ -91,7 +92,7 @@
                                                     <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
                                                   </div>
                                                   <div class="col-auto ps-0 pe-0 ms-1">
-                                                    <a class="btn btn-phoenix-secondary btn-sm disabled" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Add GrupoArch</a>
+                                                    <a class="btn btn-phoenix-secondary btn-sm disabled" href="nuevoGrupo@${idTrab}" ><span class="fas fa-plus me-2"></span>Add grupo archivo</a>
                                                   </div>
                                                   <div class="col-auto ps-0 pe-0 ms-1">
                                                     <button class="btn btn-primary btn-sm" type="submit" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fas fa-search me-2"></span>Buscar</button>

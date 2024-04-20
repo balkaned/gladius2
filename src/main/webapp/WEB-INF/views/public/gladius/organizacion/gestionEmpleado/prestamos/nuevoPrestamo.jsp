@@ -72,66 +72,67 @@ function formatearFecha2(){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar nuevo prestamo</h2>
+                                <h2 id="h2top" class="mb-0">Insertar nuevo préstamo</h2>
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarPrestamo" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarPrestamo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Prestamo</label>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de préstamo</label>
                                                 <select class="form-select" name="iextipprestamo" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo prestamo</option>
                                                   <c:forEach  var="lovTippres" items="${lovTippres}">
                                                       <option value="${lovTippres.idLov}" >${lovTippres.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Importe Bruto</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe bruto</label>
                                                 <input class="form-control" name="ieximpbruto" maxlength="10" step=0.01 type="number" placeholder="10000" required />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro Cuotas</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro cuotas</label>
                                                 <input class="form-control" name="iexnrocuota" maxlength="2" type="number" placeholder="48" required />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Interes</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo interés</label>
                                                 <select class="form-select" name="iextipinteres" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo interes</option>
                                                   <c:forEach  var="lovTipInteres" items="${lovTipInteres}">
                                                       <option value="${lovTipInteres.idLov}" >${lovTipInteres.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Interes</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interés %</label>
                                                  <input class="form-control" name="iexinteres" maxlength="4" type="number" step=0.01 required placeholder="10% -> 10.0"/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Importe Total</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe total</label>
                                                 <input class="form-control" name="ieximptotal" maxlength="15" type="number" step=0.01 placeholder="12000" required />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
+                                            <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" maxlength="50" type="text" />
+                                                <input class="form-control" name="iexglosa" maxlength="50" type="text" placeholder="Ingrese glosa" />
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Prestamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de préstamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Ini Vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha ini vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Frecuencia Prestamo</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Frecuencia préstamo</label>
                                                 <select class="form-select" name="iexfrecuencia" required>
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar frecuencia prestamo</option>
                                                   <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
                                                       <option value="${lovFrecPrestamo.idLov}" >${lovFrecPrestamo.desLov}</option>
                                                   </c:forEach>
@@ -149,7 +150,7 @@ function formatearFecha2(){
                                                     <a class="btn btn-phoenix-primary" href="prestamos@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Prestamo</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar prestamo</button>
                                                   </div>
                                                 </div>
                                             </div>

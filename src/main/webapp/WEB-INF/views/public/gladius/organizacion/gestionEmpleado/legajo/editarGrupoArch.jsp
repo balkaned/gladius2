@@ -55,32 +55,33 @@
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarGrupoArch" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarGrupoArch" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${idTrab}" />
+
                                             <div class="col-sm-6 col-md-3">
-                                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                             	<input class="form-control" name="idgrpfiledis" value="${xGrpFile.iexcodgrpfile}" type="text" readonly disabled/>
                                                 <input type="hidden" name="idgrpfile" id="idgrpfile" value="${xGrpFile.iexcodgrpfile}" />
                                             </div>
                                             <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Grupo de Archivos</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grupo de archivos</label>
                                                 <select class="form-select text-black" name="codgrpfile" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar grupo archivo</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
                                                       <option value="${lovGrpFile.idLov}" ${lovGrpFile.idLov == xGrpFile.iexgrpfile ? 'selected' : ''} >${lovGrpFile.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Descripcion File</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción file</label>
                                                 <input class="form-control" name="desfile" type="text" value="${xGrpFile.iexdesgrpfile}" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                            	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
+                                            	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                             	  <select name="estado" class="form-select" required >
                                             		  <option value="1">Activo</option>
                                             		  <option value="0">Inactivo</option>
@@ -96,10 +97,11 @@
                                                     <a class="btn btn-phoenix-primary" href="legajo@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Grupo</button>
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar grupo</button>
                                                   </div>
                                                 </div>
                                             </div>
+
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                               <div class="modal-dialog modal-dialog-centered">
                                             	<div class="modal-content border">

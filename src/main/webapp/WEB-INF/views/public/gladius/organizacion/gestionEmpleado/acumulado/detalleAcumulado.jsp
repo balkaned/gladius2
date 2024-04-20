@@ -68,52 +68,52 @@
                                        </div>
                                   </c:if>
                             </div>
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarAcumulado" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarAcumulado" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Anual</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo anual</label>
                                                 <input class="form-control" name="iexaniotrib" maxlength="6" type="text" value="${requestScope.xEmpAcum.iexaniotrib}" required disabled/>
                                                 <input name="iexaniotrib2" type="hidden" value="${requestScope.xEmpAcum.iexaniotrib}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. Acum Anterior (Desuso)</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. acum anterior (desuso)</label>
                                                 <input class="form-control" name="iexrem_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrem_acum}"  required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu 5ta Afect Acum Anterior (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu 5ta afect acum anterior (desuso)</label>
                                                 <input class="form-control" name="iexrem5taafec_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrem5taafec_acum}" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Renta 5ta Acum Anterior (Desuso)</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Renta 5ta acum anterior (desuso)</label>
                                                 <input class="form-control" name="iexrenta5ta_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrenta5ta_acum}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Rem Afect 5ta Otro Cia</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Rem afect 5ta otro cia</label>
                                                 <input class="form-control" name="iexremafec5ta_otrcia" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexremafec5ta_otrcia}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Desct. 5ta Otra Cia</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desct. 5ta otra cia</label>
                                                 <input class="form-control" name="iexrent5ta_otrcia" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrent5ta_otrcia}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. 4ta Acum (Desuso)</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. 4ta acum (desuso)</label>
                                                 <input class="form-control" name="iexrem4ta_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrem4ta_acum}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Desc 4ta Acum (Desuso)</label>
+                                            <div class="col-sm-6 col-md-5">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desc 4ta acum (desuso)</label>
                                                 <input class="form-control" name="iexrenta4ta_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrenta4ta_acum}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remu. Otra Cia (Desuso)</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remu. otra cia (desuso)</label>
                                                 <input class="form-control" name="iexremotr_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexremotr_acum}" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Dscto. Otra Cia (Desuso)</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dscto. otra cia (desuso)</label>
                                                 <input class="form-control" name="iexrenta_acum" maxlength="10" type="number" step=0.01 value="${requestScope.xEmpAcum.iexrenta_acum}" required disabled/>
                                             </div>
 
@@ -128,7 +128,7 @@
                                                     <a class="btn btn-phoenix-primary" href="acumulado@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Acumulado</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar acumulado</button>
                                                   </div>
                                                 </div>
                                             </div>

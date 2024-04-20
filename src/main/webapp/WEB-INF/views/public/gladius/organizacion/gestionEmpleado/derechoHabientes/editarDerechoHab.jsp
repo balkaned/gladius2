@@ -86,7 +86,7 @@
                                  </div>
                             </c:if>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarDerechoHab" novalidate >
@@ -98,82 +98,82 @@
                                             	<input class="form-control" name="iexcoddepdis" type="text" value="${iexcoddep}" disabled />
                                                 <input class="form-control" name="iexcoddep" type="hidden" value="${iexcoddep}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de documento</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de documento</label>
                                                 <select class="form-select" name="iextipnroiddep" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo documento</option>
                                                   <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                                       <option value="${lovTipdoc.idLov}" ${lovTipdoc.idLov == requestScope.derhabx.iextipnroiddep ? 'selected' : ''} >  ${lovTipdoc.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro doc</label>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro doc</label>
                                                 <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="#" value="${requestScope.derhabx.iexnroiddep}" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* País emisor</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor</label>
                                                 <select class="form-select" name="iexpaisemisor" id="iexpaisemisor" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar pais emisor</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor.idLov}" ${lovPaisEmisor.idLov == requestScope.derhabx.iexpaisemisor ? 'selected' : ''} >  ${lovPaisEmisor.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido paterno</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
                                                 <input class="form-control" name="iexapepatdep" maxlength="100" type="text" value="${requestScope.derhabx.iexapepatdep}" placeholder="Reynoso" required />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Apellido materno</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
                                                 <input class="form-control" name="iexapematdep" maxlength="100" type="text" value="${requestScope.derhabx.iexapematdep}" placeholder="Dominguez" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nombres</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
                                                 <input class="form-control" name="iexnomdep" maxlength="100" type="text" value="${requestScope.derhabx.iexnomdep}" placeholder="Alberto Gabriel" required />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                 <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${requestScope.derhabx.iexfecnac}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                                                 <input class="form-control" id="iexfecnachidden" type="hidden" value="${requestScope.derhabx.iexfecnac}" />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Sexo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo</label>
                                                 <select class="form-select" name="iexsexo" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar sexo</option>
                                                   <c:forEach var="lovSexo" items="${lovSexo}">
                                                       <option value="${lovSexo.idLov}" ${lovSexo.idLov == requestScope.derhabx.iexsexo? 'selected' : ''} >  ${lovSexo.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Vínculo</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Vínculo</label>
                                                 <select class="form-select" name="iextipvinculo" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar vinculo</option>
                                                   <c:forEach var="lovVincul" items="${lovVincul}">
                                                       <option value="${lovVincul.idLov}" ${lovVincul.idLov == requestScope.derhabx.iextipvinculo? 'selected' : ''} >  ${lovVincul.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo documento acredito vínculo</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo documento acredito vínculo</label>
                                                 <select class="form-select" name="iextipdocacredit" required >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo doc acredito</option>
                                                   <c:forEach var="lovAcredVincul" items="${lovAcredVincul}">
                                                       <option value="${lovAcredVincul.idLov}" ${lovAcredVincul.idLov == requestScope.derhabx.iextipdocacredit? 'selected' : ''} >  ${lovAcredVincul.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de doc acredito vínculo</label>
-                                                <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" value="${requestScope.derhabx.iexnrodocacredit}" required placeholder="#"/>
-                                            </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de concepción</label>
-                                                <input class="form-control" name="iexmesconcep" maxlength="50" type="text" value="${requestScope.derhabx.iexmesconcep}" />
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de doc acredito vínculo</label>
+                                                <input class="form-control" name="iexnrodocacredit" maxlength="15" type="text" value="${requestScope.derhabx.iexnrodocacredit}" required placeholder="Ingrese numero doc acredito" required />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Mes de concepción</label>
+                                                <input class="form-control" name="iexmesconcep" maxlength="50" type="text" value="${requestScope.derhabx.iexmesconcep}" placeholder="Ingrese mes" />
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Larga distancia</label>
                                                 <select class="form-select" name="iexcodlar">
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovLarDistancia" items="${lovLarDistancia}">
@@ -183,17 +183,17 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Número de telefono</label>
-                                                 <input class="form-control" name="iexnrotelf" maxlength="50" type="text" value="${requestScope.derhabx.iexnrotelf}" placeholder="+51 987 893556" />
+                                                 <input class="form-control" name="iexnrotelf" maxlength="50" type="text" value="${requestScope.derhabx.iexnrotelf}" placeholder="987 893556" />
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Email</label>
                                                 <input class="form-control" name="iexemail" maxlength="50" type="text" value="${requestScope.derhabx.iexemail}" placeholder="Ingrese su correo"/>
                                             </div>
                                             <hr/>
-                                            <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de via 1</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de via 1</label>
                                                 <select class="form-select" name="iextipvia_dom1" required>
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo via</option>
                                                   <c:forEach var="lovTipVia" items="${lovTipVia}">
                                                       <option value="${lovTipVia.idLov}"  ${lovTipVia.idLov == requestScope.derhabx.iextipvia_dom1 ? 'selected' : ''} >  ${lovTipVia.desLov} </option>
                                                   </c:forEach>
@@ -231,25 +231,25 @@
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de bloque 1</label>
                                                   <input class="form-control" name="iexblock_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexblock_dom1}" placeholder="B3"/>
                                             </div>
-                                            <div class="col-sm-6 col-md-3">
+                                            <div class="col-sm-6 col-md-2">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 1</label>
                                                 <input class="form-control" name="iexetapa_dom1" maxlength="5" type="text" value="${requestScope.derhabx.iexetapa_dom1}" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de zona 1</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona 1</label>
                                                 <select class="form-select" name="iextipzona_dom1" required>
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo zona</option>
                                                   <c:forEach var="lovTipZona" items="${lovTipZona}">
                                                       <option value="${lovTipZona.idLov}" ${lovTipZona.idLov == requestScope.derhabx.iextipzona_dom1 ? 'selected' : ''} >  ${lovTipZona.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-8">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Referencia 1</label>
-                                                 <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" value="${requestScope.derhabx.iexreferencia_dom1}" required/>
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia 1</label>
+                                                 <input class="form-control" name="iexreferencia_dom1" maxlength="200" type="text" value="${requestScope.derhabx.iexreferencia_dom1}" placeholder="Ingrese una referencia" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* País emisor 1 [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 1</label>
                                                 <select class="form-select" name="iexpaisemisor1" id="iexpaisemisor1" required>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovPaisEmisor1" items="${lovPaisEmisor}">
@@ -260,7 +260,7 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 1</label>
                                                 <select class="form-select" name="iexdepart_origen1" id="iexdepart_origen1">
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar departamento</option>
                                                   <c:forEach var="lovDept_origen1" items="${requestScope.lovDept_origen1}">
                                                       <option value="${lovDept_origen1.idLov}" ${lovDept_origen1.idLov == requestScope.derhabx.iexdepart_origen1 ? 'selected' : ''} >${lovDept_origen1.desLov}</option>
                                                   </c:forEach>
@@ -269,26 +269,26 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 1</label>
                                                 <select class="form-select" name="iexprovin_origen1" id="iexprovin_origen1">
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar provincia</option>
                                                   <c:forEach var="lovProvin_origen1" items="${requestScope.lovProvin_origen1}">
                                                       <option value="${lovProvin_origen1.idLov}" ${lovProvin_origen1.idLov == requestScope.derhabx.iexprovin_origen1 ? 'selected' : ''} >${lovProvin_origen1.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
                                                 <select class="form-select" name="iexubigeo_dom1" id="iexdistri_origen1">
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar distrito</option>
                                                   <c:forEach var="lovDist_origen1" items="${requestScope.lovDist_origen1}">
                                                       <option value="${lovDist_origen1.idLov}"  ${lovDist_origen1.idLov == requestScope.derhabx.iexubigeo_dom1 ? 'selected' : ''}   >${lovDist_origen1.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
                                             <hr/>
-                                            <div class="col-sm-6 col-md-3">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo via 2</label>
                                                 <select class="form-select" name="iextipvia_dom2" id="iextipvia_dom2" >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo via</option>
                                                   <c:forEach var="lovTipVia2" items="${lovTipVia2}">
                                                       <option value="${lovTipVia2.idLov}" ${lovTipVia2.idLov == requestScope.derhabx.iextipvia_dom2 ? 'selected' : ''} >  ${lovTipVia2.desLov} </option>
                                                   </c:forEach>
@@ -326,14 +326,14 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de bloque 2</label>
                                                 <input class="form-control" name="iexblock_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexblock_dom2}" placeholder="B3"/>
                                             </div>
-                                            <div class="col-sm-6 col-md-3">
+                                            <div class="col-sm-6 col-md-2">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Etapa 2</label>
                                                 <input class="form-control" name="iexetapa_dom2" maxlength="6" type="text" value="${requestScope.derhabx.iexetapa_dom2}" placeholder="E2"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de zona 2</label>
                                                 <select class="form-select" name="iextipzona_dom2" id="iextipzona_dom2" >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar tipo zona</option>
                                                   <c:forEach var="lovTipZona2" items="${lovTipZona2}">
                                                       <option value="${lovTipZona2.idLov}" ${lovTipZona2.idLov == requestScope.derhabx.iextipzona_dom2 ? 'selected' : ''} >  ${lovTipZona2.desLov} </option>
                                                   </c:forEach>
@@ -344,9 +344,9 @@
                                                 <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" placeholder="Ingrese una referencia"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2 [TT26]</label>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2</label>
                                                 <select class="form-select" name="iexpaisemisor2" id="iexpaisemisor2" >
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar pais</option>
                                                   <c:forEach var="lovPaisEmisor2" items="${lovPaisEmisor}">
                                                       <option value="${lovPaisEmisor2.idLov}" ${lovPaisEmisor2.idLov == requestScope.derhabx.iexnacion_origen2 ? 'selected' : ''} >  ${lovPaisEmisor2.desLov} </option>
                                                   </c:forEach>
@@ -355,7 +355,7 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento 2</label>
                                                 <select class="form-select" name="iexdepart_origen2" id="iexdepart_origen2">
-                                                    <option value="" selected >Seleccionar</option>
+                                                    <option value="" selected >Seleccionar departamento</option>
                                                     <c:forEach var="lovDept_origen2" items="${requestScope.lovDept_origen2}">
                                                         <option value="${lovDept_origen2.idLov}"     ${lovDept_origen2.idLov == requestScope.derhabx.iexdepart_origen2 ? 'selected' : ''}     >${lovDept_origen2.desLov}</option>
                                                     </c:forEach>
@@ -364,16 +364,16 @@
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 2</label>
                                                 <select class="form-select" name="iexprovin_origen2" id="iexprovin_origen2">
-                                                    <option value="" selected >Seleccionar</option>
+                                                    <option value="" selected >Seleccionar provincia</option>
                                                     <c:forEach var="lovProvin_origen2" items="${requestScope.lovProvin_origen2}">
                                                           <option value="${lovProvin_origen2.idLov}"  ${lovProvin_origen2.idLov  == requestScope.derhabx.iexprovin_origen2 ? 'selected' : ''}       >${lovProvin_origen2.desLov}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
                                                 <select class="form-select" name="iexubigeo_dom2" id="iexdistri_origen2">
-                                                    <option value="" selected >Seleccionar</option>
+                                                    <option value="" selected >Seleccionar distrito</option>
                                                     <c:forEach var="lovDist_origen2" items="${requestScope.lovDist_origen2}">
                                                         <option value="${lovDist_origen2.idLov}"  ${lovDist_origen2.idLov == requestScope.derhabx.iexubigeo_dom2 ? 'selected' : ''}   >${lovDist_origen2.desLov}</option>
                                                     </c:forEach>
@@ -383,7 +383,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Domicilio</label>
                                                 <select class="form-select" name="iexcenasis" id="iexcenasis">
-                                                  <option value="" selected >Seleccionar</option>
+                                                  <option value="" selected >Seleccionar domicilio</option>
                                                   <option value="1" ${requestScope.derhabx.iexcenasis=='1' ? 'selected' : ''} >Direccion principal</option>
                                                   <option value="2" ${requestScope.derhabx.iexcenasis=='2' ? 'selected' : ''} >Direccion secundaria</option>
                                                 </select>
@@ -404,6 +404,7 @@
                                                   </div>
                                                 </div>
                                             </div>
+
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                               <div class="modal-dialog modal-dialog-centered">
                                             	<div class="modal-content border">

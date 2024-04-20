@@ -84,20 +84,20 @@ function formatearFecha2(){
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarContrato" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarContrato" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-3">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID</label>
-                                                  <input class="form-control datetimepicker" name="iexcorrel" id="iexcorrel" type="text" value="${iexcorrel}" required disabled/>
+                                            <div class="col-sm-6 col-md-2">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
+                                                  <input class="form-control" name="iexcorrel" id="iexcorrel" type="text" value="${iexcorrel}" required disabled/>
                                                   <input name="iexcorrel2" type="hidden" value="${iexcorrel}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Contrato</label>
+                                            <div class="col-sm-6 col-md-8">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de contrato</label>
                                                 <select class="form-select" name="iextipcont" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <c:forEach var="lovTipcont" items="${lovTipcont}">
@@ -105,26 +105,26 @@ function formatearFecha2(){
                                                   </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" value="${requestScope.xContratoEmp.iexfecini}" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                                   <input class="form-control" id="iexfecinihidden" type="hidden" value="${requestScope.xContratoEmp.iexfecini}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                            <div class="col-sm-6 col-md-5">
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                                   <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" value="${requestScope.xContratoEmp.iexfecfin}" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
                                                   <input class="form-control" id="iexfecfinhidden" type="hidden" value="${requestScope.xContratoEmp.iexfecfin}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Modelo Contrato</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modelo contrato</label>
                                                 <select class="form-select" name="iexmodcont" required disabled>
                                                   <option value="" selected >Seleccionar</option>
                                                   <option value="1" ${ 1 == requestScope.xContratoEmp.iexmodcont ? 'selected' : ''} > Modelo 1</option>
                                                   <option value="2" ${ 2 == requestScope.xContratoEmp.iexmodcont ? 'selected' : ''} > Modelo 2</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Estado</label>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                                 <select class="form-select" name="iexestado" required disabled>
                                                   <option value="1" ${ 1 == requestScope.xContratoEmp.iexestado ? 'selected' : ''} >Activo</option>
                                                   <option value="0" ${ 0 == requestScope.xContratoEmp.iexestado ? 'selected' : ''} >Inactivo</option>
@@ -142,7 +142,7 @@ function formatearFecha2(){
                                                     <a class="btn btn-phoenix-primary" href="contrato@${idTrab}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
-                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar Contrato</button>
+                                                    <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar contrato</button>
                                                   </div>
                                                 </div>
                                             </div>

@@ -66,7 +66,11 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
+
                     p.setDescodpro(rs.getString("descodpro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDescodpro(cap.letras(p.getDescodpro()));
+
                     p.setIextipretjud(rs.getString("iextipretjud"));
                     p.setDestipretjud(rs.getString("destipretjud"));
                     p.setIexresolucion(rs.getString("iexresolucion"));

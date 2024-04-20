@@ -4,6 +4,7 @@ import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.PrestamoCab;
 import com.balkaned.gladius.beans.PrestamoDet;
 import com.balkaned.gladius.dao.PrestamoDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -83,7 +84,11 @@ public class PrestamoDaoImpl implements PrestamoDao {
                     p.setIeximpbru(rs.getDouble("ieximpbru"));
                     p.setIexinteres(rs.getDouble("iexinteres"));
                     p.setIeximptotal(rs.getDouble("ieximptotal"));
+
                     p.setIexglosa(rs.getString("iexglosa"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexglosa(cap.letras(p.getIexglosa()));
+
                     p.setIexestado(rs.getString("iexestado"));
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));

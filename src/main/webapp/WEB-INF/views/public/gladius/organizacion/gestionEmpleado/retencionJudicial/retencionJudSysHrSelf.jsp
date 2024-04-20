@@ -67,7 +67,7 @@
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Retencion</a>
+                                      <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevaRetencion@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add retencion</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -96,9 +96,9 @@
                                 			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
-                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
-                                				  <td class="align-middle white-space-nowrap text-center text-700">${LstRetencionDet.iexresolucion}</td>
-                                				  <td class="align-middle white-space-nowrap text-center text-1000">${LstRetencionDet.descodpro}</td>
+                                				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
+                                				  <td class="align-middle white-space-nowrap text-body fs-9">${LstRetencionDet.iexresolucion}</td>
+                                				  <td class="align-middle white-space-nowrap text-body fs-9">${LstRetencionDet.descodpro}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecini}</td>
                                 				  <td class="date align-middle white-space-nowrap fw-semi-bold text-1000 text-center pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstRetencionDet.iexfecfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${LstRetencionDet.iexpordesct} %</span></td>

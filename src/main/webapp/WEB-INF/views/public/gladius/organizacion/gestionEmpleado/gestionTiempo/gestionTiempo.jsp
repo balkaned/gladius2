@@ -16,7 +16,6 @@
 
 <script>
 function enviaForm(variable){
-    //document.getElementById("frmplaserv").submit();
     if(variable==1){
         document.getElementById("accion").value="QRY";
     }else if(variable==2){
@@ -144,14 +143,14 @@ function program_tur_row(turno, fecini,  fecfin){
                               </div>
                               <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                   <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                  <a class="btn btn-phoenix-secondary ms-1 btn-sm" href="#"><span class="fa-solid fa-plus me-2"></span>Add Tiempos</a>
+                                  <!--<a class="btn btn-phoenix-secondary ms-1 btn-sm" href="#"><span class="fa-solid fa-plus me-2"></span>Add tiempos</a>-->
                               </div>
                             </div>
 
-                            <div class="row g-5">
+                            <div class="row g-3">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-4 mb-0 needs-validation" id="GestionTiempos" method="POST" action="grabarTurno@${idTrab}" novalidate >
+                                     <form class="row g-3 mb-0 needs-validation" id="GestionTiempos" method="POST" action="grabarTurno@${idTrab}" novalidate >
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                         <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                         <input type="hidden" name="accion"  id="accion"   >
@@ -167,14 +166,14 @@ function program_tur_row(turno, fecini,  fecfin){
                                              <tr>
                                                  <div class="col-md-12">
                                                     <input type="checkbox" name="iexctlasipag" id="iexctlasipag"  value="1" class="form-check-input" ${requestScope.xempxturno.iexctlasipag =='1' ? 'checked=true' : ''}  >
-                                                    <label class="form-check-label ms-2">Control Asistenca para Pago?</label>
+                                                    <label class="form-check-label ms-2">Control asistenca para pago?</label>
                                                  </div>
                                              </tr>
                                              <tr>
                                                 <div class="col-sm-6 col-md-4">
-                                                	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Turno</label>
-                                                	  <select id="slc_tipturno" name="slc_tipturno" class="form-select" onchange="jumpTo('slc_tipturno')" >
-                                                		 <option value="-1" >Seleccionar</option>
+                                                	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de turno</label>
+                                                	  <select id="slc_tipturno" name="slc_tipturno" class="form-select form-select-sm" onchange="jumpTo('slc_tipturno')" >
+                                                		 <option value="-1" >Seleccionar tipo turno</option>
                                                          <c:forEach  var="lovTipTurno" items="${lovTipTurno}">
                                                            <option value="${lovTipTurno.idLov}" ${lovTipTurno.idLov == xempxturno.iextipturno ? 'selected' : ''}>${lovTipTurno.desLov}</option>
                                                          </c:forEach>
@@ -183,28 +182,28 @@ function program_tur_row(turno, fecini,  fecfin){
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="col-md-12 col-sm-6">
+                                                    <div class="col-sm-6 col-md-7">
                                                         <table style="display: block;overflow-x: auto;white-space: nowrap;">
                                                             <tr>
-                                                                <td> Lun <input type="checkbox" class="form-check-input" name="iexlunes" id="iexlunes" value="1" class="flat"  ${requestScope.xempxturno.iexlunes =='1' ? 'checked=true' : ''}   ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} > </td>
-                                                                <td> Mar <input type="checkbox" class="form-check-input" name="iexmartes" id="iexmartes" value="1" class="flat" ${requestScope.xempxturno.iexmartes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >  </td>
-                                                                <td> Mie <input type="checkbox" class="form-check-input" name="iexmiercoles" id="iexmiercoles" value="1" class="flat"  ${requestScope.xempxturno.iexmiercoles =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
-                                                                <td> Jue <input type="checkbox" class="form-check-input" name="iexjueves" id="iexjueves" value="1" class="flat" ${requestScope.xempxturno.iexjueves =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
-                                                                <td> Vie <input type="checkbox" class="form-check-input" name="iexviernes" id="iexviernes" value="1" class="flat" ${requestScope.xempxturno.iexviernes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >  </td>
-                                                                <td> Sab <input type="checkbox" class="form-check-input" name="iexsabado" id="iexsabado" value="1" class="flat"  ${requestScope.xempxturno.iexsabado =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >   </td>
-                                                                <td> Dom <input type="checkbox" class="form-check-input" name="iexdomingo" id="iexdomingo" value="1" class="flat"  ${requestScope.xempxturno.iexdomingo =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
+                                                                <td class="text-body fs--1" > Lun <input type="checkbox" class="form-check-input text-body fs-9" name="iexlunes" id="iexlunes" value="1" class="flat"  ${requestScope.xempxturno.iexlunes =='1' ? 'checked=true' : ''}   ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} > </td>
+                                                                <td class="text-body fs--1"> Mar <input type="checkbox" class="form-check-input text-body fs-9" name="iexmartes" id="iexmartes" value="1" class="flat" ${requestScope.xempxturno.iexmartes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >  </td>
+                                                                <td class="text-body fs--1"> Mie <input type="checkbox" class="form-check-input text-body fs-9" name="iexmiercoles" id="iexmiercoles" value="1" class="flat"  ${requestScope.xempxturno.iexmiercoles =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
+                                                                <td class="text-body fs--1"> Jue <input type="checkbox" class="form-check-input text-body fs-9" name="iexjueves" id="iexjueves" value="1" class="flat" ${requestScope.xempxturno.iexjueves =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
+                                                                <td class="text-body fs--1"> Vie <input type="checkbox" class="form-check-input text-body fs-9" name="iexviernes" id="iexviernes" value="1" class="flat" ${requestScope.xempxturno.iexviernes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >  </td>
+                                                                <td class="text-body fs--1"> Sab <input type="checkbox" class="form-check-input text-body fs-9" name="iexsabado" id="iexsabado" value="1" class="flat"  ${requestScope.xempxturno.iexsabado =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >   </td>
+                                                                <td class="text-body fs--1"> Dom <input type="checkbox" class="form-check-input text-body fs-9" name="iexdomingo" id="iexdomingo" value="1" class="flat"  ${requestScope.xempxturno.iexdomingo =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
                                                            </tr>
                                                            <tr>
                                                                <td>
-                                                                    <select name="iexturlun" style="width:170px;" id="iexturlun" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
+                                                                    <select name="iexturlun" style="width:150px; font-size:11px;" id="iexturlun" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
-                                                                            <option value=${LstTurno.iexcodturno}    ${LstTurno.iexcodturno == xempxturno.iexturlun ? 'selected' : ''}   > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
+                                                                            <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == xempxturno.iexturlun ? 'selected' : ''}   > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
                                                                        </c:forEach>
                                                                     </select>
                                                                </td>
                                                                <td>
-                                                                    <select name="iexturmar" style="width:170px;" id="iexturmar" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
+                                                                    <select name="iexturmar" style="width:150px; font-size:11px;" id="iexturmar" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iexturmar ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -212,7 +211,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                                     </select>
                                                                </td>
                                                                <td>
-                                                                    <select name="iexturmie" style="width:170px;" id="iexturmie" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}>
+                                                                    <select name="iexturmie" style="width:150px; font-size:11px;" id="iexturmie" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}>
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iexturmie ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -220,7 +219,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                                     </select>
                                                                </td>
                                                                <td>
-                                                                    <select name="iexturjue" style="width:170px;" id="iexturjue" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
+                                                                    <select name="iexturjue" style="width:150px; font-size:11px;" id="iexturjue" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iexturjue ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -228,7 +227,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                                     </select>
                                                                </td>
                                                                <td>
-                                                                    <select name="iexturvie" style="width:170px;" id="iexturvie" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >
+                                                                    <select name="iexturvie" style="width:150px; font-size:11px;" id="iexturvie" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iexturvie ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -236,7 +235,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                                     </select>
                                                                </td>
                                                                <td>
-                                                                    <select name="iextursab" style="width:170px;" id="iextursab" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
+                                                                    <select name="iextursab" style="width:150px; font-size:11px;" id="iextursab" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}"  >
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iextursab ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -244,7 +243,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                                                     </select>
                                                                </td>
                                                                <td class="pe-10">
-                                                                    <select name="iexturdom" style="width:170px;" id="iexturdom" class="form-select text-black" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
+                                                                    <select name="iexturdom" style="width:150px; font-size:11px;" id="iexturdom" class="form-select form-select-sm" ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >
                                                                        <option value="-1">-- --</option>
                                                                        <c:forEach  var="LstTurno" items="${LstTurno}">
                                                                             <option value=${LstTurno.iexcodturno}  ${LstTurno.iexcodturno == xempxturno.iexturdom ? 'selected' : ''}  > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
@@ -259,7 +258,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12 col-sm-6 mt-2">
-                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-phoenix-secondary btn-sm" type="submit" onclick="updtipturno();"><span class="fa-solid fa-user-clock me-2"></span>Grabar horario</button>
+                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary btn-sm" type="submit" onclick="updtipturno();"><span class="fa-solid fa-business-time me-2"></span>Grabar horario</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -270,20 +269,20 @@ function program_tur_row(turno, fecini,  fecfin){
                                                     <div class="col-9">
                                                         <span class="badge badge-tag me-2 mb-2">Configuración de turnos</span>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-6">
+                                                    <div class="col-sm-6 col-md-4 ">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Desde</label>
                                                         <input type="text" name="fecini"  id="fecini"  value="${requestScope.fecini}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-6">
+                                                    <div class="col-sm-6 col-md-4 ">
                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hasta</label>
                                                         <input type="text" name="fecfin"  id="fecfin"  value="${requestScope.fecfin}" class="form-control datetimepicker" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required>
                                                     </div>
                                                </tr>
                                                <tr>
                                                    <td>
-                                                        <div class="col-12">
+                                                        <div class="col-8">
                                                             <input type="file" name="filexls" id="filexls" class="form-control">
-                                                            <button name="btn_xls" class="btn btn-phoenix-success btn-sm mt-2 mb-2 " onclick="enviaForm('6')"><span class="fa-solid fa-download me-2"></span>Exportar Excel</button>
+                                                            <button name="btn_xls" class="btn btn-phoenix-success btn-sm mt-2 mb-2 " onclick="enviaForm('6')">Exportar excel</button>
                                                         </div>
                                                    </td>
                                                </tr>

@@ -63,11 +63,11 @@
                             <div class="mb-8">
                                 <div>
                                   <div class="col-12 mt-4">
-                                    <h2 class="mb-0">Prestamos</h2>
+                                    <h2 class="mb-0">Préstamos</h2>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoPrestamo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add Prestamo</a>
+                                      <a class="btn btn-primary btn-sm ms-1" href="nuevoPrestamo@${idTrab}"><span class="fa-solid fa-plus me-2"></span>Add prestamo</a>
                                   </div>
                                 </div>
                                 <div class="search-box w-100 mb-3">
@@ -97,11 +97,11 @@
                                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                               <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstPrestCab.iexcorrel}</a></td>
                                               <td class="total align-middle text-start fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstPrestCab.destippres}</span></td>
-                                              <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.ieximpbru}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700">${LstPrestCab.iexnrocuotas}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-body fs-9">${LstPrestCab.ieximpbru}</td>
+                                              <td class="align-middle white-space-nowrap text-center text-body fs-9">${LstPrestCab.iexnrocuotas}</td>
                                               <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${LstPrestCab.iexinteres} %</span></td>
-                                              <td class="date align-middle white-space-nowrap fs--1 fw-bold text-1000 text-center pe-4">${LstPrestCab.ieximptotal}</td>
-                                              <td class="align-middle white-space-nowrap text-start text-700">${LstPrestCab.iexglosa}</td>
+                                              <td class="date align-middle white-space-nowrap fs--1 fw-bold text-1200 text-end pe-4">${LstPrestCab.ieximptotal}</td>
+                                              <td class="align-middle white-space-nowrap text-start text-body fs-9">${LstPrestCab.iexglosa}</td>
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">
