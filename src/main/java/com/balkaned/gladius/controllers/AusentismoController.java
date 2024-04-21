@@ -256,12 +256,15 @@ public class AusentismoController {
         model.addAttribute("iexcodtra", codtra);
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+
         if (fecini != null && fecfin != null) {
             model.addAttribute("LstAusentismoView", ausentismoService.listaAusentismoGen(idCompania, regimen, fecini, fecfin, xcodtra));
         }
+
         model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, regimen));
         model.addAttribute("iexcodtra", xcodtra);
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
+
         return new ModelAndView("public/gladius/gestionTiempo/ausentismo/gestionTiempoListAusentismo");
     }
 

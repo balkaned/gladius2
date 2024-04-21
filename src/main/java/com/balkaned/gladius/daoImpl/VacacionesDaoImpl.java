@@ -216,6 +216,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
 
     public List<VacacionProgramacion> listaVacacionesGen(Integer codcia, String regimen, String fecini, String fecfin, Integer codtra) {
+
         String sql = "  select  " +
                 "	 c.iexcodcia, " +
                 "	 c.iexcodtra, " +
@@ -270,13 +271,11 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "		 (a.iexfecini <to_date('" + fecini + "','DD/MM/YYYY')  and  a.iexfecfin >to_date('" + fecfin + "','DD/MM/YYYY') )  " +
                 "	 									  )  ";
         if (codtra != null && codtra != 0) {
-
             sql = sql + " and c.iexcodtra=" + codtra + " ";
-
         }
 
         sql = sql + " order by 3,4 asc ";
-        ;
+
         return template.query(sql, new ResultSetExtractor<List<VacacionProgramacion>>() {
             public List<VacacionProgramacion> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<VacacionProgramacion> lista = new ArrayList<VacacionProgramacion>();
@@ -288,7 +287,10 @@ public class VacacionesDaoImpl implements VacacionesDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcorrel(rs.getInt("vac_id"));
                     p.setNrodoc(rs.getString("iexnrodoc"));
+
                     p.setDesnomtra(rs.getString("nomtra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesnomtra(cap.letras(p.getDesnomtra()));
 
                     p.setFecing(rs.getString("fecing"));
                     FormatterFecha f = new FormatterFecha();
@@ -325,9 +327,19 @@ public class VacacionesDaoImpl implements VacacionesDao {
                     Empleado p = new Empleado();
 
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexapepat(cap.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexapemat(cap2.letras(p.getIexapemat()));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexnomtra(cap3.letras(p.getIexnomtra()));
+
                     p.setIexfecing(rs.getString("fecing"));
 
                     lista.add(p);

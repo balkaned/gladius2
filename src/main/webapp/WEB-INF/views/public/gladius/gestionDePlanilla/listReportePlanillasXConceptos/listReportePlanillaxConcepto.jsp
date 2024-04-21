@@ -18,7 +18,7 @@
                 url: "getlovsLOVCODTRA",
                 data: {"accion": "LOVCODTRA", "iexcodreg": $("#iexcodreg").val()},
                 success: function (data) {
-                    var opt = "<option value='' > -- Selecciona -- </option>";
+                    var opt = "<option value='' >Seleccionar</option>";
                     for (var i in data) {
                         opt += "<option value='" + data[i].iexcodtra + "'>" +
                             data[i].iexapepat + " " + data[i].iexapemat + " " +
@@ -131,22 +131,22 @@
                 </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                        <form class="row g-3 mb-0 needs-validation" method="POST" action="" novalidate>
                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
 
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo inicio</label>
                                 <input class="form-control" type="text" name="perini" id="perini" value="${requestScope.xperini}" placeholder="2023" required>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo fin</label>
                                 <input class="form-control" type="text" name="perfin"  id="perfin" value="${requestScope.xperfin}" placeholder="2024" required>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de Concepto</label>
+                            <div class="col-sm-6 col-md-8">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de concepto</label>
                                 <select class="form-select" name="codcon"  id="codcon" required>
                                     <option value="" selected>Seleccionar</option>
                                     <c:forEach var = "lstConcepto" items = "${requestScope.lstConcepto}">

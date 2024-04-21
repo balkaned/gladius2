@@ -18,7 +18,6 @@
             $("#alerts").hide(6000);
         }, 3000);
     }
-
 </script>
 
 <body>
@@ -44,57 +43,45 @@
                 </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                        <form class="row g-3 mb-0 needs-validation" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-7">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código Trabajador</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código trabajador</label>
                                 <select class="form-select" name="percodtra" id="percodtra" required>
-                                    <option value="" selected>Seleccionar</option>
+                                    <option value="" selected>Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
-                                        <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''}     >
-                                            [${LstEmpleadoRes.iexcodtra}]
-                                            - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
+                                        <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''} >[${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
-                                <input class="form-control" type="text" id="peranio" name="peranio"
-                                       value="${requestScope.peranio}" placeholder="yyyy" required>
+                                <input class="form-control" type="text" id="peranio" name="peranio" value="${requestScope.peranio}" placeholder="yyyy" required>
                             </div>
                             <div class="col-sm-6 col-md-12">
-                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span
-                                        class="fa-solid fa-magnifying-glass me-2"></span>Consultar
-                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <input class="form-control" type="text"
-                                       value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}"
-                                       readonly disabled>
+                                <input class="form-control" type="text" value="${requestScope.fichaEmp.iexapepat} ${requestScope.fichaEmp.iexapemat} ${requestScope.fichaEmp.iexnomtra}" readonly disabled>
                             </div>
-
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° Documento</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}"
-                                       readonly disabled>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">N° documento</label>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexnrodoc}" readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexflgest}"
-                                       readonly disabled>
+                                <input type="text" class="form-control" value="${estadoTrab}" readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}"
-                                       readonly disabled>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de ingreso</label>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecing}" readonly disabled>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de cese</label>
-                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}"
-                                       readonly disabled>
+                                <input type="text" class="form-control" value="${requestScope.fichaEmp.iexfecret}" readonly disabled>
                             </div>
                         </form>
                     </div>
@@ -126,7 +113,7 @@
                                         <th class="sort align-middle text-center" scope="col"
                                             data-sort="date">CORREL
                                         </th>
-                                        <th class="sort align-middle white-space-nowrap text-center ps-3 pe-3" scope="col"
+                                        <th class="sort align-middle white-space-nowrap text-center ps-3 pe-0" scope="col"
                                             data-sort="date">TOTAL DE INGRESO
                                         </th>
                                         <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
@@ -165,10 +152,7 @@
                                                            data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                                 </div>
                                             </td>
-                                            <td class="order align-middle white-space-nowrap py-0">
-                                                <a href="#"><span
-                                                        class="fa-solid fa-calendar-days me-2"></span></a> ${Res_planilla5ta.iexnroper}
-                                            </td>
+                                            <td class="order align-middle white-space-nowrap py-0"><span class="fa-regular fa-calendar me-2"></span>${Res_planilla5ta.iexnroper}</td>
                                             <td class="total align-middle text-center fw-semi-bold text-1000">
                                                     ${Res_planilla5ta.iexcodpro}</td>
                                             <td class="total align-middle text-center fw-semi-bold text-600 ps-2 pe-2"><span
@@ -176,7 +160,7 @@
                                                     class="badge-label">${Res_planilla5ta.descodpro}</span></span></td>
                                             <td class="total align-middle text-center fw-semi-bold text-1000">
                                                     ${Res_planilla5ta.iexcorrel}</td>
-                                            <td class="total align-middle text-center fw-bold text-1000">
+                                            <td class="total align-middle text-end fw-bold text-1000">
                                                 <fmt:formatNumber value="${Res_planilla5ta.totalingreso}"
                                                                   type="number" maxFractionDigits="2"
                                                                   pattern='###,###.00'/></td>
@@ -220,11 +204,9 @@
                                                         <a id="dropdownmenutable" class="dropdown-item" target="_blank"
                                                            href="AWSorFTP_flgsource@verReportePDF@${idComp}@${Res_planilla5ta.iexcodtra}@null@null@Boleta5taper@3UP_CODPRO=${Res_planilla5ta.iexcodpro}UP_NROPER=${Res_planilla5ta.iexnroper}UP_CORREL=${Res_planilla5ta.iexcorrel}@null@null@null">
                                                            <span class="fa-solid fa-download me-2"></span>Reporte 5ta PDF</a>
-
                                                     </div>
                                                 </div>
                                             </td>
-
                                         </tr>
 
                                         <c:set var="xtotingreso"
@@ -246,7 +228,7 @@
                                         <tr >
                                             <td></td>
                                             <td colspan="4"><h5>Totales</h5></td>
-                                            <td class="total align-middle text-center "><h5><fmt:formatNumber value="${xtotingreso}" type="number" maxFractionDigits="2" pattern='###,###.00'/></h5></td>
+                                            <td class="total align-middle text-end "><h5><fmt:formatNumber value="${xtotingreso}" type="number" maxFractionDigits="2" pattern='###,###.00'/></h5></td>
                                             <td class="total align-middle text-center "><h5><fmt:formatNumber value="${xtotimp5ta}" type="number" maxFractionDigits="2" pattern='###,###.00'/></h5></td>
                                             <td class="total align-middle text-center"><h5><fmt:formatNumber value="${ximp5taotrciames}" type="number" maxFractionDigits="2" pattern='###,###.00'/></h5></td>
                                             <td class="total align-middle text-center "><h5><fmt:formatNumber value="${xtotdesc5ta}" type="number" maxFractionDigits="2" pattern='###,###.00'/></h5></td>

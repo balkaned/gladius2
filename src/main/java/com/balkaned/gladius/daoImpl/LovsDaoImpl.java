@@ -593,7 +593,6 @@ public class LovsDaoImpl implements LovsDao {
 
     public List<Empleado> listaTrabajadoresReg(Integer codcia, String regimen) {
 
-        List<Empleado> lista = null;
         String sql = " select  " +
                 "iexcodtra, " +
                 "iexapepat, iexapemat, iexnomtra, " +
@@ -609,12 +608,24 @@ public class LovsDaoImpl implements LovsDao {
                     Empleado p = new Empleado();
 
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexapepat(cap.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap1= new CapitalizarCadena();
+                    p.setIexapemat(cap1.letras(p.getIexapemat()));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexnomtra(cap2.letras(p.getIexnomtra()));
+
                     p.setIexfecing(rs.getString("fecing"));
+
                     lista.add(p);
                 }
+
                 return lista;
             }
         });

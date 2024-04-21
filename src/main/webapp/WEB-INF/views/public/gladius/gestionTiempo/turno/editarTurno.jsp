@@ -10,7 +10,6 @@
         </head>
          <script>
              function mostrarAlert(){
-                 //alert("se grabo exitosamente");
                  var div=document.getElementById('alert');
                  div.style.display = '';
 
@@ -44,48 +43,45 @@
                   </div>
                 </div>
 
-                <div class="row g-5">
+                <div class="row g-3">
                   <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="modificarTurno" novalidate>
+                      <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarTurno" novalidate>
                         <input class="form-control" name="codcia" type="hidden" value="${requestScope.emp.codcia}" />
                         <input class="form-control" name="iexcodturno" type="hidden" value="${requestScope.turno.iexcodturno}" />
 
-                        <div class="col-sm-6 col-md-3">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* ID</label>
+                        <div class="col-sm-6 col-md-2">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                           <input class="form-control" name="iexcodturno" maxlength="18" type="number" value="${requestScope.turno.iexcodturno}"
                             placeholder="#" required  disabled readonly />
                         </div>
-
-                        <div class="col-sm-6 col-md-9">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Turno</label>
+                        <div class="col-sm-6 col-md-6">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Turno</label>
                           <input class="form-control" name="iexdesturno" type="text" value="${requestScope.turno.iexdesturno}" placeholder="" required />
                         </div>
-
-                        <div class="col-sm-6 col-md-12">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Abreviación</label>
+                        <div class="col-sm-6 col-md-2">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Abreviación</label>
                           <input class="form-control" name="iexflgturno" type="text" value="${requestScope.turno.iexflgturno}" placeholder="" required />
                         </div>
-
-                        <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Min Antes</label>
-                          <input class="form-control" name="iextopminantes" type="text" value="${requestScope.turno.iextopminantes}" placeholder="" required />
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Min antes</label>
+                          <input class="form-control" name="iextopminantes" type="number" value="${requestScope.turno.iextopminantes}" placeholder="" required />
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Hora Inicio</label>
-                          <input class="form-control" name="iexhorini" type="text" value="${requestScope.turno.iexhorini}" placeholder="" required />
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora inicio</label>
+                          <input class="form-control" name="iexhorini" type="time" value="${requestScope.turno.iexhorini}" placeholder="" required />
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Hora Fin</label>
-                          <input class="form-control" name="iexhorfin" type="text" value="${requestScope.turno.iexhorfin}" placeholder="" required />
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Hora fin</label>
+                          <input class="form-control" name="iexhorfin" type="time" value="${requestScope.turno.iexhorfin}" placeholder="" required />
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Minutos Despues</label>
-                          <input class="form-control" name="iextopmaxpost" type="text" value="${requestScope.turno.iextopmaxpost}" placeholder="" required />
+                        <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Minutos despues</label>
+                          <input class="form-control" name="iextopmaxpost" type="number" value="${requestScope.turno.iextopmaxpost}" placeholder="" required />
                         </div>
                         <div class="col-sm-6 col-md-12">
                           <input type="checkbox" name="flg_diasig" id="flg_diasig" class="form-check-input">
-                          <label class="form-check-label ms-2">* Dia sig?</label>
+                          <label class="form-check-label ms-2">Dia siguiente?</label>
                         </div>
 
                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">

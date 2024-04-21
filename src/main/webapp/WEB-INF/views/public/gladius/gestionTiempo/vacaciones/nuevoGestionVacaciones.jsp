@@ -10,7 +10,6 @@
 </head>
 <script>
     function mostrarAlert(){
-        //alert("se grabo exitosamente");
         var div=document.getElementById('alert');
         div.style.display = '';
 
@@ -30,13 +29,13 @@
                 },
                 success: function (data) {
                     var opt = "";
-                    opt += "<option value='' >Seleccionar</option>";
+                    opt += "<option value='' >Seleccionar trabajador</option>";
                     for (var i in data) {
                         opt += "<option value=" + data[i].iexcodtra + " > " + data[i].iexapepat + " " + data[i].iexapemat + " " + data[i].iexnomtra + " - " + data[i].iexfecing + " </option> ";
                     }
 
                     $("#iexcodtra").html(opt);
-                    $("#iexpervac").html("<option value='' >Seleccionar</option>");
+                    $("#iexpervac").html("<option value='' >Seleccionar periodo vacacional</option>");
                   }
                 });
         });
@@ -51,18 +50,15 @@
                 },
                 success: function (data) {
                     var opt = "";
-                    opt += "<option value='' >Seleccionar</option>";
+                    opt += "<option value='' >Seleccionar periodo vacacional</option>";
                     for (var i in data) {
                         opt += "<option value=" + data[i].iexpermesini + " > " + data[i].iexpermesini + " - " + data[i].iexpermesfin + " : Saldo = " + data[i].iexdiassaldo + " </option> ";
                     }
 
                     $("#iexpervac").html(opt);
-
                 }
             });
-
         });
-
 
         $('#iexpervac').change(function (event) {
             $.ajaxSetup({cache: false});
@@ -88,7 +84,6 @@
                     $("#iexsaldodias2").val(opt);
                 }
             });
-
         });
     });
 
@@ -179,8 +174,6 @@
         }
     }
 
-
-
     function enviaForm(variable){
         var fechaInicial=document.getElementById("iexfecini").value;
         var fechaFinal=document.getElementById("iexfecfin").value;
@@ -212,7 +205,6 @@
             alert("Debe ingresar correctamente el Tipo de Vacaciones, Fecha de Inicio y Fecha de Fin de la programacion vacacional");
         }
     }
-
 </script>
 
 
@@ -239,56 +231,56 @@
                 </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                            <form class="row g-4 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertGestionVacaciones" novalidate >
-                            <input class="form-control" name="iexcodcia" type="hidden"
-                                   value="${requestScope.emp.iexcodcia}"/>
+                        <form class="row g-3 mb-0 needs-validation" name="formvacaciones"  id="formvacaciones" method="POST" action="insertGestionVacaciones" novalidate >
+                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
 
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
+                            <div class="col-sm-6 col-md-5">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
-                                    <option value="" selected>Seleccionar</option>
+                                    <option value="" selected>Seleccionar regimen</option>
                                     <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
-                                        <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
-                                                ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                                        <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Trabajador</label>
+                            <div class="col-sm-6 col-md-8">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                                 <select name="iexcodtra" id="iexcodtra" class="form-select"  required />
+                                    <option value="" selected>Seleccionar trabajador</option>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Vacacional</label>
+                            <div class="col-sm-6 col-md-5">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo vacacional</label>
                                 <select name="iexpervac" id="iexpervac" class="form-select"  required />
+                                    <option value="" selected>Seleccionar periodo vacacional</option>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-3 ">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo Dias</label>
+                            <div class="col-sm-6 col-md-2 ">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Saldo dias</label>
                                 <input type="text" name="iexsaldodiasdis" class="form-control" id="iexsaldodias2" readonly required disabled>
                                 <input type="hidden" name="iexsaldodias" id="iexsaldodias" value=""/>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo Vacaciones</label>
-                                <select name="iextipvac" id="iextipvac" class="form-control"  required>
-                                    <option value="0" selected>Seleccionar</option>
+                            <div class="col-sm-6 col-md-5">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo vacaciones</label>
+                                <select name="iextipvac" id="iextipvac" class="form-select"  required>
+                                    <option value="0" selected>Seleccionar tipo vacaciones</option>
                                     <c:forEach var="lovTipvaca" items="${requestScope.lovTipvaca}">
                                         <option value="${lovTipvaca.idLov}"   ${lovTipvaca.idLov == requestScope.xVacacionesPrg.iextipvac ? 'selected' : ''}  > ${lovTipvaca.desLov} </option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Inicio</label><span
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
                                        value="${requestScope.xVacacionesPrg.iexfecini}"
                                        onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" required data-options='{"disableMobile":true}'/>
                             </div>
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span
                                     class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                 <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
                                        onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy" required data-options='{"disableMobile":true}'/>
@@ -314,7 +306,7 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmModal" data-boundary="window"
                                                 aria-haspopup="true"
-                                                aria-expanded="false" data-bs-reference="parent">Guardar Vacaciones
+                                                aria-expanded="false" data-bs-reference="parent">Guardar vacaciones
                                         </button>
                                     </div>
                                 </div>

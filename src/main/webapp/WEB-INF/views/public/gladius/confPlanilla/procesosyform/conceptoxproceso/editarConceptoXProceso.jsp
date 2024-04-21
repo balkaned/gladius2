@@ -512,7 +512,7 @@
                                             <div class="col-auto">
                                                 <button class="btn btn-primary px-5 px-sm-5" type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                                                                aria-expanded="false" data-bs-reference="parent">Guardar Concepto x proceso
+                                                                aria-expanded="false" data-bs-reference="parent">Guardar concepto x proceso
                                                 </button>
                                             </div>
                                         </div>
@@ -578,7 +578,7 @@
                     <div class="row g-3 col-12 mt-3">
                         <div class="col-sm-6 col-md-4">
                               <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Procesos</label>-->
-                              <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select form-select-sm" required >
+                              <select name="codprocesoProm" id="codprocesoProm" onchange="buscarConceptos();" class="form-select" required >
                                   <option value="" selected >Seleccionar proceso</option>
                                   <c:forEach var="LstPromProceso" items="${LstPromProceso}">
                                       <option value="${LstPromProceso.idProceso}" >${LstPromProceso.desProceso}</option>
@@ -587,7 +587,7 @@
                         </div>
                         <div class="col-sm-6 col-md-5">
                               <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                              <select name="idconceptoProm" id="idconceptoProm" class="form-select form-select-sm" required >
+                              <select name="idconceptoProm" id="idconceptoProm" class="form-select" required >
                                     <option value="">Seleccionar concepto</option>
                               </select>
                         </div>
@@ -679,7 +679,7 @@
 
                     <div class="col-sm-6 col-md-4 mt-3">
                           <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select form-select-sm" required >
+                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" required >
                             <option value="" selected >Seleccionar concepto</option>
                             <c:forEach var="listaConAgrp" items="${listaConAgrp}">d
                                 <option value="${listaConAgrp.procodcon}" >${listaConAgrp.coodescon}</option>

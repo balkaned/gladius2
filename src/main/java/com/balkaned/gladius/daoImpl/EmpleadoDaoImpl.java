@@ -133,7 +133,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public List<Empleado> listarEmpleado(Empleado empleado) {
 
-        List<Empleado> lista = null;
         String sql = "  select  \n" +
                 "                        e.iexcodcia,  " +
                 "                        e.iexcodtra,  " +
@@ -221,9 +220,19 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
+
                     p.setIexnomtra(rs.getString("iexnomtra"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setIexnomtra(cap2.letras(p.getIexnomtra()));
+
                     p.setIexapepat(rs.getString("iexapepat"));
+                    CapitalizarCadena cap3= new CapitalizarCadena();
+                    p.setIexapepat(cap3.letras(p.getIexapepat()));
+
                     p.setIexapemat(rs.getString("iexapemat"));
+                    CapitalizarCadena cap4= new CapitalizarCadena();
+                    p.setIexapemat(cap4.letras(p.getIexapemat()));
+
                     p.setIextipdocid(rs.getString("destipdoc"));
                     p.setIexnrodoc(rs.getString("iexnrodoc"));
                     p.setIexfecnac(rs.getString("iexfecnac"));

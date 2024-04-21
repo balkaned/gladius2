@@ -199,8 +199,8 @@
                            <input type="hidden"  name="accion" value="INSCONS" >
 
                            <div class="col-sm-6 col-md-7">
-                               <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                               <select name="id_concepto" id="id_concepto"  class="form-select form-select-sm" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
+                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
+                               <select name="id_concepto" id="id_concepto"  class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                    <option value="">Seleccionar concepto</option>
                                    <c:forEach  var="lovConcepto" items="${lovConcepto}">
                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
@@ -208,8 +208,8 @@
                                </select>
                            </div>
                            <div class="col-sm-6 col-md-4 mt-3">
-                               <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de Registro</label>-->
-                               <select name="tipo_reg" id="tipo_reg" class="form-select form-select-sm" required>
+                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de registro</label>
+                               <select name="tipo_reg" id="tipo_reg" class="form-select " required>
                                    <option value="">Tipo de registro</option>
                                    <option value="1">Datos Dijos</option>
                                    <option value="2">Datos Variable</option>

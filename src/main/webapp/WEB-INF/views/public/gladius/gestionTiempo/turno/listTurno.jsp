@@ -11,7 +11,6 @@
 
         <script>
           function mostrarAlert() {
-            //alert("se grabo exitosamente");
             var div = document.getElementById('alert');
             div.style.display = '';
 
@@ -47,7 +46,7 @@
               <div class="mb-9">
                 <div class="row g-3 mb-4">
                   <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Turno</h2>
+                    <h2 id="h2top" class="mb-0">Turnos</h2>
                   </div>
                 </div>
                 <div id="orderTable"
@@ -65,7 +64,7 @@
                       </div>
 
                       <div class="col-auto">
-                        <a class="btn btn-primary btn-sm" href="nuevoTurno"><span class="fas fa-plus me-2"></span>Add Turno</a>
+                        <a class="btn btn-primary btn-sm" href="nuevoTurno"><span class="fas fa-plus me-2"></span>Add turno</a>
                       </div>
                     </div>
                   </div>
@@ -105,8 +104,8 @@
                                   href="editarTurno@${turn.iexcodturno}">#${turn.iexcodturno}</a></td>
                                <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${turn.iexdesturno}</span></td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgturno}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><a href="#"><span class="fa-regular fa-clock me-2"></span></a>${turn.iexhorini}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><a href="#"><span class="fa-regular fa-clock me-2"></span></a>${turn.iexhorfin}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorini}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorfin}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgdiasig}
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                 <div class="font-sans-serif btn-reveal-trigger position-static">

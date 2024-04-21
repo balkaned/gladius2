@@ -2,6 +2,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.Afp;
 import com.balkaned.gladius.dao.AfpDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -57,7 +58,11 @@ public class AfpDaoImpl implements AfpDao {
 
                     p.setIexpermes(rs.getString("iexpermes"));
                     p.setIexcodafp(rs.getString("iexcodafp"));
+
                     p.setIexdesafp(rs.getString("desafp"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setIexdesafp(cap.letras(p.getIexdesafp()));
+
                     p.setIexcomis_fija(rs.getDouble("iexcomis_fija"));
                     p.setIexcomis_sflu(rs.getDouble("iexcomis_sflu"));
                     p.setIexcomis_sflu_mix(rs.getDouble("iexcomis_sflu_mix"));

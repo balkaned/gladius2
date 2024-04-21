@@ -144,6 +144,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
 
 
     public List<AusentismoProgramacion> listaAusentismoGen(Integer codcia, String regimen, String fecini, String fecfin, Integer codtra) {
+
         String sql = "  select  " +
                 "	 c.iexcodcia, " +
                 "	 c.iexcodtra, " +
@@ -201,6 +202,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
         if (codtra != null && codtra.intValue() != 0) {
             sql += " and c.iexcodtra = " + codtra + " ";
         }
+
         sql += " order by 3,4 asc ";
         return template.query(sql, new ResultSetExtractor<List<AusentismoProgramacion>>() {
             public List<AusentismoProgramacion> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -213,7 +215,10 @@ public class AusentismoDaoImpl implements AusentismoDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcorrel(rs.getInt("aus_id"));
                     p.setNrodoc(rs.getString("iexnrodoc"));
+
                     p.setDesnomtra(rs.getString("nomtra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesnomtra(cap.letras(p.getDesnomtra()));
 
                     p.setFecing(rs.getString("fecing"));
                     FormatterFecha f = new FormatterFecha();
@@ -226,8 +231,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
                     p.setFecfinrep(rs.getString("fecfinrep"));
                     p.setDesestado(rs.getString("desestado"));
                     p.setDestipaus(rs.getString("destipaus"));
-
-
+                    
                     lista.add(p);
                 }
                 return lista;

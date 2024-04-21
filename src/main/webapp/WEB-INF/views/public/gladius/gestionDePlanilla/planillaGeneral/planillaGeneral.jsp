@@ -20,7 +20,7 @@
               "iexcodreg": $("#iexcodreg2").val()},
           success: function (data) {
               var opt = "";
-                   opt += "<option value='0' >Seleccionar</option>";
+                   opt += "<option value='0' >Seleccionar proceso</option>";
                    for (var i in data) {
                     opt += "<option value="+data[i].idProceso+" > "+data[i].desProceso+" </option> ";
                    }
@@ -262,13 +262,13 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                  <div class="col-xl-7">
                    <div class="row gx-3 gy-4">
-                      <form class="row g-4 mb-0 needs-validation" method="POST" action="buscarPlanillaGen" novalidate >
+                      <form class="row g-3 mb-0 needs-validation" method="POST" action="buscarPlanillaGen" novalidate >
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />
 
-                        <div class="col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-9">
                         	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
                         	  <select name="iexcodreg" id="iexcodreg" class="form-select" required >
                         		  <option value="" selected >Seleccionar regimen</option>
@@ -277,7 +277,7 @@
                         		  </c:forEach>
                         	  </select>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo mensual o año</label>
                         	<input class="form-control" name="iexpermes" type="text" placeholder="202301 or 2023" required/>
                         </div>
@@ -431,7 +431,7 @@
                     <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                     <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div class="row g-4">
+                <div class="row g-3">
                     <div class="col-sm-6 col-md-5">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
                           <select name="iexcodreg2" id="iexcodreg2" onchange="regimen();" class="form-select" required >
@@ -441,26 +441,26 @@
                               </c:forEach>
                           </select>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-5">
                           <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                           <select name="idproceso" id="idproceso" class="form-select" required >
                               <option value="">Seccionar proceso</option>
                           </select>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicial nómina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker btn-group dropup" id="fecini" name="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Nomina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha final nómina</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker" id="fecfin" name="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicial Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicial tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker" id="fecinit" name="fecinit" onchange="formatearFecha3();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Final Tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha final tiempo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker" id="fecfint" name="fecfint" onchange="formatearFecha4();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
 
@@ -477,11 +477,11 @@
                         <input class="form-control" name="idperiodo" type="text" placeholder="202301" required/>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker" id="fecpago" name="fecpago" onchange="formatearFecha5();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
                     <div class="col-sm-6 col-md-4">
-                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Certificado/Boleta</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de certificado/boleta</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                         <input class="form-control datetimepicker" id="feccerti" name="feccerti" onchange="formatearFecha6();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                     </div>
                 </div>
@@ -489,7 +489,7 @@
               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                     <a class="btn btn-sm btn-phoenix-secondary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModal();" type="submit"><span class="ms-2">Guardar Periodo</span></button>
+                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModal();" type="submit"><span class="ms-2">Guardar periodo</span></button>
               </div>
             </form>
         </div>

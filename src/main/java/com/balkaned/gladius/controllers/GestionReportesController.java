@@ -80,7 +80,6 @@ public class GestionReportesController {
         String anio = request.getParameter("peranio");
         String iexcodtra = request.getParameter("percodtra");
 
-
         // Listas y objetos relacionados
         List<PlaProPeriodo> lista = new ArrayList<>();
         EmpAcum xEmpAcumAnio = new EmpAcum();
@@ -103,8 +102,21 @@ public class GestionReportesController {
         model.addAttribute("percodtra", iexcodtra);
         model.addAttribute("LstEmpleadoRes", listarEmp);
         model.addAttribute("fichaEmp", empleado);
-        model.addAttribute("xEmpAcumAnio", xEmpAcumAnio);
 
+        String estado;
+
+        if(empleado.getIexflgest()==null) {
+            estado="";
+        }else{
+            if(empleado.getIexflgest().equals("1")){
+                estado="Activo";
+            }else {
+                estado = "Inactivo";
+            }
+        }
+
+        model.addAttribute("estadoTrab",estado);
+        model.addAttribute("xEmpAcumAnio", xEmpAcumAnio);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/reporte5Nomina/listReporte5taNomina");
     }

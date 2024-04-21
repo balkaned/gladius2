@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -229,6 +230,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
 
     public Turno getTurno(Integer codcia, Integer codTurn) {
+
         String sql = " select   " +
                 "t.iexcodcia, " +
                 "t.iexcodturno, " +
@@ -250,7 +252,11 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 while (rs.next()) {
                     tur.setCodcia(rs.getInt("iexcodcia"));
                     tur.setIexcodturno(rs.getInt("iexcodturno"));
+
                     tur.setIexdesturno(rs.getString("iexdesturno"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    tur.setIexdesturno(cap.letras(tur.getIexdesturno()));
+
                     tur.setIexhorini(rs.getString("iexhorini"));
                     tur.setIexhorfin(rs.getString("iexhorfin"));
                     tur.setIexflgdiasig(rs.getString("iexflgdiasig"));

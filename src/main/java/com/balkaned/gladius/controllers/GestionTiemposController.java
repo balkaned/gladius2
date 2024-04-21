@@ -341,7 +341,6 @@ public class GestionTiemposController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-
         return new ModelAndView("public/gladius/gestionTiempo/turno/nuevoTurno");
     }
 
@@ -371,7 +370,7 @@ public class GestionTiemposController {
         Turno turno = new Turno();
         turno.setCodcia(idCompania);
         turno.setIexcodturno(Integer.parseInt(idturno));
-        turno.setIexdesturno(desturno);
+        turno.setIexdesturno(desturno.toUpperCase());
         turno.setIexhorini(horini);
         turno.setIexhorfin(horfin);
         turno.setIexflgturno(flgturno);
@@ -443,11 +442,10 @@ public class GestionTiemposController {
         String iextopmaxpost = request.getParameter("iextopmaxpost");
         String iextopminantes = request.getParameter("iextopminantes");
 
-
         Turno turno = new Turno();
         turno.setCodcia(idCompania);
         turno.setIexcodturno(Integer.parseInt(idturno));
-        turno.setIexdesturno(desturno);
+        turno.setIexdesturno(desturno.toUpperCase());
         turno.setIexhorini(horini);
         turno.setIexhorfin(horfin);
         turno.setIexflgturno(flgturno);

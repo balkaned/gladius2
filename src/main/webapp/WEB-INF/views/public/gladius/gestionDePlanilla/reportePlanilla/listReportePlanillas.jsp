@@ -12,7 +12,6 @@
 </head>
 <script>
     function mostrarAlert() {
-        //alert("se grabo exitosamente");
         var div = document.getElementById('alert');
         div.style.display = '';
 
@@ -81,33 +80,27 @@
                 </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
-                            <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Proceso</label>
-                                <select class="form-select" name="iexcodpro" id="iexcodpro"  required>
-                                    <option value="" selected>Seleccionar</option>
-                                    <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}"
-                                               varStatus="loopCounter">
-                                        <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso==requestScope.iexcodpro
-                                                ? 'selected' : '' }>${lovProcesos.desProceso}</option>
+                        <form class="row g-3 mb-0 needs-validation" method="POST" action="" novalidate>
+                            <div class="col-sm-6 col-md-5">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
+                                <select class="form-select" name="iexcodpro" id="iexcodpro" required>
+                                    <option value="" selected>Seleccionar proceso planilla</option>
+                                    <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
+                                        <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso==requestScope.iexcodpro ? 'selected' : '' }>${lovProcesos.desProceso}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
-                                <input class="form-control" type="text" id="nroper" name="nroper" placeholder="YYYY"
-                                       required>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo inicio</label>
+                                <input class="form-control" type="text" id="nroper" name="nroper" placeholder="YYYY" required>
                             </div>
-
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
-                                <input class="form-control" type="text" id="nroper2" name="nroper2" placeholder="YYYY"
-                                       required>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo fin</label>
+                                <input class="form-control" type="text" id="nroper2" name="nroper2" placeholder="YYYY" required>
                             </div>
-
                             <div class="">
                                 <a id="submit1" href="#" i-02d="procesarBtn" class="btn btn-primary btn-sm"><span
                                         class="fa-solid fa-eye me-2"></span>Traer embedded-reporting</a>

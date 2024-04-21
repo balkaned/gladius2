@@ -10,7 +10,6 @@ Email : jeanp.quiroz@gmail.com --%>
     </head>
     <script>
       function mostrarAlert(){
-        //alert("se grabo exitosamente");
         var div=document.getElementById('alert');
         div.style.display = '';
 
@@ -139,58 +138,54 @@ Email : jeanp.quiroz@gmail.com --%>
           <div class="mb-9">
             <div class="row g-3 mb-4">
               <div class="col-auto">
-                <h2 id="h2top" class="mb-0">Insertar Ausentismo</h2>
+                <h2 id="h2top" class="mb-0">Insertar ausentismo</h2>
               </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
               <div class="col-xl-8">
                 <div class="row gx-3 gy-4">
-                  <form class="row g-4 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac"
-                    action="insertarGestionAusentismo" novalidate>
-
-                    <div class="col-sm-4 col-md-12">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Regimen</label>
+                  <form class="row g-3 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac" action="insertarGestionAusentismo" novalidate>
+                    <div class="col-sm-6 col-md-5">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                       <select class="form-select" name="iexcodreg" id="iexcodreg" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="" selected >Seleccionar regimen</option>
                         <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
-                          <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
-                            ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                          <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
                         </c:forEach>
                       </select>
                     </div>
-                    <div class="col-sm-6 col-md-12">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Trabajador</label>
+                    <div class="col-sm-6 col-md-7">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                       <select name="iexcodtra" id="iexcodtra" class="form-select" required>
+                        <option value="" selected >Seleccionar trabajador</option>
                       </select>
                     </div>
-                    <div class="col-sm-6 col-md-12">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Tipo de Ausentismo</label>
+                    <div class="col-sm-6 col-md-5">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de ausentismo</label>
                       <select class="form-select" name="iextipaus" id="iextipaus" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="" selected >Seleccionar tipo ausentismo</option>
                         <c:forEach var="lovTipaus" items="${requestScope.lovTipaus}">
-                          <option value="${lovTipaus.idLov}" ${lovTipaus.idLov==requestScope.iextipaus ? 'selected'
-                            : '' }> ${lovTipaus.desLov} </option>
+                          <option value="${lovTipaus.idLov}" ${lovTipaus.idLov==requestScope.iextipaus ? 'selected' : '' }> ${lovTipaus.desLov} </option>
                         </c:forEach>
                       </select>
                     </div>
                     <div class="col-sm-4 col-md-4">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha de Inicio</label><span
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span
                         class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                       <input class="form-control datetimepicker" name="iexfecini" id="iexfecini"
                         onchange="formatearFecha1();" type="text" onchange="calcularDias();"
                         placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
                     </div>
                     <div class="col-sm-4 col-md-4">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Fecha Fin</label><span
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span
                         class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                       <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin"
                         onchange="calcularDias();" type="text" placeholder="dd/mm/yyyy"
                         data-options='{"disableMobile":true}' required />
                     </div>
-
-                    <div class="col-sm-6 col-md-3">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Nro de dias</label>
+                    <div class="col-sm-6 col-md-2">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
                       <input class="form-control" name="iexnrodiasdis" id="iexnrodias2" maxlength="10" type="text" placeholder="0" disabled readonly />
                       <input type="hidden" name="iexnrodias" id="iexnrodias"  value="" />
                     </div>
@@ -208,7 +203,7 @@ Email : jeanp.quiroz@gmail.com --%>
                         <div class="col-auto">
                           <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal"
                             data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true"
-                            aria-expanded="false" data-bs-reference="parent">Guardar Ausentismo</button>
+                            aria-expanded="false" data-bs-reference="parent">Guardar ausentismo</button>
                         </div>
                       </div>
                     </div>

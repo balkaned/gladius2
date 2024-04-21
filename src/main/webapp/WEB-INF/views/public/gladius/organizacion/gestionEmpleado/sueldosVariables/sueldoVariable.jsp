@@ -104,8 +104,8 @@
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
                                             <div class="col-sm-6 col-md-10">
-                                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>-->
-                                                <select class="form-select form-select-sm" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
+                                                <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                                   <option value="" selected >Seleccionar regimen laboral</option>
                                                   <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
                                                       <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
@@ -113,14 +113,14 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-7">
-                                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>-->
-                                                <select class="form-select form-select-sm" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
+                                                <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
                                                     <option value="">Seleccionar proceso planilla</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>-->
-                                                <select class="form-select form-select-sm" name="iexperiodo" id="iexperiodo" required >
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                                                <select class="form-select" name="iexperiodo" id="iexperiodo" required >
                                                     <option value="">Seleccionar periodo</option>
                                                 </select>
                                             </div>

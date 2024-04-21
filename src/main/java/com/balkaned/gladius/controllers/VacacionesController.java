@@ -450,13 +450,6 @@ public class VacacionesController {
             }
         }
 
-        log.info("fecini" + fecini);
-        log.info("fecfin" + fecfin);
-        log.info("P_FECINI " + fechaFormatterini);
-        log.info("P_FECFIN " + fechaFormatterfin);
-        log.info("P_REGLAB " + reglab);
-        log.info("P_FLGEST " + estado);
-
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         if (fecini != null && fecfin != null) {
             model.addAttribute("LstVacacionesView", vacacionesService.listaVacacionesGen(idCompania, regimen, fecini, fecfin, xcodtra));
@@ -504,13 +497,6 @@ public class VacacionesController {
                 xcodtra = 0;
             }
         }
-
-        log.info("fecini" + fecini);
-        log.info("fecfin" + fecfin);
-        log.info("P_FECINI " + fechaFormatterini);
-        log.info("P_FECFIN " + fechaFormatterfin);
-        log.info("P_REGLAB " + reglab);
-        log.info("P_FLGEST " + estado);
 
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         if (fecini != null && fecfin != null) {
@@ -656,6 +642,7 @@ public class VacacionesController {
         model.addAttribute("LstTrabajadorReg", vacacionesService.listaTrabajadoresReg(idCompania, empleado2.getIexreglab()));
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         model.addAttribute("lovTipvaca", lovsService.getLovs("56", "%"));
+
         return new ModelAndView("public/gladius/gestionTiempo/vacaciones/actualizarGestionVacaciones");
     }
 

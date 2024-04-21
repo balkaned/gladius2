@@ -12,7 +12,6 @@
 </head>
 <script>
     function mostrarAlert() {
-        //alert("se grabo exitosamente");
         var div = document.getElementById('alert');
         div.style.display = '';
 
@@ -97,11 +96,11 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte Plame</h2>
+                    <h2 id="h2top" class="mb-0">Reporte plame</h2>
                 </div>
             </div>
 
-            <form class="row g-4 mb-0 needs-validation" method="POST" action="" name="frmsunatfile" id="frmsunatfile" novalidate>
+            <form class="row g-3 mb-0 needs-validation" method="POST" action="" name="frmsunatfile" id="frmsunatfile" novalidate>
                 <input type="hidden" name="file" id="file">
                 <input type="hidden" name="accion" id="accion" value="">
 
@@ -110,7 +109,7 @@
                         <span class="badge badge-tag me-2 mb-1 mt-3">Generar archivos Plame</span>
                         <tbody>
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
+                                <td class="align-middle fw-semi-bold text-20">Periodo mensual</td>
                                 <td>
                                     <div class="col-sm-6 col-md-4">
                                         <input type="text" name="permes" id="permes"  value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" required/>
@@ -119,7 +118,7 @@
                                 <td></td>
                             </tr>
                             <tr class="md-10">
-                                <td class="align-middle fw-semi-bold text-20">Jornada Laboral[14] .jor</td>
+                                <td class="align-middle fw-semi-bold text-20">Jornada laboral[14] .jor</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=14"
                                         id="descargarBtn"
@@ -132,7 +131,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle fw-semi-bold text-20">Dias No Laborados [15]</td>
+                                <td class="align-middle fw-semi-bold text-20">Dias no laborados [15]</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=15" id="descargarBtn2"
                                         onclick="SendSunatFile('REP','15')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
@@ -143,7 +142,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle fw-semi-bold text-20">Detalle de Ingreso, Descuento[18]</td>
+                                <td class="align-middle fw-semi-bold text-20">Detalle de ingreso, descuento[18]</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=18" id="descargarBtn3"
                                         onclick="SendSunatFile('REP','18')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar

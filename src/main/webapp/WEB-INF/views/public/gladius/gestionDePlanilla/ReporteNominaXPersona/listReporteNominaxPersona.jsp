@@ -11,7 +11,6 @@
 </head>
 <script>
     function mostrarAlert() {
-        //alert("se grabo exitosamente");
         var div = document.getElementById('alert');
         div.style.display = '';
 
@@ -21,8 +20,7 @@
     }
 
     function enviaForm(variable) {
-
-        //    document.getElementById("frmplaserv").submit();
+        //document.getElementById("frmplaserv").submit();
         if (variable == 1) {
             document.getElementById("accion").value = "EXPPLATRAREPDET";
         } else if (variable == 2) {
@@ -30,7 +28,6 @@
         }
 
         document.getElementById("formoid").submit();
-
     }
 </script>
 
@@ -57,43 +54,38 @@
                 </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
-                        <form class="row g-4 mb-0 needs-validation" id="formoid" method="POST" action="" novalidate>
+                        <form class="row g-3 mb-0 needs-validation" id="formoid" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-6">
-                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de
-                                    Trabajador</label>-->
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de trabajador</label>
                                 <select class="form-select" name="codtra" id="codtra" required>
-                                    <option value="" selected>Código trabajador</option>
+                                    <option value="" selected>Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
-                                        <option value="${LstEmpleadoRes.iexcodtra}"     ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''}     >  [${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}   </option>
+                                        <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''} > [${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
                                     </c:forEach>
                                 </select>
-
                             </div>
                             <div class="col-sm-6 col-md-5">
-                                <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>-->
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                                 <select class="form-select" name="codpro" id="codpro" required>
-                                    <option value="" selected>Proceso</option>
+                                    <option value="" selected >Seleccionar proceso</option>
                                     <c:forEach var="LstProcesoPlanilla" items="${requestScope.LstProcesoPlanilla}">
                                         <option value="${LstProcesoPlanilla.idProceso}"   ${LstProcesoPlanilla.idProceso==requestScope.codpro ? 'selected' : ''}    >  ${LstProcesoPlanilla.desProceso}   </option>
                                     </c:forEach>
                                 </select>
                             </div>
-
-                            <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Inicio</label>
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo inicio</label>
                                 <input class="form-control" type="text" name="perini" id="perini" value="${requestScope.perini}" placeholder="202301">
                             </div>
-
-                            <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Fin</label>
+                            <div class="col-sm-6 col-md-3">
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo fin</label>
                                 <input class="form-control" type="text" id="perfin" name="perfin" value="${requestScope.perfin}" placeholder="202302">
                             </div>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span class="fa-solid fa-magnifying-glass me-2"></span>Consultar
-                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="enviaForm('2')"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                                 <c:if test="${not empty requestScope.codpro}">x
                                     <!--<a class="btn btn-link text-900 me-4 px-0"
                                        href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2Piexcodreg=${iexcodreg}Pslc_estado=2bvv@null@null@null@null"

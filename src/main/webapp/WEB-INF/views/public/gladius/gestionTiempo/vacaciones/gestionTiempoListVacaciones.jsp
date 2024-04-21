@@ -9,7 +9,6 @@
     </head>
     <script>
         function mostrarAlert() {
-            //alert("se grabo exitosamente");
             var div = document.getElementById('alert');
             div.style.display = '';
 
@@ -116,13 +115,11 @@
                         </div>
                     </div>
 
-                    <div class="row g-5">
+                    <div class="row g-3">
                         <div class="col-xl-8">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="gestionTiempoListVacaciones"
-                                      novalidate>
-                                    <!-- Regimen Dropdown -->
-                                    <div class="col-sm-6 col-md-7">
+                                <form class="row g-3 mb-0 needs-validation" method="POST" action="gestionTiempoListVacaciones" novalidate>
+                                    <div class="col-sm-6 col-md-6">
                                         <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>-->
                                         <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                             <option value="" selected>Seleccionar regimen</option>
@@ -131,34 +128,29 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <!-- Estado Dropdown -->
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-6 col-md-3">
                                         <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>-->
                                         <select class="form-select" name="slc_estado" required>
-                                            <option value="" selected>Seleccionar estado</option>
                                             <option value="0" ${P_FLGEST == 0 ? 'selected' : '' } >Activos</option>
                                             <option value="1" ${P_FLGEST == 1 ? 'selected' : '' } >Inactivo</option>
                                         </select>
                                     </div>
-                                    <!-- Fecha Inicio -->
                                     <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Inicio</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         <input class="form-control datetimepicker" name="fecini" id="fecini"
                                                onchange="formatearFecha1();" type="text"
                                                placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                     </div>
-                                    <!-- Fecha Fin -->
                                     <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha Fin</label>
+                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                         <input class="form-control datetimepicker" name="fecfin" id="fecfin"
                                                onchange="formatearFecha2();" type="text"
                                                placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                     </div>
 
-                                    <!-- Buttons -->
-                                    <div class="">
+                                    <div>
                                         <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                                         <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Add Vacaciones</a>
 
@@ -181,117 +173,53 @@
                         <table class="table table-sm fs--1 mb-0">
                             <thead>
                                 <tr>
-                                    <th class="white-space-nowrap fs--1 align-middle ps-0"
-                                        style="width:26px;">
+                                    <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
                                         <div class="form-check mb-0 fs-0">
-                                            <input class="form-check-input"
-                                                   id="checkbox-bulk-order-select"
-                                                   type="checkbox"
-                                                   data-bulk-select='{"body":"order-table-body"}'/>
+                                            <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox"data-bulk-select='{"body":"order-table-body"}'/>
                                         </div>
                                     </th>
-                                    <th class="sort white-space-nowrap align-middle pe-3"
-                                        scope="col" data-sort="order" style="width:5%;">
-                                        ID
-                                    </th>
-                                    <th class="sort align-middle text-center ps-5"
-                                        scope="col" data-sort="date">
-                                        DOC
-                                    </th>
-
-                                    <th class="sort align-middle text-center ps-6"
-                                        scope="col" data-sort="date">CODTRA
-                                    </th>
+                                    <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
+                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">DOC</th>
+                                    <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">CODTRA</th>
                                     <th class="sort align-middle white-space-nowrap text-center ps-8 pe-8" scope="col" >NOMBRES y APELLIDOS</th>
-                                    <th class="sort align-middle text-center ps-5"
-                                        scope="col" data-sort="date">ESTADO
-                                    </th>
-                                    <th class="sort align-middle text-center ps-5"
-                                        scope="col" data-sort="date">
-                                        F.INGRESO
-                                    </th>
-                                    <th class="sort align-middle text-center white-space-nowrap ps-5 pe-5"
-                                        scope="col" data-sort="date">
-                                        TIPO VACA.
-                                    </th>
-                                    <th class="sort align-middle text-center pe-3"
-                                        scope="col" data-sort="date">FECINI
-                                    </th>
-                                    <th class="sort align-middle text-center ps-3 pe-3"
-                                        scope="col" data-sort="date">FECFIN
-                                    </th>
-                                    <th class="sort align-middle text-center pe-3"
-                                        scope="col" data-sort="date">DIAS
-                                    </th>
-                                    <th class="sort align-middle text-center pe-0"
-                                        scope="col"></th>
+                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ESTADO</th>
+                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">F.INGRESO</th>
+                                    <th class="sort align-middle text-center white-space-nowrap ps-5 pe-5" scope="col" data-sort="date">TIPO VACA.</th>
+                                    <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI</th>
+                                    <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="date">FECFIN</th>
+                                    <th class="sort align-middle text-center ps-5 pe-3" scope="col" data-sort="date">DIAS</th>
+                                    <th class="sort align-middle text-center pe-0" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody class="list" id="order-table-body">
-                                <c:forEach var="LstVacacionesView"
-                                           items="${requestScope.LstVacacionesView}">
-                                    <tr
-                                            class="hover-actions-trigger btn-reveal-trigger position-static">
+                                <c:forEach var="LstVacacionesView" items="${requestScope.LstVacacionesView}">
+                                    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                         <td class="fs--1 align-middle px-0 py-3">
                                             <div class="form-check mb-0 fs-0">
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
+                                                <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                             </div>
                                         </td>
-
-                                        <td
-                                                class="order align-middle white-space-nowrap py-0">
-                                            <a class="fw-semi-bold"
-                                               href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a>
+                                        <td class="order align-middle white-space-nowrap py-0">
+                                            <a class="fw-semi-bold" href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a>
                                         </td>
-                                        <td
-                                                class="total align-middle text-center fw-semi-bold text-600 ps-3">
-                                                ${LstVacacionesView.nrodoc}</td>
-                                        <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 fs--0 mb-2">${LstVacacionesView.iexcodtra}</span></td>
-                                        <td
-                                                class="total align-middle text-start fw-semi-bold text-1000 ps-5">
-                                                ${LstVacacionesView.desnomtra}</td>
-                                        <c:if
-                                                test="${LstVacacionesView.desestado=='activo'}">
-                                            <td
-                                                    class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                                        <span
-                                                                                class="badge badge-phoenix fs--2 badge-phoenix-success"><span
-                                                                                class="badge-label">Activo</span><span
-                                                                                class="ms-1"
-                                                                                style="height:12.8px;width:12.8px;"></span></span>
+                                        <td class="total align-middle text-center text-body fs-9 ps-3">${LstVacacionesView.nrodoc}</td>
+                                        <td class="total align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 fs--0 mb-2">${LstVacacionesView.iexcodtra}</span></td>
+                                        <td class="total align-middle text-start white-space-nowrap text-body fs-9 ps-5">${LstVacacionesView.desnomtra}</td>
+                                        <c:if test="${LstVacacionesView.desestado=='activo'}">
+                                            <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                                 <span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span>
                                             </td>
                                         </c:if>
-                                        <c:if
-                                                test="${LstVacacionesView.desestado=='inactivo'}">
-                                            <td
-                                                    class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
-                                                                        <span
-                                                                                class="badge badge-phoenix fs--2 badge-phoenix-danger"><span
-                                                                                class="badge-label">Inactivo</span><span
-                                                                                class="ms-1"
-                                                                                style="height:12.8px;width:12.8px;"></span></span>
+                                        <c:if test="${LstVacacionesView.desestado=='inactivo'}">
+                                            <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
+                                                 <span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span>
                                             </td>
                                         </c:if>
-                                        <td
-                                                class=" fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-4 pe-4">
-                                                <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecing}</td>
-                                        <td
-                                                class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center">
-                                                                    <span
-                                                                            class="badge badge-phoenix fs--2 badge-phoenix-info"
-                                                                            class="badge-label">${LstVacacionesView.destipvac}</span>
-                                        </td>
-                                        <td
-                                                class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center ps-4">
-                                                <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.iexfecini}</td>
-                                        <td
-                                                class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center">
-                                                <a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecfinrep}</td>
-                                        <td
-                                                class="delivery_type align-middle  white-space-nowrap text-1000 fs--1  fw-bold text-center ps-4">
-                                                ${LstVacacionesView.iexnrodias}</td>
+                                        <td class=" fulfilment_status align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-4 pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecing}</td>
+                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center"><span class="badge badge-phoenix fs--2 badge-phoenix-info" class="badge-label">${LstVacacionesView.destipvac}</span></td>
+                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center ps-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.iexfecini}</td>
+                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecfinrep}</td>
+                                        <td class="delivery_type align-middle  white-space-nowrap text-1000 fs--1  fw-bold text-center ps-4">${LstVacacionesView.iexnrodias}</td>
                                         <td class="align-middle text-end white-space-nowrap pe-0 action">
                                             <div class="font-sans-serif btn-reveal-trigger position-static">
                                                 <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
@@ -325,7 +253,6 @@
                     <div class="alert alert-success" role="alert" id="alert" style="display:none;">
                         Se grabó exitosamente los cambios.
                     </div>
-
                     <div class="modal fade" id="confirmModal" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content border">

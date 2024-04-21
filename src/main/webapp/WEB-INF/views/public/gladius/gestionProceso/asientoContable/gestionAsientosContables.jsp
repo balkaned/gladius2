@@ -29,43 +29,42 @@
           <div class="mb-9">
             <div class="row g-3 mb-4">
               <div class="col-auto">
-                <h2 id="h2top" class="mb-0">Gestion de asientos contables</h2>
+                <h2 id="h2top" class="mb-0">Gestión de asientos contables</h2>
               </div>
             </div>
 
-            <div class="row g-5">
+            <div class="row g-3">
               <div class="col-xl-8">
                 <div class="row gx-3 gy-4">
-                  <form class="row g-4 mb-0 needs-validation" method="POST" action="" novalidate>
+                  <form class="row g-3 mb-0 needs-validation" method="POST" action="" novalidate>
                     <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                     <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-5">
                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                       <select class="form-select" name="iexcodpro" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="" selected>Seleccionar proceso</option>
                         <c:forEach var="lovProcesos" items="${requestScope.lovProcesos}" varStatus="loopCounter">
                           <option value="${lovProcesos.idProceso}" ${lovProcesos.idProceso==requestScope.iexcodpro
                             ? 'selected' : '' }>${lovProcesos.desProceso}</option>
                         </c:forEach>
                       </select>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-2">
                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
-                      <input type="text" name="permes" id="permes" value="${requestScope.permes}"
-                        class="form-control" placeholder="yyyymm" required>
+                      <input type="text" name="permes" id="permes" value="${requestScope.permes}" class="form-control" placeholder="yyyymm" required>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID asiento contable</label>
+                    <div class="col-sm-6 col-md-3">
+                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id asiento contable</label>
                       <input type="text" name="nroasientocab" id="nroasientocab" value="" class="form-control" disabled >
                     </div>
                     <div class="col-sm-6 col-md-7">
-                        <button class="btn btn-primary btn-sm mt-5" type="button" ><span class="fa-solid fa-search me-2"></span>Buscar x nro asiento</button>
+                        <button class="btn btn-phoenix-primary btn-sm mt-1" type="button" >Buscar x nro asiento</button>
                     </div>
 
                     <div class="">
-                      <button class="btn btn-phoenix-secondary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                      <a class="btn btn-phoenix-secondary btn-sm" href="nuevoAsientosContables"><span class="fas fa-plus me-2"></span>Nuevo Asiento Cont</a>
+                      <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
+                      <a class="btn btn-phoenix-secondary btn-sm" href="nuevoAsientosContables"><span class="fas fa-plus me-2"></span>Nuevo asiento cont</a>
                     </div>
                   </form>
                 </div>

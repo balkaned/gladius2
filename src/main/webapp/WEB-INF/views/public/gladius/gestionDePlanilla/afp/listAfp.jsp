@@ -59,25 +59,24 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                             <h2 id="h2top" class="mb-0">Afp</h2>
                         </div>
                     </div>
-                    <div class="row g-5 mb-2">
+                    <div class="row g-3 mb-2">
                         <div class="col-xl-12">
                             <div class="row gx-3 gy-4">
-                                <form class="row g-4 mb-0 needs-validation" method="POST" action="buscarAfps" novalidate>
+                                <form class="row g-3 mb-0 needs-validation" method="POST" action="buscarAfps" novalidate>
                                     <div>
                                         <div class="col-sm-6 col-md-2">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo Mensual</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo mensual</label>
                                             <input class="form-control" id="idperiodo" name="idperiodo" maxlength="6" type="text" placeholder="yyyymm" value="${periodo}" required/>
                                         </div>
                                         <div class="mt-2 col-auto">
                                             <button class="btn btn-primary btn-sm mt-1" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add Afp</a>
-                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar Periodo Afp</a>
+                                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>
+                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar periodo afp</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-
 
                     <div id="orderTable" data-list='{"valueNames":["periodo","idafp","desafp"],"page":10,"pagination":true}'>
                         <div class="mb-3">
@@ -107,7 +106,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                                         <th class="sort white-space-nowrap align-middle text-center ps-6" scope="col" data-sort="desafp">DES AFP</th>
                                         <th class="sort white-space-nowrap align-middle text-center ps-3" scope="col" >REX MAX ASEG</th>
                                         <th class="sort white-space-nowrap align-middle text-center ps-5" scope="col" >FONDO DE PENSION %</th>
-                                        <th class="sort align-middle text-center ps-5" scope="col">COMISION FLUJO</th>
+                                        <th class="sort align-middle text-center ps-5" scope="col" >COMISION FLUJO</th>
                                         <th class="sort align-middle text-center ps-5" scope="col" >COMISION FLUJO MIXTA</th>
                                         <th class="sort align-middle text-center ps-5" scope="col" >COMISION SALDO MIXTA</th>
                                         <th class="sort align-middle text-center ps-5" scope="col" >PRIMA SEGURO</th>
@@ -122,10 +121,10 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                                             </div>
                                           </td>
                                           <td class="periodo align-middle white-space-nowrap py-0"><span class="badge badge-tag me-2 mb-2">${LstAfpPer.iexpermes}</span></td>
-                                          <td class="idafp align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="#">#${LstAfpPer.iexcodafp}</a></td>
-                                          <td class="desafp align-middle text-center fw-semi-bold text-1000">${LstAfpPer.iexdesafp}</td>
-                                          <td class="align-middle white-space-nowrap text-900 fs--1 text-center">${LstAfpPer.iexremmax_asegu}</td>
-                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--1 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig}%</span></td>
+                                          <td class="idafp align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="#">${LstAfpPer.iexcodafp}</a></td>
+                                          <td class="desafp align-middle white-space-nowrap text-start fw-semi-bold text-1000">${LstAfpPer.iexdesafp}</td>
+                                          <td class="align-middle white-space-nowrap text-900 fs--1 text-end">${LstAfpPer.iexremmax_asegu}</td>
+                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig}%</span></td>
                                           <td class="align-middle white-space-nowrap text-center ps-3fw-bold text-700">${LstAfpPer.iexcomis_sflu}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_sflu_mix}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_anual_mix}</td>
@@ -176,7 +175,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
           <div class="modal-content bg-100">
             <form class="needs-validation" method="POST" action="copiarPeriodoAfp" novalidate >
                 <div class="modal-header border-200 bg-soft p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Copiar datos periodo Afp</h5>
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Copiar datos periodo afp</h5>
                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                 </div>
                 <div class="modal-body p-4">
@@ -200,7 +199,7 @@ Author : Jean Quiroz Email : jeanp.quiroz@gmail.com --%>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                     <a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido Afp</span></button>
+                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>
                 </div>
             </form>
           </div>

@@ -42,60 +42,59 @@
     <div class="mb-9">
       <div class="row g-3 mb-4">
         <div class="col-auto">
-          <h2 id="h2top" class="mb-0">Insertar Afp</h2>
+          <h2 id="h2top" class="mb-0">Insertar afp</h2>
         </div>
       </div>
 
-      <div class="row g-5">
+      <div class="row g-3">
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
-            <form class="row g-4 mb-0 needs-validation" method="POST" action="insertarAfp" novalidate>
-              <div class="col-sm-6 col-md-4">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Periodo Mensual</label>
+            <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarAfp" novalidate>
+              <div class="col-sm-6 col-md-3">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo mensual</label>
                 <input class="form-control" id="idperiodo" name="idperiodo" type="text" maxlength="6" value="" placeholder="yyyymm" required/>
               </div>
-              <div class="col-sm-6 col-md-8">
-              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Afp</label>
+              <div class="col-sm-6 col-md-7">
+              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Afp</label>
               	  <select name="iexcodafp" id="iexcodafp" class="form-select" required >
-              		  <option value="" selected >Seleccionar</option>
+              		  <option value="" selected >Seleccionar afp</option>
               		  <c:forEach var="lovAfp" items="${lovAfp}">
               			  <option value="${lovAfp.idLov}"  ${lovAfp.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovAfp.desLov}</option>
               		  </c:forEach>
               	  </select>
               </div>
-              <div class="col-sm-6 col-md-12">
-                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* Remuneración Asegurable</label>
+              <div class="col-sm-6 col-md-5">
+                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Remuneración asegurable</label>
                 <input class="form-control text-end" name="iexremmax_asegu" id="iexremmax_asegu" type="number" step=0.01 value="" placeholder="S/. 9526.35" required/>
               </div>
               <div class="col-sm-6 col-md-4">
-                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Fondo de Pensión</label>
+                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Fondo de pensión</label>
                   <input class="form-control" name="iexaporte_oblig" id="iexaporte_oblig" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
-              <div class="col-sm-6 col-md-4">
-                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Fondo de ONP</label>
+              <div class="col-sm-6 col-md-3">
+                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Fondo de ONP</label>
                     <input class="form-control" name="iexcomis_onp" id="iexcomis_onp" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
-              <div class="col-sm-6 col-md-4">
-                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Comision Fija</label>
+              <div class="col-sm-6 col-md-3">
+                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Comision fija</label>
                   <input class="form-control" name="iexcomis_fija" id="iexcomis_fija" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
               <div class="col-sm-6 col-md-4">
-                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Prima de Seguro</label>
+                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Prima de seguro</label>
                     <input class="form-control" name="iexprima_seguro" id="iexprima_seguro" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
               <div class="col-sm-6 col-md-4">
-                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Comision Flujo</label>
+                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Comision flujo</label>
                   <input class="form-control" name="iexcomis_sflu" id="iexcomis_sflu" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
               <div class="col-sm-6 col-md-5">
-                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Comision Flujo - Mixta</label>
+                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Comision flujo - mixta</label>
                     <input class="form-control" name="iexcomis_sflu_mix" id="iexcomis_sflu_mix" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
               <div class="col-sm-6 col-md-5">
-                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">* % Comision Anual - Mixta</label>
+                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">% Comision anual - mixta</label>
                   <input class="form-control" name="iexcomis_anual_mix" id="iexcomis_anual_mix" type="number" step=0.01 value="" placeholder="0.00 %" required/>
               </div>
-
 
               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                     <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -116,7 +115,7 @@
                     <a class="btn btn-phoenix-primary px-5" href="listAfp">Cancel</a>
                   </div>
                   <div class="col-auto">
-                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar Afp</button>
+                    <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Guardar afp</button>
                   </div>
                 </div>
               </div>

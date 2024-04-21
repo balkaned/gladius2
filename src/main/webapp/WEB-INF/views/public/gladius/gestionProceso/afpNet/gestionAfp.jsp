@@ -10,7 +10,6 @@
 </head>
 <script>
     function mostrarAlert() {
-        //alert("se grabo exitosamente");
         var div = document.getElementById('alert');
         div.style.display = '';
 
@@ -23,14 +22,12 @@
         if (flg == 2) {
             document.getElementById("accion").value = "gestionAfp";
             document.getElementById("frmafpnetfile").submit();
-
         } else if (flg == 1) {
             document.getElementById("accion").value = "REP";
             document.getElementById("frmafpnetfile").submit();
-
         }
-
     }
+
     document.addEventListener('DOMContentLoaded', function () {
         var procesarBtn = document.getElementById('procesarBtn');
         var permesInput = document.getElementById('permes');
@@ -78,29 +75,29 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte Afp Net</h2>
+                    <h2 id="h2top" class="mb-0">Reporte afp net</h2>
                 </div>
             </div>
 
-            <form class="row g-4 mb-0 needs-validation"  method="POST" action="" name="frmafpnetfile"  id="frmafpnetfile" novalidate>
+            <form class="row g-3 mb-0 needs-validation"  method="POST" action="" name="frmafpnetfile"  id="frmafpnetfile" novalidate>
                 <input type="hidden" name="file" id="file" >
                 <input type="hidden" name="accion" id="accion"  value="" >
                 <div>
                     <div class="table-responsive scrollbar mx-n1 px-1">
                         <table class="table table-hover">
-                            <span class="badge badge-tag me-2 mb-2">Generar Archivos Afp Net</span>
+                            <span class="badge badge-tag me-2 mb-2">Generar archivos afp Net</span>
                             <tbody>
                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                    <td class="align-middle fw-semi-bold text-20">Periodo Mensual YYYYMM</td>
+                                    <td class="align-middle fw-semi-bold text-20">Periodo mensual</td>
                                     <td>
-                                        <div class="col-sm-6 col-md-4">
-                                            <input type="text" name="permes"  id="permes"  value="${requestScope.permes}"   class="form-control" placeholder="YYYYMM" >
+                                        <div class="col-sm-6 col-md-3">
+                                            <input type="text" name="permes"  id="permes"  value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" >
                                         </div>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class="align-middle fw-semi-bold text-20">Generar Afp Net</td>
+                                    <td class="align-middle fw-semi-bold text-20">Generar afp net</td>
                                     <td class="align-middle fw-semi-bold text-20">
                                         <a class="btn btn-phoenix-secondary btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1UP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
                                               onclick="SendAfpFile('REP','1')"><span class="fa-solid fa-download me-2"></span>Descargar
