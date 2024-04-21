@@ -195,7 +195,11 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     p.setTimerfecfin(rs.getString("timerfecfin"));
                     p.setIexfecpago(rs.getString("iexfecpago"));
                     p.setFlgestado(rs.getString("flgestado"));
+
                     p.setDesproceso(rs.getString("prodespro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesproceso(cap.letras(p.getDesproceso()));
+
                     p.setDesestado(rs.getString("desestado"));
                     p.setDesgrppla(rs.getString("progrppro"));
                     p.setDesmes(rs.getString("desmes"));
@@ -302,7 +306,10 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                     p.setTimerfecfin_proc(f4.fechaFormatterIngltoEspConHora(p.getTimerfecfin_proc()));
 
                     p.setTimerimp_proc(rs.getDouble("timenroimp_proc"));
+
                     p.setDesproceso(rs.getString("prodespro"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setDesproceso(cap2.letras(p.getDesproceso()));
 
                     p.setDesregimen(rs.getString("desdet"));
                     CapitalizarCadena cap = new CapitalizarCadena();

@@ -94,7 +94,7 @@
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desregimen}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desproceso}" disabled/>
                         </div>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cambio</label>
-                            <input class="form-control" name="tcmb" id="tcmb" maxlength="15" type="number" step=0.01 value="${requestScope.xproplaper.tcmb}" required />
+                            <input class="form-control text-end" name="tcmb" id="tcmb" maxlength="15" type="number" step=0.01 value="${requestScope.xproplaper.tcmb}" required />
                         </div>
                         <div class="col-sm-6 col-md-3">
                         	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha de pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
@@ -120,7 +120,7 @@
                         <div class="col-12 gy-6">
                             <div class="col-12">
                                 <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
-                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-magnifying-glass me-2"></span>Consultar</button>
+                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-magnifying-glass me-2"></span>Buscar</button>
 
                                 <c:if test="${requestScope.xproplaper.flgestado eq '1' || requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
                                     <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-bolt me-2"></span>Generar</button>
@@ -132,7 +132,7 @@
                                     <div class="dropdown-menu">
                                       <a id="dropdownmenutable" target="_blank" class="dropdown-item"
                                         href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Resdetbank@2UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}@null@null@null">
-                                        <span class="fa-solid fa-download fs--1 me-2"></span>Descargar Excel
+                                        <span class="fa-solid fa-download fs--1 me-2"></span>Descargar excel
                                       </a>
                                     </div>
                                 </div>
@@ -205,13 +205,13 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0">#${xbankproper.codbank}</td>
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a href="#">#${xbankproper.codbank}</a></td>
                                     <td class="banc align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desbank}</td>
                                     <td class="align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${xbankproper.moneda}</span></td>
                                     <td class="desmon align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desmoneda}</td>
-                                    <td class="nro_cuenta align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.nroctabank}</td>
-                                    <td class="import align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.impneto}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.heads}</td>
+                                    <td class="nro_cuenta align-middle text-start fw-semi-bold text-1000 ps-5"><span class="fa-regular fa-credit-card me-2"></span>${xbankproper.nroctabank}</td>
+                                    <td class="import align-middle text-body fs-9 text-end fw-bold text-1000 ps-5">${xbankproper.impneto}</td>
+                                    <td class="align-middle text-start text-700 ps-5">${xbankproper.heads}</td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">

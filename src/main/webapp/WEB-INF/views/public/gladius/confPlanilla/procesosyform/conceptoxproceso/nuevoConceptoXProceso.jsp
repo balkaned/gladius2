@@ -83,11 +83,11 @@
                                         <input type="checkbox" class="form-check-input" name="flg_boleta" value="1" id="flg_boleta"/>
                                         <label class="form-check-label ms-2" for="flg_boleta">Flag Boleta</label>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
+                                    <div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="id_orden_bol">Orden</label>
                                         <input class="form-control" id="id_orden_bol" name="id_orden_bol" type="number" maxlength="50" value="0"/>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
+                                    <div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="valor_bol">Valor</label>
                                         <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="0"/>
                                     </div>
@@ -111,11 +111,11 @@
                                         <label class="form-check-label ms-2" for="flg_agrupable">Ver grupo de concepto</label>
                                     </div>-->
                                     <div class="form-group row mt-8">
-                                        <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Tipo de Ingreso
+                                        <h5>Tipo de ingreso</h5>
                                             <br>
-                                            <small class="text-navy">Tipo de Concepto de Ingreso</small>
+                                            <small class="text-navy">Tipo de concepto de ingreso</small>
                                         </label>
-                                        <div class="col-sm-6 col-md-8">
+                                        <div class="col-sm-6 col-md-8 mt-2">
                                             <div class="radio">
                                                 <input type="radio" name="tip_ingreso" value="1" class="form-check-input">
                                                 <label class="form-check-label ms-2">Rem.Fija (Sueldos, Asig. fam. etc)</label>
@@ -135,11 +135,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mt-8">
-                                        <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Tipo de Descuento 5ta
+                                        <h5>Tipo de descuento 5ta</h5>
                                             <br>
-                                            <small class="text-navy">Flag de Descuento de 5ta</small>
+                                            <small class="text-navy">Flag de descuento de 5ta</small>
                                         </label>
-                                        <div class="col-sm-6 col-md-8">
+                                        <div class="col-sm-6 col-md-8 mt-2">
                                             <div class="checkbox">
                                                 <input class="form-check-input" type="checkbox" name="flg_pry_5ta" value="1">
                                                 <label class="form-check-label ms-2"> Rem. Proyecta 5ta.</label>
@@ -151,11 +151,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mt-8">
-                                        <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Afectaciones - Empleador
+                                        <h5>Afectaciones - empleador</h5>
                                             <br>
-                                            <small class="text-navy">Flag de Descuento que se le aplica al Empleador </small>
+                                            <small class="text-navy">Flag de descuento que se le aplica al empleador</small>
                                         </label>
-                                        <div class="col-sm-6 col-md-8">
+                                        <div class="col-sm-6 col-md-8 mt-2">
                                             <div class="checkbox">
                                                 <input type="checkbox" name="flg_ess_reg" value="1" class="form-check-input">
                                                 <label class="form-check-label ms-2">Essalud Seguro Regular de Trabajador</label>
@@ -187,11 +187,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mt-8">
-                                        <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold ">Afectaciones - Trabajador
+                                        <h5>Afectaciones - trabajador</h5>
                                             <br>
                                             <small class="text-navy">Afectaciones de descuentos que se efectuan al trabajador</small>
                                         </label>
-                                        <div class="col-sm-6 col-md-8">
+                                        <div class="col-sm-6 col-md-8 mt-2">
                                             <div class="checkbox">
                                                 <input type="checkbox" name="flg_onp" value="1" class="form-check-input">
                                                 <label class="form-check-label ms-2">Sistema Nacional de Pensiones 19990</label>
@@ -215,11 +215,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mt-8">
-                                        <label class="col-sm-6 col-md-4 control-label text-1000 fw-semi-bold">Afectaciones - Pensionistas
+                                        <h5>Afectaciones - pensionistas</h5>
                                             <br>
                                             <small class="text-navy">Afectaciones de aportes al pensionista</small>
                                         </label>
-                                        <div class="col-sm-6 col-md-8">
+                                        <div class="col-sm-6 col-md-8 mt-2">
                                             <div class="checkbox">
                                                 <input type="checkbox" name="flg_ess_seg_pen" value="1" class="form-check-input">
                                                 <label class="form-check-label ms-2">Essalud Seguro Regular Pensionista</label>

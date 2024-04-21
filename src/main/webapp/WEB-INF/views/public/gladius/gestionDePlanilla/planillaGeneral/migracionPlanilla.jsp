@@ -89,10 +89,10 @@
                 </div>
               </div>
 
-              <div class="row g-5">
+              <div class="row g-3">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form id="formVariable" class="row g-4 mb-0 needs-validation" method="POST" action="gestionarMigracionTrabConcepValor" novalidate >
+                      <form id="formVariable" class="row g-3 mb-0 needs-validation" method="POST" action="gestionarMigracionTrabConcepValor" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -105,11 +105,11 @@
                         <input type="hidden" name="idcodcon" id="idcodcon" value="" />
                         <input type="hidden" name="idvalcon" id="idvalcon" value="" />
 
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-6 col-md-5">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                             <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desregimen}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                             <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desproceso}" disabled/>
                         </div>
@@ -121,7 +121,7 @@
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                             <input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desestado}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-6">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
                             <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
                         </div>
@@ -227,7 +227,7 @@
                                     <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
                                     <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
                                     <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
-                                         <input class="form-control" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
+                                         <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
                                          <c:if test="${requestScope.xproplaper.flgestado eq '3' }" > readonly </c:if> >
                                     </td>
 

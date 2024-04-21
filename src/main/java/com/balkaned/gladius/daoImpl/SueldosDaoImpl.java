@@ -311,7 +311,10 @@ public class SueldosDaoImpl implements SueldoDao {
                     Concepto con = new Concepto();
 
                     con.setCodConcepto(rs.getString("coocodcon"));
+
                     con.setDesConcepto(rs.getString("coodescon"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
 
                     lista.add(con);
                 }
@@ -356,10 +359,18 @@ public class SueldosDaoImpl implements SueldoDao {
                     con.setIexcodpro(rs.getInt("iexcodpro"));
                     con.setIexnroper(rs.getString("iexnroper"));
                     con.setIexcodtra(rs.getInt("iexcodtra"));
+
                     con.setNomdestra(rs.getString("desnomtra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    con.setNomdestra(cap.letras(con.getNomdestra()));
+
                     con.setIexcorrel(rs.getInt("iexcorrel"));
                     con.setIexcodcon(rs.getString("iexcodcon"));
+
                     con.setCoodescon(rs.getString("coodescon"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    con.setCoodescon(cap2.letras(con.getCoodescon()));
+
                     con.setIexvalcon(rs.getDouble("iexvalcon"));
                     con.setIexusucrea(rs.getString("iexusucrea"));
                     con.setIexusumod(rs.getString("iexusumod"));

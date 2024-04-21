@@ -610,10 +610,10 @@
                                         <div class="btn-group font-sans-serif btn-reveal-trigger position-static ms-2">
                                             <button class="btn btn-phoenix-secondary pt-1 pb-1 ps-0 pe-2 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-caret-down ms-2"></span></button>
                                             <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="detalleEmpl@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-person me-2"></span>Detalle Empleado</a>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoFijo@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-1-wave fs--1 me-2"></span>Sueldo Fijo</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="detalleEmpl@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-person me-2"></span>Detalle empleado</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoFijo@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-1-wave fs--1 me-2"></span>Sueldo fijo</a>
                                               <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoVariable@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-trend-up me-2"></span>Sueldo Variable</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoVariable@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-trend-up me-2"></span>Sueldo variable</a>
                                             </div>
                                         </div>
                                     </td>
@@ -623,7 +623,7 @@
                                         <a href="#" onclick="enviaForm_ind('3', '${LstPlanillaRes.iexcodtra}')" >P</a>
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
-                                    <td class="fecini align-middle text-start fw-semi-bold text-600"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstPlanillaRes.iexfecini}</td>
+                                    <td class="fecini align-middle text-start text-body fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecini}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
@@ -656,6 +656,7 @@
                             <div class="col-auto d-flex">
                               <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
                               <ul class="mb-0 pagination"></ul>
+
                               <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
                             </div>
                         </div>
@@ -806,10 +807,10 @@
                         <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                         <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                         <div class="dropdown-menu">
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@ReportDatVarPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel Variables</a>
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpRes@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel Planilla Mensual</a>
+                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@ReportDatVarPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel variables</a>
+                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpRes@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual</a>
                           <div class="dropdown-divider"></div>
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpCtl@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel Planilla Mensual Resumen</a>
+                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpCtl@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual resumen</a>
                         </div>
                       </div>
 
@@ -907,7 +908,7 @@
                           <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
 
-                      <div class="row g-4">
+                      <div class="row g-3">
                           <div class="col-auto">
                               <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
                               <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
@@ -916,7 +917,7 @@
                       </div>
                       <div class="row mt-3 g-3">
                           <div class="col-sm-6 col-md-2">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">ID trab</label>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
                                 <input class="form-control" name="idTrabBol" id="idTrabBol" type="text" required disabled />
                                 <input class="form-control" name="idTrabBolHidden" id="idTrabBolHidden" type="hidden" value="" />
                           </div>
@@ -926,7 +927,7 @@
                                 <!--<input class="form-control" name="idprocesoEdit" id="idprocesoEdit" type="hidden" value="" />-->
                           </div>
                           <div class="col-sm-6 col-md-3">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de Ingreso</label>
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de ingreso</label>
                               <input class="form-control" name="feciniBol" id="feciniBol" type="text" required disabled />
                               <!--<input class="form-control" name="feciniBol" id="feciniBol" type="hidden" value="" />-->
                           </div>
@@ -1277,14 +1278,14 @@
                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                 </div>
                 <div class="modal-body p-4">
-                    <form class="needs-validation" method="POST" action="modificarPeriodoPlan" novalidate >
+                    <form class="needs-validation g-3" method="POST" action="modificarPeriodoPlan" novalidate >
                       <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                           <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                           <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                           <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
 
-                      <div class="row mt-2">
+                      <div class="row g-3 mt-2">
                           <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <input class="form-control" name="idTrabBol" id="idTrabBol" type="text" required disabled />
@@ -1307,7 +1308,7 @@
                           </div>
                       </div>
 
-                      <div class="row g-4">
+                      <div class="row g-3">
                           <h4 class="mb-0 mt-7">Vacaciones</h4>
                           <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
                             <div class="mb-3" class="mt-0">

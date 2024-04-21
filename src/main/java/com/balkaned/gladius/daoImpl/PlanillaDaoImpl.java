@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.FormulaPlanillaService;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -525,7 +526,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setTotalaporte(rs.getDouble("totalaporte"));
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
+
                     p.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDestra(cap.letras(p.getDestra()));
+
                     p.setIexdiasteorico(rs.getDouble("iexdiasteorico"));
                     p.setIexcodafp(rs.getString("iexcodafp"));
                     p.setIextipafp(rs.getString("iextipafp"));
@@ -978,7 +983,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setTotalaporte(rs.getDouble("totalaporte"));
                     p.setIexusucrea(rs.getString("iexusucrea"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
+
                     p.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDestra(cap.letras(p.getDestra()));
+
                     p.setIexdiasteorico(rs.getDouble("iexdiasteorico"));
                     p.setIexcodafp(rs.getString("iexcodafp"));
                     p.setIextipafp(rs.getString("iextipafp"));
@@ -1125,7 +1134,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexnroper(rs.getString("iexnroper"));
                     p.setPermes(rs.getString("iexpermes"));
                     p.setCodbank(rs.getString("codbank"));
+
                     p.setDesbank(rs.getString("desban"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesbank(cap.letras(p.getDesbank()));
+
                     p.setMoneda(rs.getString("moneda"));
                     p.setDesmoneda(rs.getString("desmon"));
 

@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.beans.Compania;
 import com.balkaned.gladius.beans.UsuarioConeccion;
 import com.balkaned.gladius.dao.UsuarioConeccionDao;
+import com.balkaned.gladius.utils.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -111,7 +112,11 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     comp.setId_companias(rs.getString("iexcodcia"));
                     comp.setNombre(rs.getString("iexdescia"));
                     comp.setRuc(rs.getString("iexnroruc"));
+
                     comp.setDireccion(rs.getString("iexdireccion"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    comp.setDireccion(cap.letras(comp.getDireccion()));
+
                     comp.setUrlLogo(rs.getString("iexreplogo"));
                     comp.setSchema(rs.getString("iexschema"));
                     comp.setIexflgsource(rs.getString("iexflgsource"));

@@ -127,7 +127,7 @@
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desregimen}" disabled/>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso</label>
                         	<input class="form-control" name="iexnroiddep" maxlength="15" type="text" placeholder="" value="${requestScope.xproplaper.desproceso}" disabled/>
                         </div>
@@ -141,7 +141,7 @@
                         </div>
 
                         <c:if test="${requestScope.xproplaper.flgestado eq '1'  ||  requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
-                            <div class="col-sm-6 col-md-7">
+                            <div class="col-sm-6 col-md-6">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                                   <select name="slc_codtra" id="slc_codtra" class="form-select" required>
                                       <option value="" selected >Seleccionar trabajador</option>
@@ -150,22 +150,27 @@
                                       </c:forEach>
                                   </select>
                             </div>
-                            <div class="col-sm-6 col-md-7">
+                            <div class="col-sm-6 col-md-6">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                   <select name="slc_codcon" id="slc_codcon" class="form-select" required>
-                                      <option value="" selected >Seleccionar</option>
+                                      <option value="" selected >Seleccionar concepto</option>
                                       <c:forEach var="lovConcepProVar" items="${requestScope.lovConcepProVar}">
                                           <option value="${lovConcepProVar.codConcepto}">[${lovConcepProVar.codConcepto}] - ${lovConcepProVar.desConcepto}</option>
                                       </c:forEach>
                                   </select>
                             </div>
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe</label>
-                                <input class="form-control" name="txt_importe" id="txt_importe" maxlength="15" type="number" step=0.01 placeholder="1200.00" value="" required/>
+                                <input class="form-control text-end" name="txt_importe" id="txt_importe" maxlength="15" type="number" step=0.01 placeholder="1200.00" value="" required/>
                             </div>
-                            <div class="col-sm-6 col-md-8">
-                            	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
-                            	<input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
+                            <div class="row col-9">
+                            	<div class="col-8 mt-3">
+                            	    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
+                            	    <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
+                            	</div>
+                            	<div class="col-4 mt-6 ps-0">
+                            	    <a class="btn btn-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
+                                </div>
                             </div>
                         </c:if>
 
@@ -178,7 +183,6 @@
                             <div class="col-12">
                                 <a class="btn btn-phoenix-secondary btn-sm px-5 mt-1" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
                                 <button class="btn btn-primary btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
-                                <a class="btn btn-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
                                 <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
 
                                 <div class="btn-group mb-0 me-1 ms-0 mt-1">
@@ -186,7 +190,7 @@
                                     <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                     <div class="dropdown-menu">
                                       <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null">
-                                        <span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel
+                                        <span class="fa-solid fa-download fs--1 me-2"></span>Exportar excel
                                       </a>
                                     </div>
                                 </div>
@@ -282,7 +286,7 @@
                                     <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
                                     <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
                                     <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
-                                         <input class="form-control" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
+                                         <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
                                          <c:if test="${requestScope.xproplaper.flgestado eq '3' }" > readonly </c:if> >
                                     </td>
 
