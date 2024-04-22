@@ -150,8 +150,7 @@
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                                     <option value="" selected>Seleccionar regimen</option>
                                     <c:forEach var="Lovs_regimen" items="${requestScope.Lovs_regimen}">
-                                        <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg
-                                                ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
+                                        <option value="${Lovs_regimen.idLov}" ${Lovs_regimen.idLov==requestScope.iexcodreg ? 'selected' : '' }>${Lovs_regimen.desLov}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -165,18 +164,12 @@
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span
-                                    class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control datetimepicker" name="fecini" id="fecini"
-                                       onchange="formatearFecha1();" type="text"
-                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" name="fecini" id="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                             </div>
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span
-                                    class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control datetimepicker" name="fecfin" id="fecfin"
-                                       onchange="formatearFecha2();" type="text"
-                                       placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'required />
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                <input class="form-control datetimepicker" name="fecfin" id="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}'required />
                             </div>
                             <div class="">
                                 <button class="btn btn-primary btn-sm" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
@@ -233,7 +226,7 @@
                                 <c:if test="${LstAusentismoView.desestado=='inactivo'}">
                                     <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td>
                                 </c:if>
-                                <td class="fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a> ${LstAusentismoView.fecing}</td>
+                                <td class="fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><span class="fa-regular fa-calendar me-2"></span>${LstAusentismoView.fecing}</td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center  fs--2 text-start"><span class="badge badge-phoenix fs--2 badge-phoenix-info"class="badge-label">${LstAusentismoView.destipaus}</span></td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center  text-1000 fs--1 text-start ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecini}</td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center text-1000 fs--1 text-start ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecfin}</td>

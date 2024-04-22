@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button class="btn btn-primary btn-sm" onclick="return enviaForm('1','submit_por_click','');"><span class="fa-solid fa-plus me-2"></span>Add a tabla tmp</button>
+                                <button class="btn btn-phoenix-secondary btn-sm" onclick="return enviaForm('1','submit_por_click','');"><span class="fa-solid fa-plus me-2"></span>Add a tabla tmp</button>
                             </div>
                         </form>
                     </div>
@@ -180,12 +180,12 @@
                                                     <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                                 </div>
                                             </td>
-                                            <td class="order align-middle white-space-nowrap py-0"><a href="#">${lsthistConcepto.iexnroper}</a></td>
+                                            <td class="order align-middle white-space-nowrap py-0"><span class="fa-regular fa-calendar me-2"></span> ${lsthistConcepto.iexnroper}</td>
                                             <td class="total align-middle text-center fw-semi-bold text-1000">${lsthistConcepto.procodpro}</td>
                                             <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000">${lsthistConcepto.despro}</td>
                                             <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix badge-phoenix-secondary py-1 border-0 text-capitalize">${lsthistConcepto.procodcon}</span></td>
                                             <td class="total align-middle text-start fw-semi-bold text-1000">${lsthistConcepto.coodescon}</td>
-                                            <td class="total align-middle text-center text-body fs-9 ps-0 pe-0">${lsthistConcepto.cantidad}</td>
+                                            <td class="total align-middle text-center fs-9 ps-0 pe-0">${lsthistConcepto.cantidad}</td>
                                             <td class="total align-middle text-end fw-bold text-1000">${lsthistConcepto.provalor}</td>
 
                                             <td class="align-middle text-center white-space-nowrap pe-0 action">

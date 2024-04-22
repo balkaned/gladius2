@@ -106,7 +106,7 @@
                               </td>
                               <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
                               <td class="tipodoc align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
-                              <td class="nrodoc align-middle text-body fs-9 text-center">${empl.iexnrodoc}</td>
+                              <td class="nrodoc align-middle fs-9 text-center">${empl.iexnrodoc}</td>
                               <td class="nombreyapp align-middle white-space-nowrap ps-8">
                                 <a class="d-flex align-items-center" href="#!">
                                   <div class="avatar avatar-m">
@@ -117,10 +117,10 @@
                               </td>
                               <td class="sexo align-middle white-space-nowrap text-900 fs--1 text-center">${empl.iexcodsex}</td>
                               <td class="puesto align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${empl.destiptra}</span><span class="ms-1" data-feather="" style="height:12.8px;width:12.8px;"></span></span></td>
-                              <td class="tipotrab align-middle white-space-nowrap text-body fs-9 text-start">${empl.iexpuesto}</td>
+                              <td class="tipotrab align-middle white-space-nowrap fs-9 text-start">${empl.iexpuesto}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                              <td class="delivery_type align-middle white-space-nowrap text-body-tertiary fs-9 ps-4 text-start"><span class="fa-regular fa-calendar fs-0 me-2"></span>${empl.iexfecing}</td>
+                              <td class="delivery_type align-middle white-space-nowrap fs-9 ps-4 text-start"><span class="fa-regular fa-calendar fs-0 me-2"></span>${empl.iexfecing}</td>
                               <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">

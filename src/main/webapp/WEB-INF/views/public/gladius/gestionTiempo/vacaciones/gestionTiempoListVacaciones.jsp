@@ -138,16 +138,12 @@
                                     <div class="col-sm-6 col-md-4">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha inicio</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                        <input class="form-control datetimepicker" name="fecini" id="fecini"
-                                               onchange="formatearFecha1();" type="text"
-                                               placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                                        <input class="form-control datetimepicker" name="fecini" id="fecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
                                         <span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                        <input class="form-control datetimepicker" name="fecfin" id="fecfin"
-                                               onchange="formatearFecha2();" type="text"
-                                               placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
+                                        <input class="form-control datetimepicker" name="fecfin" id="fecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required/>
                                     </div>
 
                                     <div>
@@ -202,9 +198,9 @@
                                         <td class="order align-middle white-space-nowrap py-0">
                                             <a class="fw-semi-bold" href="editarGestionVacaciones@${LstVacacionesView.iexcodtra}@${LstVacacionesView.iexcorrel}">#${LstVacacionesView.iexcorrel}</a>
                                         </td>
-                                        <td class="total align-middle text-center text-body fs-9 ps-3">${LstVacacionesView.nrodoc}</td>
+                                        <td class="total align-middle text-center fs-9 ps-3">${LstVacacionesView.nrodoc}</td>
                                         <td class="total align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 fs--0 mb-2">${LstVacacionesView.iexcodtra}</span></td>
-                                        <td class="total align-middle text-start white-space-nowrap text-body fs-9 ps-5">${LstVacacionesView.desnomtra}</td>
+                                        <td class="total align-middle text-start white-space-nowrap fs-9 ps-5">${LstVacacionesView.desnomtra}</td>
                                         <c:if test="${LstVacacionesView.desestado=='activo'}">
                                             <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700">
                                                  <span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span>
@@ -215,10 +211,10 @@
                                                  <span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span>
                                             </td>
                                         </c:if>
-                                        <td class=" fulfilment_status align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-4 pe-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecing}</td>
+                                        <td class=" fulfilment_status align-middle white-space-nowrap text-start fw-semi-bold ps-4 pe-4"><span class="fa-regular fa-calendar me-2"></span>${LstVacacionesView.fecing}</td>
                                         <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center"><span class="badge badge-phoenix fs--2 badge-phoenix-info" class="badge-label">${LstVacacionesView.destipvac}</span></td>
-                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center ps-4"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.iexfecini}</td>
-                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesView.fecfinrep}</td>
+                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-center ps-4"><span class="fa-regular fa-calendar me-2"></span>${LstVacacionesView.iexfecini}</td>
+                                        <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 ps-4 text-center"><span class="fa-regular fa-calendar me-2"></span>${LstVacacionesView.fecfinrep}</td>
                                         <td class="delivery_type align-middle  white-space-nowrap text-1000 fs--1  fw-bold text-center ps-4">${LstVacacionesView.iexnrodias}</td>
                                         <td class="align-middle text-end white-space-nowrap pe-0 action">
                                             <div class="font-sans-serif btn-reveal-trigger position-static">

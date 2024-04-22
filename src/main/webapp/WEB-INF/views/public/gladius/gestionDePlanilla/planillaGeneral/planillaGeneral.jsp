@@ -365,10 +365,10 @@
                                     <td class="total align-middle text-start fw-semi-bold text-1000 ps-2">
                                         <a onclick="editarPeriodo('${List_Procesos.iexcodpro}',${List_Procesos.iexnroper});" href="#" type="button" data-bs-toggle="modal" data-bs-target="#periodoModalEditar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-pencil me-2"></span>${List_Procesos.iexnroper}</a>
                                     </td>
-                                    <td class="total align-middle white-space-nowrap text-start text-body fw-semi-bold fs-9 text-1000 ps-2">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
-                                    <td class="total align-middle text-center text-body fs-9 ps-2"><span class="fa-regular fa-calendar me-2"></span>${List_Procesos.iexfecini}</td>
-                                    <td class="total align-middle text-center text-body fs-9 ps-4"><span class="fa-regular fa-calendar me-2"></span>${List_Procesos.iexfecfin}</td>
-                                    <td class="total align-middle text-start text-body fs-9 ">${List_Procesos.iexfecope}</td>
+                                    <td class="total align-middle white-space-nowrap text-start fw-semi-bold fs-9 text-1000 ps-2">[${List_Procesos.iexcodpro}] - ${List_Procesos.desproceso}</td>
+                                    <td class="total align-middle text-center fs-9 ps-2"><span class="fa-regular fa-calendar me-2"></span>${List_Procesos.iexfecini}</td>
+                                    <td class="total align-middle text-center fs-9 ps-4"><span class="fa-regular fa-calendar me-2"></span>${List_Procesos.iexfecfin}</td>
+                                    <td class="total align-middle text-start fs-9 ">${List_Procesos.iexfecope}</td>
 
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2">
                                         <c:if test="${List_Procesos.desestado=='Creado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">CREADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>

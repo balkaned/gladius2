@@ -94,8 +94,8 @@
                     <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${concepto.codConcepto}</a></td>
                     <td class="concept align-middle text-start fw-semi-bold ps-5 pe-0 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary">${concepto.desConcepto}</span></td>
                     <td class="var align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${concepto.desVariable}</td>
-                    <td class="des align-middle text-start text-body fs-9">${concepto.desAbreviacion}</td>
-                    <td class="abr al align-middle text-start text-body fs-9">${concepto.descripcion}</td>
+                    <td class="des align-middle text-start fs-9">${concepto.desAbreviacion}</td>
+                    <td class="abr al align-middle text-start fs-9">${concepto.descripcion}</td>
 
                     <td class="align-middle text-center white-space-nowrap pe-0 action">
                       <div class="font-sans-serif btn-reveal-trigger position-static">

@@ -89,7 +89,7 @@
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarLocal@${local.iexubicod}">#${local.iexubicod}</a></td>
-                              <td class="total align-middle text-start text-body fs-9">${local.iexubides}</td>
+                              <td class="total align-middle text-start fs-9">${local.iexubides}</td>
                               <td class="align-middle text-center white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

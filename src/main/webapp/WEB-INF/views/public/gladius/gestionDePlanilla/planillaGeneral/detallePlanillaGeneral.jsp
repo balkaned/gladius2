@@ -623,7 +623,7 @@
                                         <a href="#" onclick="enviaForm_ind('3', '${LstPlanillaRes.iexcodtra}')" >P</a>
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
-                                    <td class="fecini align-middle text-start text-body fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecini}</td>
+                                    <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecini}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>

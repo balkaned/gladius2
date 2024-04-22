@@ -173,9 +173,9 @@ $(document).ready(function(){
                             			<c:forEach var="xPrestDet" items="${requestScope.xPrestDet}">
                             				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
                             				  <td class="align-middle white-space-nowrap ps-3 pe-3">${xPrestDet.iexidcuota}</td>
-                            				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${xPrestDet.iexfecpre}</td>
-                            				  <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3">${xPrestDet.ieximpbru}</td>
-                            				  <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3">${xPrestDet.iexinteres}</td>
+                            				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000"><span class="fa-regular fa-calendar me-2"></span> ${xPrestDet.iexfecpre}</td>
+                            				  <td class="align-middle white-space-nowrap text-center fs-9 ps-3 pe-3">${xPrestDet.ieximpbru}</td>
+                            				  <td class="align-middle white-space-nowrap text-center fs-9 ps-3 pe-3">${xPrestDet.iexinteres}</td>
                             				  <td class="align-middle white-space-nowrap text-end fw-bold text-1000 ps-3 pe-3">${xPrestDet.ieximptotal}</td>
 
                             				  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">

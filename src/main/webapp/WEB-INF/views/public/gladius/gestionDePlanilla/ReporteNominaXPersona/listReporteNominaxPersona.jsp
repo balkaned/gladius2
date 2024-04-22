@@ -143,7 +143,7 @@
                                                 <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                             </div>
                                         </td>
-                                        <td class="periodo align-middle white-space-nowrap py-0"><a href="#">${Res_planAllPerTra.iexnroper}</a></td>
+                                        <td class="periodo align-middle white-space-nowrap py-0"><span class="fa-regular fa-calendar me-2"></span> ${Res_planAllPerTra.iexnroper}</td>
                                         <td class="align-middle text-center fw-semi-bold text-1000">${Res_planAllPerTra.iexcodpro}</td>
                                         <td class="proceso align-middle text-start white-space-nowrap">${Res_planAllPerTra.descodpro}</td>
                                         <td class="align-middle text-center fw-semi-bold text-1000">${Res_planAllPerTra.iexcorrel}</td>
@@ -194,78 +194,6 @@
         </div>
     </div>
 </main>
-
-<%-- Inicio Modal --%>
-<div class="modal fade" id="reportsFilterModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border">
-            <form id="addEventForm" autocomplete="off">
-                <div class="modal-header border-200 p-4">
-                    <h5 class="modal-title text-1000 fs-2 lh-sm">REPORTE DE PLANILLA </h5>
-                    <button class="btn p-1 text-danger" type="button" data-bs-dismiss="modal" aria-label="Close"><span
-                            class="fas fa-times fs--1"> 				</span></button>
-                </div>
-                <div class="modal-body pt-4 pb-2 px-4">
-                    <div class="ps-3" style="font-size:13px;">
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span
-                                    class="me-2 uil uil-envelope-alt">  </span>
-                                <span class="text-1000 mb-0">Email</span>
-                            </div>
-                            <a href="#!">${iexcodtra}</a>
-                        </div>
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-phone"> </span>
-                                <span class="text-1000 mb-0">Telefono</span>
-                            </div>
-                            <a href="tel:+1234567890">+${telefono}</a>
-                        </div>
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-directions"></span>
-                                <span class="text-1000 mb-0">Dirección</span>
-                            </div>
-                            <a href="#!">${direccion}</a>
-                        </div>
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-postcard"></span>
-                                <span class="text-1000 mb-0">Nro Documento</span>
-                            </div>
-                            <p class="mb-0 text-800">${nrodoc}</p>
-                        </div>
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span
-                                    class="me-2 fa-solid fas fa-graduation-cap"></span>
-                                <span class="text-1000 mb-0">Puesto</span>
-                            </div>
-                            <p class="mb-0 text-800">${puesto}</p>
-                        </div>
-                        <div class="mb-2">
-                            <div class="d-flex align-items-center mb-1"><span class="me-2 fa-solid far fa-save"></span>
-                                <span class="text-1000 mb-0">Ult. Actualización</span>
-                            </div>
-                            <p class="mb-0 text-800">${fechaMod}</p>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="me-2 uil uil-check-circle"></span>
-                                <span class="text-1000 mb-0">Estado</span>
-                            </div>
-                            <c:if test="${estado.equals('1')}"><span class="badge badge-phoenix badge-phoenix-success">Activo</span></c:if>
-                            <c:if test="${estado.equals('0')}"><span class="badge badge-phoenix badge-phoenix-danger">Inactivo</span></c:if>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-
-                    <button class="btn btn-sm btn-primary px-9 my-0" data-bs-dismiss="modal" type="submit">
-                        Cerrar
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<%-- Fin Modal --%>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
@@ -273,6 +201,4 @@
 <jsp:include page="../../../demoWidget.jsp"></jsp:include>
 <jsp:include page="../../../customize.jsp"></jsp:include>
 </body>
-
-
 </html>

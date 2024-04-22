@@ -80,8 +80,8 @@
                         <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarCuentaContable@${ccontable.iexccodcta}">${ccontable.iexccodcta}</a></td>
                         <td class="total align-middle text-start fw-semi-bold text-1000 ps-7">${ccontable.iexdescta}</td>
                         <td class="total align-middle text-center fw-semi-bold text-1000">
-                            <c:if test="${ccontable.desdet=='DEBE'}"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Debe</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
-                            <c:if test="${ccontable.desdet=='HABER'}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Haber</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                            <c:if test="${ccontable.desdet=='DEBE'}"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">- Debe</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                            <c:if test="${ccontable.desdet=='HABER'}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">+ Haber</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></c:if>
                         </td>
 
                         <td class="align-middle text-center white-space-nowrap pe-0 action">

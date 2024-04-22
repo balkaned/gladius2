@@ -210,7 +210,7 @@
                                     <td class="align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${xbankproper.moneda}</span></td>
                                     <td class="desmon align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desmoneda}</td>
                                     <td class="nro_cuenta align-middle text-start fw-semi-bold text-1000 ps-5"><span class="fa-regular fa-credit-card me-2"></span>${xbankproper.nroctabank}</td>
-                                    <td class="import align-middle text-body fs-9 text-end fw-bold text-1000 ps-5">${xbankproper.impneto}</td>
+                                    <td class="import align-middle fs-9 text-end fw-bold text-1000 ps-5">${xbankproper.impneto}</td>
                                     <td class="align-middle text-start text-700 ps-5">${xbankproper.heads}</td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">

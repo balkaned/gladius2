@@ -172,7 +172,7 @@ function program_tur_row(turno, fecini,  fecfin){
                                              <tr>
                                                 <div class="col-sm-6 col-md-4">
                                                 	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de turno</label>
-                                                	  <select id="slc_tipturno" name="slc_tipturno" class="form-select form-select-sm" onchange="jumpTo('slc_tipturno')" disabled>
+                                                	  <select id="slc_tipturno" name="slc_tipturno" class="form-select" onchange="jumpTo('slc_tipturno')" disabled>
                                                 		 <option value="-1" >Seleccionar tipo turno</option>
                                                          <c:forEach  var="lovTipTurno" items="${lovTipTurno}">
                                                            <option value="${lovTipTurno.idLov}" ${lovTipTurno.idLov == xempxturno.iextipturno ? 'selected' : ''}>${lovTipTurno.desLov}</option>

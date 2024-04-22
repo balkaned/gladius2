@@ -116,7 +116,7 @@
                                               </div>
                                             </td>
                                             <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${conceptoXProcesoList.procodcon}</a></td>
-                                            <td class="concept align-middle text-start text-body fs-9 ps-5 pe-0">${conceptoXProcesoList.coodescon}</td>
+                                            <td class="concept align-middle text-start fs-9 ps-5 pe-0">${conceptoXProcesoList.coodescon}</td>
 
                                             <td class="align-middle text-center white-space-nowrap pe-0 action">
                                               <div class="font-sans-serif btn-reveal-trigger position-static">

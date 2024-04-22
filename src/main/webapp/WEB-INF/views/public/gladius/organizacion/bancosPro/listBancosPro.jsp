@@ -93,7 +93,7 @@
                               <td class="total align-middle text-center fw-semi-bold text-1000">${banc.despro}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">
                                 <c:if test="${banc.destipcta=='CUENTA AHORROS'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
-                                <c:if test="${banc.destipcta=='CUENTA INTERBANCARIA'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                                <c:if test="${banc.destipcta=='CUENTA INTERBANCARIA'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">CCI: ${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
                               </td>
                               <td class="total align-middle text-start fw-semi-bold text-1000">${banc.iexctaban}</td>
                               <td class="align-middle text-center white-space-nowrap pe-0 action">
