@@ -2,10 +2,7 @@ package com.balkaned.gladius.services;
 
 
 
-import com.balkaned.gladius.beans.AsientoContableCab;
-import com.balkaned.gladius.beans.ProcesoPeriodo;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
-import com.balkaned.gladius.beans.ProcesoPlanillaxCia;
+import com.balkaned.gladius.beans.*;
 
 import java.util.List;
 
@@ -18,4 +15,5 @@ public interface ProcesoPlanillaService {
     public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo);
     public void actualizarProper(ProcesoPeriodo pperiodo);
     public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro);
+    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon);
 }

@@ -13,5 +13,6 @@ public interface ProcesoPlanillaDao {
     public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo);
     public void actualizarProper(ProcesoPeriodo pperiodo);
     public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro);
+    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon);
 
 }

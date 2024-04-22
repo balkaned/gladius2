@@ -259,44 +259,109 @@ public class GestionReportesController {
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        model.addAttribute("idComp",idCompania);
+
+        String accion = request.getParameter("accion");
+        String tiposubmit =  request.getParameter("tiposubmit");
 
         String codcon = request.getParameter("codcon");
+        String codcondel = request.getParameter("codcondel");
         String perini = request.getParameter("perini");
         String perfin = request.getParameter("perfin");
 
-        List<Concepto> listacon = (List<Concepto>) model.getAttribute("listacon");
-        List<Concepto> lista = (List<Concepto>) model.getAttribute("lstConcepto");
+        model.addAttribute("lstConcepto", conceptoService.listardet());
 
-        if (listacon == null) {
-            listacon = new ArrayList<>();
-            model.addAttribute("listacon", listacon);
+        log.info("accion: "+accion);
+        log.info("tiposubmit: "+tiposubmit);
+
+        if(accion!=null) {
+            if(accion.equals("NUEVO")) {
+                request.getSession().setAttribute("listacon", "");
+            }else{
+                //if (tiposubmit.equals("submit_por_click")) {
+                    if (accion.equals("ADD")) {
+                        log.info("--->ADD");
+
+                        List<Concepto> listacon = (List<Concepto>) request.getSession().getAttribute("listacon");
+                        log.info("listacon: " + listacon);
+
+                        if (listacon == null) {
+                            listacon = new ArrayList<>();
+                        }
+
+                        log.info("codcon seleccionado: " + codcon);
+                        Concepto condes = conceptoService.recuperar(codcon);
+                        listacon.add(condes);
+
+                        request.getSession().setAttribute("listacon", listacon);
+                        model.addAttribute("listacon", listacon);
+                        model.addAttribute("xperini", perini);
+                        model.addAttribute("xperfin", perfin);
+                    }
+
+                    if (accion.equals("DEL")) {
+                        log.info("--->DEL");
+
+                        List<Concepto> listacon = (List<Concepto>) request.getSession().getAttribute("listacon");
+                        log.info("listacon: " + listacon);
+
+                        log.info("codcondel seleccionado a eliminar de tabla temporal: " + codcondel);
+
+                        Iterator<Concepto> itr = listacon.iterator();
+
+                        while (itr.hasNext()) {
+                            Concepto concepto = itr.next();
+                            if (concepto.getCodConcepto().equals(codcondel)) {
+                                itr.remove();
+                            }
+                        }
+
+                        request.getSession().setAttribute("listacon", listacon);
+                        model.addAttribute("listacon", listacon);
+                        model.addAttribute("xperini", perini);
+                        model.addAttribute("xperfin", perfin);
+                    }
+
+                    if(accion.equals("PLACONGENREP")){
+                        log.info("--->PLACONGENREP");
+
+                        List<Concepto> listacon = (List<Concepto>) request.getSession().getAttribute("listacon");
+                        log.info("listacon: " + listacon);
+
+                        String varcodcon ="";
+
+                        if(listacon!=null && perini!=null && perfin != null){
+                            Iterator<Concepto> itr = listacon.iterator();
+                            while (itr.hasNext()) {
+                                Concepto concepto = itr.next();
+                                varcodcon = varcodcon+"'"+concepto.getCodConcepto()+"',";
+                            }
+
+                            varcodcon=varcodcon+"'' ";
+                            log.info("varcodcon : "+varcodcon);
+
+                            model.addAttribute("lsthistConcepto",procesoPlanillaService.listarPlaNroper(idCompania,perini,perfin,varcodcon));
+                        }
+
+                        model.addAttribute("listacon", listacon);
+                        model.addAttribute("varcodcon",varcodcon);
+                        model.addAttribute("xperini", perini);
+                        model.addAttribute("xperfin", perfin);
+                    }
+            }
         }
-        if (lista == null) lista = conceptoService.listardet();
 
-        Concepto condes = conceptoService.recuperar(codcon);
-        if (condes != null) {
-            listacon.add(condes);
-        } else {
-            log.info("Error en " + condes);
-        }
+        model.addAttribute("tiposubmit", "");
 
-        log.info("lstConcepto" + lista);
-        log.info("listacon" + listacon);
-
-        model.addAttribute("lstConcepto", lista);
-        model.addAttribute("xperini", perini);
-        model.addAttribute("xperfin", perfin);
-
-        return new ModelAndView("public/gladius/gestionDePlanilla/listReportePlanillasXConceptos/listReportePlanillaxConcepto");
+        return new ModelAndView("public/gladius/gestionDePlanilla/ReportePlanillasXConceptos/listReportePlanillaxConcepto");
     }
 
     @RequestMapping("/listReporteNominaxPersona")
     public ModelAndView listReporteNominaxPersona(ModelMap model, HttpServletRequest request) {
         log.info("/listReporteNominaxPersona");
+
         String user = (String) request.getSession().getAttribute("user");
-        log.info("user:" + user);
         if (user == null || user.equals("") || user.equals("null")) {
-            log.info("Ingreso a user null");
             return new ModelAndView("redirect:/login2");
         }
 
@@ -306,7 +371,6 @@ public class GestionReportesController {
         Empleado Empleado = new Empleado();
         Empleado.setIexcodcia(idCompania);
         List<Empleado> listaEmpl = empleadoService.listarEmpleado(Empleado);
-
 
         String perini = request.getParameter("perini");
         String perfin = request.getParameter("perfin");
@@ -341,16 +405,14 @@ public class GestionReportesController {
             log.error("Invalid value for iexcodtra: " + iexcodtra, e);
             // Manejar el error de conversión de manera apropiada, si es necesario
         }
+
         log.info("codpro : " + codpro);
         log.info("iexcodtra : " + iexcodtra);
         log.info("perini : " + perini);
         log.info("perfin : " + perfin);
 
-
         model.addAttribute("LstEmpleadoRes", listaEmpl);
         model.addAttribute("LstProcesoPlanilla", procesoPlanillaService.listar("%"));
         return new ModelAndView("public/gladius/gestionDePlanilla/ReporteNominaXPersona/listReporteNominaxPersona");
     }
-
-
 }
