@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button class="btn btn-primary btn-sm" onclick="return enviaForm('1','submit_por_click','');"><span class="fa-solid fa-plus me-2"></span>Add a tabla temporal</button>
+                                <button class="btn btn-primary btn-sm" onclick="return enviaForm('1','submit_por_click','');"><span class="fa-solid fa-plus me-2"></span>Add a tabla tmp</button>
                             </div>
                         </form>
                     </div>

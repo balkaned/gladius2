@@ -372,6 +372,10 @@ public class AWS_FTP_FlgSourceController {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                            }else if(item.getNombreParametro().contains("CODTRA") || item.getNombreParametro().contains("codtra") || item.getNombreParametro().contains("Codtra")) {
+                                parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
+                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             }else{
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());

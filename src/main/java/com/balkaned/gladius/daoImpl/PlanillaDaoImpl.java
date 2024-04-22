@@ -289,7 +289,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     PlaProPeriodo p = new PlaProPeriodo();
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
+
                     p.setDescodpro(rs.getString("despro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDescodpro(cap.letras(p.getDescodpro()));
+
                     p.setIexnroper(rs.getString("iexnroper"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIextipdoc(rs.getString("iextipdoc"));
@@ -402,7 +406,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     PlaProPeriodo p = new PlaProPeriodo();
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
+
                     p.setDescodpro(rs.getString("despro"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDescodpro(cap.letras(p.getDescodpro()));
+
                     p.setIexnroper(rs.getString("iexnroper"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIextipdoc(rs.getString("iextipdoc"));
