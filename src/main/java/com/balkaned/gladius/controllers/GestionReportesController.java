@@ -406,30 +406,32 @@ public class GestionReportesController {
         log.info("iexcodtra: "+iexcodtra);
         log.info("codpro: "+codpro);
 
-        try {
-            Empleado empleado = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(iexcodtra));
+        //Empleado empleado = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(iexcodtra));
+        //log.info("recuperar" + empleado);
 
-            log.info("recuperar" + empleado);
+        if (codpro == null || codpro.trim().isEmpty()) {
+            log.info("Ingreso a planillaService.listAllPlaPerTra..");
+            List<PlaProPeriodo> lista = planillaService.listAllPlaPerTra(idCompania, Integer.valueOf(iexcodtra), perini, perfin);
+            model.addAttribute("Res_planAllPerTra", lista);
+            model.addAttribute("perini", perini);
+            model.addAttribute("perfin", perfin);
+            model.addAttribute("codtra", iexcodtra);
+            model.addAttribute("codpro", codpro);
+            //model.addAttribute("fichaEmp", empleado);
+        } else {
+            log.info("Ingreso a planillaService.listAllPlaPerTraPro..");
+            List<PlaProPeriodo> lista = planillaService.listAllPlaPerTraPro(idCompania, Integer.valueOf(iexcodtra), Integer.parseInt(codpro), perini, perfin);
+            model.addAttribute("Res_planAllPerTra", lista);
+            model.addAttribute("perini", perini);
+            model.addAttribute("perfin", perfin);
+            model.addAttribute("codtra", iexcodtra);
+            model.addAttribute("codpro", codpro);
+            //model.addAttribute("fichaEmp", empleado);
 
-            if (codpro == null || codpro.trim().isEmpty()) {
-                List<PlaProPeriodo> lista = planillaService.listAllPlaPerTra(idCompania, Integer.valueOf(iexcodtra), perini, perfin);
-                model.addAttribute("Res_planAllPerTra", lista);
-                model.addAttribute("perini", perini);
-                model.addAttribute("perfin", perfin);
-                model.addAttribute("codtra", iexcodtra);
-                model.addAttribute("codpro", codpro);
-                model.addAttribute("fichaEmp", empleado);
-            } else {
-                List<PlaProPeriodo> lista = planillaService.listAllPlaPerTraPro(idCompania, Integer.valueOf(iexcodtra), Integer.parseInt(codpro), perini, perfin);
-                model.addAttribute("Res_planAllPerTra", lista);
-                model.addAttribute("perini", perini);
-                model.addAttribute("perfin", perfin);
-                model.addAttribute("codtra", iexcodtra);
-                model.addAttribute("codpro", codpro);
-                model.addAttribute("fichaEmp", empleado);
+            for (PlaProPeriodo item: lista){
+                log.info("Periodo: "+item.getIexnroper());
+                log.info("Planilla: "+item.getDescodpro());
             }
-        } catch (NumberFormatException e) {
-            log.error("Invalid value for iexcodtra: " + iexcodtra, e);
         }
 
         model.addAttribute("LstEmpleadoRes", listaEmpl);

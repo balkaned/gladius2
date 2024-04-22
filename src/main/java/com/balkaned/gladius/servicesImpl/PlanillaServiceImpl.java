@@ -29,7 +29,7 @@ public class PlanillaServiceImpl implements PlanillaService {
     }
 
     public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin) {
-        return dao.listAllPlaPerTraPro(codcia, codtra, codpro, perfin, perfin);
+        return dao.listAllPlaPerTraPro(codcia, codtra, codpro, perini, perfin);
     }
 
     public void PlameExe(Integer codcia, String permes , String file ) {

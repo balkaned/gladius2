@@ -256,12 +256,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexnroper =  e.iexnroper and  " +
                 "n.iexcodtra =  e.iexcodtra and " +
                 "n.iexcorrel =  e.iexcorrel and 	" +
-                "n.iexcodcia=" + codcia + " and  " +
+                "n.iexcodcia="+codcia+" and  " +
                 //   "n.iexcodpro="+codpro+" and " +
                 "n.iexcodpro = p.procodpro and " +
-                "n.iexcodtra=" + codtra + " and " +
-                " n.iexnroper >= '" + perini + "' and " +
-                " n.iexnroper <= '" + perfin + "' and " +
+                "n.iexcodtra="+codtra+" and " +
+                " n.iexnroper >= '"+perini+"' and " +
+                " n.iexnroper <= '"+perfin+"' and " +
                 //"--n.iexcorrel=1 and " +
                 "n.procodcon in ('T4000','T4010','D2070','T4020','T4030')  " +
                 "  " +
@@ -280,13 +280,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "k.iexfecfin," +
                 "k.iexcorrel  order by k.iexnroper,  k.iexcodpro asc ";
 
-        return template.query(sql, new ResultSetExtractor<>() {
+        return template.query(sql, new ResultSetExtractor<List<PlaProPeriodo>>() {
 
             public List<PlaProPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<PlaProPeriodo> lista = new ArrayList<PlaProPeriodo>();
 
                 while (rs.next()) {
                     PlaProPeriodo p = new PlaProPeriodo();
+
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
 
@@ -308,102 +309,106 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setTotalaporte(rs.getDouble("T4030"));
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setGrppro(rs.getString("progrppro"));
+
                     lista.add(p);
-                    log.info("Consulta SQL lista (caso 1): " + lista.add(p));
                 }
                 return lista;
             }
         });
     }
 
-    public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin) {
+    public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra ,Integer codpro, String perini, String perfin){
+
+        log.info("codcia: "+codcia);
+        log.info("codtra: "+codtra);
+        log.info("codpro: "+codpro);
+        log.info("perini: "+perini);
+        log.info("perfin: "+perfin);
 
         String sql = " select " +
-                "k.iexcodcia, " +
-                "k.iexcodpro, " +
-                "k.despro, " +
-                "k.iexnroper, " +
-                "k.iexcodtra, " +
-                "k.progrppro, " +
-                "k.iexfecing, " +
-                "k.iextipdoc, " +
-                "k.iexnrodoc, " +
-                "k.iexfecini, " +
-                "k.iexfecfin, " +
-                "k.iexcorrel, " +
-                "sum(k.T4000) AS T4000, " +
-                "sum(k.T4010) AS T4010, " +
-                "sum(k.D2070) AS D2070, " +
-                "sum(k.T4020) AS T4020, " +
-                "sum(k.T4030) AS T4030 " +
-                "from  ( " +
-                "select  " +
-                "n.iexcodcia, " +
-                "n.iexcodpro, " +
-                "p.prodespro  despro, " +
-                "n.iexnroper, " +
-                "n.iexcodtra, " +
-                "p.progrppro, " +
-                "e.iexfecing, " +
-                "e.iextipdoc, " +
-                "e.iexnrodoc, " +
-                "e.iexfecini, " +
-                "e.iexfecfin, " +
-                "n.iexcorrel, " +
-                "case " +
-                "when procodcon ='T4000'  then provalor else 0 " +
-                "END  T4000, " +
-                "case " +
-                "when procodcon ='T4010'  then provalor else 0 " +
-                "END    T4010, " +
-                "case " +
-                "when procodcon ='D2070'  then provalor else 0 " +
-                "END  D2070, " +
-                "case " +
-                "when procodcon ='T4020'  then provalor else 0 " +
-                "END  T4020, " +
-                "case " +
-                "when procodcon ='T4030'  then provalor else 0 " +
-                "END  T4030 " +
-                "from  " +
-                "iexpropertra_nomina n , iexprocesos p , iexpropertra e " +
-                "where " +
-                "n.iexcodcia = e.iexcodcia and " +
-                "n.iexcodpro = e.iexcodpro and	" +
-                "n.iexnroper =  e.iexnroper and  " +
-                "n.iexcodtra =  e.iexcodtra and " +
-                "n.iexcorrel =  e.iexcorrel and 	" +
-                "n.iexcodcia=" + codcia + " and  " +
-                "n.iexcodpro=" + codpro + " and " +
-                "n.iexcodpro = p.procodpro and " +
-                "n.iexcodtra=" + codtra + " and " +
-                " n.iexnroper >= '" + perini + "' and " +
-                " n.iexnroper <= '" + perfin + "' and " +
-                //"--n.iexcorrel=1 and " +
-                "n.procodcon in ('T4000','T4010','D2070','T4020','T4030')  " +
-                "  " +
-                "	) k " +
-                "group by  " +
-                "k.iexcodcia, " +
-                "k.iexcodpro, " +
-                "k.despro, " +
-                "k.iexnroper, " +
-                "k.iexcodtra, " +
-                "k.progrppro, " +
-                "k.iexfecing, " +
-                "k.iextipdoc, " +
-                "k.iexnrodoc, " +
-                "k.iexfecini, " +
-                "k.iexfecfin," +
-                "k.iexcorrel  order by k.iexnroper,  k.iexcodpro asc ";
+                " k.iexcodcia, " +
+                " k.iexcodpro, " +
+                " k.despro, " +
+                " k.iexnroper, " +
+                " k.iexcodtra, " +
+                " k.progrppro, " +
+                " k.iexfecing, " +
+                " k.iextipdoc, " +
+                " k.iexnrodoc, " +
+                " k.iexfecini, " +
+                " k.iexfecfin, " +
+                " k.iexcorrel, " +
+                " sum(k.T4000) AS T4000, " +
+                " sum(k.T4010) AS T4010, " +
+                " sum(k.D2070) AS D2070, " +
+                " sum(k.T4020) AS T4020, " +
+                " sum(k.T4030) AS T4030 " +
+                " from ( " +
+                " select " +
+                " n.iexcodcia, " +
+                " n.iexcodpro, " +
+                " p.prodespro  despro, " +
+                " n.iexnroper, " +
+                " n.iexcodtra, " +
+                " p.progrppro, " +
+                " e.iexfecing, " +
+                " e.iextipdoc, " +
+                " e.iexnrodoc, " +
+                " e.iexfecini, " +
+                " e.iexfecfin, " +
+                " n.iexcorrel, " +
+                " case " +
+                " when procodcon ='T4000'  then provalor else 0 " +
+                " END  T4000, " +
+                " case " +
+                " when procodcon ='T4010'  then provalor else 0 " +
+                " END  T4010, " +
+                " case " +
+                " when procodcon ='D2070'  then provalor else 0 " +
+                " END  D2070, " +
+                " case " +
+                " when procodcon ='T4020'  then provalor else 0 " +
+                " END  T4020, " +
+                " case " +
+                " when procodcon ='T4030'  then provalor else 0 " +
+                " END  T4030 " +
+                " from " +
+                " iexpropertra_nomina n, iexprocesos p, iexpropertra e " +
+                " where " +
+                " n.iexcodcia = e.iexcodcia and " +
+                " n.iexcodpro = e.iexcodpro and	" +
+                " n.iexnroper =  e.iexnroper and " +
+                " n.iexcodtra =  e.iexcodtra and " +
+                " n.iexcorrel =  e.iexcorrel and " +
+                " n.iexcodcia="+codcia+" and " +
+                " n.iexcodpro="+codpro+" and " +
+                " n.iexcodpro = p.procodpro and " +
+                " n.iexcodtra="+codtra+" and " +
+                " n.iexnroper >= '"+perini+"' and " +
+                " n.iexnroper <= '"+perfin+"' and " +
+                " n.procodcon in ('T4000','T4010','D2070','T4020','T4030')) k " +
+                " group by " +
+                " k.iexcodcia, " +
+                " k.iexcodpro, " +
+                " k.despro, " +
+                " k.iexnroper, " +
+                " k.iexcodtra, " +
+                " k.progrppro, " +
+                " k.iexfecing, " +
+                " k.iextipdoc, " +
+                " k.iexnrodoc, " +
+                " k.iexfecini, " +
+                " k.iexfecfin," +
+                " k.iexcorrel  order by k.iexnroper,  k.iexcodpro asc ";
 
-        return template.query(sql, new ResultSetExtractor<>() {
+        return template.query(sql, new ResultSetExtractor<List<PlaProPeriodo>>() {
 
             public List<PlaProPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<PlaProPeriodo> lista = new ArrayList<PlaProPeriodo>();
 
-                while (rs.next()) {
+                while(rs.next()) {
                     PlaProPeriodo p = new PlaProPeriodo();
+
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
 
@@ -425,8 +430,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setTotalaporte(rs.getDouble("T4030"));
                     p.setIexcorrel(rs.getInt("iexcorrel"));
                     p.setGrppro(rs.getString("progrppro"));
+
                     lista.add(p);
-                    log.info("Consulta SQL lista (caso 2): " + lista.add(p));
                 }
                 return lista;
             }
