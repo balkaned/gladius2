@@ -496,114 +496,99 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
               "fecfin": fecfin
          },
          success: function (data) {
-              console.log("success!: data.length: "+data.length);
+             console.log("success!: data.length: "+data.length);
 
-              if(data.length > 0){
+             if(data.length > 0){
                 console.log("data[0].desfecdia: "+data[0].desfecdia);
                 console.log("data[0].desiniturno: "+data[0].desiniturno);
-              }
+             }
 
-              var opt2 = "<tr>";
-                            /*<c:forEach var="LstTurnoDiario" items="${requestScope.LstTurnoDiario}" varStatus="loopCounter"  >
-                               <c:if test="${loopCounter.count ==1 }" >
-                                   <c:set var="test" value="${LstTurnoDiario.iexcoddiasem}"/>
-                                     <%  Integer ini = (Integer)pageContext.getAttribute("test");
-                                         i = i+ ini;
-                                     %>
+             var opt2 = "<tr>";
+             var x=0;
+             var j=1;
 
-                                     <%  for(int n = 1; n < ini; n+=1) { %>
-                                     <td>
-                                     </td>
-                                     <% } %>
-                               </c:if>
-                               <td
-                               */
-                 var x=0;
-                 var j=1;
+             for (var i in data) {
+                console.log("ingreso al for y muestro la data...");
 
-                 for (var i in data) {
-                    console.log("ingreso al for...");
+                if(i==0){
+                    var ini = data[i].iexcoddiasem;
+                    console.log("data[i].iexcoddiasem: "+data[i].iexcoddiasem);
+                    x = x + ini;
 
-                        var ini = data[i].iexcoddiasem;
-                        console.log("data[i].iexcoddiasem: "+data[i].iexcoddiasem);
-                        x = x + ini;
+                    opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                "<span class='ms-1 text-400 fs-0'>31</span><br>"+
+                            "</td>";
 
-                        for(var n=1; n<ini; n+=1){
-                            opt2 += "<td>"+
-                                    "</td>";
-                        }
-
-                        opt2 += "<td class='pt-2 pb-2 ps-2 bg-300 bg-opacity-50 border border-100'>"+
-                                   "<span class='ms-1 text-800 fs-0'>"+data[i].diaCalendar+"</span><br>"+
-                                   "<span>["+data[i].iexflgturno+"]</span><br>"+
-                                   "<span class='bold'>"+data[i].desfecdia+"</span><br>"+
-                                   "<span class='bold3'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
-
-                                   if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
-                                        opt2 += "<span class='bold2'></span>";
-                                   }else{
-                                        opt2 += "<span class='bold2'>"+data[i].desiniasist+" - "+data[i].desfinasist+"</span><br>";
-                                   }
-
-                                   /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
-                                      <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
-                                         <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
-                                      </c:forEach>
-                                   </select>*/
-                           opt2 += "<a href='#' onClick='' >Ver</a> --- <a href='#' onClick=''>AutoMark</a>"+
+                    /*for(var n=1; n<ini; n+=1){
+                        opt2 += "<td>"+
                                 "</td>";
+                    }*/
+                }
 
-                    console.log("j: "+j);
-                    j++;
+                opt2 += "<td class='pt-2 pb-2 ps-2 bg-300 bg-opacity-50 border border-100'>"+
+                           "<span class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
+                           "<span class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
+                           "<span class='text-500'>"+data[i].desfecdia+"</span><br>"+
+                           "<span class='text-500'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
 
-                    if(j % 7 == 0){
-                        console.log("Ingreso a multiplo de 7...");
-                        opt2 += "</tr>"+
-                                "<tr>";
-                    }
+                           if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
+                                opt2 += "<span class='text-500'></span>";
+                           }else{
+                                opt2 += "<span class='text-500'>"+data[i].desiniasist+" - "+data[i].desfinasist+"</span><br>";
+                           }
 
-                    i = i+1;
-                 }
-                                    /*<c:set var="feccur" value="${LstTurnoDiario.desfecdia}"/>
-                                    <%
-                                    String fecfinal=(String)pageContext.getAttribute("feccur");
-                                       if (z==1) {
-                                          fecini_var=(String)pageContext.getAttribute("feccur");
-                                    %>
-                                    <%
-                                       }else if (i%7==0) {
-                                          fecfin_variable =(String)pageContext.getAttribute("feccur");
-                                          z=0;
-                                    %>
-                               <td>
-                                    <select name="id_row2" id="id_row2" style="width: 75px ;background:#fcefa1; color:black;" onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')">
-                                         <option value="-1" selected>-- --</option>
-                                         <c:forEach var="LstTurno" items="${LstTurno}">
-                                              <option value=${LstTurno.iexcodturno}   > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
-                                         </c:forEach>
-                                    </select>
-                               </td>
-                                    <% } fecfin_variable =(String)pageContext.getAttribute("feccur"); %>
+                           /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
+                              <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                 <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                              </c:forEach>
+                           </select>*/
 
-                                    <% if (i%7==0) { %>
-                                        </tr>
-                                        <tr>
-                                    <% } %>
-                                    <%  i = i+1 ;   z = z+1; %>
-                                        </td>
-                                </c:forEach>
-                                     <td>
-                                       <select name="id_row" id="id_row" style="width: 75px ;background:#fcefa1; color:black;"  onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')" >
-                                          <option value="-1" selected>-- --</option>
-                                          <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
-                                             <option value=${LstTurno.iexcodturno}>[${LstTurno.iexflgturno}] ${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
-                                          </c:forEach>
-                                       </select>
-                                     </td>
-                                </tr>*/
-                     //opt2 += "</td>";
+                   //opt2 += "<a href='#' onClick='' >Ver</a> --- <a href='#' onClick=''>AutoMark</a>";
+                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 text-warning bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Dismissible popover' data-bs-content='And heres some amazing content. Its very engaging. Right?'><span class='text-warning fs-1 me-1'>&#x2022;</span>Ver</a>";
+                   opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Dismissible popover' data-bs-content='And heres some amazing content. Its very engaging. Right?'><span class='text-primary fs-1 me-1'>&#x2022;</span>Automark</a>";
 
-              $("#calendarBody2").html(opt2);
+                   /*"<td>"+
+                        "<select class='form-select form-select-sm' name='id_row2' id='id_row2' style='width: 75px;' onchange='program_tur_row('','','')'>"+
+                           "<option value='-1' selected>-- --</option>"+
+                        "</select>"+
+                    "</td>";*/
+
+                console.log("j: "+j);
+                j++;
+
+                if(j % 7 == 0){
+                    console.log("Ingreso a multiplo de 7...");
+                    opt2 += "</tr>"+
+                            "<tr>";
+                }
+
+                x = x+1;
+                opt2 += "</td>";
+             }
+
+             $("#calendarBody2").html(opt2);
+
+
+             for (var i in data) {
+                 $('#popoverVer'+i).popover({
+                        container: "body",
+                        html: true,
+                        content: function () {
+                          return '<div class="popover-message">And heres some amazing content. Its very engaging. Right?</div>';
+                        }
+                 });
+
+                 $('#popoverAutoMark'+i).popover({
+                     container: "body",
+                     html: true,
+                     content: function () {
+                       return '<div class="popover-message">And heres some amazing content. Its very engaging. Right?</div>';
+                     }
+                 });
+             }
          }
+    });
+
+    $(document).ready(function() {
     });
 }
