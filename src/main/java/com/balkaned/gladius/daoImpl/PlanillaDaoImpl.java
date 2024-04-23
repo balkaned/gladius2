@@ -518,11 +518,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                     p.setIexfecini(rs.getString("iexfecini"));
                     FormatterFecha f = new FormatterFecha();
-                    p.setIexfecini(f.fechaFormatterIngltoEsp(p.getIexfecini()));
+                    p.setFeciniFormat(f.fechaFormatterIngltoEsp2(p.getIexfecini()));
 
                     p.setIexfecfin(rs.getString("iexfecfin"));
                     FormatterFecha f2 = new FormatterFecha();
-                    p.setIexfecfin(f.fechaFormatterIngltoEsp(p.getIexfecfin()));
+                    p.setFecfinFormat(f2.fechaFormatterIngltoEsp2(p.getIexfecfin()));
 
                     p.setIexdiamestot(rs.getDouble("iexdiamestot"));
                     p.setIexdiavaca(rs.getDouble("iexdiavaca"));

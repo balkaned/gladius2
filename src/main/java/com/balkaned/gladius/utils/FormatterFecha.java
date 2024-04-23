@@ -106,6 +106,26 @@ public class FormatterFecha {
         }
     }
 
+    public String fechaFormatterIngltoEsp2(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-mm-dd");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("dd/mm/yyyy");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     public String fechaFormatterIngltoEspConHora(String fecha) {
 
         if (fecha == null) {

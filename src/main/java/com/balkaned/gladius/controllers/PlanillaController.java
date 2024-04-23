@@ -265,8 +265,7 @@ public class PlanillaController {
         model.addAttribute("idCom",idCompania);
 
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso), periodo));
-        List<PlaProPeriodo> lista = planillaService.listPlaProper(idCompania, codproceso, periodo, -1, 1, "%");
-        model.addAttribute("LstPlanillaRes", lista);
+        model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, codproceso, periodo, -1, 1, "%"));
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaGeneral");
     }
@@ -1282,8 +1281,11 @@ public class PlanillaController {
 
         List<Turnodiario> lstTurnodiario = turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(codtra),fecini,fecfin);
 
-        log.info("lstTurnodiario.get(0).getDesfecdia(): "+lstTurnodiario.get(0).getDesfecdia());
-        log.info("lstTurnodiario.get(0).getDesiniturno(): "+lstTurnodiario.get(0).getDesiniturno());
+        if(lstTurnodiario.size() > 0) {
+            log.info("lstTurnodiario.get(0).getDesfecdia(): " + lstTurnodiario.get(0).getDesfecdia());
+            log.info("lstTurnodiario.get(0).getDesiniturno(): " + lstTurnodiario.get(0).getDesiniturno());
+            log.info("lstTurnodiaario: " + lstTurnodiario);
+        }
 
         String json = new Gson().toJson(lstTurnodiario);
         response.setContentType("application/json");

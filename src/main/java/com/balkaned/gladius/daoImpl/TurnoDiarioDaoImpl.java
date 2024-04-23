@@ -225,7 +225,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexhrssale_antes(rs.getDouble("iexhrssale_antes"));
                     p.setIexminsale_antes(rs.getDouble("iexminsale_antes"));
                     p.setIexhrstarde(rs.getDouble("iexhrstarde"));
+
                     p.setDesfecdia(rs.getString("desfecdia"));
+                    FormatterFecha fec = new FormatterFecha();
+                    p.setDiaCalendar(fec.fechaFormatterDia(p.getDesfecdia()));
+
+
                     p.setIexvacaind(rs.getString("iexvacaind"));
                     p.setIexauseind(rs.getString("iexausenid"));
                     p.setIexindferiado(rs.getString("iexindferiado"));

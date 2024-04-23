@@ -57,5 +57,6 @@ public class Turnodiario{
     private String iexindfalta;
     private Double totalhoras;
     private Double canthoras;
+    private String diaCalendar;
 
 }

@@ -68,5 +68,7 @@ public class PlaProPeriodo {
     private Double remafect5taotrcia_mes;
     private Double rentafect5taotrcia_mes;
     private Double iexdominical;
+    private String feciniFormat;
+    private String fecfinFormat;
 
 }

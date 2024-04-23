@@ -138,8 +138,8 @@
                                         <a href="#" onclick="enviaForm_ind('3', '${LstPlanillaRes.iexcodtra}')" >P</a>
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
-                                    <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecini}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.iexfecini}','${LstPlanillaRes.iexfecfin}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
+                                    <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.feciniFormat}</td>
+                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
@@ -747,7 +747,7 @@
                           <div class="mb-3" class="mt-0">
                               <div class="row g-3">
                                   <div id="calendarbody1" class="table-responsive scrollbar mx-n1 px-1 bg-100" >
-                                        <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-100">
+                                        <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-top">
                                           <div class="row py-3 gy-3 gx-0">
                                             <div class="col-6 col-md-4 order-1 d-flex align-items-center">
                                               <button class="btn btn-sm btn-phoenix-primary px-4" >Hoy</button>
@@ -769,10 +769,12 @@
                                         </div>
                                   </div>
                                    <div class="table-responsive scrollbar mx-n1 px-1 bg-100" >
-                                        <div id="calendarHead2">
-                                        </div>
-                                        <div id="calendarBody2">
-                                        </div>
+                                        <table  class="table">
+                                            <thead id="calendarHead2">
+                                            </thead>
+                                            <tbody id="calendarBody2" class="fs--2 fw-semi-bold text-1000">
+                                            </tbody>
+                                        </table>
                                    </div>
                               </div>
                           </div>

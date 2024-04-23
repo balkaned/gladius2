@@ -403,84 +403,82 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
               var opt = "";
 
-              opt += "<thead class='mt-1'>"+
-                         "<tr>"+
-                             "<td>"+
-                                 "<select name='id_domingo' id='id_domingo' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
-                                     "<option value='-1' selected>-</option>";
-                                     for (var i in data) {
-                                         opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                     }
-                         opt += "</select>"+
-                             "</td>"+
+              opt += "<tr>"+
+                         "<td class='pt-0 pb-2'>"+
+                             "<select name='id_domingo' id='id_domingo' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
+                                 "<option value='-1' selected>-</option>";
+                                 for (var i in data) {
+                                     opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                 }
+                     opt += "</select>"+
+                         "</td>"+
 
-                             "<td>"+
-                                 "<select name='id_lunes' id='id_lunes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
-                                     "<option value='-1' selected>-</option>";
-                                     for (var i in data) {
-                                         opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                     }
-                         opt += "</select>"+
-                             "</td>"+
+                         "<td class='pt-0 pb-2'>"+
+                             "<select name='id_lunes' id='id_lunes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
+                                 "<option value='-1' selected>-</option>";
+                                 for (var i in data) {
+                                     opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                 }
+                     opt += "</select>"+
+                         "</td>"+
 
-                             "<td>"+
-                                "<select name='id_martes' id='id_martes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
-                                      "<option value='-1' selected>-</option>";
-                                      for (var i in data) {
-                                          opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                      }
-                         opt += "</select>"+
-                             "</td>"+
-
-                             "<td>"+
-                                "<select name='id_miercoles' id='id_miercoles' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
-                                   "<option value='-1' selected>-</option>";
-                                   for (var i in data) {
-                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                   }
-                         opt += "</select>"+
-                            "</td>"+
-
-                            "<td>"+
-                               "<select name='id_jueves' id='id_jueves' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                         "<td class='pt-0 pb-2'>"+
+                            "<select name='id_martes' id='id_martes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
                                   "<option value='-1' selected>-</option>";
                                   for (var i in data) {
                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
                                   }
-                         opt += "</select>"+
-                            "</td>"+
+                     opt += "</select>"+
+                         "</td>"+
 
-                            "<td>"+
-                               "<select name='id_viernes' id='id_viernes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
-                                   "<option value='-1' selected>-</option>";
-                                   for (var i in data) {
-                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                   }
-                        opt += "</select>"+
-                            "</td>"+
+                         "<td class='pt-0 pb-2'>"+
+                            "<select name='id_miercoles' id='id_miercoles' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
+                               "<option value='-1' selected>-</option>";
+                               for (var i in data) {
+                                   opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                               }
+                     opt += "</select>"+
+                         "</td>"+
 
-                            "<td>"+
-                                "<select name='id_sabado' id='id_sabado' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
-                                    "<option value='-1' selected>-</option>";
-                                    for (var i in data) {
-                                        opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
-                                    }
-                        opt += "</select>"+
-                            "</td>"+
+                         "<td class='pt-0 pb-2'>"+
+                            "<select name='id_jueves' id='id_jueves' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                              "<option value='-1' selected>-</option>";
+                              for (var i in data) {
+                                  opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                              }
+                     opt += "</select>"+
+                         "</td>"+
 
-                            "<td style='width: 100px;' ></td>"+
-                        "</tr>"+
-                        "<tr>"+
-                             "<td class='fs--1 text-center text-1000'>Dom</td>"+
-                             "<td class='fs--1 text-center text-1000'>Lun</td>"+
-                             "<td class='fs--1 text-center text-1000'>Mar</td>"+
-                             "<td class='fs--1 text-center text-1000'>Mie</td>"+
-                             "<td class='fs--1 text-center text-1000'>Jue</td>"+
-                             "<td class='fs--1 text-center text-1000'>Vie</td>"+
-                             "<td class='fs--1 text-center text-1000'>Sab</td>"+
-                             "<td></td>"+
-                        "</tr>"+
-                     "</thead>"+
+                         "<td class='pt-0 pb-2'>"+
+                            "<select name='id_viernes' id='id_viernes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
+                               "<option value='-1' selected>-</option>";
+                               for (var i in data) {
+                                   opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                               }
+                     opt += "</select>"+
+                         "</td>"+
+
+                         "<td class='pt-0 pb-2'>"+
+                            "<select name='id_sabado' id='id_sabado' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
+                                "<option value='-1' selected>-</option>";
+                                for (var i in data) {
+                                    opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                }
+                     opt += "</select>"+
+                         "</td>"+
+
+                         "<td class='pt-0 pb-2'></td>"+
+                     "</tr>"+
+                     "<tr>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Dom</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Lun</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mar</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mie</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Jue</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Vie</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Sab</td>"+
+                         "<td class='pt-2 pb-2'></td>"+
+                     "</tr>";
 
               $("#calendarHead2").html(opt);
          }
@@ -498,12 +496,14 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
               "fecfin": fecfin
          },
          success: function (data) {
-              console.log("data[0].desfecdia: "+data[0].desfecdia);
-              console.log("data[0].desiniturno: "+data[0].desiniturno);
+              console.log("success!: data.length: "+data.length);
 
-              var opt = "";
+              if(data.length > 0){
+                console.log("data[0].desfecdia: "+data[0].desfecdia);
+                console.log("data[0].desiniturno: "+data[0].desiniturno);
+              }
 
-              opt += "<tbody>";
+              var opt2 = "<tr>";
                             /*<c:forEach var="LstTurnoDiario" items="${requestScope.LstTurnoDiario}" varStatus="loopCounter"  >
                                <c:if test="${loopCounter.count ==1 }" >
                                    <c:set var="test" value="${LstTurnoDiario.iexcoddiasem}"/>
@@ -517,61 +517,52 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                                      <% } %>
                                </c:if>
                                <td
-                                    <c:choose>
-                                        <c:when test="${LstTurnoDiario.iexcodturno ==999 }">
-                                            <c:choose>
-                                              <c:when test="${LstTurnoDiario.iexvacaind =='1' }">
-                                                 style="background:#33FFEC;"
-                                              </c:when>
-                                              <c:when test="${LstTurnoDiario.iexauseind =='1' }">
-                                                 style="background:#DEA7EF;"
-                                              </c:when>
-                                              <c:when test="${LstTurnoDiario.iexpermiso =='1' }">
-                                                 style="background:#F5E49A;"
-                                              </c:when>
-                                              <c:otherwise>
-                                                 style="background:#ffa448;"
-                                              </c:otherwise>
-                                            </c:choose>
-                                        </c:when>
-                                        <c:otherwise>
-                                             <c:choose>
-                                                <c:when test="${LstTurnoDiario.iexcodturno !=999 }">
-                                                   <c:choose>
-                                                      <c:when test="${LstTurnoDiario.iexvacaind =='1' }">
-                                                         style="background:#33FFEC;"
-                                                      </c:when>
-                                                       <c:when test="${LstTurnoDiario.iexauseind =='1' }">
-                                                         style="background:#DEA7EF;"
-                                                      </c:when>
-                                                       <c:when test="${LstTurnoDiario.iexpermiso =='1' }">
-                                                         style="background:#F5E49A;"
-                                                      </c:when>
-                                                      <c:when test="${LstTurnoDiario.iexindfalta =='1' }">
-                                                         style="background:#F53320;"
-                                                      </c:when>
-                                                   </c:choose>
-                                                </c:when>
-                                             </c:choose>
-                                        </c:otherwise>
-                                    </c:choose>*/
+                               */
+                 var x=0;
+                 var j=1;
 
                  for (var i in data) {
-                    //opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                    console.log("ingreso al for...");
 
-                    opt += "<td>"+
-                               ""+[data[i].iexflgturno]+"<br>"+
-                               "<span class='bold'>"+data[i].desfecdia+"</span><br>"+
-                               "<span class='bold3'>"+data[i].desiniturno - data[i].desfinturno+"</span><br>"+
-                               "<span class='bold2'>"+data[i].desiniasist - data[i].desfinasist+"</span><br>"+
-                               /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
-                                  <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
-                                     <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
-                                  </c:forEach>
-                               </select>*/
-                               "<a href='#' onClick='' >Ver</a>"+
-                               "---"+
-                               "<a href='#' onClick=''>AutoMark</a>";
+                        var ini = data[i].iexcoddiasem;
+                        console.log("data[i].iexcoddiasem: "+data[i].iexcoddiasem);
+                        x = x + ini;
+
+                        for(var n=1; n<ini; n+=1){
+                            opt2 += "<td>"+
+                                    "</td>";
+                        }
+
+                        opt2 += "<td class='pt-2 pb-2 ps-2 bg-300 bg-opacity-50 border border-100'>"+
+                                   "<span class='ms-1 text-800 fs-0'>"+data[i].diaCalendar+"</span><br>"+
+                                   "<span>["+data[i].iexflgturno+"]</span><br>"+
+                                   "<span class='bold'>"+data[i].desfecdia+"</span><br>"+
+                                   "<span class='bold3'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
+
+                                   if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
+                                        opt2 += "<span class='bold2'></span>";
+                                   }else{
+                                        opt2 += "<span class='bold2'>"+data[i].desiniasist+" - "+data[i].desfinasist+"</span><br>";
+                                   }
+
+                                   /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
+                                      <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                         <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                                      </c:forEach>
+                                   </select>*/
+                           opt2 += "<a href='#' onClick='' >Ver</a> --- <a href='#' onClick=''>AutoMark</a>"+
+                                "</td>";
+
+                    console.log("j: "+j);
+                    j++;
+
+                    if(j % 7 == 0){
+                        console.log("Ingreso a multiplo de 7...");
+                        opt2 += "</tr>"+
+                                "<tr>";
+                    }
+
+                    i = i+1;
                  }
                                     /*<c:set var="feccur" value="${LstTurnoDiario.desfecdia}"/>
                                     <%
@@ -600,20 +591,19 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                                     <% } %>
                                     <%  i = i+1 ;   z = z+1; %>
                                         </td>
-                            </c:forEach>
-                                 <td>
-                                   <select name="id_row" id="id_row" style="width: 75px ;background:#fcefa1; color:black;"  onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')" >
-                                      <option value="-1" selected>-- --</option>
-                                      <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
-                                         <option value=${LstTurno.iexcodturno}>[${LstTurno.iexflgturno}] ${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
-                                      </c:forEach>
-                                   </select>
-                                 </td>
-                            </tr>*/
-                            "</td>"+
-                      "</tbody>";
+                                </c:forEach>
+                                     <td>
+                                       <select name="id_row" id="id_row" style="width: 75px ;background:#fcefa1; color:black;"  onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')" >
+                                          <option value="-1" selected>-- --</option>
+                                          <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                             <option value=${LstTurno.iexcodturno}>[${LstTurno.iexflgturno}] ${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                                          </c:forEach>
+                                       </select>
+                                     </td>
+                                </tr>*/
+                     //opt2 += "</td>";
 
-              $("#calendarBody2").html(opt);
+              $("#calendarBody2").html(opt2);
          }
     });
 }
