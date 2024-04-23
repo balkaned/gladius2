@@ -401,14 +401,6 @@ public class GestionReportesController {
         String iexcodtra = request.getParameter("codtra");
         String codpro = request.getParameter("codpro");
 
-        log.info("perini: "+perini);
-        log.info("perfin: "+perfin);
-        log.info("iexcodtra: "+iexcodtra);
-        log.info("codpro: "+codpro);
-
-        //Empleado empleado = empleadoService.recuperarCabecera(idCompania, Integer.valueOf(iexcodtra));
-        //log.info("recuperar" + empleado);
-
         if (codpro == null || codpro.trim().isEmpty()) {
             log.info("Ingreso a planillaService.listAllPlaPerTra..");
             List<PlaProPeriodo> lista = planillaService.listAllPlaPerTra(idCompania, Integer.valueOf(iexcodtra), perini, perfin);
@@ -417,7 +409,6 @@ public class GestionReportesController {
             model.addAttribute("perfin", perfin);
             model.addAttribute("codtra", iexcodtra);
             model.addAttribute("codpro", codpro);
-            //model.addAttribute("fichaEmp", empleado);
         } else {
             log.info("Ingreso a planillaService.listAllPlaPerTraPro..");
             List<PlaProPeriodo> lista = planillaService.listAllPlaPerTraPro(idCompania, Integer.valueOf(iexcodtra), Integer.parseInt(codpro), perini, perfin);
@@ -426,12 +417,6 @@ public class GestionReportesController {
             model.addAttribute("perfin", perfin);
             model.addAttribute("codtra", iexcodtra);
             model.addAttribute("codpro", codpro);
-            //model.addAttribute("fichaEmp", empleado);
-
-            for (PlaProPeriodo item: lista){
-                log.info("Periodo: "+item.getIexnroper());
-                log.info("Planilla: "+item.getDescodpro());
-            }
         }
 
         model.addAttribute("LstEmpleadoRes", listaEmpl);

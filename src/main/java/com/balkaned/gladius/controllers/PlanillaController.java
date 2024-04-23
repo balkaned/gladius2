@@ -114,6 +114,8 @@ public class PlanillaController {
         model.addAttribute("iexcodreg", iexcodreg);
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         model.addAttribute("List_Procesos", procesoPlanillaService.listarProRegpla(idCompania, iexcodreg, iexpermes));
+        model.addAttribute("iexpermes",iexpermes);
+        model.addAttribute("iexcodreg",iexcodreg);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/planillaGeneral");
     }
@@ -1244,10 +1246,46 @@ public class PlanillaController {
         }
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String fecini = request.getParameter("fecini");
 
-        List<Turno> lstTurnos = turnoDiarioService.listarTurnos(idCompania);
+        List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania,fecini);
+
+        log.info("lstTurnos.get(0).getAnioDes(): "+lstTurnos.get(0).getAnioDes());
+        log.info("lstTurnos.get(0).getMesDes(): "+lstTurnos.get(0).getMesDes());
 
         String json = new Gson().toJson(lstTurnos);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerLstTurnoDiarioModal", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerLstTurnoDiarioModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerLstTurnoDiarioModal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String codtra = request.getParameter("codtra");
+        String fecini = request.getParameter("fecini");
+        String fecfin = request.getParameter("fecfin");
+
+        log.info("codtra: "+codtra);
+        log.info("fecini: "+fecini);
+        log.info("fecfin: "+fecfin);
+
+        List<Turnodiario> lstTurnodiario = turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(codtra),fecini,fecfin);
+
+        log.info("lstTurnodiario.get(0).getDesfecdia(): "+lstTurnodiario.get(0).getDesfecdia());
+        log.info("lstTurnodiario.get(0).getDesiniturno(): "+lstTurnodiario.get(0).getDesiniturno());
+
+        String json = new Gson().toJson(lstTurnodiario);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

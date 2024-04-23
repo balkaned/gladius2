@@ -35,5 +35,7 @@ public class Turno{
     private String destipturno;
     private Integer iexfrecuencia;
     private String iexsecuencia;
+    private String anioDes;
+    private String mesDes;
 
 }

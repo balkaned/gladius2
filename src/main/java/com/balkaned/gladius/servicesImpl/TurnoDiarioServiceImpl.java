@@ -6,15 +6,22 @@ import com.balkaned.gladius.beans.Turno;
 import com.balkaned.gladius.beans.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.services.TurnoDiarioService;
+import com.balkaned.gladius.utils.FormatterFecha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 public class TurnoDiarioServiceImpl implements TurnoDiarioService {
 
     @Autowired
     TurnoDiarioDao dao;
+    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini){
+        return dao.listarTurnosModalAsis(codcia, fecini);
+    }
     public List<Turno> listarTurnos(Integer codcia){
         return dao.listarTurnos(codcia);
     }

@@ -1,0 +1,619 @@
+function enviaForm(variable){
+    var opcion = confirm("Esta seguro de ejecutar este evento?");
+
+    if (opcion == true) {
+        if(variable==2){
+            document.getElementById("accion").value="INIPRO";
+        }else if(variable==3){
+            document.getElementById("accion").value="EXEPRO";
+        }else if(variable==4){
+            document.getElementById("accion").value="VERBOLTOT";
+        }else if(variable==5){
+            document.getElementById("accion").value="EXPBOLTOT";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==6){
+            document.getElementById("accion").value="DELPRO";
+        }else if(variable==7){
+            document.getElementById("accion").value="CIEPRO";
+        }else if(variable==8){
+            document.getElementById("accion").value="EXPBOLTOT";
+            document.getElementById("tipfile").value="pdf";
+        }else if(variable==9){
+            document.getElementById("accion").value="EXPTEXT";
+            document.getElementById("tipfile").value="text";
+        } else if(variable==10){
+            document.getElementById("accion").value="QRYRESBAN";
+            document.getElementById("tipfile").value="text";
+        } else if(variable==11){
+            document.getElementById("accion").value="EXEINIPRO";
+            document.getElementById("tipfile").value="text";
+        }else if(variable==12){
+            //document.getElementById("accion").value="VERDETVAR";
+            //document.getElementById("tipfile").value="text";
+        }else if(variable==15){
+            document.getElementById("accion").value="VERPLAVAC";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==16){
+            document.getElementById("accion").value="VERPLAAUS";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==17){
+            document.getElementById("accion").value="VERPLAPRES";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==18){
+            document.getElementById("accion").value="VERPLADATVAR";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==25){
+            document.getElementById("accion").value="VERDETTURNO";
+            document.getElementById("tipfile").value="text";
+        }else if(variable==30){
+            document.getElementById("accion").value="UPLOADPLA";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==31){
+            document.getElementById("accion").value="EXPRESCTL";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==33){
+            document.getElementById("accion").value="EXPASISCCO";
+            document.getElementById("tipfile").value="xls";
+        }else if(variable==34){
+            document.getElementById("accion").value="CALFASIST";
+        }else if(variable==35){
+            document.getElementById("accion").value="QRYPLA";
+        }
+
+        document.getElementById("frmplaserv").submit();
+    } else {
+        return false;
+    }
+}
+
+function enviaForm_ind(variable , trab){
+    if(variable==2){
+        document.getElementById("accion").value="INIPRO";
+    }else if(variable==3){
+        document.getElementById("accion").value="EXEPRO";
+    }else if(variable==34){
+        document.getElementById("accion").value="CALFASIST";
+    }
+
+    document.getElementById("iexcodtra").value=trab ;
+    document.getElementById("frmplaserv").submit();
+}
+
+function consulBol(codtra){
+    document.getElementById("accion").value="VERBOLTRA";
+    document.getElementById("iexcodtra").value=codtra ;
+    document.getElementById("frmplaserv").submit();
+}
+
+function verdetcon(codtra){
+    document.getElementById("accion").value="VERDETCONCEP";
+    document.getElementById("iexcodtra").value=codtra ;
+    document.getElementById("frmplaserv").submit();
+    myWindow = window.open("", "myWindow", "width=200,height=100");
+}
+
+function getAFPPermes(permes){
+    var url = "${pageContext.request.contextPath}/GestionAfp?accion=QRY&idperiodo="+permes+"&menu=false  ";
+    myRef = window.open(url ,'mywin','left=20,top=20,width=1200,height=800,toolbar=1,resizable=0');
+    myRef.focus();
+}
+
+function getReporteOtros(iexcodpro, iexperiodo, xgrppla, iexcodreg){
+    var url = "${pageContext.request.contextPath}/PlanillaServlet?accion=VEROTRDATA&iexcodpro="+iexcodpro+"&iexperiodo="+iexperiodo+"&grppla="+xgrppla+"&iexcodreg="+iexcodreg+"&iexcorrel=1&menu=false ";
+    myRef = window.open(url ,'mywin','left=20,top=20,width=1200,height=800,toolbar=1,resizable=0');
+    myRef.focus()
+}
+
+function remove(){
+    var opcion = confirm("Esta seguro de Eliminar el Registro?");
+    if (opcion == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function generarBoleta(iexcodpro,iexcodtra,iexperiodo,iexcorrel,xgrppla,iexcodreg){
+    $.ajax({
+         url: "traerDatosDeBoleta",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+             document.getElementById("idTrabBol").value=data.iexcodtra;
+             document.getElementById("idTrabBolHidden").value=data.iexcodtra;
+             document.getElementById("trabBol").value=data.destra;
+             document.getElementById("feciniBol").value=data.iexfecing;
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaParam",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-param").html(opt);
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaIngresos",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-ingresos").html(opt);
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaDescuentos",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-descuentos").html(opt);
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaAportes",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-aportes").html(opt);
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaNeto",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-neto").html(opt);
+         }
+    });
+
+    $.ajax({
+         url: "traerDatosDeBoletaTotales",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": iexcodtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla,
+             "iexcodreg": iexcodreg
+         },
+         success: function (data) {
+              var opt = "";
+
+              for (var i in data) {
+                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                               "<td class='fs--1 align-middle px-0 py-3'>"+
+                                 "<div class='form-check mb-0 fs-0'>"+
+                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                                 "</div>"+
+                               "</td>"+
+                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                            "</tr>";
+              }
+
+              $("#customer-order-table-body-totales").html(opt);
+         }
+    });
+}
+
+function obtenerData(){
+    var data=$("#element1").val();
+    return data;
+}
+
+function descargarBoleta(){
+    var codtra = $("#idTrabBolHidden").val();
+
+    var iexcodpro = $("#iexcodpro").val();
+    var iexperiodo = $("#iexperiodo").val();
+    var iexcorrel = $("#iexcorrel").val();
+
+    var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
+
+    document.getElementById("botonDescargarBoletaTrab").href="AWSorFTP_flgsource@verReportePDF@${idComp}@"+codtra+"@null@null@BoletaEmpTra@"+params+"@null@null@null";
+}
+
+function descargarReporte5ta(){
+    var codtra = $("#idTrabBolHidden").val();
+    var iexcodpro = $("#iexcodpro").val();
+    var iexperiodo = $("#iexperiodo").val();
+    var iexcorrel = $("#iexcorrel").val();
+
+    var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
+
+    document.getElementById("botonDescargarRep5ta").href="AWSorFTP_flgsource@verReportePDF@${idComp}@"+codtra+"@null@null@Boleta5taper@"+params+"@null@null@null";
+}
+
+function eliminarPlanTrab(){
+    var iexcodpro = $("#iexcodpro").val();
+    var codtra = $("#idTrabBolHidden").val();
+    var iexperiodo = $("#iexperiodo").val();
+    var iexcorrel = $("#iexcorrel").val();
+    var xgrppla = $("#grppla").val();
+    var iexcodreg = $("#iexcodreg").val();
+
+    $.ajax({
+         url: "botonEliminarPlanTrab",
+         data: {
+             "iexcodpro": iexcodpro,
+             "iexcodtra": codtra,
+             "iexperiodo": iexperiodo,
+             "iexcorrel": iexcorrel,
+             "xgrppla": xgrppla
+         },
+         success: function (data) {
+             alert("Trabajador eliminado exitosamente!");
+             location.href="listarDetallePlanillaGen@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo+"";
+         }
+    });
+}
+
+function traerDatosReporteResumenPlanilla(){
+
+    var iexcodpro = $("#iexcodpro").val();
+    var iexperiodo = $("#iexperiodo").val();
+
+    $.ajax({
+         url: "traerDatosReporteResumenPlanilla",
+         data: {
+            "iexcodpro": iexcodpro,
+            "nroper": iexperiodo,
+            "nroper2": iexperiodo
+         },
+         success: function (data) {
+             $("#idresult").html(data);
+         }
+    });
+}
+
+function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
+
+    document.getElementById("idTrabAsis").value=codtra;
+    document.getElementById("trabAsis").value=nombretrab;
+    document.getElementById("feciniAsis").value=fecini;
+    document.getElementById("fecfinAsis").value=fecfin;
+
+    $.ajax({
+         url: "traerLstTurnosModal",
+         data: {
+              "fecini": fecini
+         },
+         success: function (data) {
+              console.log("anioDes: "+data[0].anioDes);
+              console.log("mesDes: "+data[0].mesDes);
+
+              $("#mesDes").text(data[0].mesDes+" "+data[0].anioDes);
+
+              var opt = "";
+
+              opt += "<thead class='mt-1'>"+
+                         "<tr>"+
+                             "<td>"+
+                                 "<select name='id_domingo' id='id_domingo' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
+                                     "<option value='-1' selected>-</option>";
+                                     for (var i in data) {
+                                         opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                     }
+                         opt += "</select>"+
+                             "</td>"+
+
+                             "<td>"+
+                                 "<select name='id_lunes' id='id_lunes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
+                                     "<option value='-1' selected>-</option>";
+                                     for (var i in data) {
+                                         opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                     }
+                         opt += "</select>"+
+                             "</td>"+
+
+                             "<td>"+
+                                "<select name='id_martes' id='id_martes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
+                                      "<option value='-1' selected>-</option>";
+                                      for (var i in data) {
+                                          opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                      }
+                         opt += "</select>"+
+                             "</td>"+
+
+                             "<td>"+
+                                "<select name='id_miercoles' id='id_miercoles' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
+                                   "<option value='-1' selected>-</option>";
+                                   for (var i in data) {
+                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                   }
+                         opt += "</select>"+
+                            "</td>"+
+
+                            "<td>"+
+                               "<select name='id_jueves' id='id_jueves' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                                  "<option value='-1' selected>-</option>";
+                                  for (var i in data) {
+                                      opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                  }
+                         opt += "</select>"+
+                            "</td>"+
+
+                            "<td>"+
+                               "<select name='id_viernes' id='id_viernes' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
+                                   "<option value='-1' selected>-</option>";
+                                   for (var i in data) {
+                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                   }
+                        opt += "</select>"+
+                            "</td>"+
+
+                            "<td>"+
+                                "<select name='id_sabado' id='id_sabado' style='width: 100px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
+                                    "<option value='-1' selected>-</option>";
+                                    for (var i in data) {
+                                        opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                    }
+                        opt += "</select>"+
+                            "</td>"+
+
+                            "<td style='width: 100px;' ></td>"+
+                        "</tr>"+
+                        "<tr>"+
+                             "<td class='fs--1 text-center text-1000'>Dom</td>"+
+                             "<td class='fs--1 text-center text-1000'>Lun</td>"+
+                             "<td class='fs--1 text-center text-1000'>Mar</td>"+
+                             "<td class='fs--1 text-center text-1000'>Mie</td>"+
+                             "<td class='fs--1 text-center text-1000'>Jue</td>"+
+                             "<td class='fs--1 text-center text-1000'>Vie</td>"+
+                             "<td class='fs--1 text-center text-1000'>Sab</td>"+
+                             "<td></td>"+
+                        "</tr>"+
+                     "</thead>"+
+
+              $("#calendarHead2").html(opt);
+         }
+    });
+
+    console.log("codtra: "+codtra);
+    console.log("fecini: "+fecini);
+    console.log("fecfin: "+fecfin);
+
+    $.ajax({
+         url: "traerLstTurnoDiarioModal",
+         data: {
+              "codtra": codtra,
+              "fecini": fecini,
+              "fecfin": fecfin
+         },
+         success: function (data) {
+              console.log("data[0].desfecdia: "+data[0].desfecdia);
+              console.log("data[0].desiniturno: "+data[0].desiniturno);
+
+              var opt = "";
+
+              opt += "<tbody>";
+                            /*<c:forEach var="LstTurnoDiario" items="${requestScope.LstTurnoDiario}" varStatus="loopCounter"  >
+                               <c:if test="${loopCounter.count ==1 }" >
+                                   <c:set var="test" value="${LstTurnoDiario.iexcoddiasem}"/>
+                                     <%  Integer ini = (Integer)pageContext.getAttribute("test");
+                                         i = i+ ini;
+                                     %>
+
+                                     <%  for(int n = 1; n < ini; n+=1) { %>
+                                     <td>
+                                     </td>
+                                     <% } %>
+                               </c:if>
+                               <td
+                                    <c:choose>
+                                        <c:when test="${LstTurnoDiario.iexcodturno ==999 }">
+                                            <c:choose>
+                                              <c:when test="${LstTurnoDiario.iexvacaind =='1' }">
+                                                 style="background:#33FFEC;"
+                                              </c:when>
+                                              <c:when test="${LstTurnoDiario.iexauseind =='1' }">
+                                                 style="background:#DEA7EF;"
+                                              </c:when>
+                                              <c:when test="${LstTurnoDiario.iexpermiso =='1' }">
+                                                 style="background:#F5E49A;"
+                                              </c:when>
+                                              <c:otherwise>
+                                                 style="background:#ffa448;"
+                                              </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                             <c:choose>
+                                                <c:when test="${LstTurnoDiario.iexcodturno !=999 }">
+                                                   <c:choose>
+                                                      <c:when test="${LstTurnoDiario.iexvacaind =='1' }">
+                                                         style="background:#33FFEC;"
+                                                      </c:when>
+                                                       <c:when test="${LstTurnoDiario.iexauseind =='1' }">
+                                                         style="background:#DEA7EF;"
+                                                      </c:when>
+                                                       <c:when test="${LstTurnoDiario.iexpermiso =='1' }">
+                                                         style="background:#F5E49A;"
+                                                      </c:when>
+                                                      <c:when test="${LstTurnoDiario.iexindfalta =='1' }">
+                                                         style="background:#F53320;"
+                                                      </c:when>
+                                                   </c:choose>
+                                                </c:when>
+                                             </c:choose>
+                                        </c:otherwise>
+                                    </c:choose>*/
+
+                 for (var i in data) {
+                    //opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+
+                    opt += "<td>"+
+                               ""+[data[i].iexflgturno]+"<br>"+
+                               "<span class='bold'>"+data[i].desfecdia+"</span><br>"+
+                               "<span class='bold3'>"+data[i].desiniturno - data[i].desfinturno+"</span><br>"+
+                               "<span class='bold2'>"+data[i].desiniasist - data[i].desfinasist+"</span><br>"+
+                               /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
+                                  <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                     <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                                  </c:forEach>
+                               </select>*/
+                               "<a href='#' onClick='' >Ver</a>"+
+                               "---"+
+                               "<a href='#' onClick=''>AutoMark</a>";
+                 }
+                                    /*<c:set var="feccur" value="${LstTurnoDiario.desfecdia}"/>
+                                    <%
+                                    String fecfinal=(String)pageContext.getAttribute("feccur");
+                                       if (z==1) {
+                                          fecini_var=(String)pageContext.getAttribute("feccur");
+                                    %>
+                                    <%
+                                       }else if (i%7==0) {
+                                          fecfin_variable =(String)pageContext.getAttribute("feccur");
+                                          z=0;
+                                    %>
+                               <td>
+                                    <select name="id_row2" id="id_row2" style="width: 75px ;background:#fcefa1; color:black;" onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')">
+                                         <option value="-1" selected>-- --</option>
+                                         <c:forEach var="LstTurno" items="${LstTurno}">
+                                              <option value=${LstTurno.iexcodturno}   > [${LstTurno.iexflgturno}] : ${LstTurno.iexhorini}-${LstTurno.iexhorfin} </option>
+                                         </c:forEach>
+                                    </select>
+                               </td>
+                                    <% } fecfin_variable =(String)pageContext.getAttribute("feccur"); %>
+
+                                    <% if (i%7==0) { %>
+                                        </tr>
+                                        <tr>
+                                    <% } %>
+                                    <%  i = i+1 ;   z = z+1; %>
+                                        </td>
+                            </c:forEach>
+                                 <td>
+                                   <select name="id_row" id="id_row" style="width: 75px ;background:#fcefa1; color:black;"  onchange="program_tur_row(this,'<%=fecini_var%>','<%=fecfin_variable%>')" >
+                                      <option value="-1" selected>-- --</option>
+                                      <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                         <option value=${LstTurno.iexcodturno}>[${LstTurno.iexflgturno}] ${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                                      </c:forEach>
+                                   </select>
+                                 </td>
+                            </tr>*/
+                            "</td>"+
+                      "</tbody>";
+
+              $("#calendarBody2").html(opt);
+         }
+    });
+}

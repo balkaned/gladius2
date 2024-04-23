@@ -4,18 +4,22 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.beans.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.utils.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 @Repository("TurnoDiarioDao")
@@ -28,6 +32,72 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
     @Autowired
     public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
+    }
+
+    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini) {
+
+        String sql = " select   " +
+                "t.iexcodcia," +
+                " t.iexcodturno," +
+                " t.iexdesturno," +
+                " t.iexhorini, " +
+                "t.iexhorfin,  " +
+                "t.iexflgdiasig," +
+                " t.iextopminantes," +
+                " t.iextopmaxpost,  " +
+                "iexflgturno,  " +
+                "t.iexdesusu, " +
+                "t.iexfeccrea " +
+                "from iexturno t   " +
+                "where iexcodcia=" + codcia + "   ";
+
+        return template.query(sql, new ResultSetExtractor<List<Turno>>() {
+            public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Turno> lista = new ArrayList<Turno>();
+
+                while (rs.next()) {
+                    Turno p = new Turno();
+
+                    p.setCodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodturno(rs.getInt("iexcodturno"));
+                    p.setIexflgturno(rs.getString("iexflgturno"));
+                    p.setIexdesturno(rs.getString("iexdesturno"));
+                    p.setIexhorini(rs.getString("iexhorini"));
+                    p.setIexhorfin(rs.getString("iexhorfin"));
+                    p.setIexflgdiasig(rs.getString("iexflgdiasig"));
+                    p.setIextopminantes(rs.getDouble("iextopminantes"));
+                    p.setIextopmaxpost(rs.getDouble("iextopmaxpost"));
+                    /*p.setLunes(rs.getString("lunes"));
+                    p.setMartes(rs.getString("martes"));
+                    p.setMiercoles(rs.getString("miercoles"));
+                    p.setJueves(rs.getString("jueves"));
+                    p.setViernes(rs.getString("viernes"));
+                    p.setSabado(rs.getString("sabado"));
+                    p.setDomingo(rs.getString("domingo")); */
+                    p.setIexdesusu(rs.getString("iexdesusu"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+
+                    log.info("fecini: "+fecini);
+                    Date fecha = new Date(fecini);
+                    log.info("fecha: "+fecha);
+
+                    FormatterFecha fec= new FormatterFecha();
+                    String mes=fec.fechaFormatterMes(fecini);
+                    p.setMesDes(mes);
+
+                    FormatterFecha fec2 =  new FormatterFecha();
+                    String anio=fec2.fechaFormatterAnio(fecini);
+                    p.setAnioDes(anio);
+
+                    log.info("mes: "+mes);
+                    log.info("anio: "+anio);
+
+                    lista.add(p);
+                }
+
+                return lista;
+            }
+        });
     }
 
     public List<Turno> listarTurnos(Integer codcia) {
