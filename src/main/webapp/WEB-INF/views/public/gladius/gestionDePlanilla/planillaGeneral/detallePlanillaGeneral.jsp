@@ -751,7 +751,7 @@
                                         <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-top">
                                           <div class="row py-3 gy-3 gx-0">
                                             <div class="col-6 col-md-4 order-1 d-flex align-items-center">
-                                              <button class="btn btn-sm btn-phoenix-primary px-4" >Hoy</button>
+                                              <a href="#" class="btn btn-sm btn-phoenix-primary px-4" >Hoy</a>
                                             </div>
                                             <div class="col-12 col-md-4 order-md-1 d-flex align-items-center justify-content-center">
                                               <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="prev" title="Previous"><span class="fas fa-chevron-left"></span></button>
@@ -761,8 +761,8 @@
                                             <div class="col-6 col-md-4 ms-auto order-1 d-flex justify-content-end">
                                               <div>
                                                 <div class="btn-group btn-group-sm" role="group">
-                                                  <button class="btn btn-phoenix-secondary active-view" >Mes</button>
-                                                  <button class="btn btn-phoenix-secondary" >Semana</button>
+                                                  <a href="#" class="btn btn-phoenix-secondary active-view" >Mes</a>
+                                                  <a href="#" class="btn btn-phoenix-secondary" >Semana</a>
                                                 </div>
                                               </div>
                                             </div>

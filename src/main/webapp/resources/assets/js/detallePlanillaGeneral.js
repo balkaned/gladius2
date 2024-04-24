@@ -92,18 +92,6 @@ function verdetcon(codtra){
     myWindow = window.open("", "myWindow", "width=200,height=100");
 }
 
-function getAFPPermes(permes){
-    var url = "${pageContext.request.contextPath}/GestionAfp?accion=QRY&idperiodo="+permes+"&menu=false  ";
-    myRef = window.open(url ,'mywin','left=20,top=20,width=1200,height=800,toolbar=1,resizable=0');
-    myRef.focus();
-}
-
-function getReporteOtros(iexcodpro, iexperiodo, xgrppla, iexcodreg){
-    var url = "${pageContext.request.contextPath}/PlanillaServlet?accion=VEROTRDATA&iexcodpro="+iexcodpro+"&iexperiodo="+iexperiodo+"&grppla="+xgrppla+"&iexcodreg="+iexcodreg+"&iexcorrel=1&menu=false ";
-    myRef = window.open(url ,'mywin','left=20,top=20,width=1200,height=800,toolbar=1,resizable=0');
-    myRef.focus()
-}
-
 function remove(){
     var opcion = confirm("Esta seguro de Eliminar el Registro?");
     if (opcion == true) {
@@ -396,8 +384,6 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
               "fecini": fecini
          },
          success: function (data) {
-              console.log("anioDes: "+data[0].anioDes);
-              console.log("mesDes: "+data[0].mesDes);
 
               $("#mesDes").text(data[0].mesDes+" "+data[0].anioDes);
 
@@ -471,23 +457,19 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                          "<td class='pt-0 pb-2'></td>"+
                      "</tr>"+
                      "<tr>"+
-                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Dom</td>"+
+                         "<td class='pt-2 pb-2 text-warning text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Dom</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Lun</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mar</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mie</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Jue</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Vie</td>"+
-                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Sab</td>"+
+                         "<td class='pt-2 pb-2 text-warning text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Sab</td>"+
                          "<td class='pt-2 pb-2'></td>"+
                      "</tr>";
 
               $("#calendarHead2").html(opt);
          }
     });
-
-    console.log("codtra: "+codtra);
-    console.log("fecini: "+fecini);
-    console.log("fecfin: "+fecfin);
 
     $.ajax({
          url: "traerLstTurnoDiarioModal",
@@ -544,9 +526,8 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                               </c:forEach>
                            </select>*/
 
-                   //opt2 += "<a href='#' onClick='' >Ver</a> --- <a href='#' onClick=''>AutoMark</a>";
-                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Dismissible popover' data-bs-content='And heres some amazing content. Its very engaging. Right?'><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Ver</a>";
-                   opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Dismissible popover' data-bs-content='And heres some amazing content. Its very engaging. Right?'><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automark</a>";
+                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Gestión de marcaciones' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
+                   opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
 
                    /*"<td>"+
                         "<select class='form-select form-select-sm' name='id_row2' id='id_row2' style='width: 75px;' onchange='program_tur_row('','','')'>"+
@@ -569,6 +550,10 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
              $("#calendarBody2").html(opt2);
 
+             var y=0;
+             var a=0;
+             var b=1;
+
              for (var i in data) {
                  $('#popoverVer'+i).popover({
                         container: "body",
@@ -586,29 +571,24 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                      }
                  });
 
-                 for (var i in data) {
-                     console.log("verificando el valor de i antes de agregar class: "+i);
+                 y=b-1;
+                 a=b-2;
 
-                     var y=0;
-                     var a=0;
-                     y=i-1;
-                     a=i-2;
-                     console.log("verificando el valor de y antes de agregar class: "+y);
+                 if(b % 7 == 0){
+                     $('#spanDiaCalendar'+y).addClass('text-warning');
+                     $('#popoverVer'+y).addClass('text-warning');
+                     $('#popoverAutoMark'+y).addClass('text-warning');
+                     $('#dotv'+y).addClass('text-warning');
+                     $('#dota'+y).addClass('text-warning');
 
-                     if(i % 7 == 0){
-                         $('#spanDiaCalendar'+y).addClass('text-warning');
-                         $('#popoverVer'+y).addClass('text-warning');
-                         $('#popoverAutoMark'+y).addClass('text-warning');
-                         $('#dotv'+y).addClass('text-warning');
-                         $('#dota'+y).addClass('text-warning');
-
-                         $('#spanDiaCalendar'+a).addClass('text-warning');
-                         $('#popoverVer'+a).addClass('text-warning');
-                         $('#popoverAutoMark'+a).addClass('text-warning');
-                         $('#dotv'+a).addClass('text-warning');
-                         $('#dota'+a).addClass('text-warning');
-                     }
+                     $('#spanDiaCalendar'+a).addClass('text-warning');
+                     $('#popoverVer'+a).addClass('text-warning');
+                     $('#popoverAutoMark'+a).addClass('text-warning');
+                     $('#dotv'+a).addClass('text-warning');
+                     $('#dota'+a).addClass('text-warning');
                  }
+
+                 b++;
              }
          }
     });
