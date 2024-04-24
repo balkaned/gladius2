@@ -739,10 +739,10 @@
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Borrar T.</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-right-left me-2"></span>Consolidar</a>
                                 <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-download me-2"></span>Reporte</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-primary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-xmark me-2"></span>Cancelar</a>
+                                <!--<a id="botonEliminarPlanTrab" class="btn btn-phoenix-primary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-xmark me-2"></span>Cancelar</a>-->
                             </div>
                       </div>
-                      <div class="row g-4 bg-100 mt-0">
+                      <div class="row g-3 bg-100 mt-0">
                         <!--<h4 class="mb-0 mt-7">Calendario</h4>-->
                         <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
                           <div class="mb-3" class="mt-0">
@@ -769,7 +769,7 @@
                                           </div>
                                         </div>
                                   </div>
-                                   <div class="table-responsive scrollbar mx-n1 px-1 bg-100" >
+                                   <div class="table-responsive scrollbar mx-n1 px-1 bg-100" style="width: 742px !important;" >
                                         <table  class="table">
                                             <thead id="calendarHead2">
                                             </thead>
