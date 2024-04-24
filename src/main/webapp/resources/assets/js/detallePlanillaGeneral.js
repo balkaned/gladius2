@@ -568,7 +568,6 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
              $("#calendarBody2").html(opt2);
 
-
              for (var i in data) {
                  $('#popoverVer'+i).popover({
                         container: "body",
@@ -587,8 +586,5 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                  });
              }
          }
-    });
-
-    $(document).ready(function() {
     });
 }
