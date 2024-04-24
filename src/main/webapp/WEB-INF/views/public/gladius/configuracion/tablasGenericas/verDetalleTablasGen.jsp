@@ -21,6 +21,15 @@
   			return false;
   		}
   	  }
+
+  	  function mostrarAlert(){
+        var div=document.getElementById('alert');
+        div.style.display = '';
+
+        setTimeout(function() {
+      	  $("#alerts").hide(6000);
+        }, 3000);
+      }
   </script>
 
   <body>
@@ -49,7 +58,7 @@
               <div class="row g-3">
                  <div class="col-xl-7">
                    <div class="row gx-3 gy-4">
-                      <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarTblGenDetalle" novalidate >
+                      <form class="row g-3 mb-0 needs-validation" method="POST" action="addTblGenDetalle" novalidate >
                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                         <input class="form-control" name="iexcodtab2" type="hidden" value="${sessionScope.ttablaclbl.iexcodtab}" />
 
@@ -63,137 +72,121 @@
                         </div>
                         <div class="col-sm-6 col-md-2">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id key</label>
-                              <input class="form-control" name="iexkey" type="text" value="${ttabladxx.iexkey}" placeholder="" required/>
+                              <input class="form-control" name="iexkey" type="text" value="${ttabladxx.iexkey}" placeholder="#" required/>
                         </div>
                         <div class="col-sm-6 col-md-9">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción key</label>
-                              <input class="form-control" name="desdet" type="text" value="${ttabladxx.desdet}" placeholder="" required/>
+                              <input class="form-control" name="desdet" type="text" value="${ttabladxx.desdet}" placeholder="Ingrese una descripción" required/>
                         </div>
-                        <table class="navy" >
+
+                        <table class="navy">
                              <tr>
                                  <td>
-                                      <table  class="navy"   >
+                                      <table class="navy">
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg1=='1'}">
                                                 <tr>
-                                                <td>${sessionScope.ttablaclbl.iexlbl1}</td>
-                                                <td><input type='text' name='des1det' value="${ttabladxx.des1det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl1}</td>
+                                                    <td><input type='text' name='des1det' value="${ttabladxx.des1det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                 </tr>
                                           </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='1'}">
                                                 <tr>
-                                                <td>${sessionScope.ttablaclbl.iexlbl2}</td>
-                                                <td><input type='text' name='des2det'  value="${ttabladxx.des2det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl2}</td>
+                                                    <td><input type='text' name='des2det' value="${ttabladxx.des2det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                </tr>
-                                           </c:if>
+                                          </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg3=='1'}">
-
                                                 <tr>
-
-                                                <td>${sessionScope.ttablaclbl.iexlbl3}</td>
-                                                <td><input type='text' name='des3det'   value="${ttabladxx.des3det}"   class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl3}</td>
+                                                    <td><input type='text' name='des3det' value="${ttabladxx.des3det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                 </tr>
-                                           </c:if>
+                                          </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg4=='1'}">
                                                 <tr>
-                                                <td>${sessionScope.ttablaclbl.iexlbl4}</td>
-                                                <td><input type='text' name='des4det'  value="${ttabladxx.des4det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl4}</td>
+                                                    <td><input type='text' name='des4det' value="${ttabladxx.des4det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                 </tr>
-                                            </c:if>
+                                          </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg5=='1'}">
-
                                                 <tr>
-
-                                                <td>${sessionScope.ttablaclbl.iexlbl5}</td>
-                                                <td><input type='text' name='des5det'  value="${ttabladxx.des5det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl5}</td>
+                                                    <td><input type='text' name='des5det' value="${ttabladxx.des5det}" class="form-control" style="width: 250px; background:#fcefa1" ></td>
                                                 </tr>
                                           </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='6'}">
-
                                                 <tr>
-                                                <td>${sessionScope.ttablaclbl.iexlbl6}</td>
-                                                <td><input type='text' name='des6det' value="${ttabladxx.des6det}"   class="form-control"  style="width: 250px ;background:#fcefa1"></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl6}</td>
+                                                    <td><input type='text' name='des6det' value="${ttabladxx.des6det}" class="form-control" style="width: 250px; background:#fcefa1" ></td>
                                                 </tr>
-
                                           </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='7'}"  >
-
                                                 <tr>
-
-                                                <td>${sessionScope.ttablaclbl.iexlbl7}</td>
-                                                <td><input type='text' name='des7det' value="${ttabladxx.des7det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl7}</td>
+                                                    <td><input type='text' name='des7det' value="${ttabladxx.des7det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                 </tr>
-
-                                           </c:if>
+                                          </c:if>
                                           <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='8'}">
-
                                                 <tr>
-                                                <td>${sessionScope.ttablaclbl.iexlbl8}</td>
-                                                <td><input type='text' name='des8det' value="${ttabladxx.des8det}" class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                                    <td>${sessionScope.ttablaclbl.iexlbl8}</td>
+                                                    <td><input type='text' name='des8det' value="${ttabladxx.des8det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
                                                 </tr>
-                                                </c:if>
+                                          </c:if>
                                       </table>
                                  </td>
                                  <td>
                                      <table class="navy" >
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg9=='1'}">
                                             <tr>
-                                           <td>${sessionScope.ttablaclbl.iexlblval9}</td>
-                                            <td><input type='text' name='val9det' value="${ttabladxx.val9det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                                <td>${sessionScope.ttablaclbl.iexlblval9}</td>
+                                                <td><input type='text' name='val9det' value="${ttabladxx.val9det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
                                             </tr>
-                                            </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg10=='1'}">
-
-                                                <tr>
-                                            <td>${sessionScope.ttablaclbl.iexlblval10}</td>
-                                            <td><input type='text' name='val10det' value="${ttabladxx.val10det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg10=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval10}</td>
+                                                <td><input type='text' name='val10det' value="${ttabladxx.val10det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
                                             </tr>
-                                          </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg11=='1'}">
-                                                <tr>
-                                            <td>${sessionScope.ttablaclbl.iexlblval11}</td>
-                                            <td><input type='text' name='val11det' value="${ttabladxx.val11det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg11=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval11}</td>
+                                                <td><input type='text' name='val11det' value="${ttabladxx.val11det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
                                             </tr>
-                                               </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg12=='1'}">
-
-                                                <tr>
-                                            <td>${sessionScope.ttablaclbl.iexlblval12}</td>
-                                            <td><input type='text' name='val12det' value="${ttabladxx.val12det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
-                                             </tr>
-
-                                                </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg13=='1'}">
-                                                <tr>
-                                              <td>${sessionScope.ttablaclbl.iexlblval13}</td>
-                                            <td><input type='text' name='val13det' value="${ttabladxx.val13det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg12=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval12}</td>
+                                                <td><input type='text' name='val12det' value="${ttabladxx.val12det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
                                             </tr>
-
-                                               </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg14=='1'}">
-                                                <tr>
-                                            <td>${sessionScope.ttablaclbl.iexlblval14}</td>
-                                            <td><input type='text' name='val14det' value="${ttabladxx.val14det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
-                                           </tr>
-
-                                              </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg15=='1'}">
-                                                <tr>
-                                          <td>${sessionScope.ttablaclbl.iexlblval15}</td>
-                                            <td><input type='text' name='val15det' value="${ttabladxx.val15det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg13=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval13}</td>
+                                                <td><input type='text' name='val13det' value="${ttabladxx.val13det}" class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
                                             </tr>
-
-                                               </c:if>
-                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg16=='1'}">
-                                                <tr>
-                                            <td>${sessionScope.ttablaclbl.iexlblval16}</td>
-                                            <td><input type='text' name='val16det' value="${ttabladxx.val16det}"  class="form-control"  style="width: 250px ;background:#fcefa1"  ></td>
-                                          </tr>
-                                           </c:if>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg14=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval14}</td>
+                                                <td><input type='text' name='val14det' value="${ttabladxx.val14det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                            </tr>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg15=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval15}</td>
+                                                <td><input type='text' name='val15det' value="${ttabladxx.val15det}"  class="form-control"  style="width: 250px ;background:#fcefa1" ></td>
+                                            </tr>
+                                         </c:if>
+                                         <c:if test="${sessionScope.ttablaclbl.iexlblflg16=='1'}">
+                                            <tr>
+                                                <td>${sessionScope.ttablaclbl.iexlblval16}</td>
+                                                <td><input type='text' name='val16det' value="${ttabladxx.val16det}" class="form-control" style="width: 250px ;background:#fcefa1" ></td>
+                                            </tr>
+                                         </c:if>
                                      </table>
                                  </td>
                              </tr>
                          </table>
-
 
                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -203,10 +196,10 @@
                         <div class="col-12 gy-6">
                             <div class="row g-3 justify-content-end">
                               <div class="col-auto">
-                                <a class="btn btn-phoenix-primary px-5" href="listTablasGen">Atras</a>
+                                <a class="btn btn-sm btn-phoenix-secondary px-5" href="listTablasGen"><span class="fa fa-reply me-1"></span>Atras</a>
                               </div>
                               <div class="col-auto">
-                                <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Grabar</button>
+                                <button class="btn btn-sm btn-primary px-5 px-sm-4" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa fa-plus me-1"></span>Add y guardar</button>
                               </div>
                             </div>
                         </div>
@@ -279,8 +272,8 @@
                                    <div class="font-sans-serif btn-reveal-trigger position-static">
                                     <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                      <div class="dropdown-menu dropdown-menu-end py-2">
-                                          <a id="dropdownmenutable" class="dropdown-item" href="curDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}"><span class="fa-solid fa-arrow-trend-down me-2"></span>Cur detalle</a>
-                                          <div class="dropdown-divider"></div>
+                                          <!--<a id="dropdownmenutable" class="dropdown-item" href="editarDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}"><span class="fa-solid fa-arrow-trend-down me-2"></span>Editar detalle</a>
+                                          <div class="dropdown-divider"></div>-->
                                           <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deletecurDetalleTblGen@${LstTTablad.iexcodtab}@${LstTTablad.iexkey}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                      </div>
                                    </div>

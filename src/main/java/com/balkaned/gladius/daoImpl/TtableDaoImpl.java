@@ -11,7 +11,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -219,7 +218,11 @@ public class TtableDaoImpl implements TtableDao {
                 TTablaCabecera p = new TTablaCabecera();
                 while (rs.next()) {
                     p.setIexcodtab(rs.getString("iexcodtab"));
+
                     p.setIexdestab(rs.getString("iexdestab"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setIexdestab(cap.letras(p.getIexdestab()));
+
                     p.setIexlbl1(rs.getString("iexlbl1"));
                     p.setIexlbl2(rs.getString("iexlbl2"));
                     p.setIexlbl3(rs.getString("iexlbl3"));
@@ -489,6 +492,50 @@ public class TtableDaoImpl implements TtableDao {
         template.update(" delete from iexttabled where  iexcodtab = ? and iexkey=? ",
                 idttabla,
                 idttabladet);
+    }
+
+    public void insertarTtablad(TTablaDetalle ttd){
+
+        template.update(" insert into iexttabled (   "+
+                        "  iexcodtab," +
+                        "iexkey," +
+                        "desdet," +
+                        "des1det," +
+                        "des2det," +
+                        "des3det," +
+                        "des4det," +
+                        "des5det," +
+                        "des6det," +
+                        "des7det," +
+                        "des8det," +
+                        "val9det," +
+                        "val10det," +
+                        "val11det," +
+                        "val12det," +
+                        "val13det," +
+                        "val14det," +
+                        "val15det," +
+                        "val16det ) values ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ",
+
+                        ttd.getIexcodtab(),
+                        ttd.getIexkey(),
+                        ttd.getDesdet(),
+                        ttd.getDes1det(),
+                        ttd.getDes2det(),
+                        ttd.getDes3det(),
+                        ttd.getDes4det(),
+                        ttd.getDes5det(),
+                        ttd.getDes6det(),
+                        ttd.getDes7det(),
+                        ttd.getDes8det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det(),
+                        ttd.getVal9det());
     }
 
 }

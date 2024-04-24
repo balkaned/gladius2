@@ -57,72 +57,73 @@
                                      <input class="form-control" name="iexcodtab" type="number"  placeholder="#" required/>
                               </div>
                               <div class="col-sm-6 col-md-7">
-                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre de la tabla</label>
-                                    <input class="form-control" name="iexdestab" type="text" value="" placeholder="Ingrese el nombre de la tabla" required/>
+                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción de la tabla</label>
+                                    <input class="form-control" name="iexdestab" type="text" value="" placeholder="Ingrese la descripción de la tabla" required/>
                               </div>
 
+                              <h5 class="mt-5">Nombre de la tabla</h5>
                               <table class="navy">
                                    <tr>
-                                      <td>Des</td>
-                                      <td><input type="checkbox" name='iexlblflg1'  value='1' class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl1'  class="form-control mb-2" style="width: 250px;" ></td>
-                                      <td class="ps-3">des</td>
-                                      <td><input type="checkbox" name='iexlblflg9'  value='1' class="form-check-input"  ></td>
-                                      <td class="ps-2"><input type='text' name='iexlblval9'   class="form-control mb-2" style="width: 250px;"  ></td>
+                                      <td class="form-check-label" >Des</td>
+                                      <td><input type="checkbox" name='iexlblflg1' value='1' class="form-check-input" ></td>
+                                      <td class="ps-2"><input type='text' name='iexlbl1' class="form-control mb-2" style="width: 250px;" ></td>
+                                      <td class="ps-3 form-check-label">des</td>
+                                      <td><input type="checkbox" name='iexlblflg9' value='1' class="form-check-input" ></td>
+                                      <td class="ps-2"><input type='text' name='iexlblval9' class="form-control mb-2" style="width: 250px;" ></td>
                                    </tr>
                                    <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg2'  value='1'  class="form-check-input" ></td>
-                                      <td class="ps-2"><input type='text' name='iexlbl2'  class="form-control mb-2" style="width: 250px;"   ></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-2"><input type='text' name='iexlbl2'  class="form-control  mb-2" style="width: 250px;"   ></td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg10'  value='1'  class="form-check-input" ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval10'  class="form-control mb-2"   style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg3'  value='1'  class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl3'  class="form-control mb-2"   style="width: 250px;"></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg11'  value='1' class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval11'  class="form-control mb-2"  style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg4'  value='1' class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl4'  class="form-control mb-2"   style="width: 250px;"  ></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg12'  value='1'  class="form-check-input" ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval12'   class="form-control mb-2"  style="width: 250px;"   ></td>
                                    </tr>
                                    <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg5'  value='1'  class="form-check-input" ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl5'  class="form-control mb-2"   style="width: 250px;"  ></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg13'  value='1'   class="form-check-input" ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval13' class="form-control mb-2"  style="width: 250px;"  ></td>
                                    </tr>
                                    <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg6'  value='1'   class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl6'  class="form-control mb-2"  style="width: 250px;"  ></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg14'  value='1'  class="form-check-input" ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval14'  class="form-control mb-2"  style="width: 250px;" ></td>
                                   </tr>
                                   <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg7'  value='1'  class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl7'  class="form-control mb-2"   style="width: 250px;"></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg15'  value='1' class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval15'  class="form-control mb-2"  style="width: 250px;"  ></td>
                                   </tr>
                                   <tr>
-                                      <td>Des</td>
+                                      <td class="form-check-label" >Des</td>
                                       <td><input type="checkbox" name='iexlblflg8'  value='1' class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlbl8'  class="form-control mb-2"  style="width: 250px;"></td>
-                                      <td class="ps-3">des</td>
+                                      <td class="ps-3 form-check-label">des</td>
                                       <td><input type="checkbox" name='iexlblflg16'  value='1' class="form-check-input"  ></td>
                                       <td class="ps-2"><input type='text' name='iexlblval16' class="form-control mb-2" style="width: 250px;"></td>
                                   </tr>

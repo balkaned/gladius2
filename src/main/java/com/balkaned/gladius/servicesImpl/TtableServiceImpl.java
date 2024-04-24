@@ -17,10 +17,12 @@ public class TtableServiceImpl implements TtableService {
     TtableDao dao;
 
     public List<TTablaCabecera> listarTTablac(String text) {
+
         return dao.listarTTablac(text);
     }
 
     public void insertarTtablac(TTablaCabecera ttc) {
+
         dao.insertarTtablac(ttc);
     }
 
@@ -29,10 +31,12 @@ public class TtableServiceImpl implements TtableService {
     }
 
     public void actualizarTTablac(TTablaCabecera ttc) {
+
         dao.actualizarTTablac(ttc);
     }
 
     public List<TTablaDetalle> listarTTablad(String idttabla) {
+
         return dao.listarTTablad(idttabla);
     }
 
@@ -45,14 +49,21 @@ public class TtableServiceImpl implements TtableService {
     }
 
     public void eliminarTTablac(String idttabla) {
+
         dao.eliminarTTablac(idttabla);
     }
 
     public void eliminarTTablad(String idttabla) {
+
         dao.eliminarTTablad(idttabla);
     }
 
     public void eliminarTTablade(String idttabla, String idttabladet) {
+
         dao.eliminarTTablade(idttabla, idttabladet);
+    }
+
+    public void insertarTtablad(TTablaDetalle ttd){
+        dao.insertarTtablad(ttd);
     }
 }

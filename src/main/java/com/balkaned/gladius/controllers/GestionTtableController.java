@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -27,7 +28,9 @@ public class GestionTtableController {
         log.info("/listTablasGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -42,7 +45,9 @@ public class GestionTtableController {
         log.info("/nuevaTablaGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -55,7 +60,9 @@ public class GestionTtableController {
         log.info("/insertarNuevaTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -97,7 +104,7 @@ public class GestionTtableController {
 
         TTablaCabecera p = new TTablaCabecera();
         p.setIexcodtab(iexcodtab);
-        p.setIexdestab(iexdestab);
+        p.setIexdestab(iexdestab.toUpperCase());
         p.setIexlbl1(iexlbl1);
         p.setIexlbl2(iexlbl2);
         p.setIexlbl3(iexlbl3);
@@ -141,7 +148,9 @@ public class GestionTtableController {
         log.info("/editarTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -157,7 +166,9 @@ public class GestionTtableController {
         log.info("/modificarTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -199,7 +210,7 @@ public class GestionTtableController {
 
         TTablaCabecera p = new TTablaCabecera();
         p.setIexcodtab(iexcodrol);
-        p.setIexdestab(iexdesrol);
+        p.setIexdestab(iexdesrol.toUpperCase());
         p.setIexlbl1(iexlbl1);
         p.setIexlbl2(iexlbl2);
         p.setIexlbl3(iexlbl3);
@@ -244,7 +255,9 @@ public class GestionTtableController {
         log.info("/verDetalleTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -256,141 +269,29 @@ public class GestionTtableController {
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
     }
 
-    @RequestMapping("/modificarTblGenDetalle")
+    @RequestMapping("/addTblGenDetalle")
     public ModelAndView modificarTblGenDetalle(ModelMap model, HttpServletRequest request) {
-        log.info("/modificarTblGenDetalle");
+        log.info("/addTblGenDetalle");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
-        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         String iexcodtab = request.getParameter("iexcodtab2");
         String iexkey = request.getParameter("iexkey");
         String desdet = request.getParameter("desdet");
-        log.info("iexcodtab: " + iexcodtab);
-        log.info("iexkey: " + iexkey);
-        log.info("desdet: " + desdet);
-
-        String des1det = request.getParameter("des1det");
-        String des2det = request.getParameter("des2det");
-        String des3det = request.getParameter("des3det");
-        String des4det = request.getParameter("des4det");
-        String des5det = request.getParameter("des5det");
-        String des6det = request.getParameter("des6det");
-        String des7det = request.getParameter("des7det");
-        String des8det = request.getParameter("des8det");
-        String val9det = request.getParameter("val9det");
-        String val10det = request.getParameter("val10det");
-        String val11det = request.getParameter("val11det");
-        String val12det = request.getParameter("val12det");
-        String val13det = request.getParameter("val13det");
-        String val14det = request.getParameter("val14det");
-        String val15det = request.getParameter("val15det");
-        String val16det = request.getParameter("val16det");
 
         TTablaDetalle p = new TTablaDetalle();
         p.setIexcodtab(iexcodtab);
         p.setIexkey(iexkey);
         p.setDesdet(desdet);
 
-        if (request.getParameter("des1det") == null) {
-            p.setDes1det("");
-        } else {
-            p.setDes1det(des1det);
-        }
+        ttableService.insertarTtablad(p);
 
-        if (request.getParameter("des2det") == null) {
-            p.setDes2det("");
-        } else {
-            p.setDes2det(des2det);
-        }
-
-        if (request.getParameter("des3det") == null) {
-            p.setDes3det("");
-        } else {
-            p.setDes3det(des3det);
-        }
-        if (request.getParameter("des4det") == null) {
-            p.setDes4det("");
-        } else {
-            p.setDes4det(des4det);
-        }
-
-        if (request.getParameter("des5det") == null) {
-            p.setDes5det("");
-        } else {
-            p.setDes5det(des5det);
-        }
-
-        if (request.getParameter("des6det") == null) {
-            p.setDes6det("");
-        } else {
-            p.setDes6det(des6det);
-        }
-
-        if (request.getParameter("des7det") == null) {
-            p.setDes7det("");
-        } else {
-            p.setDes7det(des7det);
-        }
-
-        if (request.getParameter("des8det") == null) {
-            p.setDes8det("");
-        } else {
-            p.setDes8det(des8det);
-        }
-
-        if (request.getParameter("val9det") == null || request.getParameter("val9det") == "") {
-            p.setVal9det(0.0);
-        } else {
-            p.setVal9det(Double.parseDouble(val9det));
-        }
-
-        if (request.getParameter("val10det") == null || request.getParameter("val10det") == "") {
-            p.setVal10det(0.0);
-        } else {
-            p.setVal10det(Double.parseDouble(val10det));
-        }
-
-        if (request.getParameter("val11det") == null || request.getParameter("val11det") == "") {
-            p.setVal11det(0.0);
-        } else {
-            p.setVal11det(Double.parseDouble(val11det));
-        }
-
-        if (request.getParameter("val12det") == null || request.getParameter("val12det") == "") {
-            p.setVal12det(0.0);
-        } else {
-            p.setVal12det(Double.parseDouble(val12det));
-        }
-
-        if (request.getParameter("val13det") == null || request.getParameter("val13det") == "") {
-            p.setVal13det(0.0);
-        } else {
-            p.setVal13det(Double.parseDouble(val13det));
-        }
-        if (request.getParameter("val14det") == null || request.getParameter("val14det") == "") {
-            p.setVal14det(0.0);
-        } else {
-            p.setVal14det(Double.parseDouble(val14det));
-        }
-        if (request.getParameter("val15det") == null || request.getParameter("val15det") == "") {
-            p.setVal15det(0.0);
-        } else {
-            p.setVal15det(Double.parseDouble(val15det));
-        }
-
-        if (request.getParameter("val16det") == null || request.getParameter("val16det") == "") {
-            p.setVal16det(0.0);
-        } else {
-            p.setVal16det(Double.parseDouble(val16det));
-        }
-
-        ttableService.actualizarTTablad(p);
-
-        return new ModelAndView("redirect:/listTablasGen");
+        return new ModelAndView("redirect:/verDetalleTblGen@"+iexcodtab);
     }
 
     @RequestMapping("/curDetalleTblGen@{idTbl}@{idKey}")
@@ -399,7 +300,9 @@ public class GestionTtableController {
         log.info("/curDetalleTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -421,7 +324,9 @@ public class GestionTtableController {
         log.info("/deleteTablaGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
@@ -439,7 +344,9 @@ public class GestionTtableController {
         log.info("/deletecurDetalleTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");

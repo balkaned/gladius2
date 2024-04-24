@@ -27,4 +27,6 @@ public interface TtableDao {
 
     public void eliminarTTablade(String idttabla, String idttabladet);
 
+    public void insertarTtablad(TTablaDetalle ttd);
+
 }

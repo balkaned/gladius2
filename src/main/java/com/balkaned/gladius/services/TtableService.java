@@ -28,4 +28,6 @@ public interface TtableService {
 
     public void eliminarTTablade(String idttabla, String idttabladet);
 
+    public void insertarTtablad(TTablaDetalle ttd);
+
 }

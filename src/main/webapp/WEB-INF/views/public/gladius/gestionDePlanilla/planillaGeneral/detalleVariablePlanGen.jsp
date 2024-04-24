@@ -185,7 +185,7 @@
                                 <button class="btn btn-primary btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add a lista</button>
                                 <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="enviaForm('14')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
 
-                                <div class="btn-group mb-0 me-1 ms-0 mt-1">
+                                <!--<div class="btn-group mb-0 me-1 ms-0 mt-1">
                                     <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>
                                     <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                     <div class="dropdown-menu">
@@ -193,7 +193,7 @@
                                         <span class="fa-solid fa-download fs--1 me-2"></span>Exportar excel
                                       </a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div class="modal fade" id="confirmModal" tabindex="-1">
