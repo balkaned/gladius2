@@ -1275,19 +1275,36 @@ public class PlanillaController {
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        log.info("codtra: "+codtra);
-        log.info("fecini: "+fecini);
-        log.info("fecfin: "+fecfin);
-
         List<Turnodiario> lstTurnodiario = turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(codtra),fecini,fecfin);
 
-        if(lstTurnodiario.size() > 0) {
-            log.info("lstTurnodiario.get(0).getDesfecdia(): " + lstTurnodiario.get(0).getDesfecdia());
-            log.info("lstTurnodiario.get(0).getDesiniturno(): " + lstTurnodiario.get(0).getDesiniturno());
-            log.info("lstTurnodiaario: " + lstTurnodiario);
+        String json = new Gson().toJson(lstTurnodiario);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerMarcacionesAsisModal", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerMarcacionesAsisModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerMarcacionesAsisModal");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
         }
 
-        String json = new Gson().toJson(lstTurnodiario);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String codtra = request.getParameter("codtra");
+        String codfec = request.getParameter("codfec");
+
+        log.info("codtra: "+codtra);
+        log.info("codfec: "+codfec);
+
+        Turnodiario turno = turnoDiarioService.obtenerTurnoDia(idCompania, Integer.valueOf(codtra),codfec.trim());
+
+        String json = new Gson().toJson(turno);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

@@ -13,6 +13,15 @@
       <script src="resources/assets/js/detallePlanillaGeneral.js"></script>
     </head>
 
+    <style>
+        .popover {
+           width: 400px !important;
+           max-width:400px !important;
+           height: 400px !important;
+           overflow-y: auto;
+        }
+    </style>
+
     <body>
         <!-- ===============================================-->
         <!--    Main Content-->
@@ -1076,4 +1085,20 @@
           </div>
       </div>
     </div>
+    <!--<div id="popover-content" >
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <input class="headerSearch search-query" id="str" name="str" type="text" placeholder="Search..." />
+          <span class="glyphicon glyphicon-search" style="margin:3px 8px 0 -20px;"></span>
+          <input class="btn btn-primary btn-xs" id="phSearchButton" type="submit" value="Search" />
+          <input class="btn btn-primary btn-xs" id="searchButton" type="submit" value="Dictionary" />
+        </div>
+      </form>
+    </div>
+
+    <div class="popover-body"></div>-->
+
+
 </html>
+
+

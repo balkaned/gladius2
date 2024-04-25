@@ -526,8 +526,9 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                               </c:forEach>
                            </select>*/
 
-                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Gestión de marcaciones' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
+                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' data-bs-toggle='popover' title='Gestión de marcaciones' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
                    opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
+                   //opt2 += "<a id='popoverVer"+i+"' data-placement='bottom' data-toggle='popover' data-container='body' data-placement='left' type='button' data-html='true' href='#'><span class='glyphicon glyphicon-search'></span></a>";
 
                    /*"<td>"+
                         "<select class='form-select form-select-sm' name='id_row2' id='id_row2' style='width: 75px;' onchange='program_tur_row('','','')'>"+
@@ -555,22 +556,6 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
              var b=1;
 
              for (var i in data) {
-                 $('#popoverVer'+i).popover({
-                        container: "body",
-                        html: true,
-                        content: function () {
-                          return '<div class="popover-message">And heres some amazing content. Its very engaging. Right?</div>';
-                        }
-                 });
-
-                 $('#popoverAutoMark'+i).popover({
-                     container: "body",
-                     html: true,
-                     content: function () {
-                       return '<div class="popover-message">And heres some amazing content. Its very engaging. Right?</div>';
-                     }
-                 });
-
                  y=b-1;
                  a=b-2;
 
@@ -589,7 +574,98 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                  }
 
                  b++;
+
+                 if(data.length > 0){
+                      console.log("iexcodtra: "+data[i].iexcodtra);
+                      console.log("iexcodfec: "+data[i].iexcodfec);
+                 }
+
+                 traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i);
              }
          }
     });
+
+    function traerMarcacionesAsisModal(codtra,codfec,ind){
+
+        $.ajax({
+             url: "traerMarcacionesAsisModal",
+             data: {
+                 "codtra": codtra,
+                 "codfec": codfec
+                 },
+             success: function (data) {
+                console.log("iexturno: "+data.iexiniturno);
+
+                var html="<div class='row g-3'>"+
+                            "<h6 class='text-500'>Datos de turno</h6>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
+                                "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec+"]</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexiniturno+" - "+data.iexfinturno+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Asistencia: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexiniasist+" - "+data.iexfinasist+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Falta: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexindfalta+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Feriado: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexindferiado+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Ingreso antes: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrsantes+" "+data.iexminantes+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Tardanza: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrstarde+" "+data.iexmintarde+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Total de horas: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrstotal+" "+data.iexmintotal+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Salida antes: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrssale_antes+" "+data.iexminsale_antes+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Salida posterior: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrspost+" "+data.iexminpost+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Vacaciones: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexvacaind+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Ausentismo: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexauseind+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Permiso: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexpermiso+"</div>"+
+                            "</div>"+
+                            "<div class='row col-sm-6 col-md-12 mt-1'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Permiso horas: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhriniperm+" "+data.iexhrfinperm+"</div>"+
+                            "</div>"+
+                         "</div>";
+
+                $('popover-body').addClass('bg-soft');
+
+                $('#popoverVer'+ind).popover({
+                   container: "body",
+                   html: true,
+                   content: function () {
+                     return html;
+                   }
+                });
+             }
+        });
+    }
 }

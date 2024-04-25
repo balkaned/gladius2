@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,20 +78,20 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexdesusu(rs.getString("iexdesusu"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
 
-                    log.info("fecini: "+fecini);
+                    log.info("fecini: " + fecini);
                     Date fecha = new Date(fecini);
-                    log.info("fecha: "+fecha);
+                    log.info("fecha: " + fecha);
 
-                    FormatterFecha fec= new FormatterFecha();
-                    String mes=fec.fechaFormatterMes(fecini);
+                    FormatterFecha fec = new FormatterFecha();
+                    String mes = fec.fechaFormatterMes(fecini);
                     p.setMesDes(mes);
 
-                    FormatterFecha fec2 =  new FormatterFecha();
-                    String anio=fec2.fechaFormatterAnio(fecini);
+                    FormatterFecha fec2 = new FormatterFecha();
+                    String anio = fec2.fechaFormatterAnio(fecini);
                     p.setAnioDes(anio);
 
-                    log.info("mes: "+mes);
-                    log.info("anio: "+anio);
+                    log.info("mes: " + mes);
+                    log.info("anio: " + anio);
 
                     lista.add(p);
                 }
@@ -329,7 +330,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     tur.setIexcodturno(rs.getInt("iexcodturno"));
 
                     tur.setIexdesturno(rs.getString("iexdesturno"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     tur.setIexdesturno(cap.letras(tur.getIexdesturno()));
 
                     tur.setIexhorini(rs.getString("iexhorini"));
@@ -374,5 +375,103 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 turno.getCodcia(),
                 turno.getIexcodturno());
 
+    }
+
+    public Turnodiario obtenerTurnoDia(Integer codcia, Integer codtra, String codfec) {
+
+        String sql = " select	" +
+                "    t.iexcodcia ," +
+                "    t.iexcodtra ," +
+                "    t.iexcodfec ," +
+                "    t.iexfecdia ," +
+                "    to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia ," +
+                "    t.iexcodturno ," +
+                "    e.iexflgturno, " +
+                "    e.iexdesturno," +
+                "    t.iexiniturno ," +
+                "    t.iexfinturno ," +
+                "    t.iexiniasist ," +
+                "    t.iexfinasist ," +
+                "    to_char(t.iexiniturno,'HH24:MI') desiniturno ," +
+                "    to_char(t.iexfinturno,'HH24:MI') desfinturno ," +
+                "    to_char(t.iexiniasist,'HH24:MI') desiniasist ," +
+                "    to_char(t.iexfinasist,'HH24:MI') desfinasist ," +
+                "    t.iexhrstotal ," +
+                "    t.iexmintotal ," +
+                "    t.iexminantes ," +
+                "    t.iexminpost ," +
+                "    t.iexhrspost ," +
+                "    t.iexcoddiasem ," +
+                "    t.iexfeccrea ," +
+                "    t.iexdesusu ," +
+                "    t.iexflgest ," +
+                "    t.iexhrsantes ," +
+                "    t.iexhrssale_antes ," +
+                "    t.iexminsale_antes ," +
+                "    t.iexhrstarde ," +
+                "    t.iexmintarde ," +
+                "    t.iexvacaind ," +
+                "    t.iexausenid ," +
+                "    t.iexpermiso ," +
+                "    to_char(t.iexhriniperm,'HH24:MI') iexhriniperm ," +
+                "    to_char(t.iexhrfinperm,'HH24:MI') iexhrfinperm ," +
+                "    t.iexhrsperm ," +
+                "    t.iexminsperm , t.iexindferiado,  t.iexindfalta  " +
+                "	from iexturnodia t , iexturno e " +
+                "	where " +
+                "	t.iexcodcia = e.iexcodcia and " +
+                "    t.iexcodturno = e.iexcodturno and " +
+                "    t.iexcodcia=" + codcia + "  and " +
+                "	t.iexcodtra=" + codtra + " and " +
+                "	t.iexcodfec = '" + codfec + "'  ";
+
+        return (Turnodiario) template.query(sql, new ResultSetExtractor<Turnodiario>() {
+            public Turnodiario extractData(ResultSet rs) throws SQLException, DataAccessException {
+                Turnodiario p = new Turnodiario();
+
+                while (rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcodfec(rs.getString("iexcodfec"));
+                    p.setIexfecdia(rs.getString("iexfecdia"));
+                    p.setIexcodturno(rs.getInt("iexcodturno"));
+                    p.setDesturno(rs.getString("iexdesturno"));
+                    p.setIexflgturno(rs.getString("iexflgturno"));
+                    p.setIexiniturno(rs.getString("iexiniturno"));
+                    p.setIexfinturno(rs.getString("iexfinturno"));
+                    p.setIexiniasist(rs.getString("iexiniasist"));
+                    p.setIexfinasist(rs.getString("iexfinasist"));
+                    p.setDesiniturno(rs.getString("desiniturno"));
+                    p.setDesfinturno(rs.getString("desfinturno"));
+                    p.setDesiniasist(rs.getString("desiniasist"));
+                    p.setDesfinasist(rs.getString("desfinasist"));
+                    p.setIexhrstotal(rs.getDouble("iexhrstotal"));
+                    p.setIexmintotal(rs.getDouble("iexmintotal"));
+                    p.setIexminantes(rs.getDouble("iexminantes"));
+                    p.setIexminpost(rs.getDouble("iexminpost"));
+                    p.setIexhrspost(rs.getDouble("iexhrspost"));
+                    p.setIexcoddiasem(rs.getInt("iexcoddiasem"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
+                    p.setIexdesusu(rs.getString("iexdesusu"));
+                    p.setIexflgest(rs.getString("iexflgest"));
+                    p.setIexhrsantes(rs.getDouble("iexhrsantes"));
+                    p.setIexhrssale_antes(rs.getDouble("iexhrssale_antes"));
+                    p.setIexminsale_antes(rs.getDouble("iexminsale_antes"));
+                    p.setIexhrstarde(rs.getDouble("iexhrstarde"));
+                    p.setDesfecdia(rs.getString("desfecdia"));
+                    p.setIexvacaind(rs.getString("iexvacaind"));
+                    p.setIexauseind(rs.getString("iexausenid"));
+                    p.setIexpermiso(rs.getString("iexpermiso"));
+                    p.setIexhriniperm(rs.getString("iexhriniperm"));
+                    p.setIexhrfinperm(rs.getString("iexhrfinperm"));
+                    p.setIexminsperm(rs.getDouble("iexminsperm"));
+                    p.setIexhrsperm(rs.getDouble("iexhrsperm"));
+                    p.setIexindferiado(rs.getString("iexindferiado"));
+                    p.setIexindfalta(rs.getString("iexindfalta"));
+                }
+
+                return p;
+            }
+        });
     }
 }
