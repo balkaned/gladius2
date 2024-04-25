@@ -66,7 +66,7 @@ function enviaForm(variable){
     }
 }
 
-function enviaForm_ind(variable , trab){
+function enviaForm_ind(variable, trab){
     if(variable==2){
         document.getElementById("accion").value="INIPRO";
     }else if(variable==3){
@@ -482,105 +482,109 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
              console.log("success!: data.length: "+data.length);
 
              if(data.length > 0){
-                console.log("data[0].desfecdia: "+data[0].desfecdia);
-                console.log("data[0].desiniturno: "+data[0].desiniturno);
-             }
+                 console.log("data[0].desfecdia: "+data[0].desfecdia);
+                 console.log("data[0].desiniturno: "+data[0].desiniturno);
 
-             var opt2 = "<tr>";
-             var x=0;
-             var j=1;
+                 var opt2 = "<tr>";
+                 var x=0;
+                 var j=1;
 
-             for (var i in data) {
-                console.log("ingreso al for y muestro la data...");
+                 for (var i in data) {
+                    console.log("ingreso al for y muestro la data...");
 
-                if(i==0){
-                    var ini = data[i].iexcoddiasem;
-                    console.log("data[i].iexcoddiasem: "+data[i].iexcoddiasem);
-                    x = x + ini;
+                    if(i==0){
+                        var ini = data[i].iexcoddiasem;
+                        console.log("data[i].iexcoddiasem: "+data[i].iexcoddiasem);
+                        x = x + ini;
 
-                    opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
-                                "<span class='ms-1 text-400 fs-0'>31</span><br>"+
-                            "</td>";
-
-                    /*for(var n=1; n<ini; n+=1){
-                        opt2 += "<td>"+
+                        opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                    "<span class='ms-1 text-400 fs-0'>31</span><br>"+
                                 "</td>";
-                    }*/
-                }
 
-                opt2 += "<td class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
-                           "<span id='spanDiaCalendar"+i+"' class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
-                           "<span class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
-                           "<span class='text-500'>"+data[i].desfecdia+"</span><br>"+
-                           "<span class='text-500'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
+                        /*for(var n=1; n<ini; n+=1){
+                            opt2 += "<td>"+
+                                    "</td>";
+                        }*/
+                    }
 
-                           if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
-                                opt2 += "<span class='text-500'></span>";
-                           }else{
-                                opt2 += "<span class='text-500'>"+data[i].desiniasist+" - "+data[i].desfinasist+"</span><br>";
-                           }
+                    opt2 += "<td class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
+                               "<span id='spanDiaCalendar"+i+"' class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
+                               "<span class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
+                               "<span class='text-500'>"+data[i].desfecdia+"</span><br>"+
+                               "<span class='text-500'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
 
-                           /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
-                              <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
-                                 <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
-                              </c:forEach>
-                           </select>*/
+                               if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
+                                    opt2 += "<span class='text-500'></span>";
+                               }else{
+                                    opt2 += "<span class='text-500'>"+data[i].desiniasist+" - "+data[i].desfinasist+"</span><br>";
+                               }
 
-                   opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' data-bs-toggle='popover' title='Gestión de marcaciones' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
-                   opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
-                   //opt2 += "<a id='popoverVer"+i+"' data-placement='bottom' data-toggle='popover' data-container='body' data-placement='left' type='button' data-html='true' href='#'><span class='glyphicon glyphicon-search'></span></a>";
+                               /*<select name="${LstTurnoDiario.iexcodfec}" id="${LstTurnoDiario.iexcodfec}" style="width: 75px ;background:#fcefa1; color:black;"  onchange="updturnpForm('${LstTurnoDiario.desfecdia}', '${LstTurnoDiario.iexcodfec}')" >
+                                  <c:forEach var="LstTurno" items="${requestScope.LstTurno}" varStatus="loopCounter"  >
+                                     <option value=${LstTurno.iexcodturno} ${LstTurno.iexcodturno == LstTurnoDiario.iexcodturno? 'selected' : ''} >${LstTurno.iexhorini}-${LstTurno.iexhorfin} ${LstTurno.iexdesturno}</option>
+                                  </c:forEach>
+                               </select>*/
 
-                   /*"<td>"+
-                        "<select class='form-select form-select-sm' name='id_row2' id='id_row2' style='width: 75px;' onchange='program_tur_row('','','')'>"+
-                           "<option value='-1' selected>-- --</option>"+
-                        "</select>"+
-                    "</td>";*/
+                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' tabindex='0' data-bs-toggle='popover' title='Gestión de marcaciones' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
+                       opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
+                       //opt2 += "<a id='popoverVer"+i+"' data-placement='bottom' data-toggle='popover' data-container='body' data-placement='left' type='button' data-html='true' href='#'><span class='glyphicon glyphicon-search'></span></a>";
 
-                console.log("j: "+j);
-                j++;
+                       /*"<td>"+
+                            "<select class='form-select form-select-sm' name='id_row2' id='id_row2' style='width: 75px;' onchange='program_tur_row('','','')'>"+
+                               "<option value='-1' selected>-- --</option>"+
+                            "</select>"+
+                        "</td>";*/
 
-                if(j % 7 == 0){
-                    console.log("Ingreso a multiplo de 7...");
-                    opt2 += "</tr>"+
-                            "<tr>";
-                }
+                    console.log("j: "+j);
+                    j++;
 
-                x = x+1;
-                opt2 += "</td>";
-             }
+                    if(j % 7 == 0){
+                        console.log("Ingreso a multiplo de 7...");
+                        opt2 += "</tr>"+
+                                "<tr>";
+                    }
 
-             $("#calendarBody2").html(opt2);
-
-             var y=0;
-             var a=0;
-             var b=1;
-
-             for (var i in data) {
-                 y=b-1;
-                 a=b-2;
-
-                 if(b % 7 == 0){
-                     $('#spanDiaCalendar'+y).addClass('text-warning');
-                     $('#popoverVer'+y).addClass('text-warning');
-                     $('#popoverAutoMark'+y).addClass('text-warning');
-                     $('#dotv'+y).addClass('text-warning');
-                     $('#dota'+y).addClass('text-warning');
-
-                     $('#spanDiaCalendar'+a).addClass('text-warning');
-                     $('#popoverVer'+a).addClass('text-warning');
-                     $('#popoverAutoMark'+a).addClass('text-warning');
-                     $('#dotv'+a).addClass('text-warning');
-                     $('#dota'+a).addClass('text-warning');
+                    x = x+1;
+                    opt2 += "</td>";
                  }
 
-                 b++;
+                 $("#calendarBody2").html(opt2);
 
-                 if(data.length > 0){
-                      console.log("iexcodtra: "+data[i].iexcodtra);
-                      console.log("iexcodfec: "+data[i].iexcodfec);
+                 var y=0;
+                 var a=0;
+                 var b=1;
+
+                 for (var i in data) {
+                     y=b-1;
+                     a=b-2;
+
+                     if(b % 7 == 0){
+                         $('#spanDiaCalendar'+y).addClass('text-warning');
+                         $('#popoverVer'+y).addClass('text-warning');
+                         $('#popoverAutoMark'+y).addClass('text-warning');
+                         $('#dotv'+y).addClass('text-warning');
+                         $('#dota'+y).addClass('text-warning');
+
+                         $('#spanDiaCalendar'+a).addClass('text-warning');
+                         $('#popoverVer'+a).addClass('text-warning');
+                         $('#popoverAutoMark'+a).addClass('text-warning');
+                         $('#dotv'+a).addClass('text-warning');
+                         $('#dota'+a).addClass('text-warning');
+                     }
+
+                     b++;
+
+                     if(data.length > 0){
+                          console.log("iexcodtra: "+data[i].iexcodtra);
+                          console.log("iexcodfec: "+data[i].iexcodfec);
+                     }
+
+                     traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i);
                  }
+             }else{
+                 var title="<h5 style='width:300px;' class='mt-3 ms-5 text-800 col-12' >El trabajador no registró asistencias para este periodo</h5>";
 
-                 traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i);
+                 $("#calendarFoot2").html(title);
              }
          }
     });
@@ -653,6 +657,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                             "<div class='row col-sm-6 col-md-12 mt-1'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Permiso horas: </div>"+
                                 "<div class='fs--1 text-600'>"+data.iexhriniperm+" "+data.iexhrfinperm+"</div>"+
+                            "</div>"+
+                            "<div class='col-auto'>"+
+                                "<a class='btn btn-sm btn-primary mt-1 ms-1' href='#'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+                                "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
+                                "<a class='btn btn-sm btn-phoenix-primary mt-1 ms-1' href='#'>Cancelar</a>"+
                             "</div>"+
                          "</div>";
 

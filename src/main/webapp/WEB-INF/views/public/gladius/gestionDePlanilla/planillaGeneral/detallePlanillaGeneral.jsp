@@ -784,6 +784,8 @@
                                             </thead>
                                             <tbody id="calendarBody2" class="fs--2 fw-semi-bold text-1000">
                                             </tbody>
+                                            <tfoot id="calendarFoot2">
+                                            </tfoot>
                                         </table>
                                    </div>
                               </div>
