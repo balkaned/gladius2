@@ -231,7 +231,6 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     FormatterFecha fec = new FormatterFecha();
                     p.setDiaCalendar(fec.fechaFormatterDia(p.getDesfecdia()));
 
-
                     p.setIexvacaind(rs.getString("iexvacaind"));
                     p.setIexauseind(rs.getString("iexausenid"));
                     p.setIexindferiado(rs.getString("iexindferiado"));

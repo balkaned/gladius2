@@ -580,6 +580,9 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                      }
 
                      traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i);
+
+                     //Pobla los select con la data de turnos del calendario Marcaciones en los popovers
+                     llenarSelectTurnos(fecini,data[i].iexcodturno);
                  }
              }else{
                  var title="<h5 style='width:300px;' class='mt-3 ms-5 text-800 col-12' >El trabajador no registró asistencias para este periodo</h5>";
@@ -610,9 +613,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                                 "</div>"+
                                 "<div class='col-sm-6 col-md-6'>"+
                                     "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
-                                    "<select class='form-select form-select-sm' name='iexcodcon' required>"+
-                                        "<option value='' selected >Turno</option>"+
-                                            //"<option value='' == requestScope.xParametro.iexcodcon ? 'selected' : ''}>${lovConcepto.desConcepto}</option>
+                                    "<select id='selectMarcacion"+ind+"' class='form-select form-select-sm' name='iexcodcon' required>"+
                                     "</select>"+
                                 "</div>"+
                                 "<div class='col-sm-6 col-md-6'>"+
@@ -689,6 +690,34 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
         });
     }
 
-    $(document).ready(function() {
-    });
+    function llenarSelectTurnos(fecini,codturnoSel){
+        console.log("Ingreso a llenarSelecTurnos...");
+        console.log("fecini: "+fecini);
+        console.log("codturnoSel: "+codturnoSel);
+
+        $.ajax({
+             url: "traerLstTurnosModal",
+             data: {
+                  "fecini": fecini
+             },
+             success: function (data) {
+                  var sel = "<option value='' selected >Turno</option>";
+
+                  for (var i in data){
+
+                      sel += "<option value="+data[i].iexcodturno+"";
+                         if(data[i].iexcodturno==codturnoSel){
+                            sel += "selected";
+                         }else{
+                            sel += " ";
+                         }
+                      sel += ">";
+                      sel += ""+data[i].iexflgdiasig+" "+data[i].iexhorini+"-"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+
+                      console.log(sel);
+                      $("#selectMarcacion"+i).html(sel);
+                  }
+             }
+        });
+    }
 }

@@ -21,6 +21,7 @@
            max-width:400px !important;
            height: 400px !important;
            overflow-y: auto;
+           overflow-x: none;
         }
     </style>
 
