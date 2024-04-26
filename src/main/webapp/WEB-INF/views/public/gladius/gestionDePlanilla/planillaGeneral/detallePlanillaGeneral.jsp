@@ -11,6 +11,8 @@
     <head>
       <jsp:include page="../../../links.jsp"></jsp:include>
       <script src="resources/assets/js/detallePlanillaGeneral.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     </head>
 
     <style>
@@ -778,7 +780,7 @@
                                           </div>
                                         </div>
                                   </div>
-                                   <div class="table-responsive scrollbar mx-n1 px-1 bg-100" style="width: 742px !important;" >
+                                   <div class="table-responsive mx-n1 px-1 bg-100" style="width: 742px !important;" >
                                         <table  class="table">
                                             <thead id="calendarHead2">
                                             </thead>
@@ -1087,20 +1089,6 @@
           </div>
       </div>
     </div>
-    <!--<div id="popover-content" >
-      <form class="form-inline" role="form">
-        <div class="form-group">
-          <input class="headerSearch search-query" id="str" name="str" type="text" placeholder="Search..." />
-          <span class="glyphicon glyphicon-search" style="margin:3px 8px 0 -20px;"></span>
-          <input class="btn btn-primary btn-xs" id="phSearchButton" type="submit" value="Search" />
-          <input class="btn btn-primary btn-xs" id="searchButton" type="submit" value="Dictionary" />
-        </div>
-      </form>
-    </div>
-
-    <div class="popover-body"></div>-->
-
-
 </html>
 
 
