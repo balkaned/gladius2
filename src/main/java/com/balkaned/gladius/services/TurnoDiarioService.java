@@ -14,4 +14,5 @@ public interface TurnoDiarioService {
     public void actualizarTurno(Turno turno);
     public void  eliminarTurno(Turno turno);
     public Turnodiario obtenerTurnoDia(Integer codcia, Integer codtra, String codfec);
+    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu);
 }

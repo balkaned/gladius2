@@ -379,6 +379,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
     document.getElementById("fecfinAsis").value=fecfin;
 
     $.ajax({
+         async: false,
          url: "traerLstTurnosModal",
          data: {
               "fecini": fecini
@@ -471,6 +472,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
     });
 
     $.ajax({
+         async: false,
          url: "traerLstTurnoDiarioModal",
          data: {
               "codtra": codtra,
@@ -482,8 +484,8 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
              $("#calendarFoot2").html("");
 
              if(data.length > 0){
-                 console.log("data[0].desfecdia: "+data[0].desfecdia);
-                 console.log("data[0].desiniturno: "+data[0].desiniturno);
+                 //console.log("data[0].desfecdia: "+data[0].desfecdia);
+                 //console.log("data[0].desiniturno: "+data[0].desiniturno);
 
                  var opt2 = "<tr>";
                  var x=0;
@@ -525,8 +527,8 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                                   </c:forEach>
                                </select>*/
 
-                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
-                       opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
+                       opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
+                       opt2 += "<a id='popoverAutoMark"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
 
                       // opt2 += "<a id='popover1' data-placement='bottom' data-toggle='popover' data-container='body' data-placement='left' type='button' data-html='true' href='#'>popover</a>";
                        /*"<td>"+
@@ -535,11 +537,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                             "</select>"+
                         "</td>";*/
 
-                    console.log("j: "+j);
+                    //console.log("j: "+j);
                     j++;
 
                     if(j % 7 == 0){
-                        console.log("Ingreso a multiplo de 7...");
+                        //console.log("Ingreso a multiplo de 7...");
                         opt2 += "</tr>"+
                                 "<tr>";
                     }
@@ -579,10 +581,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                           //console.log("iexcodfec: "+data[i].iexcodfec);
                      }
 
-                     traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i);
-
-                     //Pobla los select con la data de turnos del calendario Marcaciones en los popovers
-                     llenarSelectTurnos(fecini,data[i].iexcodturno);
+                     traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i,fecini,data[i].iexcodturno);
                  }
              }else{
                  var title="<h5 style='width:300px;' class='mt-3 ms-5 text-800 col-12' >El trabajador no registró asistencias para este periodo</h5>";
@@ -592,132 +591,216 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
              }
          }
     });
+}
 
-    function traerMarcacionesAsisModal(codtra,codfec,ind){
+function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccionado){
 
-        $.ajax({
-             url: "traerMarcacionesAsisModal",
-             data: {
-                 "codtra": codtra,
-                 "codfec": codfec
-                 },
-             success: function (data) {
-                //console.log("iexturno: "+data.iexiniturno);
+console.log("traerMarcacionesAsisModal ind: "+ind);
 
-                var html="<div class='col-12'>"+
-                            "<h6 class='text-500'>Datos de turno</h6>"+
-                            "<form class='row g-2 mb-0 needs-validation' method='POST' action='' novalidate >"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec.trim()+"]</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
-                                    "<select id='selectMarcacion"+ind+"' class='form-select form-select-sm' name='iexcodcon' required>"+
-                                    "</select>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexiniturno+" - "+data.iexfinturno+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Asistencia: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexiniasist+" - "+data.iexfinasist+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Falta: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexindfalta+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Feriado: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexindferiado+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Ingreso antes: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhrsantes+" "+data.iexminantes+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Tardanza: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhrstarde+" "+data.iexmintarde+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Total de horas: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhrstotal+" "+data.iexmintotal+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Salida antes: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhrssale_antes+" "+data.iexminsale_antes+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Salida posterior: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhrspost+" "+data.iexminpost+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Vacaciones: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexvacaind+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Ausentismo: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexauseind+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Permiso: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexpermiso+"</div>"+
-                                "</div>"+
-                                "<div class='col-sm-6 col-md-6'>"+
-                                    "<div class='fs--1 text-1000 fw-semi-bold'>Permiso horas: </div>"+
-                                    "<div class='fs--1 text-600'>"+data.iexhriniperm+" "+data.iexhrfinperm+"</div>"+
-                                "</div>"+
-                                "<div class='col-auto'>"+
-                                    "<a class='btn btn-sm btn-primary mt-1 ms-1' href='#'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
-                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
-                                    "<a class='btn btn-sm btn-phoenix-primary mt-1 ms-1' href='#'>Cancelar</a>"+
-                                "</div>"+
-                            "</form>"+
-                         "</div>";
+var indice=0;
 
-                //$('popover-body').addClass('bg-soft');
-
-                $('#popoverVer'+ind).popover({
-                   container: "body",
-                   html: true,
-                   sanitize: false,
-                   content: function () {
-                        return html;
-                   }
-                })
-             }
-        });
-    }
-
-    function llenarSelectTurnos(fecini,codturnoSel){
-        console.log("Ingreso a llenarSelecTurnos...");
-        console.log("fecini: "+fecini);
-        console.log("codturnoSel: "+codturnoSel);
-
-        $.ajax({
-             url: "traerLstTurnosModal",
-             data: {
-                  "fecini": fecini
+    $.ajax({
+         url: "traerMarcacionesAsisModal",
+         data: {
+             "codtra": codtra,
+             "codfec": codfec
              },
-             success: function (data) {
-                  var sel = "<option value='' selected >Turno</option>";
+         success: function (data) {
 
-                  for (var i in data){
+            var html="<div class='col-12'>"+
+                        "<h6 class='text-500'>Datos de turno</h6>"+
+                        "<form class='row g-2 mb-0 needs-validation' method='POST' action='' novalidate >"+
+                            "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
+                                "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec.trim()+"]</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>";
 
-                      sel += "<option value="+data[i].iexcodturno+"";
-                         if(data[i].iexcodturno==codturnoSel){
-                            sel += "selected";
-                         }else{
-                            sel += " ";
-                         }
-                      sel += ">";
-                      sel += ""+data[i].iexflgdiasig+" "+data[i].iexhorini+"-"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+                                traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.iexcodfec,data.desfecdia);
+                                console.log("ind----: "+ind);
+                                var opcionPopoverA = sessionStorage.getItem("opcionPopoverA");
 
-                      console.log(sel);
-                      $("#selectMarcacion"+i).html(sel);
-                  }
-             }
-        });
+                                html += opcionPopoverA;
+
+                    html += "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexiniturno+" - "+data.iexfinturno+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Asistencia: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexiniasist+" - "+data.iexfinasist+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Falta: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexindfalta+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Feriado: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexindferiado+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Ingreso antes: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrsantes+" "+data.iexminantes+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Tardanza: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrstarde+" "+data.iexmintarde+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Total de horas: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrstotal+" "+data.iexmintotal+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Salida antes: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrssale_antes+" "+data.iexminsale_antes+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Salida posterior: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhrspost+" "+data.iexminpost+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Vacaciones: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexvacaind+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Ausentismo: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexauseind+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Permiso: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexpermiso+"</div>"+
+                            "</div>"+
+                            "<div class='col-sm-6 col-md-6'>"+
+                                "<div class='fs--1 text-1000 fw-semi-bold'>Permiso horas: </div>"+
+                                "<div class='fs--1 text-600'>"+data.iexhriniperm+" "+data.iexhrfinperm+"</div>"+
+                            "</div>"+
+                            "<div id='alert' class='alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center' role='alert' style='display:none !important;'>"+
+                                "<span class='fa-regular fa-check-circle text-success fs-0 me-3'></span>"+
+                                "<p class='mb-0 fw-semi-bold text-1000 col-11'>Se grabó exitosamente los cambios <a href='#'>No olvidar cerrar el modal de asistencias y volver a abrir para que se refelejen los cambios</a></p>"+
+                                "<button class='btn-close fs--2' type='button'' data-bs-dismiss='alert'' aria-label='Close'></button>"+
+                            "</div>";
+
+                    html += "<div class='col-12'>"+
+                                "<div id='grabarClick"+ind+"' >"+
+                                    "<a class='btn btn-sm btn-primary mt-2 ms-1'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+                                "</div>"+
+                            "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
+                            "<a class='btn btn-sm btn-phoenix-primary mt-2 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                            "</div>"+
+                        "</form>"+
+                     "</div>";
+
+            $('#popoverVer'+ind).popover({
+               container: "body",
+               html: true,
+               sanitize: false,
+               content: function () {
+                    return html;
+               }
+            })
+
+            $('.popover-body').addClass('bg-soft');
+         }
+    });
+}
+
+function traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,iexcodfec,desfecdia){
+console.log("traerLstTurnosModal ind: "+ind);
+   var sel="";
+
+   $.ajax({
+     async: false,
+     url: "traerLstTurnosModal",
+     data: {
+          "fecini": fecini
+     },
+     success: function (data2) {
+          sel += "<select id='cod_turno"+ind+"' onchange='setearVariableCodTurnoSes("+ind+")' style='font-size:10px;' class='form-select form-select-sm' name='iexcodcon'  required>"+
+                    "<option value='' selected >Turno</option>";
+
+          sessionStorage.setItem("iexcodfec",iexcodfec);
+          sessionStorage.setItem("desfecdia",desfecdia);
+
+          for (var i in data2){
+
+              sel += "<option value="+data2[i].iexcodturno+"";
+                 if(data2[i].iexcodturno==codigoTurnoSeleccionado){
+                    sel += "' selected";
+                 }else{
+                    sel += " ";
+                 }
+              sel += ">";
+              sel += ""+data2[i].iexhorini+"-"+data2[i].iexhorfin+" "+data2[i].iexdesturno+"</option>";
+          }
+          sel +="</select>";
+
+          sessionStorage.setItem("opcionPopoverA",sel);
+     }
+   });
+}
+
+function cerrarPopover(ind){
+    $("#popoverVer"+ind).popover('hide');
+}
+
+function setearVariableCodTurnoSes(ind){
+
+    var codTurnoSelected = document.getElementById("cod_turno"+ind).value;
+    var iexcodfec = sessionStorage.getItem("iexcodfec");
+    var desfecdia = sessionStorage.getItem("desfecdia");
+    var onclick2="";
+
+    var btn="";
+
+    if(codTurnoSelected == "" || codTurnoSelected==null){
+        btn+= "<a class='btn btn-sm btn-primary mt-2 ms-1'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+              "<input type='hidden' id='iexcodfec"+ind+"' value="+iexcodfec+" />"+
+              "<input type='hidden' id='desfecdia"+ind+"' value="+desfecdia+" />"+
+              "<input type='hidden' id='codTurnoSelected"+ind+"' value="+codTurnoSelected+" />";
+    }else{
+        btn+= "<a class='btn btn-sm btn-primary mt-2 ms-1' onclick='grabarTurnoDia("+ind+");'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+              "<input type='hidden' id='iexcodfec"+ind+"' value="+iexcodfec+" />"+
+              "<input type='hidden' id='desfecdia"+ind+"' value="+desfecdia+" />"+
+              "<input type='hidden' id='codTurnoSelected"+ind+"' value="+codTurnoSelected+" />";
     }
+
+    $("#grabarClick"+ind).html(btn);
+}
+
+function grabarTurnoDia(ind){
+    var iexcodfec = document.getElementById("iexcodfec"+ind).value;
+    var desfecdia = document.getElementById("desfecdia"+ind).value;
+    var codTurnoSelected = document.getElementById("codTurnoSelected"+ind).value;
+    var idTrabAsis= document.getElementById("idTrabAsis").value;
+
+    alert("obtengo el codigo seleccionado: "+idTrabAsis);
+    console.log("iexcodfec: "+iexcodfec);
+    console.log("desfecdia: "+desfecdia);
+    console.log("idTrabAsis: "+idTrabAsis);
+
+    $.ajax({
+         async: false,
+         url: "updateDatosTurnoDia",
+         data: {
+              "iexcodfec": iexcodfec,
+              "desfecdia": desfecdia,
+              "codTurnoSelected": codTurnoSelected,
+              "idTrabAsis": idTrabAsis
+         },
+         success: function (data) {
+            mostrarAlert();
+         }
+    });
+}
+
+function mostrarAlert(){
+  var div=document.getElementById('alert');
+  div.style.display = '';
+
+  setTimeout(function() {
+	  $("#alerts").hide(6000);
+  }, 3000);
 }

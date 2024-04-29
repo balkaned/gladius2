@@ -473,4 +473,16 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
             }
         });
     }
+
+    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu){
+
+        template.update(" call pl_actualiza_turno(? ,to_date(?,'dd/mm/yyyy'),?, ?,?) ",
+
+                codcia,
+                fecdia,
+                codtra,
+                codturno,
+                desusu);
+
+    }
 }

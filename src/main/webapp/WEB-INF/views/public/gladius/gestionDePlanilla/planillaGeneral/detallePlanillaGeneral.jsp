@@ -17,11 +17,11 @@
 
     <style>
         .popover {
-           width: 400px !important;
-           max-width:400px !important;
+           width: 470px !important;
+           max-width:470px !important;
            height: 400px !important;
            overflow-y: auto;
-           overflow-x: none;
+           /*overflow-x: none;*/
         }
     </style>
 
