@@ -1328,7 +1328,39 @@ public class PlanillaController {
         String codTurnoSelected = request.getParameter("codTurnoSelected");
         Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
 
+        log.info("iexcodfec: "+iexcodfec);
+        log.info("desfecdia: "+desfecdia);
+        log.info("codTurnoSelected: "+codTurnoSelected);
+        log.info("idTrabAsis: "+idTrabAsis);
+
         turnoDiarioService.actualizaTurnoDia(idCompania,idTrabAsis, Integer.valueOf(codTurnoSelected),desfecdia,user);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/calififcarTurnoDia", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView calififcarTurnoDia(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/calififcarTurnoDia");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String desfecdia = request.getParameter("desfecdia");
+        Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
+
+        log.info("desfecdia: "+desfecdia);
+        log.info("idTrabAsis: "+idTrabAsis);
+
+        turnoDiarioService.calificarTurnoDia(idCompania,idTrabAsis,desfecdia,user);
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");

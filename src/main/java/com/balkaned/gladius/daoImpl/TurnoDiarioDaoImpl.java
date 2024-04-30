@@ -1,7 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.beans.Turno;
+import com.balkaned.gladius.beans.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.utils.CapitalizarCadena;
 import com.balkaned.gladius.utils.FormatterFecha;
@@ -11,17 +13,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
 
 @Repository("TurnoDiarioDao")
 @Slf4j
@@ -484,5 +481,15 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codturno,
                 desusu);
 
+    }
+
+    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
+
+        template.update(" call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ",
+
+        codcia,
+        fecdia,
+        codtra,
+        desusu);
     }
 }

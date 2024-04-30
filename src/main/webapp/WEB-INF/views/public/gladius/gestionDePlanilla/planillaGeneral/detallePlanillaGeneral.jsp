@@ -17,7 +17,7 @@
 
     <style>
         .popover {
-           width: 470px !important;
+           /*width: 470px !important;*/
            max-width:470px !important;
            height: 400px !important;
            overflow-y: auto;
@@ -727,7 +727,7 @@
                           <div class="col-sm-6 col-md-3">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
                               <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
-                              <!--<input class="form-control" name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />-->
+                              <input class="form-control" name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />
                           </div>
                           <div class="col-sm-6 col-md-3">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
@@ -763,7 +763,7 @@
                                         <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-top">
                                           <div class="row py-3 gy-3 gx-0">
                                             <div class="col-6 col-md-4 order-1 d-flex align-items-center">
-                                              <a href="#" class="btn btn-sm btn-phoenix-primary px-4" >Hoy</a>
+                                              <a href="#" class="btn btn-sm btn-phoenix-secondary px-4" >Hoy</a>
                                             </div>
                                             <div class="col-12 col-md-4 order-md-1 d-flex align-items-center justify-content-center">
                                               <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="prev" title="Previous"><span class="fas fa-chevron-left"></span></button>
@@ -773,7 +773,7 @@
                                             <div class="col-6 col-md-4 ms-auto order-1 d-flex justify-content-end">
                                               <div>
                                                 <div class="btn-group btn-group-sm" role="group">
-                                                  <a href="#" class="btn btn-phoenix-secondary active-view" >Mes</a>
+                                                  <a href="#" class="btn btn-phoenix-primary active-view" >Mes</a>
                                                   <a href="#" class="btn btn-phoenix-secondary" >Semana</a>
                                                 </div>
                                               </div>

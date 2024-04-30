@@ -377,6 +377,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
     document.getElementById("trabAsis").value=nombretrab;
     document.getElementById("feciniAsis").value=fecini;
     document.getElementById("fecfinAsis").value=fecfin;
+    document.getElementById("feciniAsisHidden").value=fecini;
 
     $.ajax({
          async: false,
@@ -457,13 +458,13 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                          "<td class='pt-0 pb-2'></td>"+
                      "</tr>"+
                      "<tr>"+
-                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Dom</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 text-warning border-bottom border-3 border-100'>Dom</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Lun</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mar</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Mie</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Jue</td>"+
                          "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Vie</td>"+
-                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 border-bottom border-3 border-100'>Sab</td>"+
+                         "<td class='pt-2 pb-2 text-center bg-200 bg-opacity-75 fs-0 fw-semi-bold text-800 text-warning border-bottom border-3 border-100'>Sab</td>"+
                          "<td class='pt-2 pb-2'></td>"+
                      "</tr>";
 
@@ -492,7 +493,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                  var j=1;
 
                  for (var i in data) {
-                    console.log("ingreso al for y muestro la data...");
+                    //console.log("ingreso al for y muestro la data...");
 
                     if(i==0){
                         var ini = data[i].iexcoddiasem;
@@ -509,11 +510,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                         }*/
                     }
 
-                    opt2 += "<td class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
+                    opt2 += "<td id='background"+i+"' class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
                                "<span id='spanDiaCalendar"+i+"' class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
-                               "<span class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
-                               "<span class='text-500'>"+data[i].desfecdia+"</span><br>"+
-                               "<span class='text-500'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
+                               "<span id='spanturno"+i+"' class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
+                               "<span id='spanfecdia"+i+"'class='text-500'>"+data[i].desfecdia+"</span><br>"+
+                               "<span id='spandesiniturno"+i+"' class='text-500'>"+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
 
                                if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
                                     opt2 += "<span class='text-500'></span>";
@@ -581,6 +582,69 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
                           //console.log("iexcodfec: "+data[i].iexcodfec);
                      }
 
+                     /*console.log("data[i].iexcodturno: "+data[i].iexcodturno);
+
+                     console.log("data[i].iexvacaind: "+data[i].iexvacaind);
+                     console.log("data[i].iexauseind: "+data[i].iexauseind);
+                     console.log("data[i].iexpermiso: "+data[i].iexpermiso);
+                     console.log("data[i].iexindfalta: "+data[i].iexindfalta);*/
+
+                     if(data[i].iexcodturno == 999){
+                        if(data[i].iexvacaind==1){
+                           $('#background'+i).addClass('bg-info');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        } else if(data[i].iexauseind==1){
+                           $('#background'+i).addClass('bg-body-quaternary');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }else if(data[i].iexpermiso==1){
+                           $('#background'+i).addClass('bg-warning opacity-50');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }else{
+                           $('#background'+i).addClass('bg-warning');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }
+                    }
+
+                    if(data[i].iexcodturno != 999){
+                        if(data[i].iexvacaind==1){
+                           $('#background'+i).addClass('bg-info');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        } else if(data[i].iexauseind==1){
+                           $('#background'+i).addClass('bg-body-quaternary');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }else if(data[i].iexpermiso==1){
+                           $('#background'+i).addClass('bg-warning');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }else if(data[i].iexindfalta==1){
+                           $('#background'+i).addClass('bg-danger');
+                           $('#spanDiaCalendar'+i).addClass('text-white');
+                           $('#spanturno'+i).addClass('text-white');
+                           $('#spanfecdia'+i).addClass('text-white');
+                           $('#spandesiniturno'+i).addClass('text-white');
+                        }
+                    }
+
                      traerMarcacionesAsisModal(data[i].iexcodtra,data[i].iexcodfec,i,fecini,data[i].iexcodturno);
                  }
              }else{
@@ -595,11 +659,10 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
 function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccionado){
 
-console.log("traerMarcacionesAsisModal ind: "+ind);
-
-var indice=0;
+    //console.log("traerMarcacionesAsisModal ind: "+ind);
 
     $.ajax({
+         async: true,
          url: "traerMarcacionesAsisModal",
          data: {
              "codtra": codtra,
@@ -609,17 +672,19 @@ var indice=0;
 
             var html="<div class='col-12'>"+
                         "<h6 class='text-500'>Datos de turno</h6>"+
-                        "<form class='row g-2 mb-0 needs-validation' method='POST' action='' novalidate >"+
+                        "<form class='row g-1 mb-0 needs-validation' method='POST' action='' novalidate >"+
                             "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
                             "<div class='col-sm-6 col-md-6'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
-                                "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec.trim()+"]</div>"+
+                                "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec+"]</div>"+
+                                "<input id='ipHiddenDesfecdia"+ind+"' type='hidden' value="+data.desfecdia+">"+
+                                "<input id='ipHiddeniexcodfec"+ind+"' type='hidden' value="+data.iexcodfec+">"+
                             "</div>"+
                             "<div class='col-sm-6 col-md-6'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>";
 
-                                traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.iexcodfec,data.desfecdia);
-                                console.log("ind----: "+ind);
+                                traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.desfecdia,data.iexcodfec);
+                                //console.log("ind----: "+ind);
                                 var opcionPopoverA = sessionStorage.getItem("opcionPopoverA");
 
                                 html += opcionPopoverA;
@@ -683,12 +748,15 @@ var indice=0;
                                 "<button class='btn-close fs--2' type='button'' data-bs-dismiss='alert'' aria-label='Close'></button>"+
                             "</div>";
 
-                    html += "<div class='col-12'>"+
-                                "<div id='grabarClick"+ind+"' >"+
+                    html += "<div class='row col-12 mt-2'>"+
+                                "<div class='col-auto pe-0' id='grabarClick"+ind+"' >"+
                                     "<a class='btn btn-sm btn-primary mt-2 ms-1'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+                                    //"<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
                                 "</div>"+
-                            "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
-                            "<a class='btn btn-sm btn-phoenix-primary mt-2 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                                "<div class='col-auto ps-0'>"+
+                                    "<a class='btn btn-sm btn-phoenix-primary mt-2 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                                "</div>"+
                             "</div>"+
                         "</form>"+
                      "</div>";
@@ -702,13 +770,13 @@ var indice=0;
                }
             })
 
-            $('.popover-body').addClass('bg-soft');
+            $('.popover').addClass('bg-soft');
          }
     });
 }
 
-function traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,iexcodfec,desfecdia){
-console.log("traerLstTurnosModal ind: "+ind);
+function traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,desfecdia,iexcodfec){
+   //console.log("traerLstTurnosModal desfecdia: "+desfecdia);
    var sel="";
 
    $.ajax({
@@ -721,8 +789,8 @@ console.log("traerLstTurnosModal ind: "+ind);
           sel += "<select id='cod_turno"+ind+"' onchange='setearVariableCodTurnoSes("+ind+")' style='font-size:10px;' class='form-select form-select-sm' name='iexcodcon'  required>"+
                     "<option value='' selected >Turno</option>";
 
-          sessionStorage.setItem("iexcodfec",iexcodfec);
-          sessionStorage.setItem("desfecdia",desfecdia);
+          //sessionStorage.setItem("desfecdia",desfecdia);
+          //sessionStorage.setItem("iexcodfec",iexcodfec);
 
           for (var i in data2){
 
@@ -746,22 +814,26 @@ function cerrarPopover(ind){
     $("#popoverVer"+ind).popover('hide');
 }
 
-function setearVariableCodTurnoSes(ind){
+function setearVariableCodTurnoSes(ind,desfecdia){
 
     var codTurnoSelected = document.getElementById("cod_turno"+ind).value;
-    var iexcodfec = sessionStorage.getItem("iexcodfec");
-    var desfecdia = sessionStorage.getItem("desfecdia");
-    var onclick2="";
+    var desfecdia = document.getElementById("ipHiddenDesfecdia"+ind).value;
+    var iexcodfec = document.getElementById("ipHiddeniexcodfec"+ind).value;
 
+    //console.log("setearVariableCodTurnoSes desfecdia: "+desfecdia);
+
+    var onclick2="";
     var btn="";
 
     if(codTurnoSelected == "" || codTurnoSelected==null){
         btn+= "<a class='btn btn-sm btn-primary mt-2 ms-1'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+              "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
               "<input type='hidden' id='iexcodfec"+ind+"' value="+iexcodfec+" />"+
               "<input type='hidden' id='desfecdia"+ind+"' value="+desfecdia+" />"+
               "<input type='hidden' id='codTurnoSelected"+ind+"' value="+codTurnoSelected+" />";
     }else{
         btn+= "<a class='btn btn-sm btn-primary mt-2 ms-1' onclick='grabarTurnoDia("+ind+");'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+              "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
               "<input type='hidden' id='iexcodfec"+ind+"' value="+iexcodfec+" />"+
               "<input type='hidden' id='desfecdia"+ind+"' value="+desfecdia+" />"+
               "<input type='hidden' id='codTurnoSelected"+ind+"' value="+codTurnoSelected+" />";
@@ -773,13 +845,8 @@ function setearVariableCodTurnoSes(ind){
 function grabarTurnoDia(ind){
     var iexcodfec = document.getElementById("iexcodfec"+ind).value;
     var desfecdia = document.getElementById("desfecdia"+ind).value;
-    var codTurnoSelected = document.getElementById("codTurnoSelected"+ind).value;
+    var codTurnoSelected = document.getElementById("cod_turno"+ind).value;
     var idTrabAsis= document.getElementById("idTrabAsis").value;
-
-    alert("obtengo el codigo seleccionado: "+idTrabAsis);
-    console.log("iexcodfec: "+iexcodfec);
-    console.log("desfecdia: "+desfecdia);
-    console.log("idTrabAsis: "+idTrabAsis);
 
     $.ajax({
          async: false,
@@ -792,6 +859,36 @@ function grabarTurnoDia(ind){
          },
          success: function (data) {
             mostrarAlert();
+         }
+    });
+}
+
+function calificarTurnoDia(ind){
+    var iexcodfec = document.getElementById("iexcodfec"+ind).value;
+    var idTrabAsis= document.getElementById("idTrabAsis").value;
+    var desfecdia = document.getElementById("ipHiddenDesfecdia"+ind).value;
+    var fecini= document.getElementById("feciniAsisHidden").value;
+    var codTurnoSelected = document.getElementById("cod_turno"+ind).value;
+
+    $.ajax({
+         async: false,
+         url: "calififcarTurnoDia",
+         data: {
+              "desfecdia": desfecdia,
+              "idTrabAsis": idTrabAsis
+         },
+         success: function (data) {
+            //traerMarcacionesAsisModal(idTrabAsis,desfecdia,ind,fecini,codigoTurnoSeleccionado);
+
+            console.log("ind: "+ind);
+            //$('#popoverVer'+ind).popover('dispose');
+            //$('#popoverVer'+ind).popover("show");
+
+            //traerMarcacionesAsisModal(idTrabAsis,desfecdia,ind,fecini,codTurnoSelected);
+            //traerMarcacionesAsisModal(idTrabAsis,iexcodfec,ind,fecini,codigoTurnoSeleccionado)
+
+            mostrarAlert();
+
          }
     });
 }

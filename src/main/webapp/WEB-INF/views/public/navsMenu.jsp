@@ -21,22 +21,22 @@
 
           $(document).ready(function(){
              /*$("#btnMenuCollapse").click(function(){
-                    if(flag==0){
-                        $('#usermenu').addClass('collapsedspan');
-                        $('#span1').addClass('collapsedspan');
-                        $('#span2').addClass('collapsedspan');
-                        $('#span3').addClass('collapsedspan');
-                        //$('#navbarVerticalCollapse').addClass('expandedmenu');
-                        flag=1;
-                    }else{
-                        $('#usermenu').removeClass('collapsedspan');
-                        $('#span1').removeClass('collapsedspan');
-                        $('#span2').removeClass('collapsedspan');
-                        $('#span3').removeClass('collapsedspan');
-                        //$('#navbarVerticalCollapse').removeClass('expandedmenu');
-                        //$('#navbarVerticalCollapse').addClass('resizemenu');
-                        flag=0;
-                    }
+                if(flag==0){
+                    $('#usermenu').addClass('collapsedspan');
+                    $('#span1').addClass('collapsedspan');
+                    $('#span2').addClass('collapsedspan');
+                    $('#span3').addClass('collapsedspan');
+                    //$('#navbarVerticalCollapse').addClass('expandedmenu');
+                    flag=1;
+                }else{
+                    $('#usermenu').removeClass('collapsedspan');
+                    $('#span1').removeClass('collapsedspan');
+                    $('#span2').removeClass('collapsedspan');
+                    $('#span3').removeClass('collapsedspan');
+                    //$('#navbarVerticalCollapse').removeClass('expandedmenu');
+                    //$('#navbarVerticalCollapse').addClass('resizemenu');
+                    flag=0;
+                }
              });*/
 
              $('#menunav a').click(function(){
