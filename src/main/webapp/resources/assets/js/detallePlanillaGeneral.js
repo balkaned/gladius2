@@ -66,6 +66,37 @@ function enviaForm(variable){
     }
 }
 
+
+/*function enviaForm_asis(variable){
+
+    var opcion = confirm("Esta seguro de realizar la operación?");
+
+    if (opcion == true) {
+        if(variable==1){
+            document.getElementById("accion").value="VERASISTTRA";
+        }else if(variable==2){
+            document.getElementById("accion").value="DELMAS";
+        }else if(variable==3){
+            document.getElementById("accion").value="PROMAS";
+        }else if(variable==4){
+            document.getElementById("accion").value="MARCAS";
+        }else if(variable==5){
+            document.getElementById("accion").value="CALIFICA";
+        }else if(variable==6){
+            document.getElementById ("GestionTiempos").encoding="multipart/form-data";
+            document.getElementById("accion").value="UPXLSMAR";
+        }else if(variable==7){
+            document.getElementById("accion").value="CONSOLIDAR";
+        }
+
+        document.getElementById("formAsistencias").submit();
+
+        return true;
+    } else {
+        return false;
+    }
+}*/
+
 function enviaForm_ind(variable, trab){
     if(variable==2){
         document.getElementById("accion").value="INIPRO";
@@ -371,13 +402,25 @@ function traerDatosReporteResumenPlanilla(){
     });
 }
 
+
+
+<!-- ===============================================-->
+<!--    Modal Asistencias -->
+<!-- ===============================================-->
+
 function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
     document.getElementById("idTrabAsis").value=codtra;
+    document.getElementById("idTrabAsisHidden").value=codtra;
+
     document.getElementById("trabAsis").value=nombretrab;
+    document.getElementById("trabAsisHidden").value=nombretrab;
+
     document.getElementById("feciniAsis").value=fecini;
-    document.getElementById("fecfinAsis").value=fecfin;
     document.getElementById("feciniAsisHidden").value=fecini;
+
+    document.getElementById("fecfinAsis").value=fecfin;
+    document.getElementById("fecfinAsisHidden").value=fecfin;
 
     $.ajax({
          async: false,
@@ -900,4 +943,55 @@ function mostrarAlert(){
   setTimeout(function() {
 	  $("#alerts").hide(6000);
   }, 3000);
+}
+
+function verTurnos(){
+
+    var opcion = confirm("Esta seguro realizar la actividad?");
+
+    if (opcion == true) {
+
+        var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+        var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+        var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+        var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden);
+
+        alert("Transacción exitosa!");
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function programarTurnos(){
+
+    var opcion = confirm("Esta seguro que desea programar los turnos?");
+
+    if (opcion == true) {
+
+        var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+        var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+        var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+        var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+
+        $.ajax({
+        	 async: false,
+        	 url: "programarTurnosAsis",
+        	 data: {
+        		"fecini": feciniAsisHidden,
+        		"fecfin": fecfinAsisHidden,
+        		"codtra": idTrabAsisHidden
+        		},
+        	 success: function (data) {
+                 alert("Transacción exitosa!");
+        	 }
+        });
+
+        return true;
+    } else {
+        return false;
+    }
 }

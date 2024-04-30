@@ -63,5 +63,7 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
         dao.calificarTurnoDia(codcia,codtra,fecdia,desusu);
     }
-
+    public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
+        dao.programarTurnoDia(codcia,codtra,fecdia,desusu);
+    }
 }

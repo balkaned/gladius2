@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -471,7 +472,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         });
     }
 
-    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu){
+    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu) {
 
         template.update(" call pl_actualiza_turno(? ,to_date(?,'dd/mm/yyyy'),?, ?,?) ",
 
@@ -483,13 +484,23 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
     }
 
-    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
+    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
 
         template.update(" call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ",
 
-        codcia,
-        fecdia,
-        codtra,
-        desusu);
+                codcia,
+                fecdia,
+                codtra,
+                desusu);
+    }
+
+    public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+
+        template.update(" call pl_programa_turno(?,to_date(?,'dd/mm/yyyy'),?,?) ",
+
+                codcia,
+                fecdia,
+                codtra,
+                desusu);
     }
 }

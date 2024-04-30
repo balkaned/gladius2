@@ -35,6 +35,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -44,6 +45,8 @@ import java.io.PrintWriter;
 import java.io.UncheckedIOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,6 +56,7 @@ import java.util.concurrent.Executors;
 public class PlanillaController {
 
     JdbcTemplate template;
+
     @Autowired
     public void setDataSource(DataSource datasource) {
         template = new JdbcTemplate(datasource);
@@ -114,8 +118,8 @@ public class PlanillaController {
         model.addAttribute("iexcodreg", iexcodreg);
         model.addAttribute("Lovs_regimen", lovsService.getRegimenProc());
         model.addAttribute("List_Procesos", procesoPlanillaService.listarProRegpla(idCompania, iexcodreg, iexpermes));
-        model.addAttribute("iexpermes",iexpermes);
-        model.addAttribute("iexcodreg",iexcodreg);
+        model.addAttribute("iexpermes", iexpermes);
+        model.addAttribute("iexcodreg", iexcodreg);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/planillaGeneral");
     }
@@ -262,7 +266,7 @@ public class PlanillaController {
         model.addAttribute("iexcodreg", codreg);
         model.addAttribute("iexcodpro", codproceso);
         model.addAttribute("iexperiodo", periodo);
-        model.addAttribute("idCom",idCompania);
+        model.addAttribute("idCom", idCompania);
 
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso), periodo));
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, codproceso, periodo, -1, 1, "%"));
@@ -423,9 +427,9 @@ public class PlanillaController {
     }
 
     @SneakyThrows
-    @RequestMapping(value ="/gestionarTrabPlanConcept", method = RequestMethod.POST)
-    public ModelAndView gestionarTrabPlanConcept(ModelMap model, HttpServletRequest request,HttpServletResponse response,
-                                               @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
+    @RequestMapping(value = "/gestionarTrabPlanConcept", method = RequestMethod.POST)
+    public ModelAndView gestionarTrabPlanConcept(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+                                                 @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
         log.info("/gestionarTrabPlanConcept");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -455,7 +459,7 @@ public class PlanillaController {
 
         if (accion.equals("DELMASVAR")) {
             sueldoService.eliminarAllDatvar(idCompania, v_codpro, periodo, v_correl);
-        } else if(accion.equals("INSTRAVAR")){
+        } else if (accion.equals("INSTRAVAR")) {
             EmpDatvar Datvar = new EmpDatvar();
             Datvar.setIexcodcia(idCompania);
             Datvar.setIexcodtra(Integer.parseInt(codtra));
@@ -536,7 +540,7 @@ public class PlanillaController {
                             int num = (int) cell.getNumericCellValue();
                             v_codtra = Integer.toString(num);
                         }
-                        log.info("v_codtra: "+v_codtra);
+                        log.info("v_codtra: " + v_codtra);
                     }
 
                     if (v_codcab == 2 && cn >= 2) {
@@ -632,7 +636,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        PlaProPeriodo plaperpro7= planillaService.listPlaProperTra(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel);
+        PlaProPeriodo plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
 
         String json = new Gson().toJson(plaperpro7);
         response.setContentType("application/json");
@@ -660,7 +664,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"0");
+        List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "0");
 
         String json = new Gson().toJson(listap);
         response.setContentType("application/json");
@@ -688,7 +692,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        planillaService.delPlaProper(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,xgrppla,user);
+        planillaService.delPlaProper(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, xgrppla, user);
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");
@@ -787,14 +791,16 @@ public class PlanillaController {
         log.info("/eliminarPlanConcepVariable");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        sueldoService.eliminarAllDatvarEmp(idCompania,iexcodpro,iexperiodo,iexcorrel,iexcodtra,iexcodcon);
+        sueldoService.eliminarAllDatvarEmp(idCompania, iexcodpro, iexperiodo, iexcorrel, iexcodtra, iexcodcon);
 
-        return new ModelAndView("redirect:/verDetalleVariable@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+        return new ModelAndView("redirect:/verDetalleVariable@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
     }
 
     @RequestMapping(value = "/traerDatosDeBoletaIngresos", method = {RequestMethod.POST, RequestMethod.GET})
@@ -815,7 +821,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listai = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"1");
+        List<ConceptoxProcesoxTra> listai = planillaService.listProperconSinZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "1");
 
         String json = new Gson().toJson(listai);
         response.setContentType("application/json");
@@ -843,7 +849,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listad = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"2");
+        List<ConceptoxProcesoxTra> listad = planillaService.listProperconSinZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "2");
 
         String json = new Gson().toJson(listad);
         response.setContentType("application/json");
@@ -871,7 +877,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listaa = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"3");
+        List<ConceptoxProcesoxTra> listaa = planillaService.listProperconSinZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "3");
 
         String json = new Gson().toJson(listaa);
         response.setContentType("application/json");
@@ -899,7 +905,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listan = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"4");
+        List<ConceptoxProcesoxTra> listan = planillaService.listProperconSinZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "4");
 
         String json = new Gson().toJson(listan);
         response.setContentType("application/json");
@@ -927,7 +933,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        List<ConceptoxProcesoxTra> listao = planillaService.listProperconSinZeros(idCompania,iexcodpro,iexperiodo,iexcodtra,iexcorrel,"5");
+        List<ConceptoxProcesoxTra> listao = planillaService.listProperconSinZeros(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "5");
 
         String json = new Gson().toJson(listao);
         response.setContentType("application/json");
@@ -939,9 +945,9 @@ public class PlanillaController {
 
     @RequestMapping("/migracionPlanilla@{iexcodreg}@{iexcodpro}@{iexperiodo}")
     public ModelAndView migracionPlanilla(ModelMap model, HttpServletRequest request,
-                                           @PathVariable Integer iexcodreg,
-                                           @PathVariable Integer iexcodpro,
-                                           @PathVariable String iexperiodo) {
+                                          @PathVariable Integer iexcodreg,
+                                          @PathVariable Integer iexcodpro,
+                                          @PathVariable String iexperiodo) {
         log.info("/migracionPlanilla");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -965,9 +971,9 @@ public class PlanillaController {
     }
 
     @SneakyThrows
-    @RequestMapping(value ="/gestionarMigracionTrabConcepValor", method = RequestMethod.POST)
-    public ModelAndView gestionarMigracionTrabConcepValor(ModelMap model, HttpServletRequest request,HttpServletResponse response,
-                                                 @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
+    @RequestMapping(value = "/gestionarMigracionTrabConcepValor", method = RequestMethod.POST)
+    public ModelAndView gestionarMigracionTrabConcepValor(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+                                                          @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
         log.info("/gestionarMigracionTrabConcepValor");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -1053,7 +1059,7 @@ public class PlanillaController {
                             int num = (int) cell.getNumericCellValue();
                             v_codtra = Integer.toString(num);
                         }
-                        log.info("v_codtra: "+v_codtra);
+                        log.info("v_codtra: " + v_codtra);
                     }
 
                     if (v_codcab == 2 && cn >= 2) {
@@ -1098,13 +1104,13 @@ public class PlanillaController {
 
     @RequestMapping("/actualizarMigValorTrabConcept@{codtra}@{codproceso}@{periodo}@{iexcodcon}@{iexcorrel}@{iexcodreg}@{valor}")
     public ModelAndView actualizarMigValorTrabConcept(ModelMap model, HttpServletRequest request,
-                                                   @PathVariable String codtra,
-                                                   @PathVariable Integer codproceso,
-                                                   @PathVariable String periodo,
-                                                   @PathVariable String iexcodcon,
-                                                   @PathVariable Integer iexcorrel,
-                                                   @PathVariable Integer iexcodreg,
-                                                   @PathVariable String valor) {
+                                                      @PathVariable String codtra,
+                                                      @PathVariable Integer codproceso,
+                                                      @PathVariable String periodo,
+                                                      @PathVariable String iexcodcon,
+                                                      @PathVariable Integer iexcorrel,
+                                                      @PathVariable Integer iexcodreg,
+                                                      @PathVariable String valor) {
         log.info("/actualizarMigValorTrabConcept");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -1132,30 +1138,32 @@ public class PlanillaController {
 
     @RequestMapping("/eliminarMigPlanConcepVariable@{iexcodpro}@{iexperiodo}@{iexcorrel}@{iexcodtra}@{iexcodcon}@{iexcodreg}")
     public ModelAndView eliminarMigPlanConcepVariable(ModelMap model, HttpServletRequest request,
-                                                   @PathVariable Integer iexcodpro,
-                                                   @PathVariable String iexperiodo,
-                                                   @PathVariable Integer iexcorrel,
-                                                   @PathVariable Integer iexcodtra,
-                                                   @PathVariable String iexcodcon,
-                                                   @PathVariable String iexcodreg) {
+                                                      @PathVariable Integer iexcodpro,
+                                                      @PathVariable String iexperiodo,
+                                                      @PathVariable Integer iexcorrel,
+                                                      @PathVariable Integer iexcodtra,
+                                                      @PathVariable String iexcodcon,
+                                                      @PathVariable String iexcodreg) {
         log.info("/eliminarMigPlanConcepVariable");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        sueldoService.eliminarAllDatvarEmp(idCompania,iexcodpro,iexperiodo,iexcorrel,iexcodtra,iexcodcon);
+        sueldoService.eliminarAllDatvarEmp(idCompania, iexcodpro, iexperiodo, iexcorrel, iexcodtra, iexcodcon);
 
-        return new ModelAndView("redirect:/migracionPlanilla@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+        return new ModelAndView("redirect:/migracionPlanilla@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
     }
 
     @RequestMapping("/verDetalleBancos@{iexcodreg}@{iexcodpro}@{iexperiodo}")
     public ModelAndView verDetalleBancos(ModelMap model, HttpServletRequest request,
-                                           @PathVariable Integer iexcodreg,
-                                           @PathVariable Integer iexcodpro,
-                                           @PathVariable String iexperiodo) {
+                                         @PathVariable Integer iexcodreg,
+                                         @PathVariable Integer iexcodpro,
+                                         @PathVariable String iexperiodo) {
         log.info("/verDetalleBancos");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -1172,7 +1180,7 @@ public class PlanillaController {
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(iexcodpro), iexperiodo));
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, -1, 1, "%"));
 
-        model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
+        model.addAttribute("xbankproper", planillaService.listBankProper(idCompania, iexcodpro, iexperiodo, 1));
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detalleBancos");
     }
@@ -1203,18 +1211,18 @@ public class PlanillaController {
         String codmon = request.getParameter("codmon");
 
         if (accion.equals("EXERESBAN")) {
-            planillaService.exeBankProper(idCompania,iexcodpro,iexperiodo,iexcorrel,user,v_tcmb,fecpago);
+            planillaService.exeBankProper(idCompania, iexcodpro, iexperiodo, iexcorrel, user, v_tcmb, fecpago);
         }
 
-        if(accion.equals("QRYRESBAN")){
-            model.addAttribute("xbankproper",planillaService.listBankProper(idCompania,iexcodpro,iexperiodo,1));
+        if (accion.equals("QRYRESBAN")) {
+            model.addAttribute("xbankproper", planillaService.listBankProper(idCompania, iexcodpro, iexperiodo, 1));
         }
 
-        if(accion.equals("VERTXTBAN")){
+        if (accion.equals("VERTXTBAN")) {
             response.setContentType("text/plain");
             response.setHeader("Content-Disposition", "attachment; filename=\"ctm.jor\"");
 
-            List<String> lista = planillaService.txtBancos(idCompania,iexcodpro,iexperiodo,iexcorrel,codbank,codmon);
+            List<String> lista = planillaService.txtBancos(idCompania, iexcodpro, iexperiodo, iexcorrel, codbank, codmon);
 
             try {
                 PrintWriter writer = response.getWriter();
@@ -1232,7 +1240,7 @@ public class PlanillaController {
             }
         }
 
-        return new ModelAndView("redirect:/verDetalleBancos@"+iexcodreg+"@"+iexcodpro+"@"+iexperiodo);
+        return new ModelAndView("redirect:/verDetalleBancos@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
     }
 
     @RequestMapping(value = "/traerLstTurnosModal", method = {RequestMethod.POST, RequestMethod.GET})
@@ -1247,10 +1255,10 @@ public class PlanillaController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String fecini = request.getParameter("fecini");
 
-        List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania,fecini);
+        List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
 
-        log.info("lstTurnos.get(0).getAnioDes(): "+lstTurnos.get(0).getAnioDes());
-        log.info("lstTurnos.get(0).getMesDes(): "+lstTurnos.get(0).getMesDes());
+        log.info("lstTurnos.get(0).getAnioDes(): " + lstTurnos.get(0).getAnioDes());
+        log.info("lstTurnos.get(0).getMesDes(): " + lstTurnos.get(0).getMesDes());
 
         String json = new Gson().toJson(lstTurnos);
         response.setContentType("application/json");
@@ -1275,7 +1283,7 @@ public class PlanillaController {
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        List<Turnodiario> lstTurnodiario = turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(codtra),fecini,fecfin);
+        List<Turnodiario> lstTurnodiario = turnoDiarioService.listarTurnoDia(idCompania, Integer.valueOf(codtra), fecini, fecfin);
 
         String json = new Gson().toJson(lstTurnodiario);
         response.setContentType("application/json");
@@ -1299,10 +1307,10 @@ public class PlanillaController {
         String codtra = request.getParameter("codtra");
         String codfec = request.getParameter("codfec");
 
-        log.info("codtra: "+codtra);
-        log.info("codfec: "+codfec);
+        log.info("codtra: " + codtra);
+        log.info("codfec: " + codfec);
 
-        Turnodiario turno = turnoDiarioService.obtenerTurnoDia(idCompania, Integer.valueOf(codtra),codfec.trim());
+        Turnodiario turno = turnoDiarioService.obtenerTurnoDia(idCompania, Integer.valueOf(codtra), codfec.trim());
 
         String json = new Gson().toJson(turno);
         response.setContentType("application/json");
@@ -1328,12 +1336,12 @@ public class PlanillaController {
         String codTurnoSelected = request.getParameter("codTurnoSelected");
         Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
 
-        log.info("iexcodfec: "+iexcodfec);
-        log.info("desfecdia: "+desfecdia);
-        log.info("codTurnoSelected: "+codTurnoSelected);
-        log.info("idTrabAsis: "+idTrabAsis);
+        log.info("iexcodfec: " + iexcodfec);
+        log.info("desfecdia: " + desfecdia);
+        log.info("codTurnoSelected: " + codTurnoSelected);
+        log.info("idTrabAsis: " + idTrabAsis);
 
-        turnoDiarioService.actualizaTurnoDia(idCompania,idTrabAsis, Integer.valueOf(codTurnoSelected),desfecdia,user);
+        turnoDiarioService.actualizaTurnoDia(idCompania, idTrabAsis, Integer.valueOf(codTurnoSelected), desfecdia, user);
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");
@@ -1357,10 +1365,10 @@ public class PlanillaController {
         String desfecdia = request.getParameter("desfecdia");
         Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
 
-        log.info("desfecdia: "+desfecdia);
-        log.info("idTrabAsis: "+idTrabAsis);
+        log.info("desfecdia: " + desfecdia);
+        log.info("idTrabAsis: " + idTrabAsis);
 
-        turnoDiarioService.calificarTurnoDia(idCompania,idTrabAsis,desfecdia,user);
+        turnoDiarioService.calificarTurnoDia(idCompania, idTrabAsis, desfecdia, user);
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");
@@ -1370,4 +1378,65 @@ public class PlanillaController {
         return null;
     }
 
+    @RequestMapping(value = "/programarTurnosAsis", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView programarTurnosAsis(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/programarTurnosAsis");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String v_fecini = request.getParameter("fecini");
+        String v_fecfin = request.getParameter("fecfin");
+        String codtra = request.getParameter("codtra");
+
+        log.info("v_fecini: " + v_fecini);
+        log.info("v_fecfin: " + v_fecfin);
+
+        Date d1 = null;
+        Date d2 = null;
+        Date d3 = null;
+
+        if (v_fecini!= null && v_fecfin!= null) {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
+
+            int days;
+            days = daysBetween(d1, d2) + 1;
+
+            if (days >= 1 && days <= 60) {
+
+                log.info("Número de días =" + days);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(d2);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(d1);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+                do {
+                    log.info("fecha index =" + sdf.format(c.getTime()));
+
+                    turnoDiarioService.programarTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+                    c.add(Calendar.DATE, 1);
+                } while (c2.compareTo(c) >= 0);
+            }
+        }
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
 }

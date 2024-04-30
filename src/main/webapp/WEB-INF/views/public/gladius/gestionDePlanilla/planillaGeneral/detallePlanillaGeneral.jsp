@@ -707,7 +707,9 @@
                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                 </div>
                 <div class="modal-body p-4">
-                    <form class="needs-validation" method="POST" action="" novalidate >
+                    <form class="needs-validation" id="formAsistencias" method="POST" action="gestionarModalAsistencias" novalidate >
+                      <input id="accion" name="accion" type="hidden" value="" />
+
                       <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                           <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                           <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
@@ -718,21 +720,22 @@
                           <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
                                 <input class="form-control" name="idTrabAsis" id="idTrabAsis" type="text" required disabled />
-                                <input class="form-control" name="idTrabAsisHidden" id="idTrabAsislHidden" type="hidden" value="" />
+                                <input name="idTrabAsisHidden" id="idTrabAsisHidden" type="hidden" value="" />
                           </div>
                           <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                                 <input class="form-control" name="trabAsis" id="trabAsis" type="text" required disabled />
+                                <input name="trabAsisHidden" id="trabAsisHidden" type="hidden" value="" />
                           </div>
                           <div class="col-sm-6 col-md-3">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
                               <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
-                              <input class="form-control" name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />
+                              <input name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />
                           </div>
                           <div class="col-sm-6 col-md-3">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
                             <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
-                            <!--<input class="form-control" name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />-->
+                            <input name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />
                           </div>
                           <div class="col-sm-6 col-md-6">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
@@ -744,14 +747,13 @@
                       </div>
                       <div class="row g-4 mt-0">
                             <div class="col-auto">
-                                <a id="botonDescargarRep5ta" class="btn btn-primary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
-                                <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-wrench me-2"></span>P. Turnos</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Borrar T.</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-right-left me-2"></span>Consolidar</a>
-                                <a id="botonEliminarPlanTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-download me-2"></span>Reporte</a>
-                                <!--<a id="botonEliminarPlanTrab" class="btn btn-phoenix-primary btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-xmark me-2"></span>Cancelar</a>-->
+                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>P. Turnos</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('5');" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('4');"  ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
+                                <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm_asis('2');"  ><span class="fas fa-trash me-2"></span>Borrar T.</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" ><span class="fas fa-download me-2"></span>Reporte</a>
                             </div>
                       </div>
                       <div class="row g-3 bg-100 mt-0">

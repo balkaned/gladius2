@@ -1,10 +1,10 @@
 package com.balkaned.gladius.services;
 
 
-
 import com.balkaned.gladius.beans.Empleado;
 import com.balkaned.gladius.beans.Turno;
 import com.balkaned.gladius.beans.Turnodiario;
+
 import java.util.List;
 
 public interface TurnoDiarioService {
@@ -29,4 +29,6 @@ public interface TurnoDiarioService {
     public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu);
 
     public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu);
+
+    public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu);
 }
