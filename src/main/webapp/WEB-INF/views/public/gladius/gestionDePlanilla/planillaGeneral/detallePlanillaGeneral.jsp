@@ -709,6 +709,8 @@
                 <div class="modal-body p-4">
                     <form class="needs-validation" id="formAsistencias" method="POST" action="gestionarModalAsistencias" novalidate >
                       <input id="accion" name="accion" type="hidden" value="" />
+                      <input id="desfecdia" name="desfecdia" type="hidden" value="" />
+                      <input id="iexcodfec" name="iexcodfec" type="hidden" value="" />
 
                       <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                           <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -749,7 +751,7 @@
                             <div class="col-auto">
                                 <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>P. Turnos</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('5');" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('4');"  ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
                                 <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm_asis('2');"  ><span class="fas fa-trash me-2"></span>Borrar T.</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
@@ -1089,6 +1091,41 @@
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>-->
                 </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="modalLoading" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+          <div class="modal-content bg-100">
+            <form class="needs-validation" method="POST" action="" novalidate >
+                <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando</h5>
+                   <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+                </div>
+                <div class="modal-body p-4 bg-300 bg-opacity-50">
+                  <div id="alertModalSuccessCopy" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                      <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                      <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                      <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+
+                  <div class="mt-3">
+                      <h4>Transacción en proceso</h4>
+                      <p class="fs--1">Se esta procesando la transacción espere unos minutos hasta que haya finalizado la tarea...</p>
+                      <div class="col-12 text-center">
+                          <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+                    <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
+                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
+                </div>
+            </form>
           </div>
       </div>
     </div>

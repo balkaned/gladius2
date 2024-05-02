@@ -66,37 +66,6 @@ function enviaForm(variable){
     }
 }
 
-
-/*function enviaForm_asis(variable){
-
-    var opcion = confirm("Esta seguro de realizar la operación?");
-
-    if (opcion == true) {
-        if(variable==1){
-            document.getElementById("accion").value="VERASISTTRA";
-        }else if(variable==2){
-            document.getElementById("accion").value="DELMAS";
-        }else if(variable==3){
-            document.getElementById("accion").value="PROMAS";
-        }else if(variable==4){
-            document.getElementById("accion").value="MARCAS";
-        }else if(variable==5){
-            document.getElementById("accion").value="CALIFICA";
-        }else if(variable==6){
-            document.getElementById ("GestionTiempos").encoding="multipart/form-data";
-            document.getElementById("accion").value="UPXLSMAR";
-        }else if(variable==7){
-            document.getElementById("accion").value="CONSOLIDAR";
-        }
-
-        document.getElementById("formAsistencias").submit();
-
-        return true;
-    } else {
-        return false;
-    }
-}*/
-
 function enviaForm_ind(variable, trab){
     if(variable==2){
         document.getElementById("accion").value="INIPRO";
@@ -421,6 +390,9 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
     document.getElementById("fecfinAsis").value=fecfin;
     document.getElementById("fecfinAsisHidden").value=fecfin;
+
+    document.getElementById("desfecdia").value=fecfin;
+    document.getElementById("iexcodfec").value=fecfin;
 
     $.ajax({
          async: false,
@@ -947,7 +919,7 @@ function mostrarAlert(){
 
 function verTurnos(){
 
-    var opcion = confirm("Esta seguro realizar la actividad?");
+    var opcion = confirm("Esta seguro que desea traer los turnos en general?");
 
     if (opcion == true) {
 
@@ -956,9 +928,13 @@ function verTurnos(){
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
         var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
 
+        $('#modalLoading').modal('show');
+
         verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden);
 
-        alert("Transacción exitosa!");
+        setTimeout(function() {
+        	  $('#modalLoading').modal('hide');
+        }, 3000);
 
         return true;
     } else {
@@ -977,8 +953,10 @@ function programarTurnos(){
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
         var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
 
+        $('#modalLoading').modal('show');
+
         $.ajax({
-        	 async: false,
+        	 async: true,
         	 url: "programarTurnosAsis",
         	 data: {
         		"fecini": feciniAsisHidden,
@@ -986,9 +964,47 @@ function programarTurnos(){
         		"codtra": idTrabAsisHidden
         		},
         	 success: function (data) {
-                 alert("Transacción exitosa!");
         	 }
         });
+
+        setTimeout(function() {
+              $('#modalLoading').modal('hide');
+        }, 6000);
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function calificar(){
+
+    var opcion = confirm("Esta seguro que desea calificar todo?");
+
+    if (opcion == true) {
+
+        var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+        var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+        var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+        var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+
+        $('#modalLoading').modal('show');
+
+        $.ajax({
+        	 async: true,
+        	 url: "programarTurnosAsis",
+        	 data: {
+        		"fecini": feciniAsisHidden,
+        		"fecfin": fecfinAsisHidden,
+        		"codtra": idTrabAsisHidden
+        		},
+        	 success: function (data) {
+        	 }
+        });
+
+        setTimeout(function() {
+              $('#modalLoading').modal('hide');
+        }, 6000);
 
         return true;
     } else {
