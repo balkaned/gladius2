@@ -301,48 +301,51 @@
                 <div class="card bg-white position-relative border-0">
                   <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
                     <div class="row text-center align-items-center gx-0 gy-0">
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/behance.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Behance</p>
+                        <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/behance.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Behance</p>
+                          </a></div>-->
+                        <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Cloud</p>
+                          </a></div>-->
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://teams.microsoft.com/v2/?culture=es-es&country=es"><img src="resources/assets/img/nav-icons/msteams.png" alt="" width="30" />
+                             <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Teams</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Cloud</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Slack</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Gitlab</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">BitBucket</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-drive.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Drive</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/trello.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Trello</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/figma.webp" alt="" width="20" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Figma</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Twitter</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Pinterest</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Linkedin</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-maps.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Maps</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/google-photos.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Photos</p>
-                        </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!"><img src="resources/assets/img/nav-icons/spotify.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Spotify</p>
-                        </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://slack.com/intl/es-pe/"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Slack</p>
+                          </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://github.com/"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Github</p>
+                          </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://bitbucket.org/"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">BitBucket</p>
+                          </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://drive.google.com/drive/my-drive"><img src="resources/assets/img/nav-icons/google-drive.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Drive</p>
+                          </a></div>
+                        <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#"><img src="resources/assets/img/nav-icons/trello.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Trello</p>
+                          </a></div>-->
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.figma.com/"><img src="resources/assets/img/nav-icons/figma.webp" alt="" width="20" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Figma</p>
+                          </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://twitter.com/"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Twitter</p>
+                          </a></div>
+                        <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.pinterest.com/"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Pinterest</p>
+                          </a></div>-->
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.linkedin.com/"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Linkedin</p>
+                          </a></div>
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.google.com/maps/place/BALKANED/@-12.0146003,-76.9848409,11.96z/data=!4m6!3m5!1s0x9105c3e90d86b7bb:0x2f24fbaf73d0e99f!8m2!3d-12.0193356!4d-76.8987403!16s%2Fg%2F11rbfnpzp_?hl=es-419&entry=ttu"><img src="resources/assets/img/nav-icons/google-maps.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Maps</p>
+                          </a></div>
+                        <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/google-photos.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Photos</p>
+                          </a></div>-->
+                        <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://open.spotify.com/intl-es!"><img src="resources/assets/img/nav-icons/spotify.webp" alt="" width="30" />
+                            <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Spotify</p>
+                          </a></div>
                     </div>
                   </div>
                 </div>

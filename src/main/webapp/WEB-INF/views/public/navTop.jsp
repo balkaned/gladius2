@@ -308,11 +308,14 @@
                       <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="#!"><img src="resources/assets/img/nav-icons/google-cloud.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Cloud</p>
                         </a></div>-->
+                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://teams.microsoft.com/v2/?culture=es-es&country=es"><img src="resources/assets/img/nav-icons/msteams.png" alt="" width="30" />
+                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Teams</p>
+                      </a></div>
                       <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://slack.com/intl/es-pe/"><img src="resources/assets/img/nav-icons/slack.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Slack</p>
                         </a></div>
                       <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://github.com/"><img src="resources/assets/img/nav-icons/gitlab.webp" alt="" width="30" />
-                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Gitlab</p>
+                          <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Github</p>
                         </a></div>
                       <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://bitbucket.org/"><img src="resources/assets/img/nav-icons/bitbucket.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">BitBucket</p>
@@ -329,9 +332,9 @@
                       <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://twitter.com/"><img src="resources/assets/img/nav-icons/twitter.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Twitter</p>
                         </a></div>
-                      <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.pinterest.com/"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
+                      <!--<div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.pinterest.com/"><img src="resources/assets/img/nav-icons/pinterest.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Pinterest</p>
-                        </a></div>
+                        </a></div>-->
                       <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" target="_blank" href="https://www.linkedin.com/"><img src="resources/assets/img/nav-icons/ln.webp" alt="" width="30" />
                           <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">Linkedin</p>
                         </a></div>
