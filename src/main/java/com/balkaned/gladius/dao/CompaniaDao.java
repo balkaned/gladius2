@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Ciaxcon;
-import com.balkaned.gladius.beans.Compania;
+import com.balkaned.gladius.models.Ciaxcon;
+import com.balkaned.gladius.models.Compania;
 
 import java.util.List;
 

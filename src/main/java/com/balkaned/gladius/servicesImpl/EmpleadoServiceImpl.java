@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.EmpleadoDao;
 import com.balkaned.gladius.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;

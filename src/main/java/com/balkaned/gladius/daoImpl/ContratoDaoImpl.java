@@ -1,11 +1,10 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.ContratoEmp;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.ContratoEmp;
+import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.ContratoDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
-import com.balkaned.gladius.utils.FormatterFecha;
+import com.balkaned.gladius.util.CapitalizarCadena;
+import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -17,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("ContratoDao")
 @Slf4j

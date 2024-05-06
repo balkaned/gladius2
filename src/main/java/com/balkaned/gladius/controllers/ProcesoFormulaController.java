@@ -1,7 +1,7 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.ProcesoForm;
-import com.balkaned.gladius.beans.ProcesoPlanilla;
+import com.balkaned.gladius.models.ProcesoForm;
+import com.balkaned.gladius.models.ProcesoPlanilla;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;

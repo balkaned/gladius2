@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.DerechoHabiente;
+import com.balkaned.gladius.models.DerechoHabiente;
 import java.util.List;
 
 public interface DerechoHabientesDao {

@@ -1,7 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.UsuxSys;
+import com.balkaned.gladius.models.UsuxSys;
 import com.balkaned.gladius.dao.UsuxSystemaDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 @Repository("UsuxSystemaDao")
 @Slf4j

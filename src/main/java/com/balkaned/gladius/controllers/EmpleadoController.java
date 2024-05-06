@@ -1,7 +1,7 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuarioxRol;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @Slf4j

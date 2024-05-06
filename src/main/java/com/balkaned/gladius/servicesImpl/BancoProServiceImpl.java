@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.BancoPro;
+import com.balkaned.gladius.models.BancoPro;
 import com.balkaned.gladius.dao.BancoProDao;
 import com.balkaned.gladius.services.BancoProService;
 import org.springframework.beans.factory.annotation.Autowired;

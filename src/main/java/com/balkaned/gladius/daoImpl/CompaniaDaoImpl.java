@@ -1,10 +1,9 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.Ciaxcon;
-import com.balkaned.gladius.beans.Compania;
+import com.balkaned.gladius.models.Ciaxcon;
+import com.balkaned.gladius.models.Compania;
 import com.balkaned.gladius.dao.CompaniaDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("CompaniaDao")
 @Slf4j

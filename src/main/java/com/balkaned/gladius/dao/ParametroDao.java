@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.ParametrosGen;
+import com.balkaned.gladius.models.ParametrosGen;
 
 import java.util.List;
 

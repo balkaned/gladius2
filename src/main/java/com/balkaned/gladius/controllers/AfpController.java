@@ -1,9 +1,7 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Afp;
-import com.balkaned.gladius.beans.Area;
+import com.balkaned.gladius.models.Afp;
 import com.balkaned.gladius.services.AfpService;
-import com.balkaned.gladius.services.AreaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @Slf4j

@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.Seccion;
+import com.balkaned.gladius.models.Seccion;
 
 import java.util.List;
 

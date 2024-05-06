@@ -1,8 +1,8 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.RetencionJudicial;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.RetencionJudicial;
 
 import java.util.List;
 

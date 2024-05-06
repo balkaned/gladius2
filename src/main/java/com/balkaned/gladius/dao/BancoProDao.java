@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.BancoPro;
+import com.balkaned.gladius.models.BancoPro;
 
 import java.util.List;
 

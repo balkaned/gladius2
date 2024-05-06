@@ -1,7 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.UsuxOpciones;
+import com.balkaned.gladius.models.UsuxOpciones;
 
 import java.util.List;
 

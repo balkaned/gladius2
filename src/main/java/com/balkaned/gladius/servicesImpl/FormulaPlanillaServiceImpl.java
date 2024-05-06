@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.FormulaPlanilla;
+import com.balkaned.gladius.models.ConceptoXProceso;
+import com.balkaned.gladius.models.FormulaPlanilla;
 import com.balkaned.gladius.dao.FormulaPlanillaDao;
 import com.balkaned.gladius.services.FormulaPlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;

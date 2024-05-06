@@ -1,13 +1,12 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuarioxRol;
-import com.balkaned.gladius.beans.VacacionProgramacion;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.UsuarioxRol;
+import com.balkaned.gladius.models.VacacionProgramacion;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
-import com.balkaned.gladius.utils.FormatterFecha;
+import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
-import com.balkaned.gladius.utils.CapitalizarCadena;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;

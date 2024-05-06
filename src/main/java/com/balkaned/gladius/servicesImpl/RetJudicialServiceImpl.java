@@ -1,8 +1,8 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.RetencionJudicial;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.RetencionJudicial;
 import com.balkaned.gladius.dao.RetJudicialDao;
 import com.balkaned.gladius.services.RetJudicialService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.PrestamoCab;
-import com.balkaned.gladius.beans.PrestamoDet;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.PrestamoCab;
+import com.balkaned.gladius.models.PrestamoDet;
 import com.balkaned.gladius.dao.PrestamoDao;
 import com.balkaned.gladius.services.PrestamoService;
 import org.springframework.beans.factory.annotation.Autowired;

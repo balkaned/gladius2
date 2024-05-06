@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.UsuxSys;
+import com.balkaned.gladius.models.UsuxSys;
 
 
 public interface UsuxSystemaDao {

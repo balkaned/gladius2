@@ -1,7 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.Usuario;
+import com.balkaned.gladius.models.Usuario;
 import java.util.List;
 
 public interface UsuarioService {

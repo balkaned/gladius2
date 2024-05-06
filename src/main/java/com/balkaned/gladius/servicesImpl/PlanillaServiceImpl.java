@@ -1,8 +1,8 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.BancoResumenPer;
-import com.balkaned.gladius.beans.ConceptoxProcesoxTra;
-import com.balkaned.gladius.beans.PlaProPeriodo;
+import com.balkaned.gladius.models.BancoResumenPer;
+import com.balkaned.gladius.models.ConceptoxProcesoxTra;
+import com.balkaned.gladius.models.PlaProPeriodo;
 import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;

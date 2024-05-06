@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Concepto;
+import com.balkaned.gladius.models.Concepto;
 import com.balkaned.gladius.dao.ConceptoDao;
 import com.balkaned.gladius.services.ConceptoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Compania;
-import com.balkaned.gladius.beans.UsuarioConeccion;
+import com.balkaned.gladius.models.Compania;
+import com.balkaned.gladius.models.UsuarioConeccion;
 import com.balkaned.gladius.dao.UsuarioConeccionDao;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import org.springframework.beans.factory.annotation.Autowired;

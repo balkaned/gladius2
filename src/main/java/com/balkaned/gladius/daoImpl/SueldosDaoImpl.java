@@ -1,11 +1,11 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.beans.Concepto;
-import com.balkaned.gladius.beans.EmpDatvar;
-import com.balkaned.gladius.beans.EmpSueldo;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.Concepto;
+import com.balkaned.gladius.models.EmpDatvar;
+import com.balkaned.gladius.models.EmpSueldo;
+import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.SueldoDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Repository("SueldoDao")

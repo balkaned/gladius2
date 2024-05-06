@@ -1,8 +1,8 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.AusentismoProgramacion;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.AusentismoProgramacion;
+import com.balkaned.gladius.models.Empleado;
 import java.util.List;
 
 public interface AusentismoDao {

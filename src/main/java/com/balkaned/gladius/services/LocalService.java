@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Local;
+import com.balkaned.gladius.models.Local;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public interface LocalService {
 
     public List<Local> listarLocales(Integer codcia, String text);
 
-    public com.balkaned.gladius.beans.Local getLocales(Integer codcia, String codubicacion);
+    public com.balkaned.gladius.models.Local getLocales(Integer codcia, String codubicacion);
 
     public Integer getIdUbicaion(Integer codcia);
 

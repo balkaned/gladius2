@@ -1,9 +1,9 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Concepto;
-import com.balkaned.gladius.beans.EmpDatvar;
-import com.balkaned.gladius.beans.EmpSueldo;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.Concepto;
+import com.balkaned.gladius.models.EmpDatvar;
+import com.balkaned.gladius.models.EmpSueldo;
+import com.balkaned.gladius.models.Empleado;
 import java.util.List;
 
 public interface SueldoService {

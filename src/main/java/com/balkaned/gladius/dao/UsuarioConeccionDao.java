@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Compania;
-import com.balkaned.gladius.beans.UsuarioConeccion;
+import com.balkaned.gladius.models.Compania;
+import com.balkaned.gladius.models.UsuarioConeccion;
 import java.util.List;
 
 public interface UsuarioConeccionDao {

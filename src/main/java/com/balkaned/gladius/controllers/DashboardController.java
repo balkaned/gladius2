@@ -1,15 +1,15 @@
 package com.balkaned.gladius.controllers;
 
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
-import com.balkaned.gladius.servicesImpl.Sessionattributes;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.Month;
@@ -49,7 +49,9 @@ public class DashboardController {
         log.info("/home");
 
         String user = (String) request.getSession().getAttribute("user");
-        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
 
         UsuarioConeccion uc1 = usuarioConeccionService.obtenerUsuarioConeccionById(idUser);
         Compania comp1 = companiaService.getCompaniaAll(Integer.parseInt(idComp));
@@ -65,13 +67,17 @@ public class DashboardController {
         request.getSession().setAttribute("ruccomp", comp1.getNroRuc());
         request.getSession().setAttribute("schema", comp1.getSchema());
 
+        String nombreComp = comp1.getDescCia();
+        CapitalizarCadena cap2 = new CapitalizarCadena();
+        nombreComp = cap2.letras(nombreComp);
+
         model.addAttribute("idComp", idComp);
         model.addAttribute("urlLogo", comp1.getUrlLogo());
         model.addAttribute("usuario", usuario);
         model.addAttribute("idusuario", idusuario);
         model.addAttribute("email", email);
         model.addAttribute("firstCharacter", firstCharacter);
-        model.addAttribute("nombreComp", comp1.getDescCia());
+        model.addAttribute("nombreComp", nombreComp);
         model.addAttribute("rucComp", comp1.getNroRuc());
         model.addAttribute("schema", comp1.getSchema());
 
@@ -127,10 +133,10 @@ public class DashboardController {
         model.addAttribute("cantFondos", lovsService.getLovs("11", "%").size());
         model.addAttribute("cantBancosHab", lovsService.getLovs("36", "%").size());
         model.addAttribute("cantCcostos", lovsService.getCCostoCia(Integer.valueOf(idComp)).size());
-        model.addAttribute("cantLocales",lovsService.getUbicacionCia(Integer.valueOf(idComp)).size());
-        model.addAttribute("cantPuestos",lovsService.getPuestoCia(Integer.valueOf(idComp)).size());
+        model.addAttribute("cantLocales", lovsService.getUbicacionCia(Integer.valueOf(idComp)).size());
+        model.addAttribute("cantPuestos", lovsService.getPuestoCia(Integer.valueOf(idComp)).size());
 
-        //Obtenemos los datos para el Grafico Pie por sexo
+        // Obtenemos los datos para el Grafico Pie por sexo
         DashboardSexoPie ds = dashboardService.obtenerDashboardPieSexo(Integer.valueOf(idComp));
         model.addAttribute("cantidad_total", ds.getCantidad_total());
         model.addAttribute("cantidad_m", ds.getCantidad_m());
@@ -141,30 +147,30 @@ public class DashboardController {
         List<DashboardAreaBar> lsAreaBar = dashboardService.obtenerDatosDashboardArea(Integer.valueOf(idComp));
         model.addAttribute("lsAreaBar", lsAreaBar);
 
-        List<DashboardFondosBar> lsFondBar=dashboardService.obtenerDatosDashboardFodos(Integer.valueOf(idComp));
-        model.addAttribute("lsFondBar",lsFondBar);
+        List<DashboardFondosBar> lsFondBar = dashboardService.obtenerDatosDashboardFodos(Integer.valueOf(idComp));
+        model.addAttribute("lsFondBar", lsFondBar);
 
-        List<DashboardBancosPie> lsBanPie= dashboardService.obtenerDatosDashboardBancos(Integer.valueOf(idComp));
-        model.addAttribute("lsBanPie",lsBanPie);
+        List<DashboardBancosPie> lsBanPie = dashboardService.obtenerDatosDashboardBancos(Integer.valueOf(idComp));
+        model.addAttribute("lsBanPie", lsBanPie);
 
-        List<DashboardCcosto> lsCcostoBar=dashboardService.obtenerDatosDashboardCCosto(Integer.valueOf(idComp));
-        model.addAttribute("lsCcostoBar",lsCcostoBar);
+        List<DashboardCcosto> lsCcostoBar = dashboardService.obtenerDatosDashboardCCosto(Integer.valueOf(idComp));
+        model.addAttribute("lsCcostoBar", lsCcostoBar);
 
-        List<DashboardPuestos> lsPuestosBar=dashboardService.obtenerDatosDashboardPuestos(Integer.valueOf(idComp));
-        model.addAttribute("lsPuestosBar",lsPuestosBar);
+        List<DashboardPuestos> lsPuestosBar = dashboardService.obtenerDatosDashboardPuestos(Integer.valueOf(idComp));
+        model.addAttribute("lsPuestosBar", lsPuestosBar);
 
-        List<DashboardLocal> lsLocalBar=dashboardService.obtenerDatosDashboardLocales(Integer.valueOf(idComp));
-        model.addAttribute("lsLocalBar",lsLocalBar);
+        List<DashboardLocal> lsLocalBar = dashboardService.obtenerDatosDashboardLocales(Integer.valueOf(idComp));
+        model.addAttribute("lsLocalBar", lsLocalBar);
 
 
-        //Obtiene datos del usuario y rol si es SYSHRSELF redirecciona listaTrabajadores
+        // Obtiene datos del usuario y rol si es SYSHRSELF redirecciona listaTrabajadores
         UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(Integer.valueOf(idComp), Integer.valueOf(idusuario));
         Empleado emp = new Empleado();
         emp.setIexcodcia(Integer.valueOf(idComp));
         emp.setIexcodtra(ur.getIexcodtra());
 
-        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
-        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+        log.info("ur.getIexdesrol(): " + ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): " + ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             return new ModelAndView("redirect:/listEmpleados");

@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Afp;
+import com.balkaned.gladius.models.Afp;
 import java.util.List;
 
 public interface AfpDao {

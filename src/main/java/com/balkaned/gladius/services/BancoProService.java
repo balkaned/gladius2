@@ -1,7 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.BancoPro;
+import com.balkaned.gladius.models.BancoPro;
 
 import java.util.List;
 

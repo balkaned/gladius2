@@ -1,8 +1,8 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Grpfile;
-import com.balkaned.gladius.beans.UsuarioxRol;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.Grpfile;
+import com.balkaned.gladius.models.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;

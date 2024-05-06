@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.ContratoEmp;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.ContratoEmp;
+import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.ContratoDao;
 import com.balkaned.gladius.services.ContratoService;
 import org.springframework.beans.factory.annotation.Autowired;

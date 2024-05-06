@@ -1101,16 +1101,11 @@
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
                    <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando</h5>
-                   <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+                   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50">
-                  <div id="alertModalSuccessCopy" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                      <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                      <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                      <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
 
-                  <div class="mt-3">
+                  <div class="mt-0 mb-0">
                       <h4>Transacción en proceso</h4>
                       <p class="fs--1">Se esta procesando la transacción espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">

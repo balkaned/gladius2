@@ -1,7 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.IndexController;
-import com.balkaned.gladius.beans.EmpAcum;
+import com.balkaned.gladius.models.EmpAcum;
 import com.balkaned.gladius.dao.AcumuladoDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository("AcumuladoDao")
 @Slf4j

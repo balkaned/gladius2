@@ -1,7 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.Sistemas;
+import com.balkaned.gladius.models.Sistemas;
 
 import java.util.List;
 

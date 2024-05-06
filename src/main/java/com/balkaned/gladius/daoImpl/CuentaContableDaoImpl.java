@@ -1,6 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.beans.CuentaContable;
+import com.balkaned.gladius.models.CuentaContable;
 import com.balkaned.gladius.dao.CuentaContableDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

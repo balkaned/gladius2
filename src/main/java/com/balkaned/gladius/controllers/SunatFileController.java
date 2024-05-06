@@ -1,6 +1,6 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.AsientoContableCab;
+import com.balkaned.gladius.models.AsientoContableCab;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;

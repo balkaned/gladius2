@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.Opciones;
+import com.balkaned.gladius.models.Opciones;
 import com.balkaned.gladius.dao.OpcionDao;
 import com.balkaned.gladius.services.OpcionService;
 import org.springframework.beans.factory.annotation.Autowired;

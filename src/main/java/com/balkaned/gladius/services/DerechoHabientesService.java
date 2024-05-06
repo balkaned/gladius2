@@ -1,8 +1,8 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.DerechoHabiente;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.DerechoHabiente;
+
 import java.util.List;
 
 public interface DerechoHabientesService {

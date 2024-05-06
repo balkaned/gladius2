@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.FormulaPlanilla;
+import com.balkaned.gladius.models.FormulaPlanilla;
 
 public interface FormulaService {
     public FormulaPlanilla getByIdProcesoIdFormula(Integer idprod, Integer idformula);

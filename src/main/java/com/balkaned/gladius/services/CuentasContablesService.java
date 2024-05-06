@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.CuentaContable;
+import com.balkaned.gladius.models.CuentaContable;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Opciones;
+import com.balkaned.gladius.models.Opciones;
 import java.util.List;
 
 public interface OpcionService {

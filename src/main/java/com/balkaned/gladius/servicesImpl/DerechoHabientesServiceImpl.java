@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.DerechoHabiente;
+import com.balkaned.gladius.models.DerechoHabiente;
 import com.balkaned.gladius.dao.DerechoHabientesDao;
 import com.balkaned.gladius.services.DerechoHabientesService;
 import org.springframework.beans.factory.annotation.Autowired;

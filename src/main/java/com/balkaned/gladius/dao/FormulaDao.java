@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.FormulaPlanilla;
+import com.balkaned.gladius.models.FormulaPlanilla;
 
 public interface FormulaDao {
     public FormulaPlanilla getByIdProcesoIdFormula(Integer idprod, Integer idformula);

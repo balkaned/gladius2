@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Puesto;
+import com.balkaned.gladius.models.Puesto;
 import com.balkaned.gladius.dao.PuestoDao;
 import com.balkaned.gladius.services.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;

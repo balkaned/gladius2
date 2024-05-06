@@ -1,7 +1,7 @@
 package com.balkaned.gladius;
 
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
@@ -114,7 +114,7 @@ public class IndexController {
             String nombre = uc3.getUser();
             String resultado = nombre.toUpperCase().charAt(0) + nombre.substring(1, nombre.length()).toLowerCase();
 
-            //###### SETEAMOS VARIABLES DE SESION ###########
+            // Seteamos variables de session
             request.getSession().setAttribute("user", resultado);
             request.getSession().setAttribute("idUser", uc3.getId_usuario());
             request.getSession().setAttribute("email", uc3.getEmail());

@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.AusentismoProgramacion;
-import com.balkaned.gladius.beans.Empleado;
+import com.balkaned.gladius.models.AusentismoProgramacion;
+import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.AusentismoDao;
 import com.balkaned.gladius.services.AusentismoService;
 import org.springframework.beans.factory.annotation.Autowired;

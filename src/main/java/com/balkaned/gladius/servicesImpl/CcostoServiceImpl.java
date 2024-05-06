@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.CentroCosto;
+import com.balkaned.gladius.models.CentroCosto;
 import com.balkaned.gladius.dao.CcostoDao;
 import com.balkaned.gladius.services.CcostoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Turno;
-import com.balkaned.gladius.beans.Turnodiario;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.Turno;
+import com.balkaned.gladius.models.Turnodiario;
 
 import java.util.List;
 

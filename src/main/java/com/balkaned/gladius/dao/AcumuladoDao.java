@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.EmpAcum;
+import com.balkaned.gladius.models.EmpAcum;
 
 import java.util.List;
 

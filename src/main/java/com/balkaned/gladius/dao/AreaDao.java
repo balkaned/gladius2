@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Area;
+import com.balkaned.gladius.models.Area;
 import java.util.List;
 
 public interface AreaDao {

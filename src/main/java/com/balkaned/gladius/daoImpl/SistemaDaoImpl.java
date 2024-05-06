@@ -1,8 +1,8 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.beans.Sistemas;
+import com.balkaned.gladius.models.Sistemas;
 import com.balkaned.gladius.dao.SistemaDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

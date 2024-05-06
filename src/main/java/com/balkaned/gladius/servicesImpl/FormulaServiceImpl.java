@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.FormulaPlanilla;
-import com.balkaned.gladius.beans.Main;
+import com.balkaned.gladius.models.FormulaPlanilla;
+import com.balkaned.gladius.models.Main;
 import com.balkaned.gladius.dao.FormulaDao;
 import com.balkaned.gladius.services.FormulaService;
 import lombok.extern.slf4j.Slf4j;

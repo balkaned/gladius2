@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.Opciones;
+import com.balkaned.gladius.models.Opciones;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Local;
+import com.balkaned.gladius.models.Local;
 
 import java.util.List;
 

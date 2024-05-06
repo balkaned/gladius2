@@ -1,8 +1,8 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.PrestamoCab;
-import com.balkaned.gladius.beans.PrestamoDet;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.PrestamoCab;
+import com.balkaned.gladius.models.PrestamoDet;
 
 import java.util.List;
 

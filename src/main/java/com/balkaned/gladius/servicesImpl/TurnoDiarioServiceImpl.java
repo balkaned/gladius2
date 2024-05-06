@@ -1,9 +1,9 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.Turno;
-import com.balkaned.gladius.beans.Turnodiario;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.Turno;
+import com.balkaned.gladius.models.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.services.TurnoDiarioService;
 import lombok.extern.slf4j.Slf4j;

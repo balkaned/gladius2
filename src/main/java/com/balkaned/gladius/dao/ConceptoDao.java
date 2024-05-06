@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.Concepto;
+import com.balkaned.gladius.models.Concepto;
 
 import java.util.List;
 

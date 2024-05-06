@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Afp;
+import com.balkaned.gladius.models.Afp;
 import com.balkaned.gladius.dao.AfpDao;
 import com.balkaned.gladius.services.AfpService;
 import org.springframework.beans.factory.annotation.Autowired;

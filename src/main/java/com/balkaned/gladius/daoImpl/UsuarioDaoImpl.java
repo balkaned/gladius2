@@ -1,10 +1,10 @@
 package com.balkaned.gladius.daoImpl;
 
 
-import com.balkaned.gladius.beans.Usuario;
+import com.balkaned.gladius.models.Usuario;
 import com.balkaned.gladius.dao.UsuarioDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
-import com.balkaned.gladius.utils.FormatterFecha;
+import com.balkaned.gladius.util.CapitalizarCadena;
+import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

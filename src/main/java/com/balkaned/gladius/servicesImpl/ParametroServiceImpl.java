@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.ParametrosGen;
+import com.balkaned.gladius.models.ParametrosGen;
 import com.balkaned.gladius.dao.ParametroDao;
 import com.balkaned.gladius.services.ParametroService;
 import org.springframework.beans.factory.annotation.Autowired;

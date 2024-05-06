@@ -1,11 +1,11 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.FormulaService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.services.ProcesoFormulaService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

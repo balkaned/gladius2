@@ -1,7 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.CentroCosto;
+import com.balkaned.gladius.models.CentroCosto;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.EmpAcum;
+import com.balkaned.gladius.models.EmpAcum;
 
 public interface EmpAcumService {
 

@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.beans.Sistemas;
+import com.balkaned.gladius.models.Sistemas;
 import com.balkaned.gladius.dao.SistemaDao;
 import com.balkaned.gladius.services.SistemaService;
 import org.springframework.beans.factory.annotation.Autowired;

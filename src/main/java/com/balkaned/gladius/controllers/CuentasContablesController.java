@@ -1,8 +1,7 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Area;
-import com.balkaned.gladius.beans.CuentaContable;
-import com.balkaned.gladius.beans.Lovs;
+import com.balkaned.gladius.models.CuentaContable;
+import com.balkaned.gladius.models.Lovs;
 import com.balkaned.gladius.services.CuentasContablesService;
 import com.balkaned.gladius.services.LovsService;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;

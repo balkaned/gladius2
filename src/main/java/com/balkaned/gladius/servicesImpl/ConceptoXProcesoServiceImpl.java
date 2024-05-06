@@ -1,8 +1,8 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.ConceptoxAgrup;
-import com.balkaned.gladius.beans.ConceptoxProms;
+import com.balkaned.gladius.models.ConceptoXProceso;
+import com.balkaned.gladius.models.ConceptoxAgrup;
+import com.balkaned.gladius.models.ConceptoxProms;
 import com.balkaned.gladius.dao.ConceptoXProcesoDao;
 import com.balkaned.gladius.services.ConceptoXProcesoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,10 @@
 package com.balkaned.gladius.daoImpl;
 
 
-import com.balkaned.gladius.beans.FileImageLegajo;
-import com.balkaned.gladius.beans.Grpfile;
+import com.balkaned.gladius.models.FileImageLegajo;
+import com.balkaned.gladius.models.Grpfile;
 import com.balkaned.gladius.dao.LegajoDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

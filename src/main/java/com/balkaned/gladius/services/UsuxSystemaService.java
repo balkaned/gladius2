@@ -2,7 +2,7 @@ package com.balkaned.gladius.services;
 
 
 
-import com.balkaned.gladius.beans.UsuxSys;
+import com.balkaned.gladius.models.UsuxSys;
 
 
 public interface UsuxSystemaService {

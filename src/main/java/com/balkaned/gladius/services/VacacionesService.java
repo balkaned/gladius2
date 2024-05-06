@@ -1,8 +1,8 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.VacacionControl;
-import com.balkaned.gladius.beans.VacacionProgramacion;
+import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.models.VacacionControl;
+import com.balkaned.gladius.models.VacacionProgramacion;
 
 import java.util.List;
 

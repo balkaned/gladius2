@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Puesto;
+import com.balkaned.gladius.models.Puesto;
 
 import java.util.List;
 

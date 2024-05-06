@@ -1,8 +1,8 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.beans.Usuario;
-import com.balkaned.gladius.beans.UsuarioConeccion;
-import com.balkaned.gladius.beans.UsuxCompania;
+import com.balkaned.gladius.models.Usuario;
+import com.balkaned.gladius.models.UsuarioConeccion;
+import com.balkaned.gladius.models.UsuxCompania;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;

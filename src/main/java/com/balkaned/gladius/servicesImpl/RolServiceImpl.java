@@ -1,7 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Role;
-import com.balkaned.gladius.beans.Rolesxopciones;
+import com.balkaned.gladius.models.Role;
+import com.balkaned.gladius.models.Rolesxopciones;
 import com.balkaned.gladius.dao.RolDao;
 import com.balkaned.gladius.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;

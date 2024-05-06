@@ -1,8 +1,8 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.ConceptoXProceso;
-import com.balkaned.gladius.beans.ConceptoxAgrup;
-import com.balkaned.gladius.beans.ConceptoxProms;
+import com.balkaned.gladius.models.ConceptoXProceso;
+import com.balkaned.gladius.models.ConceptoxAgrup;
+import com.balkaned.gladius.models.ConceptoxProms;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package com.balkaned.gladius.daoImpl;
 
 
-import com.balkaned.gladius.beans.TTablaCabecera;
-import com.balkaned.gladius.beans.TTablaDetalle;
+import com.balkaned.gladius.models.TTablaCabecera;
+import com.balkaned.gladius.models.TTablaDetalle;
 import com.balkaned.gladius.dao.TtableDao;
-import com.balkaned.gladius.utils.CapitalizarCadena;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

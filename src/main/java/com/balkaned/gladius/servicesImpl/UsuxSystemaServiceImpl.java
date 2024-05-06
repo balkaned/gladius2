@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.UsuxSys;
+import com.balkaned.gladius.models.UsuxSys;
 import com.balkaned.gladius.dao.UsuxSystemaDao;
 import com.balkaned.gladius.services.UsuxSystemaService;
 import org.springframework.beans.factory.annotation.Autowired;

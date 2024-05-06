@@ -1002,9 +1002,9 @@ function calificar(){
         	 }
         });
 
-        setTimeout(function() {
+        /*setTimeout(function() {
               $('#modalLoading').modal('hide');
-        }, 6000);
+        }, 6000);*/
 
         return true;
     } else {

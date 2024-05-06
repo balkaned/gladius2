@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.EmpAcum;
+import com.balkaned.gladius.models.EmpAcum;
 import com.balkaned.gladius.dao.AcumuladoDao;
 import com.balkaned.gladius.services.AcumuladoService;
 import org.springframework.beans.factory.annotation.Autowired;

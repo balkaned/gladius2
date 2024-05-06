@@ -1,7 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.ParametrosGen;
-import org.springframework.web.servlet.tags.Param;
+import com.balkaned.gladius.models.ParametrosGen;
 
 import java.util.List;
 

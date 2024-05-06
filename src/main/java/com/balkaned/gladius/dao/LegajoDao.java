@@ -1,8 +1,8 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.beans.FileImageLegajo;
-import com.balkaned.gladius.beans.Grpfile;
+import com.balkaned.gladius.models.FileImageLegajo;
+import com.balkaned.gladius.models.Grpfile;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Ciaxcon;
-import com.balkaned.gladius.beans.Compania;
+import com.balkaned.gladius.models.Ciaxcon;
+import com.balkaned.gladius.models.Compania;
 import com.balkaned.gladius.dao.CompaniaDao;
-import com.balkaned.gladius.dao.UsuarioConeccionDao;
 import com.balkaned.gladius.services.CompaniaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

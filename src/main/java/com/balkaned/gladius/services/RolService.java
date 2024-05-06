@@ -1,8 +1,8 @@
 package com.balkaned.gladius.services;
 
 ;
-import com.balkaned.gladius.beans.Role;
-import com.balkaned.gladius.beans.Rolesxopciones;
+import com.balkaned.gladius.models.Role;
+import com.balkaned.gladius.models.Rolesxopciones;
 
 import java.util.List;
 

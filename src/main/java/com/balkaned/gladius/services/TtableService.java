@@ -1,8 +1,8 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.beans.TTablaCabecera;
-import com.balkaned.gladius.beans.TTablaDetalle;
+import com.balkaned.gladius.models.TTablaCabecera;
+import com.balkaned.gladius.models.TTablaDetalle;
 
 import java.util.List;
 

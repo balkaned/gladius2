@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.beans.*;
+import com.balkaned.gladius.models.*;
 import java.util.List;
 
 public interface VacacionesDao {

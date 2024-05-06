@@ -1,6 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.beans.Afp;
+import com.balkaned.gladius.models.Afp;
 import java.util.List;
 
 public interface AfpService {

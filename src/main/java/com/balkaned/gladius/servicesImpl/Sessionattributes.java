@@ -1,8 +1,9 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.UsuxOpciones;
+import com.balkaned.gladius.models.UsuxOpciones;
 import com.balkaned.gladius.services.UsuxOpcionesService;
 import com.balkaned.gladius.services.UsuxSystemaService;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,9 @@ public class Sessionattributes {
         String rucComp = (String) request.getSession().getAttribute("ruccomp");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
         log.info("idCompania: " + idCompania);
+
+        CapitalizarCadena cap = new CapitalizarCadena();
+        nombreComp=cap.letras(nombreComp);
 
         model.addAttribute("usuario", user);
         model.addAttribute("idusuario", idusuario);

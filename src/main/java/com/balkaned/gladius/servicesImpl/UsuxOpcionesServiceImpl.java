@@ -1,11 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.Empleado;
-import com.balkaned.gladius.beans.UsuxCompania;
-import com.balkaned.gladius.beans.UsuxOpciones;
-import com.balkaned.gladius.dao.UsuxCompaniaDao;
+import com.balkaned.gladius.models.UsuxOpciones;
 import com.balkaned.gladius.dao.UsuxOpcionesDao;
-import com.balkaned.gladius.services.UsuxCompaniaService;
 import com.balkaned.gladius.services.UsuxOpcionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

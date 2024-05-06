@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.beans.CuentaContable;
+import com.balkaned.gladius.models.CuentaContable;
 import com.balkaned.gladius.dao.CuentaContableDao;
 import com.balkaned.gladius.services.CuentasContablesService;
 import org.springframework.beans.factory.annotation.Autowired;
