@@ -1,4 +1,4 @@
-package com.balkaned.gladius;
+package com.balkaned.gladius.controllers;
 
 
 import com.balkaned.gladius.models.*;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-public class IndexController {
+public class LoginController {
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
 
