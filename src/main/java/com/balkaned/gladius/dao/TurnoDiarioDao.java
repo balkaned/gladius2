@@ -32,4 +32,10 @@ public interface TurnoDiarioDao {
 
     public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu);
 
+    public void marcacionesTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu);
+
+    public void eliminaTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu);
+
+    public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu);
+
 }

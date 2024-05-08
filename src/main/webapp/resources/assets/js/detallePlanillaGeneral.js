@@ -377,7 +377,7 @@ function traerDatosReporteResumenPlanilla(){
 <!--    Modal Asistencias -->
 <!-- ===============================================-->
 
-function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
+function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexperiodo){
 
     document.getElementById("idTrabAsis").value=codtra;
     document.getElementById("idTrabAsisHidden").value=codtra;
@@ -393,6 +393,9 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin){
 
     document.getElementById("desfecdia").value=fecfin;
     document.getElementById("iexcodfec").value=fecfin;
+
+    document.getElementById("iexcodpro").value=iexcodpro;
+    document.getElementById("iexperiodo").value=iexperiodo;
 
     $.ajax({
          async: false,
@@ -927,10 +930,12 @@ function verTurnos(){
         var trabAsisHidden = document.getElementById("trabAsisHidden").value;
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
         var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+        var iexcodpro = document.getElementById("iexcodpro").value;
+        var iexperiodo = document.getElementById("iexperiodo").value;
 
         $('#modalLoading').modal('show');
 
-        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden);
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
 
         setTimeout(function() {
         	  $('#modalLoading').modal('hide');
@@ -952,11 +957,13 @@ function programarTurnos(){
         var trabAsisHidden = document.getElementById("trabAsisHidden").value;
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
         var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+        var iexcodpro = document.getElementById("iexcodpro").value;
+        var iexperiodo = document.getElementById("iexperiodo").value;
 
         $('#modalLoading').modal('show');
 
         $.ajax({
-        	 async: true,
+        	 async: false,
         	 url: "programarTurnosAsis",
         	 data: {
         		"fecini": feciniAsisHidden,
@@ -966,6 +973,8 @@ function programarTurnos(){
         	 success: function (data) {
         	 }
         });
+
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
 
         setTimeout(function() {
               $('#modalLoading').modal('hide');
@@ -987,27 +996,132 @@ function calificar(){
         var trabAsisHidden = document.getElementById("trabAsisHidden").value;
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
         var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+        var iexcodpro = document.getElementById("iexcodpro").value;
+        var iexperiodo = document.getElementById("iexperiodo").value;
 
         $('#modalLoading').modal('show');
 
         $.ajax({
-        	 async: true,
-        	 url: "programarTurnosAsis",
+        	 async: false,
+        	 url: "calificarTurnosGeneralAsis",
         	 data: {
         		"fecini": feciniAsisHidden,
         		"fecfin": fecfinAsisHidden,
         		"codtra": idTrabAsisHidden
         		},
         	 success: function (data) {
+
         	 }
         });
 
-        /*setTimeout(function() {
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+        setTimeout(function() {
               $('#modalLoading').modal('hide');
-        }, 6000);*/
+        }, 8000);
 
         return true;
     } else {
         return false;
     }
+}
+
+function borrarTodo(){
+
+    var opcion = confirm("Esta seguro que desea borrar todas las asistencias registradas?");
+
+    if (opcion == true) {
+
+        var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+        var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+        var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+        var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+        var iexcodpro = document.getElementById("iexcodpro").value;
+        var iexperiodo = document.getElementById("iexperiodo").value;
+
+        /*$('#iconspinner').addClass('text-danger');
+        $('#btnFooter').addClass('text-danger');
+        $('#btnFooter').addClass('btn btn-sm btn-phoenix-danger');*/
+
+        $('#modalLoadingBorrar').modal('show');
+
+        $.ajax({
+        	 async: false,
+        	 url: "borrarTodoTurnosGeneralAsis",
+        	 data: {
+        		"fecini": feciniAsisHidden,
+        		"fecfin": fecfinAsisHidden,
+        		"codtra": idTrabAsisHidden
+        		},
+        	 success: function (data) {
+
+        	 }
+        });
+
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+        setTimeout(function() {
+              $('#modalLoadingBorrar').modal('hide');
+        }, 8000);
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function consolidar(){
+
+    var opcion = confirm("Esta seguro que desea consolidar?");
+
+    if (opcion == true) {
+
+        var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+        var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+        var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+        var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+        var iexcodpro = document.getElementById("iexcodpro").value;
+        var iexperiodo = document.getElementById("iexperiodo").value;
+        var iexcorrel = document.getElementById("iexcorrel").value;
+
+        $('#modalLoading').modal('show');
+
+        $.ajax({
+        	 async: false,
+        	 url: "consolidarGeneralAsis",
+        	 data: {
+        		"codtra": idTrabAsisHidden,
+        		"iexcodpro": iexcodpro,
+        		"iexperiodo": iexperiodo,
+        		"iexcorrel": iexcorrel
+        		},
+        	 success: function (data) {
+
+        	 }
+        });
+
+        verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+        setTimeout(function() {
+              $('#modalLoading').modal('hide');
+        }, 8000);
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function reporteAsistencias(){
+    alert("ingrese aqui");
+    var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+    var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+    var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+    var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+    var iexcodpro = document.getElementById("iexcodpro").value;
+    var iexperiodo = document.getElementById("iexperiodo").value;
+    var iexcorrel = document.getElementById("iexcorrel").value;
+
+    document.getElementById("btnReportAsis").href="actualizarValorTrabConcept@"+iexcodtra+"@"+iexcodpro+"@"+iexperiodo+"@"+iexcodcon+"@1@"+iexcodreg+"@"+valorActualizar;
+    document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@${idCom}@@null@null@AsistEmpTra@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null";
 }

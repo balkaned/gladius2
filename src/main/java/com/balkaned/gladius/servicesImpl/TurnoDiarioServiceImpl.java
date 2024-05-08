@@ -9,6 +9,7 @@ import com.balkaned.gladius.services.TurnoDiarioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -57,13 +58,27 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
         return dao.obtenerTurnoDia(codcia, codtra, codfec);
     }
 
-    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu){
-        dao.actualizaTurnoDia(codcia,codtra,codturno,fecdia,desusu);
+    public void actualizaTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu) {
+        dao.actualizaTurnoDia(codcia, codtra, codturno, fecdia, desusu);
     }
-    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
-        dao.calificarTurnoDia(codcia,codtra,fecdia,desusu);
+
+    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+        dao.calificarTurnoDia(codcia, codtra, fecdia, desusu);
     }
-    public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu){
-        dao.programarTurnoDia(codcia,codtra,fecdia,desusu);
+
+    public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+        dao.programarTurnoDia(codcia, codtra, fecdia, desusu);
+    }
+
+    public void marcacionesTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+        dao.marcacionesTurnoDia(codcia, codtra, fecdia, desusu);
+    }
+
+    public void eliminaTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+        dao.eliminaTurnoDia(codcia, codtra, fecdia, desusu);
+    }
+
+    public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu) {
+        dao.consolidaAsistencia(codcia, codpro, codtra, nroper, correl, desusu);
     }
 }

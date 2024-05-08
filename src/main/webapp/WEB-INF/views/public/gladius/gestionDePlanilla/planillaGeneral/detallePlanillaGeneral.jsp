@@ -11,8 +11,6 @@
     <head>
       <jsp:include page="../../../links.jsp"></jsp:include>
       <script src="resources/assets/js/detallePlanillaGeneral.js"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     </head>
 
     <style>
@@ -77,7 +75,7 @@
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>5. Procesar</a>
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>5. Bancos</a>
-                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>0. Borrar</a>
+                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>0. Borrar todo</a>
                         <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('35')" href="#"><span class="fas fa-magnifying-glass me-2"></span>Buscar todo</a>
                         <!--<a class="btn  btn-sm btn-danger mt-1" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>-->
                       </div>
@@ -152,7 +150,7 @@
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
                                     <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.feciniFormat}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
+                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrab('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
@@ -711,6 +709,11 @@
                       <input id="accion" name="accion" type="hidden" value="" />
                       <input id="desfecdia" name="desfecdia" type="hidden" value="" />
                       <input id="iexcodfec" name="iexcodfec" type="hidden" value="" />
+                      <input id="iexcodpro" name="iexcodpro" type="hidden" value="" />
+                      <input id="iexperiodo" name="iexperiodo" type="hidden" value="" />
+                      <input id="iexcorrel" name="iexcorrel" type="hidden" value="1" />
+                      <input id="iexcodtra" name="iexcodtra" type="hidden" value="" />
+                      <input id="iexcodcia" name="iexcodcia" type="hidden" value="1" />
 
                       <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                           <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
@@ -749,13 +752,13 @@
                       </div>
                       <div class="row g-4 mt-0">
                             <div class="col-auto">
-                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Ver turno</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>P. Turnos</a>
+                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Ver turnos</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('4');"  ><span class="fas fa-gauge me-2"></span>Ver marcas</a>
-                                <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm_asis('2');"  ><span class="fas fa-trash me-2"></span>Borrar T.</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm_asis('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" ><span class="fas fa-download me-2"></span>Reporte</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick=""  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
+                                <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
+                                <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
                             </div>
                       </div>
                       <div class="row g-3 bg-100 mt-0">
@@ -1096,20 +1099,19 @@
     </div>
 
     <div id="modalLoading" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-          <div class="modal-content bg-100">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content bg-100 rounded-2 border border-300">
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando</h5>
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
                    <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
-                <div class="modal-body p-4 bg-300 bg-opacity-50">
-
+                <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <h4>Transacción en proceso</h4>
-                      <p class="fs--1">Se esta procesando la transacción espere unos minutos hasta que haya finalizado la tarea...</p>
+                      <h4>Actualizando calendario...</h4>
+                      <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">
-                          <div class="spinner-border text-primary" role="status">
+                          <div id="iconspinner" class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
                           </div>
                       </div>
@@ -1117,7 +1119,35 @@
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
                     <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
+                    <button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
+                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
+                </div>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div id="modalLoadingBorrar" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content bg-100 rounded-2 border border-300">
+            <form class="needs-validation" method="POST" action="" novalidate >
+                <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
+                   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+                </div>
+                <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+                  <div class="mt-0 mb-0">
+                      <h4>Actualizando calendario...</h4>
+                      <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
+                      <div class="col-12 text-center">
+                          <div id="iconspinner" class="spinner-border text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+                    <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
+                    <button id="btnFooter" class="btn btn-sm btn-phoenix-danger text-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
                 </div>
             </form>

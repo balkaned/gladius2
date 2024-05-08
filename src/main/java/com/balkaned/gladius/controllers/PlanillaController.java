@@ -1398,9 +1398,8 @@ public class PlanillaController {
 
         Date d1 = null;
         Date d2 = null;
-        Date d3 = null;
 
-        if (v_fecini!= null && v_fecfin!= null) {
+        if (v_fecini != null && v_fecfin != null) {
             d1 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
             d2 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
 
@@ -1422,7 +1421,7 @@ public class PlanillaController {
                 do {
                     log.info("fecha index =" + sdf.format(c.getTime()));
 
-                    turnoDiarioService.programarTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+                    turnoDiarioService.programarTurnoDia(idCompania, Integer.valueOf(codtra), sdf.format(c.getTime()), user);
                     c.add(Calendar.DATE, 1);
                 } while (c2.compareTo(c) >= 0);
             }
@@ -1436,7 +1435,191 @@ public class PlanillaController {
         return null;
     }
 
-    public int daysBetween(Date d1, Date d2){
-        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    public int daysBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    @RequestMapping(value = "/calificarTurnosGeneralAsis", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView calificarTurnosGeneralAsis(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/calificarTurnosGeneralAsis");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String v_fecini = request.getParameter("fecini");
+        String v_fecfin = request.getParameter("fecfin");
+        String codtra = request.getParameter("codtra");
+
+        log.info("v_fecini: " + v_fecini);
+        log.info("v_fecfin: " + v_fecfin);
+        log.info("codtra: " + codtra);
+        log.info("user: " + user);
+
+        // marcasTurnodia
+        Date d1 = null;
+        Date d2 = null;
+
+        if (v_fecini != null && v_fecfin != null) {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
+
+            int days;
+            days = daysBetween(d1, d2) + 1;
+
+            if (days >= 1 && days <= 60) {
+                log.info("Numero de dias =" + days);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(d2);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(d1);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+                do {
+                    log.info("fecha index =" + sdf.format(c.getTime()));
+                    //daoturno.marcacionesTurnoDia(v_codcia, Empleado.getIexcodtra(), sdf.format(c.getTime()), (String) session.getAttribute("desusu"));
+                    turnoDiarioService.marcacionesTurnoDia(idCompania, Integer.valueOf(codtra), sdf.format(c.getTime()), user);
+
+                    c.add(Calendar.DATE, 1);
+                } while (c2.compareTo(c) >= 0);
+            }
+        }
+
+        // calificarTurnoDia
+        Date d4 = null;
+        Date d5 = null;
+
+        if (v_fecini != null && v_fecfin != null) {
+            d4 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
+            d5 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
+
+            int days;
+            days = daysBetween(d4, d5) + 1;
+
+            if (days >= 1 && days <= 60) {
+
+                log.info("Numero de dias =" + days);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(d5);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(d4);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+                do {
+                    log.info("fecha index =" + sdf.format(c.getTime()));
+
+                    turnoDiarioService.calificarTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+
+                    c.add(Calendar.DATE, 1);
+                } while (c2.compareTo(c) >= 0);
+            }
+        }
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/borrarTodoTurnosGeneralAsis", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView borrarTodoTurnosGeneralAsis(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/borrarTodoTurnosGeneralAsis");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String v_fecini = request.getParameter("fecini");
+        String v_fecfin = request.getParameter("fecfin");
+        String codtra = request.getParameter("codtra");
+
+        log.info("v_fecini: " + v_fecini);
+        log.info("v_fecfin: " + v_fecfin);
+        log.info("codtra: " + codtra);
+        log.info("user: " + user);
+
+        Date d1 = null;
+        Date d2 = null;
+
+        if (v_fecini!= null && v_fecfin!= null)  {
+            d1 =new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
+            d2 =new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
+
+            int days;
+            days = daysBetween(d1,d2)+1;
+
+            if (days>=1  &&  days <=60){
+                log.info("Numero de Dias ="+days);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(d2);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(d1);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+                do{
+                    log.info("fecha index ="+sdf.format(c.getTime()));
+
+                    turnoDiarioService.eliminaTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+
+                    c.add(Calendar.DATE, 1);
+                }while(c2.compareTo(c)>=0 );
+            }
+        }
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/consolidarGeneralAsis", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView consolidarGeneralAsis(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/consolidarGeneralAsis");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        Integer v_idproceso = Integer.valueOf(request.getParameter("iexcodpro"));
+        String v_periodo = request.getParameter("iexperiodo");
+        String iexcorrel =request.getParameter("iexcorrel");
+
+        log.info("codtra: " + codtra);
+        log.info("v_idproceso: " + v_idproceso);
+        log.info("v_periodo: " + v_periodo);
+        log.info("iexcorrel: " + iexcorrel);
+
+        //daoturno.consolidaAsistencia(v_codcia, Integer.parseInt(v_idproceso), Integer.parseInt(iexcodtra), v_idperiodo, Integer.parseInt(iexcorrel), "");
+        turnoDiarioService.consolidaAsistencia(idCompania,v_idproceso,codtra,v_periodo, Integer.valueOf(iexcorrel),"");
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
     }
 }

@@ -503,4 +503,41 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codtra,
                 desusu);
     }
+
+    public void marcacionesTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+
+        template.update(" call pl_procesa_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ",
+
+                codcia,
+                fecdia,
+                codtra,
+                desusu);
+    }
+
+    public void eliminaTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+
+        template.update("  delete from iexturnodia where iexcodcia=? and iexcodtra=? and iexcodfec=to_char(to_date(?,'dd/mm/yyyy'),'yyyymmdd')  ",
+
+                codcia,
+                codtra,
+                fecdia);
+
+        template.update("  delete from iexturno_marks where iexcodcia=? and iexcodtra=? and iexcodfecha=to_char(to_date(?,'dd/mm/yyyy'),'yyyymmdd')  ",
+
+                codcia,
+                codtra,
+                fecdia);
+    }
+
+    public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu) {
+
+        template.update(" call pl_exe_cons_tiempos(?,?,?,?,?,?) ",
+
+                codcia,
+                codpro,
+                nroper,
+                codtra,
+                correl,
+                desusu);
+    }
 }
