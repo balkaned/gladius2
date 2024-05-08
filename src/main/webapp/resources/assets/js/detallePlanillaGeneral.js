@@ -1121,7 +1121,18 @@ function reporteAsistencias(){
     var iexcodpro = document.getElementById("iexcodpro").value;
     var iexperiodo = document.getElementById("iexperiodo").value;
     var iexcorrel = document.getElementById("iexcorrel").value;
+    var iexcodcia = document.getElementById("codcia").value;
 
-    document.getElementById("btnReportAsis").href="actualizarValorTrabConcept@"+iexcodtra+"@"+iexcodpro+"@"+iexperiodo+"@"+iexcodcon+"@1@"+iexcodreg+"@"+valorActualizar;
-    document.getElementById("btnReportAsis").href="  AWSorFTP_flgsource@verReportePDF@${idCom}@@null@null@AsistEmpTra@4UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CODBANK=${xbankproper.codbank}UP_CORREL=1@null@null@null";
+    var feciniProcesada=feciniAsisHidden.replaceAll("/", '-');
+    var fecfinProcesada=fecfinAsisHidden.replaceAll("/", '-');
+
+    console.log("iexcodcia: "+iexcodcia);
+    console.log("iexcodpro: "+iexcodpro);
+    console.log("iexperiodo: "+iexperiodo);
+    console.log("iexcorrel: "+iexcorrel);
+    console.log("feciniProcesada: "+feciniProcesada);
+    console.log("fecfinProcesada: "+fecfinProcesada);
+
+    var params="5UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel+"UP_FECINI="+feciniProcesada+"UP_FECFIN="+fecfinProcesada;
+    document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@"+iexcodcia+"@"+idTrabAsisHidden+"@null@null@AsistEmpTra@"+params+"@null@null@null";
 }

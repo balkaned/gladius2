@@ -84,14 +84,15 @@
               </div>
 
               <form name="frmplaserv" id="frmplaserv" action="procesarPlanilla" method="POST" >
-                  <input type="hidden" name="iexcodreg" id="iexcodreg" value="${iexcodreg}">
-                  <input type="hidden" name="accion" id="accion" value="">
-                  <input type="hidden" name="grppla" id="grppla" value="${xproplaper.desgrppla}">
-                  <input type="hidden" name="tipfile" id="tipfile" value="">
-                  <input type="hidden" name="iexcodpro" id="iexcodpro" value="${iexcodpro}">
-                  <input type="hidden" name="iexperiodo" id="iexperiodo" value="${iexperiodo}">
-                  <input type="hidden" name="iexcodtra" id="iexcodtra" value="-1">
-                  <input type="hidden" name="iexcorrel" id="iexcorrel" value="1">
+                  <input type="hidden" name="iexcodreg" id="iexcodreg" value="${iexcodreg}" />
+                  <input type="hidden" name="accion" id="accion" value="" />
+                  <input type="hidden" name="grppla" id="grppla" value="${xproplaper.desgrppla}" />
+                  <input type="hidden" name="tipfile" id="tipfile" value="" />
+                  <input type="hidden" name="iexcodpro" id="iexcodpro" value="${iexcodpro}" />
+                  <input type="hidden" name="iexperiodo" id="iexperiodo" value="${iexperiodo}" />
+                  <input type="hidden" name="iexcodtra" id="iexcodtra" value="-1" />
+                  <input type="hidden" name="iexcorrel" id="iexcorrel" value="1" />
+                  <input type="hidden" name="codcia" id="codcia" value="${idCom}" />
 
                   <c:if test="${requestScope.xproplaper.desgrppla=='PLA' || requestScope.xproplaper.desgrppla=='ADE'}">
                       <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5, "pagination":true }' >
@@ -713,7 +714,7 @@
                       <input id="iexperiodo" name="iexperiodo" type="hidden" value="" />
                       <input id="iexcorrel" name="iexcorrel" type="hidden" value="1" />
                       <input id="iexcodtra" name="iexcodtra" type="hidden" value="" />
-                      <input id="iexcodcia" name="iexcodcia" type="hidden" value="1" />
+                      <input id="iexcodcia" name="iexcodcia" type="hidden" value="" />
 
                       <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                           <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>

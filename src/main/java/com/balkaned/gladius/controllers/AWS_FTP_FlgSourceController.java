@@ -684,6 +684,22 @@ public class AWS_FTP_FlgSourceController {
                         parametros.put("SUBREPORT_DIR", "");
                     }
 
+                    //Obtiene subReport asistencias.jasper para AsistEmpTra
+                    if(nombreJasper.equals("AsistEmpTra")){
+                        log.info("Sub report AsistEmpTra");
+                        InputStream inputStreamAsist = null;
+
+                        AmazonS3 s18 = null;
+                        S3Object o18 = null;
+                        s18 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/asistencias.jasper";
+                        o18 = s18.getObject(bucket_name, fileName);
+                        inputStreamAsist = o18.getObjectContent();
+                        log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+
+                        parametros.put("SUBREPORT_DIR", inputStreamAsist);
+                    }
+
                     log.info("Ruta reporte:" + path);
                     Connection conn = template.getDataSource().getConnection();
                     OutputStream out = response.getOutputStream();
