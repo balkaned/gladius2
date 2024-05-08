@@ -1113,7 +1113,6 @@ function consolidar(){
 }
 
 function reporteAsistencias(){
-    alert("ingrese aqui");
     var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
     var trabAsisHidden = document.getElementById("trabAsisHidden").value;
     var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;

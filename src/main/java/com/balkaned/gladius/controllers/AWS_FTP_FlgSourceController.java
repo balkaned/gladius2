@@ -697,7 +697,7 @@ public class AWS_FTP_FlgSourceController {
                         inputStreamAsist = o18.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
 
-                        parametros.put("SUBREPORT_DIR", inputStreamAsist);
+                        //parametros.put("SUBREPORT_DIR", inputStreamAsist);
                     }
 
                     log.info("Ruta reporte:" + path);
