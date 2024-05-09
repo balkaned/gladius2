@@ -546,8 +546,10 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                                   </c:forEach>
                                </select>*/
 
-                       opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
-                       opt2 += "<a id='popoverAutoMark"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
+                       //opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
+                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-white bg-success opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
+                       opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-white bg-danger opacity-75 ms-1 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300 rounded-circle' title='Auto-marcado' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>A</a>";
+                       //opt2 += "<a id='popoverAutoMark"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 mt-1 pb-1 fs--1 fw-semi-bold border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''><span id='dota"+i+"' class='text-primary fs-1 me-1'>&#x2022;</span>Automarcado</a>";
 
                       // opt2 += "<a id='popover1' data-placement='bottom' data-toggle='popover' data-container='body' data-placement='left' type='button' data-html='true' href='#'>popover</a>";
                        /*"<td>"+
@@ -581,16 +583,16 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                      if(b % 7 == 0){
                          $('#spanDiaCalendar'+y).addClass('text-warning');
-                         $('#popoverVer'+y).addClass('text-warning');
-                         $('#popoverAutoMark'+y).addClass('text-warning');
-                         $('#dotv'+y).addClass('text-warning');
-                         $('#dota'+y).addClass('text-warning');
+                         $('#popoverVer'+y).addClass('bg-warning');
+                         $('#popoverAutoMark'+y).addClass('bg-warning');
+                         /*$('#dotv'+y).addClass('text-warning');
+                         $('#dota'+y).addClass('text-warning');*/
 
                          $('#spanDiaCalendar'+a).addClass('text-warning');
-                         $('#popoverVer'+a).addClass('text-warning');
-                         $('#popoverAutoMark'+a).addClass('text-warning');
-                         $('#dotv'+a).addClass('text-warning');
-                         $('#dota'+a).addClass('text-warning');
+                         $('#popoverVer'+a).addClass('bg-warning');
+                         $('#popoverAutoMark'+a).addClass('bg-warning');
+                         /*$('#dotv'+a).addClass('text-warning');
+                         $('#dota'+a).addClass('text-warning');*/
                      }
 
                      b++;
@@ -688,7 +690,7 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
              },
          success: function (data) {
 
-            var html="<div class='col-12'>"+
+            var html="<div  class='bg-soft pt-3 pe-3 pb-3 ps-3 col-12'>"+
                         "<h6 class='text-500'>Datos de turno</h6>"+
                         "<form class='row g-1 mb-0 needs-validation' method='POST' action='' novalidate >"+
                             "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
@@ -787,7 +789,7 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                }
             })
 
-            $('.popover').addClass('bg-soft');
+
          }
     });
 }

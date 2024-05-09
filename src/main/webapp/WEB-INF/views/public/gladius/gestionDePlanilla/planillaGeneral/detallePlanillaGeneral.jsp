@@ -17,13 +17,15 @@
         .popover {
            /*width: 470px !important;*/
            max-width:325px !important;
-           height: 440px !important;
+           height: 420px !important;
            overflow-y: auto;
+           border-radius:12px 0px 0px 12px;
            /*overflow-x: none;*/
+           /*background-color: #F5F7FA;*/
         }
 
         .popover-body{
-            overflow-y: auto;
+            padding:0px;
         }
     </style>
 
