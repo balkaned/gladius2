@@ -16,10 +16,14 @@
     <style>
         .popover {
            /*width: 470px !important;*/
-           max-width:470px !important;
-           height: 400px !important;
+           max-width:325px !important;
+           height: 440px !important;
            overflow-y: auto;
            /*overflow-x: none;*/
+        }
+
+        .popover-body{
+            overflow-y: auto;
         }
     </style>
 
@@ -746,19 +750,17 @@
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
                             <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
                           </div>
-                          <div class="col-sm-6 col-md-3">
-                              <a class="btn btn-success btn-sm mt-5" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
-                          </div>
                       </div>
                       <div class="row g-4 mt-0">
                             <div class="col-auto">
-                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Ver turnos</a>
+                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Traer turnos</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star me-2"></span>Calificar</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick=""  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
                                 <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
                                 <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
+                                <a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
                             </div>
                       </div>
                       <div class="row g-3 bg-100 mt-0">

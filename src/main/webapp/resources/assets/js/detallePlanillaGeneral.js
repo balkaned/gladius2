@@ -692,27 +692,27 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                         "<h6 class='text-500'>Datos de turno</h6>"+
                         "<form class='row g-1 mb-0 needs-validation' method='POST' action='' novalidate >"+
                             "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
-                            "<div class='col-sm-6 col-md-6'>"+
+                            "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
                                 "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec+"]</div>"+
                                 "<input id='ipHiddenDesfecdia"+ind+"' type='hidden' value="+data.desfecdia+">"+
                                 "<input id='ipHiddeniexcodfec"+ind+"' type='hidden' value="+data.iexcodfec+">"+
                             "</div>"+
-                            "<div class='col-sm-6 col-md-6'>"+
+                            "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>";
 
                                 traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.desfecdia,data.iexcodfec);
-                                //console.log("ind----: "+ind);
+
                                 var opcionPopoverA = sessionStorage.getItem("opcionPopoverA");
 
                                 html += opcionPopoverA;
 
                     html += "</div>"+
-                            "<div class='col-sm-6 col-md-6'>"+
+                            "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>"+
                                 "<div class='fs--1 text-600'>"+data.iexiniturno+" - "+data.iexfinturno+"</div>"+
                             "</div>"+
-                            "<div class='col-sm-6 col-md-6'>"+
+                            "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Asistencia: </div>"+
                                 "<div class='fs--1 text-600'>"+data.iexiniasist+" - "+data.iexfinasist+"</div>"+
                             "</div>"+
@@ -766,14 +766,13 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                                 "<button class='btn-close fs--2' type='button'' data-bs-dismiss='alert'' aria-label='Close'></button>"+
                             "</div>";
 
-                    html += "<div class='row col-12 mt-2'>"+
+                    html += "<div class='row col-12 mt-3 ps-0'>"+
                                 "<div class='col-auto pe-0' id='grabarClick"+ind+"' >"+
-                                    "<a class='btn btn-sm btn-primary mt-2 ms-1'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
-                                    //"<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' href='#'><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
-                                    "<a class='btn btn-sm btn-phoenix-secondary mt-2 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
+                                    "<a class='btn btn-sm btn-primary mt-1 ms-0'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
                                 "</div>"+
                                 "<div class='col-auto ps-0'>"+
-                                    "<a class='btn btn-sm btn-phoenix-primary mt-2 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-primary mt-1 ms-3' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
                                 "</div>"+
                             "</div>"+
                         "</form>"+
