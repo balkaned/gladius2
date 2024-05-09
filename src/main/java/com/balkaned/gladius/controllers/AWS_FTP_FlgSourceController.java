@@ -685,7 +685,7 @@ public class AWS_FTP_FlgSourceController {
                     }
 
                     //Obtiene subReport asistencias.jasper para AsistEmpTra
-                    if(nombreJasper.equals("AsistEmpTra")){
+                    /*if(nombreJasper.equals("AsistEmpTra")){
                         log.info("Sub report AsistEmpTra");
                         InputStream inputStreamAsist = null;
 
@@ -697,8 +697,8 @@ public class AWS_FTP_FlgSourceController {
                         inputStreamAsist = o18.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
 
-                        //parametros.put("SUBREPORT_DIR", inputStreamAsist);
-                    }
+                        parametros.put("SUBREPORT_DIR", "");
+                    }*/
 
                     log.info("Ruta reporte:" + path);
                     Connection conn = template.getDataSource().getConnection();

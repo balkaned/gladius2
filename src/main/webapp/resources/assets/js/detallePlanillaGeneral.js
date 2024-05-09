@@ -1132,6 +1132,9 @@ function reporteAsistencias(){
     console.log("feciniProcesada: "+feciniProcesada);
     console.log("fecfinProcesada: "+fecfinProcesada);
 
+    //var nombrejasper="AsistEmpTra";
+    var nombrejasper="asistencia";
     var params="5UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel+"UP_FECINI="+feciniProcesada+"UP_FECFIN="+fecfinProcesada;
-    document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@"+iexcodcia+"@"+idTrabAsisHidden+"@null@null@AsistEmpTra@"+params+"@null@null@null";
+
+    document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@"+iexcodcia+"@"+idTrabAsisHidden+"@null@null@"+nombrejasper+"@"+params+"@null@null@null";
 }
