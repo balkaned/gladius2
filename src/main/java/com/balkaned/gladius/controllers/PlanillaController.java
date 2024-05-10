@@ -294,7 +294,10 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String grupopla = request.getParameter("grppla");
 
+        log.info("accion: "+accion);
+
         if (accion.equals("INIPRO")) {
+            log.info("Ingreso a INIPRO...");
             planillaService.iniPlaProper(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, grupopla, user);
         }
 
@@ -303,6 +306,7 @@ public class PlanillaController {
         }
 
         if (accion.equals("EXEPRO")) {
+            log.info("Ingreso a EXEPRO...");
             planillaService.iniPlaProper_proc(idCompania, iexcodpro, iexperiodo, -1, 1, grupopla, user);
 
             // Obtiene la lista de trabajadores

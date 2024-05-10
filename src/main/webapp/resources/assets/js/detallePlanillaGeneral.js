@@ -4,8 +4,14 @@ function enviaForm(variable){
     if (opcion == true) {
         if(variable==2){
             document.getElementById("accion").value="INIPRO";
+            $("#h5modalLoadinglabel").text("Iniciando planilla");
+            $("#spanbtnModalLoading").text("Iniciando");
+            $('#modalLoading').modal('show');
         }else if(variable==3){
             document.getElementById("accion").value="EXEPRO";
+            $("#h5modalLoadinglabel").text("Procesando planilla");
+            $("#spanbtnModalLoading").text("Procesando");
+            $('#modalLoading').modal('show');
         }else if(variable==4){
             document.getElementById("accion").value="VERBOLTOT";
         }else if(variable==5){
@@ -13,6 +19,9 @@ function enviaForm(variable){
             document.getElementById("tipfile").value="xls";
         }else if(variable==6){
             document.getElementById("accion").value="DELPRO";
+            $("#h5modalLoadinglabelb").text("Borrando toda la planilla");
+            $("#spanbtnModalLoadingb").text("Borrando");
+            $('#modalLoadingBorrar').modal('show');
         }else if(variable==7){
             document.getElementById("accion").value="CIEPRO";
         }else if(variable==8){
@@ -61,6 +70,8 @@ function enviaForm(variable){
         }
 
         document.getElementById("frmplaserv").submit();
+
+        return true;
     } else {
         return false;
     }
@@ -1292,6 +1303,8 @@ function traerTurnos(){
         var iexcodpro = document.getElementById("iexcodpro").value;
         var iexperiodo = document.getElementById("iexperiodo").value;
 
+        $("#h5modalLoadinglabel").text("Obteniendo turnos");
+        $("#spanbtnModalLoading").text("Actualizando calendario");
         $('#modalLoading').modal('show');
 
         verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);

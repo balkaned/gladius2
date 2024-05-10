@@ -21,7 +21,6 @@
            overflow-y: auto;
            border-radius:12px 0px 0px 12px;
            /*overflow-x: none;*/
-           /*background-color: #F5F7FA;*/
         }
 
         .popover-body{
@@ -332,7 +331,7 @@
                   </c:if>
 
                   <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-primary btn-sm" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
+                      <a class="btn btn-phoenix-warning btn-sm" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
                       <a class="btn btn-phoenix-secondary btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-0 mt-1">
@@ -1112,7 +1111,7 @@
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
+                      <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">
                           <div id="iconspinner" class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
@@ -1132,12 +1131,12 @@
           <div class="modal-content bg-100 rounded-2 border border-300">
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Borrando datos</h5>
+                   <h5 id="h5modalLoadinglabelb" class="modal-title text-1000 fs-2 lh-sm">Borrando datos</h5>
                    <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
+                      <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">
                           <div id="iconspinner" class="spinner-border text-danger" role="status">
                             <span class="visually-hidden">Loading...</span>
@@ -1146,7 +1145,7 @@
                   </div>
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-                    <button id="btnFooter" class="btn btn-sm btn-phoenix-danger text-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Actualizando calendario</span></button>
+                    <button id="btnFooter" class="btn btn-sm btn-phoenix-danger text-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoadingb" class="ms-2">Actualizando calendario</span></button>
                 </div>
             </form>
           </div>
