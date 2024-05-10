@@ -1102,17 +1102,16 @@
       </div>
     </div>
 
-    <div id="modalLoading" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-100 rounded-2 border border-300">
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
+                   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
                    <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <h4>Actualizando calendario...</h4>
                       <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">
                           <div id="iconspinner" class="spinner-border text-primary" role="status">
@@ -1122,25 +1121,22 @@
                   </div>
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-                    <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
-                    <button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
-                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
+                    <button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Procesando transacción</span></button>
                 </div>
             </form>
           </div>
       </div>
     </div>
-    <div id="modalLoadingBorrar" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div id="modalLoadingBorrar" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-100 rounded-2 border border-300">
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Borrando datos</h5>
                    <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <h4>Actualizando calendario...</h4>
                       <p class="fs--1">Se esta procesando la transacción y actualizando el calendario espere unos minutos hasta que haya finalizado la tarea...</p>
                       <div class="col-12 text-center">
                           <div id="iconspinner" class="spinner-border text-danger" role="status">
@@ -1150,25 +1146,22 @@
                   </div>
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-                    <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
-                    <button id="btnFooter" class="btn btn-sm btn-phoenix-danger text-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Procesando transacción</span></button>
-                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
+                    <button id="btnFooter" class="btn btn-sm btn-phoenix-danger text-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Actualizando calendario</span></button>
                 </div>
             </form>
           </div>
       </div>
     </div>
-    <div id="modalLoadingIni" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div id="modalLoadingIni" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-100 rounded-2 border border-300">
             <form class="needs-validation" method="POST" action="" novalidate >
                 <div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Procesando datos</h5>
+                   <h5 class="modal-title text-1000 fs-2 lh-sm">Inicializando calendario</h5>
                    <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
                 </div>
                 <div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
                   <div class="mt-0 mb-0">
-                      <h4>Inicializando calendario...</h4>
                       <p class="fs--1">Espere unos segundos el sistema esta obteniendo la data de asistencias, turnos y marcaciones...</p>
                       <div class="col-12 text-center">
                           <div id="iconspinner" class="spinner-border text-primary" role="status">
@@ -1178,9 +1171,7 @@
                   </div>
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-                    <!--<a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>-->
-                    <button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Inicializando</span></button>
-                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>-->
+                    <button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Inicializando</span></button>
                 </div>
             </form>
           </div>

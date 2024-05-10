@@ -667,9 +667,8 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                            $('#spanfecdia'+i).addClass('text-white');
                            $('#spandesiniturno'+i).addClass('text-white');
                         }else if(data[i].iexindfalta==1){
-                            //bg-opacity-85 bg-gradient bg-danger
                            $('#background'+i).removeClass('bg-opacity-50 bg-300');
-                           $('#background'+i).addClass('bg-opacity-85 bg-gradient bg-danger');
+                           $('#background'+i).addClass('bg-opacity-85 bg-gradient bg-danger rounded-3');
 
                            $('#spanDiaCalendar'+i).addClass('text-white');
                            $('#spanturno'+i).addClass('text-white');
@@ -1269,6 +1268,8 @@ function verTurnos(){
         var iexcodpro = document.getElementById("iexcodpro").value;
         var iexperiodo = document.getElementById("iexperiodo").value;
 
+        $("#h5modalLoadinglabel").text("Obteniendo turnos");
+        $("#spanbtnModalLoading").text("Actualizando calendario");
         $('#modalLoading').modal('show');
 
         verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
@@ -1313,6 +1314,8 @@ function programarTurnos(){
         var iexcodpro = document.getElementById("iexcodpro").value;
         var iexperiodo = document.getElementById("iexperiodo").value;
 
+        $("#h5modalLoadinglabel").text("Programando los turnos");
+        $("#spanbtnModalLoading").text("Actualizando calendario");
         $('#modalLoading').modal('show');
 
         $.ajax({
@@ -1352,6 +1355,8 @@ function calificar(){
         var iexcodpro = document.getElementById("iexcodpro").value;
         var iexperiodo = document.getElementById("iexperiodo").value;
 
+        $("#h5modalLoadinglabel").text("Calificando todas las asistencias");
+        $("#spanbtnModalLoading").text("Actualizando calendario");
         $('#modalLoading').modal('show');
 
         $.ajax({
@@ -1437,6 +1442,8 @@ function consolidar(){
         var iexperiodo = document.getElementById("iexperiodo").value;
         var iexcorrel = document.getElementById("iexcorrel").value;
 
+        $("#h5modalLoadinglabel").text("Consolidando");
+        $("#spanbtnModalLoading").text("Actualizando calendario");
         $('#modalLoading').modal('show');
 
         $.ajax({
