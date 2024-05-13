@@ -92,7 +92,7 @@
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary disabled" href="verDataSueldoVarBack@${idTrab}@${codpro}@${nroper}">Cancel</a>
+                                                    <a class="btn btn-phoenix-primary" href="verDataSueldoVarBack@${idTrab}@${codpro}@${nroper}">Cancel</a>
                                                   </div>
                                                   <div class="col-auto">
                                                     <button class="btn btn-primary disabled" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar concepto</button>

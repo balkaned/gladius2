@@ -7,6 +7,11 @@
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script>
+    function subirImagen(){
+        $('#modalLoading').modal('show');
+    }
+</script>
 
     <div class="col-md-5 col-lg-5 col-xl-4">
         <div class="sticky-leads-sidebar">
@@ -88,7 +93,7 @@
           <h5 class="modal-title text-1000 fs-2 lh-sm">Información de contacto</h5>
           <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
         </div>
-        <div class="modal-body pt-4 pb-2 px-4">
+        <div class="modal-body bg-soft pt-4 pb-2 px-4">
             <div class="ps-3" style="font-size:13px;">
               <div class="mb-2">
                 <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-envelope-alt">  </span>
@@ -133,7 +138,7 @@
               </div>
             </div>
         </div>
-        <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+        <div class="modal-footer bg-soft d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <button class="btn btn-sm btn-primary px-9 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
       </form>
@@ -148,7 +153,7 @@
           <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de trabajador</h5>
           <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--0"> 				</span></button>
         </div>
-        <div class="modal-body pt-4 pb-2 px-4">
+        <div class="modal-body bg-soft pt-4 pb-2 px-4">
             <div class="col-12 col-md-12">
               <form method="post"
               action="AWSorFTP_flgsource_MultipartUpload@subirFotoEmpl@${idComp}@${idTrab}@null"
@@ -161,17 +166,43 @@
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-phoenix-secondary btn-sm justify-content-end me-2 col-7" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
+                        <button class="btn btn-primary btn-sm col-5" onclick="subirImagen();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
                     </div>
                   </div>
               </form>
             </div>
 
         </div>
-        <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+        <div class="modal-footer bg-soft d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
-          <button class="btn btn-sm btn-primary px-9 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+          <button class="btn btn-sm btn-phoenix-secondary px-9 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
     </div>
+  </div>
+</div>
+
+<div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content bg-100 rounded-2 border border-300">
+		<form class="needs-validation" method="POST" action="" novalidate >
+			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Subiendo imagen a la nube</h5>
+			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+			</div>
+			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+			  <div class="mt-0 mb-0">
+				  <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
+				  <div class="col-12 text-center">
+					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+						<span class="visually-hidden">Loading...</span>
+					  </div>
+				  </div>
+			  </div>
+			</div>
+			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+				<button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Subiendo imagen</span></button>
+			</div>
+		</form>
+	  </div>
   </div>
 </div>

@@ -27,7 +27,11 @@
         if (accionField && fileField) {
             accionField.value = tipo;
             fileField.value = flg;
-            document.getElementById("frmsunatfile").submit();
+
+            $('#modalLoading').modal('show');
+            setTimeout(function() {
+            	  document.getElementById("frmsunatfile").submit();
+            }, 5000);
         } else {
             console.error("Error: No se encontraron los elementos HTML necesarios.");
         }
@@ -178,4 +182,31 @@
 
 <jsp:include page="../../../customize.jsp"></jsp:include>
 </body>
+
+<!-- Modal Loading-->
+<div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content bg-100 rounded-2 border border-300">
+		<form class="needs-validation" method="POST" action="" novalidate >
+			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Generando y actualizando data para descarga</h5>
+			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+			</div>
+			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+			  <div class="mt-0 mb-0">
+				  <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
+				  <div class="col-12 text-center">
+					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+						<span class="visually-hidden">Loading...</span>
+					  </div>
+				  </div>
+			  </div>
+			</div>
+			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+				<button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Procesando transacción</span></button>
+			</div>
+		</form>
+	  </div>
+  </div>
+</div>
 </html>

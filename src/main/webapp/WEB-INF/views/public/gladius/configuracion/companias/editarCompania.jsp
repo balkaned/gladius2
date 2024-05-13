@@ -20,6 +20,10 @@
               $("#alerts").hide(6000);
           }, 3000);
       }
+
+      function subirimagen(){
+        $('#modalLoading').modal('show');
+      }
   </script>
 
 
@@ -63,7 +67,7 @@
                                        <input type="hidden"  name="idimg" value="${idCia}" >
                                        <input type="file" name="uploadFile" class="form-control"/>
 
-                                       <button class="btn btn-phoenix-secondary btn-sm mt-3" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
+                                       <button class="btn btn-phoenix-secondary btn-sm mt-3" onclick="subirimagen();" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
                                  </form>
                             </div>
                        </div>
@@ -233,15 +237,15 @@
                                    </tr>
                                    <tr>
                                        <td>
-                                           <div class="mt-3 border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                           <div class="mt-3 " id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                                <div class="table-responsive scrollbar">
                                                     <table class="table table-sm fs--1 mb-0">
                                                       <tbody class="list" id="customer-order-table-body">
                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
-                                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                                            <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
                                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaFij.iexcodcon}</span></td>
                                                               <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
-                                                              <td><a href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
+                                                              <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                       </tbody>
@@ -250,15 +254,15 @@
                                            </div>
                                        </td>
                                        <td class="ps-3">
-                                           <div class="mt-3 border-top border-bottom border-200" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                           <div class="mt-3 " id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                               <div class="table-responsive scrollbar">
                                                    <table class="table table-sm fs--1 mb-0">
                                                      <tbody class="list" id="customer-order-table-body">
                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
-                                                           <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                                           <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaVar.iexcodcon}</span></td>
                                                              <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
-                                                             <td><a href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
+                                                             <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
                                                            </tr>
                                                        </c:forEach>
                                                      </tbody>
@@ -282,4 +286,30 @@
     <!-- ===============================================-->
     <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
+
+  <div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+  	  <div class="modal-content bg-100 rounded-2 border border-300">
+  		<form class="needs-validation" method="POST" action="" novalidate >
+  			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Subiendo imagen a la nube</h5>
+  			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+  			</div>
+  			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+  			  <div class="mt-0 mb-0">
+  				  <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
+  				  <div class="col-12 text-center">
+  					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+  						<span class="visually-hidden">Loading...</span>
+  					  </div>
+  				  </div>
+  			  </div>
+  			</div>
+  			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+  				<button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Subiendo imagen</span></button>
+  			</div>
+  		</form>
+  	  </div>
+    </div>
+  </div>
 </html>

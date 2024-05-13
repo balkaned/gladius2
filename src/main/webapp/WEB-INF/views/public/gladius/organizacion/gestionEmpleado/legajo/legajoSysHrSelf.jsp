@@ -196,12 +196,12 @@
                                                             </div>
                                                           </td>
                                                         </tr>
+                                 <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
+                           </c:forEach>
                                                    </tbody>
                                                  </table>
                                               </div>
                                            </div>
-                                      <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
-                                 </c:forEach>
                             </div>
                           </div>
                         </div>

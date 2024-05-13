@@ -384,6 +384,27 @@
                 margin:0 !important;
                 margin-bottom:15px !important;
             }
+
+            .alert p{
+                width:85%;
+            }
+
+            .alert div{
+                width:80%;
+            }
+
+            .alert div strong{
+                width:100%;
+            }
+
+            .alert div p{
+                width:100%;
+            }
+
+            .btn-close{
+                font-size:10px !important;
+                padding:0px;
+            }
 }
 
 .card-body div h4{
@@ -541,5 +562,7 @@ width:31px;
 .hashtag{
 cursor:pointer;
 }
+
+
 
 

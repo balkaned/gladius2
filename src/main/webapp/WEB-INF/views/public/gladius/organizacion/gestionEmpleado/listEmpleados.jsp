@@ -12,6 +12,12 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+      function cargarinfoEmpl(){
+        $('#modalLoading').modal('show');
+      }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -104,7 +110,7 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" onclick="cargarinfoEmpl();"href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
                               <td class="tipodoc align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
                               <td class="nrodoc align-middle fs-9 text-center">${empl.iexnrodoc}</td>
                               <td class="nombreyapp align-middle white-space-nowrap ps-8">
@@ -127,7 +133,7 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a id="dropdownmenutable" class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" onclick="cargarinfoEmpl();" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                         <a id="dropdownmenutable" class="dropdown-item"
                                         href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null@null@null@null"
                                         target="_blank"><span class="fa-solid fa-download  me-2"></span>Descargar ficha PDF</a>
@@ -164,4 +170,30 @@
 
     <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
+
+  <div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+  	  <div class="modal-content bg-100 rounded-2 border border-300">
+  		<form class="needs-validation" method="POST" action="" novalidate >
+  			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Cargando información del empleado</h5>
+  			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+  			</div>
+  			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+  			  <div class="mt-0 mb-0">
+  				  <p class="fs--1">Se esta recopilando la información del empleado, la información es un poco extensa, asi que tomará unos segundos en procesar la tarea...</p>
+  				  <div class="col-12 text-center">
+  					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+  						<span class="visually-hidden">Loading...</span>
+  					  </div>
+  				  </div>
+  			  </div>
+  			</div>
+  			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+  				<button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Iniciando</span></button>
+  			</div>
+  		</form>
+  	  </div>
+    </div>
+  </div>
 </html>

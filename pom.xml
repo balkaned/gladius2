@@ -145,17 +145,34 @@
 	</dependencies>
 
 	<build>
+		<finalName>gladius</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
+			<!--<plugin>-->
+				<!--<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<executable>true</executable>
+					<executable>true</executable>-->
 					<!--<jvmArguments>-Xmx16m</jvmArguments>-->
-					<jvmArguments>-Xms256m -Xmx256m</jvmArguments>
+					<!--<jvmArguments>-Xms256m -Xmx256m</jvmArguments>-->
 					<!--<jvmArguments>-Xmx64m</jvmArguments>-->
-				</configuration>
-			</plugin>
+				<!--</configuration>-->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<verbose>true</verbose>
+						<fork>true</fork>
+						<compilerVersion>${java.version}</compilerVersion>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<meminitial>256</meminitial>
+						<maxmem>256</maxmem>
+					</configuration>
+				</plugin>
 		</plugins>
 	</build>
 </project>

@@ -15,6 +15,26 @@
   <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
+    function mostrarAlertLegajo(){
+
+      var uploadFile = $("#uploadFile").val();
+      if(uploadFile == "") {
+        return;
+      }
+
+      var urlimagen = $("#urlimagen").val();
+      if (urlimagen == "") {
+        return;
+      }
+
+      var desimagen = $("#desimagen").val();
+      if (desimagen == "") {
+          return;
+      }
+
+      $('#modalLoadingLeg').modal('show');
+      $("#formLoad").submit();
+    }
 </script>
 
   <body>
@@ -58,8 +78,8 @@
                             <div class="row g-3">
                                  <div class="col-xl-10">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-3 mb-0 needs-validation" method="POST" enctype="multipart/form-data"
-                                     action="AWSorFTP_flgsource_MultipartUpload@subirDocumento@${idComp}@${idTrab}@legajo"
+                                     <form id="formLoad" class="row g-3 mb-0 needs-validation" method="POST" enctype="multipart/form-data"
+                                        action="AWSorFTP_flgsource_MultipartUpload@subirDocumento@${idComp}@${idTrab}@legajo"
                                      novalidate >
 
                                             <div class="col-sm-6 col-md-3">
@@ -74,19 +94,21 @@
                                             </div>
                                             <div class="col-sm-6 col-md-9">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir documento solo en formato PDF</label>
-                                                <input class="form-control" name="uploadFile" type="file" required/>
+                                                <input class="form-control" id="uploadFile" name="uploadFile" type="file" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url imagen</label>
-                                                <input class="form-control" name="urlimagen" type="text" placeholder="Documento.pdf" required />
+                                                <input class="form-control" id="urlimagen" name="urlimagen" type="text" placeholder="Documento.pdf" required />
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción imagen</label>
-                                                 <input class="form-control" name="desimagen" type="text" placeholder="Ingrese una descripción" required />
+                                                 <input class="form-control" id="desimagen" name="desimagen" type="text" placeholder="Ingrese una descripción" required />
                                             </div>
 
-                                            <div class="alert alert-success" role="alert" id="alert" style="display:none;">
-                                                Se grabó exitosamente los cambios.
+                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                                            	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                                            	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                             </div>
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
@@ -113,8 +135,8 @@
                                             		</div>
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                                            		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 fs--2 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-phoenix-primary px-4 fs--1 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 fs--1 my-0 mt-1" onclick="mostrarAlertLegajo();" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>
@@ -138,4 +160,29 @@
 
     <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
+  <div id="modalLoadingLeg" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+  	  <div class="modal-content bg-100 rounded-2 border border-300">
+  		<form class="needs-validation" method="POST" action="" novalidate >
+  			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Subiendo documento a la nube</h5>
+  			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+  			</div>
+  			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+  			  <div class="mt-0 mb-0">
+  				  <p class="fs--1">Se esta procesando la transacción y actualizando espere unos minutos hasta que haya finalizado la tarea...</p>
+  				  <div class="col-12 text-center">
+  					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+  						<span class="visually-hidden">Loading...</span>
+  					  </div>
+  				  </div>
+  			  </div>
+  			</div>
+  			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+  				<button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Subiendo documento</span></button>
+  			</div>
+  		</form>
+  	  </div>
+    </div>
+  </div>
 </html>

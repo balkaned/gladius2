@@ -477,7 +477,7 @@
                                         <strong class="text-black">No hay datos</strong>
                                          <p class="mb-0 fw-semi-bold text-1000">${mensaje2} <a href="#">Mas información</a></p>
                                     </div>
-                                    <button class="btn-close fs-0" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             </c:if>
                             <c:forEach var="listRetirados" items="${requestScope.listRetirados}">

@@ -83,9 +83,6 @@
                                                 </select>
                                             </div>
 
-                                            <!--<div class="alert alert-success" role="alert" id="alert" style="display:none;">
-                                                Se grabó exitosamente los cambios.
-                                            </div>-->
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 d-flex justify-content-end">
                                                   <div class="col-auto ps-0 pe-0">
@@ -99,27 +96,6 @@
                                                   </div>
                                                 </div>
                                             </div>
-                                            <!--<div class="modal fade" id="confirmModal" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content border">
-                                                    <form id="addEventForm" autocomplete="off">
-                                                      <div class="modal-header border-200 p-4">
-                                                        <h5 class="modal-title text-1000 fs-4 lh-sm">Confirmar</h5>
-                                                        <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                                      </div>
-                                                      <div class="modal-body pt-4 pb-2 px-4">
-                                                        <div class="mb-3">
-                                                          <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea confirmar la operacion?</label>
-                                                        </div>
-                                                      </div>
-                                                    </form>
-                                                    <div class="modal-footer d-flex justify-content-end align-items-center px-4 pb-4 border-0 pt-3">
-                                                        <button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                                        <button class="btn btn-sm btn-primary px-9 fs--2 my-0" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            </div>-->
                                      </form>
                                    </div>
                                  </div>
@@ -127,10 +103,10 @@
 
                             <div class="col-12 mt-5">
                                  <c:forEach var="listGrpFile" items="${requestScope.listGrpFile}"   varStatus="loopCounter" >
-                                      <c:if test="${listGrpFile.iexdesgrpfile != permes_cur }">
+                                     <c:if test="${listGrpFile.iexdesgrpfile != permes_cur }">
                                            <c:if test="${loopCounter.count ==0 }">
                                                <div class="table-responsive">
-                                                  <table class="table table-striped jambo_table bulk_action"  >
+                                                  <table class="table table-striped"  >
                                                      <tr>
                                                          <td>Id</td>
                                                          <td>FileName</td>
@@ -166,7 +142,7 @@
                                            			  <th class="sort align-middle text-center ps-0 pe-0 text-uppercase" scope="col" ></th>
                                            			</tr>
                                            		  </thead>
-                                      </c:if>
+                                     </c:if>
                                                    <tbody class="list" id="customer-order-table-body">
                                                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                           <td class="align-middle white-space-nowrap ps-0 pe-3"><a class="fw-semi-bold" href="#!">#${listGrpFile.iexcodimage}</a></td>
@@ -196,12 +172,12 @@
                                                             </div>
                                                           </td>
                                                         </tr>
+                                     <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
+                                 </c:forEach>
                                                    </tbody>
                                                  </table>
                                               </div>
                                            </div>
-                                      <c:set var="permes_cur" value="${listGrpFile.iexdesgrpfile}" />
-                                 </c:forEach>
                             </div>
                           </div>
                         </div>
