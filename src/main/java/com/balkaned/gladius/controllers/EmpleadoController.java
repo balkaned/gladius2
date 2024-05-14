@@ -6,6 +6,7 @@ import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -183,6 +184,7 @@ public class EmpleadoController {
 
     }
 
+    @Async
     @RequestMapping(value = "/updateEmplDatPers", method = RequestMethod.POST)
     public ModelAndView updateEmplDatPers(ModelMap model, @ModelAttribute("empleado") Empleado ep, BindingResult result, SessionStatus status, HttpServletRequest request) {
         log.info("/updateEmplDatPers");

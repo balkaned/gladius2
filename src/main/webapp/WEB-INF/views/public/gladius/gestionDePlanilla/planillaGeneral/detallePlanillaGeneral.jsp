@@ -11,6 +11,8 @@
     <head>
       <jsp:include page="../../../links.jsp"></jsp:include>
       <script src="resources/assets/js/detallePlanillaGeneral.js"></script>
+      <script src="resources/assets/js/boletasPlanillas.js"></script>
+      <script src="resources/assets/js/asistenciasPlanillas.js"></script>
     </head>
 
     <style>
@@ -389,7 +391,7 @@
                         <div class="col col-md-auto">
                           <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
                             <a  class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span class="fas fa-download me-1"></span>Exportar excel</a>
-                            <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
+                            <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteEmbeddedResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
                           </nav>
                         </div>
                       </div>
@@ -441,8 +443,8 @@
 
                       <div class="row g-3">
                           <div class="col-auto">
-                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarReporte5ta();" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
-                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta();" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
+                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarReporte5ta(${idComp});" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
+                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta(${idComp});" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
                               <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>
