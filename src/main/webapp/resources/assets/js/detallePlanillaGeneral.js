@@ -86,7 +86,7 @@ function enviaForm_ind(variable, trab){
         document.getElementById("accion").value="CALFASIST";
     }
 
-    document.getElementById("iexcodtra").value=trab ;
+    document.getElementById("iexcodtra").value=trab;
     document.getElementById("frmplaserv").submit();
 }
 

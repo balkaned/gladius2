@@ -63,12 +63,12 @@
                                             <input class="form-control" name="iexcodcon" type="hidden" value="${fdatvarupd.iexcodcon}" />
 
                                             <div class="col-sm-6 col-md-6">
-                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
-                                                     <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
+                                                  <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
-                                                    <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                                                  <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
@@ -87,7 +87,7 @@
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            	<button class="btn-close fs--1" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                             </div>
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
