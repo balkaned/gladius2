@@ -27,7 +27,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
         template = new JdbcTemplate(datasource);
     }
 
-    /*public List<Concepto> listardet() {
+    public List<Concepto> listardet() {
 
         String sql = "select  " +
                 "	coocodcon, " +
@@ -37,12 +37,12 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "	coodescripcion " +
                 "from iexconcepto  order by coodescon asc ";
 
-        return template.query(sql, new ResultSetExtractor<>() {
+        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
 
             public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Concepto> lista = new ArrayList<Concepto>();
 
-                while (rs.next()) {
+                while(rs.next()) {
                     Concepto con = new Concepto();
                     con.setCodConcepto(rs.getString("coocodcon"));
 
@@ -59,11 +59,6 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 return lista;
             }
         });
-    }*/
-
-    @Override
-    public List<Concepto> listardet() {
-        return null;
     }
 
     @Override
