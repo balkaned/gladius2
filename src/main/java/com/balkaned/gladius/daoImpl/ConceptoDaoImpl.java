@@ -27,7 +27,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
         template = new JdbcTemplate(datasource);
     }
 
-    public List<Concepto> listardet() {
+    /*public List<Concepto> listardet() {
 
         String sql = "select  " +
                 "	coocodcon, " +
@@ -59,12 +59,12 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 return lista;
             }
         });
-    }
+    }*/
 
-    /*@Override
+    @Override
     public List<Concepto> listardet() {
         return null;
-    }*/
+    }
 
     @Override
     public List<Concepto> listConceptos() {
