@@ -123,7 +123,7 @@
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-magnifying-glass me-2"></span>Buscar</button>
 
                                 <c:if test="${requestScope.xproplaper.flgestado eq '1' || requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
-                                    <button class="btn btn-phoenix-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-bolt me-2"></span>Generar</button>
+                                    <button class="btn btn-phoenix-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-bolt me-2"></span>Generar</button>
                                 </c:if>
 
                                 <div class="btn-group mb-1 me-1 ms-0 mt-1">

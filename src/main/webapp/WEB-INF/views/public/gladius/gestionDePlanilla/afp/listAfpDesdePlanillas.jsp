@@ -70,10 +70,10 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                             <input class="form-control" id="idperiodo" name="idperiodo" maxlength="6" type="hidden" placeholder="yyyymm" value="${periodo}" />
                                         </div>
                                         <div class="mt-2 col-auto">
-                                            <!--<button class="btn btn-primary btn-sm mt-1" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>-->
-                                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>
-                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar periodo afp</a>
                                             <a class="btn btn-phoenix-secondary btn-sm mt-1" href="listarDetallePlanillaGen@${iexcodreg}@${iexcodpro}@${periodo}"><span class="fas fa-reply me-2"></span>Volver a planillas</a>
+                                            <!--<button class="btn btn-primary btn-sm mt-1" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>-->
+                                            <a class="btn btn-primary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>
+                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar periodo afp</a>
                                         </div>
                                     </div>
                                 </form>

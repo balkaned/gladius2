@@ -129,3 +129,13 @@ function traerDatosReporteEmbeddedResumenPlanilla(){
          }
     });
 }
+
+function traerTodasLasBoletasPDF(){
+    var opcion = confirm("Esta seguro de que desea traer todas las boletas de todos los empleados?");
+
+    if (opcion == true) {
+        return true;
+    } else {
+        return false;
+    }
+}

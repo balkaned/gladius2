@@ -158,7 +158,7 @@
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
                                     <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.feciniFormat}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrabInicializacion('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span>${LstPlanillaRes.iexdiasteorico}</a></td>
+                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrabInicializacion('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-2"></span> ${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>
@@ -333,7 +333,7 @@
                   </c:if>
 
                   <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-warning btn-sm" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
+                      <a class="btn btn-phoenix-secondary btn-sm" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
                       <a class="btn btn-phoenix-secondary btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-0 mt-1">
@@ -347,8 +347,8 @@
                         </div>
                       </div>
 
-                      <a class="btn btn-phoenix-secondary btn-sm" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>6. Boletas PDF</a>
-                      <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migración planilla</a>
+                      <a class="btn btn-phoenix-secondary btn-sm" onclick="return traerTodasLasBoletasPDF();" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>6. Boletas PDF</a>
+                      <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migrar planilla</a>
                   </div>
 
                   <table class="w-100 table-stats table-stats mt-4">
@@ -763,7 +763,7 @@
                                 <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
                                 <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
                                 <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
-                                <a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
+                                <!--<a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>-->
                             </div>
                       </div>
                       <div class="row g-3 bg-100 mt-0">

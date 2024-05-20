@@ -37,12 +37,12 @@
               </div>
 
               <div class="row g-3">
-                 <div class="col-6">
+                 <div class="col-xl-8">
                    <div class="row gx-3 gy-4">
                       <form class="row g-3 mb-0 needs-validation" method="POST" action="buscarPlanillaGen" novalidate >
                         <input id="usuario_id" type="hidden" name="usuario_id" value="${idUsu}"  />
 
-                        <div class="col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-9">
                         	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
                         	  <select name="iexcodreg" id="iexcodreg" class="form-select" required >
                         		  <option value="" selected >Seleccionar regimen</option>
@@ -51,7 +51,7 @@
                         		  </c:forEach>
                         	  </select>
                         </div>
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-4">
                         	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo mensual o año</label>
                         	<input class="form-control" name="iexpermes" type="text" placeholder="202301 or 2023" value="${iexpermes}" required/>
                         </div>

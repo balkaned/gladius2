@@ -116,7 +116,7 @@
                                             <a class="nav-link" id="${usuxsysxopc.path}" href="${usuxsysxopc.path}" data-bs-toggle="" aria-expanded="false">
                                               <div class="d-flex align-items-center">
                                                 <span class="nav-link-text">${usuxsysxopc.desopc}</span>
-                                                <span id="circle${usuxsysxopc.path}" class="fa-solid fa-circle text-success ms-1 new-page-indicator" style="font-size: 6px; display:none;"></span>
+                                                <!--<span id="circle${usuxsysxopc.path}" class="fa-solid fa-circle text-success ms-1 new-page-indicator" style="font-size: 6px; display:none;"></span>-->
                                               </div>
                                             </a>
                                           </li>

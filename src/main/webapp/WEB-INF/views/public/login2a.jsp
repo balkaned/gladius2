@@ -29,9 +29,15 @@
       }
     </script>
   </head>
+  <style>
+    body{
+        /*background-color: #052E52;*/
+        /*background-color:#282727;*/
+        background-color: #111827;
+     }
+  </style>
 
-
-  <body>
+  <body class="">
     <f:form id="form" methot="post" modelAttribute="usuarioConeccion" action="verificarLogin2">
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -39,50 +45,68 @@
     <main class="main" id="top">
       <div class="container">
         <div class="row flex-center min-vh-100 py-5">
-          <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
-              <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="resources/assets/img/icons/logoLast4.png" alt="phoenix" width="58" />
-              </div>
+          <div class="col-sm-10 col-md-8 col-lg-4 col-xl-5 col-xxl-3">
+                <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
+                <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
+                    <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="58" />
+                </div>
             </a>
-            <div class="text-center mb-7">
-              <h3 class="text-1000">Login</h3>
-              <p class="text-700">Login interno local</p>
+            <div class="text-center mb-5">
+              <!--<h3 class="text-1000">Login</h3>-->
+              <!--<h1 class="display-6 text-white">Sign in to gladius</h1>-->
             </div>
 
             <!--<button class="btn btn-phoenix-secondary w-100 mb-3"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
             <button class="btn btn-phoenix-secondary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>-->
 
-            <div class="position-relative">
+            <!--<div class="position-relative">
               <hr class="bg-200 mt-5 mb-4" />
               <div class="divider-content-center">or use email</div>
-            </div>
-            <div class="mb-3 text-start">
-              <label class="form-label" for="email">Usuario</label>
-              <div class="form-icon-container">
-                <!--<input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>-->
-                <f:input id="iptUs" type="text" path="user" cssClass="form-control form-icon-input" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/><span class="fas fa-user text-900 fs--1 form-icon"></span>
-              </div>
-            </div>
-            <div class="mb-3 text-start">
-              <label class="form-label" for="password">Contraseña</label>
-              <div class="form-icon-container">
-                <!--<input class="form-control form-icon-input" id="password" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>-->
-                <f:input id="ippass" value="" type="password" path="pass" cssClass="form-control form-icon-input" placeholder="Ingrese Contraseña"/><span class="fas fa-key text-900 fs--1 form-icon"></span>
-              </div>
-            </div>
-            <div class="row flex-between-center mb-7">
-              <div class="col-auto">
-                <div class="form-check mb-0">
-                  <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
-                  <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
+            </div>-->
+            <div class="bg-white border border-300 rounded-2 p-4 col-12">
+                <div class="mb-3 text-start col-sm-6 col-md-12">
+                  <label class="form-label" for="email">Usuario</label>
+                  <div class="form-icon-container">
+                    <!--<input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>-->
+                    <f:input id="iptUs" type="text" path="user" cssClass="form-control form-icon-input" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/><span class="fas fa-user text-900 fs--1 form-icon"></span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
+                <div class="mb-3 text-start col-sm-6 col-md-12">
+                  <label class="form-label" for="password">Contraseña</label>
+                  <div class="form-icon-container">
+                    <!--<input class="form-control form-icon-input" id="password" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>-->
+                    <f:input id="ippass" value="" type="password" path="pass" cssClass="form-control form-icon-input" placeholder="Ingrese Contraseña"/><span class="fas fa-key text-900 fs--1 form-icon"></span>
+                  </div>
+                </div>
+                <div class="row flex-between-center mb-4">
+                  <div class="col-sm-6">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
+                      <label class="form-check-label mb-0" for="basic-checkbox">Recordar contraseña</label>
+                    </div>
+                  </div>
+                  <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->
+
+                <!--<span style="float:left; text-align:left; font-size: 11px; height:50px; width:280px; border:0px solid green; color:#D90000;">
+                     ${mensaje}
+               </span>-->
+
+               <div class="col-xl-12">
+               	<c:if test="${mensaje!=null}">
+               		   <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
+               			<span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+               			<div class="col-11">
+               				<strong class="text-black">Error de session</strong>
+               				 <p class="mb-0 fw-semi-bold text-1000">${mensaje}. <a href="#">Mas información</a></p>
+               			</div>
+               			<button class="btn-close fs-0" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+               		   </div>
+               	</c:if>
+               </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-3">Acceder</button>
-            <div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>
-            <span style="float:left; text-align:left; font-size: 11px; height:50px; width:280px; border:0px solid green; color:#D90000;">
-                 ${mensaje}
-           </span>
           </div>
         </div>
       </div>

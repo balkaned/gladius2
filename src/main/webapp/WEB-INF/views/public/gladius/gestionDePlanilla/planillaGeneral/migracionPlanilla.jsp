@@ -134,7 +134,7 @@
                         <div class="col-12 gy-6">
                             <div class="col-12">
                                 <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
-                                <a class="btn btn-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Cargar excel</a>
+                                <a class="btn btn-phoenix-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
                             </div>
                         </div>
                         <div class="modal fade" id="confirmModal" tabindex="-1">
@@ -174,7 +174,7 @@
                               </form>
                               <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                   <button class="btn btn-sm btn-phoenix-secondary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                  <button class="btn btn-sm btn-success px-9  my-0 mt-1" onclick="enviaForm('13')" type="submit" data-bs-dismiss="modal" ><span class="fa-solid fa-upload fs--1 me-2"></span>Subir</button>
+                                  <button class="btn btn-sm btn-success px-9  my-0 mt-1" onclick="enviaForm('13')" type="submit" data-bs-dismiss="modal" ><span class="fa-solid fa-upload fs--1 me-2"></span>Importar</button>
                               </div>
                             </div>
                           </div>

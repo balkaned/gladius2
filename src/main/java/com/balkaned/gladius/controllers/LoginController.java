@@ -47,15 +47,15 @@ public class LoginController {
             }
 
             if (request.getSession().getAttribute("tiposession").equals("5")) {
-                model.addAttribute("mensaje", "Alerta!, Hemos detectado que no es el Admnistrador de este software, "
-                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2023 Balkaned www.balkaned.com Todos los derechos reservados. Derechos de autor. Todos los contenidos de este Sitio No se va a poder "
-                        + "instalar puede conectar con Base de Datos Postgres, Mysql, SQl Server, revise que los parámetros de conexión en la aplicación "
-                        + "para el archivo de configuración application.properties coincidan con la configuración del motor de base Datos, "
-                        + "puede que la base de datos no este aún restaurada o el proceso de restauración falló, "
-                        + "no olvide copiar el Driver de Conexión Postgres com.mysql.jdbc_5.1.5.jar con extensión jar, en la carpeta del Tomcat "
+                model.addAttribute("mensaje", "Alerta!, Hemos detectado que no es el admnistrador de este software, "
+                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2023 Balkaned www.balkaned.com Todo los derechos reservados. Derechos de autor. Todo el contenido de este sitio "
+                        + "instalar puede conectar con base de datos Postgres, SQl Server, Oracle Database revise que los parámetros de conexión, "
+                        + "para el archivo de configuración application.properties coincidan con la configuración del motor de base de datos, "
+                        + "puede que la base de datos no este restaurada o el proceso de restauración falló, "
+                        + "no olvide copiar el Driver de Conexión com.posgresql.jdbc_5.1.5.jar con extensión jar, en la carpeta de Tomcat "
                         + "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 7.0\\webapps\\Gladius\\WEB-INF\\lib\\ "
-                        + "luego debe Parar y Volver a Desplegar el WAR, esta aplicación esta configurada para Apache Tomcat v7, en caso el problema persista consulte con el administrador del "
-                        + "sistema balkanedperu@gmail.com o ebaldeonp@gmail.com");
+                        + "luego debe parar y volver a desplegar el WAR, esta app esta configurada para Tomcat v9, en caso el problema persista consulte con el administrador del "
+                        + "sistema balkanedperu@gmail.com o ebaldeonp@gmail.com, puedes visitar www.balkaned.com");
             }
 
             if (request.getSession().getAttribute("tiposession").equals("6")) {
