@@ -1019,7 +1019,7 @@
                                 <div class="col-auto">
                                   <div class="search-box">
                                     <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <input class="form-control search-input search" type="search" placeholder="Search promedios" aria-label="Search"/>
                                       <span class="fas fa-search search-box-icon"></span>
                                     </form>
                                   </div>
@@ -1034,9 +1034,13 @@
                                                 <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                                               </div>
                                             </th>
-                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">CODCON</th>
-                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">DESCON</th>
-                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" >VALOR</th>
+                                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="codcon" style="width:5%;">ID</th>
+                                            <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="descon">TRABAJADOR</th>
+                                            <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" >PERIODO FINAL</th>
+                                            <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" >CONCEPTO FINAL</th>
+                                            <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" >PERIODO ANT</th>
+                                            <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" >CODCON</th>
+                                            <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" >VALOR</th>
                                           </tr>
                                       </thead>
                                       <tbody class="list" id="otros-customer-order-table-body-promedio" >

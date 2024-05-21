@@ -1725,4 +1725,29 @@ public class PlanillaController {
 
         return null;
     }
+
+    @RequestMapping(value = "/traerDatosModalOtrosProm", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosModalOtrosProm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosModalOtrosProm");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        List<PlaProPerDet> list_prom = planillaService.iniPlaProper_prom(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+
+        String json = new Gson().toJson(list_prom);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
 }

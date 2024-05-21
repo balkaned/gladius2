@@ -110,94 +110,35 @@ function traerOtrosDatos(iexcodpro,iexperiodo,iexcorrel){
          }
     });
 
-    /*$.ajax({
-         url: "traerDatosDeBoletaAportes",
+    $.ajax({
+         url: "traerDatosModalOtrosProm",
          data: {
              "iexcodpro": iexcodpro,
-             "iexcodtra": iexcodtra,
              "iexperiodo": iexperiodo,
-             "iexcorrel": iexcorrel,
-             "xgrppla": xgrppla,
-             "iexcodreg": iexcodreg
+             "iexcorrel": iexcorrel
          },
          success: function (data) {
               var opt = "";
 
               for (var i in data) {
                   opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                               "<td class='fs--1 align-middle px-0 py-3'>"+
-                                 "<div class='form-check mb-0 fs-0'>"+
-                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
-                                 "</div>"+
-                               "</td>"+
-                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
-                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
-                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
-                            "</tr>";
+                             "<td class='fs--1 align-middle px-0 py-3'>"+
+                               "<div class='form-check mb-0 fs-0'>"+
+                                 "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                               "</div>"+
+                             "</td>"+
+                             "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].iexcodtra+"</a></td>"+
+                             "<td class='descon align-middle white-space-nowrap text-start fw-semi-bold ps-0 pe-0 text-1000'>"+data[i].destra+"</td>"+
+                             "<td class='valor align-middle text-center fw-semi-bold text-1000 ps-2 pe-2 white-space-nowrap'>"+data[i].periodo_proceso+"</td>"+
+                             "<td class='valor align-middle text-center fw-semi-bold text-1000 ps-2 pe-2 white-space-nowrap'>"+data[i].concepto_destino+"</td>"+
+                             "<td class='valor align-middle text-center fw-semi-bold text-1000 ps-2 pe-2 white-space-nowrap'>"+data[i].periodo_anterior+"</td>"+
+                             "<td class='valor align-middle text-center fw-semi-bold text-1000 ps-2 pe-2 white-space-nowrap'>"+data[i].concepto_origen+"</td>"+
+                             "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-2 pe-2 white-space-nowrap'>"+data[i].valor_con+"</td>"+
+                          "</tr>";
               }
 
-              $("#customer-order-table-body-aportes").html(opt);
+              $("#otros-customer-order-table-body-promedio").html(opt);
          }
     });
-
-    $.ajax({
-         url: "traerDatosDeBoletaNeto",
-         data: {
-             "iexcodpro": iexcodpro,
-             "iexcodtra": iexcodtra,
-             "iexperiodo": iexperiodo,
-             "iexcorrel": iexcorrel,
-             "xgrppla": xgrppla,
-             "iexcodreg": iexcodreg
-         },
-         success: function (data) {
-              var opt = "";
-
-              for (var i in data) {
-                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                               "<td class='fs--1 align-middle px-0 py-3'>"+
-                                 "<div class='form-check mb-0 fs-0'>"+
-                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
-                                 "</div>"+
-                               "</td>"+
-                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
-                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
-                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
-                            "</tr>";
-              }
-
-              $("#customer-order-table-body-neto").html(opt);
-         }
-    });
-
-    $.ajax({
-         url: "traerDatosDeBoletaTotales",
-         data: {
-             "iexcodpro": iexcodpro,
-             "iexcodtra": iexcodtra,
-             "iexperiodo": iexperiodo,
-             "iexcorrel": iexcorrel,
-             "xgrppla": xgrppla,
-             "iexcodreg": iexcodreg
-         },
-         success: function (data) {
-              var opt = "";
-
-              for (var i in data) {
-                  opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
-                               "<td class='fs--1 align-middle px-0 py-3'>"+
-                                 "<div class='form-check mb-0 fs-0'>"+
-                                   "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
-                                 "</div>"+
-                               "</td>"+
-                               "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
-                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
-                               "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
-                            "</tr>";
-              }
-
-              $("#customer-order-table-body-totales").html(opt);
-         }
-    });*/
 
 }
