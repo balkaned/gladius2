@@ -875,7 +875,9 @@
                                         <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                         <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                         <div class="dropdown-menu">
-                                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Vacaciones</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item"
+                                              href="AWSorFTP_flgsource@verReporteExcel@${idCom}@1@null@null@ReportVacaPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"
+                                              ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Vacaciones</a>
                                         </div>
                                       </div>
                                   </div>
@@ -926,7 +928,9 @@
                                         <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                         <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                         <div class="dropdown-menu">
-                                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Vacaciones</a>
+                                             <a id="dropdownmenutable" target="_blank" class="dropdown-item"
+                                             href="AWSorFTP_flgsource@verReporteExcel@${idCom}@1@null@null@ReportAusenPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"
+                                             ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Ausentismos</a>
                                         </div>
                                       </div>
                                 </div>
@@ -977,7 +981,9 @@
                                       <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                       <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                       <div class="dropdown-menu">
-                                        <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="#"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Vacaciones</a>
+                                            <a id="dropdownmenutable" target="_blank" class="dropdown-item"
+                                            href="AWSorFTP_flgsource@verReporteExcel@${idCom}@1@null@null@ReportPresPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"
+                                            ><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Excel Prestamos</a>
                                       </div>
                                     </div>
                                   </div>
