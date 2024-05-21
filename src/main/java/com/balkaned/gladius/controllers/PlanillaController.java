@@ -1616,10 +1616,109 @@ public class PlanillaController {
         log.info("v_periodo: " + v_periodo);
         log.info("iexcorrel: " + iexcorrel);
 
-        //daoturno.consolidaAsistencia(v_codcia, Integer.parseInt(v_idproceso), Integer.parseInt(iexcodtra), v_idperiodo, Integer.parseInt(iexcorrel), "");
         turnoDiarioService.consolidaAsistencia(idCompania,v_idproceso,codtra,v_periodo, Integer.valueOf(iexcorrel),"");
 
         String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosModalOtrosDatos", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosModalOtrosDatos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosModalOtrosDatos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        ProcesoPeriodo proPer = procesoPlanillaService.recuperarPeriodo2(idCompania,iexcodpro,iexperiodo);
+
+        String json = new Gson().toJson(proPer);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosModalOtrosVac", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosModalOtrosVac(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosModalOtrosVac");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        List<PlaProPerDet> list_vac = planillaService.iniPlaProper_vac(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+
+        String json = new Gson().toJson(list_vac);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosModalOtrosAusen", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosModalOtrosAusen(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosModalOtrosAusen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        List<PlaProPerDet> list_ausen = planillaService.iniPlaProper_aus(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+
+        String json = new Gson().toJson(list_ausen);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDatosModalOtrosPrest", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosModalOtrosPrest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosModalOtrosPrest");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        List<PlaProPerDet> list_prest = planillaService.iniPlaProper_prest(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+
+        String json = new Gson().toJson(list_prest);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

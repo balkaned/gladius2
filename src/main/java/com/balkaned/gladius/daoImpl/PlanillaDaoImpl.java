@@ -256,12 +256,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexnroper =  e.iexnroper and  " +
                 "n.iexcodtra =  e.iexcodtra and " +
                 "n.iexcorrel =  e.iexcorrel and 	" +
-                "n.iexcodcia="+codcia+" and  " +
+                "n.iexcodcia=" + codcia + " and  " +
                 //   "n.iexcodpro="+codpro+" and " +
                 "n.iexcodpro = p.procodpro and " +
-                "n.iexcodtra="+codtra+" and " +
-                " n.iexnroper >= '"+perini+"' and " +
-                " n.iexnroper <= '"+perfin+"' and " +
+                "n.iexcodtra=" + codtra + " and " +
+                " n.iexnroper >= '" + perini + "' and " +
+                " n.iexnroper <= '" + perfin + "' and " +
                 //"--n.iexcorrel=1 and " +
                 "n.procodcon in ('T4000','T4010','D2070','T4020','T4030')  " +
                 "  " +
@@ -292,7 +292,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexcodpro(rs.getInt("iexcodpro"));
 
                     p.setDescodpro(rs.getString("despro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDescodpro(cap.letras(p.getDescodpro()));
 
                     p.setIexnroper(rs.getString("iexnroper"));
@@ -317,13 +317,13 @@ public class PlanillaDaoImpl implements PlanillaDao {
         });
     }
 
-    public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra ,Integer codpro, String perini, String perfin){
+    public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin) {
 
-        log.info("codcia: "+codcia);
-        log.info("codtra: "+codtra);
-        log.info("codpro: "+codpro);
-        log.info("perini: "+perini);
-        log.info("perfin: "+perfin);
+        log.info("codcia: " + codcia);
+        log.info("codtra: " + codtra);
+        log.info("codpro: " + codpro);
+        log.info("perini: " + perini);
+        log.info("perfin: " + perfin);
 
         String sql = " select " +
                 " k.iexcodcia, " +
@@ -380,12 +380,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 " n.iexnroper =  e.iexnroper and " +
                 " n.iexcodtra =  e.iexcodtra and " +
                 " n.iexcorrel =  e.iexcorrel and " +
-                " n.iexcodcia="+codcia+" and " +
-                " n.iexcodpro="+codpro+" and " +
+                " n.iexcodcia=" + codcia + " and " +
+                " n.iexcodpro=" + codpro + " and " +
                 " n.iexcodpro = p.procodpro and " +
-                " n.iexcodtra="+codtra+" and " +
-                " n.iexnroper >= '"+perini+"' and " +
-                " n.iexnroper <= '"+perfin+"' and " +
+                " n.iexcodtra=" + codtra + " and " +
+                " n.iexnroper >= '" + perini + "' and " +
+                " n.iexnroper <= '" + perfin + "' and " +
                 " n.procodcon in ('T4000','T4010','D2070','T4020','T4030')) k " +
                 " group by " +
                 " k.iexcodcia, " +
@@ -406,14 +406,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
             public List<PlaProPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<PlaProPeriodo> lista = new ArrayList<PlaProPeriodo>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     PlaProPeriodo p = new PlaProPeriodo();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodpro(rs.getInt("iexcodpro"));
 
                     p.setDescodpro(rs.getString("despro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDescodpro(cap.letras(p.getDescodpro()));
 
                     p.setIexnroper(rs.getString("iexnroper"));
@@ -541,7 +541,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
 
                     p.setDestra(rs.getString("destra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDestra(cap.letras(p.getDestra()));
 
                     p.setIexdiasteorico(rs.getDouble("iexdiasteorico"));
@@ -998,7 +998,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
 
                     p.setDestra(rs.getString("destra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDestra(cap.letras(p.getDestra()));
 
                     p.setIexdiasteorico(rs.getDouble("iexdiasteorico"));
@@ -1023,7 +1023,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         });
     }
 
-    public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia,Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon){
+    public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon) {
 
         String sql = " select " +
                 "j.iexcodcia, " +
@@ -1038,19 +1038,19 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "from iexpropertra_nomina j, iexconcepto c " +
                 "where " +
                 "j.procodcon = c.coocodcon and " +
-                "iexcodcia= "+codcia+" and " +
-                "iexcodpro= "+idproceso+"  and " +
-                "iexnroper= '"+perpro+"' and " +
-                "iexcodtra= "+codtra+" and " +
-                "iexcorrel= "+correl+" and " +
-                "j.protipcon='"+flgcon+"' order by j.procodcon asc  ";
+                "iexcodcia= " + codcia + " and " +
+                "iexcodpro= " + idproceso + "  and " +
+                "iexnroper= '" + perpro + "' and " +
+                "iexcodtra= " + codtra + " and " +
+                "iexcorrel= " + correl + " and " +
+                "j.protipcon='" + flgcon + "' order by j.procodcon asc  ";
 
         return template.query(sql, new ResultSetExtractor<List<ConceptoxProcesoxTra>>() {
 
             public List<ConceptoxProcesoxTra> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<ConceptoxProcesoxTra> lista = new ArrayList<ConceptoxProcesoxTra>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     ConceptoxProcesoxTra p = new ConceptoxProcesoxTra();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -1070,7 +1070,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         });
     }
 
-    public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon){
+    public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon) {
 
         String sql = " select " +
                 "j.iexcodcia, " +
@@ -1085,19 +1085,19 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "from iexpropertra_nomina j, iexconcepto c " +
                 "where " +
                 "j.procodcon = c.coocodcon and " +
-                "iexcodcia= "+codcia+" and " +
-                "iexcodpro= "+idproceso+"  and " +
-                "iexnroper= '"+perpro+"' and " +
-                "iexcodtra= "+codtra+" and " +
-                "iexcorrel= "+correl+" and " +
-                "j.protipcon='"+flgcon+"' and provalor<>0 ";
+                "iexcodcia= " + codcia + " and " +
+                "iexcodpro= " + idproceso + "  and " +
+                "iexnroper= '" + perpro + "' and " +
+                "iexcodtra= " + codtra + " and " +
+                "iexcorrel= " + correl + " and " +
+                "j.protipcon='" + flgcon + "' and provalor<>0 ";
 
         return template.query(sql, new ResultSetExtractor<List<ConceptoxProcesoxTra>>() {
 
             public List<ConceptoxProcesoxTra> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<ConceptoxProcesoxTra> lista = new ArrayList<ConceptoxProcesoxTra>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     ConceptoxProcesoxTra p = new ConceptoxProcesoxTra();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -1117,7 +1117,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         });
     }
 
-    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl){
+    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl) {
 
         String sql = " select  " +
                 "	   c.iexcodcia, c.iexcodpro, c.iexnroper, c.iexcorrel, " +
@@ -1132,14 +1132,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "		  on j.codban = c.codbank " +
                 "		  full outer join ( SELECT  iexkey codmon, desdet desmon  FROM IEXTTABLED WHERE IEXCODTAB='52' )  m " +
                 "		  on m.codmon  = c.moneda " +
-                "		  where c.iexcodcia="+codcia+" and c.iexcodpro="+idproceso+"  and c.iexnroper='"+perpro+"' and c.iexcorrel="+correl+" ";
+                "		  where c.iexcodcia=" + codcia + " and c.iexcodpro=" + idproceso + "  and c.iexnroper='" + perpro + "' and c.iexcorrel=" + correl + " ";
 
         return template.query(sql, new ResultSetExtractor<List<BancoResumenPer>>() {
 
             public List<BancoResumenPer> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<BancoResumenPer> lista = new ArrayList<BancoResumenPer>();
 
-                while(rs.next()) {
+                while (rs.next()) {
                     BancoResumenPer p = new BancoResumenPer();
 
                     p.setIexcodcia(rs.getInt("iexcodcia"));
@@ -1149,18 +1149,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setCodbank(rs.getString("codbank"));
 
                     p.setDesbank(rs.getString("desban"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDesbank(cap.letras(p.getDesbank()));
 
                     p.setMoneda(rs.getString("moneda"));
                     p.setDesmoneda(rs.getString("desmon"));
 
-                    log.info("p.getDesmoneda():"+p.getDesmoneda());
-                    log.info("p.getMoneda():"+p.getMoneda());
+                    log.info("p.getDesmoneda():" + p.getDesmoneda());
+                    log.info("p.getMoneda():" + p.getMoneda());
 
-                    if(p.getMoneda().equals("S/.")){
+                    if (p.getMoneda().equals("S/.")) {
                         p.setDesmonReport("S");
-                    }else if(p.getMoneda().equals("EU")){
+                    } else if (p.getMoneda().equals("EU")) {
                         p.setDesmonReport("E");
                     }
 
@@ -1175,36 +1175,239 @@ public class PlanillaDaoImpl implements PlanillaDao {
         });
     }
 
-    public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago){
+    public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago) {
 
         template.update("  call pl_reichbank_res(?,?,?,?,?,?,?)  ",
 
-        codcia,
-        idproceso,
-        perpro,
-        correl,
-        usu,
-        tmcb,
-        fecpago);
+                codcia,
+                idproceso,
+                perpro,
+                correl,
+                usu,
+                tmcb,
+                fecpago);
     }
 
-    public List<String> txtBancos(Integer codcia, Integer idproceso, String nroper, Integer correl, String codbank, String codmon){
+    public List<String> txtBancos(Integer codcia, Integer idproceso, String nroper, Integer correl, String codbank, String codmon) {
 
         String sql = " select  " +
                 " glosatxt " +
                 " from " +
                 "iexpropertra_txtbank  " +
-                "where iexcodcia="+codcia+" and iexcodpro="+idproceso+" and iexnroper='"+nroper+"'  and iexcorrel ="+correl+"   and codbank='"+codbank+"' and moneda='"+codmon+"'  ";
+                "where iexcodcia=" + codcia + " and iexcodpro=" + idproceso + " and iexnroper='" + nroper + "'  and iexcorrel =" + correl + "   and codbank='" + codbank + "' and moneda='" + codmon + "'  ";
 
         return template.query(sql, new ResultSetExtractor<List<String>>() {
 
             public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<String> lista = new ArrayList<String>();
 
-                while(rs.next()) {
-                    String p=null;
+                while (rs.next()) {
+                    String p = null;
 
                     p = rs.getString("glosatxt");
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<PlaProPerDet> iniPlaProper_vac(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
+
+        String sql = " select " +
+                " e.iexcodtra, " +
+                " e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra destra,  " +
+                " tt.desdet destipo,  " +
+                " to_char(d.fecinivac,'dd/mm/yyyy') fecini,  " +
+                " to_char(d.fecfinvac,'dd/mm/yyyy') fecfin,  " +
+                " d.nrodias, " +
+                " d.codcon  " +
+                " from iexpropertra_vac d ,  iexempleado e ,  " +
+                " (   " +
+                " select  iexkey, desdet from iexttabled where iexcodtab='56'  " +
+                " ) tt, iexpuesto p   " +
+                " where   " +
+                " d.iexcodcia = e.iexcodcia and   " +
+                " d.iexcodtra = e.iexcodtra and  " +
+                " d.tipvac = tt.iexkey and  " +
+                " e.iexcodcia = p.iexcodcia and  " +
+                " e.iexpuesto = p.iexpuesto and   " +
+                " d.iexcodcia=" + codcia + " and d.iexcodpro=" + idproceso + " and d.iexnroper='" + perpro + "'   " +
+                " order by  " +
+                " e.iexapepat,  " +
+                " e.iexapemat,  " +
+                " e.iexnomtra asc  ";
+
+        return template.query(sql, new ResultSetExtractor<List<PlaProPerDet>>() {
+
+            public List<PlaProPerDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<PlaProPerDet> lista = new ArrayList<PlaProPerDet>();
+
+                while (rs.next()) {
+                    PlaProPerDet p = new PlaProPerDet();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDestra(cap.letras(p.getDestra()));
+
+                    p.setTiporegistro(rs.getString("destipo"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    p.setTiporegistro(cap2.letras(p.getTiporegistro()));
+
+                    p.setFecini(rs.getString("fecini"));
+                    p.setFecfin(rs.getString("fecfin"));
+                    p.setNrodia(rs.getDouble("nrodias"));
+                    p.setCodcon(rs.getString("codcon"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<PlaProPerDet> iniPlaProper_aus(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
+
+        String sql = "  select  " +
+                "  e.iexcodtra,  " +
+                "  e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra destra,  " +
+                "   tt.desdet destipo,  " +
+                "   to_char(d.feciniaus,'dd/mm/yyyy') fecini, " +
+                "   to_char(d.fecfinaus,'dd/mm/yyyy') fecfin,  " +
+                "   d.nrodias,  " +
+                "   d.codcon  " +
+                "   from iexpropertra_aus d ,  iexempleado e , " +
+                "(  " +
+                " select  iexkey, desdet from iexttabled where iexcodtab='57'  " +
+                " ) tt, iexpuesto p " +
+                "  where  " +
+                "  d.iexcodcia = e.iexcodcia and  " +
+                "  d.iexcodtra = e.iexcodtra and  " +
+                "  d.tipaus = tt.iexkey and  " +
+                "  e.iexcodcia = p.iexcodcia and  " +
+                "  e.iexpuesto = p.iexpuesto and " +
+                "  d.iexcodcia=  " + codcia + "  and d.iexcodpro= " + idproceso + " and d.iexnroper= '" + perpro + "'  " +
+                " order by " +
+                "  e.iexapepat, " +
+                " e.iexapemat, " +
+                " e.iexnomtra asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<PlaProPerDet>>() {
+
+            public List<PlaProPerDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<PlaProPerDet> lista = new ArrayList<PlaProPerDet>();
+
+                while (rs.next()) {
+                    PlaProPerDet p = new PlaProPerDet();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDestra(cap.letras(p.getDestra()));
+
+                    p.setTiporegistro(rs.getString("destipo"));
+                    p.setFecini(rs.getString("fecini"));
+                    p.setFecfin(rs.getString("fecfin"));
+                    p.setNrodia(rs.getDouble("nrodias"));
+                    p.setCodcon(rs.getString("codcon"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<PlaProPerDet> iniPlaProper_prest(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
+
+        String sql = "   select   " +
+                " e.iexcodtra, " +
+                " e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra destra,  " +
+                " tt.desdet destipo,  " +
+                " d.idcuota,   " +
+                " to_char(d.feccuota,'dd/mm/yyyy') feccuota,  " +
+                " importe cuota , tt.des1det codcon " +
+                " from iexpropertra_prestamo d, iexempleado e ,iexpuesto p ,   " +
+                " (   " +
+                "  select  iexkey, desdet, des1det from iexttabled where iexcodtab='59'   " +
+                " ) tt  " +
+                " where  " +
+                " d.iexcodcia = e.iexcodcia and " +
+                " d.iexcodtra = e.iexcodtra and  " +
+                " e.iexcodcia = p.iexcodcia and " +
+                " e.iexpuesto = p.iexpuesto and  " +
+                " d.tippre = tt.iexkey and  " +
+                " d.iexcodcia = " + codcia + " and d.iexcodpro= " + idproceso + " and d.iexnroper= '" + perpro + "'   " +
+                " order by " +
+                " e.iexapepat, " +
+                " e.iexapemat, " +
+                " e.iexnomtra asc  ";
+
+        return template.query(sql, new ResultSetExtractor<List<PlaProPerDet>>() {
+
+            public List<PlaProPerDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<PlaProPerDet> lista = new ArrayList<PlaProPerDet>();
+
+                while (rs.next()) {
+                    PlaProPerDet p = new PlaProPerDet();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+
+                    p.setDestra(rs.getString("destra"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDestra(cap.letras(p.getDestra()));
+
+                    p.setTiporegistro(rs.getString("destipo"));
+                    p.setIdcuota(rs.getInt("idcuota"));
+                    p.setFeccuota(rs.getString("feccuota"));
+                    p.setCuota(rs.getDouble("cuota"));
+                    p.setCodcon(rs.getString("codcon"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public List<PlaProPerDet> iniPlaProper_prom(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
+
+        String sql = " select  " +
+                " e.iexcodtra,  " +
+                " e.iexapepat||' '||e.iexapepat||' '||e.iexnomtra as destra, " +
+                " po.iexnroper periodo_proceso,  " +
+                " po.codconpar concepto_destino,  " +
+                " po.nroperpar periodo_anterior, " +
+                " po.codcondet concepto_origen, " +
+                " po.valcon valor  " +
+                " from iexpropertra_promedio po ,  " +
+                " iexempleado e  " +
+                " where  " +
+                " po.iexcodcia = e.iexcodcia and  " +
+                " po.iexcodtra = e.iexcodtra and " +
+                " po.iexcodcia=" + codcia + " and po.iexcodpro = " + idproceso + " and po.iexnroper = '" + perpro + "'  and po.iexcorrel = " + correl + "   " +
+                " order by  " +
+                " 2,3,4,5,6 asc  ";
+
+        return template.query(sql, new ResultSetExtractor<List<PlaProPerDet>>() {
+
+            public List<PlaProPerDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<PlaProPerDet> lista = new ArrayList<PlaProPerDet>();
+
+                while (rs.next()) {
+                    PlaProPerDet p = new PlaProPerDet();
+
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setDestra(rs.getString("destra"));
+                    p.setPeriodo_proceso(rs.getString("periodo_proceso"));
+                    p.setCodcon_final(rs.getString("concepto_destino"));
+                    p.setPeriodo_anterior(rs.getString("periodo_anterior"));
+                    p.setCodcon_origen(rs.getString("concepto_origen"));
+                    p.setValor_con(rs.getDouble("valor"));
 
                     lista.add(p);
                 }
