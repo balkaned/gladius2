@@ -57,7 +57,7 @@
 	<jsp:include page="../../../navTop.jsp"/>
 	<jsp:include page="../../../modalFade.jsp"/>
 
-	<div class="content">
+	<div class="content bg-100">
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
 				<li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>

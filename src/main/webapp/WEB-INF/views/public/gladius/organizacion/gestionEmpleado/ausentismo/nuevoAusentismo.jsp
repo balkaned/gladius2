@@ -144,7 +144,7 @@ function enviaForm(variable){
           <jsp:include page="../../../../navTop.jsp"></jsp:include>
           <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
-          <div class="content">
+          <div class="content bg-100">
               <div class="pb-9">
                 <div class="row">
                   <div class="col-12">

@@ -32,7 +32,7 @@
             <jsp:include page="navTop.jsp"></jsp:include>
             <jsp:include page="modalFade.jsp"></jsp:include>
 
-            <div class="content">
+            <div class="content bg-100">
                 <div class="row gy-3 mb-6 justify-content-between">
                   <div class="col-md-9 col-auto">
                     <h2 class="mb-2 text-1100">Dashboard</h2>

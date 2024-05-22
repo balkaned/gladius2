@@ -46,7 +46,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
             <jsp:include page="../../../navTop.jsp"></jsp:include>
             <jsp:include page="../../../modalFade.jsp"></jsp:include>
 
-            <div class="content">
+            <div class="content bg-100">
                 <nav class="mb-2" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#!">Gestión de planillas</a></li>

@@ -21,7 +21,7 @@
           <jsp:include page="navTop.jsp"></jsp:include>
           <jsp:include page="modalFade.jsp"></jsp:include>
 
-          <div class="content" id="kanban">
+          <div class="content bg-100" id="kanban">
                   <div class="kanban-header">
                     <div class="row gx-0 justify-content-between justify-content-md-start">
                       <div class="col-auto">

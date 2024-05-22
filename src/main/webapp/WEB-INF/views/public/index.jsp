@@ -185,7 +185,7 @@
           </div>
         </div>
       </div>
-      <div class="content">
+      <div class="content bg-100">
         <div class="pb-5">
           <div class="row g-4">
             <div class="col-12 col-xxl-6">

@@ -23,7 +23,7 @@
           <jsp:include page="../../../../navTop.jsp"></jsp:include>
           <jsp:include page="../../../../modalFade.jsp"></jsp:include>
 
-          <div class="content">
+          <div class="content bg-100">
                 <div class="row mt-0 mb-1">
                       <div class="col-12">
                         <div class="row align-items-center justify-content-between">
