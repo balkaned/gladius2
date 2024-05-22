@@ -1,9 +1,7 @@
 package com.balkaned.gladius.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Concepto {
