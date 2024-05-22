@@ -24,7 +24,7 @@
             <form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
-              <span id="spntop" class="pe-4">${nombreComp} </span><span id="spntop">Ruc: ${rucComp} </span>
+              <span id="spntop" class="pe-4 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
               <!--<span class="fas fa-search search-box-icon"></span>-->
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">

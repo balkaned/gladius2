@@ -238,7 +238,7 @@
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-    background-color:#053055 !important;
+    background-color:#1E283D !important;
     border:0px solid black;
 }
 
@@ -485,8 +485,8 @@ border-radius:0px !important;*/
 }
 
 #spntop{
-font-size:10px;
-color:white;
+font-size:11px;
+color:#9BA0B8;
 }
 
 /*#customer-order-table-body tr td{
@@ -571,6 +571,10 @@ cursor:pointer;
     background-color:#111827 !important;
     border:1px solid #373E53;
 }*/
+
+.modal-backdrop{
+    opacity:0.5 !important;
+}
 
 
 
