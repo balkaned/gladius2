@@ -1106,9 +1106,8 @@ public class PlanillaController {
         model.addAttribute("iexperiodo", periodo);
 
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(v_codpro), periodo));
-
-
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, v_codpro, periodo, -1, 1, "%"));
+
         //model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, v_codpro, "2"));
         //model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, v_codpro, periodo, 1));
 

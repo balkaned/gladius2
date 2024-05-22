@@ -67,9 +67,9 @@
 
               document.getElementById ("formMigr").encoding="multipart/form-data";
               document.getElementById("accion").value="UPXLSPLA";
-              document.getElementById("formMigr").submit();
+              $('#modalImport').modal('show');
 
-              $('#modalLoading').modal('show');
+              document.getElementById("formMigr").submit();
           }
      }
   </script>
@@ -231,27 +231,8 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${fdatavar.iexcodtra}</a></td>
-                                    <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.nomdestra}</td>
-                                    <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
-                                    <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
-                                         <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}_valor" name="${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" value="${fdatavar.iexvalcon}"
-                                         <c:if test="${requestScope.xproplaper.flgestado eq '3' }" > readonly </c:if> >
-                                    </td>
 
-                                    <td class="align-middle text-end white-space-nowrap pe-0 action">
-                                       <div class="font-sans-serif btn-reveal-trigger position-static">
-                                         <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
-                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
-                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <a id="dropdownmenutable_${fdatavar.iexcodtra}_${fdatavar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatavar.iexcodtra}_${fdatavar.iexcodcon}','${fdatavar.iexcodtra}','${requestScope.iexcodpro}','${requestScope.iexperiodo}','${fdatavar.iexcodcon}','${requestScope.iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
-                                              <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarMigPlanConcepVariable@${requestScope.iexcodpro}@${requestScope.iexperiodo}@1@${fdatavar.iexcodtra}@${fdatavar.iexcodcon}@${requestScope.iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
-                                         </div>
-                                       </div>
-                                    </td>
+
                                   </tr>
                                 </c:forEach>
                             </tbody>
@@ -283,17 +264,17 @@
     <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
 
-  <div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+  <div id="modalImport" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
   	  <div class="modal-content bg-100 rounded-2 border border-300">
   		<form class="needs-validation" method="POST" action="" novalidate >
   			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
-  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Migrando planilla externa al sistema</h5>
+  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Migrando planilla externa a gladius</h5>
   			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
   			</div>
   			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
   			  <div class="mt-0 mb-0">
-  				  <p class="fs--1">Se esta realizando la importación/ migración de la planilla desde excel, espere unos minutos hasta que haya finalizado la tarea...</p>
+  				  <p class="fs--1">Se esta realizando la importación/ migración de la planilla desde excel. Se recomienda no tocar el equipo, hasta que haya terminado el proceso, cualquier interrupción, podría dañar la base de datos no parar el proceso manualmente, espere unos minutos hasta que haya finalizado la tarea...</p>
   				  <div class="col-12 text-center">
   					  <div id="iconspinner" class="spinner-border text-primary" role="status">
   						<span class="visually-hidden">Loading...</span>
@@ -302,7 +283,7 @@
   			  </div>
   			</div>
   			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-  				<button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Procesando datos</span></button>
+  				<button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Procesando data</span></button>
   			</div>
   		</form>
   	  </div>
