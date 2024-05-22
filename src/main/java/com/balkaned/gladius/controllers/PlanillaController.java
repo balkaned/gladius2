@@ -974,10 +974,10 @@ public class PlanillaController {
     }
 
     @SneakyThrows
-    @RequestMapping(value = "/gestionarMigracionTrabConcepValor", method = RequestMethod.POST)
-    public ModelAndView gestionarMigracionTrabConcepValor(ModelMap model, HttpServletRequest request, HttpServletResponse response,
+    @RequestMapping(value = "/gestionarMigracion", method = RequestMethod.POST)
+    public ModelAndView gestionarMigracion(ModelMap model, HttpServletRequest request, HttpServletResponse response,
                                                           @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
-        log.info("/gestionarMigracionTrabConcepValor");
+        log.info("/gestionarMigracion");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -996,7 +996,9 @@ public class PlanillaController {
         String codcon = request.getParameter("slc_codcon");
         String importe = request.getParameter("txt_importe");
 
-        if (accion.equals("UPXLSVAR")) {
+        log.info("accion: "+accion);
+
+        if (accion.equals("UPXLSPLA")) {
             // Process only if its multipart content
             PrintWriter out = response.getWriter();
 
@@ -1062,7 +1064,11 @@ public class PlanillaController {
                             int num = (int) cell.getNumericCellValue();
                             v_codtra = Integer.toString(num);
                         }
+
                         log.info("v_codtra: " + v_codtra);
+
+                        planillaService.migraTrabajador(idCompania,v_codpro,periodo, Integer.valueOf(v_codtra),v_correl);
+                        //dao.migraTrabajador(v_codcia, v_codpro, v_nroper, v_codtra, v_correl);
                     }
 
                     if (v_codcab == 2 && cn >= 2) {
@@ -1091,16 +1097,20 @@ public class PlanillaController {
                 v_codcab++;
             }
 
-            sueldoService.migraInsertarPla(l_empvar);
+            //sueldoService.migraInsertarPla(l_empvar);
+            planillaService.migraInsertarPla(l_empvar);
         }
 
         model.addAttribute("iexcodreg", iexcodreg);
         model.addAttribute("iexcodpro", v_codpro);
         model.addAttribute("iexperiodo", periodo);
+
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(v_codpro), periodo));
+
+
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, v_codpro, periodo, -1, 1, "%"));
-        model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, v_codpro, "2"));
-        model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, v_codpro, periodo, 1));
+        //model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, v_codpro, "2"));
+        //model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, v_codpro, periodo, 1));
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/migracionPlanilla");
     }

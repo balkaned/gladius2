@@ -40,56 +40,52 @@ public class SueldoServiceImpl implements SueldoService {
         dao.insertarEmpDatvar(empdatvar);
     }
 
-    public EmpSueldo obtenerOneEmpSueldo(Empleado empleado , String concepto){
-        return dao.obtenerOneEmpSueldo(empleado,concepto);
+    public EmpSueldo obtenerOneEmpSueldo(Empleado empleado, String concepto) {
+        return dao.obtenerOneEmpSueldo(empleado, concepto);
     }
 
-    public void actualizarEmpSueldo(EmpSueldo empsueldo){
+    public void actualizarEmpSueldo(EmpSueldo empsueldo) {
 
         dao.actualizarEmpSueldo(empsueldo);
     }
 
-    public void eliminarEmpSueldo(EmpSueldo empsueldo){
+    public void eliminarEmpSueldo(EmpSueldo empsueldo) {
 
         dao.eliminarEmpSueldo(empsueldo);
     }
 
-    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto){
-        return dao.obtenerOneEmpDatvar(cia,codpro,nroper,codtra,correl,concepto);
+    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto) {
+        return dao.obtenerOneEmpDatvar(cia, codpro, nroper, codtra, correl, concepto);
     }
 
-    public void actualizarEmpDatvar(EmpDatvar empdatvar){
+    public void actualizarEmpDatvar(EmpDatvar empdatvar) {
 
         dao.actualizarEmpDatvar(empdatvar);
     }
 
-    public void eliminarEmpDatvar(EmpDatvar empdatvar){
+    public void eliminarEmpDatvar(EmpDatvar empdatvar) {
 
         dao.eliminarEmpDatvar(empdatvar);
     }
 
-    public List<Concepto> ListConcepProVar(Integer codcia, Integer codpro, String Tipo){
-        return dao.ListConcepProVar(codcia,codpro,Tipo);
+    public List<Concepto> ListConcepProVar(Integer codcia, Integer codpro, String Tipo) {
+        return dao.ListConcepProVar(codcia, codpro, Tipo);
     }
 
-    public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl){
-        return dao.obtenerEmpResvar(cia,codpro,nroper,correl);
+    public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl) {
+        return dao.obtenerEmpResvar(cia, codpro, nroper, correl);
     }
 
-    public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl){
-        dao.eliminarAllDatvar(cia,codpro,nroper,correl);
+    public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl) {
+        dao.eliminarAllDatvar(cia, codpro, nroper, correl);
     }
 
-    public void insertarDatvarmas(List<EmpDatvar> empdatvar){
+    public void insertarDatvarmas(List<EmpDatvar> empdatvar) {
         dao.insertarDatvarmas(empdatvar);
     }
 
-    public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto){
-        dao.eliminarAllDatvarEmp(cia,codpro,nroper,correl,codtra,concepto);
-    }
-
-    public void migraInsertarPla(List<EmpDatvar> empdatvar){
-        dao.migraInsertarPla(empdatvar);
+    public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto) {
+        dao.eliminarAllDatvarEmp(cia, codpro, nroper, correl, codtra, concepto);
     }
 
 }

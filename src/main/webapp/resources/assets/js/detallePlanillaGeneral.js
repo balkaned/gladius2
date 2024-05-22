@@ -87,7 +87,7 @@ function enviaForm_ind(variable, trab){
     }
 
     document.getElementById("iexcodtra").value=trab;
-    document.getElementById("frmplaserv").submit();
+    //document.getElementById("frmplaserv").submit();
 }
 
 function consulBol(codtra){

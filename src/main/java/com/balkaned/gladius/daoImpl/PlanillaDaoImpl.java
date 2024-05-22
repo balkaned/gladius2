@@ -1250,11 +1250,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
 
                     p.setDestra(rs.getString("destra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDestra(cap.letras(p.getDestra()));
 
                     p.setTiporegistro(rs.getString("destipo"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
                     p.setTiporegistro(cap2.letras(p.getTiporegistro()));
 
                     p.setFecini(rs.getString("fecini"));
@@ -1306,7 +1306,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
 
                     p.setDestra(rs.getString("destra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDestra(cap.letras(p.getDestra()));
 
                     p.setTiporegistro(rs.getString("destipo"));
@@ -1358,7 +1358,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
 
                     p.setDestra(rs.getString("destra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     p.setDestra(cap.letras(p.getDestra()));
 
                     p.setTiporegistro(rs.getString("destipo"));
@@ -1414,6 +1414,40 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 return lista;
             }
         });
+    }
+
+    public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl) {
+
+        log.info("--- Migraciones  --- ");
+        log.info("codcia : " + cia);
+        log.info("proceso : " + codpro);
+        log.info("perpro : " + nroper);
+        log.info("codtra : " + codtra);
+        log.info("correl : " + correl);
+
+        template.update(" call pl_migra_planilla_tra(?,?,?,?,?) ",
+                cia,
+                codpro,
+                nroper,
+                codtra,
+                correl);
+    }
+
+    public void migraInsertarPla(List<EmpDatvar> empdatvar) {
+
+        for (EmpDatvar empdat : empdatvar) {
+
+            template.update(" call pl_migra_datapla_tra(?,?,?,?,?,?,?,?) ",
+
+                    empdat.getIexcodcia(),
+                    empdat.getIexcodpro(),
+                    empdat.getIexnroper(),
+                    empdat.getIexcodtra(),
+                    empdat.getIexcorrel(),
+                    empdat.getIexcodcon(),
+                    empdat.getIexvalcon(),
+                    empdat.getIexusucrea());
+        }
     }
 }
 

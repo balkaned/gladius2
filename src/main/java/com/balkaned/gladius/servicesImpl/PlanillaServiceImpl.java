@@ -1,9 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.models.BancoResumenPer;
-import com.balkaned.gladius.models.ConceptoxProcesoxTra;
-import com.balkaned.gladius.models.PlaProPerDet;
-import com.balkaned.gladius.models.PlaProPeriodo;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.PlanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,5 +117,13 @@ public class PlanillaServiceImpl implements PlanillaService {
 
     public List<PlaProPerDet> iniPlaProper_prom(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
         return dao.iniPlaProper_prom(codcia, idproceso, perpro, codtra, correl, grppla, usu);
+    }
+
+    public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl) {
+        dao.migraTrabajador(cia, codpro, nroper, codtra, correl);
+    }
+
+    public void migraInsertarPla(List<EmpDatvar> empdatvar) {
+        dao.migraInsertarPla(empdatvar);
     }
 }

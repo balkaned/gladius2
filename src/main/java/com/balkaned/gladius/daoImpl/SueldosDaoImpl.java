@@ -90,7 +90,7 @@ public class SueldosDaoImpl implements SueldoDao {
                     con.setCodConcepto(rs.getString("coocodcon"));
 
                     con.setDesConcepto(rs.getString("coodescon"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     con.setDesConcepto(cap.letras(con.getDesConcepto()));
 
                     lista.add(con);
@@ -312,7 +312,7 @@ public class SueldosDaoImpl implements SueldoDao {
                     con.setCodConcepto(rs.getString("coocodcon"));
 
                     con.setDesConcepto(rs.getString("coodescon"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     con.setDesConcepto(cap.letras(con.getDesConcepto()));
 
                     lista.add(con);
@@ -360,14 +360,14 @@ public class SueldosDaoImpl implements SueldoDao {
                     con.setIexcodtra(rs.getInt("iexcodtra"));
 
                     con.setNomdestra(rs.getString("desnomtra"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
+                    CapitalizarCadena cap = new CapitalizarCadena();
                     con.setNomdestra(cap.letras(con.getNomdestra()));
 
                     con.setIexcorrel(rs.getInt("iexcorrel"));
                     con.setIexcodcon(rs.getString("iexcodcon"));
 
                     con.setCoodescon(rs.getString("coodescon"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
                     con.setCoodescon(cap2.letras(con.getCoodescon()));
 
                     con.setIexvalcon(rs.getDouble("iexvalcon"));
@@ -395,7 +395,7 @@ public class SueldosDaoImpl implements SueldoDao {
 
     public void insertarDatvarmas(List<EmpDatvar> empdatvar) {
 
-        for(EmpDatvar empdat:empdatvar) {
+        for (EmpDatvar empdat : empdatvar) {
 
             template.update("  insert into iexdatavar ( " +
                             "		 iexcodcia, iexcodpro, iexnroper, iexcorrel, iexcodtra, iexcodcon, iexvalcon , iexusucrea, iexfeccrea, iexfecmod, iexusumod" +
@@ -419,28 +419,11 @@ public class SueldosDaoImpl implements SueldoDao {
 
         template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=?  and iexcodtra=? and iexcodcon =? ",
 
-        cia,
-        codpro,
-        nroper,
-        correl,
-        codtra,
-        concepto);
-    }
-
-    public void migraInsertarPla(List<EmpDatvar> empdatvar) {
-
-        for(EmpDatvar empdat:empdatvar) {
-
-            template.update(" call pl_migra_datapla_tra(?,?,?,?,?,?,?,?) ",
-
-                    empdat.getIexcodcia(),
-                    empdat.getIexcodpro(),
-                    empdat.getIexnroper(),
-                    empdat.getIexcodtra(),
-                    empdat.getIexcorrel(),
-                    empdat.getIexcodcon(),
-                    empdat.getIexvalcon(),
-                    empdat.getIexusucrea());
-        }
+                cia,
+                codpro,
+                nroper,
+                correl,
+                codtra,
+                concepto);
     }
 }

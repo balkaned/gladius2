@@ -57,10 +57,19 @@
      }
 
      function enviaForm(variable){
+
           if(variable==13){
-              document.getElementById ("formVariable").encoding="multipart/form-data";
-              document.getElementById("accion").value="UPXLSVAR";
-              document.getElementById("formVariable").submit();
+              var uploadFile = $("#uploadFile").val();
+              if(uploadFile == "") {
+                alert("Para realizar la importación del excel debe seleccionar al menos 1 archivo en formato excel")
+              	return;
+              }
+
+              document.getElementById ("formMigr").encoding="multipart/form-data";
+              document.getElementById("accion").value="UPXLSPLA";
+              document.getElementById("formMigr").submit();
+
+              $('#modalLoading').modal('show');
           }
      }
   </script>
@@ -85,14 +94,14 @@
             <div class="mb-12">
               <div class="row g-3 mb-2">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Migración planilla</h2>
+                  <h2 id="h2top" class="mb-0">Migración de planilla</h2>
                 </div>
               </div>
 
               <div class="row g-3">
                  <div class="col-xl-9">
                    <div class="row gx-3 gy-4">
-                      <form id="formVariable" class="row g-3 mb-0 needs-validation" method="POST" action="gestionarMigracionTrabConcepValor" novalidate >
+                      <form id="formMigr" class="row g-3 mb-0 needs-validation" method="POST" action="gestionarMigracion" novalidate >
                         <input type="hidden" name="iexcodreg" id="iexcodreg" value="${requestScope.iexcodreg}" />
                         <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" />
                         <input type="hidden" name="grppla" value="${requestScope.xgrppla}" />
@@ -123,7 +132,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
-                            <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
+                            <input class="form-control" id="uploadFile" name="uploadFile" type="file" required />
                         </div>
 
                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -153,7 +162,7 @@
                         	  </form>
                         	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                         		  <button class="btn btn-sm btn-phoenix-primary px-4  my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                        		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="enviaForm('13')" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                        		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                         	  </div>
                         	</div>
                           </div>
@@ -163,12 +172,12 @@
                             <div class="modal-content border">
                               <form id="addEventForm" autocomplete="off">
                                 <div class="modal-header border-200 p-4">
-                                  <h5 class="modal-title text-1000 fs-4 lh-sm">Importar Excel</h5>
+                                  <h5 class="modal-title text-1000 fs-4 lh-sm">Importador de excel</h5>
                                   <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
                                 </div>
                                 <div class="modal-body pt-4 pb-2 px-4">
                                   <div class="mb-3">
-                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea importar el excel?</label>
+                                    <label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea importar la planilla desde excel?</label>
                                   </div>
                                 </div>
                               </form>
@@ -215,7 +224,7 @@
                               </tr>
                             </thead>
                             <tbody class="list" id="order-table-body">
-                                <c:forEach var="fdatavar" items="${requestScope.fdatavar}">
+                                <c:forEach var="LstPlanillaRes" items="${requestScope.LstPlanillaRes}">
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                     <td class="fs--1 align-middle px-0 py-3">
                                       <div class="form-check mb-0 fs-0">
@@ -273,4 +282,30 @@
 
     <jsp:include page="../../../customize.jsp"></jsp:include>
   </body>
+
+  <div id="modalLoading" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+  	  <div class="modal-content bg-100 rounded-2 border border-300">
+  		<form class="needs-validation" method="POST" action="" novalidate >
+  			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
+  			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Migrando planilla externa al sistema</h5>
+  			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->
+  			</div>
+  			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
+  			  <div class="mt-0 mb-0">
+  				  <p class="fs--1">Se esta realizando la importación/ migración de la planilla desde excel, espere unos minutos hasta que haya finalizado la tarea...</p>
+  				  <div class="col-12 text-center">
+  					  <div id="iconspinner" class="spinner-border text-primary" role="status">
+  						<span class="visually-hidden">Loading...</span>
+  					  </div>
+  				  </div>
+  			  </div>
+  			</div>
+  			<div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
+  				<button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Procesando datos</span></button>
+  			</div>
+  		</form>
+  	  </div>
+    </div>
+  </div>
 </html>

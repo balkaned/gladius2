@@ -1,9 +1,6 @@
 package com.balkaned.gladius.services;
 
-import com.balkaned.gladius.models.BancoResumenPer;
-import com.balkaned.gladius.models.ConceptoxProcesoxTra;
-import com.balkaned.gladius.models.PlaProPerDet;
-import com.balkaned.gladius.models.PlaProPeriodo;
+import com.balkaned.gladius.models.*;
 
 import java.util.List;
 
@@ -61,5 +58,8 @@ public interface PlanillaService {
 
     public List<PlaProPerDet> iniPlaProper_prom(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
 
+    public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl);
+
+    public void migraInsertarPla(List<EmpDatvar> empdatvar);
 }
 
