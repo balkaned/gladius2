@@ -56,12 +56,12 @@
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="idParam" type="text"  value="${idParam}" required disabled readonly/>
                               </div>
-                              <div class="col-sm-6 col-md-6">
+                              <div class="col-sm-6 col-md-8">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                  <select class="form-select" name="iexcodcon" required>
-                                    <option value="" selected >Ninguno</option>
+                                  <select class="form-select" name="iexcodcon" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
+                                    <option value="" selected >Seleccionar</option>
                                     <c:forEach var="lovConcepto" items="${lovConcepto}">
-                                        <option value="${lovConcepto.codConcepto}" ${lovConcepto.codConcepto== requestScope.xParametro.iexcodcon ? 'selected' : ''}>${lovConcepto.desConcepto}</option>
+                                        <option value="${lovConcepto.codConcepto}" ${lovConcepto.codConcepto== requestScope.xParametro.iexcodcon ? 'selected' : ''} >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
                                     </c:forEach>
                                   </select>
                               </div>

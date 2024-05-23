@@ -191,9 +191,9 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto resultado</label>
-                                        <select id="codcon" name="codcon" class="form-select" required >
+                                        <select id="codcon" name="codcon" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
                                             <c:forEach var="Lovs_concept" items="${requestScope.Lovs_conxprod}">
-                                                <option value="${Lovs_concept.codConcepto}" ${Lovs_concept.codConcepto == requestScope.fplanillax.idConcepto ? 'selected' : ''} >${Lovs_concept.desConcepto} - ${Lovs_concept.desVariable}</option>
+                                                <option value="${Lovs_concept.codConcepto}" ${Lovs_concept.codConcepto == requestScope.fplanillax.idConcepto ? 'selected' : ''} >${Lovs_concept.desVariable} - ${Lovs_concept.desConcepto}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -264,11 +264,11 @@
                                                             </tr>
                                                           </thead>
                                                           <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-warning btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$resultado$</a></td></tr>
+                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-warning btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-secondary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
+                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-primary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                   <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
                                                                 </tr>
@@ -292,7 +292,7 @@
                                                 <h3 class="mb-4"> Editor de fórmulas</h3>
                                                 <!--<textarea id="text-box" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-1000" placeholder="Escribe la fórmula aquí..." name="text-box" row="15">${requestScope.fplanillax.desFormula}</textarea>-->
                                                 <!--id="textAreaTraductor" style="font-family: 'JetBrains Mono';font-size:11.5px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1"-->
-                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;" class="form-control border-200 rounded-bottom-0 border-0 flex-1 text-secondary"
+                                                <textarea id="text-box" name="text-box" style="font-family: 'JetBrains Mono';font-size:13px;font-weight:400;" class="form-control bg-200 border-200 rounded-bottom-0 border-0 flex-1 text-secondary"
                                                                         rows="15" placeholder="Escribe la fórmula aquí...">${requestScope.fplanillax.desFormula}</textarea>
                                                 <a onclick="addOperador(' ');" class="btn btn-phoenix-primary w-100 mb-1 mt-2">Espacio</a>
                                                 <!--<a onclick="addOperador('\n');" class="btn btn-phoenix-primary w-100 mb-0 mt-0">Enter</a>-->

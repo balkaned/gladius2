@@ -50,7 +50,7 @@
           <div class="col-sm-10 col-md-8 col-lg-4 col-xl-5 col-xxl-3">
                 <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
                 <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                    <img src="resources/assets/img/icons/logoLast6.png" alt="phoenix" width="58" />
+                    <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="58" />
                 </div>
             </a>
             <div class="text-center mb-5">

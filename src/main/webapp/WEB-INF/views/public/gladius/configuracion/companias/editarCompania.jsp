@@ -46,7 +46,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Editar compañia</h2>
+                  <h2 id="h2top" class="mb-0">Editar compañía</h2>
                 </div>
               </div>
 
@@ -75,6 +75,9 @@
                        <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarCompania" novalidate >
                               <input class="form-control" name="iexcodcia2" type="hidden" value="${idCia}" />
 
+                              <div class="col-12">
+                                <span class="col-sm-6 col-md-4 badge badge-tag me-2 mb-2">Datos principales</span>
+                              </div>
                               <div class="col-sm-6 col-md-2">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
                                    <input class="form-control" name="iexcodcia" type="number" value="${idCia}" required disabled required/>
@@ -127,6 +130,10 @@
                               <div class="col-sm-6 col-md-7">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Url file report</label>
                                   <input class="form-control" name="iexurlfilereport" type="text" value="${requestScope.xCia.iexurlfilereport}" />
+                              </div>
+
+                              <div class="col-12 mt-7">
+                                  <span class="col-sm-6 col-md-4 badge badge-tag me-2 mb-2">Datos de conexión</span>
                               </div>
                               <div class="col-sm-6 col-md-5">
                               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo conexión flag source</label>
@@ -199,6 +206,9 @@
                               </div>
                        </form>
 
+                       <div class="col-12 mt-7">
+                           <span class="col-sm-6 col-md-4 badge badge-tag me-2 mb-2">Conceptos habilitados</span>
+                       </div>
                        <form class="form-horizontal form-label-left needs-validation"  id="formconcept"  method="POST" action="insertarConceptoComp" name="ciafijvar"  id="ciafijvar"  novalidate>
                            <input type="hidden"  name="idcia"  id="idcia"  value="${requestScope.xCia.idCodcia}"  readonly>
                            <input type="hidden"  name="accion" value="INSCONS" >
@@ -228,24 +238,20 @@
                            </div>
                        </form>
                        </br>
-                       <div class="form-group row mt-3">
-                           <label class="control-label col-md-3 col-sm-3 "></label>
-                           <div class="col-md-6 col-sm-6 ">
-                               <table width="100">
-                                   <tr>
-                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos fijos</td>
-                                       <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos variables</td>
-                                   </tr>
-                                   <tr>
+                       <div class="col-sm-6 col-md-6">
+                           <div>
+                               <div>
+                                   <div>
                                        <td>
-                                           <div class="mt-3 " id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                           <div class="" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                                <div class="table-responsive scrollbar">
-                                                    <table class="table table-sm fs--1 mb-0">
+                                                    <table class="table table-sm fs--1">
+                                                      <div class="fs--1 fw-bold">Conceptos fijos</div>
                                                       <tbody class="list" id="customer-order-table-body">
                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
                                                             <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
-                                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaFij.iexcodcon}</span></td>
-                                                              <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-warning"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
+                                                              <td class="align-middle white-space-nowrap text-center text-700 "><span class="badge badge-tag ">${xCiaFij.iexcodcon}</span></td>
+                                                              <td class="align-middle white-space-nowrap text-start text-700 "><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
                                                               <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
                                                             </tr>
                                                         </c:forEach>
@@ -254,15 +260,16 @@
                                                </div>
                                            </div>
                                        </td>
-                                       <td class="ps-3">
-                                           <div class="mt-3 " id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                       <td class="">
+                                           <div class="" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
                                               <div class="table-responsive scrollbar">
-                                                   <table class="table table-sm fs--1 mb-0">
+                                                   <table class="table table-sm fs--1">
+                                                     <div class="fs--1 fw-bold mt-4">Conceptos variables</div>
                                                      <tbody class="list" id="customer-order-table-body">
                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
                                                            <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
-                                                             <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${xCiaVar.iexcodcon}</span></td>
-                                                             <td class="align-middle white-space-nowrap text-start text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
+                                                             <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-tag">${xCiaVar.iexcodcon}</span></td>
+                                                             <td class="align-middle white-space-nowrap text-start text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
                                                              <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
                                                            </tr>
                                                        </c:forEach>
@@ -271,8 +278,8 @@
                                               </div>
                                            </div>
                                        </td>
-                                   </tr>
-                               </table>
+                                   </div>
+                               </div>
                            </div>
                        </div>
                      </div>

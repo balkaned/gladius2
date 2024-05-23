@@ -142,7 +142,7 @@
               </div>
             </div>
           </div>
-          <ul class="navbar-nav navbar-nav-icons flex-row">
+          <ul id="navTopFeeds" class="navbar-nav navbar-nav-icons flex-row ps-3">
             <li class="nav-item">
                   <div class="me-2">
                     <a href="#" onclick="maximize();" class="fs-3 text-white" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>

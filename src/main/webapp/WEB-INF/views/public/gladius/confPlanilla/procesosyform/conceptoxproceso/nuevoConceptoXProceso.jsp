@@ -46,23 +46,22 @@
                         <div class="col-xl-8">
                             <div class="row gx-3 gy-4">
                                 <form class="row g-3 mb-0 needs-validation" method="POST" action="addConceptoXProceso@${requestScope.idxproceso}" novalidate>
-                                    <h2>Insertar concepto x proceso</h2>
+                                    <h2>Nuevo concepto x proceso</h2>
                                     <h5 class="text-700 mt-1 fw-semi-bold">${desproceso}</h5>
 
                                     <div class="col-sm-6 col-md-2">
                                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id proceso</label>
                                          <input class="form-control" name="idprocesodis" type="text" value="${requestScope.idxproceso}" readonly disabled/>
+                                         <input type="hidden" id="idproceso" name="idproceso" value="${requestScope.idxproceso}"/>
                                     </div>
-                                    <input type="hidden" id="idproceso" name="idproceso" value="${requestScope.idxproceso}"/>
-
                                     <div class="col-sm-6 col-md-4">
-                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                        <select name="idconcepto" class="form-select" required>
-                                            <option value="">Seleccionar concepto</option>
-                                            <c:forEach var="LstConceptoIns" items="${requestScope.LstConceptoIns}">
-                                                <option value="${LstConceptoIns.codConcepto}"> ${LstConceptoIns.codConcepto} - ${LstConceptoIns.desConcepto} </option>
+                                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
+                                          <select class="form-select" name="idconcepto" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
+                                            <option value="" selected >Seleccionar</option>
+                                            <c:forEach var="LstConceptoIns" items="${LstConceptoIns}">
+                                                <option value="${LstConceptoIns.codConcepto}" >${LstConceptoIns.codConcepto} - ${LstConceptoIns.desConcepto}</option>
                                             </c:forEach>
-                                        </select>
+                                          </select>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="tip_concepto">Tipo de concepto</label>

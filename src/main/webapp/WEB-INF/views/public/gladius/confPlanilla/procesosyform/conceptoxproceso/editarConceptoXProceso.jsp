@@ -34,7 +34,7 @@
                      var opt = "";
                           //opt += "<option value=0 >Seleccionar</option>";
                           for (var i in data) {
-                           opt += "<option value="+data[i].procodcon+" > "+data[i].coodescon+" </option> ";
+                           opt += "<option value="+data[i].procodcon+" > "+data[i].procodcon+" - "+data[i].coodescon+" </option> ";
                           }
 
                      $("#idconceptoProm").html(opt);
@@ -677,12 +677,12 @@
                         <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 mt-3">
+                    <div class="col-sm-6 col-md-5 mt-3">
                           <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" required >
+                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
                             <option value="" selected >Seleccionar concepto</option>
-                            <c:forEach var="listaConAgrp" items="${listaConAgrp}">d
-                                <option value="${listaConAgrp.procodcon}" >${listaConAgrp.coodescon}</option>
+                            <c:forEach var="listaConAgrp" items="${listaConAgrp}">
+                                <option value="${listaConAgrp.procodcon}" >${listaConAgrp.procodcon} - ${listaConAgrp.coodescon}</option>
                             </c:forEach>
                           </select>
                     </div>
