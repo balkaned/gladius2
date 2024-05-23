@@ -204,7 +204,7 @@ public class VacacionesController {
             return new ModelAndView("redirect:/nuevasVacacionesIns@{idTrab}@{perMesIni}@{perMesFin}@" + saldo);
         } else {
             model.addAttribute("msgErrorSaldoVacId", "ERVAC01");
-            model.addAttribute("msgErrorSaldoVac", "No cuenta con saldo de dias para programar vacaciones");
+            model.addAttribute("msgErrorSaldoVac", "No cuenta con saldo de días para programar vacaciones");
         }
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/vacaciones/verDetalleVac");

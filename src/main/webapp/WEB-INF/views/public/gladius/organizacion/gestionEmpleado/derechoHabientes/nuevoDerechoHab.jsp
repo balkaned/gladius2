@@ -72,7 +72,7 @@ function formatearFecha2(){
                           <div class="mb-9">
                             <div class="row g-3 mb-4">
                               <div class="col-auto">
-                                <h2 id="h2top" class="mb-0">Insertar derecho habiente</h2>
+                                <h2 id="h2top" class="mb-0">Nuevo derecho habiente</h2>
                               </div>
                             </div>
                             <c:if test="${msg!=null}">

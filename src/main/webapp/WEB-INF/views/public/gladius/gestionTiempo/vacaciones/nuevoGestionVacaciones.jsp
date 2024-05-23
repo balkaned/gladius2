@@ -227,7 +227,7 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Insertar vacaciones</h2>
+                    <h2 id="h2top" class="mb-0">Nuevas vacaciones</h2>
                 </div>
             </div>
 

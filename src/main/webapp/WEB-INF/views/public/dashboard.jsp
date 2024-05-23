@@ -473,7 +473,7 @@
                             <c:if test="${mensaje2!=null}">
                                 <div id="alert" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert">
                                     <span class="fa-solid fa-triangle-exclamation  text-warning fs-0 me-3"></span>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         <strong class="text-black">No hay datos</strong>
                                          <p class="mb-0 fw-semi-bold text-1000">${mensaje2} <a href="#">Mas información</a></p>
                                     </div>

@@ -95,12 +95,12 @@
                                               <td class="align-middle white-space-nowrap text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
                                               <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
                                               <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ">
-                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="badgecirclered">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
-                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="badgecirclegreen">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="p-2 text-white bg-danger rounded-circle">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                                  <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">+ ${LstVacacionesCtl.iexdiassaldo}</span></c:if>
                                               </td>
                                               <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
                                               <td class="date align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
-                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badgecirclered">${LstVacacionesCtl.iexdiasven}</span></td>
+                                              <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-danger">- ${LstVacacionesCtl.iexdiasven}</span></td>
 
                                               <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
                                                 <div class="font-sans-serif btn-reveal-trigger position-static">

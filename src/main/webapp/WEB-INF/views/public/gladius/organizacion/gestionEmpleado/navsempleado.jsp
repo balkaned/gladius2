@@ -1,7 +1,16 @@
+<%--
+    Created on : 15/06/2023, 12:20:00 PM
+    Author     : Jan Quiroz
+    Email	   : janquirozs@gmail.com
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
 <div id="otropciones" class="email-content scrollbar-overlay">
   <div class="d-flex justify-content-between align-items-center">
-    <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Menu de Opciones</p>
+    <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Menú de Opciones</p>
     <!--<button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>-->
   </div>
   <ul class="nav flex-column border-top fs--1 vertical-nav mb-4">
@@ -39,12 +48,12 @@
     </li>
     <li class="nav-item mt-1" id="linav">
         <a id="retencionJud" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="retencionJud@${idTrab}">
-            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-balance-scale"></span><span class="flex-1">Retencion Judicial</span></div>
+            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-balance-scale"></span><span class="flex-1">Retención Judicial</span></div>
         </a>
     </li>
     <li class="nav-item mt-1" id="linav">
         <a id="prestamos" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="prestamos@${idTrab}">
-            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-file-contract-dollar"></span><span class="flex-1">Prestamos</span></div>
+            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-file-contract-dollar"></span><span class="flex-1">Préstamos</span></div>
         </a>
     </li>
     <li class="nav-item mt-1" id="linav">
@@ -54,7 +63,7 @@
     </li>
     <li class="nav-item mt-1" id="linav">
         <a id="gestionTiempo" class="nav-link py-2 ps-0 pe-3 border-end border-bottom text-start outline-none" aria-current="page" href="gestionTiempo@${idTrab}">
-            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-clock"></span><span class="flex-1">Gestion de Tiempo</span></div>
+            <div class="d-flex align-items-center" id="navsOpcionesEmpl"><span class="me-2 nav-icons uil uil-clock"></span><span class="flex-1">Gestión de Tiempo</span></div>
         </a>
     </li>
     <li class="nav-item mt-1" id="linav">

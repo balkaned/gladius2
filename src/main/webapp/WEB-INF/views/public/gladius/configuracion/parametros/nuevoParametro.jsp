@@ -42,7 +42,7 @@
             <div class="mb-9">
               <div class="row g-3 mb-4">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Insertar parámetro</h2>
+                  <h2 id="h2top" class="mb-0">Nuevo parámetro</h2>
                 </div>
               </div>
 
@@ -53,14 +53,14 @@
                               <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                              <div class="col-sm-6 col-md-6">
-                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                  <select class="form-select" name="iexcodcon" required>
-                                    <option value="" selected >Ninguno</option>
-                                    <c:forEach var="lovConcepto" items="${lovConcepto}">
-                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.desConcepto}</option>
-                                    </c:forEach>
-                                  </select>
+                              <div class="col-sm-6 col-md-8">
+                              	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
+                              	  <select class="form-select" name="iexcodcon" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
+                              		<option value="" selected >Seleccionar</option>
+                              		<c:forEach var="lovConcepto" items="${lovConcepto}">
+                              			<option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
+                              		</c:forEach>
+                              	  </select>
                               </div>
                               <div class="col-sm-6 col-md-4">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de parámetro</label>

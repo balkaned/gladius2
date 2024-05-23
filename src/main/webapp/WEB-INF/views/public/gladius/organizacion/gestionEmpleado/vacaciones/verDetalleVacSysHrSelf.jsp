@@ -58,11 +58,18 @@
                                       <a class="btn btn-primary btn-sm ms-1 disabled" href="nuevasVacacionesValidacion@${idTrab}@${perini}@${perfin}"><span class="fa-solid fa-plus me-2"></span>Add vacaciones</a>
                                   </div>
                                 </div>
-                                <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
-                                     <div class="alert alert-danger alert-dismissible " role="alert">
-                                        <strong>Error!</strong> ${requestScope.msgErrorSaldoVac}
-                                     </div>
-                                </c:if>
+                                <div class="col-xl-12">
+                                    <c:if test="${requestScope.msgErrorSaldoVacId eq 'ERVAC01'}">
+                                           <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
+                                            <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                                            <div class="col-11">
+                                                <strong class="text-black">Error</strong>
+                                                 <p class="mb-0 fw-semi-bold text-1000">${requestScope.msgErrorSaldoVac} <a href="#">Mas información</a></p>
+                                            </div>
+                                            <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                           </div>
+                                    </c:if>
+                                </div>
                                 <div class="mb-4">
                                     <div class="d-flex align-items-center mb-1"><span class="me-2 uil uil-calendar-alt"></span>
                                       <h5 class="mb-0">Año</h5>
@@ -131,9 +138,6 @@
                                 		  </div>
                                 	</div>
                                 </div>
-
-
-
                               </div>
                             </div>
                          </div>
