@@ -23,7 +23,6 @@
       }
 
       function subirImagenDer(){
-          alert("2sadada");
           $('#modalLoadingDer').modal('show');
       }
   </script>
@@ -146,13 +145,13 @@
                                                                     <input type="hidden" name="idimg" value="${nrodoc}" >
                                                                     <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >
                                                                     <div class="mb-3">
-                                                                          <label class="form-label">Subir Imagen solo en formato .jpg</label>
+                                                                          <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
                                                                           <input class="form-control" name="uploadFile" type="file" />
                                                                     </div>
 
                                                                     <div class="col-sm-6 col-md-12 mt-2 mb-4">
                                                                       <div class="form-floating">
-                                                                          <button class="btn btn-primary btn-sm col-5" onclick="subirImagenDer();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
+                                                                          <button class="btn btn-primary btn-sm" onclick="subirImagenDer();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
                                                                       </div>
                                                                     </div>
                                                                 </form>
@@ -161,7 +160,7 @@
                                                           </div>
                                                           <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                                             <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
-                                                            <button class="btn btn-sm btn-phoenix-secondary fs--1 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+                                                            <button class="btn btn-sm btn-phoenix-primary fs--1 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
                                                           </div>
                                                       </div>
                                                     </div>

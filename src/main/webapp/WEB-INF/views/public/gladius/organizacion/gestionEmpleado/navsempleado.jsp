@@ -8,6 +8,27 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<script>
+    // Sub menu de detalle empleados
+    $('#linav a').click(function(){
+          $(this).addClass('activelsempl');
+          var thisselc=this.id;
+          sessionStorage.setItem("navempl",thisselc);
+    });
+
+
+    var navempl = sessionStorage.getItem("navempl");
+
+    /*if(menunav=="listEmpleados"){
+        $('#'+navempl).addClass("activelsempl");
+        document.getElementById(navempl).focus();
+    }
+
+    if(menunav!=null){
+        document.getElementById(menunav).focus();
+    }*/
+</script>
+
 <div id="otropciones" class="email-content scrollbar-overlay">
   <div class="d-flex justify-content-between align-items-center">
     <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Menú de Opciones</p>

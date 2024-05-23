@@ -46,33 +46,13 @@
                   sessionStorage.setItem("menunav",thisselc);
              });
 
-             $('#linav a').click(function(){
-                  $(this).addClass('activelsempl');
-                  var thisselc=this.id;
-                  sessionStorage.setItem("navempl",thisselc);
-             });
-
              var menunav = sessionStorage.getItem("menunav");
              $('#'+menunav).addClass("active");
 
              //console.log("#dotmenuicon"+menunav);
-             var id2="circle"+menunav;
-             console.log("id2: "+id2);
-             document.getElementById(id2).style.display = '';
-
-
-             // Sub menu de detalle empleados
-             var navempl = sessionStorage.getItem("navempl");
-
-             if(menunav=="listEmpleados"){
-                $('#'+navempl).addClass("activelsempl");
-                document.getElementById(navempl).focus();
-             }
-
-             if(menunav!=null){
-                document.getElementById(menunav).focus();
-             }
-
+             //var id2="circle"+menunav;
+             //console.log("id2: "+id2);
+             //document.getElementById(id2).style.display = '';
           });
         </script>
         <div class="collapse navbar-collapse" id="navbarVerticalCollapse">

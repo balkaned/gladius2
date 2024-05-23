@@ -28,7 +28,7 @@
                     <div class="bg-holder rounded-top bg-100 #f6f7f8">
                     <!--<input class="d-none" id="upload-feed-cover-image" type="file" />-->
                     <label class="cover-image-file-input" for="upload-feed-cover-image"></label>
-                    <div class="d-flex justify-content-end bottom-0 pe-1 pb-2 text-white mt-2 pe-2">
+                    <div class="d-flex justify-content-end bottom-0 pe-1 pb-2 text-primary mt-2 pe-2">
                         <span class="fa-solid fa-camera me-2"></span>
                         <a href="#!" class="fs--1 active focus" data-bs-toggle="modal" data-bs-target="#reportsFilterModal2" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Subir</a>
                     </div>
@@ -160,13 +160,13 @@
               enctype="multipart/form-data" >
                   <input type="hidden" name="idimg" value="${nrodoc}" >
                   <div class="mb-3">
-                        <label class="form-label">Subir Imagen solo en formato .jpg</label>
+                        <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
                         <input class="form-control" name="uploadFile" type="file" />
                   </div>
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-primary btn-sm col-5" onclick="subirImagen();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
+                        <button class="btn btn-primary btn-sm" onclick="subirImagen();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
                     </div>
                   </div>
               </form>
@@ -175,7 +175,7 @@
         </div>
         <div class="modal-footer bg-soft d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->
-          <button class="btn btn-sm btn-phoenix-secondary px-9 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+          <button class="btn btn-sm btn-phoenix-primary my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
     </div>
   </div>

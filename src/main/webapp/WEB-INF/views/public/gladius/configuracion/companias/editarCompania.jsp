@@ -65,6 +65,7 @@
 
                                  <form method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
                                        <input type="hidden"  name="idimg" value="${idCia}" >
+                                       <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
                                        <input type="file" name="uploadFile" class="form-control"/>
 
                                        <button class="btn btn-phoenix-secondary btn-sm mt-3" onclick="subirimagen();" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
@@ -230,7 +231,7 @@
                        <div class="form-group row mt-3">
                            <label class="control-label col-md-3 col-sm-3 "></label>
                            <div class="col-md-6 col-sm-6 ">
-                               <table width="750">
+                               <table width="100">
                                    <tr>
                                        <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos fijos</td>
                                        <td class="form-label fs-0 text-1000 ps-0 text-none mb-2">Conceptos variables</td>
