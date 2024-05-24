@@ -31,7 +31,7 @@ public class LovsDaoImpl implements LovsDao {
         List<Lovs> lista = null;
         String sql = " select " +
                 "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
+                "trim(substring(desdet,1,100)) des " +
                 "from iexttabled where iexcodtab='" + id_table + "'  and '%'||desdet||'%' like '%'||'" + text + "'||'%' ";
 
         return template.query(sql, new ResultSetExtractor<List<Lovs>>() {

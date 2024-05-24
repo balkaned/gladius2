@@ -78,7 +78,7 @@
                               </div>
                               <div class="col-sm-6 col-md-5">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Actividad comercial</label>
-                                  <select class="form-select" name="iexcodact" required>
+                                  <select class="form-select" name="iexcodact" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                     <option value="" selected >Seleccionar actividad</option>
                                     <c:forEach var="lovTipAct" items="${lovTipAct}">
                                         <option value="${lovTipAct.idLov}" >${lovTipAct.desLov}</option>

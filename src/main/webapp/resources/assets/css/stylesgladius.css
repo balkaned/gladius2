@@ -165,7 +165,7 @@
 
 #otropciones{
     border:0px solid red;
-    height:570px;
+    height:100%;
     margin-top:20px;
 }
 
@@ -593,6 +593,10 @@ cursor:pointer;
 
 .text-grey3{
     color:#525B75 !important;
+}
+
+#memnuborder{
+    border:0px !important;
 }
 
 

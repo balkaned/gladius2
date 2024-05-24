@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
@@ -49,12 +50,12 @@ public class EmpleadoController {
         emp.setIexcodcia(idCompania);
         emp.setIexcodtra(ur.getIexcodtra());
 
-        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
-        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+        log.info("ur.getIexdesrol(): " + ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): " + ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             List<Empleado> empleadoListbyCodTra = empleadoService.listarEmpleadoByCodTrab(emp);
-            model.addAttribute("empleadoListbyCodTra",empleadoListbyCodTra);
+            model.addAttribute("empleadoListbyCodTra", empleadoListbyCodTra);
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/listEmpleadosSysHrSelf");
         } else {
             List<Empleado> empleadoList = empleadoService.listarEmpleado(emp);
@@ -173,8 +174,8 @@ public class EmpleadoController {
         model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", emp5.getIexprovin_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
 
         UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
-        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
-        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+        log.info("ur.getIexdesrol(): " + ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): " + ur.getIexcodtra());
 
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/datosPersonales/fichaTrabajadorSysHrSelf");
@@ -210,12 +211,12 @@ public class EmpleadoController {
         String iexapemat = request.getParameter("iexapemat");
 
         String iexfecnac = request.getParameter("iexfecnac");
-        log.info("iexfecnac: "+iexfecnac);
+        log.info("iexfecnac: " + iexfecnac);
 
-        if(iexfecnac.equals("//")){
-            iexfecnac=null;
-        }else{
-            iexfecnac=iexfecnac;
+        if (iexfecnac.equals("//")) {
+            iexfecnac = null;
+        } else {
+            iexfecnac = iexfecnac;
         }
 
         String iexcodsex = request.getParameter("iexcodsex");
@@ -295,36 +296,36 @@ public class EmpleadoController {
 
         String iexfecing = request.getParameter("iexfecing");
 
-        if(iexfecing.equals("//")){
-            iexfecing=null;
-        }else{
-            iexfecing=iexfecing;
+        if (iexfecing.equals("//")) {
+            iexfecing = null;
+        } else {
+            iexfecing = iexfecing;
         }
 
         String iexfecret = request.getParameter("iexfecret");
 
-        if(iexfecret.equals("//")){
-            iexfecret=null;
-        }else{
-            iexfecret=iexfecret;
+        if (iexfecret.equals("//")) {
+            iexfecret = null;
+        } else {
+            iexfecret = iexfecret;
         }
 
         String iextipcont = request.getParameter("iextipcont");
 
         String iexfecini_cont = request.getParameter("iexfecini_cont");
 
-        if(iexfecini_cont.equals("//")){
-            iexfecini_cont=null;
-        }else{
-            iexfecini_cont=iexfecini_cont;
+        if (iexfecini_cont.equals("//")) {
+            iexfecini_cont = null;
+        } else {
+            iexfecini_cont = iexfecini_cont;
         }
 
         String iexfecfin_cont = request.getParameter("iexfecfin_cont");
 
-        if(iexfecfin_cont.equals("//")){
-            iexfecfin_cont=null;
-        }else{
-            iexfecfin_cont=iexfecfin_cont;
+        if (iexfecfin_cont.equals("//")) {
+            iexfecfin_cont = null;
+        } else {
+            iexfecfin_cont = iexfecfin_cont;
         }
 
         String iexpliego = request.getParameter("iexpliego");
@@ -441,10 +442,10 @@ public class EmpleadoController {
 
         String iexfecafp = request.getParameter("iexfecafp");
 
-        if(iexfecafp.equals("//")){
-            iexfecafp=null;
-        }else{
-            iexfecafp=iexfecafp;
+        if (iexfecafp.equals("//")) {
+            iexfecafp = null;
+        } else {
+            iexfecafp = iexfecafp;
         }
 
         String iexcussp = request.getParameter("iexcussp");

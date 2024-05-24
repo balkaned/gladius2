@@ -306,7 +306,7 @@
 
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
-                                                <select class="form-select" name="iexreglab" required>
+                                                <select class="form-select" name="iexreglab" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                                   <option value="" selected >Seleccionar regimen</option>
                                                   <c:forEach var="lovRegLab" items="${lovRegLab}">
                                                       <option value="${lovRegLab.idLov}" ${lovRegLab.idLov == requestScope.emp2.iexreglab ? 'selected' : ''}  >${lovRegLab.desLov}</option>
@@ -374,7 +374,7 @@
                                                   <select class="form-select" name="iexpliego" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                                     <option value="" selected >Seleccionar pliego</option>
                                                     <c:forEach var="lovPliego" items="${lovPliego}">
-                                                        <option value="${lovPliego.idLov}"   ${lovPliego.idLov == requestScope.emp2.iexpliego ? 'selected' : ''}    >${lovPliego.desLov}</option>
+                                                        <option value="${lovPliego.idLov}" ${lovPliego.idLov == requestScope.emp2.iexpliego ? 'selected' : ''} >${lovPliego.desLov}</option>
                                                     </c:forEach>
                                                   </select>
                                             </div>
@@ -416,7 +416,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Puesto</label>
-                                                  <select class="form-select" name="iexpuesto" required>
+                                                  <select class="form-select" name="iexpuesto" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                                     <option value="" selected >Seleccionar puesto</option>
                                                     <c:forEach var="lovPuesto" items="${lovPuesto}"  >
                                                         <option value="${lovPuesto.iexpuesto}" ${lovPuesto.iexpuesto == requestScope.emp2.iexpuesto ? 'selected' : ''}  >${lovPuesto.iexdespuesto}</option>
@@ -536,16 +536,16 @@
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                   <input class="form-check-input" name="iexflgbancci_hab" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_hab=='1' ? 'checked=true' : ''}  type="checkbox"/>
-                                                   <label class="form-check-label ms-2" for="flexChecked">Es interbancario?</label>
-                                            </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de cuenta bancaria</label>
                                                 <input class="form-control" name="iexnrocta_hab" type="number" maxlength="50" value="${requestScope.emp3.iexnrocta_hab}" placeholder="Ingrese el número de cuenta bancaria" />
                                             </div>
+                                            <div class="col-sm-6 col-md-12">
+                                                   <input class="form-check-input" name="iexflgbancci_hab" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_hab=='1' ? 'checked=true' : ''}  type="checkbox"/>
+                                                   <label class="form-check-label ms-2" for="flexChecked">Nro cuenta haberes es interbancaria?</label>
+                                            </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Banco de CTS</label>
                                                   <select class="form-select" name="iexcodban_cts" >
                                                     <option value="" selected >Seleccionar banco cts</option>
                                                     <c:forEach var="lovBancoCts" items="${lovBancoCts}">
@@ -554,7 +554,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cuenta CTS</label>
                                                   <select class="form-select" name="iextipban_cts" >
                                                     <option value="" selected >Seleccionar tipo cuenta cts</option>
                                                     <c:forEach var="lovTipCtaCts" items="${lovTipCtaCts}">
@@ -563,7 +563,7 @@
                                                   </select>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de cts</label>
+                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Moneda de CTS</label>
                                                   <select class="form-select" name="iexcodmon_cts" >
                                                     <option value="" selected >Seleccionar moneda cts</option>
                                                     <c:forEach var="lovMonedaCts" items="${lovMonedaCts}">
@@ -571,13 +571,13 @@
                                                     </c:forEach>
                                                   </select>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                  <input class="form-check-input" name="iexflgbancci_cts" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_cts=='1' ? 'checked=true' : ''} type="checkbox"/>
-                                                  <label class="form-check-label ms-2" for="flexChecked">Es interbancario?</label>
-                                            </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro cuenta cts</label>
-                                                <input id="validationCustom01" class="form-control" type="number" maxlength="50" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" placeholder="Ingrese el numero de cuenta cts" />
+                                                <input id="validationCustom01" class="form-control" type="number" maxlength="50" name="iexnrocta_cts" value="${requestScope.emp3.iexnrocta_cts}" placeholder="Ingrese el número de cuenta CTS" />
+                                            </div>
+                                            <div class="col-sm-6 col-md-12">
+                                                  <input class="form-check-input" name="iexflgbancci_cts" id="flexChecked" value="1" ${requestScope.emp3.iexflgbancci_cts=='1' ? 'checked=true' : ''} type="checkbox"/>
+                                                  <label class="form-check-label ms-2" for="flexChecked">Nro cuenta CTS es interbancaria?</label>
                                             </div>
 
                                             <div id="alertPago" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -674,7 +674,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proveedor de eps</label>
-                                                <select class="form-select" name="iexcodeps" required >
+                                                <select class="form-select" name="iexcodeps" >
                                                     <option value="" selected >Seleccionar proveedor eps</option>
                                                     <c:forEach var="lovProvEps" items="${requestScope.lovProvEps}">
                                                         <option value="${lovProvEps.idLov}" ${lovProvEps.idLov == requestScope.emp4.iexcodeps ? 'selected' : ''}   >${lovProvEps.desLov}</option>
