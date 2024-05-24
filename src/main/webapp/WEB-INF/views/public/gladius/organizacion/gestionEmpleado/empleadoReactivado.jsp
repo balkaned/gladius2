@@ -59,7 +59,6 @@
      }
   </script>
 
-
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -91,6 +90,12 @@
                           <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                               <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                               <input type="hidden"  id="accion" name="accion" value="VAL">
+
+                              <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert">
+                              	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                              	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                              	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                              </div>
 
                               <div class="col-sm-6 col-md-3">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nuevo id trab</label>

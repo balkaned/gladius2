@@ -21,23 +21,35 @@
     }
 
     function SendSunatFile(tipo, flg) {
-        var accionField = document.getElementById("accion");
+
+        var permes = $("#permes").val();
+        if (permes == "") {
+            alert('Por favor, ingrese el Periodo Mensual YYYYMM antes de actualizar o descargar.');
+        	return;
+        }
+
+        if(tipo=="gestionPlame"){
+            $('#modalLoading').modal('show');
+
+            setTimeout(function() {
+                 document.getElementById("frmsunatfile").submit();
+            }, 5000);
+        }
+
+        /*var accionField = document.getElementById("accion");
         var fileField = document.getElementById("file");
 
         if (accionField && fileField) {
             accionField.value = tipo;
             fileField.value = flg;
 
-            $('#modalLoading').modal('show');
-            setTimeout(function() {
-            	  document.getElementById("frmsunatfile").submit();
-            }, 5000);
+            document.getElementById("frmsunatfile").submit();
         } else {
             console.error("Error: No se encontraron los elementos HTML necesarios.");
-        }
+        }*/
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         var procesarBtn = document.getElementById('actualizarBtn');
         var actualizarBtn2 = document.getElementById('actualizarBtn2');
         var actualizarBtn3 = document.getElementById('actualizarBtn3');
@@ -56,9 +68,9 @@
         actualizarBtn2.addEventListener('click', validarPermes);
         actualizarBtn3.addEventListener('click', validarPermes);
         actualizarBtn4.addEventListener('click', validarPermes);
-    });
+    });*/
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         var descargarBtn = document.getElementById('descargarBtn');
         var descargarBtn2 = document.getElementById('descargarBtn2');
         var descargarBtn3 = document.getElementById('descargarBtn3');
@@ -77,7 +89,7 @@
         descargarBtn2.addEventListener('click', validarPermes);
         descargarBtn3.addEventListener('click', validarPermes);
         descargarBtn4.addEventListener('click', validarPermes);
-    });
+    });*/
 
 </script>
 
@@ -116,7 +128,7 @@
                                 <td class="align-middle fw-semi-bold text-20">Periodo mensual</td>
                                 <td>
                                     <div class="col-sm-6 col-md-4">
-                                        <input type="text" name="permes" id="permes"  value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" required/>
+                                        <input type="text" name="permes" id="permes" value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" required />
                                     </div>
                                 </td>
                                 <td></td>
@@ -126,12 +138,12 @@
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=14"
                                         id="descargarBtn"
-                                        onclick=" SendSunatFile('REP','14')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
+                                        onclick="SendSunatFile('REP','14')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn"
-                                    onclick=" SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
+                                    type="submit" onclick="SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>

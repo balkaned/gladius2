@@ -655,7 +655,7 @@ public class EmpleadoController {
             Msg_form_global = "OK"; //Verifica si la lista esta llena. De esta vacio significa que el registro a validar seria nuevo
         } else {
             Msg_form_global = "Error";
-            model.addAttribute("msg", "Existen registros activos con el mismo numero de documento. Contactar con el Administrador");
+            model.addAttribute("msg", "Existen registros activos con el mismo número de documento. Comunicarse con algún admin");
         }
 
         log.info("ValidadEmpleado --> Mensaje global:" + Msg_form_global + " , cantidad de items=" + val);

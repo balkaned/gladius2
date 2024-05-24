@@ -76,6 +76,12 @@
               document.getElementById("uploadFile").value="text";
               document.getElementById("formVariable").submit();
           }else if(variable==13){
+              var uploadFile = $("#uploadFile").val();
+              if(uploadFile == "") {
+                alert("Para poder realizar la importación, debe seleccionar al menos un archivo excel")
+                return;
+              }
+
               document.getElementById ("formVariable").encoding="multipart/form-data";
               document.getElementById("accion").value="UPXLSVAR";
               document.getElementById("formVariable").submit();
@@ -143,7 +149,7 @@
                         <c:if test="${requestScope.xproplaper.flgestado eq '1'  ||  requestScope.xproplaper.flgestado eq '2'  ||  requestScope.xproplaper.flgestado  eq '0' }" >
                             <div class="col-sm-6 col-md-6">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                  <select name="slc_codtra" id="slc_codtra" class="form-select" required>
+                                  <select name="slc_codtra" id="slc_codtra" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                       <option value="" selected >Seleccionar trabajador</option>
                                       <c:forEach var="LstPlanillaRes" items="${requestScope.LstPlanillaRes}">
                                           <option value="${LstPlanillaRes.iexcodtra}">[${LstPlanillaRes.iexcodtra}] - ${LstPlanillaRes.destra}</option>
@@ -152,7 +158,7 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                  <select name="slc_codcon" id="slc_codcon" class="form-select" required>
+                                  <select name="slc_codcon" id="slc_codcon" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                       <option value="" selected >Seleccionar concepto</option>
                                       <c:forEach var="lovConcepProVar" items="${requestScope.lovConcepProVar}">
                                           <option value="${lovConcepProVar.codConcepto}">[${lovConcepProVar.codConcepto}] - ${lovConcepProVar.desConcepto}</option>

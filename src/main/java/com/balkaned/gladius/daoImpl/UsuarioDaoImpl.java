@@ -162,4 +162,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 "2");
     }
 
+    public void eliminar(Integer id) {
+
+        template.update(" CALL pl_gestion_usuarios(?,'','','',0,'','',?,?) ",
+
+                id,
+                1,
+                "3");
+    }
+
+
 }

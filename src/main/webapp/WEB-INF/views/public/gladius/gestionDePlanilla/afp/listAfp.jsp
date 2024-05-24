@@ -124,7 +124,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                           <td class="idafp align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="#">${LstAfpPer.iexcodafp}</a></td>
                                           <td class="desafp align-middle white-space-nowrap text-start fw-semi-bold text-1000">${LstAfpPer.iexdesafp}</td>
                                           <td class="align-middle white-space-nowrap text-900 fs--1 text-end">${LstAfpPer.iexremmax_asegu}</td>
-                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig}%</span></td>
+                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig} %</span></td>
                                           <td class="align-middle white-space-nowrap text-center ps-3fw-bold text-700">${LstAfpPer.iexcomis_sflu}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_sflu_mix}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_anual_mix}</td>

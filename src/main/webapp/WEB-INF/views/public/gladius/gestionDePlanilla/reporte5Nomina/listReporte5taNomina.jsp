@@ -49,7 +49,7 @@
                         <form class="row g-3 mb-0 needs-validation" method="POST" action="" novalidate>
                             <div class="col-sm-6 col-md-7">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código trabajador</label>
-                                <select class="form-select" name="percodtra" id="percodtra" required>
+                                <select class="form-select" name="percodtra" id="percodtra" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                     <option value="" selected>Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
                                         <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.percodtra ? 'selected' : ''} >[${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>

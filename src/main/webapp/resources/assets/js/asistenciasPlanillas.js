@@ -647,7 +647,7 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
              },
          success: function (data) {
 
-            var html="<div  class='bg-soft pt-3 pe-3 pb-3 ps-3 col-12'>"+
+            var html="<div  class='bg-100 border-top border-200 pt-3 pe-3 pb-3 ps-3 col-12'>"+
                         "<h6 class='text-500'>Datos de turno</h6>"+
                         "<form class='row g-1 mb-0 needs-validation' method='POST' action='' novalidate >"+
                             "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
@@ -728,10 +728,10 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                     html += "<div class='row col-12 mt-3 ps-0'>"+
                                 "<div class='col-auto pe-0' id='grabarClick"+ind+"' >"+
                                     "<a class='btn btn-sm btn-primary mt-1 ms-0'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
-                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star me-1'></span>Calificar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star text-warning me-1'></span>Calificar</a>"+
                                 "</div>"+
                                 "<div class='col-auto ps-0'>"+
-                                    "<a class='btn btn-sm btn-phoenix-primary mt-1 ms-3' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-3' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
                                 "</div>"+
                             "</div>"+
                         "</form>"+

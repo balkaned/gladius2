@@ -12,6 +12,17 @@
     <jsp:include page="../../../links.jsp"></jsp:include>
   </head>
 
+  <script>
+     function remove() {
+        var opcion = confirm("Esta seguro de Eliminar el usuario?");
+        if (opcion == true) {
+            return true;
+        } else {
+            return false;
+        }
+     }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -98,8 +109,8 @@
                                    <div class="dropdown-menu dropdown-menu-end py-2">
                                         <a id="dropdownmenutable" class="dropdown-item" href="editarUsuario@${LstUsuario.idUsuario}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                         <a id="dropdownmenutable" class="dropdown-item" href="asignarRolUs@${LstUsuario.idUsuario}"><span class="fa-solid fa-person-circle-check me-2"></span>Asignar Rol</a>
-                                        <!--<div class="dropdown-divider"></div>
-                                        <a id="dropdownmenutable" class="dropdown-item" href="#!">Eliminar</a>-->
+                                        <div class="dropdown-divider"></div>
+                                        <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteUsuario@${LstUsuario.idUsuario}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                    </div>
                                  </div>
                                </td>

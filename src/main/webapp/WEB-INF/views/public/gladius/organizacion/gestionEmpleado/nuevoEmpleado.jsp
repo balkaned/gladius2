@@ -172,9 +172,7 @@
                      </div>
                    </div>
               </div>
-
             </div>
-
           </div>
 
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>

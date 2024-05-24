@@ -60,8 +60,8 @@
                     </div>
 
                     <div class="">
-                          <a class="btn btn-primary btn-sm" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Add Empleado</a>
-                          <a class="btn btn-phoenix-secondary btn-sm ms-0" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso Empl</a>
+                          <a class="btn btn-primary btn-sm" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Nuevo empleado</a>
+                          <a class="btn btn-phoenix-secondary btn-sm ms-0" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso empleado</a>
 
                           <div class="btn-group mb-1 me-1 ms-0 mt-1">
                             <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span>Exportar</button>

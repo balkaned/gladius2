@@ -72,7 +72,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                         <div class="mt-2 col-auto">
                                             <a class="btn btn-phoenix-secondary btn-sm mt-1" href="listarDetallePlanillaGen@${iexcodreg}@${iexcodpro}@${periodo}"><span class="fas fa-reply me-2"></span>Volver a planillas</a>
                                             <!--<button class="btn btn-primary btn-sm mt-1" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>-->
-                                            <a class="btn btn-primary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>
+                                            <!--<a class="btn btn-primary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>-->
                                             <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar periodo afp</a>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                           <td class="idafp align-middle text-start fw-semi-bold text-1000 ps-5"><a class="fw-semi-bold" href="#">${LstAfpPer.iexcodafp}</a></td>
                                           <td class="desafp align-middle white-space-nowrap text-start fw-semi-bold text-1000">${LstAfpPer.iexdesafp}</td>
                                           <td class="align-middle white-space-nowrap text-900 fs--1 text-end">${LstAfpPer.iexremmax_asegu}</td>
-                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig}%</span></td>
+                                          <td class="align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${LstAfpPer.iexaporte_oblig} %</span></td>
                                           <td class="align-middle white-space-nowrap text-center ps-3fw-bold text-700">${LstAfpPer.iexcomis_sflu}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_sflu_mix}</td>
                                           <td class="align-middle white-space-nowrap text-center fw-bold text-700">${LstAfpPer.iexcomis_anual_mix}</td>
@@ -139,7 +139,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                                 data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                 <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                 <div class="dropdown-menu dropdown-menu-end py-2">
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="editarAfp@${LstAfpPer.iexcodafp}@${periodo}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                                  <!--<a id="dropdownmenutable" class="dropdown-item" href="editarAfp@${LstAfpPer.iexcodafp}@${periodo}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>-->
                                                   <div class="dropdown-divider"></div>
                                                   <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="deleteAfp@${LstAfpPer.iexcodafp}@${periodo}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
                                               </div>

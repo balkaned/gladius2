@@ -25,7 +25,7 @@
                 <div class="card-header hover-actions-trigger position-relative mb-7" style="min-height: 78px; ">
                     <!--<div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url(resources/assets/img/generic/59.png)">-->
                     <!--<div class="bg-holder rounded-top" style="background-color:#e6ebf7; !important">-->
-                    <div class="bg-holder rounded-top bg-100 #f6f7f8">
+                    <div class="bg-holder rounded-top bg-soft">
                     <!--<input class="d-none" id="upload-feed-cover-image" type="file" />-->
                     <label class="cover-image-file-input" for="upload-feed-cover-image"></label>
                     <div class="d-flex justify-content-end bottom-0 pe-1 pb-2 text-primary mt-2 pe-2">

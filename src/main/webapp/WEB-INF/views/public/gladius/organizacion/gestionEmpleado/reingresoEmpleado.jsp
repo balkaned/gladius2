@@ -45,7 +45,6 @@
         var Fecha2 = new Date(parseInt(Fecha_finult[2]),parseInt(Fecha_finult[1]-1),parseInt(Fecha_finult[0]));
 
         if (Fecha1 > Fecha2 ){
-                 alert ("La fecha es correcta");
                  document.getElementById("accion").value="REING";
                  document.getElementById("forms01").submit();
         }else{
@@ -94,7 +93,7 @@
 
                               <div class="col-sm-6 col-md-7">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador inactivo</label>
-                                  <select class="form-select" name="iexempid" required onchange="gettra();" >
+                                  <select class="form-select" name="iexempid" required onchange="gettra();" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' >
                                     <option value="-1" >Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoInactivo" items="${requestScope.LstEmpleadoInactivo}">
                                          <option value="${LstEmpleadoInactivo.iexcodtra}" ${LstEmpleadoInactivo.iexcodtra == requestScope.iexempid ? 'selected' : ''}   >${LstEmpleadoInactivo.iexfecret} - [${LstEmpleadoInactivo.iexcodtra}] - ${LstEmpleadoInactivo.iexapepat} ${LstEmpleadoInactivo.iexapemat} ${LstEmpleadoInactivo.iexnomtra}</option>

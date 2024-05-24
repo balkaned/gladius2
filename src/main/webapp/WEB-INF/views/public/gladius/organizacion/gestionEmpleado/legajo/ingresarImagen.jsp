@@ -80,8 +80,7 @@
                                    <div class="row gx-3 gy-4">
                                      <form id="formLoad" class="row g-3 mb-0 needs-validation" method="POST" enctype="multipart/form-data"
                                         action="AWSorFTP_flgsource_MultipartUpload@subirDocumento@${idComp}@${idTrab}@legajo"
-                                     novalidate >
-
+                                        novalidate >
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id grpfile</label>
                                                 <input class="form-control" name="idgrpfiledis" maxlength="50" type="text" value="${iexcodgrpfile}" disabled readonly />
@@ -92,8 +91,8 @@
                                                 <input class="form-control" name="grpFile" maxlength="50" type="text" value="${grpFile}" disabled readonly />
                                                 <input type="hidden" name="grpFile" id="grpFile" value="${grpFile}" />
                                             </div>
-                                            <div class="col-sm-6 col-md-9">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Subir documento solo en formato PDF</label>
+                                            <div class="col-sm-6 col-md-10">
+                                                <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .PDF, .doc, .xls, el documento a subir no debe superar los 30MB</p>
                                                 <input class="form-control" id="uploadFile" name="uploadFile" type="file" required/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
@@ -104,6 +103,8 @@
                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción imagen</label>
                                                  <input class="form-control" id="desimagen" name="desimagen" type="text" placeholder="Ingrese una descripción" required />
                                             </div>
+
+
 
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>

@@ -61,8 +61,8 @@
                             <input type="hidden" id="accion" name="accion" value="">
 
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de trabajador</label>
-                                <select class="form-select" name="codtra" id="codtra" required>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código de trabajador</label>
+                                <select class="form-select" name="codtra" id="codtra" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                     <option value="" selected>Seleccionar trabajador</option>
                                     <c:forEach var="LstEmpleadoRes" items="${requestScope.LstEmpleadoRes}">
                                         <option value="${LstEmpleadoRes.iexcodtra}" ${LstEmpleadoRes.iexcodtra==requestScope.codtra ? 'selected' : ''} >[${LstEmpleadoRes.iexcodtra}] - ${LstEmpleadoRes.iexapepat} ${LstEmpleadoRes.iexapemat} ${LstEmpleadoRes.iexnomtra}</option>
@@ -105,7 +105,7 @@
                 	  <div class="col-auto">
                 		<div class="search-box">
                 		  <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                			<input class="form-control search-input search" type="search" placeholder="Search periodo o planilla" aria-label="Search"/>
+                			<input class="form-control search-input search" type="search" placeholder="Search periodo o proceso" aria-label="Search"/>
                 			<span class="fas fa-search search-box-icon"></span>
                 		  </form>
                 		</div>
@@ -127,8 +127,8 @@
                                     <th class="sort align-middle text-center ps-3" scope="col" data-sort="">ID PROCESO</th>
                                     <th class="sort align-middle text-center ps-0" scope="col" data-sort="proceso">PROCESO</th>
                                     <th class="sort align-middle text-center ps-0 pe-0" scope="col" data-sort="">CORREL</th>
-                                    <th class="sort align-middle text-center ps-3 pe-3" scope="col" data-sort="">TOTAL INGRESO</th>
-                                    <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="">RENTA 5TA</th>
+                                    <th class="sort align-middle text-center ps-3 pe-0" scope="col" data-sort="">TOTAL INGRESO</th>
+                                    <th class="sort align-middle text-center ps-4 pe-2" scope="col" data-sort="">RENTA 5TA</th>
                                     <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="">TOTAL DESCUENTO</th>
                                     <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="">NETO RECIBIR</th>
                                     <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="">APORTE</th>
@@ -148,7 +148,7 @@
                                         <td class="proceso align-middle text-start white-space-nowrap">${Res_planAllPerTra.descodpro}</td>
                                         <td class="align-middle text-center fw-semi-bold text-1000">${Res_planAllPerTra.iexcorrel}</td>
 
-                                        <td class="align-middle text-center fw-bold text-1000">
+                                        <td class="align-middle text-end fw-bold text-1000">
                                             <fmt:formatNumber value="${Res_planAllPerTra.totalingreso}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
                                         <td class="align-middle text-center">

@@ -248,7 +248,7 @@
                             </div>
                             <div class="col-sm-6 col-md-8">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <select name="iexcodtra" id="iexcodtra" class="form-select"  required />
+                                <select name="iexcodtra" id="iexcodtra" class="form-select" required />
                                     <option value="" selected>Seleccionar trabajador</option>
                                 </select>
                             </div>

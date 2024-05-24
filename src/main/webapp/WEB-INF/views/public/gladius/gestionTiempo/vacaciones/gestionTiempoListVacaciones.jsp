@@ -148,14 +148,14 @@
 
                                     <div>
                                         <button class="btn btn-primary btn-sm" onclick="consultaDet();"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
-                                        <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Add Vacaciones</a>
+                                        <a class="btn btn-phoenix-secondary btn-sm" href="nuevoGestionVacaciones"><span class="fas fa-plus me-2"></span>Add vacaciones</a>
 
                                         <div class="btn-group mb-1 me-1 ms-0 mt-1">
                                           <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
                                           <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                           <div class="dropdown-menu">
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=1UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Programación</a>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar Saldo</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaReporteVacPrg@4UP_REGLAB=${P_REGLAB}UP_FLGEST=1UP_FECINI=${P_FECINI}UP_FECFIN=${P_FECFIN}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar programación</a>
+                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@ExportaResumenVacSal@2UP_REGLAB=${P_REGLAB}UP_FLGEST=${P_FLGEST}@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Exportar saldo</a>
                                           </div>
                                         </div>
                                     </div>

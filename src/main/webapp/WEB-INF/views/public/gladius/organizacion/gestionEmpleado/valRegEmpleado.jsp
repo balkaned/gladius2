@@ -64,7 +64,7 @@
                           <c:forEach var="LstPerRegistrada" items="${requestScope.LstPerRegistrada}">
                               <div class="py-4">
                                   <div class="d-flex">
-                                    <div class="d-flex bg-primary-100 rounded-circle flex-center me-3 bg-primary-100" style="width:25px; height:25px"><span class="fa-solid text-primary-600 dark__text-primary-300 fs--1 fas fa-universal-access text-primary-600 dark__text-primary-300"></span></div>
+                                    <div class="d-flex bg-primary-100 rounded-circle flex-center me-3 bg-primary-100" style="width:25px; height:25px"><span class="text-danger fs-0 fa-regular fa-times-circle"></span></div>
                                     <div class="flex-1">
                                       <div class="d-flex justify-content-between flex-column flex-xl-row mb-2 mb-sm-0">
                                         <div class="flex-1 me-2">

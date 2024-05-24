@@ -13,16 +13,34 @@
         var opcion = confirm("Esta seguro de realizar la operación?");
 
         if (opcion == true) {
-            if(variable==1){
-                document.getElementById("accion").value="ADD";
-                document.getElementById("tiposubmit").value=tiposubmit;
-            }else if(variable==2){
+
+            if(variable==2){
                 document.getElementById("accion").value="DEL";
                 document.getElementById("tiposubmit").value=tiposubmit;
                 document.getElementById("codcondel").value=codcondel;
             }else if(variable==3){
                 document.getElementById("accion").value="PLACONGENREP";
                 $('#modalLoading').modal('show');
+            }
+
+            if(variable==1){
+                document.getElementById("accion").value="ADD";
+                document.getElementById("tiposubmit").value=tiposubmit;
+
+                var perini = $("#perini").val();
+                if (perini == "") {
+                    return;
+                }
+
+                var perfin = $("#perfin").val();
+                if (perfin == "") {
+                    return;
+                }
+
+                var codcon = $("#codcon").val();
+                if (codcon == "") {
+                    return;
+                }
             }
 
             document.getElementById("frmReportPlanconcept").submit();
@@ -61,9 +79,9 @@
                 <div class="col-xl-8">
                     <div class="row gx-3 gy-4">
                         <form id="frmReportPlanconcept" class="row g-3 mb-0 needs-validation" method="POST" action="listReportePlanillaxConcepto" novalidate>
-                            <input name="accion" id="accion" type="hidden" value="NUEVO"/>
-                            <input name="tiposubmit" id="tiposubmit" type="hidden" value="${tiposubmit}"/>
-                            <input name="codcondel" id="codcondel" type="hidden" value=""/>
+                            <input name="accion" id="accion" type="hidden" value="NUEVO" />
+                            <input name="tiposubmit" id="tiposubmit" type="hidden" value="${tiposubmit}" />
+                            <input name="codcondel" id="codcondel" type="hidden" value="" />
 
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo inicio</label>
@@ -74,8 +92,8 @@
                                 <input class="form-control" type="text" name="perfin"  id="perfin" value="${xperfin}" placeholder="202304" required>
                             </div>
                             <div class="col-sm-6 col-md-8">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo de concepto</label>
-                                <select class="form-select" name="codcon" id="codcon" required>
+                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Código de concepto</label>
+                                <select class="form-select" name="codcon" id="codcon" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                     <option value="" selected>Seleccionar concepto</option>
                                     <c:forEach var = "lstConcepto" items = "${requestScope.lstConcepto}">
                                         <option  value="${lstConcepto.codConcepto}">${lstConcepto.codConcepto} - ${lstConcepto.desVariable} - ${lstConcepto.desConcepto}</option>
