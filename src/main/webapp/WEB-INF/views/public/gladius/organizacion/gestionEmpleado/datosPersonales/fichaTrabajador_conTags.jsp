@@ -10,10 +10,8 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
-    <script src="resources/assets/js/fichaTrabajador.js"></script>
+    <script src="resources/assets/js/gladius/fichaTrabajador.js"></script>
   </head>
-
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
@@ -1016,9 +1014,7 @@
                 </div>
               </div>
           </div>
-
           <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
-
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->

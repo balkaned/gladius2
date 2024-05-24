@@ -10,10 +10,10 @@
 <html lang="en-US" dir="ltr">
     <head>
       <jsp:include page="../../../links.jsp"></jsp:include>
-      <script src="resources/assets/js/detallePlanillaGeneral.js"></script>
-      <script src="resources/assets/js/boletasPlanillas.js"></script>
-      <script src="resources/assets/js/asistenciasPlanillas.js"></script>
-      <script src="resources/assets/js/otrosDatosPlanilla.js"></script>
+      <script src="resources/assets/js/gladius/detallePlanillaGeneral.js"></script>
+      <script src="resources/assets/js/gladius/boletasPlanillas.js"></script>
+      <script src="resources/assets/js/gladius/asistenciasPlanillas.js"></script>
+      <script src="resources/assets/js/gladius/otrosDatosPlanilla.js"></script>
     </head>
 
     <style>

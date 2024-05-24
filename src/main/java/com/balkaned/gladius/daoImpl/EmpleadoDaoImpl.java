@@ -613,7 +613,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIextipzona_dom1(rs.getString("iextipzona_dom1"));
                     p.setIexnomzona_dom1(rs.getString("iexnomzona_dom1"));
                     p.setIexreferencia_dom1(rs.getString("iexreferencia_dom1"));
-                    p.setIexubigeo_dom1(rs.getString("iexubigeo_dom1"));
                     p.setIextipvia_dom2(rs.getString("iextipvia_dom2"));
                     p.setIexnomvia_dom2(rs.getString("iexnomvia_dom2"));
                     p.setIexnrovia_dom2(rs.getString("iexnrovia_dom2"));
@@ -627,16 +626,24 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                     p.setIextipzona_dom2(rs.getString("iextipzona_dom2"));
                     p.setIexnomzona_dom2(rs.getString("iexnomzona_dom2"));
                     p.setIexreferencia_dom2(rs.getString("iexreferencia_dom2"));
-                    p.setIexubigeo_dom2(rs.getString("iexubigeo_dom2"));
+
                     p.setIexflgdomicilio(rs.getString("iexflgdomicilio"));
                     p.setIexusumoddom(rs.getString("iexusumoddom"));
                     p.setIexfecmoddom(rs.getString("iexfecmoddom"));
+
                     p.setIexnacion_origen1(rs.getString("iexnacion_origen1"));
                     p.setIexdepart_origen1(rs.getString("iexdepart_origen1"));
                     p.setIexprovin_origen1(rs.getString("iexprovin_origen1"));
+                    p.setIexubigeo_dom1(rs.getString("iexubigeo_dom1"));
+                    log.info("OBTENER_p.getIexprovin_origen1(): "+p.getIexprovin_origen1());
+                    log.info("OBTENER_p.getIexubigeo_dom1(): "+p.getIexubigeo_dom1());
+
                     p.setIexnacion_origen2(rs.getString("iexnacion_origen2"));
                     p.setIexdepart_origen2(rs.getString("iexdepart_origen2"));
                     p.setIexprovin_origen2(rs.getString("iexprovin_origen2"));
+                    p.setIexubigeo_dom2(rs.getString("iexubigeo_dom2"));
+                    log.info("OBTENER_p.getIexprovin_origen2(): "+p.getIexprovin_origen2());
+                    log.info("OBTENER_p.getIexubigeo_dom2(): "+p.getIexubigeo_dom2());
                 }
                 return p;
             }
@@ -821,6 +828,13 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
     public void actualizarDireccion(Empleado empleado) {
+
+        log.info("empleado.getIexprovin_origen1(): "+empleado.getIexprovin_origen1());
+        log.info("empleado.getIexdistri_origen1(): "+empleado.getIexdistri_origen1());
+
+        log.info("empleado.getIexprovin_origen2(): "+empleado.getIexprovin_origen2());
+        log.info("empleado.getIexdistri_origen2(): "+empleado.getIexdistri_origen2());
+
 
         template.update(" update  iexempleado set  " +
                         " iextipvia_dom1=?,        iexnomvia_dom1 =?,             iexnrovia_dom1 =?,     		 iexdeptin_dom1 =?, " +

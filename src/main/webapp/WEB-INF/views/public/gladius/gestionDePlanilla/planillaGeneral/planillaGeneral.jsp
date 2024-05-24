@@ -10,7 +10,7 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../links.jsp"></jsp:include>
-    <script src="resources/assets/js/planillaGeneral.js"></script>
+    <script src="resources/assets/js/gladius/planillaGeneral.js"></script>
   </head>
 
   <body>

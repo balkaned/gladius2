@@ -142,7 +142,7 @@
                         </div>
                         <div class="col-12 gy-6">
                             <div class="col-12">
-                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
+                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Volver a planillas</a>
                                 <a class="btn btn-phoenix-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
                             </div>
                         </div>
@@ -216,11 +216,17 @@
                                   </div>
                                 </th>
                                 <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="trab">TRABAJADOR</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">ID CONCEPT</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="des_concept">DESC CONCEPT</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" >VALOR</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" ></th>
+                                <th class="sort align-middle text-center ps-2" scope="col" data-sort="trab">TIPO DOC</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">NRO DOC</th>
+                                <th class="sort align-middle white-space-nowrap text-center ps-3" scope="col" data-sort="des_concept">TRABAJADOR</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS LAB MES TOTAL</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS VAC</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS DE FALTA</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL INGR</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL DESC</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL APORT</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL NETO</th>
+                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" ></th>
                               </tr>
                             </thead>
                             <tbody class="list" id="order-table-body">
@@ -231,8 +237,30 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
+                                    <td class="trab align-middle text-center fw-semi-bold text-1000 ps-2">${LstPlanillaRes.iextipdoc}</td>
+                                    <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5">${LstPlanillaRes.iexnrodoc}</td>
+                                    <td class="trab align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-3">${LstPlanillaRes.destra}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-1000 ps-2 pe-2">${LstPlanillaRes.iexdiamestot}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.iexdiavaca}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.iexdiafalta}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totalingreso}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totaldescuento}</td>
+                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totalaporte}</td>
+                                    <td class="des_concept align-middle text-end fw-bold text-1000 ps-2 pe-3">${LstPlanillaRes.totalneto}</td>
 
-
+                                    <td class="align-middle text-end white-space-nowrap pe-0 action">
+                                       <div class="font-sans-serif btn-reveal-trigger position-static">
+                                         <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
+                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
+                                         <div class="dropdown-menu dropdown-menu-end py-2">
+                                              <!--<a id="dropdownmenutable" class="dropdown-item" onclick="return actualizar();" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>-->
+                                              <div class="dropdown-divider"></div>
+                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                         </div>
+                                       </div>
+                                    </td>
                                   </tr>
                                 </c:forEach>
                             </tbody>
@@ -274,7 +302,7 @@
   			</div>
   			<div class="modal-body p-4 bg-300 bg-opacity-50 pt-3 pb-0">
   			  <div class="mt-0 mb-0">
-  				  <p class="fs--1">Se esta realizando la importación/ migración de la planilla desde excel. Se recomienda no tocar el equipo, hasta que haya terminado el proceso, cualquier interrupción, podría dañar la base de datos no parar el proceso manualmente, espere unos minutos hasta que haya finalizado la tarea...</p>
+  				  <p class="fs--1">Se esta realizando la importación / migración de la planilla desde excel. Se recomienda no tocar el equipo, hasta que haya terminado el proceso, cualquier interrupción, podría dañar la base de datos no parar el proceso manualmente, espere unos minutos hasta que haya finalizado la tarea...</p>
   				  <div class="col-12 text-center">
   					  <div id="iconspinner" class="spinner-border text-primary" role="status">
   						<span class="visually-hidden">Loading...</span>

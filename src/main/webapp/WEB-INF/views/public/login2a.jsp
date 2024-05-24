@@ -35,7 +35,8 @@
         /*background-color:#282727;*/
         /*background-color: #111827;*/
         /*background-color: ##1E283D;*/
-        background-color: #222834;
+        /*background-color: #222834;*/
+        background-color: #2D65F6;
      }
   </style>
 
@@ -47,7 +48,7 @@
     <main class="main" id="top">
       <div class="container">
         <div class="row flex-center min-vh-100 py-5">
-          <div class="col-sm-10 col-md-8 col-lg-4 col-xl-5 col-xxl-3">
+          <div class="col-sm-12 col-md-4">
                 <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
                 <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
                     <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="58" />
@@ -65,7 +66,7 @@
               <hr class="bg-200 mt-5 mb-4" />
               <div class="divider-content-center">or use email</div>
             </div>-->
-            <div class="bg-100 border border-300 rounded-2 p-4 col-12">
+            <div class="bg-100 border border-0 rounded-2 p-4 col-12">
                 <div class="mb-3 text-start col-sm-6 col-md-12">
                   <label class="form-label" for="email">Usuario</label>
                   <div class="form-icon-container">

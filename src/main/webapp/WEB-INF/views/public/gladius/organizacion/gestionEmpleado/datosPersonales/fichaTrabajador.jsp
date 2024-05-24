@@ -10,10 +10,8 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
-    <script src="resources/assets/js/fichaTrabajador.js"></script>
+    <script src="resources/assets/js/gladius/fichaTrabajador.js"></script>
   </head>
-
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->
@@ -668,13 +666,13 @@
                                                 <input class="form-check-input" name="iexsenati" id="flexChecked" value="1" ${requestScope.emp4.iexsenati=='1' ? 'checked=true' : ''} type="checkbox" />
                                                 <label class="form-check-label ms-2" for="flexChecked">Senati</label>
                                             </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <input class="form-check-input" name="iexflgeps" id="flexChecked" type="checkbox" value="1" ${requestScope.emp4.iexflgeps=='1' ? 'checked=true' : ''} />
+                                            <div class="col-sm-6 col-md-2">
+                                                <input class="form-check-input" name="iexflgeps" id="iexflgeps" type="checkbox" value="1" ${requestScope.emp4.iexflgeps=='1' ? 'checked=true' : ''} />
                                                 <label class="form-check-label ms-2" for="flexChecked">Tiene eps</label>
                                             </div>
                                             <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proveedor de eps</label>
-                                                <select class="form-select" name="iexcodeps" >
+                                                <select class="form-select" id="iexcodeps" name="iexcodeps" >
                                                     <option value="" selected >Seleccionar proveedor eps</option>
                                                     <c:forEach var="lovProvEps" items="${requestScope.lovProvEps}">
                                                         <option value="${lovProvEps.idLov}" ${lovProvEps.idLov == requestScope.emp4.iexcodeps ? 'selected' : ''}   >${lovProvEps.desLov}</option>
@@ -854,8 +852,8 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
                                                 <select class="form-select" id="iexprovin_origen1" name="iexprovin_origen1" >
                                                   <option value="" selected >Seleccionar provincia</option>
-                                                  <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
-                                                      <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
+                                                  <c:forEach var="lovProvin_origen1" items="${lovProvin_origen1}">
+                                                      <option value="${lovProvin_origen1.idLov}" ${lovProvin_origen1.idLov == requestScope.emp5.iexprovin_origen1  ? 'selected' : ''}>${lovProvin_origen1.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                           </div>
@@ -863,8 +861,8 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito</label>
                                                 <select class="form-select" name="iexdistri_origen1" id="iexdistri_origen1">
                                                   <option value="" selected >Seleccionar distrito</option>
-                                                  <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom1  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                  <c:forEach var="lovDist_origen1" items="${lovDist_origen1}">
+                                                      <option value="${lovDist_origen1.idLov}" ${lovDist_origen1.idLov == requestScope.emp5.iexubigeo_dom1  ? 'selected' : ''}>${lovDist_origen1.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                           </div>
@@ -951,8 +949,8 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia 2</label>
                                                 <select class="form-select" id="iexprovin_origen2" name="iexprovin_origen2" >
                                                   <option value="" selected >Seleccionar provincia</option>
-                                                  <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
-                                                      <option value="${lovProvin_origen.idLov}" ${lovProvin_origen.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovProvin_origen.desLov}</option>
+                                                  <c:forEach var="lovProvin_origen2" items="${lovProvin_origen2}">
+                                                      <option value="${lovProvin_origen2.idLov}" ${lovProvin_origen2.idLov == requestScope.emp5.iexprovin_origen2  ? 'selected' : ''}>${lovProvin_origen2.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                           </div>
@@ -960,8 +958,8 @@
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
                                                 <select class="form-select" name="iexdistri_origen2" id="iexdistri_origen2" >
                                                   <option value="" selected >Seleccionar distrito</option>
-                                                  <c:forEach var="lovDist_origen" items="${lovDist_origen}">
-                                                      <option value="${lovDist_origen.idLov}" ${lovDist_origen.idLov == requestScope.emp5.iexubigeo_dom2  ? 'selected' : ''}>${lovDist_origen.desLov}</option>
+                                                  <c:forEach var="lovDist_origen2" items="${lovDist_origen2}">
+                                                      <option value="${lovDist_origen2.idLov}" ${lovDist_origen2.idLov == requestScope.emp5.iexubigeo_dom2  ? 'selected' : ''}>${lovDist_origen2.desLov}</option>
                                                   </c:forEach>
                                                 </select>
                                           </div>
