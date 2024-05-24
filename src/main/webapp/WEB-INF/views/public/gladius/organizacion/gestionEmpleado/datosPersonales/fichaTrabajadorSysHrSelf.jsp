@@ -96,16 +96,20 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de documento</label>
-                                            <select name="iextipdocid" class="form-select" required disabled>
+                                            <select name="iextipdocid" class="form-select" required disabled >
                                                <option value="" selected >Seleccionar tipo documento</option>
                                                <c:forEach var="lovTipdoc" items="${lovTipdoc}">
                                                   <option value="${lovTipdoc.idLov}"  ${lovTipdoc.idLov == requestScope.emp.iextipdocid ? 'selected' : ''}   >${lovTipdoc.desLov}</option>
                                                </c:forEach>
                                             </select>
                                         </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
+                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required disabled />
+                                        </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado [TT54]</label>
-                                            <select name="iexflgest" class="form-select" required disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
+                                            <select name="iexflgest" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar estado</option>
                                                 <c:forEach var="lovEstados" items="${lovEstados}">
                                                     <option value="${lovEstados.idLov}"  ${lovEstados.idLov == requestScope.emp.iexflgest ? 'selected' : ''}   >${lovEstados.desLov}</option>
@@ -113,34 +117,31 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
-                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required disabled/>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo anterior</label>
-                                            <input class="form-control" name="iexcodant" maxlength="20" type="text" value="${requestScope.emp.iexcodant}" placeholder="Ingrese el código anterior" disabled/>
+                                            <input class="form-control" name="iexcodant" maxlength="20" type="text" value="${requestScope.emp.iexcodant}" placeholder="Ingrese el código anterior" disabled />
                                         </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
-                                            <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required disabled/>
+                                        <div class="row col-12 g-3 mt-0">
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
+                                                <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
+                                                <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required disabled />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
+                                                <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required disabled />
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
-                                            <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required disabled/>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
-                                            <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required disabled/>
-                                        </div>
-
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled/>
+                                            <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required disabled />
                                             <input class="form-control" id="iexfecnachidden" type="hidden" value="${fecnacIEX}" />
                                         </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo [TT50]</label>
-                                            <select name="iexcodsex" class="form-select" required disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Sexo</label>
+                                            <select name="iexcodsex" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar sexo</option>
                                                 <c:forEach var="lovSexo" items="${lovSexo}">
                                                     <option value="${lovSexo.idLov}"  ${lovSexo.idLov == requestScope.emp.iexcodsex ? 'selected' : ''}   >${lovSexo.desLov}</option>
@@ -148,8 +149,8 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado civil [TT68]</label>
-                                            <select name="iexestcivil" class="form-select" required disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado civil</label>
+                                            <select name="iexestcivil" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar estado civil</option>
                                                 <c:forEach var="lovEstcivil" items="${lovEstcivil}">
                                                     <option value="${lovEstcivil.idLov}"  ${lovEstcivil.idLov == requestScope.emp.iexestcivil ? 'selected' : ''}   >${lovEstcivil.desLov}</option>
@@ -157,8 +158,8 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modalidad formativa [TT18]</label>
-                                            <select name="iexmodform" class="form-select" disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Modalidad formativa</label>
+                                            <select name="iexmodform" class="form-select" disabled >
                                                 <option value="" selected >Seleccionar modalidad formativa</option>
                                                 <c:forEach var="lovModForm" items="${lovModForm}">
                                                     <option value="${lovModForm.idLov}"  ${lovModForm.idLov == requestScope.emp.iexmodform ? 'selected' : ''}   >${lovModForm.desLov}</option>
@@ -166,8 +167,8 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nacionalidad origen [TT4]</label>
-                                            <select name="iexnacion_origen" class="form-select" required disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nacionalidad origen</label>
+                                            <select name="iexnacion_origen" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar nacionalidad</option>
                                                 <c:forEach var="lovNacionalidad" items="${lovNacionalidad}">
                                                     <option value="${lovNacionalidad.idLov}"  ${lovNacionalidad.idLov == requestScope.emp.iexnacion_origen ? 'selected' : ''}   >${lovNacionalidad.desLov}</option>
@@ -175,8 +176,8 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor [TT26]</label>
-                                            <select name="iexpaisemisor" id="iexpaisemisor" class="form-select" required disabled>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor</label>
+                                            <select name="iexpaisemisor" id="iexpaisemisor" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar pais</option>
                                                 <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
                                                     <option value="${lovPaisEmisor.idLov}"  ${lovPaisEmisor.idLov == requestScope.emp.iexpaisemisor ? 'selected' : ''}   >${lovPaisEmisor.desLov}</option>
@@ -185,7 +186,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Departamento</label>
-                                            <select name="iexdepart_origen" id="iexdepart_origen" class="form-select" disabled>
+                                            <select name="iexdepart_origen" id="iexdepart_origen" class="form-select" disabled >
                                                 <option value="" selected >Seleccionar departamento</option>
                                                 <c:forEach var="lovDept_origen" items="${lovDept_origen}">
                                                     <option value="${lovDept_origen.idLov}"  ${lovDept_origen.idLov == requestScope.emp.iexdepart_origen ? 'selected' : ''}   >${lovDept_origen.desLov}</option>
@@ -194,7 +195,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Provincia</label>
-                                              <select name="iexprovin_origen" id="iexprovin_origen" class="form-select" disabled>
+                                              <select name="iexprovin_origen" id="iexprovin_origen" class="form-select" disabled >
                                                 <option value="" selected >Seleccionar provincia</option>
                                                 <c:forEach var="lovProvin_origen" items="${lovProvin_origen}">
                                                     <option value="${lovProvin_origen.idLov}"  ${lovProvin_origen.idLov == requestScope.emp.iexprovin_origen ? 'selected' : ''}   >${lovProvin_origen.desLov}</option>
@@ -203,7 +204,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito</label>
-                                            <select name="iexdistri_origen" id="iexdistri_origen" class="form-select" disabled>
+                                            <select name="iexdistri_origen" id="iexdistri_origen" class="form-select" disabled >
                                                 <option value="" selected >Seleccionar distrito</option>
                                                 <c:forEach var="lovDist_origen" items="${lovDist_origen}">
                                                     <option value="${lovDist_origen.idLov}"  ${lovDist_origen.idLov == requestScope.emp.iexdistri_origen? 'selected' : ''}   >${lovDist_origen.desLov}</option>
@@ -211,7 +212,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grado instrucción [TT9]</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Grado instrucción</label>
                                             <select name="iexgrdinstruccion" class="form-select" required disabled >
                                                 <option value="" selected >Seleccionar grado isntruccion</option>
                                                 <c:forEach var="lovGrdInstruccion" items="${lovGrdInstruccion}">
@@ -220,7 +221,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-5">
-                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Centro de formación [TT51]</label>
+                                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Centro de formación</label>
                                               <select name="iexcentroform" class="form-select" disabled >
                                                 <option value="" selected >Seleccionar centro de formacion</option>
                                                 <c:forEach var="lovCenForm" items="${lovCenForm}">
@@ -229,11 +230,11 @@
                                               </select>
                                         </div>
                                         <div class="col-sm-6 col-md-12">
-                                            <input type="checkbox" class="form-check-input" name="iexflgdomicil" value="1"  ${requestScope.emp.iexflgdomicil=='1' ? 'checked=true' : ''} id="flexChecked" disabled/>
+                                            <input type="checkbox" class="form-check-input" name="iexflgdomicil" value="1"  ${requestScope.emp.iexflgdomicil=='1' ? 'checked=true' : ''} id="flexChecked" disabled />
                                             <label class="form-check-label ms-2" for="flexChecked">Es domiciliado?</label>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País [TT29]</label>
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País</label>
                                              <select name="iexcodlardist" class="form-select" disabled >
                                                  <option value="" selected >Seleccionar</option>
                                                  <c:forEach var="lovLarDistancia" items="${lovLarDistancia}">

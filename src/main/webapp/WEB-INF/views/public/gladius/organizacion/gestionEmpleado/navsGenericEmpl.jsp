@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="modal-footer bg-soft d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-          <button class="btn btn-sm btn-primary px-9 my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
+          <button class="btn btn-sm btn-primary my-0 mt-1" data-bs-dismiss="modal" type="submit">Cerrar</button>
         </div>
       </form>
     </div>

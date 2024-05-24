@@ -33,7 +33,7 @@ $(document).ready(function(){
 });
 </script>
 
-<div id="otropciones" class="email-content scrollbar-overlay bg-100">
+<div id="otropciones" class="email-content scrollbar-overlay bg-white rounded-3 ps-3 pe-3 pt-2 border border-200">
   <div class="d-flex justify-content-between align-items-center">
     <p class="text-uppercase fs--2 text-600 mb-2 fw-bold">Menú de Opciones</p>
     <!--<button class="btn d-lg-none p-0 mb-2" data-phoenix-dismiss="offcanvas"><span class="uil uil-times fs-0"></span></button>-->

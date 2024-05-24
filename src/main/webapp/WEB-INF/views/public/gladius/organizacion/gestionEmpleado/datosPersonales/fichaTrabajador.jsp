@@ -103,6 +103,10 @@
                                                </c:forEach>
                                             </select>
                                         </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
+                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
+                                        </div>
                                         <div class="col-sm-6 col-md-3">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                             <select name="iexflgest" class="form-select" required>
@@ -113,26 +117,23 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
-                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Codigo anterior</label>
                                             <input class="form-control" name="iexcodant" maxlength="20" type="text" value="${requestScope.emp.iexcodant}" placeholder="Ingrese el código anterior" />
                                         </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
-                                            <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required/>
+                                        <div class="row col-12 g-3 mt-0">
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
+                                                <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required />
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
+                                                <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required/>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
+                                                <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required />
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
-                                            <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required />
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
-                                            <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required />
-                                        </div>
-
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de nacimiento</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
                                             <input class="form-control datetimepicker" name="iexfecnac" id="iexfecnac" onchange="formatearFecha1();" value="${fecnacIEX}" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />

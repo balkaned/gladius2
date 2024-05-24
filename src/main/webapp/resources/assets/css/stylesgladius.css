@@ -1,5 +1,6 @@
 .navbar-vertical-label{
-    color:#818CE4 !important;
+    /*color:#818CE4 !important;*/
+    color: #8085ab !important;
     font-size:12px !important;
 }
 
@@ -575,11 +576,23 @@ cursor:pointer;
 }
 
 .bgNight{
-    background-color:#1E273C !important;
+    background-color:#1E283D !important;
 }
 
 .bgNight2{
     background-color:#111827 !important;
+}
+
+.text-grey1{
+    color:#9FA6BC !important;
+}
+
+.text-grey2{
+    color:#97A09C !important;
+}
+
+.text-grey3{
+    color:#525B75 !important;
 }
 
 
