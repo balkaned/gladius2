@@ -10,32 +10,31 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
 
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
-
 <script>
-function formatearFecha1(){
-    var fechaSeleccionada = $('#iexfecini').val();
+    function formatearFecha1(){
+        var fechaSeleccionada = $('#iexfecini').val();
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecini").val(fechaFormat);
-}
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecini").val(fechaFormat);
+    }
 
-function formatearFecha2(){
-    var fechaSeleccionada = $('#iexfecfin').val();
+    function formatearFecha2(){
+        var fechaSeleccionada = $('#iexfecfin').val();
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecfin").val(fechaFormat);
-}
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecfin").val(fechaFormat);
+    }
 </script>
 
   <body>

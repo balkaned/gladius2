@@ -140,5 +140,4 @@ function traerOtrosDatos(iexcodpro,iexperiodo,iexcorrel){
               $("#otros-customer-order-table-body-promedio").html(opt);
          }
     });
-
 }

@@ -39,7 +39,7 @@
                         <div class="col-12 col-md-auto">
                           <div class="d-flex">
                             <div class="flex-1 d-md-none">
-                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
+                              <button class="btn px-3 btn-phoenix-secondary text-700 me-2 pt-2 pb-1" data-phoenix-toggle="offcanvas" data-phoenix-target="#productFilterColumn"><span class="fa-solid fa-bars"></span></button>
                             </div>
                             <a class="btn btn-sm btn-phoenix-primary me-2" href="listEmpleados"><span class="fa-regular fa-address-card me-2"></span>Volver a lista trabajadores</a>
                             <!--<button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2"><span class="fa-solid fa-thumbtack me-sm-2"></span><span class="d-none d-sm-inline">Shortlist</span></button>

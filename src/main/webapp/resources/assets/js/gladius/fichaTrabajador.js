@@ -1,33 +1,33 @@
 $(document).ready(function(){
-  var fechacargada=$("#iexfecnachidden").val();
-  $("#iexfecnac").val(fechacargada);
+    var fechacargada=$("#iexfecnachidden").val();
+    $("#iexfecnac").val(fechacargada);
 
-  var fechacargada2=$("#iexfecinghidden").val();
-  $("#iexfecing").val(fechacargada2);
+    var fechacargada2=$("#iexfecinghidden").val();
+    $("#iexfecing").val(fechacargada2);
 
-  var fechacargada3=$("#iexfecrethidden").val();
-  $("#iexfecret").val(fechacargada3);
+    var fechacargada3=$("#iexfecrethidden").val();
+    $("#iexfecret").val(fechacargada3);
 
-  var fechacargada4=$("#iexfecini_conthidden").val();
-  $("#iexfecini_cont").val(fechacargada4);
+    var fechacargada4=$("#iexfecini_conthidden").val();
+    $("#iexfecini_cont").val(fechacargada4);
 
-  var fechacargada5=$("#iexfecfin_conthidden").val();
-  $("#iexfecfin_cont").val(fechacargada5);
+    var fechacargada5=$("#iexfecfin_conthidden").val();
+    $("#iexfecfin_cont").val(fechacargada5);
 
-  var fechacargada6=$("#iexfecafphidden").val();
-  $("#iexfecafp").val(fechacargada6);
+    var fechacargada6=$("#iexfecafphidden").val();
+    $("#iexfecafp").val(fechacargada6);
 
-  $('#myTab li a').click(function(){
+    $('#myTab li a').click(function(){
       $(this).addClass('active');
       var thisselc=this.id;
 
       sessionStorage.setItem("myTabTrab",thisselc);
-  });
+    });
 
-  var myTabTrab = sessionStorage.getItem("myTabTrab");
-  $('#'+myTabTrab).tab('show');
+    var myTabTrab = sessionStorage.getItem("myTabTrab");
+    $('#'+myTabTrab).tab('show');
 
-  $('#iexpaisemisor').change(function(event){
+    $('#iexpaisemisor').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDEPX",
@@ -44,9 +44,9 @@ $(document).ready(function(){
                 $("#iexdistri_origen").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexdepart_origen').change(function(event){
+    $('#iexdepart_origen').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsPROVX",
@@ -62,9 +62,9 @@ $(document).ready(function(){
                 $("#iexdistri_origen").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexprovin_origen').change(function(event){
+    $('#iexprovin_origen').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDISTX",
@@ -79,9 +79,9 @@ $(document).ready(function(){
                 $("#iexdistri_origen").html(opt);
             }
      });
-  });
+    });
 
-  $('#iexpaisemisor1').change(function(event){
+    $('#iexpaisemisor1').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDEPX",
@@ -98,9 +98,9 @@ $(document).ready(function(){
                 $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexdepart_origen1').change(function(event){
+    $('#iexdepart_origen1').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsPROVX",
@@ -116,9 +116,9 @@ $(document).ready(function(){
                 $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexprovin_origen1').change(function(event){
+    $('#iexprovin_origen1').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDISTX",
@@ -133,9 +133,9 @@ $(document).ready(function(){
                 $("#iexdistri_origen1").html(opt);
             }
      });
-  });
+    });
 
-  $('#iexpaisemisor2').change(function(event){
+    $('#iexpaisemisor2').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDEPX",
@@ -152,9 +152,9 @@ $(document).ready(function(){
                 $("#iexubigeo_dom2").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexdepart_origen2').change(function(event){
+    $('#iexdepart_origen2').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsPROVX",
@@ -170,9 +170,9 @@ $(document).ready(function(){
                 $("#iexubigeo_dom2").html("<option value='' >Seleccionar</option>");
             }
      });
-  });
+    });
 
-  $('#iexprovin_origen2').change(function(event){
+    $('#iexprovin_origen2').change(function(event){
      $.ajaxSetup({cache:false});
           $.ajax({
             url: "getlovsDISTX",
@@ -187,9 +187,9 @@ $(document).ready(function(){
                 $("#iexdistri_origen2").html(opt);
           }
      });
-  });
+    });
 
-  $('#iexflgeps').change(function () {
+    $('#iexflgeps').change(function () {
       var iexflgeps=$("#iexflgeps").val();
 
       console.log("iexflgeps: "+iexflgeps);
@@ -200,7 +200,7 @@ $(document).ready(function(){
       }else{
         document.getElementById("iexcodeps").required="false";
       }
-  });
+    });
 });
 
 function formatearFecha1(){
@@ -298,51 +298,6 @@ function mostrarAlertSeg(){
 
 function mostrarAlertDom(){
     var div=document.getElementById('alertDom');
-    div.style.display = '';
-
-    setTimeout(function() {
-      $("#alerts").hide(6000);
-    }, 3000);
-}
-
-function mostrarAlert(){
-    var div=document.getElementById('alert');
-    div.style.display = '';
-
-    setTimeout(function() {
-        $("#alert").hide(6000);
-    }, 3000);
-}
-
-function mostrarAlert2(){
-    var div=document.getElementById('alert2');
-    div.style.display = '';
-
-    setTimeout(function() {
-      $("#alert").hide(6000);
-    }, 3000);
-}
-
-function mostrarAlert3(){
-    var div=document.getElementById('alert3');
-    div.style.display = '';
-
-    setTimeout(function() {
-        $("#alert").hide(6000);
-    }, 3000);
-}
-
-function mostrarAlert4(){
-    var div=document.getElementById('alert4');
-    div.style.display = '';
-
-    setTimeout(function() {
-     $("#alert").hide(6000);
-    }, 3000);
-}
-
-function mostrarAlert5(){
-    var div=document.getElementById('alert5');
     div.style.display = '';
 
     setTimeout(function() {

@@ -140,10 +140,10 @@
                         	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                         	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                        <div class="col-12 gy-6">
+                        <div class="col-12">
                             <div class="col-12">
-                                <a class="btn btn-phoenix-secondary btn-sm px-5" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Volver a planillas</a>
-                                <a class="btn btn-phoenix-success btn-sm " type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
+                                <a class="btn btn-phoenix-secondary btn-sm mt-1" href="listarDetallePlanillaGen@${requestScope.iexcodreg}@${requestScope.iexcodpro}@${requestScope.iexperiodo}"><span class="fas fa-reply me-2"></span>Volver a planillas</a>
+                                <a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>
                             </div>
                         </div>
                         <div class="modal fade" id="confirmModal" tabindex="-1">

@@ -10,9 +10,8 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
-
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
 <script>
 function formatearFecha1(){

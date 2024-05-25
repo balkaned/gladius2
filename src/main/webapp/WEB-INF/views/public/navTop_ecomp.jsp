@@ -144,18 +144,18 @@
           <ul class="navbar-nav navbar-nav-icons flex-row">
             <li class="nav-item">
                   <div class="me-2">
-                    <a href="#" onclick="maximize();" class="fs-3 text-white" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
+                    <a href="#" onclick="maximize();" class="fs-3 colorgraytheme" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Maximizar"><span class="icon" data-feather="maximize"></span></a>
                   </div>
             </li>
             <li class="nav-item">
               <div class="theme-control-toggle fa-icon-wait px-2">
                 <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox" data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
-                <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon" data-feather="moon"></span></label>
-                <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon" data-feather="sun"></span></label>
+                <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon " data-feather="moon"></span></label>
+                <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark bgNight border border-500" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Cambiar tema"><span class="icon colorgraytheme" data-feather="sun"></span></label>
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside"><span data-feather="bell" style="color:white;height:20px;width:20px;"></span></a>
+              <a class="nav-link colorgraytheme" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside"><span data-feather="bell" style="height:20px;width:20px;"></span></a>
 
               <div class="dropdown-menu dropdown-menu-end notification-dropdown-menu py-0 shadow border border-300 navbar-dropdown-caret" id="navbarDropdownNotfication" aria-labelledby="navbarDropdownNotfication">
                 <div class="card position-relative border-0">
@@ -283,7 +283,7 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" id="navbarDropdownNindeDots" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" data-bs-auto-close="outside" aria-expanded="false">
+              <a class="nav-link colorgraytheme" id="navbarDropdownNindeDots" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" data-bs-auto-close="outside" aria-expanded="false">
                 <svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
                   <circle cx="2" cy="8" r="2" fill="currentColor"></circle>

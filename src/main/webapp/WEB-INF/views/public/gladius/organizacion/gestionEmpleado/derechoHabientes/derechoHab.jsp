@@ -10,24 +10,14 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
 
   <script>
-    function remove() {
-        var opcion = confirm("Esta seguro de Eliminar el Registro?");
-        if (opcion == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function subirImagenDer(){
         $('#modalLoadingDer').modal('show');
     }
   </script>
-  
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
 
   <body>
     <!-- ===============================================-->

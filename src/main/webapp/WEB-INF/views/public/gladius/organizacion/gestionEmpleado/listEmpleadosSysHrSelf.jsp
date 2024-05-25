@@ -61,7 +61,7 @@
 
                     <div>
                           <a class="btn btn-primary btn-sm disabled" href="valRegEmpleado" ><span class="fas fa-plus me-2"></span>Nuevo empleado</a>
-                          <a class="btn btn-phoenix-secondary btn-sm ms-1 disabled" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso empleado</a>
+                          <a class="btn btn-phoenix-secondary btn-sm ms-1 disabled" href="reingresoEmpleado" ><span class="fas fa-right-to-bracket me-2"></span>Reingreso empl</a>
 
                           <!--<a class="btn btn-phoenix-secondary text-900 "
                           href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@PadronTrabajadores@null@null@null@null"

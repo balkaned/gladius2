@@ -262,5 +262,4 @@ function eliminarPlanTrab(){
     } else {
         return false;
     }
-
 }

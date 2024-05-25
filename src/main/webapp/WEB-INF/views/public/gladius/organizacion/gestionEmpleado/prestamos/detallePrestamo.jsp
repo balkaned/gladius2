@@ -10,40 +10,39 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
 
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
-
 <script>
-function formatearFecha1(){
-    var fechaSeleccionada = $('#iexfecpres').val();
+    $(document).ready(function(){
+        var fechacargada=$("#iexfecpreshidden").val();
+        $("#iexfecpres").val(fechacargada);
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var fechacargada2=$("#iexfecinivighidden").val();
+        $("#iexfecinivig").val(fechacargada2);
+    });
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecpres").val(fechaFormat);
-}
+    function formatearFecha1(){
+        var fechaSeleccionada = $('#iexfecpres').val();
 
-function formatearFecha2(){
-    var fechaSeleccionada = $('#iexfecinivig').val();
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecpres").val(fechaFormat);
+    }
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecinivig").val(fechaFormat);
-}
+    function formatearFecha2(){
+        var fechaSeleccionada = $('#iexfecinivig').val();
 
-$(document).ready(function(){
-      var fechacargada=$("#iexfecpreshidden").val();
-      $("#iexfecpres").val(fechacargada);
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-      var fechacargada2=$("#iexfecinivighidden").val();
-      $("#iexfecinivig").val(fechacargada2);
-});
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecinivig").val(fechaFormat);
+    }
 </script>
 
   <body>

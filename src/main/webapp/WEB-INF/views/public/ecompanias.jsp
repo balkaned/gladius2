@@ -88,10 +88,10 @@
 
     <div class="row mt-0">
         <c:forEach var="compList" items="${compList}">
-          <div class="card p-0 me-3 mt-2 border border-300" style="max-width:18rem;">
+          <div class="card p-0 me-3 mt-3 border border-300" style="max-width:18rem;">
             <!--<img class="card-img-top" src="resources/assets/img//generic/66.jpg" alt="..." />-->
             <img class="card-img-top" height="180" src="AWSorFTP_flgsource@verLogo@${compList.id_companias}@null@${compList.urlLogo}@null@null@null@null@null@null" />
-            <div class="card-body rounded-0 border-top">
+            <div class="card-body bg-soft rounded-0 border-top" style="border-radius: 0px 0px 20px 20px !important">
               <h5 class="card-title">${compList.nombre}</h5>
               <p class="fs--1 card-text mb-0">Tipo de conexión: ${compList.iexflgsource}
                 <c:if test="${compList.iexflgsource=='1'}"><i style="font-size: 20px;" class="fa-brands fa-aws ps-2 pe-2"></i> Buckets</c:if>

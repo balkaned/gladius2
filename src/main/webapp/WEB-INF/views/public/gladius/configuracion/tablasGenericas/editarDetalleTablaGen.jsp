@@ -72,7 +72,7 @@
                           <div class="col-12 gy-6">
                               <div class="row g-3 justify-content-end">
                                 <div class="col-auto">
-                                  <a class="btn btn-phoenix-primary px-5" href="listTablasGen">Cancel</a>
+                                  <a class="btn btn-phoenix-primary px-5" href="verDetalleTblGen@${codTab}">Cancel</a>
                                 </div>
                                 <div class="col-auto">
                                   <button class="btn btn-primary px-5 px-sm-15" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar detalle</button>

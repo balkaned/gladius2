@@ -10,108 +10,107 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
 
-  <jsp:include page="../scriptsEmpl.jsp"></jsp:include>
-
 <script>
-$(document).ready(function(){
-      var fechacargada=$("#iexfecinihidden").val();
-      $("#iexfecini").val(fechacargada);
+    $(document).ready(function(){
+          var fechacargada=$("#iexfecinihidden").val();
+          $("#iexfecini").val(fechacargada);
 
-      var fechacargada2=$("#iexfecfinhidden").val();
-      $("#iexfecfin").val(fechacargada2);
-});
+          var fechacargada2=$("#iexfecfinhidden").val();
+          $("#iexfecfin").val(fechacargada2);
+    });
 
-function formatearFecha1(){
-    var fechaSeleccionada = $('#iexfecini').val();
+    function formatearFecha1(){
+        var fechaSeleccionada = $('#iexfecini').val();
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecini").val(fechaFormat);
-}
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecini").val(fechaFormat);
+    }
 
-function formatearFecha2(){
-    var fechaSeleccionada = $('#iexfecfin').val();
+    function formatearFecha2(){
+        var fechaSeleccionada = $('#iexfecfin').val();
 
-    var anio=fechaSeleccionada.substring(0, 4);
-    var mes=fechaSeleccionada.substring(5, 7);
-    var dia=fechaSeleccionada.substring(8, 10);
+        var anio=fechaSeleccionada.substring(0, 4);
+        var mes=fechaSeleccionada.substring(5, 7);
+        var dia=fechaSeleccionada.substring(8, 10);
 
-    var fechaFormat=dia+"/"+mes+"/"+anio;
-    $("#iexfecfin").val(fechaFormat);
-}
+        var fechaFormat=dia+"/"+mes+"/"+anio;
+        $("#iexfecfin").val(fechaFormat);
+    }
 
-function isValidDate(day,month,year){
-		var dteDate;
-		month=month-1;
-		dteDate=new Date(year,month,day);
-		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
-}
+    function isValidDate(day,month,year){
+        var dteDate;
+        month=month-1;
+        dteDate=new Date(year,month,day);
+        return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+    }
 
-function validate_fecha(fecha){
-		var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
+    function validate_fecha(fecha){
+        var patron=new RegExp("^([0-9]{1,2})([/])([0-9]{1,2})([/])(19|20)+([0-9]{2})$");
 
-		if(fecha.search(patron)==0)
-		{
-			var values=fecha.split("/");
-			if(isValidDate(values[0],values[1],values[2]))
-			{
-				return true;
-			}
-		}
-		return false;
-}
+        if(fecha.search(patron)==0){
+            var values=fecha.split("/");
+            if(isValidDate(values[0],values[1],values[2]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-function calcularDias(){
+    function calcularDias(){
         formatearFecha2();
 
-		var fechaInicial=document.getElementById("iexfecini").value;
-		var fechaFinal=document.getElementById("iexfecfin").value;
-		var resultado="";
-		if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-		{
-			inicial=fechaInicial.split("/");
-			final=fechaFinal.split("/");
-			// obtenemos las fechas en milisegundos
-			var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
+        var fechaInicial=document.getElementById("iexfecini").value;
+        var fechaFinal=document.getElementById("iexfecfin").value;
+        var resultado="";
+        if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
+        {
+            inicial=fechaInicial.split("/");
+            final=fechaFinal.split("/");
+            // obtenemos las fechas en milisegundos
+            var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
             var dateEnd=new Date(final[2],(final[1]-1),final[0]);
             if(dateStart<=dateEnd)
             {
-				// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
-				// que tiene un dia, y posteriormente entre 1000 ya que estamos
-				// trabajando con milisegundos.
-				//resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
+                // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+                // que tiene un dia, y posteriormente entre 1000 ya que estamos
+                // trabajando con milisegundos.
+                //resultado="La diferencia es de "+(((dateEnd-dateStart)/86400)/1000)+" días";
                                 resultado=""+(((dateEnd-dateStart)/86400)/1000)+"";
-			}else{
-				resultado="La fecha inicial es posterior a la fecha final";
-			}
-		}else{
-			if(!validate_fecha(fechaInicial))
-				//resultado="La fecha inicial es incorrecta";
+            }else{
+                resultado="La fecha inicial es posterior a la fecha final";
+            }
+        }else{
+            if(!validate_fecha(fechaInicial))
+                //resultado="La fecha inicial es incorrecta";
                                     resultado="0";
-			if(!validate_fecha(fechaFinal))
-				//resultado="La fecha final es incorrecta";
+            if(!validate_fecha(fechaFinal))
+                //resultado="La fecha final es incorrecta";
                                      resultado="0";
-		}
+        }
 
-		document.getElementById("iexnrodias").value=Number(resultado)+1;
-		document.getElementById("iexnrodias2").value=Number(resultado)+1;
-}
+        document.getElementById("iexnrodias").value=Number(resultado)+1;
+        document.getElementById("iexnrodias2").value=Number(resultado)+1;
+    }
 
-function diasVacaciones(){
-}
+    function diasVacaciones(){
 
-function enviaForm(variable){
+    }
+
+    function enviaForm(variable){
         //document.getElementById("frmplaserv").submit();
 
         var fechaInicial=document.getElementById("iexfecini").value;
-		var fechaFinal=document.getElementById("iexfecfin").value;
+        var fechaFinal=document.getElementById("iexfecfin").value;
         var tipvac=document.getElementById("iextipaus").value;
-		var resultado="";
+        var resultado="";
 
         if(fechaInicial!== null && fechaFinal!== null &&  tipvac!== "" ){
             if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal)){
@@ -133,14 +132,13 @@ function enviaForm(variable){
                 }else{
                     alert("La fecha inicial es posterior a la fecha final");
                 }
-		}else{
-			alert("Formatos de Fechas no son consistentes");
-		}
-             }else {
-                  alert("Debe ingresar correctamente el Tipo de Ausentismo, Fecha de Inicio y Fecha de Fin de la programacion vacacional");
-             }
-}
-
+            }else{
+                alert("Formatos de Fechas no son consistentes");
+            }
+        }else {
+              alert("Debe ingresar correctamente el Tipo de Ausentismo, Fecha de Inicio y Fecha de Fin de la programacion vacacional");
+        }
+    }
 </script>
 
   <body>

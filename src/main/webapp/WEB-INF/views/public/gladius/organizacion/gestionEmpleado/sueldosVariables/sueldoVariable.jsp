@@ -10,9 +10,11 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
-  <script>
-  function regimen(){
+
+<script>
+    function regimen(){
        $.ajax({
          url: "getlovsPROXCON",
          data: {"accion": "PROXCON",
@@ -27,10 +29,10 @@
              $("#iexcodpro").html(opt);
          }
        });
-  }
+    }
 
-  function procesoplanilla(){
-         $.ajax({
+    function procesoplanilla(){
+       $.ajax({
           url: "getlovsPERX",
           data: {"accion": "PERX",
               "iexcodpro": $("#iexcodpro").val()},
@@ -43,9 +45,9 @@
 
               $("#iexperiodo").html(opt);
           }
-      });
+       });
     }
-  </script>
+</script>
 
   <body>
     <!-- ===============================================-->
