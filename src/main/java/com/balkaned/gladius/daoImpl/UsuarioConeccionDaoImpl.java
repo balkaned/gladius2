@@ -110,7 +110,11 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                     Compania comp = new Compania();
                     comp.setId_usuario(rs.getString("iexcodusu"));
                     comp.setId_companias(rs.getString("iexcodcia"));
+
                     comp.setNombre(rs.getString("iexdescia"));
+                    CapitalizarCadena cap2= new CapitalizarCadena();
+                    comp.setNombre(cap2.letras(comp.getNombre()));
+
                     comp.setRuc(rs.getString("iexnroruc"));
 
                     comp.setDireccion(rs.getString("iexdireccion"));
