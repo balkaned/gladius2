@@ -291,13 +291,13 @@ public class GestionTtableController {
 
         ttableService.insertarTtablad(p);
 
-        return new ModelAndView("redirect:/verDetalleTblGen@"+iexcodtab);
+        return new ModelAndView("redirect:/verDetalleTblGen@" + iexcodtab);
     }
 
-    @RequestMapping("/curDetalleTblGen@{idTbl}@{idKey}")
-    public ModelAndView verDetalleTblGen(ModelMap model, HttpServletRequest request,
-                                         @PathVariable String idTbl, @PathVariable String idKey) {
-        log.info("/curDetalleTblGen");
+    @RequestMapping("/editarDetalleTblGen@{idTbl}@{idKey}@{desTab}")
+    public ModelAndView editarDetalleTblGen(ModelMap model, HttpServletRequest request,
+                                            @PathVariable String idTbl, @PathVariable String idKey, @PathVariable String desTab) {
+        log.info("/editarDetalleTblGen");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -313,10 +313,40 @@ public class GestionTtableController {
         TTablaDetalle ttabladxx = ttableService.recuperarTTablad(idTbl, idKey);
         model.addAttribute("ttabladxx", ttabladxx);
 
-        request.getSession().setAttribute("ttablaclbl", ttableService.recuperarTTablac(idTbl));
-        model.addAttribute("LstTTablad", ttableService.listarTTablad(idTbl));
+        model.addAttribute("desTab", desTab);
+        model.addAttribute("codTab", idTbl);
 
-        return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
+        return new ModelAndView("public/gladius/configuracion/tablasGenericas/editarDetalleTablaGen");
+    }
+
+    @RequestMapping("/modificarDetalleTblGen")
+    public ModelAndView modificarDetalleTblGen(ModelMap model, HttpServletRequest request) {
+        log.info("/modificarDetalleTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String iexkey = request.getParameter("iexkey");
+        String desdet = request.getParameter("desdet");
+        String codtab = request.getParameter("codtab");
+
+        log.info("iexkey: " + iexkey);
+        log.info("desdet: " + desdet);
+        log.info("codtab: " + codtab);
+
+        TTablaDetalle td = new TTablaDetalle();
+        td.setIexcodtab(codtab);
+        td.setIexkey(iexkey);
+        td.setDesdet(desdet);
+
+        ttableService.actualizarTTablad(td);
+
+        return new ModelAndView("redirect:/verDetalleTblGen@" + codtab);
     }
 
     @RequestMapping("/deleteTablaGen@{idTbl}")

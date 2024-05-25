@@ -1068,7 +1068,6 @@ public class PlanillaController {
                         log.info("v_codtra: " + v_codtra);
 
                         planillaService.migraTrabajador(idCompania,v_codpro,periodo, Integer.valueOf(v_codtra),v_correl);
-                        //dao.migraTrabajador(v_codcia, v_codpro, v_nroper, v_codtra, v_correl);
                     }
 
                     if (v_codcab == 2 && cn >= 2) {
@@ -1097,7 +1096,6 @@ public class PlanillaController {
                 v_codcab++;
             }
 
-            //sueldoService.migraInsertarPla(l_empvar);
             planillaService.migraInsertarPla(l_empvar);
         }
 
@@ -1107,9 +1105,6 @@ public class PlanillaController {
 
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(v_codpro), periodo));
         model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, v_codpro, periodo, -1, 1, "%"));
-
-        //model.addAttribute("lovConcepProVar", sueldoService.ListConcepProVar(idCompania, v_codpro, "2"));
-        //model.addAttribute("fdatavar", sueldoService.obtenerEmpResvar(idCompania, v_codpro, periodo, 1));
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/migracionPlanilla");
     }

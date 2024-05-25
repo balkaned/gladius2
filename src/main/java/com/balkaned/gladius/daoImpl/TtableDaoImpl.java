@@ -452,7 +452,11 @@ public class TtableDaoImpl implements TtableDao {
                 while (rs.next()) {
                     p.setIexcodtab(rs.getString("iexcodtab"));
                     p.setIexkey(rs.getString("iexkey"));
+
                     p.setDesdet(rs.getString("desdet"));
+                    CapitalizarCadena cap= new CapitalizarCadena();
+                    p.setDesdet(cap.letras(p.getDesdet()));
+
                     p.setDes1det(rs.getString("des1det"));
                     p.setDes2det(rs.getString("des2det"));
                     p.setDes3det(rs.getString("des3det"));

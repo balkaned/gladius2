@@ -217,7 +217,7 @@
 #imgcompany{
     margin-top:-25px;
     margin-left:-100px;
-    border:2px solid #D9D9D9 !important;
+    border:3px solid #D9D9D9 !important;
 }
 /*
 .nav-link.pe-3{
@@ -597,6 +597,10 @@ cursor:pointer;
 
 #memnuborder{
     border:0px !important;
+}
+
+.bg-azul-intenso{
+    background-color:#2D65F6;
 }
 
 

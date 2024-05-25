@@ -63,7 +63,7 @@ public class TtableServiceImpl implements TtableService {
         dao.eliminarTTablade(idttabla, idttabladet);
     }
 
-    public void insertarTtablad(TTablaDetalle ttd){
+    public void insertarTtablad(TTablaDetalle ttd) {
         dao.insertarTtablad(ttd);
     }
 }

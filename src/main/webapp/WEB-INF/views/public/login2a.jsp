@@ -36,11 +36,11 @@
         /*background-color: #111827;*/
         /*background-color: ##1E283D;*/
         /*background-color: #222834;*/
-        background-color: #2D65F6;
+        /*background-color: #2D65F6;*/
      }
   </style>
 
-  <body class="">
+  <body class="bg-azul-intenso">
     <f:form id="form" methot="post" modelAttribute="usuarioConeccion" action="verificarLogin2">
     <!-- ===============================================-->
     <!--    Main Content-->

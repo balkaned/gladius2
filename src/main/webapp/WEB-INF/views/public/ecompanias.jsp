@@ -58,7 +58,7 @@
       </div>
       <div class="row col-12 mt-2 ms-0">
         <div class="col-auto ps-2 pe-0">
-            <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
+            <a class="btn btn-phoenix-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
         </div>
         <!--<div class="col-auto ps-2 pe-0">
             <a class="btn btn-phoenix-secondary mb-1 btn-sm" target="_blank" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
@@ -80,12 +80,12 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-9">
         <c:forEach var="comp" items="${requestScope.compList}">
           <div class="col" style="width:380px;">
-            <div class="card h-100 hover-actions-trigger border border-300">
-              <div class="card-body">
+            <div class="card bg-primary h-100 rounded-2 hover-actions-trigger border border-0">
+              <div class="card-body ">
                 <div class="d-flex align-items-start">
-                  <h4 class="mb-2 ">${comp.nombre}</h4>
+                  <h4 class="mb-2 text-white">${comp.nombre}</h4>
                   <div class="hover-actions top-0 end-0 mt-4 me-4">
-                    <a class="btn btn-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
+                    <a class="btn btn-phoenix-primary btn-icon flex-shrink-0" href="home@${comp.id_companias}@${comp.id_usuario}"><span class="fa-solid fa-chevron-right"></span></a>
                   </div>
                 </div>
                 <span class="badge badge-phoenix fs--2 mb-4 badge-phoenix-success"><span class="badge-label">Activo</span></span>
@@ -95,21 +95,21 @@
                 class="avatar" alt="Avatar">
 
                 <div id="texto">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="fa-solid fa-bolt me-2 text-700 fs--1 fw-extra-bold"></span>
-                        <p class="fw-bold mb-0 text-truncate lh-1">Tipo de conexión:
-                        <span class="fw-semi-bold text-primary ms-1">${comp.iexflgsource} </span>
+                    <div class="d-flex align-items-center mb-2 text-white">
+                        <span class="fa-solid fa-bolt me-2 text-white fs--1 fw-extra-bold"></span>
+                        <p class="mb-0 fs--1">Tipo de conexión:
+                        <span class="fw-semi-bold text-white ms-1">${comp.iexflgsource} </span>
                         <c:if test="${comp.iexflgsource=='1'}"><i style="font-size: 20px;" class="fa-brands fa-aws ps-2 pe-2"></i></c:if>
-                        <c:if test="${comp.iexflgsource=='2'}">FTP</c:if>
+                        <c:if test="${comp.iexflgsource=='2'}">  FTP</c:if>
                         </p>
                     </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="fa-solid far fa-building me-2 text-700 fs--1 fw-extra-bold"></span>
-                        <p class="fw-bold mb-0 text-truncate lh-1">Ruc: <span class="fw-semi-bold ms-1">${comp.ruc}</span></p>
+                    <div class="d-flex align-items-center mb-2 text-white">
+                        <span class="fa-solid far fa-building me-2 text-white fs--1 fw-extra-bold"></span>
+                        <p class="mb-0 fs--1">Ruc: <span class="fw-semi-bold ms-1">${comp.ruc}</span></p>
                     </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <span class="fa-solid fas fa-bus me-2 text-700 fs--1 fw-extra-bold"></span>
-                        <p class="fw-bold mb-0 lh-1">Dirección: <span class="ms-1 text-1100">${comp.direccion}</span></p>
+                    <div class="d-flex align-items-center mb-4 text-white">
+                        <span class="fa-solid fas fa-bus me-2 text-white fs--1 fw-extra-bold"></span>
+                        <p class=" mb-0 fs--1">Dirección: <span class="ms-1 text-white">${comp.direccion}</span></p>
                     </div>
                     <!--<div class="d-flex justify-content-between text-700 fw-semi-bold">
                       <p class="mb-2"> Schema</p>
