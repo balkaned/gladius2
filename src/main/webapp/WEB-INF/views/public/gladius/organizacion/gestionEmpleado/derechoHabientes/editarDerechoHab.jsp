@@ -340,7 +340,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-8">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Referencia 2</label>
-                                                <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" placeholder="Ingrese una referencia"/>
+                                                <input class="form-control" name="iexreferencia_dom2" maxlength="150" type="text" value="${derhabx.iexreferencia_dom2}" placeholder="Ingrese una referencia"/>
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">País emisor 2</label>

@@ -460,6 +460,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
 
     public void actualizar(DerechoHabiente derhab){
 
+        log.info("derhab.getIexreferencia_dom2(): "+derhab.getIexreferencia_dom2());
+
         template.update(" update iexempderhab set   "+
                         "          iextipnroiddep =?,      iexnroiddep =?, " +
                         " iexpaisemisor =?,       iexfecnac =to_date(?,'DD/MM/YYYY'),         	iexapepatdep =?,      iexapematdep =?,        iexnomdep =?, " +
