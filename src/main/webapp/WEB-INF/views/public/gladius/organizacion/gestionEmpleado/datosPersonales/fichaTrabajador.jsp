@@ -80,8 +80,12 @@
 
                       <div class="tab-content" id="myTabContent">
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
-                            <h3 class="mt-3 mb-4">Datos personales</h3>
-                            <div class="row g-3">
+                            <h3 class="mt-3 mb-0">Datos personales</h3>
+                            <div class="col-12 pe-3">
+                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp.iexfeccmod}</span></p>
+                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp.iexusumod}</span></p>
+                            </div>
+                            <div class="row g-3 mt-0">
                                  <div class="col-xl-12">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-3 mb-0 needs-validation" method="POST" action="updateEmplDatPers" novalidate >
@@ -294,8 +298,12 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-notes" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mt-3 mb-4">Datos laborales</h3>
-                                <div class="row g-3">
+                                <h3 class="mt-3 mb-0">Datos laborales</h3>
+                                <div class="col-12 pe-3">
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp2.iexfecmodlab}</span></p>
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp2.iexusumodlab}</span></p>
+                                </div>
+                                <div class="row g-3 mt-0">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
                                           <form class="row g-3 mb-0 needs-validation" method="POST" action="updateEmplDatLab" novalidate>
@@ -481,8 +489,12 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-meeting" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mt-3 mb-4">Informacion de pago</h3>
-                                <div class="row g-3">
+                                <h3 class="mt-3 mb-0">Informacion de pago</h3>
+                                <div class="col-12 pe-3">
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp3.iexfecmodpag}</span></p>
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp3.iexusumodpag}</span></p>
+                                </div>
+                                <div class="row g-3 mt-0">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
                                           <form class="row g-3 mb-0 needs-validation" method="POST" action="updateInfoPago" novalidate>
@@ -619,8 +631,12 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-task" role="tabpanel" aria-labelledby="activity-tab">
-                                <h3 class="mt-3 mb-4">Seguridad social</h3>
-                                <div class="row g-3">
+                                <h3 class="mt-3 mb-0">Seguridad social</h3>
+                                <div class="col-12 pe-3">
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp4.iexfecmodseg}</span></p>
+                                   <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp4.iexusumodseg}</span></p>
+                                </div>
+                                <div class="row g-3 mt-0">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
                                          <form class="row g-3 mb-0 needs-validation" method="POST" action="updateSegurSocial" novalidate >
@@ -765,8 +781,12 @@
 
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade" id="tab-call" role="tabpanel" aria-labelledby="activity-tab">
-                              <h3 class="mt-3 mb-4">Datos domicilio</h3>
-                              <div class="row g-3">
+                              <h3 class="mt-3 mb-0">Datos domicilio</h3>
+                              <div class="col-12 pe-3">
+                                 <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp5.iexfecmoddom}</span></p>
+                                 <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp5.iexusumoddom}</span></p>
+                              </div>
+                              <div class="row g-3 mt-0">
                                    <div class="col-xl-12">
                                      <div class="row gx-3 gy-4">
                                         <form class="row g-3 mb-0 needs-validation" method="POST" action="updateEmplDatDomic" novalidate >

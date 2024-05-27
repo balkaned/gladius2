@@ -29,7 +29,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public List<Empleado> listarEmpCabecera(Empleado empleado) {
 
-        List<Empleado> lista = null;
         String sql = " select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
@@ -415,10 +414,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public Empleado recuperarLaboral(Integer ciaid, Integer codtra) {
 
-        Empleado p = null;
-
-        List<Empleado> lista = null;
-
         String sql = " select " +
                 " iexcodcia, iexcodtra,  "
                 + "iextiptra,   iexsituapen  , to_char(iexfecing,'DD/MM/YYYY') iexfecing ,   TO_CHAR(iexfecret,'DD/MM/YYYY') iexfecret ,               iextipcont     ,     to_char(iexfecini_cont,'DD/MM/YYYY') iexfecini_cont,  " +
@@ -462,9 +457,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public Empleado recuperarPagos(Integer ciaid, Integer codtra) {
 
-        Empleado p = null;
-
-        List<Empleado> lista = null;
         String sql = " select " +
                 "    iexcodcia , iexcodtra, iextippago, iexperrem, coalesce(iexmontorem,0) as iexmontorem, "
                 + " iexcodban_hab ," +
@@ -508,10 +500,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
     public Empleado recuperarSegSocial(Integer ciaid, Integer codtra) {
-
-        Empleado p = null;
-
-        List<Empleado> lista = null;
 
         String sql = " select " +
                 "iexcodcia, iexcodtra, iexcodafp, to_char(iexfecafp,'DD/MM/YYYY') iexfecafp , iexcussp, "
@@ -574,8 +562,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
     public Empleado recuperarDireccion(Integer ciaid, Integer codtra) {
-
-        Empleado p = null;
 
         String sql = " select  iexcodcia, iexcodtra, " +
                 " iextipvia_dom1,        iexnomvia_dom1,             iexnrovia_dom1,     		 iexdeptin_dom1, " +
@@ -907,8 +893,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public List<Empleado> validarCabecera(Empleado empleado) {
 
-        List<Empleado> lista = null;
-
         String sql = " select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
@@ -977,9 +961,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public Integer obtieneIdEmpleado(Empleado empleado) {
 
-        //StringBuilder sql = new StringBuilder();
         final Integer[] idcont = {0};
-        final String[] result = new String[1];
 
         String sql = " SELECT coalesce(max(iexcodtra),0)+1 idcont  FROM IEXEMPLEADO WHERE IEXCODCIA=" + empleado.getIexcodcia();
 
@@ -995,9 +977,6 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     }
 
     public void insertarCabecera(Empleado empleado) {
-
-        String result = null;
-        StringBuilder sql = new StringBuilder();
 
         template.update(" insert into iexempleado(   " +
                         " iexcodcia,     iexcodtra,         iexnomtra,     iexapepat,    iexapemat, " +
@@ -1381,5 +1360,4 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             }
         });
     }
-
 }

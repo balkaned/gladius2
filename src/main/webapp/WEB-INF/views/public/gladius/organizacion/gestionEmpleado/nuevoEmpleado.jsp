@@ -87,7 +87,7 @@
                               </div>
                               <div class="col-sm-6 col-md-4">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de documento</label>
-                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="text" value="" placeholder="Ingrese solo numeros" required/>
+                                   <input class="form-control" name="iexnrodocid" maxlength="18" type="number" value="" placeholder="Ingrese solo números" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno </label>

@@ -153,7 +153,7 @@
 
                   <div class="col-md-7 col-lg-7 col-xl-8">
                     <div class="lead-details-container">
-                      <div class="content2">
+                      <div class="">
                           <div class="mb-0">
                             <div>
                               <div class="col-12 mt-4">
@@ -203,13 +203,13 @@
                                                     <div class="col-sm-6 col-md-7">
                                                         <table style="display: block;overflow-x: auto;white-space: nowrap;">
                                                             <tr>
-                                                                <td class="text-body fs--1" > Lun <input type="checkbox" class="form-check-input text-body fs-9" name="iexlunes" id="iexlunes" value="1" class="flat"  ${requestScope.xempxturno.iexlunes =='1' ? 'checked=true' : ''}   ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} > </td>
-                                                                <td class="text-body fs--1"> Mar <input type="checkbox" class="form-check-input text-body fs-9" name="iexmartes" id="iexmartes" value="1" class="flat" ${requestScope.xempxturno.iexmartes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >  </td>
-                                                                <td class="text-body fs--1"> Mie <input type="checkbox" class="form-check-input text-body fs-9" name="iexmiercoles" id="iexmiercoles" value="1" class="flat"  ${requestScope.xempxturno.iexmiercoles =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
-                                                                <td class="text-body fs--1"> Jue <input type="checkbox" class="form-check-input text-body fs-9" name="iexjueves" id="iexjueves" value="1" class="flat" ${requestScope.xempxturno.iexjueves =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
-                                                                <td class="text-body fs--1"> Vie <input type="checkbox" class="form-check-input text-body fs-9" name="iexviernes" id="iexviernes" value="1" class="flat" ${requestScope.xempxturno.iexviernes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >  </td>
-                                                                <td class="text-body fs--1"> Sab <input type="checkbox" class="form-check-input text-body fs-9" name="iexsabado" id="iexsabado" value="1" class="flat"  ${requestScope.xempxturno.iexsabado =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} >   </td>
-                                                                <td class="text-body fs--1"> Dom <input type="checkbox" class="form-check-input text-body fs-9" name="iexdomingo" id="iexdomingo" value="1" class="flat"  ${requestScope.xempxturno.iexdomingo =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  >   </td>
+                                                                <td class="text-body fs--1" > Lun <input type="checkbox" class="form-check-input text-body fs-9" name="iexlunes" id="iexlunes" value="1" class="flat"  ${requestScope.xempxturno.iexlunes =='1' ? 'checked=true' : ''}   ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} ></td>
+                                                                <td class="text-body fs--1"> Mar <input type="checkbox" class="form-check-input text-body fs-9" name="iexmartes" id="iexmartes" value="1" class="flat" ${requestScope.xempxturno.iexmartes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  ></td>
+                                                                <td class="text-body fs--1"> Mie <input type="checkbox" class="form-check-input text-body fs-9" name="iexmiercoles" id="iexmiercoles" value="1" class="flat"  ${requestScope.xempxturno.iexmiercoles =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}></td>
+                                                                <td class="text-body fs--1"> Jue <input type="checkbox" class="form-check-input text-body fs-9" name="iexjueves" id="iexjueves" value="1" class="flat" ${requestScope.xempxturno.iexjueves =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  ></td>
+                                                                <td class="text-body fs--1"> Vie <input type="checkbox" class="form-check-input text-body fs-9" name="iexviernes" id="iexviernes" value="1" class="flat" ${requestScope.xempxturno.iexviernes =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} ></td>
+                                                                <td class="text-body fs--1"> Sab <input type="checkbox" class="form-check-input text-body fs-9" name="iexsabado" id="iexsabado" value="1" class="flat"  ${requestScope.xempxturno.iexsabado =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'} > </td>
+                                                                <td class="text-body fs--1"> Dom <input type="checkbox" class="form-check-input text-body fs-9" name="iexdomingo" id="iexdomingo" value="1" class="flat"  ${requestScope.xempxturno.iexdomingo =='1' ? 'checked=true' : ''} ${ requestScope.xempxturno.iextipturno=='1' ? 'enabled' : 'disabled'}  ></td>
                                                            </tr>
                                                            <tr>
                                                                <td>
