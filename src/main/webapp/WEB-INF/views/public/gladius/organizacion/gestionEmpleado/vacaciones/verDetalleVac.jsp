@@ -100,7 +100,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="LstVacacionesPer" items="${requestScope.LstVacacionesPer}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${LstVacacionesPer.iexcorrel}</a></td>
+                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="editarVacacion@${idTrab}@${LstVacacionesPer.iexcorrel}@${LstVacacionesPer.iexpermesini}@${LstVacacionesPer.iexpermesfin}">#${LstVacacionesPer.iexcorrel}</a></td>
                                 				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${LstVacacionesPer.iexpermesini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-1000 ps-3 pe-3">${LstVacacionesPer.iexpermesfin}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesPer.iexfecini}</td>

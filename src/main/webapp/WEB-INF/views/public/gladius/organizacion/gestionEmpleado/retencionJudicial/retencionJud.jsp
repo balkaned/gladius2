@@ -83,7 +83,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="LstRetencionDet" items="${requestScope.LstRetencionDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstRetencionDet.iexcorrel}</a></td>
+                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="editarRetJudicial@${idTrab}@${LstRetencionDet.iexcorrel}">#${LstRetencionDet.iexcorrel}</a></td>
                                 				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstRetencionDet.destipretjud}</span></td>
                                 				  <td class="align-middle white-space-nowrap fs-9">${LstRetencionDet.iexresolucion}</td>
                                 				  <td class="align-middle white-space-nowrap fs-9">${LstRetencionDet.descodpro}</td>

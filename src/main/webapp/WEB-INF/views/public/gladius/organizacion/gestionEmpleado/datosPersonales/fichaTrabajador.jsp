@@ -306,7 +306,7 @@
                                 <div class="row g-3 mt-0">
                                      <div class="col-xl-12">
                                        <div class="row gx-3 gy-4">
-                                          <form class="row g-3 mb-0 needs-validation" method="POST" action="updateEmplDatLab" novalidate>
+                                          <form class="row g-3 mb-0 needs-validation" method="POST" action="updateEmplDatLab" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 

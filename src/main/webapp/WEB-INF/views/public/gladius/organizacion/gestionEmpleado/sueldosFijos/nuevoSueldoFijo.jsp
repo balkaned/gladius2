@@ -60,7 +60,7 @@
 
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                                <select class="form-select" name="iexcodcon" required >
+                                                <select class="form-select" name="iexcodcon" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
                                                   <option value="" selected >Seleccionar concepto</option>
                                                   <c:forEach var="lovConcepSue" items="${lovConcepSue}">
                                                       <option value="${lovConcepSue.codConcepto}" >${lovConcepSue.desConcepto}</option>

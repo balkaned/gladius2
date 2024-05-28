@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                                <select class="form-select" name="iexcodcon2" required disabled>
+                                                <select class="form-select" name="iexcodcon2" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required disabled >
                                                   <option value="" selected >Seleccionar concepto</option>
                                                   <c:forEach var="lovConcepVar" items="${lovConcepVar}">
                                                       <option value="${lovConcepVar.codConcepto}" ${lovConcepVar.codConcepto == requestScope.fdatvarupd.iexcodcon ? 'selected' : ''} >${lovConcepVar.desConcepto}</option>

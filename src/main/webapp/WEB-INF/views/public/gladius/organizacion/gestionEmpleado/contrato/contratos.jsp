@@ -82,7 +82,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="LstContratoDet" items="${requestScope.LstContratoDet}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LstContratoDet.iexcorrel}</a></td>
+                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="editarContrato@${idTrab}@${LstContratoDet.iexcorrel}">#${LstContratoDet.iexcorrel}</a></td>
                                 				  <td class="total align-middle text-center fw-semi-bold pe-20 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${LstContratoDet.destipcont}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstContratoDet.iexfecini}</td>
                                 				  <td class="align-middle white-space-nowrap text-center fw-semi-bold text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstContratoDet.iexfecfin}</td>

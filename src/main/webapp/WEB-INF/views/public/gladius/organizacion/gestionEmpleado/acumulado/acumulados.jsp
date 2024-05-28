@@ -80,7 +80,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="LstAcumEmp" items="${requestScope.LstAcumEmp}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">${LstAcumEmp.iexaniotrib}</a></td>
+                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="editarAcumulado@${idTrab}@${LstAcumEmp.iexaniotrib}">${LstAcumEmp.iexaniotrib}</a></td>
                                 				  <td class="align-middle text-center fw-semi-bold ps-3 pe-3 text-1000">${LstAcumEmp.iexremafec5ta_otrcia}</td>
                                 				  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstAcumEmp.iexrent5ta_otrcia}</td>
 

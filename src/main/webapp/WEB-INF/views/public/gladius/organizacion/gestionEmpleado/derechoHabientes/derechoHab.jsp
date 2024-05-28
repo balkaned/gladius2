@@ -88,7 +88,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="LovDerhab" items="${requestScope.LovDerhab}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="#!">#${LovDerhab.iexcoddep}</a></td>
+                                				  <td class="order align-middle white-space-nowrap ps-0"><a class="fw-semi-bold" href="editarDerechoHab@${idTrab}@${LovDerhab.iexcoddep}">#${LovDerhab.iexcoddep}</a></td>
                                 				  <td class="customer align-middle white-space-nowrap pe-5 ps-5">
                                                     <a class="d-flex align-items-center text-900" href="#">
                                                         <div class="avatar avatar-m">

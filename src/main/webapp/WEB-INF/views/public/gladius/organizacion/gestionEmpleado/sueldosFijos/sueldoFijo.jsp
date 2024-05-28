@@ -80,7 +80,7 @@
                                 		  <tbody class="list" id="customer-order-table-body">
                                 			<c:forEach var="fsueldox" items="${requestScope.fsueldox}">
                                 				<tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#${fsueldox.iexcodcon}</a></td>
+                                				  <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="editarSueldoFijo@${idTrab}@${fsueldox.iexcodcon}">#${fsueldox.iexcodcon}</a></td>
                                 				  <td class="align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${fsueldox.descon}</span></td>
                                 				  <td class="align-middle white-space-nowrap text-center text-600 ps-3 pe-3">${fsueldox.iexvalcon}</td>
                                 				    <c:if test="${fsueldox.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
