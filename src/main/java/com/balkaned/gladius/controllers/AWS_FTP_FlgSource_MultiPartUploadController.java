@@ -16,6 +16,7 @@ import com.balkaned.gladius.services.EmpleadoService;
 import com.balkaned.gladius.services.LegajoService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -274,6 +275,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
 
                         String nombreArchivo = "";
+                        String Path="";
                         int idimagen = 0;
 
                         log.info("Direccion existe");
@@ -282,31 +284,35 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                         try {
                             String nombreFile;
+
+                            String tipoExtension= FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+                            log.info("tipoExtension: "+tipoExtension);
+
                             //Obtiene el nombre del archivo y la ruta
                             if (carpetaLecturax.equals("legajo")) {
                                 log.info("######### Obtiene el nombre del archivo y la ruta caso es legajo #######");
                                 idimagen = legajoService.obtieneIdImage(Integer.parseInt(codciax), Integer.parseInt(idgrpfile));
-                                nombreFile = codciax + "_" + idgrpfile + "_" + idimagen + ".pdf";
-                                nombreArchivo = codciax + "/" + carpetaLecturax + "/" + nombreFile;
+                                nombreFile = codciax + "_" +idTrabx+"_"+ idgrpfile + "_" + idimagen + "."+tipoExtension;
+                                Path = codciax + "/" + carpetaLecturax + "/" + nombreFile;
                             } else {
-                                nombreFile = codciax + "_" + idgrpfile + ".pdf";
-                                nombreArchivo = codciax + "/" + carpetaLecturax + "/" + idimg + "." + ".pdf";
+                                nombreFile = codciax + "_" +idTrabx+"_"+ idgrpfile + "."+tipoExtension;
+                                Path = codciax + "/" + carpetaLecturax + "/" + idimg + "." + "."+tipoExtension;
                             }
 
                             log.info("nombreFile: " + nombreFile);
-                            log.info("nombreArchivoPathCompleto: " + nombreArchivo);
+                            log.info("nombreArchivoPathCompleto: " + Path);
 
                             credentials = new BasicAWSCredentials(key_name, passPhrase);
                             s3 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                            s3.putObject(bucket_name, nombreArchivo, nombreArchivo);
-                            log.info("Path: " + nombreArchivo);
+                            s3.putObject(bucket_name, Path, Path);
+                            log.info("Path: " + Path);
 
                             InputStream in = uploadFile.getInputStream();
                             File tmp = null;
-                            tmp = File.createTempFile("s3test", ".pdf");
+                            tmp = File.createTempFile("s3test", "."+tipoExtension);
                             Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                            PutObjectRequest request2 = new PutObjectRequest(bucket_name, nombreArchivo, tmp);
+                            PutObjectRequest request2 = new PutObjectRequest(bucket_name, Path, tmp);
 
                             ObjectMetadata metadata = new ObjectMetadata();
                             metadata.setContentType(uploadFile.getContentType());
@@ -325,7 +331,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                                 img.setIexcodgrpfile(Integer.valueOf(idgrpfile));
                                 img.setIexcodimage(idimagen);
                                 img.setIexdesimage(desimagen);
-                                img.setIexurlimage(codciax + "_" + idgrpfile + "_" + idimagen + ".pdf");
+                                img.setIexurlimage(codciax + "_"+idTrabx+"_" + idgrpfile + "_" + idimagen + "."+tipoExtension);
                                 img.setIexusucrea("admin");
 
                                 legajoService.insertarImage(img);

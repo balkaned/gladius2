@@ -2,17 +2,23 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.Grpfile;
+import com.balkaned.gladius.models.PlaProPerDet;
 import com.balkaned.gladius.models.UsuarioxRol;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -131,6 +137,8 @@ public class LegajoController {
         Integer iexcodtra = Integer.valueOf(idTrab);
         Integer iexcodcia = idCompania;
 
+        log.info("codgrpfileXX: "+codgrpfile);
+
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
         model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
         model.addAttribute("codgrpfile", codgrpfile);
@@ -193,6 +201,10 @@ public class LegajoController {
         String codgrpfile = grpFile;
         Integer iexcodtra = Integer.valueOf(idTrab);
         Integer iexcodcia = idCompania;
+
+        log.info("codgrpfile: "+codgrpfile);
+        log.info("iexcodtra: "+iexcodtra);
+        log.info("iexcodcia: "+iexcodcia);
 
         model.addAttribute("lovGrpFile", lovsService.getLovs("91", "%"));
         model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
@@ -454,6 +466,31 @@ public class LegajoController {
         legajoService.eliminarGrpFile(grp2);
 
         return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrab+"@"+grpFile);
+    }
+
+    @RequestMapping(value = "/aprobadorDocumentoLegajo", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView aprobadorDocumentoLegajo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/aprobadorDocumentoLegajo");
+
+        /*String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+
+        legajoService.actualizarGrpFile();
+
+        String json = new Gson().toJson(list_prest);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);*/
+
+        return null;
     }
 }
 

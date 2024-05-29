@@ -13,6 +13,24 @@
     <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
   </head>
 
+  <script>
+    function aprobarDocumento(){
+        alert("-");
+
+        $.ajax({
+             url: "aprobadorDocumentoLegajo",
+             data: {
+                 "codprocesoaux": idprocesoaux,
+                 "codconceptoaux": codconceptaux,
+                 "codproceso": idproceso,
+                 "codconcepto": codconcepto
+                 },
+             success: function (data) {
+             }
+        });
+    }
+  </script>
+
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -57,7 +75,7 @@
                             <div class="row g-3">
                                  <div class="col-xl-9">
                                    <div class="row gx-3 gy-4">
-                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="buscarLegajo@${idTrab}" novalidate >
+                                     <form id="frmLegajos" class="row g-3 mb-0 needs-validation" method="POST" action="buscarLegajo@${idTrab}" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
@@ -113,8 +131,8 @@
                                            <label class="form-label fs-0 text-1000 ps-0 text-none mt-4 mb-0">${listGrpFile.desgrangrupo} -  ${listGrpFile.iexdesgrpfile}</label>
                                            <div>
                                                <a class="btn btn-phoenix-secondary btn-sm mb-1" href="ingresarImagen@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fa-solid fas fa-plus me-2"></span>Add file</a>
-                                               <a class="btn btn-phoenix-secondary btn-sm mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupoArch</a>
-                                               <a class="btn btn-phoenix-danger btn-sm mb-1" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}"><span class="fas fa-minus me-2"></span>Borrar</a>
+                                               <a class="btn btn-phoenix-secondary btn-sm mb-1" href="editarGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}" ><span class="fas fa-pen me-2"></span>Editar grupo archivo</a>
+                                               <a class="btn btn-phoenix-danger btn-sm mb-1" onclick="return remove();" href="delGrupoArch@${idTrab}@${listGrpFile.iexcodgrpfile}@${codgrpfile}">Borrar grupo</a>
                                            </div>
 
                                            <div class="border-top border-bottom border-200 mt-2" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
@@ -124,9 +142,9 @@
                                            			<tr>
                                            			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order" >ID</th>
                                            			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="total">Descripcion</th>
-                                           			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">FileName</th>
                                            			  <th class="sort align-middle text-center white-space-nowrap ps-1 pe-1 text-uppercase" scope="col" data-sort="payment_status" >Estado</th>
-                                           			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status"  >Aprobación</th>
+                                           			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">FileName</th>
+                                           			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Aprobación</th>
                                            			  <th class="sort align-middle text-center ps-0 pe-0 text-uppercase" scope="col" ></th>
                                            			</tr>
                                            		  </thead>
@@ -135,26 +153,30 @@
                                                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                           <td class="align-middle white-space-nowrap ps-0 pe-3"><a class="fw-semi-bold" href="#!">#${listGrpFile.iexcodimage}</a></td>
                                                           <td class="align-middle white-space-nowrap text-start text-1000 ps-0 pe-0">${listGrpFile.iexdesimage}</td>
-                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-0 pe-3">${listGrpFile.iexurlimage}</td>
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span></td>
-                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Pendiente de aprobacion</span></td>
+                                                          <td class="align-middle white-space-nowrap text-center cursiva ps-0 pe-3">${listGrpFile.iexurlimage}</td>
+                                                          <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">
+                                                            <c:if test="${listGrpFile.iexestado_det == null}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Pendiente</span></c:if>
+                                                            <c:if test="${listGrpFile.iexestado_det == '3'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Aprobado</span></c:if>
+                                                          </td>
+
                                                           <td class="align-middle white-space-nowrap text-end pe-0 ps-0">
                                                             <div class="font-sans-serif btn-reveal-trigger position-static">
                                                               <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
                                                               data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                               <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                               <div id="dropdownmenutable" class="dropdown-menu dropdown-menu-end py-2">
-                                                                <a class="dropdown-item" href="#"><span class="fas fa-bolt me-2"></span>Aprobar</a>
+                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalConfirmacionAprobar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-bolt me-2"></span>Aprobar</a>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item"
-                                                                href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
+                                                                href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexurlimage}"
                                                                 ><span class="fas fa-download me-2"></span>Descargar</a>
 
                                                                 <div class="dropdown-divider"></div>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();"
-                                                                href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
-                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar en la nube</a>
+                                                                href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}-${listGrpFile.iexgrpfile}"
+                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
 
                                                               </div>
                                                             </div>
@@ -182,4 +204,27 @@
 
     <jsp:include page="../../../../customize.jsp"></jsp:include>
   </body>
+
+  <div class="modal fade" id="modalConfirmacionAprobar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+  	<div class="modal-content border">
+  	  <form id="addEventForm" autocomplete="off">
+  		<div class="modal-header border-200 p-4">
+  		  <h5 class="modal-title text-1000 fs-4 lh-sm">Aprobación</h5>
+  		  <button class="btn p-1 text-900" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+  		</div>
+  		<div class="modal-body pt-4 pb-2 px-4">
+  		  <div class="mb-3">
+  			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea aprobar el documento?, si aprueba el documento, ya no se podrá eliminar, solo un usuario con perfil de tipo administrador podrá eliminarlo.</label>
+  		    <input id="" type="hidden" value=""/>
+  		  </div>
+  		</div>
+  	  </form>
+  	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+  		  <button class="btn btn-sm btn-phoenix-secondary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
+  		  <button class="btn btn-sm btn-secondary px-9 my-0 mt-1" onclick="aprobarDocumento();" type="button" data-bs-dismiss="modal" ><span class="fas fa-bolt me-2 fs--1"></span>Aprobar</button>
+  	  </div>
+  	</div>
+    </div>
+  </div>
 </html>

@@ -603,6 +603,18 @@ width:31px;
     background-color:#2D65F6;
 }
 
+.bg-blanco{
+    background-color:white;
+}
+
+.justificar{
+    text-align: justify !important;
+}
+
+.cursiva{
+    font-style: italic !important;
+}
+
 
 
 

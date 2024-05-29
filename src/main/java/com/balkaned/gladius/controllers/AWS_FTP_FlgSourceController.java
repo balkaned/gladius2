@@ -28,6 +28,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -135,7 +136,7 @@ public class AWS_FTP_FlgSourceController {
                         pr.setNombreParametro(stringDivisor[0]);
                         pr.setValorParametro(fechaconv);
                         lspreport.add(pr);
-                    }else{
+                    } else {
                         ParametroReport pr = new ParametroReport();
                         pr.setNombreParametro(stringDivisor[0]);
                         pr.setValorParametro(stringDivisor[1]);
@@ -363,19 +364,19 @@ public class AWS_FTP_FlgSourceController {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
-                            } else if(item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
+                            } else if (item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else if(item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
+                            } else if (item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else if(item.getNombreParametro().contains("CODTRA") || item.getNombreParametro().contains("codtra") || item.getNombreParametro().contains("Codtra")) {
+                            } else if (item.getNombreParametro().contains("CODTRA") || item.getNombreParametro().contains("codtra") || item.getNombreParametro().contains("Codtra")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else{
+                            } else {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
@@ -388,13 +389,13 @@ public class AWS_FTP_FlgSourceController {
 
                         // Subreporte parámetros
                         InputStream inputStreamParam = null;
-                        String reportejaspSubReportParam="BoletaEmpCons";
-                        log.info("reportejaspSubReportParam: "+reportejaspSubReportParam);
+                        String reportejaspSubReportParam = "BoletaEmpCons";
+                        log.info("reportejaspSubReportParam: " + reportejaspSubReportParam);
 
                         AmazonS3 s17 = null;
                         S3Object o17 = null;
                         s17 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        fileName = "reportes/"+reportejaspSubReportParam+".jasper";
+                        fileName = "reportes/" + reportejaspSubReportParam + ".jasper";
                         o17 = s17.getObject(bucket_name, fileName);
                         inputStreamParam = o17.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -403,13 +404,13 @@ public class AWS_FTP_FlgSourceController {
 
                         // Subreporte ingresos
                         InputStream inputStreamIngresos = null;
-                        String reportejaspSubReportIngresos="BoletaEmpResVac03";
-                        log.info("reportejaspSubReportIngresos: "+reportejaspSubReportIngresos);
+                        String reportejaspSubReportIngresos = "BoletaEmpResVac03";
+                        log.info("reportejaspSubReportIngresos: " + reportejaspSubReportIngresos);
 
                         AmazonS3 s18 = null;
                         S3Object o18 = null;
                         s18 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        fileName = "reportes/"+reportejaspSubReportIngresos+".jasper";
+                        fileName = "reportes/" + reportejaspSubReportIngresos + ".jasper";
                         o18 = s18.getObject(bucket_name, fileName);
                         inputStreamIngresos = o18.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -418,13 +419,13 @@ public class AWS_FTP_FlgSourceController {
 
                         // Subreporte descuentos
                         InputStream inputStreamDescuentos = null;
-                        String reportejaspSubReportDescuentos="BoletaEmpRes";
-                        log.info("reportejaspSubReportDescuentos: "+reportejaspSubReportDescuentos);
+                        String reportejaspSubReportDescuentos = "BoletaEmpRes";
+                        log.info("reportejaspSubReportDescuentos: " + reportejaspSubReportDescuentos);
 
                         AmazonS3 s19 = null;
                         S3Object o19 = null;
-                        s19= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        fileName = "reportes/"+reportejaspSubReportDescuentos+".jasper";
+                        s19 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/" + reportejaspSubReportDescuentos + ".jasper";
                         o19 = s19.getObject(bucket_name, fileName);
                         inputStreamDescuentos = o19.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -433,13 +434,13 @@ public class AWS_FTP_FlgSourceController {
 
                         // Subreporte aportes
                         InputStream inputStreamAportes = null;
-                        String reportejaspSubReportAportes="BoletaEmpResNeto";
-                        log.info("reportejaspSubReportAportes: "+reportejaspSubReportAportes);
+                        String reportejaspSubReportAportes = "BoletaEmpResNeto";
+                        log.info("reportejaspSubReportAportes: " + reportejaspSubReportAportes);
 
                         AmazonS3 s20 = null;
                         S3Object o20 = null;
-                        s20= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        fileName = "reportes/"+reportejaspSubReportAportes+".jasper";
+                        s20 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/" + reportejaspSubReportAportes + ".jasper";
                         o20 = s20.getObject(bucket_name, fileName);
                         inputStreamAportes = o20.getObjectContent();
                         log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -470,7 +471,7 @@ public class AWS_FTP_FlgSourceController {
                             exporter.exportReport();
                         }
                     } catch (Exception ex) {
-                        log.info("Mensaje: "+ex.getMessage());
+                        log.info("Mensaje: " + ex.getMessage());
                     }
                 }
 
@@ -492,7 +493,7 @@ public class AWS_FTP_FlgSourceController {
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
 
                     // Obtiene foto empleado y logo solo para FichaTrabajador
-                    if(nombreJasper.equals("FichaTrabajador")) {
+                    if (nombreJasper.equals("FichaTrabajador")) {
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
                             Empleado empleado = empleadoService.recuperarCabecera(Integer.valueOf(codciax), Integer.valueOf(idTrabx));
 
@@ -511,7 +512,7 @@ public class AWS_FTP_FlgSourceController {
                     }
 
                     // Obtiene foto empleado y logo solo para FichaTrabajador
-                    if(nombreJasper.equals("FichaTrabajador")) {
+                    if (nombreJasper.equals("FichaTrabajador")) {
                         log.info("Sub report Foto y Logo FichaTrabajador");
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
 
@@ -547,7 +548,7 @@ public class AWS_FTP_FlgSourceController {
                     //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
 
                     // Añade parámetros solo para FichaTrabajador
-                    if(nombreJasper.equals("FichaTrabajador")) {
+                    if (nombreJasper.equals("FichaTrabajador")) {
                         if (idTrabx != null || !idTrabx.equals("") || idTrabx != "") {
                             parametros.put("P_LOGO", inputStreamlogo);
                             parametros.put("P_FOTO", inputStreamfotoemp);
@@ -562,26 +563,25 @@ public class AWS_FTP_FlgSourceController {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
-                            } else if(item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
+                            } else if (item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else if(item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
+                            } else if (item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
                                 log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
-                            }else if(item.getNombreParametro().contains("CODMON") || item.getNombreParametro().contains("codmon") || item.getNombreParametro().contains("Codmon")) {
-                                if(item.getValorParametro().equals("S")){
-                                    parametros.put("P_CODMON","S/.");
+                            } else if (item.getNombreParametro().contains("CODMON") || item.getNombreParametro().contains("codmon") || item.getNombreParametro().contains("Codmon")) {
+                                if (item.getValorParametro().equals("S")) {
+                                    parametros.put("P_CODMON", "S/.");
                                     log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                     log.info("Se insertó parámetro item.getValorParametro(): S/.");
-                                }else if(item.getValorParametro().equals("E")){
-                                    parametros.put("P_CODMON","EU");
+                                } else if (item.getValorParametro().equals("E")) {
+                                    parametros.put("P_CODMON", "EU");
                                     log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                     log.info("Se insertó parámetro item.getValorParametro(): EU");
                                 }
-                            }
-                            else{
+                            } else {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
                                 log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
                                 log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
@@ -595,20 +595,20 @@ public class AWS_FTP_FlgSourceController {
                         for (ParametroReport item2 : lspreport) {
                             log.info("item.getNombreParametro(): " + item2.getNombreParametro());
                             log.info("item.getValorParametro(): " + item2.getValorParametro());
-                            if(item2.getNombreParametro().equals("P_CODPRO")) {
+                            if (item2.getNombreParametro().equals("P_CODPRO")) {
                                 log.info("Ingreso if cuando parametro es P_CODPRO");
 
                                 ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
 
                                 // Subreporte parámetros
                                 InputStream inputStreamParam = null;
-                                String reportejaspSubReportParam=pro.getRep_parameter();
-                                log.info("reportejaspSubReportParam: "+reportejaspSubReportParam);
+                                String reportejaspSubReportParam = pro.getRep_parameter();
+                                log.info("reportejaspSubReportParam: " + reportejaspSubReportParam);
 
                                 AmazonS3 s13 = null;
                                 S3Object o13 = null;
                                 s13 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                fileName = "reportes/"+reportejaspSubReportParam+".jasper";
+                                fileName = "reportes/" + reportejaspSubReportParam + ".jasper";
                                 o13 = s13.getObject(bucket_name, fileName);
                                 inputStreamParam = o13.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -617,13 +617,13 @@ public class AWS_FTP_FlgSourceController {
 
                                 // Subreporte ingresos
                                 InputStream inputStreamIngresos = null;
-                                String reportejaspSubReportIngresos=pro.getRep_ingresos();
-                                log.info("reportejaspSubReportIngresos: "+reportejaspSubReportIngresos);
+                                String reportejaspSubReportIngresos = pro.getRep_ingresos();
+                                log.info("reportejaspSubReportIngresos: " + reportejaspSubReportIngresos);
 
                                 AmazonS3 s14 = null;
                                 S3Object o14 = null;
                                 s14 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                fileName = "reportes/"+reportejaspSubReportIngresos+".jasper";
+                                fileName = "reportes/" + reportejaspSubReportIngresos + ".jasper";
                                 o14 = s14.getObject(bucket_name, fileName);
                                 inputStreamIngresos = o14.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -632,13 +632,13 @@ public class AWS_FTP_FlgSourceController {
 
                                 // Subreporte descuentos
                                 InputStream inputStreamDescuentos = null;
-                                String reportejaspSubReportDescuentos=pro.getRep_descuentos();
-                                log.info("reportejaspSubReportDescuentos: "+reportejaspSubReportDescuentos);
+                                String reportejaspSubReportDescuentos = pro.getRep_descuentos();
+                                log.info("reportejaspSubReportDescuentos: " + reportejaspSubReportDescuentos);
 
                                 AmazonS3 s15 = null;
                                 S3Object o15 = null;
-                                s15= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                fileName = "reportes/"+reportejaspSubReportDescuentos+".jasper";
+                                s15 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportDescuentos + ".jasper";
                                 o15 = s15.getObject(bucket_name, fileName);
                                 inputStreamDescuentos = o15.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -647,13 +647,13 @@ public class AWS_FTP_FlgSourceController {
 
                                 // Subreporte aportes
                                 InputStream inputStreamAportes = null;
-                                String reportejaspSubReportAportes=pro.getRep_aportes();
-                                log.info("reportejaspSubReportAportes: "+reportejaspSubReportAportes);
+                                String reportejaspSubReportAportes = pro.getRep_aportes();
+                                log.info("reportejaspSubReportAportes: " + reportejaspSubReportAportes);
 
                                 AmazonS3 s16 = null;
                                 S3Object o16 = null;
-                                s16= AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                fileName = "reportes/"+reportejaspSubReportAportes+".jasper";
+                                s16 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportAportes + ".jasper";
                                 o16 = s16.getObject(bucket_name, fileName);
                                 inputStreamAportes = o16.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
@@ -664,7 +664,7 @@ public class AWS_FTP_FlgSourceController {
                     }
 
                     // Obtiene subreport para PDF depósito bancos BancoProper
-                    if(nombreJasper.equals("BancoProper")){
+                    if (nombreJasper.equals("BancoProper")) {
                         log.info("Sub report BancoProper");
                         InputStream inputStreamDetBank = null;
 
@@ -705,9 +705,10 @@ public class AWS_FTP_FlgSourceController {
                 if (accion.equals("decargarDocumento")) {
                     log.info("#### AWS decargarDocumento ####");
 
-                    String Path=codciax+"/"+carpetaLecturax;
-                    fileName = codciax+"_"+idGrpfileLegajox+"_"+idImageLegajox+".pdf";
-                    String rutaCompleta=Path+"/"+fileName;
+                    String Path = codciax + "/" + carpetaLecturax;
+                    //fileName = codciax + "_" + idTrabx + "_" + idGrpfileLegajox + "_" + idImageLegajox + ".pdf";
+                    fileName = idImageLegajox;
+                    String rutaCompleta = Path + "/" + fileName;
                     log.info("rutaCompleta: " + rutaCompleta);
 
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -716,7 +717,7 @@ public class AWS_FTP_FlgSourceController {
                     log.info("Path: " + rutaCompleta);
 
                     InputStream inputStream1 = new BufferedInputStream(o.getObjectContent());
-                    log.info("inputStream1: "+inputStream1);
+                    log.info("inputStream1: " + inputStream1);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
 
                     byte[] buf = new byte[1024];
@@ -731,7 +732,7 @@ public class AWS_FTP_FlgSourceController {
                     byte[] bytesresponse = out.toByteArray();
                     //FileOutputStream fos = new FileOutputStream("C:/Users/HP/Downloads/hola.pdf");
 
-                    response.setHeader("Content-Disposition", "attachment; filename="+fileName);
+                    response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
                     response.setHeader("Cache-Control", "no-store");
                     response.setHeader("Pragma", "no-cache");
                     response.setDateHeader("Expires", 0);
@@ -746,9 +747,9 @@ public class AWS_FTP_FlgSourceController {
                 if (accion.equals("eliminarDocumento")) {
                     log.info("#### AWS eliminarDocumento ####");
 
-                    String Path=codciax+"/"+carpetaLecturax;
-                    fileName = codciax+"_"+idGrpfileLegajox+"_"+idImageLegajox+".pdf";
-                    String rutaCompleta=Path+"/"+fileName;
+                    String Path = codciax + "/" + carpetaLecturax;
+                    fileName = idImageLegajox;
+                    String rutaCompleta = Path + "/" + fileName;
                     log.info("rutaCompleta: " + rutaCompleta);
 
                     credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -756,25 +757,35 @@ public class AWS_FTP_FlgSourceController {
                     //S3Object o = s3.getObject(bucket_name, rutaCompleta);
                     log.info("Path: " + rutaCompleta);
 
-                    s3.deleteObject(new DeleteObjectRequest(bucket_name, rutaCompleta));
+                    //s3.deleteObject(new DeleteObjectRequest(bucket_name, rutaCompleta));
 
                     //Elimina en base datos solo para legajos
-                    if(carpetaLecturax.equals("legajo")){
+                    if (carpetaLecturax.equals("legajo")) {
                         log.info("######### Elimina en tabla caso es legajo #######");
 
-                        FileImageLegajo img12  = new FileImageLegajo();
+                        FileImageLegajo img12 = new FileImageLegajo();
                         img12.setIexcodcia(Integer.valueOf(codciax));
                         img12.setIexcodgrpfile(Integer.valueOf(idGrpfileLegajox));
-                        img12.setIexcodimage(Integer.valueOf(idImageLegajox));
+
+                        log.info("idGrpfileLegajox: "+idGrpfileLegajox);
+                        log.info("idImageLegajox: "+idImageLegajox);
+
+                        String varRecup=idImageLegajox;
+                        String[] parts = varRecup.split("-");
+                        String iexcodimage = parts[0];
+                        String iexgrpfile = parts[1];
+
+                        log.info("iexcodimage: "+iexcodimage);
+                        log.info("iexgrpfile: "+iexgrpfile);
+
+                        img12.setIexcodimage(Integer.valueOf(iexcodimage));
 
                         legajoService.eliminarImage(img12);
 
-                        return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrabx+"@"+idGrpfileLegajox);
+                        return new ModelAndView("redirect:/buscarLegajoAtras@" + idTrabx + "@" + iexgrpfile);
                     }
-
                 }
             }
-
 
             //======================================
             //======================================

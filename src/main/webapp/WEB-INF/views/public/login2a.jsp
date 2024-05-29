@@ -66,7 +66,7 @@
               <hr class="bg-200 mt-5 mb-4" />
               <div class="divider-content-center">or use email</div>
             </div>-->
-            <div class="bg-white border border-0 rounded-2 p-4 col-12">
+            <div class="bg-blanco border border-0 rounded-2 p-4 col-12">
                 <div class="mb-3 text-start col-sm-6 col-md-12">
                   <label class="form-label" for="email">Usuario</label>
                   <div class="form-icon-container">

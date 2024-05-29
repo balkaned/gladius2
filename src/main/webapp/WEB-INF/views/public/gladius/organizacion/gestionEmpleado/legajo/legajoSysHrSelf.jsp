@@ -171,13 +171,13 @@
                                                                 <a class="dropdown-item disabled" href="#"><span class="fas fa-bolt me-2"></span>Aprobar</a>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item"
-                                                                href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
+                                                                href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexurlimage}"
                                                                 ><span class="fas fa-download me-2"></span>Descargar</a>
 
                                                                 <div class="dropdown-divider"></div>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item disabled" onclick="return remove();"
-                                                                href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}"
+                                                                href="#"
                                                                 ><span class="fas fa-link-slash me-2"></span>Eliminar en la nube</a>
 
                                                               </div>
