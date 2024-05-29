@@ -11,14 +11,16 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("LegajoDao")
+
 @Slf4j
+@Repository("LegajoDao")
 public class LegajoDaoImpl implements LegajoDao {
 
     JdbcTemplate template;
@@ -62,7 +64,7 @@ public class LegajoDaoImpl implements LegajoDao {
                     p.setDesgrangrupo(rs.getString("desgrupo"));
 
                     CapitalizarCadena cap = new CapitalizarCadena();
-                    String capitalize=cap.letras(p.getDesgrangrupo());
+                    String capitalize = cap.letras(p.getDesgrangrupo());
                     p.setDesgrangrupo(capitalize);
 
                     p.setIexcodgrpfile(rs.getInt("iexcodgrpfile"));
@@ -117,9 +119,9 @@ public class LegajoDaoImpl implements LegajoDao {
                 grpfile.getIexusucrea());
     }
 
-    public void insertarImage(FileImageLegajo fileImageLegajo){
+    public void insertarImage(FileImageLegajo fileImageLegajo) {
 
-        template.update(" insert into iexfileimage(   iexcodcia, iexcodgrpfile, iexcodimage, iexurlimage, iexdesimage, iexestado , iexusucrea, iexfeccrea ) values "+
+        template.update(" insert into iexfileimage(   iexcodcia, iexcodgrpfile, iexcodimage, iexurlimage, iexdesimage, iexestado , iexusucrea, iexfeccrea ) values " +
                         "  ( ?,  ?,   ?,   ?,   ?,   ?,   ?,   CURRENT_TIMESTAMP  ) ",
 
                 fileImageLegajo.getIexcodcia(),
@@ -131,38 +133,38 @@ public class LegajoDaoImpl implements LegajoDao {
                 fileImageLegajo.getIexusucrea());
     }
 
-    public Integer obtieneIdImage(Integer codcia, Integer idgrpfile){
+    public Integer obtieneIdImage(Integer codcia, Integer idgrpfile) {
 
         final Integer[] idfinal = {0};
 
-        String sql = " SELECT coalesce(max(iexcodimage),0)+1 idcont  FROM iexfileimage WHERE IEXCODCIA="+codcia+"  and iexcodgrpfile = "+idgrpfile+" ";
+        String sql = " SELECT coalesce(max(iexcodimage),0)+1 idcont  FROM iexfileimage WHERE IEXCODCIA=" + codcia + "  and iexcodgrpfile = " + idgrpfile + " ";
 
         return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-                while(rs.next()) {
-                    idfinal[0] =rs.getInt("idcont");
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                while (rs.next()) {
+                    idfinal[0] = rs.getInt("idcont");
                 }
                 return idfinal[0];
             }
         });
     }
 
-    public Grpfile getGrpfile(Integer codcia, Integer idgrpfile){
+    public Grpfile getGrpfile(Integer codcia, Integer idgrpfile) {
 
-        String sql=" select   i.iexcodcia, i.iexcodtra, " +
+        String sql = " select   i.iexcodcia, i.iexcodtra, " +
                 " i.iexcodgrpfile,  " +
                 " i.iexdesgrpfile, " +
-                "  i.iexgrpfile , i.iexestado , i.iexusucrea, i.iexfeccrea, i.iexusumod, i.iexfecmod "+
-                " from iexgrpfile i  "+
+                "  i.iexgrpfile , i.iexestado , i.iexusucrea, i.iexfeccrea, i.iexusumod, i.iexfecmod " +
+                " from iexgrpfile i  " +
                 " where  " +
-                " i.iexcodcia = "+codcia+"  and   " +
-                " i.iexcodgrpfile = "+idgrpfile+"  " ;
+                " i.iexcodcia = " + codcia + "  and   " +
+                " i.iexcodgrpfile = " + idgrpfile + "  ";
         return (Grpfile) template.query(sql, new ResultSetExtractor<Grpfile>() {
-            public Grpfile extractData(ResultSet rs) throws SQLException, DataAccessException{
+            public Grpfile extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Grpfile p = new Grpfile();
-                while(rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia")) ;
-                    p.setIexcodtra(rs.getInt("iexcodtra")) ;
+                while (rs.next()) {
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcodgrpfile(rs.getInt("iexcodgrpfile"));
                     p.setIexdesgrpfile(rs.getString("iexdesgrpfile"));
                     p.setIexgrpfile(rs.getString("iexgrpfile"));
@@ -173,43 +175,56 @@ public class LegajoDaoImpl implements LegajoDao {
         });
     }
 
-    public void actualizarGrpFile(Grpfile grpfile){
+    public void actualizarGrpFile(Grpfile grpfile) {
 
-        template.update(" update iexgrpfile set   "+
+        template.update(" update iexgrpfile set   " +
                         "iexgrpfile =? ," +
                         "iexdesgrpfile =?   , " +
                         "iexusumod =? , iexestado = ? , " +
                         "iexfecmod = CURRENT_TIMESTAMP    where iexcodcia=?   and " +
                         "    iexcodgrpfile = ?   and  iexcodtra = ? ",
 
-        grpfile.getIexgrpfile(),
-        grpfile.getIexdesgrpfile(),
-        grpfile.getIexusumod(),
-        grpfile.getIexestado(),
-        grpfile.getIexcodcia(),
-        grpfile.getIexcodgrpfile(),
-        grpfile.getIexcodtra());
+                grpfile.getIexgrpfile(),
+                grpfile.getIexdesgrpfile(),
+                grpfile.getIexusumod(),
+                grpfile.getIexestado(),
+                grpfile.getIexcodcia(),
+                grpfile.getIexcodgrpfile(),
+                grpfile.getIexcodtra());
     }
 
-    public void eliminarGrpFile(Grpfile grpfile){
+    public void eliminarGrpFile(Grpfile grpfile) {
 
         template.update(" delete from  iexgrpfile   where iexcodcia=?   and " +
                         "    iexcodgrpfile = ?   and  iexcodtra = ? ",
 
-        grpfile.getIexcodcia(),
-        grpfile.getIexcodgrpfile(),
-        grpfile.getIexcodtra());
+                grpfile.getIexcodcia(),
+                grpfile.getIexcodgrpfile(),
+                grpfile.getIexcodtra());
 
     }
 
-    public void eliminarImage(FileImageLegajo fileImageLegajo){
+    public void eliminarImage(FileImageLegajo fileImageLegajo) {
 
         template.update(" delete from  iexfileimage where   iexcodcia =? and  iexcodgrpfile =?  and iexcodimage =?  ",
 
                 fileImageLegajo.getIexcodcia(),
                 fileImageLegajo.getIexcodgrpfile(),
                 fileImageLegajo.getIexcodimage());
-
     }
 
+    public void aprobarDocumento(FileImageLegajo fileImageLegajo) {
+
+        template.update(" update iexfileimage set iexestado=?, iexusuaprob=?, iexfecaprob=? where " +
+                        "iexcodcia=? and " +
+                        "iexcodgrpfile=? and " +
+                        "iexcodimage=? ",
+
+                fileImageLegajo.getIexestado(),
+                fileImageLegajo.getIexusuaprob(),
+                fileImageLegajo.getIexfecaprob(),
+                fileImageLegajo.getIexcodcia(),
+                fileImageLegajo.getIexcodgrpfile(),
+                fileImageLegajo.getIexcodimage());
+    }
 }

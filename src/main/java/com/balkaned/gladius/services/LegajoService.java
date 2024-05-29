@@ -26,4 +26,6 @@ public interface LegajoService {
 
     public void eliminarImage(FileImageLegajo fileImageLegajo);
 
+    public void aprobarDocumento(FileImageLegajo fileImageLegajo);
+
 }

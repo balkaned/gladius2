@@ -1,9 +1,6 @@
 package com.balkaned.gladius.controllers;
 
-import com.balkaned.gladius.models.Empleado;
-import com.balkaned.gladius.models.Grpfile;
-import com.balkaned.gladius.models.PlaProPerDet;
-import com.balkaned.gladius.models.UsuarioxRol;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.google.gson.Gson;
@@ -18,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -468,27 +466,33 @@ public class LegajoController {
         return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrab+"@"+grpFile);
     }
 
-    @RequestMapping(value = "/aprobadorDocumentoLegajo", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView aprobadorDocumentoLegajo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/aprobadorDocumentoLegajo@{iexcodgrpfile}@{iexcodimage}", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView aprobadorDocumentoLegajo(HttpServletRequest request, HttpServletResponse response,
+                                                 @PathVariable String iexcodgrpfile,
+                                                 @PathVariable String iexcodimage) throws IOException {
         log.info("/aprobadorDocumentoLegajo");
 
-        /*String user = (String) request.getSession().getAttribute("user");
+        String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
             return new ModelAndView("redirect:/login2");
         }
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
-        String iexperiodo = request.getParameter("iexperiodo");
-        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        FileImageLegajo fil = new FileImageLegajo();
+        fil.setIexcodcia(idCompania);
+        fil.setIexcodgrpfile(Integer.valueOf(iexcodgrpfile));
+        fil.setIexcodimage(Integer.valueOf(iexcodimage));
+        fil.setIexestado("3");
+        fil.setIexusuaprob(user);
+        fil.setIexfecaprob(String.valueOf(new Date()));
 
-        legajoService.actualizarGrpFile();
+        legajoService.aprobarDocumento(fil);
 
-        String json = new Gson().toJson(list_prest);
+        String json = new Gson().toJson(null);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);*/
+        response.getWriter().write(json);
 
         return null;
     }

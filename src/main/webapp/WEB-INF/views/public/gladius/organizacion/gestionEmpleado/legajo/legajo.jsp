@@ -15,17 +15,16 @@
 
   <script>
     function aprobarDocumento(){
-        alert("-");
+        //alert("-");
 
         $.ajax({
              url: "aprobadorDocumentoLegajo",
              data: {
-                 "codprocesoaux": idprocesoaux,
-                 "codconceptoaux": codconceptaux,
-                 "codproceso": idproceso,
-                 "codconcepto": codconcepto
+                 "iexcodgrpfile": iexcodgrpfile,
+                 "iexcodimage": iexcodimage
                  },
              success: function (data) {
+
              }
         });
     }
@@ -166,7 +165,7 @@
                                                               data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                               <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                               <div id="dropdownmenutable" class="dropdown-menu dropdown-menu-end py-2">
-                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalConfirmacionAprobar" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-bolt me-2"></span>Aprobar</a>
+                                                                <a class="dropdown-item" onclick="return aprobar();" href="aprobadorDocumentoLegajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}" ><span class="fas fa-bolt me-2"></span>Aprobar</a>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item"
                                                                 href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexurlimage}"
@@ -216,7 +215,8 @@
   		<div class="modal-body pt-4 pb-2 px-4">
   		  <div class="mb-3">
   			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea aprobar el documento?, si aprueba el documento, ya no se podrá eliminar, solo un usuario con perfil de tipo administrador podrá eliminarlo.</label>
-  		    <input id="" type="hidden" value=""/>
+  		    <input id="iexcodgrpfile" type="hidden" value="${}" />
+  		    <input id="iexcodimage" type="hidden" value="${}" />
   		  </div>
   		</div>
   	  </form>

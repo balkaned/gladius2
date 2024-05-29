@@ -52,4 +52,7 @@ public class LegajoServiceImpl implements LegajoService {
         dao.eliminarImage(fileImageLegajo);
     }
 
+    public void aprobarDocumento(FileImageLegajo fileImageLegajo) {
+        dao.aprobarDocumento(fileImageLegajo);
+    }
 }
