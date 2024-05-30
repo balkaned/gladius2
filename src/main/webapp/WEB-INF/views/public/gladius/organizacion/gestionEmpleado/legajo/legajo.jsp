@@ -14,17 +14,30 @@
   </head>
 
   <script>
-    function aprobarDocumento(){
-        //alert("-");
+    function abriModalAprobar(iexcodgrpfile,iexcodimage){
+
+         $('#modalConfirmacionAprobar').modal('show');
+
+         document.getElementById("iexcodgrpfile_modal").value = iexcodgrpfile;
+         document.getElementById("iexcodimage_modal").value = iexcodimage;
+    }
+
+    function cerrar(){
+        $('#modalConfirmacionAprobar').modal('hide');
+    }
+
+    function aprobar(){
+        var iexcodgrpfile = $("#iexcodgrpfile_modal").val();
+        var iexcodimage = $("#iexcodimage_modal").val();
 
         $.ajax({
-             url: "aprobadorDocumentoLegajo",
+             url: "aprobarDocumentoLegajo",
              data: {
                  "iexcodgrpfile": iexcodgrpfile,
                  "iexcodimage": iexcodimage
-                 },
+             },
              success: function (data) {
-
+                $("#frmLegajos").submit();
              }
         });
     }
@@ -83,7 +96,7 @@
                                                 <select class="form-select" name="codgrpfile" required >
                                                   <option value="" selected >Seleccionar grupo archivo</option>
                                                   <c:forEach var="lovGrpFile" items="${lovGrpFile}">
-                                                      <option value="${lovGrpFile.idLov}"   ${lovGrpFile.idLov == requestScope.codgrpfile ? 'selected' : ''}  >  ${lovGrpFile.desLov} </option>
+                                                      <option value="${lovGrpFile.idLov}" ${lovGrpFile.idLov == requestScope.codgrpfile ? 'selected' : ''}  >  ${lovGrpFile.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
@@ -140,7 +153,7 @@
                                            		  <thead>
                                            			<tr>
                                            			  <th class="sort white-space-nowrap align-middle ps-0 pe-3 text-uppercase" scope="col" data-sort="order" >ID</th>
-                                           			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="total">Descripcion</th>
+                                           			  <th class="sort align-middle text-center ps-3 pe-3 text-uppercase" scope="col" data-sort="total">Descripción</th>
                                            			  <th class="sort align-middle text-center white-space-nowrap ps-1 pe-1 text-uppercase" scope="col" data-sort="payment_status" >Estado</th>
                                            			  <th class="sort align-middle text-center ps-5 pe-5 text-uppercase" scope="col" data-sort="total">FileName</th>
                                            			  <th class="sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase" scope="col" data-sort="payment_status" >Aprobación</th>
@@ -156,7 +169,7 @@
                                                           <td class="align-middle white-space-nowrap text-center cursiva ps-0 pe-3">${listGrpFile.iexurlimage}</td>
                                                           <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">
                                                             <c:if test="${listGrpFile.iexestado_det == null}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Pendiente</span></c:if>
-                                                            <c:if test="${listGrpFile.iexestado_det == '3'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">Aprobado</span></c:if>
+                                                            <c:if test="${listGrpFile.iexestado_det == '3'}"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">Aprobado</span></c:if>
                                                           </td>
 
                                                           <td class="align-middle white-space-nowrap text-end pe-0 ps-0">
@@ -165,18 +178,22 @@
                                                               data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                               <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                                               <div id="dropdownmenutable" class="dropdown-menu dropdown-menu-end py-2">
-                                                                <a class="dropdown-item" onclick="return aprobar();" href="aprobadorDocumentoLegajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}" ><span class="fas fa-bolt me-2"></span>Aprobar</a>
+
+                                                                <c:if test="${listGrpFile.iexestado_det != '3'}">
+                                                                    <a class="dropdown-item" onclick="abriModalAprobar('${listGrpFile.iexcodgrpfile}','${listGrpFile.iexcodimage}');" href="#" ><span class="fas fa-bolt me-2"></span>Aprobar</a>
+                                                                </c:if>
 
                                                                 <a id="dropdownmenutable" class="dropdown-item"
                                                                 href="AWSorFTP_flgsource@decargarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexurlimage}"
                                                                 ><span class="fas fa-download me-2"></span>Descargar</a>
 
-                                                                <div class="dropdown-divider"></div>
+                                                                <c:if test="${listGrpFile.iexestado_det != '3'}">
+                                                                        <div class="dropdown-divider"></div>
 
-                                                                <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();"
-                                                                href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}-${listGrpFile.iexgrpfile}"
-                                                                ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
-
+                                                                        <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();"
+                                                                        href="AWSorFTP_flgsource@eliminarDocumento@${idComp}@${idTrab}@null@null@null@null@legajo@${listGrpFile.iexcodgrpfile}@${listGrpFile.iexcodimage}-${listGrpFile.iexgrpfile}"
+                                                                        ><span class="fas fa-link-slash me-2"></span>Eliminar</a>
+                                                                </c:if>
                                                               </div>
                                                             </div>
                                                           </td>
@@ -206,7 +223,7 @@
 
   <div class="modal fade" id="modalConfirmacionAprobar" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-  	<div class="modal-content border">
+  	<div class="modal-content border bg-100">
   	  <form id="addEventForm" autocomplete="off">
   		<div class="modal-header border-200 p-4">
   		  <h5 class="modal-title text-1000 fs-4 lh-sm">Aprobación</h5>
@@ -214,15 +231,15 @@
   		</div>
   		<div class="modal-body pt-4 pb-2 px-4">
   		  <div class="mb-3">
-  			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea aprobar el documento?, si aprueba el documento, ya no se podrá eliminar, solo un usuario con perfil de tipo administrador podrá eliminarlo.</label>
-  		    <input id="iexcodgrpfile" type="hidden" value="${}" />
-  		    <input id="iexcodimage" type="hidden" value="${}" />
+  			<label class="fw-bold mb-2 text-1000" for="leadStatus">Esta seguro que desea aprobar el documento?, si aprueba el documento, ya no se podrá eliminar, solo un usuario con Rol 'ADMIN' podrá eliminarlo.</label>
+  		    <input id="iexcodgrpfile_modal" type="hidden" value="" />
+  		    <input id="iexcodimage_modal" type="hidden" value="" />
   		  </div>
   		</div>
   	  </form>
   	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-  		  <button class="btn btn-sm btn-phoenix-secondary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-  		  <button class="btn btn-sm btn-secondary px-9 my-0 mt-1" onclick="aprobarDocumento();" type="button" data-bs-dismiss="modal" ><span class="fas fa-bolt me-2 fs--1"></span>Aprobar</button>
+  		  <button class="btn btn-sm btn-phoenix-secondary px-4 my-0 mt-1" onclick="cerrar();" type="button" data-bs-dismiss="modal" >Cancel</button>
+  		  <button class="btn btn-sm btn-secondary px-9 my-0 mt-1" onclick="aprobar();" type="button" data-bs-dismiss="modal" ><span class="fas fa-bolt me-2 fs--1"></span>Aprobar</button>
   	  </div>
   	</div>
     </div>

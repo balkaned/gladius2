@@ -145,6 +145,12 @@ public class LegajoController {
         log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
         log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
 
+        if(ur.getIexdesrol().equals("ADMIN")){
+            model.addAttribute("perfil","admin");
+        }else{
+            model.addAttribute("perfil","normal");
+        }
+
         if (ur.getIexdesrol().equals("SYSHRSELF")) {
             return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajoSysHrSelf");
         } else {
@@ -164,6 +170,7 @@ public class LegajoController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String urlLogo = (String) request.getSession().getAttribute("urlLogo");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
 
         log.info("idTrab: " + idTrab);
         log.info("grpFile: " + grpFile);
@@ -208,7 +215,21 @@ public class LegajoController {
         model.addAttribute("listGrpFile", legajoService.listarGrpfile(iexcodcia, iexcodtra, codgrpfile));
         model.addAttribute("codgrpfile", codgrpfile);
 
-        return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
+        log.info("ur.getIexdesrol(): "+ur.getIexdesrol());
+        log.info("ur.getIexcodTra(): "+ur.getIexcodtra());
+
+        if(ur.getIexdesrol().equals("ADMIN")){
+            model.addAttribute("perfil","admin");
+        }else{
+            model.addAttribute("perfil","normal");
+        }
+
+        if (ur.getIexdesrol().equals("SYSHRSELF")) {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajoSysHrSelf");
+        } else {
+            return new ModelAndView("public/gladius/organizacion/gestionEmpleado/legajo/legajo");
+        }
     }
 
     @RequestMapping("/ingresarImagen@{idTrab}@{iexcodgrpfile}@{grpFile}")
@@ -466,11 +487,9 @@ public class LegajoController {
         return new ModelAndView("redirect:/buscarLegajoAtras@"+idTrab+"@"+grpFile);
     }
 
-    @RequestMapping(value = "/aprobadorDocumentoLegajo@{iexcodgrpfile}@{iexcodimage}", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView aprobadorDocumentoLegajo(HttpServletRequest request, HttpServletResponse response,
-                                                 @PathVariable String iexcodgrpfile,
-                                                 @PathVariable String iexcodimage) throws IOException {
-        log.info("/aprobadorDocumentoLegajo");
+    @RequestMapping(value = "/aprobarDocumentoLegajo", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView aprobarDocumentoLegajo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/aprobarDocumentoLegajo");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -479,13 +498,16 @@ public class LegajoController {
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
+        String iexcodgrpfile = request.getParameter("iexcodgrpfile");
+        String iexcodimage = request.getParameter("iexcodimage");
+
         FileImageLegajo fil = new FileImageLegajo();
         fil.setIexcodcia(idCompania);
         fil.setIexcodgrpfile(Integer.valueOf(iexcodgrpfile));
         fil.setIexcodimage(Integer.valueOf(iexcodimage));
         fil.setIexestado("3");
         fil.setIexusuaprob(user);
-        fil.setIexfecaprob(String.valueOf(new Date()));
+        //fil.setIexfecaprob(String.valueOf(new Date()));
 
         legajoService.aprobarDocumento(fil);
 
