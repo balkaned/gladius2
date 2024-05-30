@@ -9,7 +9,20 @@
 <!DOCTYPE html>
 <script>
     function subirImagen(){
-        $('#modalLoading').modal('show');
+        var uploadFile = $("#uploadFile").val();
+
+        var parts=uploadFile.split(".");
+        var part1=parts[0];
+        var part2=parts[1];
+
+        if(part2=="jpg" || part2=="png"){
+            $('#modalLoading').modal('show');
+            $("#formEmplImg").submit();
+        }else{
+            alert("Solo se pueden subir imágenes en formato .jpg o .png");
+
+            return;
+        }
     }
 </script>
 
@@ -155,23 +168,22 @@
         </div>
         <div class="modal-body bg-soft pt-4 pb-2 px-4">
             <div class="col-12 col-md-12">
-              <form method="post"
+              <form id="formEmplImg" method="post"
               action="AWSorFTP_flgsource_MultipartUpload@subirFotoEmpl@${idComp}@${idTrab}@null"
-              enctype="multipart/form-data" >
+              enctype="multipart/form-data">
                   <input type="hidden" name="idimg" value="${nrodoc}" >
                   <div class="mb-3">
-                        <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
-                        <input class="form-control" name="uploadFile" type="file" />
+                        <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
+                        <input class="form-control" id="uploadFile" name="uploadFile" type="file" />
                   </div>
 
                   <div class="col-sm-6 col-md-12 mt-2 mb-4">
                     <div class="form-floating">
-                        <button class="btn btn-primary btn-sm" onclick="subirImagen();" type="submit" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></button>
+                        <a class="btn btn-primary btn-sm" onclick="subirImagen();" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></a>
                     </div>
                   </div>
               </form>
             </div>
-
         </div>
         <div class="modal-footer bg-soft d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
           <!--<button class="btn btn-sm btn-phoenix-primary px-4 fs--2 my-0" type="submit"> <span class="fas fa-arrows-rotate me-2 fs--2"></span>Otros</button>-->

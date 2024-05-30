@@ -22,7 +22,20 @@
       }
 
       function subirimagen(){
-        $('#modalLoading').modal('show');
+          var uploadFile = $("#uploadFile").val();
+
+          var parts=uploadFile.split(".");
+          var part1=parts[0];
+          var part2=parts[1];
+
+          if(part2=="jpg" || part2=="png"){
+            $('#modalLoading').modal('show');
+            $("#formComp").submit();
+          }else{
+            alert("Solo se pueden subir imágenes en formato .jpg o .png");
+
+            return;
+          }
       }
   </script>
 
@@ -63,12 +76,12 @@
                                  src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
                                  /></c:if>
 
-                                 <form method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
+                                 <form id="formComp" method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
                                        <input type="hidden"  name="idimg" value="${idCia}" >
-                                       <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
-                                       <input type="file" name="uploadFile" class="form-control"/>
+                                       <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg y .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
+                                       <input type="file" id="uploadFile" name="uploadFile" class="form-control" />
 
-                                       <button class="btn btn-phoenix-secondary btn-sm mt-3" onclick="subirimagen();" type="submit"><span class="fas fa-cloud-upload-alt me-2"></span>Upload</button>
+                                       <a class="btn btn-phoenix-secondary btn-sm mt-3" href="#" onclick="subirimagen();" ><span class="fas fa-cloud-upload-alt me-2"></span>Upload</a>
                                  </form>
                             </div>
                        </div>

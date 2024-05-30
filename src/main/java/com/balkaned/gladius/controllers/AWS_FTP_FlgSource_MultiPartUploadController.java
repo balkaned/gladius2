@@ -138,13 +138,15 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
 
                         String nombreArchivo = "";
+                        String tipoExtension = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+                        log.info("tipoExtension: "+tipoExtension);
 
-                        log.info("Direccion existe");
+                        log.info("Dirección existe");
                         log.info("request: " + request);
-                        log.info("ciainfo.getIexsourcedes().trim(): " + ciainfo.getIexsourcedes().trim());
+                        log.info("ciainfo.getIexsourcedes(): " + ciainfo.getIexsourcedes().trim());
 
                         try {
-                            nombreArchivo = codciax + "/fotoemp/" + idimg + "." + "jpg";
+                            nombreArchivo = codciax + "/fotoemp/" + idimg + "." + tipoExtension;
                             log.info("nombreArchivo: " + nombreArchivo);
 
                             credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -154,7 +156,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                             InputStream in = uploadFile.getInputStream();
                             File tmp = null;
-                            tmp = File.createTempFile("s3test", ".jpg");
+                            tmp = File.createTempFile("s3test", "."+tipoExtension);
                             Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                             PutObjectRequest request2 = new PutObjectRequest(bucket_name, nombreArchivo, tmp);
@@ -169,7 +171,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                             System.gc();
 
                             log.info("Archivo escrito: " + nombreArchivo);
-                            emp.setIexlogo(idimg + "." + "jpg");
+                            emp.setIexlogo(idimg + "." + tipoExtension);
                             empleadoService.actualizarFoto(emp);
                         } catch (IOException e) {
                             log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
@@ -187,12 +189,14 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         Empleado emp = empleadoService.recuperarCabecera(codciaxRecup, Integer.parseInt(idTrab));
 
                         String nombreArchivo = "";
+                        String tipoExtension = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+                        log.info("tipoExtension: "+tipoExtension);
 
                         log.info("Direccion existe");
                         log.info("request: " + request);
 
                         try {
-                            nombreArchivo = codciax + "/fotoderhab/" + idDerHab + "/" + idimg + "." + "jpg";
+                            nombreArchivo = codciax + "/fotoderhab/" + idDerHab + "/" + idimg + "." + tipoExtension;
                             log.info("nombreArchivo: " + nombreArchivo);
 
                             credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -202,7 +206,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                             InputStream in = uploadFile.getInputStream();
                             File tmp = null;
-                            tmp = File.createTempFile("s3test", ".jpg");
+                            tmp = File.createTempFile("s3test", "."+tipoExtension);
                             Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                             PutObjectRequest request2 = new PutObjectRequest(bucket_name, nombreArchivo, tmp);
@@ -213,7 +217,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                             s3.putObject(request2);
 
                             log.info("Archivo escrito: " + nombreArchivo);
-                            emp.setIexlogo(idimg + "." + "jpg");
+                            emp.setIexlogo(idimg + "." + tipoExtension);
                             empleadoService.actualizarFoto(emp);
                         } catch (IOException e) {
                             log.info("You failed to upload " + nombreArchivo + " => " + e.getMessage());
@@ -233,7 +237,10 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
                         log.info("request: " + request);
 
                         try {
-                            nombreArchivo = "img/" + idimg + "." + "jpg";
+                            String tipoExtension = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+                            log.info("tipoExtension: "+tipoExtension);
+
+                            nombreArchivo = "img/" + idimg + "." +tipoExtension;
                             log.info("nombreArchivo: " + nombreArchivo);
 
                             credentials = new BasicAWSCredentials(key_name, passPhrase);
@@ -243,7 +250,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                             InputStream in = uploadFile.getInputStream();
                             File tmp = null;
-                            tmp = File.createTempFile("s3test", ".jpeg");
+                            tmp = File.createTempFile("s3test", "."+tipoExtension);
                             Files.copy(in, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                             PutObjectRequest request2 = new PutObjectRequest(bucket_name, nombreArchivo, tmp);
@@ -257,7 +264,7 @@ public class AWS_FTP_FlgSource_MultiPartUploadController {
 
                             Compania cia = new Compania();
                             cia.setIdCodcia(Integer.parseInt(idimg));
-                            cia.setUrlLogo(idimg + "." + "jpg");
+                            cia.setUrlLogo(idimg + "." + tipoExtension);
                             companiaService.logoCompania(cia);
 
                             return new ModelAndView("redirect:/editarCompania@" + idComp);
