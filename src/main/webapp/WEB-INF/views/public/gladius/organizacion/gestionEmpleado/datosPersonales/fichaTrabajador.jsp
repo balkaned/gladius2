@@ -82,8 +82,8 @@
                          <div class="tab-pane fade active show" id="tab-activity" role="tabpanel" aria-labelledby="activity-tab">
                             <h3 class="mt-3 mb-0">Datos personales</h3>
                             <div class="col-12 pe-3">
-                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult fec mod: </strong> <span class="ms-1">${emp.iexfeccmod}</span></p>
-                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult usu mod: </strong> <span class="ms-1">${emp.iexusumod}</span></p>
+                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult. fec mod: </strong> <span class="ms-1">${emp.iexfeccmod}</span></p>
+                               <p class="mt-0 d-flex justify-content-end mb-0 fs--1"><strong>Ult. usu mod: </strong> <span class="ms-1">${emp.iexusumod}</span></p>
                             </div>
                             <div class="row g-3 mt-0">
                                  <div class="col-xl-12">

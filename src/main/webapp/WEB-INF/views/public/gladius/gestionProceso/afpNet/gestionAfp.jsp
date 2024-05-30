@@ -19,6 +19,14 @@
     }
 
     function SendAfpFile(tipo, flg) {
+
+        var permes = $("#permes").val();
+        console.log("permes: "+permes);
+
+        if(permes == ''){
+            return;
+        }
+
         if (flg == 2) {
             document.getElementById("accion").value = "gestionAfp";
 
@@ -45,7 +53,7 @@
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         var procesarBtn = document.getElementById('descargaBtn');
         var permesInput = document.getElementById('permes');
 
@@ -56,9 +64,8 @@
                 event.preventDefault();
             }
         });
-    });
+    });*/
 </script>
-
 
 <body>
 <!-- ===============================================-->

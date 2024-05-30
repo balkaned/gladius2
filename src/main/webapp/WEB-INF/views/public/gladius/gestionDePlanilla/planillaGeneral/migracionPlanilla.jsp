@@ -219,13 +219,6 @@
                                 <th class="sort align-middle text-center ps-2" scope="col" data-sort="trab">TIPO DOC</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">NRO DOC</th>
                                 <th class="sort align-middle white-space-nowrap text-center ps-3" scope="col" data-sort="des_concept">TRABAJADOR</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS LAB MES TOTAL</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS VAC</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DIAS DE FALTA</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL INGR</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL DESC</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL APORT</th>
-                                <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TOTAL NETO</th>
                                 <th class="sort align-middle text-center ps-2 pe-2" scope="col" ></th>
                               </tr>
                             </thead>
@@ -241,13 +234,6 @@
                                     <td class="trab align-middle text-center fw-semi-bold text-1000 ps-2">${LstPlanillaRes.iextipdoc}</td>
                                     <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5">${LstPlanillaRes.iexnrodoc}</td>
                                     <td class="trab align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-3">${LstPlanillaRes.destra}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-1000 ps-2 pe-2">${LstPlanillaRes.iexdiamestot}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.iexdiavaca}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.iexdiafalta}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totalingreso}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totaldescuento}</td>
-                                    <td class="des_concept align-middle text-center fw-semi-bold text-600 ps-2 pe-2">${LstPlanillaRes.totalaporte}</td>
-                                    <td class="des_concept align-middle text-end fw-bold text-1000 ps-2 pe-3">${LstPlanillaRes.totalneto}</td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">
                                        <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -257,7 +243,7 @@
                                          <div class="dropdown-menu dropdown-menu-end py-2">
                                               <!--<a id="dropdownmenutable" class="dropdown-item" onclick="return actualizar();" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>-->
                                               <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-trash me-2"></span>Boleta</a>
                                          </div>
                                        </div>
                                     </td>
