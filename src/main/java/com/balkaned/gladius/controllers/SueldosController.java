@@ -31,6 +31,9 @@ public class SueldosController {
     @Autowired
     UsuxCompaniaService usuxCompaniaService;
 
+    @Autowired
+    ProcesoFormulaService procesoFormulaService;
+
     @RequestMapping("/sueldoFijo@{idTrab}")
     public ModelAndView sueldoFijo(ModelMap model, HttpServletRequest request, @PathVariable String idTrab) {
         log.info("/sueldoFijo");
@@ -519,8 +522,9 @@ public class SueldosController {
 
         String concepto2 = request.getParameter("iexcodcon");
         model.addAttribute("lovConcepVar", sueldoService.ListConceptos(idCompania, "2"));
-        request.setAttribute("iexcodpro", codpro);
-        request.setAttribute("iexperiodo", nroper);
+        model.addAttribute("pro", procesoFormulaService.recuperar(Integer.valueOf(codpro)));
+        model.addAttribute("iexcodpro", codpro);
+        model.addAttribute("iexperiodo", nroper);
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/sueldosVariables/nuevoSueldoVar");
     }
@@ -669,6 +673,7 @@ public class SueldosController {
         model.addAttribute("sexo", sexo);
         model.addAttribute("lovConcepVar", sueldoService.ListConceptos(idCompania, "2"));
         model.addAttribute("fdatvarupd",sueldoService.obtenerOneEmpDatvar(idCompania,codpro2,periodo,idTrab2,1,codConcep));
+        model.addAttribute("pro", procesoFormulaService.recuperar(Integer.valueOf(codpro)));
         model.addAttribute("codpro", codpro);
         model.addAttribute("nroper", periodo);
 

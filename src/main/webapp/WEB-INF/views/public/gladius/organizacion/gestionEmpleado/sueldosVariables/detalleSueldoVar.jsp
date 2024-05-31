@@ -41,7 +41,7 @@
                             <ol class="breadcrumb mb-0">
                               <li class="breadcrumb-item"><a href="#!">Organización</a></li>
                               <li class="breadcrumb-item active">Trabajadores</li>
-                              <li class="breadcrumb-item active">Sueldo variables</li>
+                              <li class="breadcrumb-item active">Sueldo variable</li>
                             </ol>
                           </nav>
                           <div class="mb-9">

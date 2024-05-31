@@ -36,6 +36,7 @@ public class ProcesoFormulaController {
 
 		sessionattributes.getVariablesSession(model, request);
 		List<ProcesoForm> proFosList = procesoFormulaService.listProcesoFormula();
+
 		model.addAttribute("proFosList", proFosList);
 		return new ModelAndView("public/gladius/confPlanilla/procesosyform/listProcesoFormula");
 	}

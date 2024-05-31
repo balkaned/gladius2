@@ -41,7 +41,7 @@
                             <ol class="breadcrumb mb-0">
                               <li class="breadcrumb-item"><a href="#!">Organización</a></li>
                               <li class="breadcrumb-item active">Trabajadores</li>
-                              <li class="breadcrumb-item active">Sueldo variables</li>
+                              <li class="breadcrumb-item active">Sueldo variable</li>
                             </ol>
                           </nav>
                           <div class="mb-9">
@@ -60,20 +60,24 @@
                                             <input class="form-control" name="iexcodpro2" type="hidden" value="${iexcodpro}" />
                                             <input class="form-control" name="iexperiodo2" type="hidden" value="${iexperiodo}" />
 
-                                            <div class="col-sm-6 col-md-6">
-                                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
-                                                     <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="street" required disabled/>
+                                            <div class="col-sm-6 col-md-4">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id proc. planilla</label>
+                                                 <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${codpro}" placeholder="" required disabled/>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                    <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
-                                                    <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="street" required disabled/>
+                                            <div class="col-sm-6 col-md-8">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Descripción proceso</label>
+                                                 <input class="form-control" name="iexcodpro" maxlength="18" type="text" value="${pro.desProceso}" placeholder="" required disabled/>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                                                 <input class="form-control" name="iexperiodo" maxlength="18" type="text" value="${nroper}" placeholder="" required disabled/>
                                             </div>
                                             <div class="col-sm-6 col-md-12">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
                                                 <select class="form-select" name="iexcodcon" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
                                                   <option value="" selected >Seleccionar concepto</option>
                                                   <c:forEach var="lovConcepVar" items="${lovConcepVar}">
-                                                      <option value="${lovConcepVar.codConcepto}" >${lovConcepVar.desConcepto}</option>
+                                                      <option value="${lovConcepVar.codConcepto}" >${lovConcepVar.codConcepto} - ${lovConcepVar.desConcepto}</option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
