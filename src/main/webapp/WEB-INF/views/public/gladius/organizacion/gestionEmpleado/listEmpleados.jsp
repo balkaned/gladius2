@@ -158,7 +158,7 @@
                 </div>
               </div>
             </div>
-
+            <jsp:include page="../../../footer.jsp"></jsp:include>
           </div>
 
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>

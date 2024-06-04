@@ -48,7 +48,7 @@ public class LoginController {
 
             if (request.getSession().getAttribute("tiposession").equals("5")) {
                 model.addAttribute("mensaje", "Alerta!, Hemos detectado que no es el admnistrador de este software, "
-                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2023 Balkaned www.balkaned.com Todo los derechos reservados. Derechos de autor. Todo el contenido de este sitio "
+                        + "Este software es un producto Licenciado y Registrado en Indecopi  Copyright© 2023 Balkaned www.balkaned.com Todos los derechos reservados. Derechos de autor. Todo el contenido de este sitio "
                         + "instalar puede conectar con base de datos Postgres, SQl Server, Oracle Database revise que los parámetros de conexión, "
                         + "para el archivo de configuración application.properties coincidan con la configuración del motor de base de datos, "
                         + "puede que la base de datos no este restaurada o el proceso de restauración falló, "
