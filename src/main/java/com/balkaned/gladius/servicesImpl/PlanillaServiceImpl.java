@@ -126,4 +126,8 @@ public class PlanillaServiceImpl implements PlanillaService {
     public void migraInsertarPla(List<EmpDatvar> empdatvar) {
         dao.migraInsertarPla(empdatvar);
     }
+
+    public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin) {
+        return dao.consultaMarka(codcia, codtra, fecini, fecfin);
+    }
 }

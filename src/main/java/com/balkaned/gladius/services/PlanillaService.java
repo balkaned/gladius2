@@ -61,5 +61,7 @@ public interface PlanillaService {
     public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl);
 
     public void migraInsertarPla(List<EmpDatvar> empdatvar);
+
+    public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin);
 }
 

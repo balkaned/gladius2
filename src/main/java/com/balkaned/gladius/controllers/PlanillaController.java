@@ -294,8 +294,8 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String grupopla = request.getParameter("grppla");
 
-        log.info("accion: "+accion);
-        log.info("iexcodtra: "+iexcodtra);
+        log.info("accion: " + accion);
+        log.info("iexcodtra: " + iexcodtra);
 
         if (accion.equals("INIPRO")) {
             planillaService.iniPlaProper(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, grupopla, user);
@@ -976,7 +976,7 @@ public class PlanillaController {
     @SneakyThrows
     @RequestMapping(value = "/gestionarMigracion", method = RequestMethod.POST)
     public ModelAndView gestionarMigracion(ModelMap model, HttpServletRequest request, HttpServletResponse response,
-                                                          @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
+                                           @RequestParam("uploadFile") MultipartFile uploadFile) throws UncheckedIOException {
         log.info("/gestionarMigracion");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -996,7 +996,7 @@ public class PlanillaController {
         String codcon = request.getParameter("slc_codcon");
         String importe = request.getParameter("txt_importe");
 
-        log.info("accion: "+accion);
+        log.info("accion: " + accion);
 
         if (accion.equals("UPXLSPLA")) {
             // Process only if its multipart content
@@ -1067,7 +1067,7 @@ public class PlanillaController {
 
                         log.info("v_codtra: " + v_codtra);
 
-                        planillaService.migraTrabajador(idCompania,v_codpro,periodo, Integer.valueOf(v_codtra),v_correl);
+                        planillaService.migraTrabajador(idCompania, v_codpro, periodo, Integer.valueOf(v_codtra), v_correl);
                     }
 
                     if (v_codcab == 2 && cn >= 2) {
@@ -1524,7 +1524,7 @@ public class PlanillaController {
                 do {
                     log.info("fecha index =" + sdf.format(c.getTime()));
 
-                    turnoDiarioService.calificarTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+                    turnoDiarioService.calificarTurnoDia(idCompania, Integer.valueOf(codtra), sdf.format(c.getTime()), user);
 
                     c.add(Calendar.DATE, 1);
                 } while (c2.compareTo(c) >= 0);
@@ -1562,15 +1562,15 @@ public class PlanillaController {
         Date d1 = null;
         Date d2 = null;
 
-        if (v_fecini!= null && v_fecfin!= null)  {
-            d1 =new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
-            d2 =new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
+        if (v_fecini != null && v_fecfin != null) {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecini);
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(v_fecfin);
 
             int days;
-            days = daysBetween(d1,d2)+1;
+            days = daysBetween(d1, d2) + 1;
 
-            if (days>=1  &&  days <=60){
-                log.info("Numero de Dias ="+days);
+            if (days >= 1 && days <= 60) {
+                log.info("Numero de Dias =" + days);
 
                 Calendar c2 = Calendar.getInstance();
                 c2.setTime(d2);
@@ -1580,13 +1580,13 @@ public class PlanillaController {
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 
-                do{
-                    log.info("fecha index ="+sdf.format(c.getTime()));
+                do {
+                    log.info("fecha index =" + sdf.format(c.getTime()));
 
-                    turnoDiarioService.eliminaTurnoDia(idCompania, Integer.valueOf(codtra),sdf.format(c.getTime()),user);
+                    turnoDiarioService.eliminaTurnoDia(idCompania, Integer.valueOf(codtra), sdf.format(c.getTime()), user);
 
                     c.add(Calendar.DATE, 1);
-                }while(c2.compareTo(c)>=0 );
+                } while (c2.compareTo(c) >= 0);
             }
         }
 
@@ -1612,14 +1612,14 @@ public class PlanillaController {
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         Integer v_idproceso = Integer.valueOf(request.getParameter("iexcodpro"));
         String v_periodo = request.getParameter("iexperiodo");
-        String iexcorrel =request.getParameter("iexcorrel");
+        String iexcorrel = request.getParameter("iexcorrel");
 
         log.info("codtra: " + codtra);
         log.info("v_idproceso: " + v_idproceso);
         log.info("v_periodo: " + v_periodo);
         log.info("iexcorrel: " + iexcorrel);
 
-        turnoDiarioService.consolidaAsistencia(idCompania,v_idproceso,codtra,v_periodo, Integer.valueOf(iexcorrel),"");
+        turnoDiarioService.consolidaAsistencia(idCompania, v_idproceso, codtra, v_periodo, Integer.valueOf(iexcorrel), "");
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");
@@ -1644,7 +1644,7 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
 
-        ProcesoPeriodo proPer = procesoPlanillaService.recuperarPeriodo2(idCompania,iexcodpro,iexperiodo);
+        ProcesoPeriodo proPer = procesoPlanillaService.recuperarPeriodo2(idCompania, iexcodpro, iexperiodo);
 
         String json = new Gson().toJson(proPer);
         response.setContentType("application/json");
@@ -1669,7 +1669,7 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
 
-        List<PlaProPerDet> list_vac = planillaService.iniPlaProper_vac(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+        List<PlaProPerDet> list_vac = planillaService.iniPlaProper_vac(idCompania, iexcodpro, iexperiodo, -1, iexcorrel, "", "");
 
         String json = new Gson().toJson(list_vac);
         response.setContentType("application/json");
@@ -1694,7 +1694,7 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
 
-        List<PlaProPerDet> list_ausen = planillaService.iniPlaProper_aus(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+        List<PlaProPerDet> list_ausen = planillaService.iniPlaProper_aus(idCompania, iexcodpro, iexperiodo, -1, iexcorrel, "", "");
 
         String json = new Gson().toJson(list_ausen);
         response.setContentType("application/json");
@@ -1719,7 +1719,7 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
 
-        List<PlaProPerDet> list_prest = planillaService.iniPlaProper_prest(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+        List<PlaProPerDet> list_prest = planillaService.iniPlaProper_prest(idCompania, iexcodpro, iexperiodo, -1, iexcorrel, "", "");
 
         String json = new Gson().toJson(list_prest);
         response.setContentType("application/json");
@@ -1744,9 +1744,35 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
 
-        List<PlaProPerDet> list_prom = planillaService.iniPlaProper_prom(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+        List<PlaProPerDet> list_prom = planillaService.iniPlaProper_prom(idCompania, iexcodpro, iexperiodo, -1, iexcorrel, "", "");
 
         String json = new Gson().toJson(list_prom);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerDataDeIngresosYSalidas", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDataDeIngresosYSalidas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDataDeIngresosYSalidas");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        String fecini = request.getParameter("fecini");
+        String fecfin = request.getParameter("fecfin");
+
+        //List<PlaProPerDet> list_prom = planillaService.iniPlaProper_prom(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
+        List<Asistencia> listAsis = planillaService.consultaMarka(idCompania, codtra, fecini, fecfin);
+
+        String json = new Gson().toJson(listAsis);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

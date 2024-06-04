@@ -756,16 +756,16 @@
                           </div>
                       </div>
                       <div class="row g-4 mt-0">
-                            <div class="col-auto">
-                                <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Traer turnos</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star text-warning me-2"></span>Calificar</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick=""  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
-                                <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
-                                <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
-                                <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
-                                <!--<a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>-->
-                            </div>
+                        <div class="col-auto">
+                            <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Traer turnos</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star text-warning me-2"></span>Calificar</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="verMarcaciones();"  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
+                            <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
+                            <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
+                            <!--<a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>-->
+                        </div>
                       </div>
                       <div class="row g-3 bg-100 mt-0">
                         <!--<h4 class="mb-0 mt-7">Calendario</h4>-->
@@ -795,7 +795,7 @@
                                         </div>
                                   </div>
                                    <div class="table-responsive mx-n1 px-1 bg-100" style="width: 742px !important;" >
-                                        <table  class="table">
+                                        <table id="tableCalendar" class="table">
                                             <thead id="calendarHead2">
                                             </thead>
                                             <tbody id="calendarBody2" class="fs--2 fw-semi-bold text-1000">

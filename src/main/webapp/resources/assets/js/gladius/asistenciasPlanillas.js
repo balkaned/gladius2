@@ -1126,3 +1126,74 @@ function reporteAsistencias(){
 
     document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@"+iexcodcia+"@"+idTrabAsisHidden+"@null@null@"+nombrejasper+"@"+params+"@null@null@null";
 }
+
+function verMarcaciones(){
+
+    var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+    var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+    var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+
+    $.ajax({
+         async: false,
+         url: "traerDataDeIngresosYSalidas",
+         data: {
+            "codtra": idTrabAsisHidden,
+            "fecini": feciniAsisHidden,
+            "fecfin": fecfinAsisHidden
+            },
+         success: function (data) {
+
+            var opt = "";
+
+              opt += "<div class='scrollbar overflow-auto' style='height:0px !important;'>"+
+                          "<div>"+
+                                "<tr class='border border-200'>"+
+                                  "<th class='sort white-space-nowrap align-middle ps-3 pe-3 text-uppercase fs--1' scope='col' data-sort='order' >ORDEN</th>"+
+                                  "<th class='sort align-middle text-center ps-5 pe-5 text-uppercase fs--1' scope='col' data-sort='total'>FECHA</th>"+
+                                  "<th class='sort align-middle text-center ps-5 pe-5 text-uppercase fs--1' scope='col' data-sort='total'>HORA</th>"+
+                                  "<th class='sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase fs--1' scope='col' data-sort='payment_status' >TIPO</th>"+
+                                  "<th class='sort text-end text-center align-middle ps-3 pe-3 text-uppercase fs--1' scope='col'></th>"+
+                                "</tr>"+
+                          "</div>"+
+                          "<div class='list' id='customer-order-table-body'>";
+
+                              var j = 1;
+
+                              for (var i in data) {
+
+                                 opt +=	"<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                                          "<td class='align-middle white-space-nowrap fs--1 ps-6 pe-3'><a class='fw-semi-bold' href='#!'><a href='#'>"+j+"</a></td>"+
+                                          "<td class='align-middle text-center fw-semi-bold fs--1 ps-3 pe-3 text-1000'><span class='fa-regular fa-calendar fs-0 me-2'></span>"+data[i].fechaEnLetras+"</td>"+
+                                          "<td class='align-middle text-center fw-semi-bold fs--1 ps-3 pe-3 text-1000'><span class='fa-regular fa-clock text-primary fs-0 me-2'></span>"+data[i].hora+"</td>";
+
+                                          if(data[i].tipmarka == 'Ingreso'){
+                                            opt += "<td class='align-middle white-space-nowrap text-center fs--1 text-700 ps-3 pe-3'><span class='badge badge-phoenix fs--2 badge-phoenix-success'><span class='badge-label'><span class='me-2 fa-solid fa-arrow-up'></span>"+data[i].tipmarka+"</span></td>";
+                                          }
+
+                                          if(data[i].tipmarka == 'Salida'){
+                                            opt += "<td class='align-middle white-space-nowrap text-center fs--1 text-700 ps-3 pe-3'><span class='badge badge-phoenix fs--2 badge-phoenix-danger'><span class='badge-label'><span class='me-2 fa-solid fa-arrow-down'></span>"+data[i].tipmarka+"</span></td>";
+                                          }
+
+                                     opt+="<td class='align-middle white-space-nowrap text-end pe-0 ps-5'>"+
+                                            "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
+                                              "<button class='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'><span class='fas fa-ellipsis-h fs--2'></span></button>"+
+                                              "<div class='dropdown-menu dropdown-menu-end py-2'>"+
+                                                "<a class='dropdown-item' href='#'>Detalle</a>"+
+                                                "<div class='dropdown-divider'></div>"+
+                                                "<a class='dropdown-item text-danger' href=''>Remove</a>"+
+                                              "</div>"
+                                            "</div>"+
+                                          "</td>"+
+                                        "</tr>";
+                                 j++;
+                              }
+                   opt += "</div>"+
+                     "</div>";
+
+            $("#calendarHead2").html("");
+            $("#calendarBody2").html(opt);
+            $("#calendarFoot2").html("");
+         }
+    });
+
+}

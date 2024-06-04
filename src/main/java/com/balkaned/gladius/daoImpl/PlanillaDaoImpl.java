@@ -1449,5 +1449,49 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     empdat.getIexusucrea());
         }
     }
+
+    public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin) {
+
+        String sql = "  select  " +
+                " iexcodcia, iexcodtra, "
+                + " to_char(iexfecha,'dd/mm/yyyy hh24:mi:ss') as iexfecha, "
+                + " iextipmarka, to_char(iexfeccrea,'dd/mm/yyyy hh24:mi:ss') iesfeccrea, iexusucrea " +
+                " from iexasistencia where iexcodcia=" + codcia + " and iexcodtra= " + codtra + " and iexfecha >= to_date('" + fecini + "','dd/mm/yyyy') and   iexfecha <= to_date('" + fecfin + "','dd/mm/yyyy') order by iexfecha asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<Asistencia>>() {
+
+            public List<Asistencia> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Asistencia> lista = new ArrayList<Asistencia>();
+
+                while (rs.next()) {
+                    Asistencia p = new Asistencia();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcodfec(rs.getString("iexfecha"));
+
+                    FormatterFecha fd = new FormatterFecha();
+                    String dia = fd.fechaFormatterDia(p.getIexcodfec());
+
+                    FormatterFecha fm = new FormatterFecha();
+                    String mes = fm.fechaFormatterMes(p.getIexcodfec());
+
+                    FormatterFecha fy = new FormatterFecha();
+                    String anio = fy.fechaFormatterAnio(p.getIexcodfec());
+
+                    String fechaEnLetras = dia + " " + mes + ", " + anio;
+                    p.setFechaEnLetras(fechaEnLetras);
+
+                    FormatterFecha fh= new FormatterFecha();
+                    p.setHora(fh.fechaFormatterHora(p.getIexcodfec()));
+
+                    p.setTipmarka(rs.getString("iextipmarka"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
 }
 
