@@ -1769,7 +1769,6 @@ public class PlanillaController {
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
 
-        //List<PlaProPerDet> list_prom = planillaService.iniPlaProper_prom(idCompania,iexcodpro,iexperiodo,-1,iexcorrel,"","");
         List<Asistencia> listAsis = planillaService.consultaMarka(idCompania, codtra, fecini, fecfin);
 
         String json = new Gson().toJson(listAsis);

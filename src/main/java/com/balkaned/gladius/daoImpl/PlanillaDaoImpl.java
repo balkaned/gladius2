@@ -1483,9 +1483,10 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     p.setFechaEnLetras(fechaEnLetras);
 
                     FormatterFecha fh= new FormatterFecha();
-                    p.setHora(fh.fechaFormatterHora(p.getIexcodfec()));
+                    p.setHora(fh.fechaFormatterHoraAMyPM(p.getIexcodfec()));
 
                     p.setTipmarka(rs.getString("iextipmarka"));
+                    p.setIexusucrea(rs.getString("iexusucrea"));
 
                     lista.add(p);
                 }

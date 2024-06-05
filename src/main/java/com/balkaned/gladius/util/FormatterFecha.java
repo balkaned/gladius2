@@ -165,4 +165,24 @@ public class FormatterFecha {
             return null;
         }
     }
+
+    public String fechaFormatterHoraAMyPM(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("HH:mm");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
 }

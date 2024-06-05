@@ -294,7 +294,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                            $('#spandesiniturno'+i).addClass('text-white');
                         }else if(data[i].iexindfalta==1){
                            $('#background'+i).removeClass('bg-opacity-50 bg-300');
-                           $('#background'+i).addClass('bg-opacity-85 bg-gradient bg-danger rounded-3');
+                           $('#background'+i).addClass('bg-opacity-75 bg-gradient bg-danger rounded-3');
 
                            $('#spanDiaCalendar'+i).addClass('text-white');
                            $('#spanturno'+i).addClass('text-white');
@@ -1152,6 +1152,7 @@ function verMarcaciones(){
                                   "<th class='sort align-middle text-center ps-5 pe-5 text-uppercase fs--1' scope='col' data-sort='total'>FECHA</th>"+
                                   "<th class='sort align-middle text-center ps-5 pe-5 text-uppercase fs--1' scope='col' data-sort='total'>HORA</th>"+
                                   "<th class='sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase fs--1' scope='col' data-sort='payment_status' >TIPO</th>"+
+                                  "<th class='sort align-middle text-center white-space-nowrap ps-3 pe-3 text-uppercase fs--1' scope='col' data-sort='payment_status' >FUENTE</th>"+
                                   "<th class='sort text-end text-center align-middle ps-3 pe-3 text-uppercase fs--1' scope='col'></th>"+
                                 "</tr>"+
                           "</div>"+
@@ -1174,13 +1175,19 @@ function verMarcaciones(){
                                             opt += "<td class='align-middle white-space-nowrap text-center fs--1 text-700 ps-3 pe-3'><span class='badge badge-phoenix fs--2 badge-phoenix-danger'><span class='badge-label'><span class='me-2 fa-solid fa-arrow-down'></span>"+data[i].tipmarka+"</span></td>";
                                           }
 
-                                     opt+="<td class='align-middle white-space-nowrap text-end pe-0 ps-5'>"+
+                                          if(data[i].iexusucrea == undefined){
+                                              opt+="<td class='align-middle text-center fw-semi-bold fs--1 ps-3 pe-3 text-1000'></td>";
+                                          }else{
+                                              opt+="<td class='align-middle text-center fw-semi-bold fs--1 ps-3 pe-3 text-1000'>"+data[i].iexusucrea+"</td>";
+                                          }
+
+                                     opt += "<td class='align-middle white-space-nowrap text-end pe-0 ps-5'>"+
                                             "<div class='font-sans-serif btn-reveal-trigger position-static'>"+
                                               "<button class='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'><span class='fas fa-ellipsis-h fs--2'></span></button>"+
                                               "<div class='dropdown-menu dropdown-menu-end py-2'>"+
                                                 "<a class='dropdown-item' href='#'>Detalle</a>"+
                                                 "<div class='dropdown-divider'></div>"+
-                                                "<a class='dropdown-item text-danger' href=''>Remove</a>"+
+                                                "<a class='dropdown-item text-danger' href='#'>Remove</a>"+
                                               "</div>"
                                             "</div>"+
                                           "</td>"+
