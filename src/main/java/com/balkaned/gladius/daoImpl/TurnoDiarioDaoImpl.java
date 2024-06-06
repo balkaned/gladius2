@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.Turno;
+import com.balkaned.gladius.models.TurnoMarks;
 import com.balkaned.gladius.models.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.util.CapitalizarCadena;
@@ -539,5 +540,36 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codtra,
                 correl,
                 desusu);
+    }
+
+    public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec) {
+
+        String sql = " select  " +
+                " iexcodcia, iexcodtra, iexcodfecha, " +
+                " to_char(iexfechamarks,'dd/mm/yyyy hh24:mi:ss') as iexfechamarks ,  " +
+                " iexflgmanual " +
+                " from iexturno_marks where iexcodcia=" + codcia + " and iexcodtra=" + codtra + " and iexcodfecha ='" + codfec + "' ";
+
+        return template.query(sql, new ResultSetExtractor<List<TurnoMarks>>() {
+
+            public List<TurnoMarks> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<TurnoMarks> lista = new ArrayList<TurnoMarks>();
+
+                while (rs.next()) {
+                    TurnoMarks p = new TurnoMarks();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcodfecha(rs.getString("iexcodfecha"));
+                    log.info("p.getIexcodfecha: "+p.getIexcodfecha());
+                    p.setIexfechamarks(rs.getString("iexfechamarks"));
+                    log.info("p.getIexfechamarks: "+p.getIexfechamarks());
+                    p.setIexflgmanual(rs.getString("iexflgmanual"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
     }
 }

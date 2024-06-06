@@ -3,6 +3,7 @@ package com.balkaned.gladius.servicesImpl;
 
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.Turno;
+import com.balkaned.gladius.models.TurnoMarks;
 import com.balkaned.gladius.models.Turnodiario;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.services.TurnoDiarioService;
@@ -80,5 +81,9 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
 
     public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu) {
         dao.consolidaAsistencia(codcia, codpro, codtra, nroper, correl, desusu);
+    }
+
+    public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec) {
+        return dao.obtenerTurnoDiaMarks(codcia, codtra, codfec);
     }
 }

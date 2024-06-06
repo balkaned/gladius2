@@ -51,9 +51,9 @@
                         <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
                         <div class="col-11">
                             <strong class="text-black">Error al guardar</strong>
-                             <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información</a></p>
+                             <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información.</a></p>
                         </div>
-                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button class="btn-close fs--2 text-danger" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                        </div>
                   </c:if>
               </div>
@@ -91,8 +91,8 @@
 
                           <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center alert-dismissible fade show" role="alert" style="display:none !important;">
                             <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                            <p class="mb-0 text-1000 col-12">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                            <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close"><span class="fa-solid fa-x fs--2 me-2"></span></a>
+                            <p class="mb-0 text-1000 col-12">Se grabó exitosamente los cambios <a href="#">Mas información.</a></p>
+                            <a class="text-success fs-0 fw-bolder" href="#" data-bs-dismiss="alert" aria-label="Close"><span class="fa-solid fa-x fs--2 fa-fw me-2"></span></a>
                           </div>
                           <div class="col-12 gy-6">
                               <div class="row g-3 justify-content-end">

@@ -1778,4 +1778,31 @@ public class PlanillaController {
 
         return null;
     }
+
+    @RequestMapping(value = "/traertLstNroFechaHora", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traertLstNroFechaHora(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traertLstNroFechaHora");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        String codfec = request.getParameter("codfec");
+
+        log.info("codtra: "+codtra);
+        log.info("codfec: "+codfec);
+
+        List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania,codtra,codfec);
+
+        String json = new Gson().toJson(lstTurn);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
 }

@@ -427,8 +427,8 @@
 }
 
 .alert{
-    /*padding-top:17px;
-    padding-bottom:17px;*/
+    padding-top:15px;
+    padding-bottom:15px;
     height:auto;
     /*color:white;*/
     font-size:14px;
@@ -617,6 +617,10 @@ width:31px;
 
 #navbar2a{
     border-right: 1px solid #373E53 !important;
+}
+
+.sans{
+    font-family: "serif";
 }
 
 

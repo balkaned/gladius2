@@ -709,113 +709,113 @@
     <div id="modalAsistencias" class="modal fade" tabindex="-1" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
           <div class="modal-content bg-100">
-                <div class="modal-header border-200 bg-soft p-4">
-                   <h5 class="modal-title text-1000 fs-2 lh-sm">Asistencias por periodo planilla/ empleado</h5>
-                   <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form class="needs-validation" id="formAsistencias" method="POST" action="gestionarModalAsistencias" novalidate >
-                      <input id="accion" name="accion" type="hidden" value="" />
-                      <input id="desfecdia" name="desfecdia" type="hidden" value="" />
-                      <input id="iexcodfec" name="iexcodfec" type="hidden" value="" />
-                      <input id="iexcodpro" name="iexcodpro" type="hidden" value="" />
-                      <input id="iexperiodo" name="iexperiodo" type="hidden" value="" />
-                      <input id="iexcorrel" name="iexcorrel" type="hidden" value="1" />
-                      <input id="iexcodtra" name="iexcodtra" type="hidden" value="" />
-                      <input id="iexcodcia" name="iexcodcia" type="hidden" value="" />
+            <div class="modal-header border-200 bg-soft p-4">
+               <h5 class="modal-title text-1000 fs-2 lh-sm">Asistencias por periodo planilla/ empleado</h5>
+               <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
+            </div>
+            <div class="modal-body p-4">
+                <form class="needs-validation" id="formAsistencias" method="POST" action="gestionarModalAsistencias" novalidate >
+                  <input id="accion" name="accion" type="hidden" value="" />
+                  <input id="desfecdia" name="desfecdia" type="hidden" value="" />
+                  <input id="iexcodfec" name="iexcodfec" type="hidden" value="" />
+                  <input id="iexcodpro" name="iexcodpro" type="hidden" value="" />
+                  <input id="iexperiodo" name="iexperiodo" type="hidden" value="" />
+                  <input id="iexcorrel" name="iexcorrel" type="hidden" value="1" />
+                  <input id="iexcodtra" name="iexcodtra" type="hidden" value="" />
+                  <input id="iexcodcia" name="iexcodcia" type="hidden" value="" />
 
-                      <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                          <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                          <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                          <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+                  <div id="alertModalSuccessEdit" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
+                      <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                      <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
+                      <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
 
-                      <div class="row g-3 mt-1">
-                          <div class="col-sm-6 col-md-2">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
-                                <input class="form-control" name="idTrabAsis" id="idTrabAsis" type="text" required disabled />
-                                <input name="idTrabAsisHidden" id="idTrabAsisHidden" type="hidden" value="" />
-                          </div>
-                          <div class="col-sm-6 col-md-6">
-                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
-                                <input class="form-control" name="trabAsis" id="trabAsis" type="text" required disabled />
-                                <input name="trabAsisHidden" id="trabAsisHidden" type="hidden" value="" />
-                          </div>
-                          <div class="col-sm-6 col-md-3">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
-                              <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
-                              <input name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />
-                          </div>
-                          <div class="col-sm-6 col-md-3">
-                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
-                            <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
-                            <input name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />
-                          </div>
-                          <div class="col-sm-6 col-md-6">
-                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
-                            <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
-                          </div>
+                  <div class="row g-3 mt-1">
+                      <div class="col-sm-6 col-md-2">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
+                            <input class="form-control" name="idTrabAsis" id="idTrabAsis" type="text" required disabled />
+                            <input name="idTrabAsisHidden" id="idTrabAsisHidden" type="hidden" value="" />
                       </div>
-                      <div class="row g-4 mt-0">
-                        <div class="col-auto">
-                            <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Traer turnos</a>
-                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
-                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star text-warning me-2"></span>Calificar</a>
-                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="verMarcaciones();"  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
-                            <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
-                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
-                            <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
-                            <!--<a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>-->
-                        </div>
+                      <div class="col-sm-6 col-md-6">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                            <input class="form-control" name="trabAsis" id="trabAsis" type="text" required disabled />
+                            <input name="trabAsisHidden" id="trabAsisHidden" type="hidden" value="" />
                       </div>
-                      <div class="row g-3 bg-100 mt-0">
-                        <!--<h4 class="mb-0 mt-7">Calendario</h4>-->
-                        <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
-                          <div class="mb-3" class="mt-0">
-                              <div class="row g-3">
-                                  <div id="calendarbody1" class="table-responsive scrollbar mx-n1 px-1 bg-100" >
-                                        <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-top">
-                                          <div class="row py-3 gy-3 gx-0">
-                                            <div class="col-6 col-md-4 order-1 d-flex align-items-center">
-                                              <a href="#" class="btn btn-sm btn-phoenix-secondary px-4" >Hoy</a>
-                                            </div>
-                                            <div class="col-12 col-md-4 order-md-1 d-flex align-items-center justify-content-center">
-                                              <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="prev" title="Previous"><span class="fas fa-chevron-left"></span></button>
-                                              <h3 id="mesDes" class="text-1100 fw-semi-bold calendar-title mb-0"></h3>
-                                              <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="next" title="Next"><span class="fas fa-chevron-right"></span></button>
-                                            </div>
-                                            <div class="col-6 col-md-4 ms-auto order-1 d-flex justify-content-end">
-                                              <div>
-                                                <div class="btn-group btn-group-sm" role="group">
-                                                  <a href="#" class="btn btn-phoenix-primary active-view" >Mes</a>
-                                                  <a href="#" class="btn btn-phoenix-secondary" >Semana</a>
-                                                </div>
-                                              </div>
+                      <div class="col-sm-6 col-md-3">
+                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label>
+                          <input class="form-control" name="feciniAsis" id="feciniAsis" type="text" required disabled />
+                          <input name="feciniAsisHidden" id="feciniAsisHidden" type="hidden" value="" />
+                      </div>
+                      <div class="col-sm-6 col-md-3">
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label>
+                        <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
+                        <input name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />
+                      </div>
+                      <div class="col-sm-6 col-md-6">
+                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
+                        <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
+                      </div>
+                  </div>
+                  <div class="row g-4 mt-0">
+                    <div class="col-auto">
+                        <a class="btn btn-primary btn-sm mt-1" onclick="return verTurnos('1');" ><span class="fas fa-calendar-days me-2"></span>Traer turnos</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return programarTurnos('3');" ><span class="fas fa-wrench me-2"></span>Programar turnos</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return calificar('5');" ><span class="fa-regular fa-star text-warning me-2"></span>Calificar</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="verMarcaciones();"  ><span class="fas fa-gauge me-2"></span>Marcasiones ing/sal</a>
+                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return borrarTodo('2');"  ><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return consolidar('7');"  ><span class="fas fa-right-left me-2"></span>Consolidar</a>
+                        <a id="btnReportAsis" class="btn btn-phoenix-secondary btn-sm mt-1" href="#" target="_blank" onclick="reporteAsistencias();" ><span class="fas fa-download me-2"></span>Reporte asistencias PDF</a>
+                        <!--<a class="btn btn-phoenix-success btn-sm mt-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmModalCargarExcel" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" href="#"><span class="fas fa-upload me-2"></span>Importar excel</a>-->
+                    </div>
+                  </div>
+                  <div class="row g-3 bg-100 mt-0">
+                    <!--<h4 class="mb-0 mt-7">Calendario</h4>-->
+                    <div id="orderTable" class="mt-2" data-list='{"valueNames":["codcon","descon","valor"],"page":10,"pagination":true}'>
+                      <div class="mb-3" class="mt-0">
+                          <div class="row g-3">
+                              <div id="calendarbody1" class="table-responsive scrollbar mx-n1 px-1 bg-100" >
+                                    <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 border-y border-top">
+                                      <div class="row py-3 gy-3 gx-0">
+                                        <div class="col-6 col-md-4 order-1 d-flex align-items-center">
+                                          <a href="#" class="btn btn-sm btn-phoenix-secondary px-4" >Hoy</a>
+                                        </div>
+                                        <div class="col-12 col-md-4 order-md-1 d-flex align-items-center justify-content-center">
+                                          <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="prev" title="Previous"><span class="fas fa-chevron-left"></span></button>
+                                          <h3 id="mesDes" class="text-1100 fw-semi-bold calendar-title mb-0"></h3>
+                                          <button class="btn icon-item icon-item-sm shadow-none text-1100 p-0" type="button" data-event="next" title="Next"><span class="fas fa-chevron-right"></span></button>
+                                        </div>
+                                        <div class="col-6 col-md-4 ms-auto order-1 d-flex justify-content-end">
+                                          <div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                              <a href="#" class="btn btn-phoenix-primary active-view" >Mes</a>
+                                              <a href="#" class="btn btn-phoenix-secondary" >Semana</a>
                                             </div>
                                           </div>
                                         </div>
-                                  </div>
-                                   <div class="table-responsive mx-n1 px-1 bg-100" style="width: 742px !important;" >
-                                        <table id="tableCalendar" class="table">
-                                            <thead id="calendarHead2">
-                                            </thead>
-                                            <tbody id="calendarBody2" class="fs--2 fw-semi-bold text-1000">
-                                            </tbody>
-                                            <tfoot id="calendarFoot2">
-                                            </tfoot>
-                                        </table>
-                                   </div>
+                                      </div>
+                                    </div>
                               </div>
+                               <div class="table-responsive mx-n1 px-1 bg-100" style="width: 742px !important;" >
+                                    <table id="tableCalendar" class="table">
+                                        <thead id="calendarHead2">
+                                        </thead>
+                                        <tbody id="calendarBody2" class="fs--2 fw-semi-bold text-1000">
+                                        </tbody>
+                                        <tfoot id="calendarFoot2">
+                                        </tfoot>
+                                    </table>
+                               </div>
                           </div>
-                        </div>
+                      </div>
                     </div>
-                    </form>
                 </div>
-                <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
-                    <a class="btn btn-sm btn-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
-                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
-                    <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>-->
-                </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
+                <a class="btn btn-sm btn-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
+                <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
+                <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalEdit();" type="submit"><span class="ms-2">Guardar Periodo</span></button>-->
+            </div>
           </div>
       </div>
     </div>
@@ -1141,7 +1141,7 @@
                   </div>
                 </div>
                 <div class="modal-footer bg-300 bg-opacity-25 d-flex justify-content-end align-items-center px-0 pb-0 border-top border-300 pt-0">
-                    <button id="btnFooter" class="btn btn-sm btn-danger px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Inicializando</span></button>
+                    <button id="btnFooter" class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" href="#"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span id="spanbtnModalLoading" class="ms-2">Inicializando</span></button>
                 </div>
             </form>
           </div>

@@ -3,6 +3,7 @@ package com.balkaned.gladius.dao;
 
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.Turno;
+import com.balkaned.gladius.models.TurnoMarks;
 import com.balkaned.gladius.models.Turnodiario;
 
 import java.util.List;
@@ -38,4 +39,5 @@ public interface TurnoDiarioDao {
 
     public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu);
 
+    public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec);
 }
