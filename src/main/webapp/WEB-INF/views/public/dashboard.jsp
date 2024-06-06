@@ -40,7 +40,7 @@
                   </div>
                   <div class="col-md-3 col-auto">
                     <div class="flatpickr-input-container">
-                      <a href="listEmpleados" class="btn btn-phoenix-secondary btn-sm"><span class="fa-regular fa-star me-2"></span>Trabajadores</a>
+                      <a href="listEmpleados" class="btn btn-primary btn-sm"><span class="fa-regular fa-star me-2"></span>Trabajadores</a>
                     </div>
                   </div>
                 </div>
@@ -443,7 +443,7 @@
                       </div>
                     </div>
 
-                    <div class="col-12 col-xl-6 col-xxl-7 mt-3">
+                    <div class="col-12 col-xl-6 col-xxl-7 mt-3 mb-3">
                       <div class="card todo-list h-100">
                         <div class="card-header border-bottom-0 pb-0">
                           <div class="row justify-content-between align-items-center mb-4">

@@ -239,7 +239,7 @@
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
-    background-color: #1E283D !important;
+    /*background-color: #1E283D !important;*/
     /*background-color: #111827 !important;*/
     border:0px solid black;
 }

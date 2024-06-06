@@ -13,15 +13,14 @@
   </head>
   <script>
       function mostrarAlert(){
-              var div=document.getElementById('alert');
-              div.style.display = '';
+          var div=document.getElementById('alert');
+          div.style.display = '';
 
-              setTimeout(function() {
-                  $("#alerts").hide(6000);
-              }, 3000);
+          setTimeout(function() {
+              $("#alerts").hide(6000);
+          }, 3000);
       }
   </script>
-
 
   <body>
     <!-- ===============================================-->
@@ -113,6 +112,7 @@
                    </div>
               </div>
             </div>
+            <jsp:include page="../../../footer.jsp"></jsp:include>
           </div>
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>
     </main>

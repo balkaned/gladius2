@@ -69,7 +69,7 @@
             <jsp:include page="../../../../navTop.jsp"/>
             <jsp:include page="../../../../modalFade.jsp"/>
 
-            <div class="content bg-100">
+            <div class="content bg-100 mb-3">
                 <nav class="mb-2" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#!">Conf. Planillas</a></li>
@@ -281,6 +281,7 @@
                         </div>
                     </div>
                 </div>
+                <jsp:include page="../../../../footer.jsp"></jsp:include>
             </div>
             <jsp:include page="../../../../demoWidget.jsp"/>
         </main>

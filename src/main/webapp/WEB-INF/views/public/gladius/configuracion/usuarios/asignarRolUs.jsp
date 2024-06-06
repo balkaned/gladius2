@@ -14,24 +14,24 @@
 
   <script>
      $(document).ready(function() {
-           $('#lov_compania').change(function(event){
-               $.ajaxSetup({cache:false});
-                    $.ajax({
-                      url: "getLovsLOVCODTRAxUSU",
-                      data: {
-                            "accion": "getLovsLOVCODTRAxUSU",
-                            "iexcodcia": $("#lov_compania").val()
-                      },
-                      success: function (data) {
-                           var opt = "";
-                           opt += "<option value='' >Seleccionar trabajador</option>";
-                           for (var i in data) {
-                                opt += "<option value="+data[i].iexcodtra+" > "+data[i].iexapepat+" "+data[i].iexapemat+" "+data[i].iexnomtra+" - "+data[i].iexfecing+" </option> ";
-                           }
-                          $("#iexcodtra").html(opt);
-                      }
-                    });
-           });
+       $('#lov_compania').change(function(event){
+           $.ajaxSetup({cache:false});
+                $.ajax({
+                  url: "getLovsLOVCODTRAxUSU",
+                  data: {
+                        "accion": "getLovsLOVCODTRAxUSU",
+                        "iexcodcia": $("#lov_compania").val()
+                  },
+                  success: function (data) {
+                       var opt = "";
+                       opt += "<option value='' >Seleccionar trabajador</option>";
+                       for (var i in data) {
+                            opt += "<option value="+data[i].iexcodtra+" > "+data[i].iexapepat+" "+data[i].iexapemat+" "+data[i].iexnomtra+" - "+data[i].iexfecing+" </option> ";
+                       }
+                      $("#iexcodtra").html(opt);
+                  }
+                });
+       });
      });
 
      function remove() {
@@ -201,8 +201,8 @@
                     </div>
                   </div>
               </div>
-
             </div>
+            <jsp:include page="../../../footer.jsp"></jsp:include>
           </div>
 
           <jsp:include page="../../../demoWidget.jsp"></jsp:include>

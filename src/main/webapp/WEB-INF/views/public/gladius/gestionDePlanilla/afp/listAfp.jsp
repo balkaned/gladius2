@@ -159,6 +159,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                         </div>
                     </div>
                 </div>
+                <jsp:include page="../../../footer.jsp"></jsp:include>
             </div>
         </main>
 
