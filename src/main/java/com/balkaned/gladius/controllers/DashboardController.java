@@ -3,6 +3,7 @@ package com.balkaned.gladius.controllers;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
+import com.balkaned.gladius.servicesImpl.Sessionattributes;
 import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,23 +42,27 @@ public class DashboardController {
     @Autowired
     UsuxCompaniaService usuxCompaniaService;
 
+    @Autowired
+    Sessionattributes sessionattributes;
 
-    @RequestMapping("/home@{idComp}@{idUser}")
-    public ModelAndView home(ModelMap model, HttpServletRequest request,
-                             @PathVariable String idComp,
-                             @PathVariable String idUser) {
-        log.info("/home");
+
+    @RequestMapping("/dashboard")
+    public ModelAndView dashboard(ModelMap model, HttpServletRequest request) {
+        log.info("/dashboard");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
             return new ModelAndView("redirect:/login2");
         }
 
-        UsuarioConeccion uc1 = usuarioConeccionService.obtenerUsuarioConeccionById(idUser);
-        Compania comp1 = companiaService.getCompaniaAll(Integer.parseInt(idComp));
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+
+        UsuarioConeccion uc1 = usuarioConeccionService.obtenerUsuarioConeccionById(String.valueOf(idusuario));
+        Compania comp1 = companiaService.getCompaniaAll(idCompania);
 
         String usuario = (String) request.getSession().getAttribute("user");
-        String idusuario = (String) request.getSession().getAttribute("idUser");
         String email = (String) request.getSession().getAttribute("email");
         String firstCharacter = (String) request.getSession().getAttribute("firstCharacter");
 
@@ -71,7 +76,7 @@ public class DashboardController {
         CapitalizarCadena cap2 = new CapitalizarCadena();
         nombreComp = cap2.letras(nombreComp);
 
-        model.addAttribute("idComp", idComp);
+        model.addAttribute("idComp", idCompania);
         model.addAttribute("urlLogo", comp1.getUrlLogo());
         model.addAttribute("usuario", usuario);
         model.addAttribute("idusuario", idusuario);
@@ -81,14 +86,11 @@ public class DashboardController {
         model.addAttribute("rucComp", comp1.getNroRuc());
         model.addAttribute("schema", comp1.getSchema());
 
-        int idCompconv = Integer.parseInt(idComp);
-        int idUsuarioconv = Integer.parseInt(idUser);
-
-        List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompconv, idUsuarioconv, 1);
+        List<UsuxOpciones> listaMenus = usuxOpcionesService.listarOpciones(idCompania, Integer.valueOf(idusuario), 1);
         model.addAttribute("usuxsysxopc", listaMenus);
-        model.addAttribute("ususys", usuxSystemaService.eligeSystema(idCompconv, idUsuarioconv, 1));
+        model.addAttribute("ususys", usuxSystemaService.eligeSystema(idCompania, Integer.valueOf(idusuario), 1));
 
-        List<Cumpleanos> listCumpl = dashboardService.traerListaDeCumpleañosPorMes(Integer.valueOf(idComp));
+        List<Cumpleanos> listCumpl = dashboardService.traerListaDeCumpleañosPorMes(idCompania);
         model.addAttribute("listCumple", listCumpl);
         model.addAttribute("cantCumpl", listCumpl.size());
 
@@ -106,7 +108,7 @@ public class DashboardController {
         model.addAttribute("nombreEnMes", mesCapitalizado);
         log.info("nombreEnMes: " + mesCapitalizado);
 
-        List<Ingresantes> listIngresantes = dashboardService.traerListaDeIngresantesPorMes(Integer.valueOf(idComp));
+        List<Ingresantes> listIngresantes = dashboardService.traerListaDeIngresantesPorMes(idCompania);
         model.addAttribute("cantIngresantes", listIngresantes.size());
 
         log.info("ListIngresantes.size(): " + listIngresantes.size());
@@ -118,7 +120,7 @@ public class DashboardController {
             model.addAttribute("mensaje", null);
         }
 
-        List<Retirados> listRetirados = dashboardService.traerListaDeRetiradosPorMes(Integer.valueOf(idComp));
+        List<Retirados> listRetirados = dashboardService.traerListaDeRetiradosPorMes(idCompania);
         model.addAttribute("cantRetirados", listRetirados.size());
 
         if (listRetirados.size() == 0) {
@@ -128,45 +130,45 @@ public class DashboardController {
             model.addAttribute("mensaje2", null);
         }
 
-        model.addAttribute("cantEmpl", dashboardService.getCantidadEmpl(Integer.valueOf(idComp)));
-        model.addAttribute("cantAreas", dashboardService.getCantidadAreas(Integer.valueOf(idComp)));
+        model.addAttribute("cantEmpl", dashboardService.getCantidadEmpl(idCompania));
+        model.addAttribute("cantAreas", dashboardService.getCantidadAreas(idCompania));
         model.addAttribute("cantFondos", lovsService.getLovs("11", "%").size());
         model.addAttribute("cantBancosHab", lovsService.getLovs("36", "%").size());
-        model.addAttribute("cantCcostos", lovsService.getCCostoCia(Integer.valueOf(idComp)).size());
-        model.addAttribute("cantLocales", lovsService.getUbicacionCia(Integer.valueOf(idComp)).size());
-        model.addAttribute("cantPuestos", lovsService.getPuestoCia(Integer.valueOf(idComp)).size());
+        model.addAttribute("cantCcostos", lovsService.getCCostoCia(idCompania).size());
+        model.addAttribute("cantLocales", lovsService.getUbicacionCia(idCompania).size());
+        model.addAttribute("cantPuestos", lovsService.getPuestoCia(idCompania).size());
 
         // Obtenemos los datos para el Grafico Pie por sexo
-        DashboardSexoPie ds = dashboardService.obtenerDashboardPieSexo(Integer.valueOf(idComp));
+        DashboardSexoPie ds = dashboardService.obtenerDashboardPieSexo(idCompania);
         model.addAttribute("cantidad_total", ds.getCantidad_total());
         model.addAttribute("cantidad_m", ds.getCantidad_m());
         model.addAttribute("cantidad_f", ds.getCantidad_f());
         model.addAttribute("cantidad_ma", ds.getCantidad_ma());
         model.addAttribute("ds", ds);
 
-        List<DashboardAreaBar> lsAreaBar = dashboardService.obtenerDatosDashboardArea(Integer.valueOf(idComp));
+        List<DashboardAreaBar> lsAreaBar = dashboardService.obtenerDatosDashboardArea(idCompania);
         model.addAttribute("lsAreaBar", lsAreaBar);
 
-        List<DashboardFondosBar> lsFondBar = dashboardService.obtenerDatosDashboardFodos(Integer.valueOf(idComp));
+        List<DashboardFondosBar> lsFondBar = dashboardService.obtenerDatosDashboardFodos(idCompania);
         model.addAttribute("lsFondBar", lsFondBar);
 
-        List<DashboardBancosPie> lsBanPie = dashboardService.obtenerDatosDashboardBancos(Integer.valueOf(idComp));
+        List<DashboardBancosPie> lsBanPie = dashboardService.obtenerDatosDashboardBancos(idCompania);
         model.addAttribute("lsBanPie", lsBanPie);
 
-        List<DashboardCcosto> lsCcostoBar = dashboardService.obtenerDatosDashboardCCosto(Integer.valueOf(idComp));
+        List<DashboardCcosto> lsCcostoBar = dashboardService.obtenerDatosDashboardCCosto(idCompania);
         model.addAttribute("lsCcostoBar", lsCcostoBar);
 
-        List<DashboardPuestos> lsPuestosBar = dashboardService.obtenerDatosDashboardPuestos(Integer.valueOf(idComp));
+        List<DashboardPuestos> lsPuestosBar = dashboardService.obtenerDatosDashboardPuestos(idCompania);
         model.addAttribute("lsPuestosBar", lsPuestosBar);
 
-        List<DashboardLocal> lsLocalBar = dashboardService.obtenerDatosDashboardLocales(Integer.valueOf(idComp));
+        List<DashboardLocal> lsLocalBar = dashboardService.obtenerDatosDashboardLocales(idCompania);
         model.addAttribute("lsLocalBar", lsLocalBar);
 
 
         // Obtiene datos del usuario y rol si es SYSHRSELF redirecciona listaTrabajadores
-        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(Integer.valueOf(idComp), Integer.valueOf(idusuario));
+        UsuarioxRol ur = usuxCompaniaService.obtenerRolxUsuario(idCompania, Integer.valueOf(idusuario));
         Empleado emp = new Empleado();
-        emp.setIexcodcia(Integer.valueOf(idComp));
+        emp.setIexcodcia(Integer.valueOf(idCompania));
         emp.setIexcodtra(ur.getIexcodtra());
 
         log.info("ur.getIexdesrol(): " + ur.getIexdesrol());

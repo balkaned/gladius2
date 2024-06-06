@@ -8,7 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <!--<nav class="navbar navbar-vertical navbar-expand-lg bg-${schema}">-->
     <nav id="navbar2a" class="navbar navbar-vertical navbar-expand-lg border-end border-500 border-1" >
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
@@ -66,6 +65,30 @@
                     <span id="span2">${usuario}</span>
                     <span id="span3">${email}</span>
                 </div>-->
+
+                <p class="navbar-vertical-label">Dashboard</p>
+                <p id="p2" class="navbar-vertical-label">Menu Dashboard</p>
+                <div class="nav-item-wrapper">
+                    <a class="nav-link dropdown-indicator label-1" href="dashboard" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="">
+                        <div class="d-flex align-items-center">
+                          <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div><span class="nav-link-icon"><span data-feather="home"></span></span><span class="nav-link-text">Dashboard</span>
+                        </div>
+                    </a>
+                    <div class="parent-wrapper label-1">
+                        <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="">
+                          <li class="collapsed-nav-item-title d-none">Dashboard</li>
+
+                          <li id="menunav" class="nav-item">
+                            <a class="nav-link" id="#" href="dashboard" data-bs-toggle="" aria-expanded="false">
+                              <div class="d-flex align-items-center">
+                                <span class="nav-link-text">Dashboard</span>
+                                <!--<span id="circle" class="fa-solid fa-circle text-success ms-1 new-page-indicator" style="font-size: 6px; display:none;"></span>-->
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                    </div>
+                </div>
 
                 <!--Empiezo a mostrar los menus segun la bd perfiles y roles de usuario-->
                 <c:set var="seccion_cur" value=""/>

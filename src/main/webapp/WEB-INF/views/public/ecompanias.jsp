@@ -99,7 +99,7 @@
               </p>
               <p class="fs--1 card-text mb-0">Ruc: ${compList.ruc}</p>
               <p class="fs--1 card-text">Dirección: ${compList.direccion}</p>
-              <a class="btn btn-sm  btn-primary" href="home@${compList.id_companias}@${compList.id_usuario}">Ingresar</a>
+              <a class="btn btn-sm  btn-primary" href="ingresarCompania@${compList.id_companias}@${compList.id_usuario}">Ingresar</a>
             </div>
           </div>
 

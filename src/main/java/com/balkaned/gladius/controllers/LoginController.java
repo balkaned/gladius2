@@ -167,6 +167,21 @@ public class LoginController {
         return new ModelAndView("public/ecompanias");
     }
 
+    @RequestMapping(value = "/ingresarCompania@{idCom}@{idUser}", method = RequestMethod.GET)
+    public ModelAndView ingresarCompania(ModelMap model, HttpServletRequest request,
+                                         @PathVariable Integer idCom,
+                                         @PathVariable String idUser) {
+        log.info("/ingresarCompania");
+
+        log.info("idUser: " + idUser);
+        log.info("idCom: "+idCom);
+
+        request.getSession().setAttribute("idCompania", idCom);
+        request.getSession().setAttribute("idUser", idUser);
+
+        return new ModelAndView("redirect:/dashboard");
+    }
+
     @RequestMapping("/logoff")
     public ModelAndView logoff(ModelMap model, HttpServletRequest request) {
 
