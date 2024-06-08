@@ -1216,6 +1216,8 @@ function traertLstNroFechaHora(codtra,iexcodfec){
     console.log("codtra: "+codtra);
     console.log("iexcodfec: "+iexcodfec);
 
+    var html2 = "";
+
     $.ajax({
          async: false,
          url: "traertLstNroFechaHora",
@@ -1225,7 +1227,6 @@ function traertLstNroFechaHora(codtra,iexcodfec){
             },
          success: function (data) {
              console.log("Ajax Exitoso");
-             var html2 = "";
 
              for (var i in data) {
                 console.log("i: "+i);
@@ -1238,8 +1239,8 @@ function traertLstNroFechaHora(codtra,iexcodfec){
              }
 
              console.log("html2: " + html2);
-
-            return html2;
          }
     });
+
+    return html2;
 }
