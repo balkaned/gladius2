@@ -17,13 +17,12 @@
     </head>
 
     <style>
-        .popover {
+        .popover{
            /*width: 470px !important;*/
            max-width:310px !important;
            height: 420px !important;
            overflow-y: auto;
            border-radius:12px 0px 0px 12px;
-           /*overflow-x: none;*/
         }
 
         .popover-body{

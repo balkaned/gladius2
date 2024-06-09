@@ -1,10 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 
-import com.balkaned.gladius.models.Empleado;
-import com.balkaned.gladius.models.Turno;
-import com.balkaned.gladius.models.TurnoMarks;
-import com.balkaned.gladius.models.Turnodiario;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.util.CapitalizarCadena;
 import com.balkaned.gladius.util.FormatterFecha;
@@ -561,10 +558,57 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcodfecha(rs.getString("iexcodfecha"));
-                    log.info("p.getIexcodfecha: "+p.getIexcodfecha());
+                    log.info("p.getIexcodfecha: " + p.getIexcodfecha());
                     p.setIexfechamarks(rs.getString("iexfechamarks"));
-                    log.info("p.getIexfechamarks: "+p.getIexfechamarks());
+                    log.info("p.getIexfechamarks: " + p.getIexfechamarks());
                     p.setIexflgmanual(rs.getString("iexflgmanual"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
+    }
+
+    public void insertaMarkDia(Integer codcia, Integer codtra, String codfec, String fechora, String desusu) {
+
+        template.update(" insert into iexmarkas_manual (iexcodcia, iexcodtra, iexcodfecha, iexfechamarks , iexdesusu ,  iexfeccrea ) values(?,?,?,to_timestamp(?,'dd/mm/yyyy hh24:mi') , ? ,   CURRENT_TIMESTAMP) ",
+
+                codcia,
+                codtra,
+                codfec,
+                fechora,
+                desusu);
+
+    }
+
+    public List<MarkaManual> obtenerMarksMDia(Integer codcia, Integer codtra, String codfec) {
+
+        String sql = " select " +
+                "iexcodcia  ," +
+                "iexcodtra ," +
+                "iexcodfecha ," +
+                "to_char(iexfechamarks ,'dd/mm/yyyy hh24:mi:ss' ) iexfechamarks,  " +
+                "iexdesusu ," +
+                "iexfeccrea " +
+                "from iexmarkas_manual where iexcodcia=" + codcia + " and iexcodtra=" + codtra + " and iexcodfecha='" + codfec + "'  order by iexfechamarks asc ";
+
+        return template.query(sql, new ResultSetExtractor<List<MarkaManual>>() {
+
+            public List<MarkaManual> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<MarkaManual> lista = new ArrayList<MarkaManual>();
+
+                while (rs.next()) {
+                    MarkaManual p = new MarkaManual();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setIexcodfec(rs.getString("iexcodfecha"));
+                    p.setIexfecmarkas(rs.getString("iexfechamarks"));
+                    log.info("p.getIexfecmarkasAAA: "+p.getIexfecmarkas());
+                    //p.setIexfecmarkas(rs.getString("iexfechamarks"));
+                    p.setIexdesusu(rs.getString("iexdesusu"));
+                    p.setIexfeccrea(rs.getString("iexfeccrea"));
 
                     lista.add(p);
                 }

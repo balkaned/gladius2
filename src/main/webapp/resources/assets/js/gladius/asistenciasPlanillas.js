@@ -489,7 +489,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                                </select>*/
 
                        //opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
-                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-white opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
+                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-soft opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
                        //opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-danger bg-white opacity-75 ms-1 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle' title='Auto-marcado' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>A</a>";
                        opt2 += "<a id='popoverAutoMark"+i+"' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300' tabindex='0' role='button' data-bs-toggle='popover' data-bs-trigger='focus' title='Auto-marcado' data-bs-content=''>Auto-marca</a>";
 
@@ -730,9 +730,9 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                                     "<a class='btn btn-sm btn-primary mt-1 ms-0'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
                                     "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star text-warning me-1'></span>Calificar</a>"+
                                 "</div>"+
-                                "<div class='col-auto ps-0'>"+
+                                /*"<div class='col-auto ps-0'>"+
                                     "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-3' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
-                                "</div>"+
+                                "</div>"+*/
                             "</div>"+
                             "<div class='table-responsive scrollbar mt-3'>"+
                                 "<table class='border border-200 table table-sm fs--1 mb-0'>"+
@@ -742,14 +742,43 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                                             "<th>FECHA Y HORA</th>"+
                                         "</tr>"+
                                     "</thead>"+
-                                    "<tbody id='tbodyNroFechaHora'>"+
-                                        traertLstNroFechaHora(codtra,data.iexcodfec);
-                                        //"<tr>"+
-                                            //"<td class='ps-3'>Hola1</td>"+
-                                            //"<td class='ps-3'>Hola2</td>"+
-                                        //"</tr>"+
-                                    "</tbody>"+
+                                    "<tbody id='tbodyNroFechaHora'>";
+                                        if(traertLstNroFechaHora(codtra,data.iexcodfec)==""){
+                                            html+= "<td class='ms-2'>No hay data</td>";
+                                        }else{
+                                           html+= traertLstNroFechaHora(codtra,data.iexcodfec);
+                                        }
+                            html += "</tbody>"+
                                 "</table>"+
+                            "</div>"+
+                            "<div class='mt-4'>"+
+                                "<p class='fw-semi-bold'>Agregar marcaciones manuales</p>"+
+                                "<div class='col-sm-6 col-md-6'>"+
+                                 	"<label class='form-label fs--1 text-1000 ps-0 text-none mb-2' >Fecha</label><span class='uil uil-calendar-alt flatpickr-icon text-700'></span>"+
+                                 	"<input class='form-control ' name='fecMan' id='fecMan"+ind+"' type='text' placeholder='dd/mm/yyyy' required />"+
+                                "</div>"+
+                                "<div class='col-sm-6 col-md-6 mt-2'>"+
+                                    "<label class='form-label fs--1 text-1000 ps-0 text-none mb-2' >Hora</label>"+
+                                    "<input class='form-control ' name='horaMan' id='horaMan"+ind+"'' type='text' placeholder='24:00' required />"+
+                                "</div>"+
+                                "<div class='row col-12 mt-3 ps-0'>"+
+                                    "<div class='col-12 pe-0' id='grabarClick2"+ind+"' >"+
+                                        "<a class='btn btn-sm btn-primary mt-1 ms-0' onclick='grabarMarcManual("+ind+");'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
+                                    "</div>"+
+                                    "<div class='col-12 mt-3 m-3'>";
+                                        if(traerMarcManualData(codtra,data.iexcodfec)==""){
+                                            html += "<td class='ms-2'>No hay data</td>";
+                                        }else{
+                                           html += traerMarcManualData(codtra,data.iexcodfec);
+                                        }
+
+                                         //<td>  ${LstMarkManual.iexfecmarkas}</td>
+                                         //<td><a href="#" onclick="deleteForm('${LstMarkManual.iexfecmarkas}')"  >[X]</a></td>
+                            html += "</div>"+
+                                    "<div class='col-auto ps-0'>"+
+                                        "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
+                                    "</div>"+
+                                "</div>"+
                             "</div>"+
                         "</form>"+
                      "</div>";
@@ -869,6 +898,43 @@ function calificarTurnoDia(ind){
          url: "calififcarTurnoDia",
          data: {
               "desfecdia": desfecdia,
+              "idTrabAsis": idTrabAsis
+         },
+         success: function (data) {
+            mostrarAlert();
+         }
+    });
+
+    $("#popoverVer"+ind).popover('hide');
+    traerTurnos();
+}
+
+function grabarMarcManual(ind){
+    var fecMan = document.getElementById("fecMan"+ind).value;
+    var horaMan= document.getElementById("horaMan"+ind).value;
+
+    if (fecMan == "") {
+        alert("Ingrese una fecha en el formato dd/mm/yyyy");
+    	return;
+    }
+
+    if (horaMan == "") {
+        alert("Ingrese una hora en formato 24 h hh:mm");
+    	return;
+    }
+
+    var desfecdia = document.getElementById("ipHiddenDesfecdia"+ind).value;
+    var iexcodfec = document.getElementById("ipHiddeniexcodfec"+ind).value;
+    var idTrabAsis= document.getElementById("idTrabAsis").value;
+
+    $.ajax({
+         async: false,
+         url: "grabarMarcManual",
+         data: {
+              "fecMan": fecMan,
+              "horaMan": horaMan,
+              "desfecdia": desfecdia,
+              "iexcodfec": iexcodfec,
               "idTrabAsis": idTrabAsis
          },
          success: function (data) {
@@ -1213,9 +1279,6 @@ function verMarcaciones(){
 }
 
 function traertLstNroFechaHora(codtra,iexcodfec){
-    console.log("codtra: "+codtra);
-    console.log("iexcodfec: "+iexcodfec);
-
     var html2 = "";
 
     $.ajax({
@@ -1226,21 +1289,41 @@ function traertLstNroFechaHora(codtra,iexcodfec){
             "codfec": iexcodfec
             },
          success: function (data) {
-             console.log("Ajax Exitoso");
-
              for (var i in data) {
-                console.log("i: "+i);
-                console.log("iexfechamarks: "+iexfechamarks);
 
                  html2 += "<tr>"+
                              "<td class='ps-3'>"+i+"</td>"+
                              "<td class='ps-3'>"+data[i].iexfechamarks+"</td>"+
                           "</tr>";
              }
-
-             console.log("html2: " + html2);
          }
     });
 
     return html2;
+}
+
+function traerMarcManualData(codtra,iexcodfec){
+
+    var html3 = "";
+
+    $.ajax({
+         async: true,
+         url: "traerMarcManualData",
+         data: {
+            "codtra": codtra,
+            "codfec": iexcodfec
+            },
+         success: function (data) {
+             for (var i in data) {
+
+                 html3 += "<tr>"+
+                             "<td class='ps-3'>"+data[i].iexfechamarks+"</td>"+
+                             "<td><a href='#' onclick='deleteMarcMan('"+data[i].iexfechamarks+"')'>x</a></td>"+
+                          "</tr>";
+             }
+         }
+    });
+
+    return html3;
+
 }

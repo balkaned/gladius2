@@ -1,10 +1,7 @@
 package com.balkaned.gladius.services;
 
 
-import com.balkaned.gladius.models.Empleado;
-import com.balkaned.gladius.models.Turno;
-import com.balkaned.gladius.models.TurnoMarks;
-import com.balkaned.gladius.models.Turnodiario;
+import com.balkaned.gladius.models.*;
 
 import java.util.List;
 
@@ -40,4 +37,8 @@ public interface TurnoDiarioService {
     public void consolidaAsistencia(Integer codcia, Integer codpro, Integer codtra, String nroper, Integer correl, String desusu);
 
     public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec);
+
+    public void insertaMarkDia(Integer codcia, Integer codtra, String codfec, String fechora, String desusu);
+
+    public List<MarkaManual> obtenerMarksMDia(Integer codcia, Integer codtra, String codfec);
 }

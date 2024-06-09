@@ -1,10 +1,7 @@
 package com.balkaned.gladius.servicesImpl;
 
 
-import com.balkaned.gladius.models.Empleado;
-import com.balkaned.gladius.models.Turno;
-import com.balkaned.gladius.models.TurnoMarks;
-import com.balkaned.gladius.models.Turnodiario;
+import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.services.TurnoDiarioService;
 import lombok.extern.slf4j.Slf4j;
@@ -85,5 +82,13 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
 
     public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec) {
         return dao.obtenerTurnoDiaMarks(codcia, codtra, codfec);
+    }
+
+    public void insertaMarkDia(Integer codcia, Integer codtra, String codfec, String fechora, String desusu) {
+        dao.insertaMarkDia(codcia, codtra, codfec, fechora, desusu);
+    }
+
+    public List<MarkaManual> obtenerMarksMDia(Integer codcia, Integer codtra, String codfec) {
+        return dao.obtenerMarksMDia(codcia, codtra, codfec);
     }
 }

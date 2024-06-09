@@ -1793,12 +1793,72 @@ public class PlanillaController {
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         String codfec = request.getParameter("codfec");
 
+        log.info("codtra: " + codtra);
+        log.info("codfec: " + codfec);
+
+        List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania, codtra, codfec);
+
+        String json = new Gson().toJson(lstTurn);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/grabarMarcManual", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView grabarMarcManual(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/grabarMarcManual");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("idTrabAsis"));
+        String codfec = request.getParameter("iexcodfec");
+        String desfecdia = request.getParameter("desfecdia");
+        String fecMan = request.getParameter("fecMan");
+        String horaMan = request.getParameter("horaMan");
+
+        String fechayhora = fecMan + " " + horaMan;
+
+        //List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania, codtra, codfec);
+        //daoturno.insertaMarkDia(v_codcia, Empleado.getIexcodtra(), v_fecdia, v_fecha + " " + v_hora, (String) session.getAttribute("desusu"));
+        turnoDiarioService.insertaMarkDia(idCompania, codtra, codfec, fechayhora, user);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/traerMarcManualData", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerMarcManualData(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerMarcManualData");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        String codfec = request.getParameter("codfec");
+
         log.info("codtra: "+codtra);
         log.info("codfec: "+codfec);
 
-        List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania,codtra,codfec);
 
-        String json = new Gson().toJson(lstTurn);
+        //request.setAttribute("LstMarkManual",daoturno.obtenerMarksMDia(v_codcia, Empleado.getIexcodtra(), v_codfec));
+        List<MarkaManual> lstMarkMan = turnoDiarioService.obtenerMarksMDia(idCompania, codtra, codfec);
+
+        String json = new Gson().toJson(lstMarkMan);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
