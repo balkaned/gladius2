@@ -459,6 +459,7 @@ function program_tur_row(turno, fecini,  fecfin){
                   </div>
                 </div>
               </div>
+              <jsp:include page="../../../../footer.jsp"></jsp:include>
           </div>
 
           <jsp:include page="../../../../demoWidget.jsp"></jsp:include>
