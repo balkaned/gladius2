@@ -260,7 +260,7 @@
                                         <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                         	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                         	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                        	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-6">
                                             <div class="col-sm-6 col-md-6">
@@ -451,7 +451,7 @@
                                             <div id="alertLab" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
                                                 <div class="col-sm-6 col-md-6">
@@ -593,7 +593,7 @@
                                             <div id="alertPago" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
                                                 <div class="col-sm-6 col-md-6">
@@ -743,7 +743,7 @@
                                             <div id="alertSeg" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-6">
                                                 <div class="col-sm-6 col-md-6">
@@ -995,7 +995,7 @@
                                           <div id="alertDom" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                           	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                           	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                          	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                           </div>
                                           <div class="col-12 d-flex justify-content-end mt-6">
                                                 <div class="col-sm-6 col-md-6">

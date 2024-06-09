@@ -231,7 +231,7 @@
                                     <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                     </div>
                                     <div class="col-12 gy-6">
                                         <div class="row g-3 justify-content-end">
@@ -290,7 +290,7 @@
                     <div id="alertAgrupSuccess" class="mt-1 alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                         <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                         <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                     </div>
                     <div id="alertAgrupInfo" class="mt-1 alert alert-outline-info bg-info bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;" >
                         <span class="fa-solid fa-info text-info fs-0 me-3"></span>
@@ -298,7 +298,7 @@
                             <strong class="text-black">Información</strong>
                              <p class="mb-0 fw-semi-bold text-1000">Se eliminó exitosamente el elemento <a href="#">Mas información</a></p>
                         </div>
-                        <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                     </div>
 
                     <div class="card d-flex flex-column mb-1">

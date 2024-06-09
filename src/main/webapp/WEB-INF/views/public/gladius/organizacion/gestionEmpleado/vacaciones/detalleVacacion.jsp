@@ -196,7 +196,7 @@
                                  		<strong class="text-black">Error al guardar</strong>
                                  		 <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información</a></p>
                                  	</div>
-                                 	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                 	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                  </div>
                             </c:if>
 
@@ -268,7 +268,7 @@
                                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                                             	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                                             	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                             </div>
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                               <div class="modal-dialog modal-dialog-centered">

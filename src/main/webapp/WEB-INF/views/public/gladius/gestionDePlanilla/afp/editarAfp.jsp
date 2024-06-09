@@ -100,7 +100,7 @@
               <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                     <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                     <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
               </div>
               <div id="incomplete" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
               	<span class="fa-solid fa-triangle-exclamation text-warning fs-0 me-3"></span>
@@ -108,7 +108,7 @@
               		<strong class="text-black">Advertencia</strong>
               		 <p class="mb-0 fw-semi-bold text-1000">Por favor, complete todos los campos requeridos <a href="#">Mas información</a></p>
               	</div>
-              	<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+              	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
               </div>
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-end">

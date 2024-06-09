@@ -65,7 +65,7 @@
                                 				<strong class="text-black">Error</strong>
                                 				 <p class="mb-0 fw-semi-bold text-1000">${requestScope.msgErrorSaldoVac} <a href="#">Mas información</a></p>
                                 			</div>
-                                			<button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                			<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                 		   </div>
                                 	</c:if>
                                 </div>

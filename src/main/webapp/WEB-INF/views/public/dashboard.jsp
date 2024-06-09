@@ -329,7 +329,7 @@
                                         <strong class="text-black">No hay datos</strong>
                                         <p class="mb-0 fw-semi-bold text-1000">${mensaje3} <a href="#">Mas información</a></p>
                                     </div>
-                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <a class="text-info fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                 </div>
                             </c:if>
                             <c:forEach var="listCumple" items="${requestScope.listCumple}">
@@ -416,7 +416,7 @@
                                         <strong class="text-black">No hay datos</strong>
                                          <p class="mb-0 fw-semi-bold text-1000">${mensaje} <a href="#">Mas información</a></p>
                                     </div>
-                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <a class="text-info fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                 </div>
                             </c:if>
                             <c:forEach var="listIngresantes" items="${requestScope.listIngresantes}">
@@ -473,11 +473,11 @@
                             <c:if test="${mensaje2!=null}">
                                 <div id="alert" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert">
                                     <span class="fa-solid fa-triangle-exclamation  text-warning fs-0 me-3"></span>
-                                    <div class="col-10">
+                                    <div class="col-11">
                                         <strong class="text-black">No hay datos</strong>
                                          <p class="mb-0 fw-semi-bold text-1000">${mensaje2} <a href="#">Mas información</a></p>
                                     </div>
-                                    <button class="btn-close fs--2" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <a class="text-warning fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                 </div>
                             </c:if>
                             <c:forEach var="listRetirados" items="${requestScope.listRetirados}">

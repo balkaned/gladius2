@@ -620,7 +620,11 @@ width:31px;
 }
 
 .sans{
-    font-family: "serif";
+    font-family: "sans-serif";
+}
+
+.bg-yellow{
+    background-color:#FFF6C2;
 }
 
 
