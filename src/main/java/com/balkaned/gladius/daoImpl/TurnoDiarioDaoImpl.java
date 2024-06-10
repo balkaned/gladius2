@@ -187,6 +187,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "    t.iexcodcia=" + codcia + "  and " +
                 "	t.iexcodtra=" + codtra + " and " +
                 "	t.iexfecdia >= to_date('" + fecini + "','dd/mm/yyyy') and t.iexfecdia <= to_date('" + fecfin + "','dd/mm/yyyy') order by iexcodfec asc  ";
+
         return template.query(sql, new ResultSetExtractor<List<Turnodiario>>() {
             public List<Turnodiario> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Turnodiario> lista = new ArrayList<Turnodiario>();
@@ -605,7 +606,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexcodfec(rs.getString("iexcodfecha"));
                     p.setIexfecmarkas(rs.getString("iexfechamarks"));
-                    log.info("p.getIexfecmarkasAAA: "+p.getIexfecmarkas());
+                    log.info("p.getIexfecmarkasAAA: " + p.getIexfecmarkas());
                     //p.setIexfecmarkas(rs.getString("iexfechamarks"));
                     p.setIexdesusu(rs.getString("iexdesusu"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
@@ -615,5 +616,16 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 return lista;
             }
         });
+    }
+
+    public void automarkTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu) {
+
+        template.update(" call pl_automark(? ,to_date(?,'dd/mm/yyyy'),?, ?,?) ",
+
+                codcia,
+                fecdia,
+                codtra,
+                codturno,
+                desusu);
     }
 }

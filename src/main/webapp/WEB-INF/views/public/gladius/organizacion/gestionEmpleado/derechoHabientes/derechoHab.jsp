@@ -15,12 +15,14 @@
 
   <script>
     function subirImagenDer(){
-        var uploadFile = $("#uploadFile").val();
-        console.log("uploadFile: "+uploadFile);
+        var uploadFileDer = $("#uploadFileDer").val();
+        console.log("uploadFileDer: "+uploadFileDer);
 
-        var parts=uploadFile.split(".");
+        var parts=uploadFileDer.split(".");
         var part1=parts[0];
         var part2=parts[1];
+
+        console.log("part2: "+part2);
 
         if(part2=="jpg" || part2=="png"){
             $('#modalLoadingDer').modal('show');
@@ -150,7 +152,7 @@
                                                                     <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >
                                                                     <div class="mb-3">
                                                                           <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
-                                                                          <input class="form-control" id="uploadFile" name="uploadFile" type="file" />
+                                                                          <input class="form-control" id="uploadFileDer" name="uploadFile" type="file" />
                                                                     </div>
 
                                                                     <div class="col-sm-6 col-md-12 mt-2 mb-4">
@@ -206,7 +208,7 @@
   <div id="modalLoadingDer" class="modal fade" tabindex="-1" data-bs-backdrop="static" aria-labelledby="scrollingLongModalLabel2" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
   	  <div class="modal-content bg-100 rounded-2 border border-300">
-  		<form class="needs-validation" method="POST" action="" novalidate >
+  		<form class="needs-validation" method="POST" action="" novalidate>
   			<div class="modal-header border-bottom border-300 bg-300 bg-opacity-25 p-4">
   			   <h5 id="h5modalLoadinglabel" class="modal-title text-1000 fs-2 lh-sm">Subiendo imagen a la nube</h5>
   			   <!--<button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>-->

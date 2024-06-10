@@ -91,4 +91,8 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     public List<MarkaManual> obtenerMarksMDia(Integer codcia, Integer codtra, String codfec) {
         return dao.obtenerMarksMDia(codcia, codtra, codfec);
     }
+
+    public void automarkTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu){
+        dao.automarkTurnoDia(codcia,codtra,codturno,fecdia,desusu);
+    }
 }

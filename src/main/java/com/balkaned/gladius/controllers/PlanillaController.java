@@ -1825,8 +1825,6 @@ public class PlanillaController {
 
         String fechayhora = fecMan + " " + horaMan;
 
-        //List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania, codtra, codfec);
-        //daoturno.insertaMarkDia(v_codcia, Empleado.getIexcodtra(), v_fecdia, v_fecha + " " + v_hora, (String) session.getAttribute("desusu"));
         turnoDiarioService.insertaMarkDia(idCompania, codtra, codfec, fechayhora, user);
 
         String json = new Gson().toJson(null);
@@ -1854,11 +1852,38 @@ public class PlanillaController {
         log.info("codtra: "+codtra);
         log.info("codfec: "+codfec);
 
-
-        //request.setAttribute("LstMarkManual",daoturno.obtenerMarksMDia(v_codcia, Empleado.getIexcodtra(), v_codfec));
         List<MarkaManual> lstMarkMan = turnoDiarioService.obtenerMarksMDia(idCompania, codtra, codfec);
 
         String json = new Gson().toJson(lstMarkMan);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/automark", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView automark(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/automark");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        String iexcodturno = request.getParameter("iexcodturno");
+        String desfecdia = request.getParameter("desfecdia");
+
+        log.info("codtra: " + codtra);
+        log.info("iexcodturno: " + iexcodturno);
+        log.info("desfecdia: " + desfecdia);
+
+        turnoDiarioService.automarkTurnoDia(idCompania, codtra, Integer.valueOf(iexcodturno), desfecdia, user);
+
+        String json = new Gson().toJson(null);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
