@@ -39,7 +39,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
               opt += "<tr>"+
                          "<td class='pt-0 pb-2'>"+
-                             "<select name='id_domingo' id='id_domingo' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
+                             "<select name='id_domingo' id='id_domingo' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,1,"+codtra+")'>"+
                                  "<option value='-1' selected>Turno</option>";
                                  for (var i in data) {
                                      opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -48,7 +48,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                             "<select name='id_lunes' id='id_lunes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
+                             "<select name='id_lunes' id='id_lunes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,2,"+codtra+")'>"+
                                  "<option value='-1' selected>Turno</option>";
                                  for (var i in data) {
                                      opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -57,7 +57,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_martes' id='id_martes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
+                            "<select name='id_martes' id='id_martes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,3,"+codtra+")'>"+
                                   "<option value='-1' selected>Turno</option>";
                                   for (var i in data) {
                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -66,7 +66,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_miercoles' id='id_miercoles' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
+                            "<select name='id_miercoles' id='id_miercoles' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,4,"+codtra+")'>"+
                                "<option value='-1' selected>Turno</option>";
                                for (var i in data) {
                                    opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -75,7 +75,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_jueves' id='id_jueves' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                            "<select name='id_jueves' id='id_jueves' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,5,"+codtra+")'>"+
                               "<option value='-1' selected>Turno</option>";
                               for (var i in data) {
                                   opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -84,7 +84,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_viernes' id='id_viernes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
+                            "<select name='id_viernes' id='id_viernes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,6,"+codtra+")'>"+
                                "<option value='-1' selected>Turno</option>";
                                for (var i in data) {
                                    opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -93,7 +93,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_sabado' id='id_sabado' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
+                            "<select name='id_sabado' id='id_sabado' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,7,"+codtra+")'>"+
                                 "<option value='-1' selected>Turno</option>";
                                 for (var i in data) {
                                     opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -134,6 +134,10 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                  var opt2 = "<tr>";
                  var x=0;
                  var j=1;
+                 var k=1;
+                 var z=1;
+                 var fecIni7="";
+                 var fecfin7="";
 
                  for (var i in data) {
 
@@ -161,19 +165,41 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
                        //opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
                        opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-white opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
-                       //opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-danger bg-white opacity-75 ms-1 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle' title='Auto-marcado' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>Auto-Marcación</a>";
                        opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300' >Auto-marca</a>";
 
                     j++;
 
-                    if(j % 7 == 0){
+                    if(z==1){
+                        fecIni7 = data[i].desfecdia;
+                    }else if(j % 7 == 0){
+                        fecfin7 = data[i].desfecdia;
+                        z=0;
+
+                        opt2 += "<td class='pt-0 pb-2 mt-2'>"+
+                                     "<select name='id_row' id='id_row' style='width: 120px;' class='mt-2 form-select form-select-sm' onchange='program_tur_row(this,"+codtra+","+j+")'>"+
+                                       "<option value='-1' selected>Turno</option>";
+                                            opt2 += listarTurnosCombo();
+                            opt2 += "</select>"+
+                                 "<input id='fecIni7"+j+"' type='hidden' value="+fecIni7+">"+
+                                 "<input id='fecfin7"+j+"' type='hidden' value="+fecfin7+">"+
+                                 "</td>";
+
                         opt2 += "</tr>"+
                                 "<tr>";
+                        k++;
                     }
 
                     x = x+1;
+                    z=z+1;
                     opt2 += "</td>";
                  }
+
+                 opt2 += "<td class='pt-0 pb-2'>"+
+                              "<select name='id_row' id='id_row' style='width: 120px;' class=' mt-2 form-select form-select-sm' onchange='program_tur_row(this,"+codtra+","+j+")'>"+
+                                "<option value='-1' selected>Turno</option>";
+                                     opt2 += listarTurnosCombo();
+                     opt2 += "</select>"+
+                          "</td>";
 
                  $("#calendarBody2").html(opt2);
 
@@ -283,6 +309,109 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
     }, 9000);
 }
 
+function program_tur_row(codturno,codtra,j){
+   var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la fila seleccionada? ");
+
+   if (opcion == true) {
+       var codturno = codturno.value;
+       var fecini7 = document.getElementById("fecIni7"+j).value;
+       var fecfin7 = document.getElementById("fecfin7"+j).value;
+
+       console.log("fecini7: "+fecini7);
+       console.log("fecfin7: "+fecfin7);
+       console.log("codturno: "+codturno);
+       console.log("codtra: "+codtra);
+
+       $.ajax({
+            async: false,
+            url: "program_tur_row",
+            data: {
+               "codturno": codturno,
+               "fecini7": fecini7,
+               "fecfin7": fecfin7,
+               "codtra": codtra
+            },
+            success: function (data) {
+            }
+       });
+
+      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+      var iexcodpro = document.getElementById("iexcodpro").value;
+      var iexperiodo = document.getElementById("iexperiodo").value;
+      var iexcorrel = document.getElementById("iexcorrel").value;
+
+      $("#h5modalLoadinglabel").text("Actualizando");
+      $("#spanbtnModalLoading").text("Actualizando calendario");
+      $('#modalLoading').modal('show');
+
+      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+      setTimeout(function() {
+            $('#modalLoading').modal('hide');
+      }, 4000);
+
+      return true;
+   } else {
+      return false;
+   }
+}
+
+function program_tur_col(codturno,dia,codtra){
+
+    var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la columna seleccionada? ");
+
+   if (opcion == true) {
+       var codturno = codturno.value;
+       var fecini = document.getElementById("feciniAsisHidden").value;
+       var fecfin = document.getElementById("fecfinAsisHidden").value;
+
+       console.log("fecini: "+fecini);
+       console.log("fecfin: "+fecfin);
+       console.log("codturno: "+codturno);
+       console.log("codtra: "+codtra);
+       console.log("dia: "+dia);
+
+       $.ajax({
+            async: false,
+            url: "program_tur_col",
+            data: {
+               "codturno": codturno,
+               "fecini": fecini,
+               "fecfin": fecfin,
+               "codtra": codtra,
+               "dia": dia
+            },
+            success: function (data) {
+            }
+       });
+
+      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+      var iexcodpro = document.getElementById("iexcodpro").value;
+      var iexperiodo = document.getElementById("iexperiodo").value;
+      var iexcorrel = document.getElementById("iexcorrel").value;
+
+      $("#h5modalLoadinglabel").text("Actualizando");
+      $("#spanbtnModalLoading").text("Actualizando calendario");
+      $('#modalLoading').modal('show');
+
+      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+      setTimeout(function() {
+            $('#modalLoading').modal('hide');
+      }, 4000);
+
+      return true;
+   } else {
+      return false;
+   }
+}
+
 function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexperiodo){
 
     document.getElementById("idTrabAsis").value=codtra;
@@ -317,7 +446,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
               opt += "<tr>"+
                          "<td class='pt-0 pb-2'>"+
-                             "<select name='id_domingo' id='id_domingo' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'1')'>"+
+                             "<select name='id_domingo' id='id_domingo' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,1,"+codtra+")'>"+
                                  "<option value='-1' selected>Turno</option>";
                                  for (var i in data) {
                                      opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -326,7 +455,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                             "<select name='id_lunes' id='id_lunes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'2')'>"+
+                             "<select name='id_lunes' id='id_lunes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,2,"+codtra+")'>"+
                                  "<option value='-1' selected>Turno</option>";
                                  for (var i in data) {
                                      opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -335,7 +464,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_martes' id='id_martes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'3')'>"+
+                            "<select name='id_martes' id='id_martes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,3,"+codtra+")'>"+
                                   "<option value='-1' selected>Turno</option>";
                                   for (var i in data) {
                                       opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -344,7 +473,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_miercoles' id='id_miercoles' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'4')'>"+
+                            "<select name='id_miercoles' id='id_miercoles' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,4,"+codtra+")'>"+
                                "<option value='-1' selected>Turno</option>";
                                for (var i in data) {
                                    opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -353,7 +482,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_jueves' id='id_jueves' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'5')'>"+
+                            "<select name='id_jueves' id='id_jueves' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,5,"+codtra+")'>"+
                               "<option value='-1' selected>Turno</option>";
                               for (var i in data) {
                                   opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -362,7 +491,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_viernes' id='id_viernes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'6')'>"+
+                            "<select name='id_viernes' id='id_viernes' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,6,"+codtra+")'>"+
                                "<option value='-1' selected>Turno</option>";
                                for (var i in data) {
                                    opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -371,7 +500,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                          "</td>"+
 
                          "<td class='pt-0 pb-2'>"+
-                            "<select name='id_sabado' id='id_sabado' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,'7')'>"+
+                            "<select name='id_sabado' id='id_sabado' style='width: 120px;' class='form-select form-select-sm' onchange='program_tur_col(this,7,"+codtra+")'>"+
                                 "<option value='-1' selected>Turno</option>";
                                 for (var i in data) {
                                     opt += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
@@ -412,6 +541,10 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                  var opt2 = "<tr>";
                  var x=0;
                  var j=1;
+                 var k=1;
+                 var z=1;
+                 var fecIni7="";
+                 var fecfin7="";
 
                  for (var i in data) {
                     if(i==0){
@@ -438,19 +571,41 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                        //opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
                        opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-soft opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
-                       //opt2 += "<a id='popoverAutoMark"+i+"' class='btn btn-sm text-danger bg-white opacity-75 ms-1 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle' title='Auto-marcado' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>A</a>";
                        opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300'>Auto-marca</a>";
 
                     j++;
 
-                    if(j % 7 == 0){
+                    if(z==1){
+                        fecIni7 = data[i].desfecdia;
+                    }else if(j % 7 == 0){
+                        fecfin7 = data[i].desfecdia;
+                        z=0;
+
+                        opt2 += "<td class='pt-0 pb-2 mt-2'>"+
+                                     "<select name='id_row' id='id_row' style='width: 120px;' class='mt-2 form-select form-select-sm' onchange='program_tur_row(this,"+codtra+","+j+")'>"+
+                                       "<option value='-1' selected>Turno</option>";
+                                            opt2 += listarTurnosCombo();
+                            opt2 += "</select>"+
+                                 "<input id='fecIni7"+j+"' type='hidden' value="+fecIni7+">"+
+                                 "<input id='fecfin7"+j+"' type='hidden' value="+fecfin7+">"+
+                                 "</td>";
+
                         opt2 += "</tr>"+
                                 "<tr>";
+                        k++;
                     }
 
                     x = x+1;
+                    z=z+1;
                     opt2 += "</td>";
                  }
+
+                 opt2 += "<td class='pt-0 pb-2'>"+
+                              "<select name='id_row' id='id_row' style='width: 120px;' class=' mt-2 form-select form-select-sm' onchange='program_tur_row(this,"+codtra+","+j+")'>"+
+                                "<option value='-1' selected>Turno</option>";
+                                     opt2 += listarTurnosCombo();
+                     opt2 += "</select>"+
+                          "</td>";
 
                  $("#calendarBody2").html(opt2);
 
@@ -558,6 +713,26 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
     setTimeout(function() {
           $('#modalLoadingIni').modal('hide');
     }, 9000);
+}
+
+function listarTurnosCombo(){
+
+    var htmlcombo="";
+
+    $.ajax({
+         async: false,
+         url: "traerLstTurnosModal",
+         data: {
+              "fecini": '01/01/2024'
+         },
+         success: function (data) {
+            for (var i in data) {
+                 htmlcombo += "<option value="+data[i].iexcodturno+"> ["+data[i].iexflgturno+"] "+data[i].iexhorini+"--"+data[i].iexhorfin+" "+data[i].iexdesturno+"</option>";
+             }
+         }
+    });
+
+    return htmlcombo;
 }
 
 function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccionado){
@@ -1324,5 +1499,4 @@ function deleteMarcMan(codtra,a,ind){
     } else {
        return false;
     }
-
 }

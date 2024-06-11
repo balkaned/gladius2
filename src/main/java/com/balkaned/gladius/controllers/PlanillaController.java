@@ -1849,8 +1849,8 @@ public class PlanillaController {
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         String codfec = request.getParameter("codfec");
 
-        log.info("codtra: "+codtra);
-        log.info("codfec: "+codfec);
+        log.info("codtra: " + codtra);
+        log.info("codfec: " + codfec);
 
         List<MarkaManual> lstMarkMan = turnoDiarioService.obtenerMarksMDia(idCompania, codtra, codfec);
 
@@ -1910,7 +1910,148 @@ public class PlanillaController {
         log.info("iexcodfec: " + iexcodfec);
         log.info("fechadel: " + fechadel);
 
-        turnoDiarioService.deleteMarkDia(idCompania,codtra,iexcodfec,fechadel);
+        turnoDiarioService.deleteMarkDia(idCompania, codtra, iexcodfec, fechadel);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/program_tur_row", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView program_tur_row(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/program_tur_row");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String codturno = request.getParameter("codturno");
+        String fecini7 = request.getParameter("fecini7");
+        String fecfin7 = request.getParameter("fecfin7");
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+
+        log.info("codturno: " + codturno);
+        log.info("fecini7: " + fecini7);
+        log.info("fecfin7: " + fecfin7);
+        log.info("codtra: " + codtra);
+
+        Date d1 = null;
+        Date d2 = null;
+
+        if (fecini7 != null && fecfin7 != null) {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(fecini7);
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(fecfin7);
+
+            int days;
+            days = daysBetween(d1, d2) + 1;
+
+            if (days >= 1 && days <= 60) {
+                log.info("Numero de días = " + days);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(d2);
+
+                Calendar c = Calendar.getInstance();
+                c.setTime(d1);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+                do {
+                    log.info("fecha index = " + sdf.format(c.getTime()));
+
+                    turnoDiarioService.actualizaTurnoDia(idCompania,codtra, Integer.valueOf(codturno),sdf.format(c.getTime()),user);
+                    c.add(Calendar.DATE, 1);
+                } while (c2.compareTo(c) >= 0);
+            }
+        }
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/program_tur_col", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView program_tur_col(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+        log.info("/program_tur_col");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codturno = Integer.valueOf(request.getParameter("codturno"));
+        String fecini = request.getParameter("fecini");
+        String fecfin = request.getParameter("fecfin");
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        Integer dia = Integer.valueOf(request.getParameter("dia"));
+
+        log.info("codturno: " + codturno);
+        log.info("fecini: " + fecini);
+        log.info("fecfin: " + fecfin);
+        log.info("codtra: " + codtra);
+        log.info("dia: " + dia);
+
+        Date d1 = null;
+        Date d2 = null;
+
+        Integer day_week=0;
+        Integer day_week_par=0;
+        day_week_par = dia;
+
+        if (fecini!= null && fecfin!= null  )  {
+            d1 =new SimpleDateFormat("dd/mm/yyyy").parse(fecini);
+            d2 =new SimpleDateFormat("dd/mm/yyyy").parse(fecfin);
+
+            int days;
+            days = daysBetween(d1,d2)+1;
+
+            /// Pasar a stored proceduresss
+            // parametros:
+            ///  p_codcia
+            ///  p_codtra
+            ///  p_turno
+            ///  p_fecini
+            ///  p_fecfin
+            ///  dias_sem
+
+            //  daoturno.actualizaTurnoDia(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),sdf.format(c.getTime()) , (String)session.getAttribute("desusu"));
+            //daoturno.actualizaTurnoDiaCol(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),v_fecini , v_fecfin , Integer.parseInt(v_diades), (String)session.getAttribute("desusu") );
+            turnoDiarioService.actualizaTurnoDiaCol(idCompania,codtra,codturno,fecini,fecfin,dia,user);
+            //// Fin de pasar a stored procedures
+             /*
+             if (days>=1  &&  days <=60){
+                  System.out.println("Numero de Dias ="+days);
+                  Calendar c2 = Calendar.getInstance();
+                  c2.setTime(d2);
+                  Calendar c = Calendar.getInstance();
+                  c.setTime(d1);
+                // c.add(Calendar.DATE, 1);
+
+                 SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                    do{
+                       //d3= c.getTime();
+                       day_week = c.get(Calendar.DAY_OF_WEEK);
+                       System.out.println("fecha index ="+sdf.format(c.getTime())+" diasem:"+day_week);
+                     //////////  if(day_week==day_week_par){
+                      /////////////  System.out.println("fecha index ="+sdf.format(c.getTime()));
+                        //daoturno.programarTurnoDia(v_codcia, Empleado.getIexcodtra(), sdf.format(c.getTime()), (String)session.getAttribute("desusu"));
+                      //////////  daoturno.actualizaTurnoDia(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),sdf.format(c.getTime()) , (String)session.getAttribute("desusu"));
+                   //////  }
+                        c.add(Calendar.DATE, 1);
+                    }while(c2.compareTo(c)>=0 );
+              }*/
+        }
 
         String json = new Gson().toJson(null);
         response.setContentType("application/json");

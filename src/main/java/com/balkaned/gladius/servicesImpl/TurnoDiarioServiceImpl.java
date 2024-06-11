@@ -99,4 +99,8 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     public void deleteMarkDia(Integer codcia, Integer codtra, String codfec, String fechora) {
         dao.deleteMarkDia(codcia, codtra, codfec, fechora);
     }
+
+    public void actualizaTurnoDiaCol(Integer codcia, Integer codtra, Integer codturno, String fecini, String fecfin, Integer diasem, String desusu) {
+        dao.actualizaTurnoDiaCol(codcia, codtra, codturno, fecini, fecfin, diasem, desusu);
+    }
 }

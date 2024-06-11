@@ -638,4 +638,17 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codfec,
                 fechora);
     }
+
+    public void actualizaTurnoDiaCol(Integer codcia, Integer codtra, Integer codturno, String fecini, String fecfin, Integer diasem, String desusu) {
+
+        template.update(" call pl_programa_mas_turno_col(? ,?, ?, to_date(?,'dd/mm/yyyy'), to_date(?,'dd/mm/yyyy'),?, ?) ",
+
+                codcia,
+                codtra,
+                codturno,
+                fecini,
+                fecfin,
+                diasem,
+                desusu);
+    }
 }

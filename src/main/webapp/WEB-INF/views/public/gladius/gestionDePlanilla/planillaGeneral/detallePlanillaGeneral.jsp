@@ -750,10 +750,10 @@
                         <input class="form-control" name="fecfinAsis" id="fecfinAsis" type="text" required disabled />
                         <input name="fecfinAsisHidden" id="fecfinAsisHidden" type="hidden" value="" />
                       </div>
-                      <div class="col-sm-6 col-md-6">
+                      <!--<div class="col-sm-6 col-md-6">
                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Seleccionar excel</label>
                         <input class="form-control" id="uploadFile" name="uploadFile" type="file" placeholder="" />
-                      </div>
+                      </div>-->
                   </div>
                   <div class="row g-4 mt-0">
                     <div class="col-auto">
