@@ -40,7 +40,7 @@
                   </div>
                   <div class="col-md-3 col-auto">
                     <div class="flatpickr-input-container">
-                      <a href="listEmpleados" class="btn btn-primary btn-sm"><span class="fa-regular fa-star me-2"></span>Trabajadores</a>
+                      <a href="listEmpleados" class="btn btn-phoenix-secondary btn-sm"><span class="fa-solid fa-star text-yellow me-2"></span>Trabajadores</a>
                     </div>
                   </div>
                 </div>

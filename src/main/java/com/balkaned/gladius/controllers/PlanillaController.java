@@ -1990,11 +1990,11 @@ public class PlanillaController {
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        Integer codturno = Integer.valueOf(request.getParameter("codturno"));
+        String codturno = request.getParameter("codturno");
         String fecini = request.getParameter("fecini");
         String fecfin = request.getParameter("fecfin");
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
-        Integer dia = Integer.valueOf(request.getParameter("dia"));
+        String dia = request.getParameter("dia");
 
         log.info("codturno: " + codturno);
         log.info("fecini: " + fecini);
@@ -2007,7 +2007,7 @@ public class PlanillaController {
 
         Integer day_week=0;
         Integer day_week_par=0;
-        day_week_par = dia;
+        day_week_par = Integer.valueOf(dia);
 
         if (fecini!= null && fecfin!= null  )  {
             d1 =new SimpleDateFormat("dd/mm/yyyy").parse(fecini);
@@ -2016,7 +2016,7 @@ public class PlanillaController {
             int days;
             days = daysBetween(d1,d2)+1;
 
-            /// Pasar a stored proceduresss
+            /// Pasar a stored procedure
             // parametros:
             ///  p_codcia
             ///  p_codtra
@@ -2025,32 +2025,34 @@ public class PlanillaController {
             ///  p_fecfin
             ///  dias_sem
 
-            //  daoturno.actualizaTurnoDia(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),sdf.format(c.getTime()) , (String)session.getAttribute("desusu"));
             //daoturno.actualizaTurnoDiaCol(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),v_fecini , v_fecfin , Integer.parseInt(v_diades), (String)session.getAttribute("desusu") );
-            turnoDiarioService.actualizaTurnoDiaCol(idCompania,codtra,codturno,fecini,fecfin,dia,user);
+            turnoDiarioService.actualizaTurnoDiaCol(idCompania,codtra,Integer.parseInt(codturno),fecini,fecfin,Integer.parseInt(dia),user);
+
             //// Fin de pasar a stored procedures
-             /*
-             if (days>=1  &&  days <=60){
-                  System.out.println("Numero de Dias ="+days);
+            /*if (days>=1  &&  days <=60){
+                  log.info("Numero de días = "+days);
                   Calendar c2 = Calendar.getInstance();
                   c2.setTime(d2);
                   Calendar c = Calendar.getInstance();
                   c.setTime(d1);
-                // c.add(Calendar.DATE, 1);
 
                  SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-                    do{
-                       //d3= c.getTime();
-                       day_week = c.get(Calendar.DAY_OF_WEEK);
-                       System.out.println("fecha index ="+sdf.format(c.getTime())+" diasem:"+day_week);
-                     //////////  if(day_week==day_week_par){
-                      /////////////  System.out.println("fecha index ="+sdf.format(c.getTime()));
-                        //daoturno.programarTurnoDia(v_codcia, Empleado.getIexcodtra(), sdf.format(c.getTime()), (String)session.getAttribute("desusu"));
-                      //////////  daoturno.actualizaTurnoDia(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),sdf.format(c.getTime()) , (String)session.getAttribute("desusu"));
-                   //////  }
-                        c.add(Calendar.DATE, 1);
-                    }while(c2.compareTo(c)>=0 );
-              }*/
+                 do{
+                   //d3= c.getTime();
+                   day_week = c.get(Calendar.DAY_OF_WEEK);
+                   log.info("fecha index = "+sdf.format(c.getTime())+" diasem: "+day_week);
+
+                   if(day_week==day_week_par){
+                       log.info("fecha index = "+sdf.format(c.getTime()));
+                       turnoDiarioService.actualizaTurnoDia(idCompania,codtra, Integer.valueOf(codturno),sdf.format(c.getTime()),user);
+
+                    //daoturno.actualizaTurnoDia(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),sdf.format(c.getTime()) , (String)session.getAttribute("desusu");
+                   }
+
+                    c.add(Calendar.DATE, 1);
+
+                 }while(c2.compareTo(c)>=0);
+            }*/
         }
 
         String json = new Gson().toJson(null);

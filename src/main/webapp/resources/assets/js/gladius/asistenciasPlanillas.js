@@ -133,21 +133,27 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
                  var opt2 = "<tr>";
                  var x=0;
-                 var j=1;
+                 var j=0;
                  var k=1;
                  var z=1;
                  var fecIni7="";
                  var fecfin7="";
 
                  for (var i in data) {
+                    var inicioDiaSemana = data[0].iexcoddiasem;
+                    console.log("inicioDiaSemana: "+inicioDiaSemana);
 
                     if(i==0){
-                        var ini = data[i].iexcoddiasem;
-                        x = x + ini;
+                        for(let l=1; l < inicioDiaSemana; l++){
+                            var ini = data[i].iexcoddiasem;
+                            x = x + ini;
+                            var m=inicioDiaSemana-l;
 
-                        opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
-                                    "<span class='ms-1 text-400 fs-0'>31</span><br>"+
-                                "</td>";
+                            opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                        "<span class='ms-1 text-400 fs-0'>día</span><br>"+
+                                    "</td>";
+                            j++;
+                        }
                     }
 
                     opt2 += "<td id='background"+i+"' class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
@@ -208,7 +214,10 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                  var b=1;
 
                  for (var i in data) {
-                     y=b-1;
+                     var inicioDiaSemana2 = data[0].iexcoddiasem;
+                     console.log("inicioDiaSeman2: "+inicioDiaSemana2);
+
+                     y=b-inicioDiaSemana2;
                      a=b-2;
 
                      if(b % 7 == 0){
@@ -307,109 +316,6 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
     setTimeout(function() {
           $('#modalLoadingIni').modal('hide');
     }, 9000);
-}
-
-function program_tur_row(codturno,codtra,j){
-   var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la fila seleccionada? ");
-
-   if (opcion == true) {
-       var codturno = codturno.value;
-       var fecini7 = document.getElementById("fecIni7"+j).value;
-       var fecfin7 = document.getElementById("fecfin7"+j).value;
-
-       console.log("fecini7: "+fecini7);
-       console.log("fecfin7: "+fecfin7);
-       console.log("codturno: "+codturno);
-       console.log("codtra: "+codtra);
-
-       $.ajax({
-            async: false,
-            url: "program_tur_row",
-            data: {
-               "codturno": codturno,
-               "fecini7": fecini7,
-               "fecfin7": fecfin7,
-               "codtra": codtra
-            },
-            success: function (data) {
-            }
-       });
-
-      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
-      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
-      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
-      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
-      var iexcodpro = document.getElementById("iexcodpro").value;
-      var iexperiodo = document.getElementById("iexperiodo").value;
-      var iexcorrel = document.getElementById("iexcorrel").value;
-
-      $("#h5modalLoadinglabel").text("Actualizando");
-      $("#spanbtnModalLoading").text("Actualizando calendario");
-      $('#modalLoading').modal('show');
-
-      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
-
-      setTimeout(function() {
-            $('#modalLoading').modal('hide');
-      }, 4000);
-
-      return true;
-   } else {
-      return false;
-   }
-}
-
-function program_tur_col(codturno,dia,codtra){
-
-    var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la columna seleccionada? ");
-
-   if (opcion == true) {
-       var codturno = codturno.value;
-       var fecini = document.getElementById("feciniAsisHidden").value;
-       var fecfin = document.getElementById("fecfinAsisHidden").value;
-
-       console.log("fecini: "+fecini);
-       console.log("fecfin: "+fecfin);
-       console.log("codturno: "+codturno);
-       console.log("codtra: "+codtra);
-       console.log("dia: "+dia);
-
-       $.ajax({
-            async: false,
-            url: "program_tur_col",
-            data: {
-               "codturno": codturno,
-               "fecini": fecini,
-               "fecfin": fecfin,
-               "codtra": codtra,
-               "dia": dia
-            },
-            success: function (data) {
-            }
-       });
-
-      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
-      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
-      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
-      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
-      var iexcodpro = document.getElementById("iexcodpro").value;
-      var iexperiodo = document.getElementById("iexperiodo").value;
-      var iexcorrel = document.getElementById("iexcorrel").value;
-
-      $("#h5modalLoadinglabel").text("Actualizando");
-      $("#spanbtnModalLoading").text("Actualizando calendario");
-      $('#modalLoading').modal('show');
-
-      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
-
-      setTimeout(function() {
-            $('#modalLoading').modal('hide');
-      }, 4000);
-
-      return true;
-   } else {
-      return false;
-   }
 }
 
 function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexperiodo){
@@ -547,13 +453,20 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                  var fecfin7="";
 
                  for (var i in data) {
-                    if(i==0){
-                        var ini = data[i].iexcoddiasem;
-                        x = x + ini;
+                    var inicioDiaSemana = data[0].iexcoddiasem;
+                    console.log("inicioDiaSemana: "+inicioDiaSemana);
 
-                        opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
-                                    "<span class='ms-1 text-400 fs-0'>31</span><br>"+
-                                "</td>";
+                    if(i==0){
+                        for(let l=1; l < inicioDiaSemana; l++){
+                            var ini = data[i].iexcoddiasem;
+                            x = x + ini;
+                            var m=inicioDiaSemana-l;
+
+                            opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                        "<span class='ms-1 text-400 fs-0'>día</span><br>"+
+                                    "</td>";
+                            j++;
+                        }
                     }
 
                     opt2 += "<td id='background"+i+"' class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
@@ -614,7 +527,10 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                  var b=1;
 
                  for (var i in data) {
-                     y=b-1;
+                     var inicioDiaSemana2 = data[0].iexcoddiasem;
+                     console.log("inicioDiaSeman2: "+inicioDiaSemana2);
+
+                     y=b-inicioDiaSemana2;
                      a=b-2;
 
                      if(b % 7 == 0){
@@ -735,6 +651,109 @@ function listarTurnosCombo(){
     return htmlcombo;
 }
 
+function program_tur_row(codturno,codtra,j){
+   var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la fila seleccionada? ");
+
+   if (opcion == true) {
+       var codturno = codturno.value;
+       var fecini7 = document.getElementById("fecIni7"+j).value;
+       var fecfin7 = document.getElementById("fecfin7"+j).value;
+
+       console.log("fecini7: "+fecini7);
+       console.log("fecfin7: "+fecfin7);
+       console.log("codturno: "+codturno);
+       console.log("codtra: "+codtra);
+
+       $.ajax({
+            async: false,
+            url: "program_tur_row",
+            data: {
+               "codturno": codturno,
+               "fecini7": fecini7,
+               "fecfin7": fecfin7,
+               "codtra": codtra
+            },
+            success: function (data) {
+            }
+       });
+
+      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+      var iexcodpro = document.getElementById("iexcodpro").value;
+      var iexperiodo = document.getElementById("iexperiodo").value;
+      var iexcorrel = document.getElementById("iexcorrel").value;
+
+      $("#h5modalLoadinglabel").text("Actualizando");
+      $("#spanbtnModalLoading").text("Actualizando calendario");
+      $('#modalLoading').modal('show');
+
+      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+      setTimeout(function() {
+            $('#modalLoading').modal('hide');
+      }, 4000);
+
+      return true;
+   } else {
+      return false;
+   }
+}
+
+function program_tur_col(codturno,dia,codtra){
+
+    var opcion = confirm("Esta seguro de que desea cambiar masivamente el tipo de turno a toda la columna seleccionada? ");
+
+   if (opcion == true) {
+       var codturno = codturno.value;
+       var fecini = document.getElementById("feciniAsisHidden").value;
+       var fecfin = document.getElementById("fecfinAsisHidden").value;
+
+       console.log("fecini: "+fecini);
+       console.log("fecfin: "+fecfin);
+       console.log("codturno: "+codturno);
+       console.log("codtra: "+codtra);
+       console.log("dia: "+dia);
+
+       $.ajax({
+            async: false,
+            url: "program_tur_col",
+            data: {
+               "codturno": codturno,
+               "fecini": fecini,
+               "fecfin": fecfin,
+               "codtra": codtra,
+               "dia": dia
+            },
+            success: function (data) {
+            }
+       });
+
+      var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+      var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+      var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+      var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+      var iexcodpro = document.getElementById("iexcodpro").value;
+      var iexperiodo = document.getElementById("iexperiodo").value;
+      var iexcorrel = document.getElementById("iexcorrel").value;
+
+      $("#h5modalLoadinglabel").text("Actualizando");
+      $("#spanbtnModalLoading").text("Actualizando calendario");
+      $('#modalLoading').modal('show');
+
+      verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+      setTimeout(function() {
+            $('#modalLoading').modal('hide');
+      }, 4000);
+
+      return true;
+   } else {
+      return false;
+   }
+}
+
 function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccionado){
 
     $.ajax({
@@ -827,7 +846,7 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                     html += "<div class='row col-12 mt-3 ps-0'>"+
                                 "<div class='col-auto pe-0' id='grabarClick"+ind+"' >"+
                                     "<a class='btn btn-sm btn-primary mt-1 ms-0'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
-                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-regular fa-star text-warning me-1'></span>Calificar</a>"+
+                                    "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='calificarTurnoDia("+ind+");' ><span class='fa-solid fa-star text-yellow me-1'></span>Calificar</a>"+
                                 "</div>"+
                             "</div>"+
                             "<div class='table-responsive scrollbar mt-3'>"+
@@ -1370,10 +1389,10 @@ function traertLstNroFechaHora(codtra,iexcodfec){
          success: function (data) {
              for (var i in data) {
 
-                 html2 += "<div class='border border-200'>"+
+                 html2 += "<tr class='border border-200'>"+
                              "<td class='ps-3'>"+i+"</td>"+
                              "<td class='ps-3'>"+data[i].iexfechamarks+"</td>"+
-                          "</div>";
+                          "</tr>";
              }
          }
     });
