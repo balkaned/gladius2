@@ -92,7 +92,11 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
         return dao.obtenerMarksMDia(codcia, codtra, codfec);
     }
 
-    public void automarkTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu){
-        dao.automarkTurnoDia(codcia,codtra,codturno,fecdia,desusu);
+    public void automarkTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu) {
+        dao.automarkTurnoDia(codcia, codtra, codturno, fecdia, desusu);
+    }
+
+    public void deleteMarkDia(Integer codcia, Integer codtra, String codfec, String fechora) {
+        dao.deleteMarkDia(codcia, codtra, codfec, fechora);
     }
 }

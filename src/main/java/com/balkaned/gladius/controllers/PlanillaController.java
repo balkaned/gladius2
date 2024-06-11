@@ -1890,4 +1890,33 @@ public class PlanillaController {
 
         return null;
     }
+
+    @RequestMapping(value = "/deleteMarcMan", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView deleteMarcMan(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/deleteMarcMan");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer codtra = Integer.valueOf(request.getParameter("codtra"));
+        String iexcodfec = request.getParameter("iexcodfec");
+        String fechadel = request.getParameter("fechadel");
+
+        log.info("codtra: " + codtra);
+        log.info("iexcodfec: " + iexcodfec);
+        log.info("fechadel: " + fechadel);
+
+        turnoDiarioService.deleteMarkDia(idCompania,codtra,iexcodfec,fechadel);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
 }

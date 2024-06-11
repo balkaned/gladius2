@@ -628,4 +628,14 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codturno,
                 desusu);
     }
+
+    public void deleteMarkDia(Integer codcia, Integer codtra, String codfec, String fechora) {
+
+        template.update(" delete from  iexmarkas_manual where iexcodcia=?  and iexcodtra=?  and iexcodfecha=?  and iexfechamarks=to_timestamp(?,'dd/mm/yyyy hh24:mi:ss') ",
+
+                codcia,
+                codtra,
+                codfec,
+                fechora);
+    }
 }

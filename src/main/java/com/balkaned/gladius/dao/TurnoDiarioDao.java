@@ -43,4 +43,6 @@ public interface TurnoDiarioDao {
     public List<MarkaManual> obtenerMarksMDia(Integer codcia, Integer codtra, String codfec);
 
     public void automarkTurnoDia(Integer codcia, Integer codtra, Integer codturno, String fecdia, String desusu);
+
+    public void deleteMarkDia(Integer codcia, Integer codtra, String codfec, String fechora);
 }

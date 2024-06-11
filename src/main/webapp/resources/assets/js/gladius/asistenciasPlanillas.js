@@ -687,14 +687,12 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                                         "<a class='btn btn-sm btn-primary mt-1 ms-0' onclick='grabarMarcManual("+ind+");'><span class='fa-regular fa-floppy-disk me-1'></span>Grabar</a>"+
                                     "</div>"+
                                     "<div class='col-12 mt-3 m-3'>";
-                                        if(traerMarcManualData(codtra,data.iexcodfec)==""){
+                                        if(traerMarcManualData(codtra,data.iexcodfec,ind)==""){
                                             html += "<td class='ms-2'>No hay data</td>";
                                         }else{
-                                           html += traerMarcManualData(codtra,data.iexcodfec);
+                                           html += traerMarcManualData(codtra,data.iexcodfec,ind);
                                         }
 
-                                        //<td>  ${LstMarkManual.iexfecmarkas}</td>
-                                        //<td><a href="#" onclick="deleteForm('${LstMarkManual.iexfecmarkas}')"  >[X]</a></td>
                             html += "</div>"+
                                     "<div class='col-12 ps-0 d-flex justify-content-end'>"+
                                         "<a class='btn btn-sm btn-phoenix-secondary mt-1 ms-1' onclick='cerrarPopover("+ind+");'>Cerrar</a>"+
@@ -717,7 +715,6 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
 }
 
 function traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,desfecdia,iexcodfec){
-   //console.log("traerLstTurnosModal desfecdia: "+desfecdia);
    var sel="";
 
    $.ajax({
@@ -727,7 +724,7 @@ function traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,desfecdia,iexcod
           "fecini": fecini
      },
      success: function (data2) {
-          sel += "<select id='cod_turno"+ind+"' onchange='setearVariableCodTurnoSes("+ind+")' style='font-size:10px;' class='form-select form-select-sm' name='iexcodcon'  required>"+
+          sel += "<select id='cod_turno"+ind+"' onchange='setearVariableCodTurnoSes("+ind+")' style='width:205px; font-size:10px;' class='form-select form-select-sm' name='iexcodcon'  required>"+
                     "<option value='' selected >Turno</option>";
 
           for (var i in data2){
@@ -977,7 +974,6 @@ function calificar(){
         		"codtra": idTrabAsisHidden
         		},
         	 success: function (data) {
-
         	 }
         });
 
@@ -1082,6 +1078,7 @@ function consolidar(){
 }
 
 function reporteAsistencias(){
+
     var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
     var trabAsisHidden = document.getElementById("trabAsisHidden").value;
     var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
@@ -1193,15 +1190,15 @@ function traertLstNroFechaHora(codtra,iexcodfec){
          url: "traertLstNroFechaHora",
          data: {
             "codtra": codtra,
-            "codfec": iexcodfec
+            "codfec": iexcodfec.trim()
             },
          success: function (data) {
              for (var i in data) {
 
-                 html2 += "<tr>"+
+                 html2 += "<div class='border border-200'>"+
                              "<td class='ps-3'>"+i+"</td>"+
                              "<td class='ps-3'>"+data[i].iexfechamarks+"</td>"+
-                          "</tr>";
+                          "</div>";
              }
          }
     });
@@ -1209,7 +1206,7 @@ function traertLstNroFechaHora(codtra,iexcodfec){
     return html2;
 }
 
-function traerMarcManualData(codtra,iexcodfec){
+function traerMarcManualData(codtra,iexcodfec,ind){
 
     var html3 = "";
 
@@ -1218,14 +1215,15 @@ function traerMarcManualData(codtra,iexcodfec){
          url: "traerMarcManualData",
          data: {
             "codtra": codtra,
-            "codfec": iexcodfec
+            "codfec": iexcodfec.trim()
             },
          success: function (data) {
              for (var i in data) {
 
                  html3 += "<tr>"+
-                             "<td class='ps-3'>"+data[i].iexfechamarks+"</td>"+
-                             "<td><a href='#' onclick='deleteMarcMan('"+data[i].iexfechamarks+"')'>x</a></td>"+
+                             "<td class='ps-3 pe-3'>"+data[i].iexfecmarkas+"</td>"+
+                             "<input type='hidden' id='iexfecmarkasIp_"+i+"_"+ind+"' value='"+data[i].iexfecmarkas+"' />"+
+                             "<td class='ms-3'><a class='ms-2' href='#' onclick='deleteMarcMan("+codtra+","+i+","+ind+")'>x</a></td></br>"+
                           "</tr>";
              }
          }
@@ -1235,36 +1233,96 @@ function traerMarcManualData(codtra,iexcodfec){
 }
 
 function automark(ind,codtra,iexcodturno){
-    var desfecdia = document.getElementById("ip_desfecdia"+ind).value;
 
-    $.ajax({
-         async: false,
-         url: "automark",
-         data: {
-            "codtra": codtra,
-            "iexcodturno": iexcodturno,
-            "desfecdia": desfecdia
-            },
-         success: function (data) {
+    var opcion = confirm("Esta seguro que desea generar una marcación automática/ aleatoria? ");
 
-         }
-    });
+    if (opcion == true) {
+        var desfecdia = document.getElementById("ip_desfecdia"+ind).value;
 
-   var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
-   var trabAsisHidden = document.getElementById("trabAsisHidden").value;
-   var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
-   var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
-   var iexcodpro = document.getElementById("iexcodpro").value;
-   var iexperiodo = document.getElementById("iexperiodo").value;
-   var iexcorrel = document.getElementById("iexcorrel").value;
+        $.ajax({
+             async: false,
+             url: "automark",
+             data: {
+                "codtra": codtra,
+                "iexcodturno": iexcodturno,
+                "desfecdia": desfecdia
+                },
+             success: function (data) {
 
-   $("#h5modalLoadinglabel").text("Actualizando");
-   $("#spanbtnModalLoading").text("Actualizando calendario");
-   $('#modalLoading').modal('show');
+             }
+        });
 
-   verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+       var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+       var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+       var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+       var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+       var iexcodpro = document.getElementById("iexcodpro").value;
+       var iexperiodo = document.getElementById("iexperiodo").value;
+       var iexcorrel = document.getElementById("iexcorrel").value;
 
-   setTimeout(function() {
-         $('#modalLoading').modal('hide');
-   }, 4000);
+       $("#h5modalLoadinglabel").text("Actualizando");
+       $("#spanbtnModalLoading").text("Actualizando calendario");
+       $('#modalLoading').modal('show');
+
+       verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+       setTimeout(function() {
+             $('#modalLoading').modal('hide');
+       }, 4000);
+
+       return true;
+    } else {
+       return false;
+    }
+}
+
+function deleteMarcMan(codtra,a,ind){
+
+    var opcion = confirm("Esta seguro que desea eliminar esta marcación? ");
+
+    if (opcion == true) {
+        var iexcodfec = document.getElementById("ipHiddeniexcodfec"+ind).value;
+        var fechadel = document.getElementById("iexfecmarkasIp_"+a+"_"+ind).value;
+
+        console.log("iexcodfec: "+iexcodfec);
+        console.log("fechadel: "+fechadel);
+
+        $.ajax({
+             async: false,
+             url: "deleteMarcMan",
+             data: {
+                "codtra": codtra,
+                "iexcodfec": iexcodfec,
+                "fechadel": fechadel
+             },
+             success: function (data) {
+
+             }
+        });
+
+        $("#popoverVer"+ind).popover('hide');
+
+       var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
+       var trabAsisHidden = document.getElementById("trabAsisHidden").value;
+       var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
+       var fecfinAsisHidden = document.getElementById("fecfinAsisHidden").value;
+       var iexcodpro = document.getElementById("iexcodpro").value;
+       var iexperiodo = document.getElementById("iexperiodo").value;
+       var iexcorrel = document.getElementById("iexcorrel").value;
+
+       $("#h5modalLoadinglabel").text("Actualizando");
+       $("#spanbtnModalLoading").text("Actualizando calendario");
+       $('#modalLoading').modal('show');
+
+       verAsistenciaPeriodoTrab(idTrabAsisHidden,trabAsisHidden,feciniAsisHidden,fecfinAsisHidden,iexcodpro,iexperiodo);
+
+       setTimeout(function() {
+             $('#modalLoading').modal('hide');
+       }, 4000);
+
+       return true;
+    } else {
+       return false;
+    }
+
 }
