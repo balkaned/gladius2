@@ -138,6 +138,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                  var z=1;
                  var fecIni7="";
                  var fecfin7="";
+                 var f=0;
 
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
@@ -176,10 +177,13 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                        opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300' >Auto-marca</a>";
 
                     j++;
+                    f++;
+                    console.log("j: "+j);
 
                     if(z==1){
                         fecIni7 = data[i].desfecdia;
                     }else if(j % 7 == 0){
+                        f=1;
                         fecfin7 = data[i].desfecdia;
                         z=0;
 
@@ -200,6 +204,18 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                     x = x+1;
                     z=z+1;
                     opt2 += "</td>";
+                 }
+
+                 console.log("f: "+f);
+                 var fa=f-1
+                 var fb=1;
+
+                 for(let l=f; l <= 7; l++){
+
+                     opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                 "<span class='ms-1 text-400 fs-0'>"+fb+"</span><br>"+
+                             "</td>";
+                     fb++;
                  }
 
                  opt2 += "<td class='pt-0 pb-2'>"+
@@ -453,6 +469,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                  var z=1;
                  var fecIni7="";
                  var fecfin7="";
+                 var f=0;
 
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
@@ -491,10 +508,13 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                        opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300' >Auto-marca</a>";
 
                     j++;
+                    f++;
+                    console.log("j: "+j);
 
                     if(z==1){
                         fecIni7 = data[i].desfecdia;
                     }else if(j % 7 == 0){
+                        f=1;
                         fecfin7 = data[i].desfecdia;
                         z=0;
 
@@ -515,6 +535,18 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                     x = x+1;
                     z=z+1;
                     opt2 += "</td>";
+                 }
+
+                 console.log("f: "+f);
+                 var fa=f-1
+                 var fb=1;
+
+                 for(let l=f; l <= 7; l++){
+
+                     opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
+                                 "<span class='ms-1 text-400 fs-0'>"+fb+"</span><br>"+
+                             "</td>";
+                     fb++;
                  }
 
                  opt2 += "<td class='pt-0 pb-2'>"+
