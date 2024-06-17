@@ -141,18 +141,20 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
+                    var inib = data[0].iexcoddiasem-2;
                     console.log("inicioDiaSemana: "+inicioDiaSemana);
 
                     if(i==0){
                         for(let l=1; l < inicioDiaSemana; l++){
                             var ini = data[i].iexcoddiasem;
                             x = x + ini;
-                            var m=inicioDiaSemana-l;
+                            var cal=31-inib;
 
                             opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
-                                        "<span class='ms-1 text-400 fs-0'>día</span><br>"+
+                                        "<span class='ms-1 text-400 fs-0'>"+cal+"</span><br>"+
                                     "</td>";
                             j++;
+                            inib=inib-1;
                         }
                     }
 
@@ -446,7 +448,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                  var opt2 = "<tr>";
                  var x=0;
-                 var j=1;
+                 var j=0;
                  var k=1;
                  var z=1;
                  var fecIni7="";
@@ -454,18 +456,20 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
+                    var inib = data[0].iexcoddiasem-2;
                     console.log("inicioDiaSemana: "+inicioDiaSemana);
 
                     if(i==0){
                         for(let l=1; l < inicioDiaSemana; l++){
                             var ini = data[i].iexcoddiasem;
                             x = x + ini;
-                            var m=inicioDiaSemana-l;
+                            var cal=31-inib;
 
                             opt2 += "<td class='pt-2 pb-2 ps-2 bg-200 bg-opacity-75 border border-100'>"+
-                                        "<span class='ms-1 text-400 fs-0'>día</span><br>"+
+                                        "<span class='ms-1 text-400 fs-0'>"+cal+"</span><br>"+
                                     "</td>";
                             j++;
+                            inib=inib-1;
                         }
                     }
 
@@ -483,8 +487,8 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                                }
 
                        //opt2 += "<a id='popoverVer"+i+"' class='bg-soft btn btn-sm text-400 bg-white pt-0 pb-1 fs--1 mt-1 fw-semi-bold border border-1 border-300' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''><span id='dotv"+i+"' class='text-success fs-1 me-1'>&#x2022;</span>Marcación</a>";
-                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-soft opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
-                       opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300'>Auto-marca</a>";
+                       opt2 += "<a id='popoverVer"+i+"' class='btn btn-sm text-success bg-white opacity-75 pt-2 ps-2 pe-2 pb-1 fs--1 mt-1 border border-1 border-300 rounded-circle ' title='Gestión de marcaciones' data-bs-toggle='popover' data-bs-html='true' data-bs-content=''>M</a>";
+                       opt2 += "<a id='popoverAutoMark"+i+"' onclick='automark("+i+","+codtra+","+data[i].iexcodturno+")' class='ms-1 rounded-4 bg-soft btn btn-sm text-danger bg-white pt-2 mt-1 pb-2 fs--2 ps-2 pe-2 border border-1 border-300' >Auto-marca</a>";
 
                     j++;
 
@@ -606,7 +610,7 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                            $('#spandesiniturno'+i).addClass('text-white');
                         }else if(data[i].iexindfalta==1){
                            $('#background'+i).removeClass('bg-opacity-50 bg-300');
-                           $('#background'+i).addClass('bg-opacity-75 bg-gradient bg-warning');
+                           $('#background'+i).addClass('bg-opacity-75 bg-gradient bg-warning rounded-3');
 
                            $('#spanDiaCalendar'+i).addClass('text-white');
                            $('#spanturno'+i).addClass('text-white');
@@ -1471,7 +1475,6 @@ function automark(ind,codtra,iexcodturno){
 }
 
 function deleteMarcMan(codtra,a,ind){
-
     var opcion = confirm("Esta seguro que desea eliminar esta marcación? ");
 
     if (opcion == true) {
