@@ -236,7 +236,7 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                      console.log("inicioDiaSeman2: "+inicioDiaSemana2);
 
                      y=b-inicioDiaSemana2;
-                     a=b-2;
+                     a=b-inicioDiaSemana2+1;
 
                      if(b % 7 == 0){
                          $('#spanDiaCalendar'+y).addClass('text-warning');
@@ -567,9 +567,12 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                      console.log("inicioDiaSeman2: "+inicioDiaSemana2);
 
                      y=b-inicioDiaSemana2;
-                     a=b-2;
+                     a=b-inicioDiaSemana2+1;
 
                      if(b % 7 == 0){
+                         console.log("y: "+y);
+                         console.log("a: "+a);
+
                          $('#spanDiaCalendar'+y).addClass('text-warning');
 
                          $('#popoverVer'+y).removeClass('text-success');
