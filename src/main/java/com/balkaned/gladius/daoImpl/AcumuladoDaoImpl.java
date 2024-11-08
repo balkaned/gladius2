@@ -3,31 +3,35 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.models.EmpAcum;
 import com.balkaned.gladius.dao.AcumuladoDao;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.engine.internal.ParameterBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository("AcumuladoDao")
 @Slf4j
 public class AcumuladoDaoImpl implements AcumuladoDao {
 
-    JdbcTemplate template;
-
-    @Autowired
-    public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
-    }
+    private JdbcTemplate jdbc;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public List<EmpAcum> listarEmpAcum(Integer codcia, Integer codtra) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexaniotrib, " +
@@ -44,43 +48,59 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexfeccrea, " +
                 "iexusumod, " +
                 "iexfecmod " +
-                "from  " +
-                "iexacumval where iexcodcia=" + codcia + " and iexcodtra=" + codtra + "  order by iexaniotrib asc  ";
+                "from iexacumval " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra " +
+                "order by iexaniotrib asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<EmpAcum>>() {
-            public List<EmpAcum> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<EmpAcum> lista = new ArrayList<EmpAcum>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codtra", codtra);
 
-                while (rs.next()) {
-                    EmpAcum p = new EmpAcum();
+        log.info("Recupero la data...");
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexaniotrib(rs.getString("iexaniotrib"));
-                    p.setIexrem_acum(rs.getDouble("iexrem_acum"));
-                    p.setIexrem5taafec_acum(rs.getDouble("iexrem5taafec_acum"));
-                    p.setIexrenta5ta_acum(rs.getDouble("iexrenta5ta_acum"));
-                    p.setIexremafec5ta_otrcia(rs.getDouble("iexremafec5ta_otrcia"));
-                    p.setIexrent5ta_otrcia(rs.getDouble("iexrent5ta_otrcia"));
-                    p.setIexrem4ta_acum(rs.getDouble("iexrem4ta_acum"));
-                    p.setIexrenta4ta_acum(rs.getDouble("iexrenta4ta_acum"));
-                    p.setIexremotr_acum(rs.getDouble("iexremotr_acum"));
-                    p.setIexrenta_acum(rs.getDouble("iexrenta_acum"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        try {
+            return Collections.singletonList(namedParameterJdbcTemplate.queryForObject(
+                    sql, namedParameters, BeanPropertyRowMapper.newInstance(EmpAcum.class)));
+        }catch (NullPointerException ex){
+            log.info("No se encontraron resultados ");
+            return null;
+        }
     }
+
+    /*return jdbc.query(sql, new ResultSetExtractor<List<EmpAcum>>() {
+        public List<EmpAcum> extractData(ResultSet rs) throws SQLException, DataAccessException {
+            List<EmpAcum> lista = new ArrayList<EmpAcum>();
+
+            while (rs.next()) {
+                EmpAcum p = new EmpAcum();
+
+                p.setIexcodcia(rs.getInt("iexcodcia"));
+                p.setIexcodtra(rs.getInt("iexcodtra"));
+                p.setIexaniotrib(rs.getString("iexaniotrib"));
+                p.setIexrem_acum(rs.getDouble("iexrem_acum"));
+                p.setIexrem5taafec_acum(rs.getDouble("iexrem5taafec_acum"));
+                p.setIexrenta5ta_acum(rs.getDouble("iexrenta5ta_acum"));
+                p.setIexremafec5ta_otrcia(rs.getDouble("iexremafec5ta_otrcia"));
+                p.setIexrent5ta_otrcia(rs.getDouble("iexrent5ta_otrcia"));
+                p.setIexrem4ta_acum(rs.getDouble("iexrem4ta_acum"));
+                p.setIexrenta4ta_acum(rs.getDouble("iexrenta4ta_acum"));
+                p.setIexremotr_acum(rs.getDouble("iexremotr_acum"));
+                p.setIexrenta_acum(rs.getDouble("iexrenta_acum"));
+                p.setIexusucrea(rs.getString("iexusucrea"));
+                p.setIexfeccrea(rs.getString("iexfeccrea"));
+                p.setIexusumod(rs.getString("iexusumod"));
+                p.setIexfecmod(rs.getString("iexfecmod"));
+
+                lista.add(p);
+            }
+            return lista;
+        }
+    });*/
 
     public void insertarEmpAcum(EmpAcum empacu) {
 
-        template.update("  insert into iexacumval( " +
+        jdbc.update("  insert into iexacumval( " +
                         " iexcodcia,            iexcodtra,           iexaniotrib,           iexrem_acum, " +
                         "iexrem5taafec_acum,   iexrenta5ta_acum ,   iexremafec5ta_otrcia,  iexrent5ta_otrcia, " +
                         "iexrem4ta_acum	,     iexrenta4ta_acum,    iexremotr_acum	,     iexrenta_acum, " +
@@ -118,7 +138,7 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "and iexcodtra=" + empacu.getIexcodtra() + " " +
                 "and iexaniotrib='" + empacu.getIexaniotrib() + "' ";
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
+        return (Integer) jdbc.query(sql, new ResultSetExtractor<Integer>() {
             public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
                 while (rs.next()) {
                     resultado[0] = rs.getInt("result");
@@ -130,7 +150,7 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
 
     public EmpAcum getEmpAcum(Integer codcia, Integer codtra, String anio) {
 
-        String sql=" select  " +
+        String sql = " select  " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexaniotrib, " +
@@ -148,12 +168,12 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexusumod, " +
                 "iexfecmod " +
                 "from  " +
-                "iexacumval where iexcodcia="+codcia+" and iexcodtra="+codtra+"  and  iexaniotrib='"+anio+"' ";
+                "iexacumval where iexcodcia=" + codcia + " and iexcodtra=" + codtra + "  and  iexaniotrib='" + anio + "' ";
 
-        return (EmpAcum) template.query(sql, new ResultSetExtractor<EmpAcum>() {
-            public EmpAcum extractData(ResultSet rs) throws SQLException, DataAccessException{
+        return (EmpAcum) jdbc.query(sql, new ResultSetExtractor<EmpAcum>() {
+            public EmpAcum extractData(ResultSet rs) throws SQLException, DataAccessException {
                 EmpAcum p = new EmpAcum();
-                while(rs.next()) {
+                while (rs.next()) {
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexcodtra(rs.getInt("iexcodtra"));
                     p.setIexaniotrib(rs.getString("iexaniotrib"));
@@ -176,9 +196,9 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
         });
     }
 
-    public void actualizarEmpAcum(EmpAcum empacu){
+    public void actualizarEmpAcum(EmpAcum empacu) {
 
-        template.update("  update iexacumval set  " +
+        jdbc.update("  update iexacumval set  " +
                         "           iexrem_acum=?, " +
                         "iexrem5taafec_acum =?,   iexrenta5ta_acum =? ,   iexremafec5ta_otrcia =?,  iexrent5ta_otrcia =?, " +
                         "iexrem4ta_acum=?	,     iexrenta4ta_acum=?,    iexremotr_acum =?	,     iexrenta_acum =?, " +
@@ -200,9 +220,9 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 empacu.getIexaniotrib());
     }
 
-    public void eliminarEmpAcum(EmpAcum empacu){
+    public void eliminarEmpAcum(EmpAcum empacu) {
 
-        template.update("  delete from  iexacumval where  iexcodcia=?   and  iexcodtra=?   and   iexaniotrib=?  ",
+        jdbc.update("  delete from  iexacumval where  iexcodcia=?   and  iexcodtra=?   and   iexaniotrib=?  ",
 
                 empacu.getIexcodcia(),
                 empacu.getIexcodtra(),
