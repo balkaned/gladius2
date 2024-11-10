@@ -190,6 +190,8 @@ public class AcumuladoController {
         empacum.setIexrenta_acum(Double.parseDouble(request.getParameter("iexrenta_acum")));
         empacum.setIexusucrea(user);
 
+        log.info("aniotrib: "+empacum.getIexaniotrib());
+
         Integer result = acumuladoService.validarAnioTrib(empacum);
         log.info("result: " + result);
 
