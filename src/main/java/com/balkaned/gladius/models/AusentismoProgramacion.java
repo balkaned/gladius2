@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class AusentismoProgramacion {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodtra;
     private Integer iexcorrel;
@@ -24,5 +28,8 @@ public class AusentismoProgramacion {
     private String nrodoc;
     private String desestado;
     private String fecfinrep;
+
+
+
 
 }

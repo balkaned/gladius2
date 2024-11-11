@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Afp {
 
+    @Id
     private String iexpermes;
     private String iexcodafp;
     private String iexdesafp;

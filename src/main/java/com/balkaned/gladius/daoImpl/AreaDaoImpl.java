@@ -6,9 +6,14 @@ import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,17 +25,19 @@ import java.util.List;
 public class AreaDaoImpl implements AreaDao {
 
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "AreaDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Area> listarArea(Integer codcia, String text) {
 
-        List<Area> lista = null;
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexcodarea, " +
                 "a.iexdesarea, " +
@@ -41,59 +48,28 @@ public class AreaDaoImpl implements AreaDao {
                 "a.iexfecmod, " +
                 "a.iexcodcat, " +
                 "d.desdet as descodcat, " +
-                "  case " +
-                " WHEN length(a.iexareapadre)>0 THEN a.iexareapadre " +
+                " case " +
+                " WHEN length(a.iexareapadre) > 0 THEN a.iexareapadre " +
                 " else 'null'  end iexareapadre, " +
                 "f.iexdesarea as desareapadre " +
-                "from iexarea a  " +
-                "full outer join iexarea f on a.iexcodcia= f.iexcodcia and  a.iexareapadre =  f.iexcodarea  " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='62' ) d  on a.iexcodcat = d.iexkey " +
-                " where a.iexcodcia=" + codcia + "  order by a.iexcodcia, a.iexcodarea asc  ";
+                "from iexarea a " +
+                "full outer join iexarea f on a.iexcodcia= f.iexcodcia and  a.iexareapadre = f.iexcodarea " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='62' ) d on a.iexcodcat = d.iexkey " +
+                "where a.iexcodcia= :iexcodcia " +
+                "order by a.iexcodcia, a.iexcodarea asc ";
 
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
 
-        return template.query(sql, new ResultSetExtractor<List<Area>>() {
+        List<Area> lsArea = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Area.class));
 
-            public List<Area> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Area> lista = new ArrayList<Area>();
-
-                while (rs.next()) {
-                    Area p = new Area();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodarea(rs.getString("iexcodarea"));
-
-                    p.setIexdesarea(rs.getString("iexdesarea"));
-                    CapitalizarCadena cap3= new CapitalizarCadena();
-                    p.setIexdesarea(cap3.letras(p.getIexdesarea()));
-
-                    p.setIexdesarea_descripcion(rs.getString("iexdesarea_descripcion"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesarea_descripcion(cap.letras(p.getIexdesarea_descripcion()));
-
-                    p.setIexareapadre(rs.getString("iexareapadre"));
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-
-                    p.setDescodcat(rs.getString("descodcat"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setDescodcat(cap2.letras(p.getDescodcat()));
-
-                    p.setDesareapadre(rs.getString("desareapadre"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsArea;
     }
 
     public Area getArea(Integer codcia, String codarea) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexcodarea, " +
                 "a.iexdesarea, " +
@@ -106,67 +82,45 @@ public class AreaDaoImpl implements AreaDao {
                 "d.desdet as descodcat, " +
                 "a.iexareapadre, " +
                 "f.iexdesarea as desareapadre " +
-                "from iexarea a  " +
-                "full outer join iexarea f on  a.iexareapadre =  f.iexcodarea  " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='12' ) d  on a.iexcodcat = d.iexkey " +
-                "where a.iexcodcia=" + codcia + "  and a.iexcodarea='" + codarea + "' ";
+                "from iexarea a " +
+                "full outer join iexarea f on a.iexareapadre = f.iexcodarea " +
+                "full outer join (select iexkey, desdet from iexttabled where iexcodtab='12') d on a.iexcodcat = d.iexkey " +
+                "where a.iexcodcia= :iexcodcia and a.iexcodarea= :iexcodarea ";
 
-        return (Area) template.query(sql, new ResultSetExtractor<Area>() {
-            public Area extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Area p = new Area();
-                while (rs.next()) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia)
+                .addValue("iexcodarea", codarea);
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodarea(rs.getString("iexcodarea"));
+        Area area = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Area.class));
 
-                    p.setIexdesarea(rs.getString("iexdesarea"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesarea(cap.letras(p.getIexdesarea()));
-
-                    p.setIexdesarea_descripcion(rs.getString("iexdesarea_descripcion"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setIexdesarea_descripcion(cap2.letras(p.getIexdesarea_descripcion()));
-
-                    p.setIexareapadre(rs.getString("iexareapadre"));
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-                    p.setDescodcat(rs.getString("descodcat"));
-                    p.setDesareapadre(rs.getString("desareapadre"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        return area;
     }
 
     public Integer getIdArea(Integer codcia) {
 
-        final Integer[] idcont = {0};
+        String sql = "select coalesce(max(cast(iexcodarea as integer)),0)+1 idcont " +
+                "from iexarea where iexcodcia = :iexcodcia ";
 
-        String sql = " select  coalesce(max(cast(iexcodarea as integer)),0)+1 idcont from iexarea where iexcodcia =" + codcia;
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
-                }
-                return idcont[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
+
+        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
+
+        return response;
     }
 
     public void insertarArea(Area area) {
 
-        template.update("  insert into iexarea( " +
-                        " iexcodcia,     iexcodarea,    iexdesarea,       iexdesarea_descripcion, " +
-                        " iexusucrea,    iexfeccrea,    iexcodcat,        iexareapadre " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,   ?  ," +
-                        "  ? ,   current_date  ,   ?   ,   ?  " +
-                        ")  ",
+        String sql = "insert into iexarea ( " +
+                " iexcodcia, iexcodarea, iexdesarea, iexdesarea_descripcion, " +
+                " iexusucrea, iexfeccrea, iexcodcat, iexareapadre " +
+                " ) values ( " +
+                "  ? ,   ?    ,   ?   ,   ?  ," +
+                "  ? ,   current_date  ,   ?   ,   ?  " +
+                ") ";
 
+        jdbc.update(sql,
                 area.getIexcodcia(),
                 area.getIexcodarea(),
                 area.getIexdesarea(),
@@ -178,11 +132,12 @@ public class AreaDaoImpl implements AreaDao {
 
     public void actualizarArea(Area area) {
 
-        template.update("  update iexarea  set " +
-                        "     iexdesarea=?,       iexdesarea_descripcion=?, " +
-                        " iexusumod=?,    iexfecmod=current_date,    iexcodcat=?,        iexareapadre=? " +
-                        " where iexcodcia=?  and   iexcodarea = ? ",
+        String sql = "update iexarea set " +
+                "iexdesarea=?, iexdesarea_descripcion=?, " +
+                "iexusumod=?, iexfecmod=current_date, iexcodcat=?, iexareapadre=? " +
+                "where iexcodcia=? and iexcodarea = ? ";
 
+        jdbc.update(sql,
                 area.getIexdesarea(),
                 area.getIexdesarea_descripcion(),
                 area.getIexusumod(),
@@ -190,15 +145,14 @@ public class AreaDaoImpl implements AreaDao {
                 area.getIexareapadre(),
                 area.getIexcodcia(),
                 area.getIexcodarea());
-
     }
 
-    public void eliminarArea(Area area){
+    public void eliminarArea(Area area) {
 
-        template.update("  delete from iexarea  where iexcodcia=?  and   iexcodarea = ?",
+        String sql = "delete from iexarea where iexcodcia=? and iexcodarea = ? ";
 
-        area.getIexcodcia(),
-        area.getIexcodarea());
+        jdbc.update(sql,
+                area.getIexcodcia(),
+                area.getIexcodarea());
     }
-
 }

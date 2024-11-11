@@ -1,7 +1,6 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

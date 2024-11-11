@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Area {
 
+    @Id
     private Integer iexcodcia;
     private String iexcodarea;
     private String iexdesarea;
@@ -17,5 +21,4 @@ public class Area {
     private String iexusumod;
     private String iexfeccrea;
     private String iexfecmod;
-
 }
