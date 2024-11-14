@@ -3,11 +3,14 @@ package com.balkaned.gladius.models;
 import com.balkaned.gladius.util.CapitalizarCadena;
 import com.balkaned.gladius.util.FormatterFecha;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 @Data
+@Slf4j
 public class AusentismoProgramacion {
 
     @Id
@@ -39,17 +42,18 @@ public class AusentismoProgramacion {
     private String iexfeciniDes;
     private String iexfecfinDes;
 
-    public void setIexfeciniDes(String iexfeciniDes) {
+    public String getIexfeciniDes() {
         FormatterFecha f = new FormatterFecha();
         CapitalizarCadena capit = new CapitalizarCadena();
         String fec = this.iexfecini;
-        this.iexfeciniDes = f.fechaFormatterDia(fec) + " " + capit.letras(f.fechaFormatterMes(fec)) + ", " + f.fechaFormatterAnio(fec);
+        return f.fechaFormatterDia(fec) + " " + capit.letras(f.fechaFormatterMes(fec)) + ", " + f.fechaFormatterAnio(fec);
     }
 
-    public void setIexfecfinDes(String iexfecfinDes) {
+    public String getIexfecfinDes() {
         FormatterFecha f2 = new FormatterFecha();
         CapitalizarCadena capit2 = new CapitalizarCadena();
-        this.iexfecfinDes = f2.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f2.fechaFormatterMes(iexfecfin)) + ", " + f2.fechaFormatterAnio(iexfecfin);
+        String fec = this.iexfecfin;
+        return  f2.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f2.fechaFormatterMes(iexfecfin)) + ", " + f2.fechaFormatterAnio(iexfecfin);
     }
 
     public void setFecing(String fecing) {
@@ -68,4 +72,11 @@ public class AusentismoProgramacion {
         this.nomtra = cap3.letras(nomtra);
     }
 
+    /*public String getDestipaus() {
+        return destipaus;
+    }
+
+    public void setDestipaus(String destipaus) {
+        this.destipaus = destipaus;
+    }*/
 }

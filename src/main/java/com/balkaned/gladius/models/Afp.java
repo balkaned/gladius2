@@ -1,5 +1,6 @@
 package com.balkaned.gladius.models;
 
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ public class Afp {
     @Id
     private String iexpermes;
     private String iexcodafp;
-    private String iexdesafp;
+    private String desafp;
     private Double iexcomis_fija;
     private Double iexcomis_sflu;
     private Double iexcomis_sflu_mix;
@@ -23,4 +24,8 @@ public class Afp {
     private String iexusucrea;
     private String iexusumod;
 
+    public void setDesafp(String desafp) {
+        CapitalizarCadena cap = new CapitalizarCadena();
+        this.desafp = cap.letras(desafp);
+    }
 }

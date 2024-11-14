@@ -91,10 +91,10 @@ public class AreaDaoImpl implements AreaDao {
                 .addValue("iexcodcia", codcia)
                 .addValue("iexcodarea", codarea);
 
-        Area area = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+        List<Area> lsArea = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Area.class));
 
-        return area;
+        return lsArea.get(0);
     }
 
     public Integer getIdArea(Integer codcia) {
