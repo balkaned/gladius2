@@ -197,7 +197,6 @@ public class AusentismoController {
         log.info("validador: " + validador);
 
         if (validador == 0) {
-            //if(codcorrel >0) {
             ausprg.setIexcorrel(codcorrel);
             ausprg.setIexfecini(iexfecini);
             ausprg.setIexfecfin(iexfecfin);
@@ -209,7 +208,6 @@ public class AusentismoController {
             ausentismoService.insertarAusentismoPrg(ausprg);
             Msg_form_global = "OK";
             return new ModelAndView("redirect:/ausentismo@" + iexcodtra);
-            //}
         } else {
             Msg_form_global = "Error";
             model.addAttribute("idTrab", iexcodtra);

@@ -2,23 +2,15 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.AusentismoDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
-import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -83,24 +75,24 @@ public class AusentismoDaoImpl implements AusentismoDao {
         String sql = "select sum(e.dias) dias " +
                 "from ( " +
                 "   select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia= :iexcodcia and " +
-                "   iexcodtra= :iexcodtra and to_date(':fecini','dd/mm/yyyy')  >= iexfecini  and " +
-                "   to_date(':fecini','dd/mm/yyyy')  <= iexfecfin and iexcorrel <> :iexcorrel " +
+                "   iexcodtra= :iexcodtra and to_date(:fecini,'dd/mm/yyyy')  >= iexfecini  and " +
+                "   to_date(:fecini,'dd/mm/yyyy')  <= iexfecfin and iexcorrel <> :iexcorrel " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia= :iexcodcia and " +
-                "   iexcodtra= :iexcodtra and to_date(':fecfin','dd/mm/yyyy')  >= iexfecini  and " +
-                "   to_date(':fecfin','dd/mm/yyyy')  <= iexfecfin and iexcorrel <> :iexcorrel " +
+                "   iexcodtra= :iexcodtra and to_date(:fecfin,'dd/mm/yyyy')  >= iexfecini  and " +
+                "   to_date(:fecfin,'dd/mm/yyyy')  <= iexfecfin and iexcorrel <> :iexcorrel " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia= :iexcodcia and " +
-                "   iexcodtra= :iexcodtra and to_date(':fecini','dd/mm/yyyy')  <= iexfecini  and " +
-                "   to_date(':fecfin','dd/mm/yyyy')  >= iexfecini  and iexcorrel <> :iexcorrel " +
+                "   iexcodtra= :iexcodtra and to_date(:fecini,'dd/mm/yyyy')  <= iexfecini  and " +
+                "   to_date(:fecfin,'dd/mm/yyyy')  >= iexfecini  and iexcorrel <> :iexcorrel " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia= :iexcodcia and " +
-                "   iexcodtra= :iexcodtra and to_date(':fecini','dd/mm/yyyy')  <= iexfecfin  and " +
-                "   to_date(':fecfin','dd/mm/yyyy')  >= iexfecfin  and iexcorrel <> :iexcorrel " +
+                "   iexcodtra= :iexcodtra and to_date(:fecini,'dd/mm/yyyy')  <= iexfecfin  and " +
+                "   to_date(:fecfin,'dd/mm/yyyy')  >= iexfecfin  and iexcorrel <> :iexcorrel " +
                 "       union  " +
                 "   select coalesce(count(iexcorrel),0) dias from iexausprg where iexcodcia= :iexcodcia and " +
-                "   iexcodtra= :iexcodtra and to_date(':fecini','dd/mm/yyyy')  <= iexfecini  and " +
-                "   to_date(':fecfin','dd/mm/yyyy')  >= iexfecfin   and iexcorrel <> :iexcorrel " +
+                "   iexcodtra= :iexcodtra and to_date(:fecini,'dd/mm/yyyy')  <= iexfecini  and " +
+                "   to_date(:fecfin,'dd/mm/yyyy')  >= iexfecfin and iexcorrel <> :iexcorrel " +
                 " ) e ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -119,7 +111,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
 
         String sql = "insert into iexausprg ( " +
                 "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias, " +
-                "iextipaus , iexglosa, iexusucrea, iexfeccrea) values ( " +
+                "iextipaus, iexglosa, iexusucrea, iexfeccrea) values ( " +
                 "  ?,   ? ,  ?, to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?, " +
                 "  ?,   ? ,  ?,  current_date) ";
 
@@ -154,36 +146,36 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "to_char(a.iexfecini,'dd/mm/yyyy') iexfecini, " +
                 "to_char(a.iexfecfin,'dd/mm/yyyy') iexfecfin, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(':fecfin','dd/mm/yyyy')) " +
+                "   when (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
                 "       then (a.iexfecfin -  a.iexfecini) +1 " +
-                "   when (a.iexfecini < to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(':fecfin','dd/mm/yyyy')) " +
-                "	    then (a.iexfecfin -  to_date(':fecini','dd/mm/yyyy')) +1 " +
-                "	when (a.iexfecini >= to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(':fecfin','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(':fecfin','dd/mm/yyyy')) " +
-                "	    then ( to_date(':fecfin','dd/mm/yyyy') - a.iexfecini) +1	" +
-                "	when (a.iexfecini < to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(':fecfin','dd/mm/yyyy')) " +
-                "	    then ( to_date(':fecfin','dd/mm/yyyy') - to_date(':fecini','dd/mm/yyyy')) +1 " +
+                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    then (a.iexfecfin -  to_date(' :fecini ','dd/mm/yyyy')) +1 " +
+                "	when (a.iexfecini >= to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    then ( to_date(':fecfin','dd/mm/yyyy') - a.iexfecini) +1 " +
+                "	when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    then ( to_date(' :fecfin ','dd/mm/yyyy') - to_date(' :fecini ','dd/mm/yyyy')) +1 " +
                 "end dias_aus, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(':fecfin','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(':fecfin','dd/mm/yyyy'))" +
+                "   when (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy'))" +
                 "	    then   to_char(a.iexfecfin,'dd/mm/yyyy') " +
-                "   when (a.iexfecini < to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(':fecfin','dd/mm/yyyy')) " +
+                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
                 "	    then  to_char(a.iexfecfin,'dd/mm/yyyy') " +
-                "	when (a.iexfecini >= to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(':fecfin','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(':fecfin','dd/mm/yyyy')) " +
-                "	    then ':fecfin' " +
-                "   when (a.iexfecini < to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(':fecfin','dd/mm/yyyy')) " +
-                "	    then ':fecfin' " +
+                "	when (a.iexfecini >= to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    then ' :fecfin ' " +
+                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    then ' :fecfin ' " +
                 "end  fecfinrep, " +
                 "k.des1det codcon, " +
                 "k.desdet destipaus " +
@@ -196,20 +188,20 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "	 where " +
                 "	 c.iexcodcia = a.iexcodcia and " +
                 "	 c.iexcodtra = a.iexcodtra and " +
-                "	 c.iexcodcia= :codcia and c.iexreglab=':regimen' and " +
+                "	 c.iexcodcia= :codcia and c.iexreglab=' :regimen ' and " +
                 "	 ( " +
-                "	    (a.iexfecini >=to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecini <=to_date(':fecfin','dd/mm/yyyy')) " +
+                "	    (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecini <=to_date(' :fecfin ','dd/mm/yyyy')) " +
                 "		or " +
-                "	    (a.iexfecfin >=to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin <=to_date(':fecfin','dd/mm/yyyy')) " +
+                "	    (a.iexfecfin >=to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin <=to_date(' :fecfin ','dd/mm/yyyy')) " +
                 "		or " +
-                "		(a.iexfecini <to_date(':fecini','dd/mm/yyyy') and " +
-                "       a.iexfecfin >to_date(':fecfin','dd/mm/yyyy')) " +
+                "		(a.iexfecini <to_date(' :fecini ','dd/mm/yyyy') and " +
+                "       a.iexfecfin >to_date(' :fecfin ','dd/mm/yyyy')) " +
                 "	 ) ";
 
         if (codtra != null && codtra.intValue() != 0) {
-            sql += " and c.iexcodtra = " + codtra + " ";
+            sql += " and c.iexcodtra = :codtra ";
         }
 
         sql += " order by 3,4 asc ";
@@ -221,90 +213,50 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 .addValue("fecfin", fecfin)
                 .addValue("codtra", codtra);
 
-        return jdbc.query(sql, new ResultSetExtractor<List<AusentismoProgramacion>>() {
-            public List<AusentismoProgramacion> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<AusentismoProgramacion> lista = new ArrayList<AusentismoProgramacion>();
+        List<AusentismoProgramacion> lsAusen = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(AusentismoProgramacion.class));
 
-                while (rs.next()) {
-                    AusentismoProgramacion p = new AusentismoProgramacion();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("aus_id"));
-                    p.setNrodoc(rs.getString("iexnrodoc"));
-
-                    p.setDesnomtra(rs.getString("nomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesnomtra(cap.letras(p.getDesnomtra()));
-
-                    p.setFecing(rs.getString("fecing"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit = new CapitalizarCadena();
-                    p.setFecing(f.fechaFormatterDia(p.getFecing()) + " " + capit.letras(f.fechaFormatterMes(p.getFecing())) + ", " + f.fechaFormatterAnio(p.getFecing()));
-
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setIexnrodias(rs.getDouble("dias_aus"));
-                    p.setFecfinrep(rs.getString("fecfinrep"));
-                    p.setDesestado(rs.getString("desestado"));
-                    p.setDestipaus(rs.getString("destipaus"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsAusen;
     }
 
     public AusentismoProgramacion getAusentismoPrg(AusentismoProgramacion ausprg) {
 
-        String sql = " select  " +
-                "v.iexcodcia, v.iexcodtra, v.iexcorrel, to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, "
-                + " v.iexnrodias, v.iextipaus , d.desdet as destipaus, v.iexglosa,  " +
-                " v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
-                "from " +
-                "iexausprg v, " +
-                "( " +
-                "select  iexkey, desdet from iexttabled where iexcodtab='57' " +
-                ") d " +
-                " where " +
-                " v.iexcodcia=" + ausprg.getIexcodcia() + " and v.iexcodtra=" + ausprg.getIexcodtra() + " and v.iexcorrel=" + ausprg.getIexcorrel() + " and " +
-                " v.iextipaus = d.iexkey ";
+        String sql = "select v.iexcodcia, v.iexcodtra, v.iexcorrel, " +
+                "to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, " +
+                "to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
+                "v.iexnrodias, v.iextipaus , d.desdet as destipaus, v.iexglosa, " +
+                "v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, " +
+                "v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
+                "from iexausprg v, " +
+                "   ( " +
+                "   select  iexkey, desdet from iexttabled where iexcodtab='57' " +
+                "   ) d " +
+                "where " +
+                "v.iexcodcia= :iexcodcia and " +
+                "v.iexcodtra= :iexcodtra and " +
+                "v.iexcorrel= :iexcorrel and " +
+                "v.iextipaus = d.iexkey ";
 
-        return (AusentismoProgramacion) jdbc.query(sql, new ResultSetExtractor<AusentismoProgramacion>() {
-            public AusentismoProgramacion extractData(ResultSet rs) throws SQLException, DataAccessException {
-                AusentismoProgramacion p = new AusentismoProgramacion();
-                while (rs.next()) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", ausprg.getIexcodcia())
+                .addValue("iexcodtra", ausprg.getIexcodtra())
+                .addValue("iexcorrel", ausprg.getIexcorrel());
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setIexnrodias(rs.getDouble("iexnrodias"));
-                    p.setIextipaus(rs.getString("iextipaus"));
-                    p.setDestipaus(rs.getString("destipaus"));
-                    p.setIexglosa(rs.getString("iexglosa"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
+        AusentismoProgramacion ausen = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(AusentismoProgramacion.class));
 
-
-                }
-                return p;
-            }
-        });
+        return ausen;
     }
 
 
     public void actualizarAusentismoPrg(AusentismoProgramacion ausprg) {
 
-        jdbc.update("  update iexausprg set  " +
-                        " iexfecini=to_date(?,'DD/MM/YYYY') , iexfecfin=to_date(?,'DD/MM/YYYY') , iexnrodias=? ,  " +
-                        "iextipaus=?  , iexglosa=? , iexusumod=? , iexfecmod=current_date  " +
-                        " where iexcodcia=?  and  iexcodtra=?  and iexcorrel=?  ",
+        String sql = "update iexausprg set " +
+                "iexfecini=to_date(?,'DD/MM/YYYY'), iexfecfin=to_date(?,'DD/MM/YYYY'), iexnrodias=?, " +
+                "iextipaus=?, iexglosa=?, iexusumod=?, iexfecmod=current_date " +
+                "where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
 
+        jdbc.update(sql,
                 ausprg.getIexfecini(),
                 ausprg.getIexfecfin(),
                 ausprg.getIexnrodias(),
@@ -314,16 +266,17 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 ausprg.getIexcodcia(),
                 ausprg.getIexcodtra(),
                 ausprg.getIexcorrel());
-
     }
 
     public void eliminarAusentismoPrg(AusentismoProgramacion ausprg) {
 
-        jdbc.update("  delete from  iexausprg  where iexcodcia=?  and  iexcodtra=?  and iexcorrel=? ",
+        String sql = "delete from iexausprg " +
+                "where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
+
+        jdbc.update(sql,
                 ausprg.getIexcodcia(),
                 ausprg.getIexcodtra(),
                 ausprg.getIexcorrel());
 
     }
-
 }

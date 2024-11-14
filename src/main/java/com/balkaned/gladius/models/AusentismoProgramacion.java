@@ -31,16 +31,25 @@ public class AusentismoProgramacion {
     private String desestado;
     private String fecfinrep;
 
-    public void setIexfecini(String iexfecini) {
+    private Integer aus_id;
+    private String iexnrodoc;
+    private String nomtra;
+    private Double dias_aus;
+
+    private String iexfeciniDes;
+    private String iexfecfinDes;
+
+    public void setIexfeciniDes(String iexfeciniDes) {
         FormatterFecha f = new FormatterFecha();
         CapitalizarCadena capit = new CapitalizarCadena();
-        this.iexfecini = f.fechaFormatterDia(iexfecini) + " " + capit.letras(f.fechaFormatterMes(iexfecini)) + ", " + f.fechaFormatterAnio(iexfecini);
+        String fec = this.iexfecini;
+        this.iexfeciniDes = f.fechaFormatterDia(fec) + " " + capit.letras(f.fechaFormatterMes(fec)) + ", " + f.fechaFormatterAnio(fec);
     }
 
-    public void setIexfecfin(String iexfecfin) {
+    public void setIexfecfinDes(String iexfecfinDes) {
         FormatterFecha f2 = new FormatterFecha();
         CapitalizarCadena capit2 = new CapitalizarCadena();
-        this.iexfecfin = f2.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f2.fechaFormatterMes(iexfecfin)) + ", " + f2.fechaFormatterAnio(iexfecfin);
+        this.iexfecfinDes = f2.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f2.fechaFormatterMes(iexfecfin)) + ", " + f2.fechaFormatterAnio(iexfecfin);
     }
 
     public void setFecing(String fecing) {
@@ -53,4 +62,10 @@ public class AusentismoProgramacion {
         CapitalizarCadena cap = new CapitalizarCadena();
         this.desnomtra = cap.letras(desnomtra);
     }
+
+    public void setNomtra(String nomtra) {
+        CapitalizarCadena cap3 = new CapitalizarCadena();
+        this.nomtra = cap3.letras(nomtra);
+    }
+
 }
