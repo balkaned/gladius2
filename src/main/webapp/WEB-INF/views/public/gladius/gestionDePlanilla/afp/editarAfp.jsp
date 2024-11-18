@@ -50,14 +50,16 @@
         <div class="col-xl-7">
           <div class="row gx-3 gy-4">
             <form class="row g-3 mb-0 needs-validation" method="POST" action="modificarAfp" novalidate>
+              <input id="iexcodafp" name="iexcodafp" type="hidden" value="${requestScope.LstAfpPerCur.iexcodafp}" />
+
               <div class="col-sm-6 col-md-3">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo mensual</label>
                 <input class="form-control" id="idperiododisabled" name="idperiododisabled" type="text" maxlength="6" value="${requestScope.LstAfpPerCur.iexpermes}" placeholder="yyyymm" required disabled/>
-                <input class="form-control" id="idperiodo" name="idperiodo" type="hidden" maxlength="6" value="${requestScope.LstAfpPerCur.iexpermes}" placeholder="yyyymm" />
+                <input id="idperiodo" name="idperiodo" type="hidden" maxlength="6" value="${requestScope.LstAfpPerCur.iexpermes}" placeholder="yyyymm" />
               </div>
               <div class="col-sm-6 col-md-7">
               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Afp</label>
-              	  <select name="iexcodafp" id="iexcodafp" class="form-select" required >
+              	  <select name="iexcodafpsel" id="iexcodafpsel" class="form-select" required disabled >
               		  <option value="" selected >Seleccionar afp</option>
               		  <c:forEach var="lovAfp" items="${lovAfp}">
               			  <option value="${lovAfp.idLov}"  ${lovAfp.idLov == requestScope.LstAfpPerCur.iexcodafp ? 'selected' : ''}   >${lovAfp.desLov}</option>

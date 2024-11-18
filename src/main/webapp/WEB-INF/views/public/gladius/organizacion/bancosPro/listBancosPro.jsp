@@ -90,7 +90,7 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarBancoPro@${banc.iexcodban}@${banc.iexcodpro}">#${banc.iexcodban}</a></td>
                               <td class="total align-middle text-start ps-5 fw-semi-bold text-1000">${banc.desban}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${banc.despro}</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000">${banc.prodespro}</td>
                               <td class="total align-middle text-center fw-semi-bold text-1000">
                                 <c:if test="${banc.destipcta=='CUENTA AHORROS'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
                                 <c:if test="${banc.destipcta=='CUENTA INTERBANCARIA'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">CCI: ${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>

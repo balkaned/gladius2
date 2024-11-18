@@ -7,9 +7,14 @@ import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,18 +25,19 @@ import java.util.List;
 @Slf4j
 public class BancoProDaoImpl implements BancoProDao {
 
-
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "BancoProDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<BancoPro> listarBancoPro(Integer codcia, String text) {
 
-        List<BancoPro> lista = null;
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexcodban, " +
                 "c.desdet as desban, " +
@@ -45,51 +51,25 @@ public class BancoProDaoImpl implements BancoProDao {
                 "a.iexusumod, " +
                 "a.iexfecmod " +
                 "from iexprobancos a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  on a.iexcodban = c.iexkey " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  on a.iextipcta = d.iexkey " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  " +
+                "   on a.iexcodban = c.iexkey " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  " +
+                "   on a.iextipcta = d.iexkey " +
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia=" + codcia + "  ";
+                "where iexcodcia= :iexcodcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<BancoPro>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
 
-            public List<BancoPro> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<BancoPro> lista = new ArrayList<BancoPro>();
+        List<BancoPro> lsBanPro = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(BancoPro.class));
 
-                while (rs.next()) {
-                    BancoPro p = new BancoPro();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodban(rs.getString("iexcodban"));
-
-                    p.setDesban(rs.getString("desban"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesban(cap.letras(p.getDesban()));
-
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-
-                    p.setDespro(rs.getString("prodespro"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setDespro(cap2.letras(p.getDespro()));
-
-                    p.setIextipcta(rs.getString("iextipcta"));
-                    p.setDestipcta(rs.getString("destipcta"));
-                    p.setIexctaban(rs.getString("iexctaban"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsBanPro;
     }
 
     public BancoPro getBancoPro(Integer codcia, Integer codpro, String banco) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexcodban, " +
                 "c.desdet as desban, " +
@@ -103,47 +83,37 @@ public class BancoProDaoImpl implements BancoProDao {
                 "a.iexusumod, " +
                 "a.iexfecmod " +
                 "from iexprobancos a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  on a.iexcodban = c.iexkey " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  on a.iextipcta = d.iexkey " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c " +
+                "   on a.iexcodban = c.iexkey " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d " +
+                "   on a.iextipcta = d.iexkey " +
                 "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia=" + codcia + " and iexcodban='" + banco + "' ";
+                "where iexcodcia= :iexcodcia and " +
+                "iexcodban= :iexcodban and " +
+                "a.iexcodpro = :iexcodpro ";
 
-        return (BancoPro) template.query(sql, new ResultSetExtractor<BancoPro>() {
-            public BancoPro extractData(ResultSet rs) throws SQLException, DataAccessException {
-                BancoPro p = new BancoPro();
-                while (rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodban(rs.getString("iexcodban"));
-                    p.setDesban(rs.getString("desban"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-                    p.setDespro(rs.getString("prodespro"));
-                    p.setIextipcta(rs.getString("iextipcta"));
-                    p.setDestipcta(rs.getString("destipcta"));
-                    p.setIexctaban(rs.getString("iexctaban"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia)
+                .addValue("iexcodban", banco)
+                .addValue("iexcodpro", codpro);
 
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
+        BancoPro banpro = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(BancoPro.class));
 
-                    log.info("iexcodpro: " + p.getIexcodpro());
-                    log.info("Iexctaban: " + p.getIexctaban());
-                }
-                return p;
-            }
-        });
+        return banpro;
     }
 
     public void insertarBancoPro(BancoPro bancopro) {
 
-        template.update("  insert into iexprobancos( " +
-                        " iexcodcia,      iexcodban,     iexcodpro,      iextipcta,  " +
-                        " iexctaban,      iexusucrea,    iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,  ?  , " +
-                        "  ? ,  ? ,  current_date " +
-                        ")  ",
+        String sql = "insert into iexprobancos( " +
+                "iexcodcia, iexcodban, iexcodpro, iextipcta, " +
+                "iexctaban, iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                "  ? ,   ?    ,   ?   ,  ?  , " +
+                "  ? ,  ? ,  current_date " +
+                ") ";
 
+        jdbc.update(sql,
                 bancopro.getIexcodcia(),
                 bancopro.getIexcodban(),
                 bancopro.getIexcodpro(),
@@ -154,24 +124,25 @@ public class BancoProDaoImpl implements BancoProDao {
 
     public void actualizarBancoPro(BancoPro bancopro) {
 
-        template.update("  update iexprobancos set " +
-                        " iextipcta = ? , " +
-                        " iexctaban =? ,      iexusumod=?,    iexfecmod=current_date " +
-                        " where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ",
-
+        String sql = "update iexprobancos set " +
+                "iextipcta = ?, " +
+                "iexctaban =?, iexusumod=?, iexfecmod=current_date " +
+                "where iexcodcia=? and iexcodban=? and iexcodpro=? ";
+        jdbc.update(sql,
                 bancopro.getIextipcta(),
                 bancopro.getIexctaban(),
                 bancopro.getIexusumod(),
                 bancopro.getIexcodcia(),
                 bancopro.getIexcodban(),
                 bancopro.getIexcodpro());
-
     }
 
     public void eliminarBancoPro(BancoPro bancopro) {
 
-        template.update("  delete from  iexprobancos  where iexcodcia=?   and  iexcodban=?  and   iexcodpro=? ",
+        String sql = "delete from iexprobancos " +
+                "where iexcodcia=? and iexcodban=? and iexcodpro=? ";
 
+        jdbc.update(sql,
                 bancopro.getIexcodcia(),
                 bancopro.getIexcodban(),
                 bancopro.getIexcodpro());

@@ -7,47 +7,61 @@ import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Repository("CcostoDao")
 @Slf4j
 public class CcostoDaoImpl implements CcostoDao {
 
-
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "CcostoDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<CentroCosto> listarCentroCosto(Integer codcia, String text) {
 
-        List<CentroCosto> lista = null;
-        String sql = "select   " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexccosto, " +
                 "a.iexdesccosto, " +
                 "a.iexcodcat, " +
-                "d.desdet , " +
-                "a.iexusucrea , " +
+                "d.desdet," +
+                "a.iexusucrea," +
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
                 "from " +
-                "iexccosto  a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64' ) d  on a.iexcodcat = d.iexkey " +
-                "where iexcodcia=" + codcia + " ";
+                "iexccosto a " +
+                "full outer join (select iexkey, desdet from iexttabled " +
+                "where iexcodtab='64') d on a.iexcodcat = d.iexkey " +
+                "where iexcodcia= :iexcodcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
+
+        List<CentroCosto> lsCentr = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(CentroCosto.class));
+
+        return lsCentr;
+
+        /*return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
 
             public List<CentroCosto> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<CentroCosto> lista = new ArrayList<CentroCosto>();
@@ -74,78 +88,61 @@ public class CcostoDaoImpl implements CcostoDao {
                 }
                 return lista;
             }
-        });
+        });*/
     }
 
     public CentroCosto getCentroCosto(Integer codcia, String codccosto) {
 
-        String sql = "select   " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexccosto, " +
                 "a.iexdesccosto, " +
                 "a.iexcodcat, " +
-                "d.desdet , " +
-                "a.iexusucrea , " +
+                "d.desdet, " +
+                "a.iexusucrea, " +
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
                 "from " +
-                "iexccosto  a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64' ) d  on a.iexcodcat = d.iexkey " +
-                "where iexcodcia=" + codcia + " and a.iexccosto='" + codccosto + "'";
+                "iexccosto a " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64') d " +
+                "   on a.iexcodcat = d.iexkey " +
+                "where iexcodcia= :iexcodcia and a.iexccosto= :iexccosto ";
 
-        return (CentroCosto) template.query(sql, new ResultSetExtractor<CentroCosto>() {
-            public CentroCosto extractData(ResultSet rs) throws SQLException, DataAccessException {
-                CentroCosto p = new CentroCosto();
-                while (rs.next()) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia)
+                .addValue("iexccosto", codccosto);
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexccosto(rs.getString("iexccosto"));
+        CentroCosto centro = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(CentroCosto.class));
 
-                    p.setIexdesccosto(rs.getString("iexdesccosto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
-
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-                    p.setDescodcat(rs.getString("desdet"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        return centro;
     }
 
     public Integer getIdCentroCosto(Integer codcia) {
 
-        final Integer[] idcont = {0};
+        String sql = "select coalesce(max(cast(iexccosto as integer)),0)+1 idcont " +
+                "from iexccosto where iexcodcia = :codcia ";
 
-        String sql = " select coalesce(max(cast(iexccosto as integer)),0)+1 idcont  from iexccosto where iexcodcia =" + codcia;
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
-                }
-                return idcont[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
+
+        return response;
     }
 
     public void insertarCentroCosto(CentroCosto ccosto) {
 
-        StringBuilder sql = new StringBuilder();
+        String sql = "insert into iexccosto( " +
+                " iexcodcia, iexccosto, iexdesccosto, iexcodcat, " +
+                " iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                "  ?, ?, ?, ?, " +
+                "  ?, current_date " +
+                ") ";
 
-        template.update("  insert into iexccosto( " +
-                        " iexcodcia,       iexccosto,    iexdesccosto  ,iexcodcat ," +
-                        " iexusucrea,      iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,  ?  ,  " +
-                        "  ? ,   current_date " +
-                        ")  ",
-
+        jdbc.update(sql,
                 ccosto.getIexcodcia(),
                 ccosto.getIexccosto(),
                 ccosto.getIexdesccosto(),
@@ -155,25 +152,27 @@ public class CcostoDaoImpl implements CcostoDao {
 
     public void actualizarCentroCosto(CentroCosto ccosto) {
 
-        template.update("  update iexccosto set" +
-                        "    iexdesccosto=?  ,iexcodcat=?,  " +
-                        " iexusumod =?,      iexfecmod=current_date " +
-                        " where iexcodcia=?   and  iexccosto=?  ",
+        String sql = "update iexccosto set " +
+                "iexdesccosto=?, iexcodcat=?, " +
+                "iexusumod =?, iexfecmod=current_date " +
+                "where iexcodcia=? and iexccosto=? ";
 
+        jdbc.update(sql,
                 ccosto.getIexdesccosto(),
                 ccosto.getIexcodcat(),
                 ccosto.getIexusumod(),
                 ccosto.getIexcodcia(),
                 ccosto.getIexccosto());
-
     }
 
     public void eliminarCentroCosto(CentroCosto ccosto) {
 
-        template.update("  delete from iexccosto where iexcodcia=?   and  iexccosto=?  ",
+        String sql = "delete from iexccosto " +
+                "where iexcodcia=? and iexccosto=? ";
 
-        ccosto.getIexcodcia(),
-        ccosto.getIexccosto());
+        jdbc.update(sql,
+                ccosto.getIexcodcia(),
+                ccosto.getIexccosto());
 
     }
 }

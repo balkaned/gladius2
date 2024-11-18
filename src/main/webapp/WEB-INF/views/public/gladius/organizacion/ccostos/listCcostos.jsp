@@ -87,7 +87,7 @@
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarCcosto@${cc.iexccosto}">#${cc.iexccosto}</a></td>
                               <td class="total align-middle text-start fw-semi-bold text-1000 ps-7">${cc.iexdesccosto}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${cc.descodcat}</span</td>
+                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">${cc.desdet}</span</td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
