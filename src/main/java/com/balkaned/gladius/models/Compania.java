@@ -1,10 +1,16 @@
 package com.balkaned.gladius.models;
 
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 @Data
 public class Compania {
 
+    @Id
     private String id_companias;
     private String nombre;
     private String ruc;
@@ -18,9 +24,7 @@ public class Compania {
     private String descCiaCorto;
     private String direccionCia;
     private String nroTelfCia;
-    private String idRubroCia;
-    private String desRubroCia;
-    private String IdActividadCia;
+    private String idActividadCia;
     private String desActividadCia;
     private String nomRepesentante;
     private String apepatRepesentante;
@@ -39,6 +43,9 @@ public class Compania {
     private String iexurlfileimg;
     private String urlflgsource;
 
+    private String idRubroCia;
+    private String desRubroCia;
+
     private String iexflgsource;
     private String iexususource;
     private String iexpasssource;
@@ -47,4 +54,25 @@ public class Compania {
     private String iexregiondes;
     private String iexdesobservacion;
     private String schema;
+
+    public void setDescCiaCorto(String descCiaCorto) {
+        CapitalizarCadena cap = new CapitalizarCadena();
+        this.descCiaCorto = cap.letras(descCiaCorto);
+    }
+
+    public void setDireccionCia(String direccionCia) {
+        CapitalizarCadena cap1 = new CapitalizarCadena();
+        this.direccionCia = cap1.letras(direccionCia);
+    }
+
+    public void setNomRepesentante(String nomRepesentante) {
+        CapitalizarCadena cap2 = new CapitalizarCadena();
+        this.nomRepesentante = cap2.letras(nomRepesentante);
+    }
+
+    public void setDesCargoRep(String desCargoRep) {
+        CapitalizarCadena cap3 = new CapitalizarCadena();
+        this.desCargoRep = cap3.letras(desCargoRep);
+    }
+
 }
