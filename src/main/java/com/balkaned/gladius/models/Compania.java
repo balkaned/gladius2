@@ -2,7 +2,6 @@ package com.balkaned.gladius.models;
 
 import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -26,7 +25,7 @@ public class Compania {
     private String nroTelfCia;
     private String idActividadCia;
     private String desActividadCia;
-    private String nomRepesentante;
+    private String nomRepresentante;
     private String apepatRepesentante;
     private String apematRepesentante;
     private String codCargoRep;
@@ -65,9 +64,9 @@ public class Compania {
         this.direccionCia = cap1.letras(direccionCia);
     }
 
-    public void setNomRepesentante(String nomRepesentante) {
+    public void setNomRepresentante(String nomRepresentante) {
         CapitalizarCadena cap2 = new CapitalizarCadena();
-        this.nomRepesentante = cap2.letras(nomRepesentante);
+        this.nomRepresentante = cap2.letras(nomRepresentante);
     }
 
     public void setDesCargoRep(String desCargoRep) {

@@ -51,14 +51,14 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexurlfileserver iexurlfileserver, " +
                 "c.iexurlfilereport iexurlfilereport, " +
                 "c.iexurlfileimg iexurlfileimg, " +
-                "c.iexflgsource, " +
+                "c.iexflgsource as urlflgsource, " +
                 "c.iexususource, " +
                 "c.iexpasssource, " +
                 "c.iexportsource, " +
                 "c.iexsourcedes, " +
                 "c.iexregiondes, " +
                 "c.iexdesobservacion, " +
-                "c.iexschema schema " +
+                "c.iexschema as schema " +
                 "from iexcompania c " +
                 "full outer join ( select iexkey, desdet from iexttabled where iexcodtab='1' ) d " +
                 "on c.iexcodact = d.iexkey  where c.iexcodcia = :iexcodcia ";
@@ -70,43 +70,6 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 BeanPropertyRowMapper.newInstance(Compania.class));
 
         return com;
-
-        /*return (Compania) template.query(sql, new ResultSetExtractor<Compania>() {
-            public Compania extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Compania cia = new Compania();
-                while (rs.next()) {
-                    cia.setIdCodcia(rs.getInt("codcia"));
-                    cia.setDescCia(rs.getString("descia"));
-                    cia.setNroRuc(rs.getString("nroruc"));
-                    cia.setDescCiaCorto(rs.getString("descorto"));
-                    cia.setDireccionCia(rs.getString("direccion"));
-                    cia.setNroTelfCia(rs.getString("telefono"));
-                    cia.setIdActividadCia(rs.getString("codactividad"));
-                    cia.setDesActividadCia(rs.getString("desdet"));
-                    cia.setNomRepesentante(rs.getString("nombreRepresentante"));
-                    cia.setDesCargoRep(rs.getString("cargoRepresentante"));
-                    cia.setNroDocuRep(rs.getString("nrodocRepresentante"));
-                    cia.setUrlLogo(rs.getString("urllogo"));
-                    cia.setUsuCrea(rs.getString("iexusucre"));
-                    cia.setUsuMod(rs.getString("iexusumod"));
-                    cia.setFecCrea(rs.getString("iexfeccre"));
-                    cia.setFecMod(rs.getString("iexfecmod"));
-                    cia.setIexurlfileserver(rs.getString("iexurlfileserver"));
-                    cia.setIexurlfilereport(rs.getString("iexurlfilereport"));
-
-                    cia.setIexurlfileimg(rs.getString("iexurlfileimg"));
-                    cia.setUrlflgsource(rs.getString("iexflgsource"));
-                    cia.setIexususource(rs.getString("iexususource"));
-                    cia.setIexpasssource(rs.getString("iexpasssource"));
-                    cia.setIexsourcedes(rs.getString("iexsourcedes"));
-                    cia.setIexportsource(rs.getString("iexportsource"));
-                    cia.setIexregiondes(rs.getString("iexregiondes"));
-                    cia.setIexdesobservacion(rs.getString("iexdesobservacion"));
-                    cia.setSchema(rs.getString("iexschema"));
-                }
-                return cia;
-            }
-        });*/
     }
 
     public void logoCompania(Compania com) {
@@ -114,9 +77,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
         String sql = "update iexcompania set iexreplogo=? " +
                 "where iexcodcia = ? ";
 
-        jdbc.update(sql,
-                com.getUrlLogo(),
-                com.getIdCodcia());
+        jdbc.update(sql, com.getUrlLogo(), com.getIdCodcia());
     }
 
     public List<Compania> listarTodo() {
@@ -165,7 +126,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getDireccionCia(),
                 com.getNroTelfCia(),
                 com.getIdActividadCia(),
-                com.getNomRepesentante(),
+                com.getNomRepresentante(),
                 com.getDesCargoRep(),
                 com.getNroDocuRep(),
                 com.getUrlLogo(),
@@ -181,11 +142,11 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexdescia descCia, " +
                 "c.iexnroruc nroRuc, " +
                 "c.iexdescorto descCiaCorto, " +
-                "c.iexdireccion direccion, " +
+                "c.iexdireccion direccionCia, " +
                 "c.iexnrotelf nroTelfCia, " +
                 "c.iexcodact idActividadCia, " +
                 " d.desdet desActividadCia, " +
-                "c.iexrepnombre nombreRepresentante, " +
+                "c.iexrepnombre nomRepresentante, " +
                 "c.iexrepcargo desCargoRep, " +
                 "c.iexrepdocid nroDocuRep, " +
                 "c.iexreplogo urllogo, " +
@@ -194,7 +155,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexusumod usuMod, " +
                 "c.iexfecmod fecMod, " +
                 "c.iexurlfilereport iexurlfilereport, " +
-                "c.iexflgsource, " +
+                "c.iexflgsource as urlflgsource, " +
                 "c.iexurlfileserver, " +
                 "c.iexususource, " +
                 "c.iexpasssource, " +
@@ -212,55 +173,6 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 BeanPropertyRowMapper.newInstance(Compania.class));
 
         return com;
-
-        /*return (Compania) template.query(sql, new ResultSetExtractor<Compania>() {
-            public Compania extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Compania cia = new Compania();
-                while (rs.next()) {
-                    cia.setIdCodcia(rs.getInt("codcia"));
-                    cia.setDescCia(rs.getString("descia"));
-                    cia.setNroRuc(rs.getString("nroruc"));
-
-                    cia.setDescCiaCorto(rs.getString("descorto"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    cia.setDescCiaCorto(cap.letras(cia.getDescCiaCorto()));
-
-                    cia.setDireccionCia(rs.getString("direccion"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    cia.setDireccionCia(cap2.letras(cia.getDireccionCia()));
-
-                    cia.setNroTelfCia(rs.getString("telefono"));
-                    cia.setIdActividadCia(rs.getString("codactividad"));
-                    cia.setDesActividadCia(rs.getString("desdet"));
-
-                    cia.setNomRepesentante(rs.getString("nombreRepresentante"));
-                    CapitalizarCadena cap3 = new CapitalizarCadena();
-                    cia.setNomRepesentante(cap3.letras(cia.getNomRepesentante()));
-
-                    cia.setDesCargoRep(rs.getString("cargoRepresentante"));
-                    CapitalizarCadena cap4 = new CapitalizarCadena();
-                    cia.setDesCargoRep(cap4.letras(cia.getDesCargoRep()));
-
-                    cia.setNroDocuRep(rs.getString("nrodocRepresentante"));
-                    cia.setUrlLogo(rs.getString("urllogo"));
-                    cia.setUsuCrea(rs.getString("iexusucre"));
-                    cia.setUsuMod(rs.getString("iexusumod"));
-                    cia.setFecCrea(rs.getString("iexfeccre"));
-                    cia.setFecMod(rs.getString("iexfecmod"));
-                    cia.setIexurlfilereport(rs.getString("iexurlfilereport"));
-
-                    cia.setIexflgsource(rs.getString("iexflgsource"));
-                    cia.setIexurlfileserver(rs.getString("iexurlfileserver"));
-                    cia.setIexususource(rs.getString("iexususource"));
-                    cia.setIexpasssource(rs.getString("iexpasssource"));
-                    cia.setIexsourcedes(rs.getString("iexsourcedes"));
-                    cia.setIexregiondes(rs.getString("iexregiondes"));
-                    cia.setIexportsource(rs.getString("iexportsource"));
-                    log.info("urlLogo: " + cia.getUrlLogo());
-                }
-                return cia;
-            }
-        });*/
     }
 
     public List<Ciaxcon> listarCiaxcon(Integer codcia, String flgtipreg) {
@@ -299,7 +211,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getDireccionCia(),
                 com.getNroTelfCia(),
                 com.getIdActividadCia(),
-                com.getNomRepesentante(),
+                com.getNomRepresentante(),
                 com.getDesCargoRep(),
                 com.getNroDocuRep(),
                 com.getUrlLogo(),
@@ -323,12 +235,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "  ? ,  ? ,  ? ,  ?  , ? " +
                 ")  ";
 
-        jdbc.update(sql,
-                codcia,
-                codcon,
-                "1",
-                0.0,
-                tipreg);
+        jdbc.update(sql, codcia, codcon, "1", 0.0, tipreg);
     }
 
     public void deleteCiaxcon(Integer codcia, String codcon) {
@@ -336,18 +243,14 @@ public class CompaniaDaoImpl implements CompaniaDao {
         String sql = "delete from iexciaxcon " +
                 "where iexcodcia=? and  iexcodcon=? ";
 
-        jdbc.update(sql,
-                codcia,
-                codcon);
+        jdbc.update(sql, codcia, codcon);
     }
 
     public void eliminarCompania(Compania com) {
 
-        String sql = "delete from iexcompania " +
-                "where iexcodcia = ? ";
+        String sql = "delete from iexcompania where iexcodcia = ? ";
 
-        jdbc.update(sql,
-                com.getIdCodcia());
+        jdbc.update(sql, com.getIdCodcia());
     }
 
 }

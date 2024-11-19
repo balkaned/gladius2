@@ -126,7 +126,7 @@
                               </div>
                               <div class="col-sm-6 col-md-6">
                                      <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del representante</label>
-                                     <input class="form-control" name="iexrepnombre" type="text"  value="${requestScope.xCia.nomRepesentante}" required/>
+                                     <input class="form-control" name="iexrepnombre" type="text"  value="${requestScope.xCia.nomRepresentante}" required/>
                               </div>
                               <div class="col-sm-6 col-md-6">
                                     <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Cargo del representante</label>
@@ -151,8 +151,8 @@
                               <div class="col-sm-6 col-md-5">
                               	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo conexión flag source</label>
                               	  <select name="iexflgsource" class="form-select" required >
-                              		  <option value="1" ${1 == requestScope.xCia.iexflgsource ? 'selected' : ''} >1: AWS S3</option>
-                              		  <option value="2" ${2 == requestScope.xCia.iexflgsource ? 'selected' : ''} >2: FTP</option>
+                              		  <option value="1" ${1 == requestScope.xCia.urlflgsource ? 'selected' : ''} >1: AWS S3</option>
+                              		  <option value="2" ${2 == requestScope.xCia.urlflgsource ? 'selected' : ''} >2: FTP</option>
                               	  </select>
                               </div>
                               <hr>

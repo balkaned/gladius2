@@ -76,7 +76,7 @@ public class CompaniasController {
         cia.setDireccionCia(request.getParameter("iexdireccion").toUpperCase());
         cia.setNroTelfCia(request.getParameter("iexnrotelf"));
         cia.setIdActividadCia(request.getParameter("iexcodact"));
-        cia.setNomRepesentante(request.getParameter("iexrepnombre").toUpperCase());
+        cia.setNomRepresentante(request.getParameter("iexrepnombre").toUpperCase());
         cia.setDesCargoRep(request.getParameter("iexrepcargo").toUpperCase());
         cia.setNroDocuRep(request.getParameter("iexrepdocid"));
         cia.setUrlLogo(request.getParameter("iexreplogo"));
@@ -128,7 +128,7 @@ public class CompaniasController {
         cia.setDireccionCia(request.getParameter("iexdireccion").toUpperCase());
         cia.setNroTelfCia(request.getParameter("iexnrotelf"));
         cia.setIdActividadCia(request.getParameter("iexcodact"));
-        cia.setNomRepesentante(request.getParameter("iexrepnombre").toUpperCase());
+        cia.setNomRepresentante(request.getParameter("iexrepnombre").toUpperCase());
         cia.setDesCargoRep(request.getParameter("iexrepcargo").toUpperCase());
         cia.setNroDocuRep(request.getParameter("iexrepdocid"));
         cia.setUrlLogo(request.getParameter("iexreplogo"));
