@@ -191,7 +191,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 p.setProcodconpdt(rs.getString("procodconpdt"));
                 p.setProflgbol(rs.getString("proflgbol"));
                 p.setProorden(rs.getInt("proorden"));
-                p.setProvalor(rs.getDouble("provalor"));
+                p.setNro_asignacion(rs.getDouble("provalor"));
                 p.setProtipcon(rs.getString("protipcon"));
                 p.setProdescustom(rs.getString("prodescustom"));
                 list.add(p);
@@ -244,7 +244,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 p.setProcodconpdt(rs.getString("procodconpdt"));
                 p.setProflgbol(rs.getString("proflgbol"));
                 p.setProorden(rs.getInt("proorden"));
-                p.setProvalor(rs.getDouble("provalor"));
+                p.setNro_asignacion(rs.getDouble("provalor"));
                 p.setProtipcon(rs.getString("protipcon"));
                 p.setProdescustom(rs.getString("prodescustom"));
                 p.setTip_ingreso(rs.getString("tip_ingreso"));
@@ -266,7 +266,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 p.setFlg_cont_asis_previs(rs.getString("flg_cont_asis_previs"));
                 p.setFlg_promediable(rs.getString("flg_promediable"));
                 p.setFlg_agrupable(rs.getString("flg_agrupable"));
-                p.setNro_meses_atras(rs.getInt("nro_meses_prom_atras"));
+                p.setNro_meses_prom_atras(rs.getInt("nro_meses_prom_atras"));
             }
 
             return p;
@@ -284,7 +284,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         cproceso.getProcodconpdt(),
         cproceso.getProflgbol(),
         cproceso.getProorden(),
-        cproceso.getProvalor(),
+        cproceso.getNro_asignacion(),
         cproceso.getProtipcon(),
         cproceso.getProdescustom(),
         cproceso.getTip_ingreso(),
@@ -306,7 +306,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         cproceso.getFlg_cont_asis_previs(),
         cproceso.getFlg_promediable(),
         cproceso.getFlg_agrupable(),
-        cproceso.getNro_meses_atras());
+        cproceso.getNro_meses_prom_atras());
     }
 
     public void actualizar(ConceptoXProceso cproceso){
@@ -337,7 +337,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         cproceso.getProcodconpdt(),
         cproceso.getProflgbol(),
         cproceso.getProorden(),
-        cproceso.getProvalor(),
+        cproceso.getNro_asignacion(),
         cproceso.getProtipcon(),
         cproceso.getProdescustom(),
         cproceso.getTip_ingreso(),
@@ -359,7 +359,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
         cproceso.getFlg_cont_asis_previs(),
         cproceso.getFlg_promediable(),
         cproceso.getFlg_agrupable(),
-        cproceso.getNro_meses_atras(),
+        cproceso.getNro_meses_prom_atras(),
         cproceso.getProcodpro(),
         cproceso.getProcodcon());
     }

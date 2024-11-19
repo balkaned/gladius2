@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-2">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="valor_bol">Valor</label>
-                                        <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="${requestScope.proconceptox.provalor}" />
+                                        <input class="form-control" id="valor_bol" name="valor_bol" type="number" maxlength="20" step=0.01 value="${requestScope.proconceptox.nro_asignacion}" />
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="des_custom">Descripcion customizada</label>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" for="nro_meses_atras">Nro meses atras</label>
-                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="number" maxlength="50" value="${requestScope.proconceptox.nro_meses_atras}"/>
+                                        <input class="form-control" id="nro_meses_atras" name="nro_meses_atras" type="number" maxlength="50" value="${requestScope.proconceptox.nro_meses_prom_atras}"/>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Ver conceptos promediables</label>
@@ -303,7 +303,7 @@
                             <strong class="text-black">Información</strong>
                              <p class="mb-0 fw-semi-bold text-1000">Se eliminó exitosamente el elemento <a href="#">Mas información</a></p>
                         </div>
-                        <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
+                        <a class="text-info fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                     </div>
 
                     <div class="row g-3 col-12 mt-3">
@@ -405,7 +405,7 @@
                             <strong class="text-black">Información</strong>
                              <p class="mb-0 fw-semi-bold text-1000">Se eliminó exitosamente el elemento <a href="#">Mas información</a></p>
                         </div>
-                        <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
+                        <a class="text-info fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                     </div>
 
                     <div class="col-sm-6 col-md-5 mt-3">

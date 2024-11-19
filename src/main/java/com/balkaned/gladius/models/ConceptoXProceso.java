@@ -1,17 +1,23 @@
 package com.balkaned.gladius.models;
 
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 @Data
 public class ConceptoXProceso {
 
+	@Id
 	private Integer procodpro;
 	private String procodcon;
 	private String coodescon;
 	private String procodconpdt;
 	private String proflgbol;
 	private Integer proorden;
-	private Double provalor;
+	private Double nro_asignacion;
 	private String protipcon;
 	private String prodescustom;
 	private String convar;
@@ -34,5 +40,10 @@ public class ConceptoXProceso {
 	private String flg_cont_asis_previs;
 	private String flg_promediable;
 	private String flg_agrupable;
-	private Integer nro_meses_atras;
+	private Integer nro_meses_prom_atras;
+
+	public void setCoodescon(String coodescon) {
+		CapitalizarCadena cap = new CapitalizarCadena();
+		this.coodescon = cap.letras(coodescon);
+	}
 }

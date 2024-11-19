@@ -69,7 +69,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
 
         String sql = "select " +
                 "coocodcon codConcepto, " +
-                "coodescon desConcepto" +
+                "coodescon desConcepto " +
                 "from iexconcepto " +
                 "where coocodcon not in " +
                 " (select procodcon from iexproxconcepto " +

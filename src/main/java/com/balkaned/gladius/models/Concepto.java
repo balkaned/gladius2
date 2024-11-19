@@ -3,7 +3,6 @@ package com.balkaned.gladius.models;
 
 import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

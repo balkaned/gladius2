@@ -200,9 +200,9 @@ public class ConceptoXProcesoController {
                 p.setProorden(Integer.valueOf(request.getParameter("id_orden_bol")));
             }
             if (request.getParameter("valor_bol") == null) {
-                p.setProvalor(0.0);
+                p.setNro_asignacion(0.0);
             } else {
-                p.setProvalor(Double.valueOf(request.getParameter("valor_bol")));
+                p.setNro_asignacion(Double.valueOf(request.getParameter("valor_bol")));
             }
 
             p.setProtipcon(tip_con);
@@ -224,7 +224,7 @@ public class ConceptoXProcesoController {
             p.setFlg_5ta(flg_5ta);
             p.setFlg_promediable(flg_promediable);
             p.setFlg_agrupable(flg_agrupable);
-            p.setNro_meses_atras(nro_meses_atras);
+            p.setNro_meses_prom_atras(nro_meses_atras);
             p.setFlg_ess_seg_pen(flg_ess_seg_reg_pen);
             p.setFlg_cont_asis_previs(flg_contr_solid_asis);
 
@@ -330,7 +330,7 @@ public class ConceptoXProcesoController {
         p.setProcodconpdt(codcon_pdt);
         p.setProflgbol(flg_bol);
         p.setProorden(Integer.valueOf(orden));
-        p.setProvalor(Double.valueOf(valor));
+        p.setNro_asignacion(Double.valueOf(valor));
         p.setProtipcon(tip_con);
         p.setProdescustom(des_custom);
         p.setTip_ingreso(tip_ingreso);
@@ -352,7 +352,7 @@ public class ConceptoXProcesoController {
         p.setFlg_cont_asis_previs(flg_cont_asis_previs);
         p.setFlg_promediable(flg_promediable);
         p.setFlg_agrupable(flg_agrupable);
-        p.setNro_meses_atras(nro_meses_atras);
+        p.setNro_meses_prom_atras(nro_meses_atras);
 
         //log.info("ConceptoXProceso: " + p);
 
