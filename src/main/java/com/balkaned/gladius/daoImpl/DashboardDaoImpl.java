@@ -7,8 +7,12 @@ import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -21,31 +25,44 @@ import java.util.List;
 @Slf4j
 public class DashboardDaoImpl implements DashboardDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "DashboardDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Cumpleanos> traerListaDeCumpleañosPorMes(Integer codcia) {
 
         String sql = "select " +
                 "e.iexcodtra, " +
-                "e.iexlogo," +
-                "e.iexcodsex, " +
+                "e.iexlogo, " +
+                "e.iexcodsex as sexo, " +
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
                 "e.iexapemat, " +
                 "e.iexfecnac, " +
-                "to_char(e.iexfecnac, 'dd/MM/yyyy') as iexfecnac2, " +
+                "to_char(e.iexfecnac, 'dd/MM/yyyy') as iexfecnacFormat, " +
                 "to_char(e.iexfecnac, 'MM') as mes, " +
-                "to_char(CURRENT_DATE, 'Month') as mes_actual, " +
+                "to_char(CURRENT_DATE, 'Month') as mesActual, " +
                 "date_part('year', CURRENT_DATE) - date_part('year', e.iexfecnac) as edad " +
                 "from iexempleado e " +
-                "where to_char(e.iexfecnac, 'MM')=to_char(CURRENT_DATE, 'MM') " +
-                "and e.iexcodcia=" + codcia + " ";
-        return template.query(sql, new ResultSetExtractor<List<Cumpleanos>>() {
+                "where to_char(e.iexfecnac, 'MM') = to_char(CURRENT_DATE, 'MM') " +
+                "and e.iexcodcia = :iexcodcia ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
+
+        List<Cumpleanos> lsCumpl = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Cumpleanos.class));
+
+        return lsCumpl;
+
+
+        /*return template.query(sql, new ResultSetExtractor<List<Cumpleanos>>() {
 
             public List<Cumpleanos> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Cumpleanos> lista = new ArrayList<Cumpleanos>();
@@ -83,7 +100,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 }
                 return lista;
             }
-        });
+        });*/
     }
 
     public List<Ingresantes> traerListaDeIngresantesPorMes(Integer codcia) {
@@ -103,9 +120,17 @@ public class DashboardDaoImpl implements DashboardDao {
                 "from iexempleado e " +
                 "where to_char(e.iexfecing, 'MM')=to_char(CURRENT_DATE, 'MM') " +
                 "and to_char(e.iexfecing, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') " +
-                "and e.iexcodcia=" + codcia + " ";
-        //"and to_char(e.iexfecing, 'yyyy')='2018' ";
-        return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
+                "and e.iexcodcia = :codcia ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        List<Ingresantes> lsIngr = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Ingresantes.class));
+
+        return lsIngr;
+
+        /*return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
 
             public List<Ingresantes> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Ingresantes> lista = new ArrayList<Ingresantes>();
@@ -133,7 +158,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 }
                 return lista;
             }
-        });
+        });*/
     }
 
     public List<Retirados> traerListaDeRetiradosPorMes(Integer codcia) {

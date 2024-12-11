@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class CuentaContable {
 
+    @Id
     private String iexccodcta;
     private String iexdescta;
     private String desdet;
@@ -15,4 +19,5 @@ public class CuentaContable {
     private String iexfeccrea;
     private String iexusumod;
     private String iexfecmod;
+
 }

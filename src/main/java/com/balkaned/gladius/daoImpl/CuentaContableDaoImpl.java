@@ -5,34 +5,50 @@ import com.balkaned.gladius.dao.CuentaContableDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("CuentaContableDao")
 @Slf4j
+@Repository("CuentaContableDao")
 public class CuentaContableDaoImpl implements CuentaContableDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "CuentaContableDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     @Override
     public List<CuentaContable> listarCuentasContables() {
-        String sqlQuery = "select a.iexccodcta, a.iexdescta, d.desdet " +
+
+        String sql = "select a.iexccodcta, a.iexdescta, d.desdet " +
                 "from iexccontable a " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65' ) d " +
                 "on a.iextipocta = d.iexkey " +
                 "where iexcodcia = 1";
-        return template.query(sqlQuery, rs -> {
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        List<CuentaContable> lsCuentaContab = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(CuentaContable.class));
+
+        return lsCuentaContab;
+
+        /*return template.query(sqlQuery, rs -> {
             List<CuentaContable> list = new ArrayList<>();
 
             while (rs.next()) {
@@ -44,14 +60,15 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
             }
 
             return list;
-        });
+        });*/
     }
 
     @Override
     public void insertarCuentaContable(CuentaContable cuentaContable, Integer idCompania) {
-        String sqlQuery = "insert into iexccontable (iexcodcia, iexccodcta, iexdescta, iextipocta, iexfeccrea) values (?, ?, ?, ?, current_date)";
-        template.update(
-                sqlQuery,
+        String sql = "insert into iexccontable (iexcodcia, iexccodcta, iexdescta, iextipocta, iexfeccrea) " +
+                "values (?, ?, ?, ?, current_date) ";
+
+        jdbc.update(sql,
                 idCompania,
                 cuentaContable.getIexccodcta(),
                 cuentaContable.getIexdescta(),
@@ -61,25 +78,33 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
 
     public CuentaContable getCuentaContable(Integer codcia, String ccontable) {
 
-        String sql="select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexccodcta, " +
-                "a.iexdescta,  " +
+                "a.iexdescta, " +
                 "a.iextipocta, " +
-                "d.desdet , " +
-                "a.iexusucrea , " +
+                "d.desdet, " +
+                "a.iexusucrea, " +
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
-                "a.iexfecmod  " +
-                "from  " +
-                "iexccontable  a  " +
-                " full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65' ) d  on a.iextipocta = d.iexkey " +
-                " where iexcodcia="+codcia+" ";
+                "a.iexfecmod " +
+                "from " +
+                "iexccontable a " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65') d on a.iextipocta = d.iexkey " +
+                "where iexcodcia= :iexcodcia ";
 
-        return (CuentaContable) template.query(sql, new ResultSetExtractor<CuentaContable>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", codcia);
+
+        CuentaContable cuentaCont = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(CuentaContable.class));
+
+        return cuentaCont;
+
+        /*return (CuentaContable) template.query(sql, new ResultSetExtractor<CuentaContable>() {
             public CuentaContable extractData(ResultSet rs) throws SQLException, DataAccessException {
                 CuentaContable p = new CuentaContable();
-                while(rs.next()) {
+                while (rs.next()) {
                     p.setIexcodcia(rs.getInt("iexcodcia"));
                     p.setIexccodcta(rs.getString("iexccodcta"));
                     p.setIexdescta(rs.getString("iexdescta"));
@@ -92,28 +117,29 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 }
                 return p;
             }
-        });
+        });*/
     }
 
-    public void actualizarCuentaContable(CuentaContable ccontable){
+    public void actualizarCuentaContable(CuentaContable ccontable) {
 
-        template.update(" update iexccontable set" +
-                        "  iexdescta=?  , iextipocta=? ,  " +
-                        " iexusumod=?,      iexfecmod=current_date " +
-                        " where  iexcodcia=?    and   iexccodcta=? ",
+        String sql = "update iexccontable set " +
+                "iexdescta=?, iextipocta=?, " +
+                "iexusumod=?, iexfecmod=current_date " +
+                "where iexcodcia=? and iexccodcta=? ";
 
-        ccontable.getIexdescta(),
-        ccontable.getIextipocta(),
-        "1",
-        ccontable.getIexcodcia(),
-        ccontable.getIexccodcta());
+        jdbc.update(sql,
+                ccontable.getIexdescta(),
+                ccontable.getIextipocta(),
+                "1",
+                ccontable.getIexcodcia(),
+                ccontable.getIexccodcta());
     }
 
-    public void eliminarCuentaContable(CuentaContable ccontable){
+    public void eliminarCuentaContable(CuentaContable ccontable) {
 
-        template.update(" delete from  iexccontable   where  iexcodcia=?    and   iexccodcta=? ",
+        String sql = "delete from iexccontable where iexcodcia=? and iexccodcta=? ";
 
-        ccontable.getIexcodcia(),
-        ccontable.getIexccodcta());
+        jdbc.update(sql, ccontable.getIexcodcia(),
+                ccontable.getIexccodcta());
     }
 }

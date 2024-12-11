@@ -4,7 +4,6 @@ import com.balkaned.gladius.util.CapitalizarCadena;
 import com.balkaned.gladius.util.FormatterFecha;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -52,7 +51,6 @@ public class AusentismoProgramacion {
     public String getIexfecfinDes() {
         FormatterFecha f2 = new FormatterFecha();
         CapitalizarCadena capit2 = new CapitalizarCadena();
-        String fec = this.iexfecfin;
         return  f2.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f2.fechaFormatterMes(iexfecfin)) + ", " + f2.fechaFormatterAnio(iexfecfin);
     }
 

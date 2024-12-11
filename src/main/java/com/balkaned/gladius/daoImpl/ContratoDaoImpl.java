@@ -3,24 +3,21 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.models.ContratoEmp;
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.ContratoDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
-import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("ContratoDao")
+
 @Slf4j
+@Repository("ContratoDao")
 public class ContratoDaoImpl implements ContratoDao {
 
     private static final String CLASS_NAME = "ContratoDao";
@@ -60,7 +57,16 @@ public class ContratoDaoImpl implements ContratoDao {
                 "iexcodtra = :iexcodtra and " +
                 "iextipcont = d.iexkey ";
 
-        return template.query(sql, new ResultSetExtractor<List<ContratoEmp>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", empleado.getIexcodcia())
+                .addValue("iexcodtra", empleado.getIexcodtra());
+
+        List<ContratoEmp> lsContrEmp = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ContratoEmp.class));
+
+        return lsContrEmp;
+
+        /*return template.query(sql, new ResultSetExtractor<List<ContratoEmp>>() {
             public List<ContratoEmp> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<ContratoEmp> lista = new ArrayList<ContratoEmp>();
 
@@ -95,36 +101,35 @@ public class ContratoDaoImpl implements ContratoDao {
                 }
                 return lista;
             }
-        });
+        });*/
     }
 
     public Integer getIdContratoEmp(ContratoEmp contemp) {
 
-        final Integer[] idfinal = {0};
+        String sql = "select coalesce(max(iexcorrel),0)+1 as idex " +
+                "from iexcontctl " +
+                "where iexcodcia = :iexcodcia and iexcodtra = :iexcodtra ";
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexcontctl where iexcodcia=" + contemp.getIexcodcia() + " and iexcodtra=" + contemp.getIexcodtra() + " ";
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idfinal[0] = rs.getInt("idex");
-                }
-                return idfinal[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", contemp.getIexcodcia())
+                .addValue("iexcodtra", contemp.getIexcodtra());
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarContratoEmp(ContratoEmp contemp) {
 
-        template.update("  insert into iexcontctl( " +
-                        "iexcodcia,   iexcodtra,     iexcorrel,      iextipcont, " +
-                        "iexfecini,   iexfecfin,     iexmodcont,     iexusucrea, iexestado, " +
-                        "   iexfeccrea " +
-                        " ) values ( " +
-                        "  ?,   ? ,  ?,   ?,  "
-                        + "  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ,  ?  ,  ?,  ? , " +
-                        " current_date  " +
-                        ")  ",
+        String sql = "insert into iexcontctl( " +
+                "iexcodcia, iexcodtra, iexcorrel, iextipcont, " +
+                "iexfecini, iexfecfin, iexmodcont, iexusucrea, iexestado, " +
+                "iexfeccrea " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
+                " current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 contemp.getIexcodcia(),
                 contemp.getIexcodtra(),
                 contemp.getIexcorrel(),
@@ -134,61 +139,50 @@ public class ContratoDaoImpl implements ContratoDao {
                 contemp.getIexmodcont(),
                 contemp.getIexusucrea(),
                 contemp.getIexestado());
-
     }
 
     public ContratoEmp getContratoEmp(ContratoEmp contemp) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexcorrel, " +
                 "iextipcont, " +
-                " d.desdet as destipcont, " +
+                "d.desdet as destipcont, " +
                 "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "iexmodcont, " +
                 "iexmodcont as desmodcont, " +
                 "iexusucrea, " +
-                "iexusumod,  " +
+                "iexusumod, " +
                 "iexfeccrea, " +
-                "iexfecmod , iexestado " +
-                "from iexcontctl,  ( " +
-                "                        select  iexkey, desdet from iexttabled where iexcodtab='12' " +
-                "                        ) d where iexcodcia=" + contemp.getIexcodcia() + " and iexcodtra=" + contemp.getIexcodtra() + "  and iexcorrel=" + contemp.getIexcorrel() + " and iextipcont = d.iexkey ";
+                "iexfecmod, " +
+                "iexestado " +
+                "from iexcontctl, (select iexkey, desdet from iexttabled where iexcodtab='12') d " +
+                "where iexcodcia = :iexcodcia and " +
+                "iexcodtra = :iexcodtra and " +
+                "iexcorrel = :iexcorrel and " +
+                "iextipcont = d.iexkey ";
 
-        return (ContratoEmp) template.query(sql, new ResultSetExtractor<ContratoEmp>() {
-            public ContratoEmp extractData(ResultSet rs) throws SQLException, DataAccessException {
-                ContratoEmp p = new ContratoEmp();
-                while (rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIextipcont(rs.getString("iextipcont"));
-                    p.setDestipcont(rs.getString("destipcont"));
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setIexmodcont(rs.getString("iexmodcont"));
-                    p.setDesmodcont(rs.getString("desmodcont"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("iexcodcia", contemp.getIexcodcia())
+                .addValue("iexcodtra", contemp.getIexcodtra())
+                .addValue("iexcorrel", contemp.getIexcorrel());
 
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                    p.setIexestado(rs.getString("iexestado"));
-                }
-                return p;
-            }
-        });
+        ContratoEmp contratoEmp = namedParameterJdbcTemplate.queryForObject(sql,
+                namedParameters, BeanPropertyRowMapper.newInstance(ContratoEmp.class));
+
+        return contratoEmp;
     }
 
     public void actualizarContratoEmp(ContratoEmp contemp) {
 
-        template.update("  update iexcontctl set " +
-                        " iextipcont=?, " +
-                        "iexfecini=to_date(?,'DD/MM/YYYY'),   iexfecfin=to_date(?,'DD/MM/YYYY'),     iexmodcont=?,     iexusumod=?, " +
-                        "   iexfecmod=current_date ,  iexestado = ?  where iexcodcia=? and   iexcodtra=? and     iexcorrel=?  ",
+        String sql = "update iexcontctl set " +
+                "iextipcont=?, iexfecini=to_date(?,'DD/MM/YYYY'), iexfecfin=to_date(?,'DD/MM/YYYY'), " +
+                "iexmodcont=?, iexusumod=?, iexfecmod=current_date, iexestado = ? " +
+                "where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
 
+        jdbc.update(sql,
                 contemp.getIextipcont(),
                 contemp.getIexfecini(),
                 contemp.getIexfecfin(),
@@ -202,12 +196,11 @@ public class ContratoDaoImpl implements ContratoDao {
 
     public void eliminarContratoEmp(ContratoEmp contemp) {
 
-        template.update("  delete from   iexcontctl  where iexcodcia=? and   iexcodtra=? and     iexcorrel=?  ",
+        String sql = "delete from iexcontctl where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
 
+        jdbc.update(sql,
                 contemp.getIexcodcia(),
                 contemp.getIexcodtra(),
                 contemp.getIexcorrel());
-
     }
-
 }
