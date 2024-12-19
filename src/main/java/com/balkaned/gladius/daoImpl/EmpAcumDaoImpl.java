@@ -4,39 +4,41 @@ import com.balkaned.gladius.models.EmpAcum;
 import com.balkaned.gladius.dao.EmpAcumDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @Repository("EmpAcumDao")
 @Slf4j
 public class EmpAcumDaoImpl implements EmpAcumDao {
 
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "EmpAcumDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
-
 
     public EmpAcum getEmpAcum(Integer codcia, Integer codtra, String anio) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexaniotrib, " +
                 "iexrem_acum, " +
                 "iexrem5taafec_acum, " +
-                "iexrenta5ta_acum , " +
+                "iexrenta5ta_acum, " +
                 "iexremafec5ta_otrcia, " +
                 "iexrent5ta_otrcia, " +
-                "iexrem4ta_acum	, " +
+                "iexrem4ta_acum, " +
                 "iexrenta4ta_acum, " +
                 "iexremotr_acum	, " +
                 "iexrenta_acum, " +
@@ -44,35 +46,19 @@ public class EmpAcumDaoImpl implements EmpAcumDao {
                 "iexfeccrea, " +
                 "iexusumod, " +
                 "iexfecmod " +
-                "from  " +
-                "iexacumval where iexcodcia="+codcia+" and iexcodtra="+codtra+"  and  iexaniotrib='"+anio+"'"  ;
-        return (EmpAcum) template.query(sql, new ResultSetExtractor<EmpAcum>() {
-            public EmpAcum extractData(ResultSet rs) throws SQLException, DataAccessException {
-                EmpAcum p = new EmpAcum();
-                while (rs.next()) {
+                "from iexacumval " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexaniotrib = :anio ";
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexaniotrib(rs.getString("iexaniotrib"));
-                    p.setIexrem_acum(rs.getDouble("iexrem_acum"));
-                    p.setIexrem5taafec_acum(rs.getDouble("iexrem5taafec_acum"));
-                    p.setIexrenta5ta_acum(rs.getDouble("iexrenta5ta_acum"));
-                    p.setIexremafec5ta_otrcia(rs.getDouble("iexremafec5ta_otrcia"));
-                    p.setIexrent5ta_otrcia(rs.getDouble("iexrent5ta_otrcia"));
-                    p.setIexrem4ta_acum(rs.getDouble("iexrem4ta_acum"));
-                    p.setIexrenta4ta_acum(rs.getDouble("iexrenta4ta_acum"));
-                    p.setIexremotr_acum(rs.getDouble("iexremotr_acum"));
-                    p.setIexrenta_acum(rs.getDouble("iexrenta_acum"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codtra", codtra)
+                .addValue("anio", anio);
 
-                }
-                return p;
-            }
-        });
+        EmpAcum empAcum = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpAcum.class));
+
+        return empAcum;
     }
-
-
 }

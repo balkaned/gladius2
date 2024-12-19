@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-
 @Repository("CompaniaDao")
 @Slf4j
 public class CompaniaDaoImpl implements CompaniaDao {
@@ -252,5 +251,4 @@ public class CompaniaDaoImpl implements CompaniaDao {
 
         jdbc.update(sql, com.getIdCodcia());
     }
-
 }

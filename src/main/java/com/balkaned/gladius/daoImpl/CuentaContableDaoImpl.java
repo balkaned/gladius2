@@ -4,18 +4,13 @@ import com.balkaned.gladius.models.CuentaContable;
 import com.balkaned.gladius.dao.CuentaContableDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Slf4j
@@ -47,20 +42,6 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 BeanPropertyRowMapper.newInstance(CuentaContable.class));
 
         return lsCuentaContab;
-
-        /*return template.query(sqlQuery, rs -> {
-            List<CuentaContable> list = new ArrayList<>();
-
-            while (rs.next()) {
-                CuentaContable cuentaContable = new CuentaContable();
-                cuentaContable.setIexccodcta(rs.getString("iexccodcta"));
-                cuentaContable.setIexdescta(rs.getString("iexdescta"));
-                cuentaContable.setDesdet(rs.getString("desdet"));
-                list.add(cuentaContable);
-            }
-
-            return list;
-        });*/
     }
 
     @Override
@@ -100,24 +81,6 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 BeanPropertyRowMapper.newInstance(CuentaContable.class));
 
         return cuentaCont;
-
-        /*return (CuentaContable) template.query(sql, new ResultSetExtractor<CuentaContable>() {
-            public CuentaContable extractData(ResultSet rs) throws SQLException, DataAccessException {
-                CuentaContable p = new CuentaContable();
-                while (rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexccodcta(rs.getString("iexccodcta"));
-                    p.setIexdescta(rs.getString("iexdescta"));
-                    p.setIextipocta(rs.getString("iextipocta"));
-                    p.setDestipcta(rs.getString("desdet"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });*/
     }
 
     public void actualizarCuentaContable(CuentaContable ccontable) {

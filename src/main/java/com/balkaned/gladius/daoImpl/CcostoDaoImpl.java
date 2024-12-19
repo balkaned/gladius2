@@ -53,35 +53,6 @@ public class CcostoDaoImpl implements CcostoDao {
                 BeanPropertyRowMapper.newInstance(CentroCosto.class));
 
         return lsCentr;
-
-        /*return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
-
-            public List<CentroCosto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<CentroCosto> lista = new ArrayList<CentroCosto>();
-
-                while (rs.next()) {
-                    CentroCosto p = new CentroCosto();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexccosto(rs.getString("iexccosto"));
-
-                    p.setIexdesccosto(rs.getString("iexdesccosto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
-
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-                    p.setDescodcat(rs.getString("desdet"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });*/
     }
 
     public CentroCosto getCentroCosto(Integer codcia, String codccosto) {
@@ -166,6 +137,5 @@ public class CcostoDaoImpl implements CcostoDao {
         jdbc.update(sql,
                 ccosto.getIexcodcia(),
                 ccosto.getIexccosto());
-
     }
 }

@@ -2,23 +2,17 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.DashboardDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
-import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("DashboardDao")
@@ -60,47 +54,6 @@ public class DashboardDaoImpl implements DashboardDao {
                 BeanPropertyRowMapper.newInstance(Cumpleanos.class));
 
         return lsCumpl;
-
-
-        /*return template.query(sql, new ResultSetExtractor<List<Cumpleanos>>() {
-
-            public List<Cumpleanos> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Cumpleanos> lista = new ArrayList<Cumpleanos>();
-
-                while (rs.next()) {
-                    Cumpleanos p = new Cumpleanos();
-
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexlogo(rs.getString("iexlogo"));
-                    p.setSexo(rs.getString("iexcodsex"));
-
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
-
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    p.setIexapepat(cap2.letras(p.getIexapepat()));
-
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    CapitalizarCadena cap3 = new CapitalizarCadena();
-                    p.setIexapemat(cap3.letras(p.getIexapemat()));
-
-                    p.setIexfecnac(rs.getString("iexfecnac"));
-
-                    p.setIexfecnacFormat(rs.getString("iexfecnac2"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setIexfecnacFormat(f.fechaFormatterDia(p.getIexfecnacFormat())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecnacFormat()))+", "+f.fechaFormatterAnio(p.getIexfecnacFormat()));
-
-                    p.setMesActual(rs.getString("mes_actual"));
-                    p.setEdad(rs.getInt("edad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });*/
     }
 
     public List<Ingresantes> traerListaDeIngresantesPorMes(Integer codcia) {
@@ -129,36 +82,6 @@ public class DashboardDaoImpl implements DashboardDao {
                 BeanPropertyRowMapper.newInstance(Ingresantes.class));
 
         return lsIngr;
-
-        /*return template.query(sql, new ResultSetExtractor<List<Ingresantes>>() {
-
-            public List<Ingresantes> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Ingresantes> lista = new ArrayList<Ingresantes>();
-
-                while (rs.next()) {
-                    Ingresantes p = new Ingresantes();
-
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
-
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    p.setIexapepat(cap2.letras(p.getIexapepat()));
-
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    CapitalizarCadena cap3 = new CapitalizarCadena();
-                    p.setIexapemat(cap3.letras(p.getIexapemat()));
-
-                    p.setIexfecing(rs.getString("iexfecingchar"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });*/
     }
 
     public List<Retirados> traerListaDeRetiradosPorMes(Integer codcia) {
@@ -178,60 +101,33 @@ public class DashboardDaoImpl implements DashboardDao {
                 "from iexempleado e " +
                 "where to_char(e.iexfecret, 'MM')=to_char(CURRENT_DATE, 'MM') " +
                 "and to_char(e.iexfecret, 'yyyy')=to_char(CURRENT_DATE, 'yyyy') " +
-                "and e.iexcodcia=" + codcia + " ";
-        //"and to_char(e.iexfecret, 'yyyy')='2021' ";
-        return template.query(sql, new ResultSetExtractor<List<Retirados>>() {
+                "and e.iexcodcia = :codcia ";
 
-            public List<Retirados> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Retirados> lista = new ArrayList<Retirados>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    Retirados p = new Retirados();
+        List<Retirados> lsRetirados = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Retirados.class));
 
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
-
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    p.setIexapepat(cap2.letras(p.getIexapepat()));
-
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    CapitalizarCadena cap3 = new CapitalizarCadena();
-                    p.setIexapemat(cap3.letras(p.getIexapemat()));
-
-                    p.setIexfecret(rs.getString("iexfecretchar"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsRetirados;
     }
 
     public Integer getCantidadEmpl(Integer codcia) {
 
-        final Integer[] cant = {0};
-
         String sql = "select count(*) as cantidad " +
                 "from iexempleado e " +
                 "where e.iexflgest='1' " +
-                "and e.iexcodcia=" + codcia + " ";
+                "and e.iexcodcia = :codcia ";
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    cant[0] = rs.getInt("cantidad");
-                }
-                return cant[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     @Override
     public List<DashboardCcosto> obtenerDatosDashboardCcosto(Integer codcia) {
+
         String sql = "select " +
                 "cc.iexccosto, " +
                 "cc.iexdesccosto, " +
@@ -239,70 +135,45 @@ public class DashboardDaoImpl implements DashboardDao {
                 "   count(e1.iexcodtra) " +
                 "   from iexempleado e1 " +
                 "   inner join iexccosto cc1 on cc1.iexccosto=e1.iexccosto " +
-                "   where e1.iexcodcia=" + codcia + " " +
-                "   and cc1.iexcodcia=" + codcia + " " +
+                "   where e1.iexcodcia = :codcia " +
+                "   and cc1.iexcodcia = :codcia " +
                 "   and e1.iexflgest='1' " +
                 "   and e1.iexccosto=cc.iexccosto) as cantidad " +
                 "from iexccosto cc " +
-                "where cc.iexcodcia=" + codcia + " ";
+                "where cc.iexcodcia = :codcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardCcosto>>() {
-            public List<DashboardCcosto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardCcosto> lista = new ArrayList<DashboardCcosto>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardCcosto p = new DashboardCcosto();
+        List<DashboardCcosto> lsDashCcosto = namedParameterJdbcTemplate.query(sql,
+                namedParameters, BeanPropertyRowMapper.newInstance(DashboardCcosto.class));
 
-                    p.setIexccosto(rs.getInt("iexccosto"));
-
-                    p.setIexdesccosto(rs.getString("iexdesccosto"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashCcosto;
     }
 
 
     public Integer getCantidadAreas(Integer codcia) {
 
-        final Integer[] cant = {0};
-
         String sql = "select count(*) as cantidad " +
                 "from iexarea a " +
-                "where a.iexcodcia=" + codcia + " ";
+                "where a.iexcodcia = :codcia ";
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    cant[0] = rs.getInt("cantidad");
-                }
-                return cant[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public Integer getCantidadBancos(Integer codcia) {
 
-        final Integer[] cant = {0};
-
         String sql = "select count(*) as cantidad " +
                 "from iexprobancos b " +
-                "where b.iexcodcia=" + codcia + " ";
+                "where b.iexcodcia = :codcia ";
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    cant[0] = rs.getInt("cantidad");
-                }
-                return cant[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public DashboardSexoPie obtenerDashboardPieSexo(Integer codcia) {
@@ -311,142 +182,103 @@ public class DashboardDaoImpl implements DashboardDao {
                 "(select " +
                 "count(e1.iexcodsex) " +
                 "from iexempleado e1 " +
-                "where e1.iexcodcia=" + codcia + " and e1.iexflgest='1' and e1.iexcodsex='M') as cantidad_m, " +
+                "where e1.iexcodcia = :codcia and e1.iexflgest='1' and e1.iexcodsex='M') as cantidad_m, " +
                 "(select " +
                 "count(e2.iexcodsex) " +
                 "from iexempleado e2 " +
-                "where e2.iexcodcia=" + codcia + " and e2.iexflgest='1' and e2.iexcodsex='F') as cantidad_f, " +
+                "where e2.iexcodcia = :codcia and e2.iexflgest='1' and e2.iexcodsex='F') as cantidad_f, " +
                 "(select " +
                 "count(e3.iexcodsex) " +
                 "from iexempleado e3 " +
-                "where e3.iexcodcia=" + codcia + " and e3.iexflgest='1' and e3.iexcodsex='MA') as cantidad_ma, " +
+                "where e3.iexcodcia = :codcia and e3.iexflgest='1' and e3.iexcodsex='MA') as cantidad_ma, " +
                 "(select " +
                 "count(e4.iexcodsex) " +
                 "from iexempleado e4 " +
-                "where e4.iexcodcia=" + codcia + " and e4.iexflgest='1') as cantidad_total " +
+                "where e4.iexcodcia = :codcia and e4.iexflgest='1') as cantidad_total " +
                 "from iexempleado e " +
                 "group by cantidad_m ";
 
-        return (DashboardSexoPie) template.query(sql, new ResultSetExtractor<DashboardSexoPie>() {
-            public DashboardSexoPie extractData(ResultSet rs) throws SQLException, DataAccessException {
-                DashboardSexoPie p = new DashboardSexoPie();
-                while (rs.next()) {
-                    p.setCantidad_m(rs.getInt("cantidad_m"));
-                    p.setCantidad_f(rs.getInt("cantidad_f"));
-                    p.setCantidad_ma(rs.getInt("cantidad_ma"));
-                    p.setCantidad_total(rs.getInt("cantidad_total"));
-                }
-                return p;
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        try {
+            return namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(DashboardSexoPie.class));
+        } catch (IncorrectResultSizeDataAccessException ex) {
+            log.info(CLASS_NAME + "obtenerDashBoardPieSexo: No se encontraron resultados.");
+            return null;
+        }
     }
 
     public List<DashboardAreaBar> obtenerDatosDashboardArea(Integer codcia) {
 
         String sql = "select " +
-                "ar.iexcodarea, " +
-                "ar.iexdesarea, " +
+                "ar.iexcodarea as codarea, " +
+                "ar.iexdesarea as desarea, " +
                 "   (select " +
                 "   count(e.iexcodtra) " +
                 "   from iexempleado e " +
                 "   inner join iexarea ar1 on ar1.iexcodarea=e.iexarea " +
-                "   where e.iexcodcia=" + codcia + " " +
+                "   where e.iexcodcia = :codcia " +
                 "   and e.iexflgest='1' " +
-                "   and ar1.iexcodcia=" + codcia + " " +
+                "   and ar1.iexcodcia = :codcia " +
                 "   and e.iexarea=ar.iexcodarea) as cantidad " +
                 "from iexarea ar " +
-                "where ar.iexcodcia=" + codcia + " ";
+                "where ar.iexcodcia = :codcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardAreaBar>>() {
-            public List<DashboardAreaBar> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardAreaBar> lista = new ArrayList<DashboardAreaBar>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardAreaBar p = new DashboardAreaBar();
+        List<DashboardAreaBar> lsDashAr = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardAreaBar.class));
 
-                    p.setCodarea(rs.getInt("iexcodarea"));
-                    p.setDesarea(rs.getString("iexdesarea"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesarea(cap.letras(p.getDesarea()));
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashAr;
     }
 
     public List<DashboardFondosBar> obtenerDatosDashboardFodos(Integer codcia) {
 
         String sql = "select " +
-                "tb1.iexcodtab, " +
+                "tb1.iexcodtab as codtab, " +
                 "tb1.desdet, " +
                 "count(e1.iexcodtra) as cantidad " +
                 "from iexempleado e1 " +
-                "inner join iexttabled tb1 on tb1.iexkey=e1.iexcodafp " +
-                "where e1.iexcodcia=" + codcia + " " +
+                "inner join iexttabled tb1 on tb1.iexkey = e1.iexcodafp " +
+                "where e1.iexcodcia = :codcia " +
                 "and tb1.iexcodtab='11' " +
                 "and e1.iexflgest='1' " +
                 "and e1.iexcodafp=tb1.iexkey " +
                 "group by tb1.iexcodtab,tb1.desdet ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardFondosBar>>() {
-            public List<DashboardFondosBar> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardFondosBar> lista = new ArrayList<DashboardFondosBar>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardFondosBar p = new DashboardFondosBar();
+        List<DashboardFondosBar> lsDashFond = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardFondosBar.class));
 
-                    p.setCodtab(rs.getInt("iexcodtab"));
-
-                    p.setDesdet(rs.getString("desdet"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesdet(cap.letras(p.getDesdet()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashFond;
     }
 
     public List<DashboardBancosPie> obtenerDatosDashboardBancos(Integer codcia) {
 
         String sql = "select " +
-                "tb1.iexcodtab, " +
+                "tb1.iexcodtab as codtab, " +
                 "tb1.desdet, " +
                 "count(e1.iexcodtra) as cantidad " +
                 "from iexempleado e1 " +
-                "inner join iexttabled tb1 on tb1.iexkey=e1.iexcodban_hab " +
-                "where e1.iexcodcia=" + codcia + " " +
-                "and tb1.iexcodtab='36' " +
-                "and e1.iexflgest='1' " +
-                "and e1.iexcodban_hab=tb1.iexkey " +
+                "inner join iexttabled tb1 on tb1.iexkey = e1.iexcodban_hab " +
+                "where e1.iexcodcia = :codcia " +
+                "and tb1.iexcodtab = '36' " +
+                "and e1.iexflgest = '1' " +
+                "and e1.iexcodban_hab = tb1.iexkey " +
                 "group by tb1.iexcodtab,tb1.desdet ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardBancosPie>>() {
-            public List<DashboardBancosPie> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardBancosPie> lista = new ArrayList<DashboardBancosPie>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardBancosPie p = new DashboardBancosPie();
+        List<DashboardBancosPie> lsDashBancP = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardBancosPie.class));
 
-                    p.setCodtab(rs.getInt("iexcodtab"));
-
-                    p.setDesdet(rs.getString("desdet"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesdet(cap.letras(p.getDesdet()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashBancP;
     }
 
     public List<DashboardCcosto> obtenerDatosDashboardCCosto(Integer codcia) {
@@ -457,34 +289,21 @@ public class DashboardDaoImpl implements DashboardDao {
                 "   (select " +
                 "   count(e1.iexcodtra) " +
                 "   from iexempleado e1 " +
-                "   inner join iexccosto cc1 on cc1.iexccosto=e1.iexccosto " +
-                "   where e1.iexcodcia=" + codcia + " " +
-                "   and cc1.iexcodcia=" + codcia + " " +
-                "   and e1.iexflgest='1' " +
-                "   and e1.iexccosto=cc.iexccosto) as cantidad " +
+                "   inner join iexccosto cc1 on cc1.iexccosto = e1.iexccosto " +
+                "   where e1.iexcodcia = :codcia " +
+                "   and cc1.iexcodcia = :codcia " +
+                "   and e1.iexflgest = '1' " +
+                "   and e1.iexccosto = cc.iexccosto) as cantidad " +
                 "from iexccosto cc " +
-                "where cc.iexcodcia=" + codcia + " ";
+                "where cc.iexcodcia = :codcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardCcosto>>() {
-            public List<DashboardCcosto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardCcosto> lista = new ArrayList<DashboardCcosto>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardCcosto p = new DashboardCcosto();
+        List<DashboardCcosto> lsDashCc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardCcosto.class));
 
-                    p.setIexccosto(rs.getInt("iexccosto"));
-
-                    p.setIexdesccosto(rs.getString("iexdesccosto"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashCc;
     }
 
     public List<DashboardPuestos> obtenerDatosDashboardPuestos(Integer codcia) {
@@ -494,32 +313,19 @@ public class DashboardDaoImpl implements DashboardDao {
                 "ps.iexdespuesto, " +
                 "count(e1.iexcodtra) as cantidad " +
                 "from iexempleado e1 " +
-                "inner join iexpuesto ps on ps.iexpuesto=e1.iexpuesto " +
-                "where e1.iexcodcia=" + codcia + " " +
-                "and e1.iexflgest='1' " +
-                "and ps.iexcodcia=" + codcia + " " +
+                "inner join iexpuesto ps on ps.iexpuesto = e1.iexpuesto " +
+                "where e1.iexcodcia = :codcia " +
+                "and e1.iexflgest = '1' " +
+                "and ps.iexcodcia = :codcia " +
                 "group by ps.iexpuesto,ps.iexdespuesto ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardPuestos>>() {
-            public List<DashboardPuestos> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardPuestos> lista = new ArrayList<DashboardPuestos>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardPuestos p = new DashboardPuestos();
+        List<DashboardPuestos> lsDashP = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardPuestos.class));
 
-                    p.setIexpuesto(rs.getInt("iexpuesto"));
-
-                    p.setIexdespuesto(rs.getString("iexdespuesto"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashP;
     }
 
     public List<DashboardLocal> obtenerDatosDashboardLocales(Integer codcia) {
@@ -529,32 +335,18 @@ public class DashboardDaoImpl implements DashboardDao {
                 "u.iexubides, " +
                 "count(e1.iexcodtra) as cantidad " +
                 "from iexempleado e1 " +
-                "inner join iexubicacion u on u.iexubicod=e1.iexubilocal " +
-                "where e1.iexcodcia=" + codcia + " " +
-                "and e1.iexflgest='1' " +
-                "and u.iexcodcia=" + codcia + " " +
-                "group by u.iexubicod,u.iexubides ";
+                "inner join iexubicacion u on u.iexubicod = e1.iexubilocal " +
+                "where e1.iexcodcia = :codcia " +
+                "and e1.iexflgest = '1' " +
+                "and u.iexcodcia = :codcia " +
+                "group by u.iexubicod, u.iexubides ";
 
-        return template.query(sql, new ResultSetExtractor<List<DashboardLocal>>() {
-            public List<DashboardLocal> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<DashboardLocal> lista = new ArrayList<DashboardLocal>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-                while (rs.next()) {
-                    DashboardLocal p = new DashboardLocal();
+        List<DashboardLocal> lsDashLocal = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(DashboardLocal.class));
 
-                    p.setIexubicod(rs.getInt("iexubicod"));
-
-                    p.setIexubides(rs.getString("iexubides"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexubides(cap.letras(p.getIexubides()));
-
-                    p.setCantidad(rs.getInt("cantidad"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsDashLocal;
     }
-
 }

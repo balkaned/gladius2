@@ -11,10 +11,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.util.List;
-
 
 @Slf4j
 @Repository("ContratoDao")
@@ -65,43 +63,6 @@ public class ContratoDaoImpl implements ContratoDao {
                 BeanPropertyRowMapper.newInstance(ContratoEmp.class));
 
         return lsContrEmp;
-
-        /*return template.query(sql, new ResultSetExtractor<List<ContratoEmp>>() {
-            public List<ContratoEmp> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ContratoEmp> lista = new ArrayList<ContratoEmp>();
-
-                while (rs.next()) {
-                    ContratoEmp p = new ContratoEmp();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIextipcont(rs.getString("iextipcont"));
-                    p.setDestipcont(rs.getString("destipcont"));
-
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit = new CapitalizarCadena();
-                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini()) + " " + capit.letras(f.fechaFormatterMes(p.getIexfecini())) + ", " + f.fechaFormatterAnio(p.getIexfecini()));
-
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    FormatterFecha f2 = new FormatterFecha();
-                    CapitalizarCadena capit2 = new CapitalizarCadena();
-                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin()) + " " + capit2.letras(f2.fechaFormatterMes(p.getIexfecfin())) + ", " + f2.fechaFormatterAnio(p.getIexfecfin()));
-
-                    p.setIexmodcont(rs.getString("iexmodcont"));
-                    p.setDesmodcont(rs.getString("desmodcont"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                    p.setIexestado(rs.getString("iexestado"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });*/
     }
 
     public Integer getIdContratoEmp(ContratoEmp contemp) {

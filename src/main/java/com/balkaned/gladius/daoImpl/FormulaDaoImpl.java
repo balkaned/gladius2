@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -17,37 +18,40 @@ import java.sql.SQLException;
 @Slf4j
 public class FormulaDaoImpl implements FormulaDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "FormulaDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     @Override
     public FormulaPlanilla getByIdProcesoIdFormula(Integer idprod, Integer idformula) {
-        String sqlQuery = "select " +
-                "a.procodpro," +
-                "a.forcodfor," +
-                "a.proglosa," +
-                "a.fordesfor," +
-                "a.forcodcon," +
-                "c.coodescon," +
-                "c.coocodforvar," +
+
+        String sql = "select " +
+                "a.procodpro as idProceso, " +
+                "a.forcodfor as idFormula, " +
+                "a.proglosa as desGlosa, " +
+                "a.fordesfor as desFormula, " +
+                "a.forcodcon as idConcepto, " +
+                "c.coodescon as desConcepto, " +
+                "c.coocodforvar, " +
                 "a.FORFLGEST, " +
-                "a.FORORDEN, " +
-                "a.FORTIPOUT fortipout," +
-                "a.FORVARDES," +
-                "a.FORUSUCREA," +
-                "a.FORFECCREA," +
-                "a.FORUSUMOD," +
+                "a.FORORDEN as , " +
+                "a.FORTIPOUT fortipout, " +
+                "a.FORVARDES, " +
+                "a.FORUSUCREA, " +
+                "a.FORFECCREA, " +
+                "a.FORUSUMOD, " +
                 "a.FORFECMOD, " +
                 "a.sqlprogram, " +
                 "a.grpeje " +
-                "from iexformula_cab a inner join  iexconcepto c on  a.forcodcon= c.coocodcon " +
-                "where  " +
-                "a.procodpro=" + idprod + "  and  a.forcodfor=" + idformula + " " +
-                "order by a.fororden asc     ";
+                "from iexformula_cab a inner join iexconcepto c on a.forcodcon = c.coocodcon " +
+                "where a.procodpro = :idprod and a.forcodfor = :idformula " +
+                "order by a.fororden asc ";
         try {
             return template.query(sqlQuery, rs -> {
                 FormulaPlanilla p = new FormulaPlanilla();
