@@ -30,7 +30,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
 
     public List<DerechoHabiente> listar(Integer codcia, Integer codtra) {
 
-        String sql = " select " +
+        String sql = "select " +
                 "d.iexcodcia, " +
                 "d.iexcodtra, " +
                 "d.iexcoddep, " +
@@ -79,13 +79,13 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexcenasis, " +
                 "d.iexcodlar, " +
                 "d.iexnrotelf, " +
-                "d.iexemail , " +
-                "  d.iexnacion_origen1, " +
-                "    d.iexdepart_origen1 , " +
-                "    d.iexprovin_origen1 , " +
-                "    d.iexnacion_origen2 , " +
-                "    d.iexdepart_origen2 , " +
-                "    d.iexprovin_origen2 " +
+                "d.iexemail, " +
+                "d.iexnacion_origen1, " +
+                "d.iexdepart_origen1, " +
+                "d.iexprovin_origen1, " +
+                "d.iexnacion_origen2, " +
+                "d.iexdepart_origen2, " +
+                "d.iexprovin_origen2 " +
                 "from iexempderhab d, iexempleado p , (select  iexkey, desdet from iexttabled where iexcodtab='19') g,  " +
                 "(select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
                 " where " +
@@ -145,8 +145,6 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
     }
 
     public Integer getIdDerechoHab(DerechoHabiente derhab) {
-
-        final Integer[] idfinal = {0};
 
         String sql = "select coalesce(max(iexcoddep),0)+1 as idex " +
                 "from iexempderhab " +
@@ -251,7 +249,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 derhab.getIexprovin_origen1(),
                 derhab.getIexnacion_origen2(),
                 derhab.getIexdepart_origen2(),
-                derhab.getIexprovin_origen2());
+                derhab.getIexprovin_origen2()
+        );
     }
 
     public DerechoHabiente recuperar(DerechoHabiente derhab) {
@@ -411,7 +410,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 derhab.getIexprovin_origen2(),
                 derhab.getIexcodcia(),
                 derhab.getIexcodtra(),
-                derhab.getIexcoddep());
+                derhab.getIexcoddep()
+        );
     }
 
     public void eliminar(DerechoHabiente derhab) {
@@ -422,7 +422,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
         jdbc.update(sql,
                 derhab.getIexcodcia(),
                 derhab.getIexcodtra(),
-                derhab.getIexcoddep());
+                derhab.getIexcoddep())
+        ;
     }
 
 }

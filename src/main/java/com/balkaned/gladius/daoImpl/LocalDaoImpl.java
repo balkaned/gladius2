@@ -2,33 +2,34 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.Local;
 import com.balkaned.gladius.dao.LocalDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("LocalDao")
 @Slf4j
 public class LocalDaoImpl implements LocalDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "LocalDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Local> listarLocales(Integer codcia, String text) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexubicod, " +
                 "a.iexubides, " +
@@ -36,40 +37,21 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
-                "from iexubicacion a  where a.iexcodcia=" + codcia + "  ";
+                "from iexubicacion a " +
+                "where a.iexcodcia = :codcia ";
 
-        return template.query(sql, new ResultSetExtractor<List<Local>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-            public List<Local> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Local> lista = new ArrayList<Local>();
+        List<Local> lsLocal = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Local.class));
 
-                while (rs.next()) {
-                    Local p = new Local();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexubicod(rs.getString("iexubicod"));
-
-                    p.setIexubides(rs.getString("iexubides"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexubides(cap.letras(p.getIexubides()));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLocal;
     }
 
     public Local getLocales(Integer codcia, String codubicacion) {
 
-        Local p = null;
-
-        String sql = " select  " +
+        String sql = "select  " +
                 "a.iexcodcia, " +
                 "a.iexubicod, " +
                 "a.iexubides, " +
@@ -77,83 +59,72 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
-                "from iexubicacion a  where a.iexcodcia=" + codcia + " and iexubicod ='" + codubicacion + "'  ";
+                "from iexubicacion a " +
+                "where a.iexcodcia = :codcia and iexubicod = ':codubicacion' ";
 
-        return (Local) template.query(sql, new ResultSetExtractor<Local>() {
-            public Local extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Local p = new Local();
-                while (rs.next()) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codubicacion", codubicacion);
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexubicod(rs.getString("iexubicod"));
+        Local local = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Local.class));
 
-                    p.setIexubides(rs.getString("iexubides"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexubides(cap.letras(p.getIexubides()));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        return local;
     }
 
     public Integer getIdUbicaion(Integer codcia) {
 
-        final Integer[] idcont = {0};
+        String sql = "select coalesce(max(cast(iexubicod as integer)),0)+1 idcont " +
+                "from iexubicacion where iexcodcia = :codcia ";
 
-        String sql = " select  coalesce(max(cast(iexubicod as integer)),0)+1  idcont  from iexubicacion  where iexcodcia =" + codcia;
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
-                }
-                return idcont[0];
-            }
-        });
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarUbicacion(Local ubic) {
 
-        template.update("  insert into iexubicacion( " +
-                        " iexcodcia,     iexubicod,    iexubides,       " +
-                        " iexusucrea,    iexfeccrea  " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   ,  " +
-                        "  ? ,   current_date   " +
-                        ")  ",
+        String sql = "insert into iexubicacion( " +
+                "iexcodcia, iexubicod, iexubides, " +
+                "iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                "  ? ,   ?    ,   ?   ,  " +
+                "  ? , current_date " +
+                ") ";
 
+        jdbc.update(sql,
                 ubic.getIexcodcia(),
                 ubic.getIexubicod(),
                 ubic.getIexubides(),
-                ubic.getIexusucrea());
+                ubic.getIexusucrea()
+        );
     }
 
     public void actualizarUbicaion(Local ubic) {
 
-        template.update("  update iexubicacion  set " +
-                        "     iexubides=?,      " +
-                        " iexusumod=?,    iexfecmod=current_date " +
-                        " where iexcodcia=?  and   iexubicod = ?",
+        String sql = "update iexubicacion set " +
+                "iexubides=?, " +
+                "iexusumod=?, iexfecmod = current_date " +
+                "where iexcodcia=? and iexubicod = ? ";
 
+        jdbc.update(sql,
                 ubic.getIexubides(),
                 ubic.getIexusumod(),
                 ubic.getIexcodcia(),
-                ubic.getIexubicod());
-
+                ubic.getIexubicod()
+        );
     }
 
     public void eliminarUbicacion(Local ubic) {
 
-        template.update("  delete from iexubicacion where iexcodcia=?  and   iexubicod = ?  ",
+        String sql = "delete from iexubicacion " +
+                "where iexcodcia=? and iexubicod = ? ";
 
+        jdbc.update(sql,
                 ubic.getIexcodcia(),
-                ubic.getIexubicod());
-
+                ubic.getIexubicod()
+        );
     }
 
 }

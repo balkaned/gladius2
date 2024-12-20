@@ -99,7 +99,8 @@ public class ContratoDaoImpl implements ContratoDao {
                 contemp.getIexfecfin(),
                 contemp.getIexmodcont(),
                 contemp.getIexusucrea(),
-                contemp.getIexestado());
+                contemp.getIexestado()
+        );
     }
 
     public ContratoEmp getContratoEmp(ContratoEmp contemp) {
@@ -152,7 +153,8 @@ public class ContratoDaoImpl implements ContratoDao {
                 contemp.getIexestado(),
                 contemp.getIexcodcia(),
                 contemp.getIexcodtra(),
-                contemp.getIexcorrel());
+                contemp.getIexcorrel()
+        );
     }
 
     public void eliminarContratoEmp(ContratoEmp contemp) {
@@ -162,6 +164,7 @@ public class ContratoDaoImpl implements ContratoDao {
         jdbc.update(sql,
                 contemp.getIexcodcia(),
                 contemp.getIexcodtra(),
-                contemp.getIexcorrel());
+                contemp.getIexcorrel()
+        );
     }
 }

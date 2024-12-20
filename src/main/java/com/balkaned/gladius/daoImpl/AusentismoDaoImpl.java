@@ -37,9 +37,9 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, " +
                 "to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexausprg v, " +
-                "   ( " +
-                "   select  iexkey, desdet from iexttabled where iexcodtab='57' " +
-                "   ) d " +
+                "  ( " +
+                "  select  iexkey, desdet from iexttabled where iexcodtab='57' " +
+                "  ) d " +
                 "where v.iexcodcia= :iexcodcia and " +
                 "v.iexcodtra= :iexcodtra and " +
                 "v.iextipaus = d.iexkey ";
@@ -65,9 +65,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 .addValue("iexcodcia", ausprg.getIexcodcia())
                 .addValue("iexcodtra", ausprg.getIexcodtra());
 
-        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
-
-        return response;
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
+        ;
     }
 
     public Integer validaAus(Integer codcia, Integer codtra, String fecini, String fecfin, Integer iexcorrel) {
@@ -102,9 +101,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 .addValue("fecfin", fecfin)
                 .addValue("iexcorrel", iexcorrel);
 
-        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
-
-        return response;
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarAusentismoPrg(AusentismoProgramacion ausprg) {
@@ -112,8 +109,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
         String sql = "insert into iexausprg ( " +
                 "iexcodcia, iexcodtra, iexcorrel, iexfecini, iexfecfin, iexnrodias, " +
                 "iextipaus, iexglosa, iexusucrea, iexfeccrea) values ( " +
-                "  ?,   ? ,  ?, to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?, " +
-                "  ?,   ? ,  ?,  current_date) ";
+                " ?, ?, ?, to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?, " +
+                " ?, ?, ?, current_date) ";
 
         jdbc.update(sql,
                 ausprg.getIexcodcia(),
@@ -124,7 +121,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 ausprg.getIexnrodias(),
                 ausprg.getIextipaus(),
                 ausprg.getIexglosa(),
-                ausprg.getIexusucrea());
+                ausprg.getIexusucrea()
+        );
     }
 
 
@@ -198,7 +196,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "		or " +
                 "		(a.iexfecini <to_date(' :fecini ','dd/mm/yyyy') and " +
                 "       a.iexfecfin >to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	 ) ";
+                " ) ";
 
         if (codtra != null && codtra.intValue() != 0) {
             sql += " and c.iexcodtra = :codtra ";
@@ -228,9 +226,9 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, " +
                 "v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexausprg v, " +
-                "   ( " +
-                "   select  iexkey, desdet from iexttabled where iexcodtab='57' " +
-                "   ) d " +
+                " ( " +
+                " select  iexkey, desdet from iexttabled where iexcodtab='57' " +
+                " ) d " +
                 "where " +
                 "v.iexcodcia= :iexcodcia and " +
                 "v.iexcodtra= :iexcodtra and " +
@@ -265,7 +263,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 ausprg.getIexusumod(),
                 ausprg.getIexcodcia(),
                 ausprg.getIexcodtra(),
-                ausprg.getIexcorrel());
+                ausprg.getIexcorrel()
+        );
     }
 
     public void eliminarAusentismoPrg(AusentismoProgramacion ausprg) {
@@ -276,7 +275,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
         jdbc.update(sql,
                 ausprg.getIexcodcia(),
                 ausprg.getIexcodtra(),
-                ausprg.getIexcorrel());
-
+                ausprg.getIexcorrel()
+        );
     }
 }

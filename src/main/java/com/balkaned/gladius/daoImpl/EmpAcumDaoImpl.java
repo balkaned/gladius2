@@ -12,8 +12,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
-@Repository("EmpAcumDao")
 @Slf4j
+@Repository("EmpAcumDao")
 public class EmpAcumDaoImpl implements EmpAcumDao {
 
 

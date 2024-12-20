@@ -95,7 +95,8 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 ccontable.getIextipocta(),
                 "1",
                 ccontable.getIexcodcia(),
-                ccontable.getIexccodcta());
+                ccontable.getIexccodcta()
+        );
     }
 
     public void eliminarCuentaContable(CuentaContable ccontable) {
@@ -103,6 +104,7 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
         String sql = "delete from iexccontable where iexcodcia=? and iexccodcta=? ";
 
         jdbc.update(sql, ccontable.getIexcodcia(),
-                ccontable.getIexccodcta());
+                ccontable.getIexccodcta()
+        );
     }
 }

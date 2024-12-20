@@ -59,7 +59,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexdesobservacion, " +
                 "c.iexschema as schema " +
                 "from iexcompania c " +
-                "full outer join ( select iexkey, desdet from iexttabled where iexcodtab='1' ) d " +
+                "full outer join ( select iexkey, desdet from iexttabled where iexcodtab='1') d " +
                 "on c.iexcodact = d.iexkey  where c.iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -131,7 +131,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getUrlLogo(),
                 com.getUsuCrea(),
                 com.getIexurlfileserver(),
-                com.getIexurlfilereport());
+                com.getIexurlfilereport()
+        );
     }
 
     public Compania getCompania(Integer codcia) {
@@ -223,7 +224,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 com.getIexsourcedes(),
                 com.getIexregiondes(),
                 com.getIexportsource(),
-                com.getIdCodcia());
+                com.getIdCodcia()
+        );
     }
 
     public void insertarCiaxcon(Integer codcia, String codcon, String tipreg) {
@@ -231,8 +233,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
         String sql = "insert into iexciaxcon ( " +
                 "iexcodcia, iexcodcon, iexflgest, iexdefval, iextipreg " +
                 " ) values ( " +
-                "  ? ,  ? ,  ? ,  ?  , ? " +
-                ")  ";
+                " ?, ?, ?, ?, ? " +
+                ") ";
 
         jdbc.update(sql, codcia, codcon, "1", 0.0, tipreg);
     }

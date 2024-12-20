@@ -1,6 +1,5 @@
 package com.balkaned.gladius.daoImpl;
 
-
 import com.balkaned.gladius.models.CentroCosto;
 import com.balkaned.gladius.dao.CcostoDao;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("CcostoDao")
 @Slf4j
+@Repository("CcostoDao")
 public class CcostoDaoImpl implements CcostoDao {
 
     private static final String CLASS_NAME = "CcostoDao";
@@ -91,19 +90,17 @@ public class CcostoDaoImpl implements CcostoDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia);
 
-        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
-
-        return response;
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarCentroCosto(CentroCosto ccosto) {
 
         String sql = "insert into iexccosto( " +
-                " iexcodcia, iexccosto, iexdesccosto, iexcodcat, " +
-                " iexusucrea, iexfeccrea " +
+                "iexcodcia, iexccosto, iexdesccosto, iexcodcat, " +
+                "iexusucrea, iexfeccrea " +
                 " ) values ( " +
-                "  ?, ?, ?, ?, " +
-                "  ?, current_date " +
+                " ?, ?, ?, ?, " +
+                " ?, current_date " +
                 ") ";
 
         jdbc.update(sql,
@@ -111,7 +108,8 @@ public class CcostoDaoImpl implements CcostoDao {
                 ccosto.getIexccosto(),
                 ccosto.getIexdesccosto(),
                 ccosto.getIexcodcat(),
-                "1");
+                "1"
+        );
     }
 
     public void actualizarCentroCosto(CentroCosto ccosto) {
@@ -126,7 +124,8 @@ public class CcostoDaoImpl implements CcostoDao {
                 ccosto.getIexcodcat(),
                 ccosto.getIexusumod(),
                 ccosto.getIexcodcia(),
-                ccosto.getIexccosto());
+                ccosto.getIexccosto()
+        );
     }
 
     public void eliminarCentroCosto(CentroCosto ccosto) {
@@ -136,6 +135,7 @@ public class CcostoDaoImpl implements CcostoDao {
 
         jdbc.update(sql,
                 ccosto.getIexcodcia(),
-                ccosto.getIexccosto());
+                ccosto.getIexccosto()
+        );
     }
 }

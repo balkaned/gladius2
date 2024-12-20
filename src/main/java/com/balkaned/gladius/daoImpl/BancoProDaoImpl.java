@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("BancoProDao")
 @Slf4j
+@Repository("BancoProDao")
 public class BancoProDaoImpl implements BancoProDao {
 
     private static final String CLASS_NAME = "BancoProDao";
@@ -44,11 +44,11 @@ public class BancoProDaoImpl implements BancoProDao {
                 "a.iexusumod, " +
                 "a.iexfecmod " +
                 "from iexprobancos a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c  " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='36' ) c " +
                 "   on a.iexcodban = c.iexkey " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d  " +
+                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d " +
                 "   on a.iextipcta = d.iexkey " +
-                "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
+                "full outer join iexprocesos f on a.iexcodpro = f.procodpro " +
                 "where iexcodcia= :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -102,8 +102,8 @@ public class BancoProDaoImpl implements BancoProDao {
                 "iexcodcia, iexcodban, iexcodpro, iextipcta, " +
                 "iexctaban, iexusucrea, iexfeccrea " +
                 " ) values ( " +
-                "  ? ,   ?    ,   ?   ,  ?  , " +
-                "  ? ,  ? ,  current_date " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, current_date " +
                 ") ";
 
         jdbc.update(sql,
@@ -112,22 +112,24 @@ public class BancoProDaoImpl implements BancoProDao {
                 bancopro.getIexcodpro(),
                 bancopro.getIextipcta(),
                 bancopro.getIexctaban(),
-                bancopro.getIexusucrea());
+                bancopro.getIexusucrea()
+        );
     }
 
     public void actualizarBancoPro(BancoPro bancopro) {
 
         String sql = "update iexprobancos set " +
-                "iextipcta = ?, " +
-                "iexctaban =?, iexusumod=?, iexfecmod=current_date " +
+                "iextipcta = ?, iexctaban =?, iexusumod=?, iexfecmod=current_date " +
                 "where iexcodcia=? and iexcodban=? and iexcodpro=? ";
+
         jdbc.update(sql,
                 bancopro.getIextipcta(),
                 bancopro.getIexctaban(),
                 bancopro.getIexusumod(),
                 bancopro.getIexcodcia(),
                 bancopro.getIexcodban(),
-                bancopro.getIexcodpro());
+                bancopro.getIexcodpro()
+        );
     }
 
     public void eliminarBancoPro(BancoPro bancopro) {
@@ -138,8 +140,8 @@ public class BancoProDaoImpl implements BancoProDao {
         jdbc.update(sql,
                 bancopro.getIexcodcia(),
                 bancopro.getIexcodban(),
-                bancopro.getIexcodpro());
-
+                bancopro.getIexcodpro()
+        );
     }
 
 }

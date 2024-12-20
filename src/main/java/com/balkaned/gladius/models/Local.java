@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Local {
 
+    @Id
     private Integer iexcodcia;
     private String iexubicod;
     private String iexubides;

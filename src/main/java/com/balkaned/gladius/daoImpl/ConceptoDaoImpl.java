@@ -33,7 +33,7 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coocodcon codConcepto, " +
                 "coodescon desConcepto, " +
                 "coocodforvar desVariable, " +
-                "coodesabrev desAbreviacion,  " +
+                "coodesabrev desAbreviacion, " +
                 "coodescripcion descripcion " +
                 "from iexconcepto order by coodescon asc ";
 
@@ -93,14 +93,15 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coocodforvar, " +
                 "coodesabrev, " +
                 "coodescripcion) " +
-                "values (?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?) ";
 
         jdbc.update(sql,
                 concepto.getCodConcepto(),
                 concepto.getDesConcepto(),
                 concepto.getDesVariable(),
                 concepto.getDesAbreviacion(),
-                concepto.getDescripcion());
+                concepto.getDescripcion()
+        );
     }
 
     @Override

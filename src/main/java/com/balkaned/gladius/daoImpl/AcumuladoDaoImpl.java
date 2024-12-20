@@ -170,7 +170,8 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 empacu.getIexusucrea(),
                 empacu.getIexcodcia(),
                 empacu.getIexcodtra(),
-                empacu.getIexaniotrib());
+                empacu.getIexaniotrib()
+        );
     }
 
     public void eliminarEmpAcum(EmpAcum empacu) {
@@ -181,6 +182,7 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
         jdbc.update(sql,
                 empacu.getIexcodcia(),
                 empacu.getIexcodtra(),
-                empacu.getIexaniotrib());
+                empacu.getIexaniotrib()
+        );
     }
 }

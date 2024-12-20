@@ -13,10 +13,9 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("AreaDao")
 @Slf4j
+@Repository("AreaDao")
 public class AreaDaoImpl implements AreaDao {
-
 
     private static final String CLASS_NAME = "AreaDao";
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -98,9 +97,7 @@ public class AreaDaoImpl implements AreaDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia);
 
-        Integer response = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
-
-        return response;
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarArea(Area area) {
@@ -109,8 +106,8 @@ public class AreaDaoImpl implements AreaDao {
                 " iexcodcia, iexcodarea, iexdesarea, iexdesarea_descripcion, " +
                 " iexusucrea, iexfeccrea, iexcodcat, iexareapadre " +
                 " ) values ( " +
-                "  ? ,   ?    ,   ?   ,   ?  ," +
-                "  ? ,   current_date  ,   ?   ,   ?  " +
+                "  ?, ?, ?, ?, " +
+                "  ?, current_date, ?, ? " +
                 ") ";
 
         jdbc.update(sql,
@@ -120,7 +117,8 @@ public class AreaDaoImpl implements AreaDao {
                 area.getIexdesarea_descripcion(),
                 area.getIexusucrea(),
                 area.getIexcodcat(),
-                area.getIexareapadre());
+                area.getIexareapadre()
+        );
     }
 
     public void actualizarArea(Area area) {
@@ -137,7 +135,8 @@ public class AreaDaoImpl implements AreaDao {
                 area.getIexcodcat(),
                 area.getIexareapadre(),
                 area.getIexcodcia(),
-                area.getIexcodarea());
+                area.getIexcodarea()
+        );
     }
 
     public void eliminarArea(Area area) {
@@ -146,6 +145,7 @@ public class AreaDaoImpl implements AreaDao {
 
         jdbc.update(sql,
                 area.getIexcodcia(),
-                area.getIexcodarea());
+                area.getIexcodarea()
+        );
     }
 }

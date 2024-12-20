@@ -2,20 +2,18 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.FormulaPlanilla;
 import com.balkaned.gladius.dao.FormulaDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-@Repository("FormulaDao")
 @Slf4j
+@Repository("FormulaDao")
 public class FormulaDaoImpl implements FormulaDao {
 
     private static final String CLASS_NAME = "FormulaDao";
@@ -39,10 +37,10 @@ public class FormulaDaoImpl implements FormulaDao {
                 "a.forcodcon as idConcepto, " +
                 "c.coodescon as desConcepto, " +
                 "c.coocodforvar, " +
-                "a.FORFLGEST, " +
-                "a.FORORDEN as , " +
-                "a.FORTIPOUT fortipout, " +
-                "a.FORVARDES, " +
+                "a.FORFLGEST as flgEstado, " +
+                "a.FORORDEN as nroOrden, " +
+                "a.FORTIPOUT as tipOut, " +
+                "a.FORVARDES as desVar, " +
                 "a.FORUSUCREA, " +
                 "a.FORFECCREA, " +
                 "a.FORUSUMOD, " +
@@ -52,39 +50,22 @@ public class FormulaDaoImpl implements FormulaDao {
                 "from iexformula_cab a inner join iexconcepto c on a.forcodcon = c.coocodcon " +
                 "where a.procodpro = :idprod and a.forcodfor = :idformula " +
                 "order by a.fororden asc ";
-        try {
-            return template.query(sqlQuery, rs -> {
-                FormulaPlanilla p = new FormulaPlanilla();
-                while (rs.next()) {
-                    p.setIdProceso(rs.getInt("procodpro"));
-                    p.setIdFormula(rs.getInt("forcodfor"));
-                    p.setIdConcepto(rs.getString("forcodcon"));
-                    p.setDesConcepto(rs.getString("coodescon"));
 
-                    p.setDesGlosa(rs.getString("proglosa"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesGlosa(cap.letras(p.getDesGlosa()));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("idprod", idprod)
+                .addValue("idformula", idformula);
 
-                    p.setDesFormula(rs.getString("fordesfor"));
-                    p.setNroOrden(rs.getInt("fororden"));
-                    p.setDesVar(rs.getString("FORVARDES"));
-                    p.setFlgEstado(rs.getString("FORFLGEST"));
-                    p.setTipOut(rs.getString("fortipout"));
-                    p.setGrpeje(rs.getString("grpeje"));
-                    p.setSqlprogram(rs.getString("sqlprogram"));
-                }
-                return p;
-            });
-        } catch (Exception e) {
-            log.info("Error: " + e.getMessage());
-            return null;
-        }
+        FormulaPlanilla formulaPlanilla = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));
+
+        return formulaPlanilla;
     }
 
     public void actualizar(FormulaPlanilla fplanilla) {
 
-        template.update(" call pl_gestion_formula(?,?, ?, ?, ?, ?, ? ,? , '', '', '1', ?, ?, ?)  ",
+        String sql = "call pl_gestion_formula(?,?, ?, ?, ?, ?, ? ,? , '', '', '1', ?, ?, ?) ";
 
+        jdbc.update(sql,
                 fplanilla.getIdProceso(),
                 fplanilla.getIdFormula(),
                 fplanilla.getDesGlosa(),
@@ -95,87 +76,84 @@ public class FormulaDaoImpl implements FormulaDao {
                 fplanilla.getTipOut(),
                 fplanilla.getGrpeje(),
                 fplanilla.getSqlprogram(),
-                "2");
+                "2"
+        );
     }
 
-    public void insertar(FormulaPlanilla fplanilla){
+    public void insertar(FormulaPlanilla fplanilla) {
 
-        template.update(" call pl_gestion_formula(?,0,?,?,?,?,?,?,?,'1','',?,?,?) ",
-        fplanilla.getIdProceso(),
-        fplanilla.getDesGlosa(),
-        fplanilla.getDesFormula(),
-        fplanilla.getIdConcepto(),
-        fplanilla.getFlgEstado(),
-        fplanilla.getNroOrden(),
-        fplanilla.getTipOut(),
-        fplanilla.getDesVar(),
-        fplanilla.getGrpeje(),
-        fplanilla.getSqlprogram(),
-        "1");
+        String sql = "call pl_gestion_formula(?,0,?,?,?,?,?,?,?,'1','',?,?,?) ";
 
+        jdbc.update(sql,
+                fplanilla.getIdProceso(),
+                fplanilla.getDesGlosa(),
+                fplanilla.getDesFormula(),
+                fplanilla.getIdConcepto(),
+                fplanilla.getFlgEstado(),
+                fplanilla.getNroOrden(),
+                fplanilla.getTipOut(),
+                fplanilla.getDesVar(),
+                fplanilla.getGrpeje(),
+                fplanilla.getSqlprogram(),
+                "1"
+        );
     }
 
     public void eliminar(Integer idprod, Integer idfor) {
 
-        template.update("  delete from iexformula_cab where procodpro=? and forcodfor=?  ",
+        String sql = "delete from iexformula_cab " +
+                "where procodpro=? and forcodfor=? ";
+
+        jdbc.update(sql,
                 idprod,
-                idfor);
+                idfor
+        );
     }
 
     public FormulaPlanilla recuperar(Integer idprod, Integer idformula) {
 
-        String sql="select " +
-                "a.procodpro," +
-                "a.forcodfor," +
-                "a.proglosa," +
-                "a.fordesfor," +
-                "a.forcodcon," +
-                "c.coodescon," +
-                "c.coocodforvar," +
-                "a.FORFLGEST, " +
-                "a.FORORDEN, " +
-                "a.FORTIPOUT fortipout," +
-                "a.FORVARDES," +
-                "a.FORUSUCREA," +
-                "a.FORFECCREA," +
-                "a.FORUSUMOD," +
+        String sql = "select " +
+                "a.procodpro as idProceso, " +
+                "a.forcodfor as idFormula, " +
+                "a.proglosa as desGlosa, " +
+                "a.fordesfor as desFormula, " +
+                "a.forcodcon as idConcepto, " +
+                "c.coodescon as desConcepto, " +
+                "c.coocodforvar, " +
+                "a.FORFLGEST as flgEstado, " +
+                "a.FORORDEN as nroOrden, " +
+                "a.FORTIPOUT tipOut, " +
+                "a.FORVARDES as desVar, " +
+                "a.FORUSUCREA, " +
+                "a.FORFECCREA, " +
+                "a.FORUSUMOD, " +
                 "a.FORFECMOD, " +
                 "a.sqlprogram, " +
                 "a.grpeje " +
-                "from iexformula_cab a inner join  iexconcepto c on  a.forcodcon= c.coocodcon " +
-                "where  " +
-                "a.procodpro="+idprod+"  and  a.forcodfor="+idformula+" "+
-                "order by a.fororden asc     ";
+                "from iexformula_cab a inner join iexconcepto c on a.forcodcon = c.coocodcon " +
+                "where a.procodpro = :idprod and a.forcodfor = :idformula " +
+                "order by a.fororden asc ";
 
-        return (FormulaPlanilla) template.query(sql, new ResultSetExtractor<FormulaPlanilla>() {
-            public FormulaPlanilla extractData(ResultSet rs) throws SQLException, DataAccessException {
-                FormulaPlanilla p = new FormulaPlanilla();
-                while(rs.next()) {
-                    p.setIdProceso(rs.getInt("procodpro"));
-                    p.setIdFormula(rs.getInt("forcodfor"));
-                    p.setIdConcepto(rs.getString("forcodcon"));
-                    p.setDesConcepto(rs.getString("coodescon"));
-                    p.setDesGlosa(rs.getString("proglosa"));
-                    p.setDesFormula(rs.getString("fordesfor"));
-                    p.setNroOrden(rs.getInt("fororden"));
-                    p.setDesVar(rs.getString("FORVARDES"));
-                    p.setFlgEstado(rs.getString("FORFLGEST"));
-                    p.setTipOut(rs.getString("fortipout"));
-                    p.setGrpeje(rs.getString("grpeje"));
-                    p.setSqlprogram(rs.getString("sqlprogram"));
-                }
-                return p;
-            }
-        });
+        SqlParameterSource namedParameter = new MapSqlParameterSource()
+                .addValue("idprod", idprod)
+                .addValue("idformula", idformula);
+
+        FormulaPlanilla formulaPlanilla = namedParameterJdbcTemplate.queryForObject(sql, namedParameter,
+                BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));
+
+        return formulaPlanilla;
     }
 
-    public void grabaVariableResultado(Integer idprod, Integer idformula, String Variable, String resultado){
+    public void grabaVariableResultado(Integer idprod, Integer idformula, String Variable, String resultado) {
 
-        template.update("UPDATE iexformula_cab SET forvardes=? , forresult= ? ,forflgest=3  WHERE procodpro = ?  and forcodfor= ? ",
+        String sql = "UPDATE iexformula_cab SET forvardes=?, forresult= ?, forflgest=3 " +
+                "WHERE procodpro = ? and forcodfor= ? ";
 
-        Variable,
-        resultado,
-        idprod,
-        idformula);
+        jdbc.update(sql,
+                Variable,
+                resultado,
+                idprod,
+                idformula
+        );
     }
 }

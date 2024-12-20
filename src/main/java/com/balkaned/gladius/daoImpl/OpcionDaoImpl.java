@@ -2,110 +2,77 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.Opciones;
 import com.balkaned.gladius.dao.OpcionDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("OpcionDao")
 @Slf4j
+@Repository("OpcionDao")
 public class OpcionDaoImpl implements OpcionDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "OpcionDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Opciones> listarOpciones() {
 
-        String sql = " select  " +
+        String sql = "select  " +
                 "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
-                "o.iexflgest, o.iexcodsec,  " +
+                "o.iexflgest, o.iexcodsec, " +
                 "e.iexdessec, " +
-                "s.iexdessys, " +
-                "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring,  " +
+                "s.iexdessys as dessys, " +
+                "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
-                "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
+                "full outer join iexseccion e on e.iexcodsec = o.iexcodsec " +
                 "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys " +
                 "order by o.iexcodopc ASC ";
-        return template.query(sql, new ResultSetExtractor<List<Opciones>>() {
 
-            public List<Opciones> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Opciones> lista = new ArrayList<Opciones>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-                while (rs.next()) {
-                    Opciones p = new Opciones();
+        List<Opciones> lsOpc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Opciones.class));
 
-                    p.setIexcodopc(rs.getInt("iexcodopc"));
-                    p.setIexdesopc(rs.getString("iexdesopc"));
-                    p.setIexurlopc(rs.getString("iexurlopc"));
-                    p.setIexurlimg(rs.getString("iexurlimg"));
-                    p.setIexflgest(rs.getString("iexflgest"));
-                    p.setIexcodsec(rs.getInt("iexcodsec"));
-
-                    p.setDessec(rs.getString("iexdessec"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDessec(cap.letras(p.getDessec()));
-
-                    p.setDessys(rs.getString("iexdessys"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setDessys(cap2.letras(p.getDessys()));
-
-                    p.setIexdescripcion(rs.getString("iexdescripcion"));
-                    p.setIexcodapps(rs.getString("iexcodapps"));
-                    p.setIexaction(rs.getString("iexaction"));
-                    p.setIexactionspring(rs.getString("iexactionspring"));
-                    p.setIexusucre(rs.getString("iexusucre"));
-                    p.setIexfeccre(rs.getString("iexfeccre"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsOpc;
     }
 
     public Integer getIdOpciones() {
 
-        final Integer[] idfinal = {0};
+        String sql = "select coalesce(max(iexcodopc),0)+1 as idex " +
+                "from iexopciones ";
 
-        String sql = " select  coalesce(max(iexcodopc),0)+1 as idex from iexopciones  ";
+        SqlParameterSource namedParameter = new MapSqlParameterSource();
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idfinal[0] = rs.getInt("idex");
-                }
-                return idfinal[0];
-            }
-        });
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameter, Integer.class);
     }
 
     public void insertarOpciones(Opciones opc) {
 
-        template.update("  insert into iexopciones( " +
-                        " iexcodopc, iexdesopc, iexurlopc, iexurlimg, " +
-                        " iexflgest, iexcodsec, iexdescripcion, iexcodapps, iexaction, iexactionspring,  " +
-                        " iexusucre, iexfeccre   " +
-                        " ) values ( " +
-                        "  ? ,      ?  ,       ? ,      ?,         " +
-                        "  ? ,      ?  ,       ?,       ?,      ?,  ?, " +
-                        "  ? ,      current_date   " +
-                        ")  ",
+        String sql = "insert into iexopciones( " +
+                "iexcodopc, iexdesopc, iexurlopc, iexurlimg, " +
+                "iexflgest, iexcodsec, iexdescripcion, iexcodapps, " +
+                "iexaction, iexactionspring, " +
+                "iexusucre, iexfeccre " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, ?, ?, ?, ?, " +
+                " ?, current_date " +
+                ") ";
 
+        jdbc.update(sql,
                 opc.getIexcodopc(),
                 opc.getIexdesopc(),
                 opc.getIexurlopc(),
@@ -116,55 +83,42 @@ public class OpcionDaoImpl implements OpcionDao {
                 opc.getIexcodapps(),
                 opc.getIexaction(),
                 opc.getIexactionspring(),
-                opc.getIexusucre());
+                opc.getIexusucre()
+        );
     }
 
     public Opciones getOpciones(Integer codopc) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
-                "o.iexflgest, o.iexcodsec,  " +
-                "e.iexdessec, " +
-                "s.iexdessys, " +
-                "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring,  " +
+                "o.iexflgest, o.iexcodsec, " +
+                "e.iexdessec as dessec, s.iexdessys as dessys, " +
+                "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
                 "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
-                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys   where o.iexcodopc=" + codopc + "  ";
+                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys " +
+                "where o.iexcodopc = :codopc ";
 
-        return (Opciones) template.query(sql, new ResultSetExtractor<Opciones>() {
-            public Opciones extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Opciones p = new Opciones();
-                while (rs.next()) {
-                    p.setIexcodopc(rs.getInt("iexcodopc"));
-                    p.setIexdesopc(rs.getString("iexdesopc"));
-                    p.setIexurlopc(rs.getString("iexurlopc"));
-                    p.setIexurlimg(rs.getString("iexurlimg"));
-                    p.setIexflgest(rs.getString("iexflgest"));
-                    p.setIexcodsec(rs.getInt("iexcodsec"));
-                    p.setDessec(rs.getString("iexdessec"));
-                    p.setDessys(rs.getString("iexdessys"));
-                    p.setIexdescripcion(rs.getString("iexdescripcion"));
-                    p.setIexcodapps(rs.getString("iexcodapps"));
-                    p.setIexaction(rs.getString("iexaction"));
-                    p.setIexactionspring(rs.getString("iexactionspring"));
-                    p.setIexusucre(rs.getString("iexusucre"));
-                    p.setIexfeccre(rs.getString("iexfeccre"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codopc", codopc);
+
+        Opciones opc = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Opciones.class));
+
+        return opc;
     }
 
     public void actualizarOpciones(Opciones opc) {
 
-        template.update("  update iexopciones set " +
-                        "  iexdesopc =? , iexurlopc =?, iexurlimg =?, " +
-                        " iexflgest =?, iexcodsec =?, iexdescripcion =?, iexcodapps =? , iexaction =?, iexactionspring=?,   " +
-                        " iexusumod =?, iexfeccre = current_date  where  iexcodopc   =  ? ",
+        String sql = "update iexopciones set " +
+                "iexdesopc =? , iexurlopc =?, iexurlimg =?, " +
+                "iexflgest =?, iexcodsec =?, iexdescripcion =?, iexcodapps =?, " +
+                "iexaction =?, iexactionspring=?,   " +
+                "iexusumod =?, iexfeccre = current_date " +
+                "where iexcodopc = ? ";
 
+        jdbc.update(sql,
                 opc.getIexdesopc(),
                 opc.getIexurlopc(),
                 opc.getIexurlimg(),
@@ -175,14 +129,18 @@ public class OpcionDaoImpl implements OpcionDao {
                 opc.getIexaction(),
                 opc.getIexactionspring(),
                 opc.getIexusumod(),
-                opc.getIexcodopc());
+                opc.getIexcodopc()
+        );
     }
 
     public void eliminarOpciones(Opciones opc) {
 
-        template.update("  delete from  iexopciones  where  iexcodopc   =  ? ",
+        String sql = "delete from iexopciones " +
+                "where iexcodopc = ? ";
 
-                opc.getIexcodopc());
+        jdbc.update(sql,
+                opc.getIexcodopc()
+        );
     }
 
 }

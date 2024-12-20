@@ -43,9 +43,9 @@ public class AfpDaoImpl implements AfpDao {
                 "iexcomis_onp " +
                 "from iexafponpper c, " +
                 "( " +
-                "   select " +
-                "   iexkey codafp, desdet desafp " +
-                "   from iexttabled where iexcodtab='11' " +
+                " select " +
+                " iexkey codafp, desdet desafp " +
+                " from iexttabled where iexcodtab='11' " +
                 ") d where " +
                 "c.iexcodafp= d.codafp and iexpermes= :text ";
 
@@ -83,7 +83,8 @@ public class AfpDaoImpl implements AfpDao {
                 afp.getIexprima_seguro(),
                 afp.getIexaporte_oblig(),
                 afp.getIexremmax_asegu(),
-                afp.getIexcomis_onp());
+                afp.getIexcomis_onp()
+        );
     }
 
     public Afp recuperar(Afp afp) {
@@ -143,7 +144,8 @@ public class AfpDaoImpl implements AfpDao {
                 afp.getIexremmax_asegu(),
                 afp.getIexcomis_onp(),
                 afp.getIexpermes(),
-                afp.getIexcodafp());
+                afp.getIexcodafp()
+        );
     }
 
     public void eliminar(Afp afp) {
@@ -154,7 +156,8 @@ public class AfpDaoImpl implements AfpDao {
 
         jdbc.update(sql,
                 afp.getIexpermes(),
-                afp.getIexcodafp());
+                afp.getIexcodafp()
+        );
     }
 
     public void insertarDuplicado(String perini, String perfin2) {
@@ -163,7 +166,8 @@ public class AfpDaoImpl implements AfpDao {
 
         jdbc.update(sql,
                 perini,
-                perfin2);
+                perfin2
+        );
     }
 
 }
