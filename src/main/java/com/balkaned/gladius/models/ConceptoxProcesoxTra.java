@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class ConceptoxProcesoxTra {
 
+    @Id
     private Integer iexcodcia;
     private Integer procodpro;
     private String iexnroper;
@@ -21,4 +25,5 @@ public class ConceptoxProcesoxTra {
     private String codcon;
     private Double cantidad;
     private String destra;
+
 }

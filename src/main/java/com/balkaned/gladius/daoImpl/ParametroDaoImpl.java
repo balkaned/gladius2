@@ -2,18 +2,15 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.ParametrosGen;
 import com.balkaned.gladius.dao.ParametroDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -34,9 +31,9 @@ public class ParametroDaoImpl implements ParametroDao {
 
         String sql = "select " +
                 "p.iexcodcon, " +
-                "c.coodescon, " +
+                "c.coodescon as descon, " +
                 "p.iextippar, " +
-                "g.desdet, " +
+                "g.desdet as destippar, " +
                 "p.iexvalcon, " +
                 "p.iexdesobs, " +
                 "p.iexusucrea, " +
@@ -48,114 +45,81 @@ public class ParametroDaoImpl implements ParametroDao {
                 "where p.iexcodcon = c.coocodcon and " +
                 "p.iextippar = g.iexkey order by p.iextippar, p.iexcodcon asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ParametrosGen>>() {
+        SqlParameterSource namedParameter = new MapSqlParameterSource();
 
-            public List<ParametrosGen> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ParametrosGen> lista = new ArrayList<ParametrosGen>();
+        List<ParametrosGen> lsParam = namedParameterJdbcTemplate.query(sql, namedParameter,
+                BeanPropertyRowMapper.newInstance(ParametrosGen.class));
 
-                while (rs.next()) {
-                    ParametrosGen rol = new ParametrosGen();
-
-                    rol.setIexcodcon(rs.getString("iexcodcon"));
-
-                    rol.setDescon(rs.getString("coodescon"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    rol.setDescon(cap.letras(rol.getDescon()));
-
-                    rol.setIextippar(rs.getString("iextippar"));
-                    rol.setDestippar(rs.getString("desdet"));
-                    rol.setIexvalcon(rs.getDouble("iexvalcon"));
-                    rol.setIexdesobs(rs.getString("iexdesobs"));
-                    rol.setIexusucrea(rs.getString("iexusucrea"));
-                    rol.setIexfeccrea(rs.getString("iexfeccrea"));
-                    rol.setIexusumod(rs.getString("iexusumod"));
-                    rol.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(rol);
-                }
-                return lista;
-            }
-        });
+        return lsParam;
     }
 
     public void insertarParametrosGen(ParametrosGen par) {
 
-        template.update("insert into iexparameter( " +
-                        " iexcodcon,     iextippar,      iexvalcon,     iexdesobs,  " +
-                        " iexusucrea,    iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,        ?,      ?,      ?," +
-                        "  ? ,   current_date   " +
-                        ")  ",
+        String sql = "insert into iexparameter( " +
+                "iexcodcon, iextippar, iexvalcon, iexdesobs, " +
+                "iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " ?, current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 par.getIexcodcon(),
                 par.getIextippar(),
                 par.getIexvalcon(),
                 par.getIexdesobs(),
-                par.getIexusucrea());
-
+                par.getIexusucrea()
+        );
     }
 
     public ParametrosGen getParametrosGen(String codcon) {
 
-        String sql = " select   " +
-                " p.iexcodcon, " +
-                " c.coodescon, " +
-                " p.iextippar,  " +
-                " g.desdet,  " +
-                " p.iexvalcon, " +
-                " p.iexdesobs, " +
-                " p.iexusucrea, " +
-                " p.iexfeccrea, " +
-                " p.iexusumod, " +
-                " p.iexfecmod " +
-                " from " +
-                " iexparameter p , iexconcepto c ,  " +
-                "(  select  iexkey, desdet from iexttabled where iexcodtab='67'   ) g " +
-                " where  " +
-                " p.iexcodcon =  c.coocodcon and " +
-                " p.iextippar = g.iexkey  and  p.iexcodcon = '" + codcon + "' ";
-        return (ParametrosGen) template.query(sql, new ResultSetExtractor<ParametrosGen>() {
-            public ParametrosGen extractData(ResultSet rs) throws SQLException, DataAccessException {
-                ParametrosGen rol = new ParametrosGen();
-                while (rs.next()) {
+        String sql = "select " +
+                "p.iexcodcon, " +
+                "c.coodescon as descon, " +
+                "p.iextippar, " +
+                "g.desdet as destippar, " +
+                "p.iexvalcon, " +
+                "p.iexdesobs, " +
+                "p.iexusucrea, " +
+                "p.iexfeccrea, " +
+                "p.iexusumod, " +
+                "p.iexfecmod " +
+                "from iexparameter p, iexconcepto c, " +
+                " ( select iexkey, desdet from iexttabled where iexcodtab='67') g " +
+                " where " +
+                " p.iexcodcon = c.coocodcon and " +
+                " p.iextippar = g.iexkey and p.iexcodcon = :codcon ";
 
-                    rol.setIexcodcon(rs.getString("iexcodcon"));
-                    rol.setDescon(rs.getString("coodescon"));
-                    rol.setIextippar(rs.getString("iextippar"));
-                    rol.setDestippar(rs.getString("desdet"));
-                    rol.setIexvalcon(rs.getDouble("iexvalcon"));
-                    rol.setIexdesobs(rs.getString("iexdesobs"));
-                    rol.setIexusucrea(rs.getString("iexusucrea"));
-                    rol.setIexfeccrea(rs.getString("iexfeccrea"));
-                    rol.setIexusumod(rs.getString("iexusumod"));
-                    rol.setIexfecmod(rs.getString("iexfecmod"));
+        SqlParameterSource namedParameter = new MapSqlParameterSource()
+                .addValue("codcon", codcon);
 
-                }
-                return rol;
-            }
-        });
+        ParametrosGen param = namedParameterJdbcTemplate.queryForObject(sql, namedParameter,
+                BeanPropertyRowMapper.newInstance(ParametrosGen.class));
+
+        return param;
     }
 
     public void actualizarParametrosGen(ParametrosGen par) {
 
-        template.update("  update iexparameter  set   " +
-                        "     iextippar=?,      iexvalcon=?,     iexdesobs=?,  " +
-                        " iexusumod=?,    iexfecmod = current_date  " +
-                        "  where  iexcodcon  =  ?  ",
+        String sql = "update iexparameter set " +
+                "iextippar=?, iexvalcon=?, iexdesobs=?, " +
+                "iexusumod=?, iexfecmod = current_date " +
+                "where iexcodcon = ? ";
+
+        jdbc.update(sql,
                 par.getIextippar(),
                 par.getIexvalcon(),
                 par.getIexdesobs(),
                 par.getIexusumod(),
-                par.getIexcodcon());
-
+                par.getIexcodcon()
+        );
     }
 
     public void eliminarParametrosGen(ParametrosGen par) {
 
-        template.update("  delete from  iexparameter  where  iexcodcon  =  ?  ",
-                par.getIexcodcon());
+        String sql = "delete from iexparameter where iexcodcon = ? ";
 
+        jdbc.update(sql, par.getIexcodcon());
     }
-
 }
