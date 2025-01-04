@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class PlaProPerDet {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodpro;
     private String descodpro;

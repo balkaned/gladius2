@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class BancoResumenPer {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodpro;
     private Integer correl;
@@ -19,4 +23,12 @@ public class BancoResumenPer {
     private Double heads;
     private String desmonReport;
 
+
+    public void setMoneda(String moneda) {
+        if (moneda.equals("S/.")) {
+            this.desmonReport = "S";
+        } else if (moneda.equals("EU")) {
+            this.desmonReport = "E";
+        }
+    }
 }
