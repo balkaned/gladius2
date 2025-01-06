@@ -2,153 +2,108 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.UsuxOpciones;
 import com.balkaned.gladius.dao.UsuxOpcionesDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("UsuxOpcionesDao")
 @Slf4j
+@Repository("UsuxOpcionesDao")
 public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "UsuxOpcionesDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public UsuxOpciones ObtieneAccesoOpcion(Integer codcia, Integer codusu, Integer codopc) {
 
         String sql = "SELECT " +
-                "                        O.IEXURLOPC, " +
-                "                        O.IEXCODOPC , " +
-                "                        O.IEXDESCRIPCION , " +
-                "                         IEX_CONSULTAR, " +
-                "                        IEX_REGISTRAR, " +
-                "                        IEX_MODIFICAR," +
-                "                        IEX_ELIMINAR, " +
-                "                        IEX_DESCARGAR_PDF, " +
-                "                        IEX_DESCARGAR_XLS, " +
-                "                        O.IEXCODSEC, " +
-                "        S.IEXDESSEC, " +
-                "                        O.IEXACTION " +
-                "                        FROM " +
-                "						IEXUSUXCIA C  " +
-                "						inner join  IEXROLXOPC R on   C.IEXCODROL=R.IEXCODROL " +
-                "						inner join  IEXOPCIONES O  on R.IEXCODOPC=O.IEXCODOPC " +
-                "                                               inner join  IEXSECCION S on O.IEXCODSEC = S.IEXCODSEC " +
-                "						WHERE " +
-                "                        C.IEXCODCIA=" + codcia + " AND  " +
-                "                        C.IEXCODUSU=" + codusu + " AND  " +
-                "                        R.IEXCODOPC=" + codopc + " ";
+                "O.IEXURLOPC as urlopc, " +
+                "O.IEXCODOPC as codopc, " +
+                "O.IEXDESCRIPCION as desopc, " +
+                "IEX_CONSULTAR as consultarOpc, " +
+                "IEX_REGISTRAR as registrarOpc, " +
+                "IEX_MODIFICAR as modificarOpc, " +
+                "IEX_ELIMINAR as eliminarOpc, " +
+                "IEX_DESCARGAR_PDF as descargarPdfOpc, " +
+                "IEX_DESCARGAR_XLS as descargarXlsOpc, " +
+                "O.IEXCODSEC as codsec, " +
+                "S.IEXDESSEC as dessec, " +
+                "O.IEXACTION as desaction " +
+                "FROM IEXUSUXCIA C " +
+                "inner join IEXROLXOPC R on C.IEXCODROL = R.IEXCODROL " +
+                "inner join IEXOPCIONES O on R.IEXCODOPC = O.IEXCODOPC " +
+                "inner join IEXSECCION S on O.IEXCODSEC = S.IEXCODSEC " +
+                "WHERE C.IEXCODCIA = :codcia AND " +
+                "C.IEXCODUSU = :codusu AND " +
+                "R.IEXCODOPC = :codopc ";
 
-        return (UsuxOpciones) template.query(sql, new ResultSetExtractor<UsuxOpciones>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codusu", codusu)
+                .addValue("codopc", codopc);
 
-            public UsuxOpciones extractData(ResultSet rs) throws SQLException, DataAccessException {
+        UsuxOpciones usuxopc = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(UsuxOpciones.class));
 
-                UsuxOpciones usuxopc = new UsuxOpciones();
-                while (rs.next()) {
-                    usuxopc.setUrlopc(rs.getString("iexurlopc"));
-                    usuxopc.setCodopc(rs.getInt("iexcodopc"));
-                    usuxopc.setDesopc(rs.getString("iexdescripcion"));
-                    usuxopc.setConsultarOpc(rs.getString("iex_consultar"));
-                    usuxopc.setRegistrarOpc(rs.getString("iex_registrar"));
-                    usuxopc.setModificarOpc(rs.getString("iex_modificar"));
-                    usuxopc.setEliminarOpc(rs.getString("iex_eliminar"));
-                    usuxopc.setDescargarPdfOpc(rs.getString("iex_descargar_pdf"));
-                    usuxopc.setDescargarXlsOpc(rs.getString("iex_descargar_xls"));
-                    usuxopc.setCodsec(rs.getInt("iexcodsec"));
-                    usuxopc.setDessec(rs.getString("iexdessec"));
-                    usuxopc.setDesaction(rs.getString("iexaction"));
-
-                }
-                return usuxopc;
-            }
-        });
+        return usuxopc;
     }
 
     public List<UsuxOpciones> listarOpciones(Integer codcia, Integer codusu, Integer codsys) {
 
-        String sql = "SELECT  " +
-                "                        U.IEXCODCIA, " +
-                "                        U.IEXCODUSU," +
-                "                        U.IEXCODROL," +
-                "                        R.IEXCODOPC," +
-                "                        O.IEXDESOPC," +
-                "                        O.IEXURLOPC," +
-                "                        O.IEXURLIMG," +
-                "                        S.IEXCODSEC," +
-                "                        S.IEXDESSEC," +
-                "                        S.IEXSECIMG," +
-                "                        S.IEXORDSEC," +
-                "                        Y.IEXDESSYS," +
-                "                        CASE " +
-                "                           WHEN S.IEXCODSEC = '1' THEN 'settings' " +
-                "                           WHEN S.IEXCODSEC = '2' THEN 'grid' " +
-                "                           WHEN S.IEXCODSEC = '3' THEN 'users' " +
-                "                           WHEN S.IEXCODSEC = '5' THEN 'clock' " +
-                "                           WHEN S.IEXCODSEC = '6' THEN 'sliders' " +
-                "                           WHEN S.IEXCODSEC = '7' THEN 'layers' " +
-                "                           WHEN S.IEXCODSEC = '11' THEN 'codesandbox' " +
-                "                        END as icon, " +
-                "                        iexactionspring " +
-                "                        FROM " +
-                "                        IEXUSUXCIA  U " +
-                "                        INNER JOIN IEXROLXOPC R ON U.IEXCODROL = R.IEXCODROL  " +
-                "                        INNER JOIN IEXOPCIONES O ON R.IEXCODOPC = O.IEXCODOPC " +
-                "                        INNER JOIN IEXSECCION S  ON O.IEXCODSEC = S.IEXCODSEC " +
-                "                        INNER JOIN IEXSYSTEMAS Y ON S.IEXCODSYS = Y.IEXCODSYS  " +
-                "						WHERE " +
-                "                        U.IEXCODCIA = " + codcia + " AND " +
-                "                        U.IEXCODUSU = " + codusu + " AND " +
-                "                        S.IEXCODSYS= " + codsys + " " +
-                "                        ORDER BY s.iexordsec, R.IEXCODOPC ASC ";
+        String sql = "SELECT " +
+                "U.IEXCODCIA as codcia, " +
+                "U.IEXCODUSU as codusu, " +
+                "U.IEXCODROL as codrol, " +
+                "R.IEXCODOPC as codopc, " +
+                "O.IEXDESOPC as desopc, " +
+                "O.IEXURLOPC as urlopc, " +
+                "O.IEXURLIMG as urlimg, " +
+                "S.IEXCODSEC as codsec, " +
+                "S.IEXDESSEC as dessec, " +
+                "S.IEXSECIMG as dessecimg, " +
+                "S.IEXORDSEC as ordsec, " +
+                "Y.IEXDESSYS as dessys, " +
+                "CASE " +
+                "WHEN S.IEXCODSEC = '1' THEN 'settings' " +
+                "WHEN S.IEXCODSEC = '2' THEN 'grid' " +
+                "WHEN S.IEXCODSEC = '3' THEN 'users' " +
+                "WHEN S.IEXCODSEC = '5' THEN 'clock' " +
+                "WHEN S.IEXCODSEC = '6' THEN 'sliders' " +
+                "WHEN S.IEXCODSEC = '7' THEN 'layers' " +
+                "WHEN S.IEXCODSEC = '11' THEN 'codesandbox' " +
+                "END as icon, " +
+                "iexactionspring as Path" +
+                "FROM IEXUSUXCIA U " +
+                "INNER JOIN IEXROLXOPC R ON U.IEXCODROL = R.IEXCODROL " +
+                "INNER JOIN IEXOPCIONES O ON R.IEXCODOPC = O.IEXCODOPC " +
+                "INNER JOIN IEXSECCION S  ON O.IEXCODSEC = S.IEXCODSEC " +
+                "INNER JOIN IEXSYSTEMAS Y ON S.IEXCODSYS = Y.IEXCODSYS " +
+                "WHERE U.IEXCODCIA = :codcia AND " +
+                "U.IEXCODUSU = :codusu AND " +
+                "S.IEXCODSYS = :codsys " +
+                "ORDER BY s.iexordsec, R.IEXCODOPC ASC ";
 
-        return template.query(sql, new ResultSetExtractor<List<UsuxOpciones>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codusu", codusu)
+                .addValue("codsys", codsys);
 
-            public List<UsuxOpciones> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<UsuxOpciones> lista = new ArrayList<UsuxOpciones>();
+        List<UsuxOpciones> lsUsuxOpc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(UsuxOpciones.class));
 
-                while (rs.next()) {
-                    UsuxOpciones usuxopc = new UsuxOpciones();
-                    CapitalizarCadena cap = new CapitalizarCadena();
-
-                    usuxopc.setCodcia(rs.getInt("iexcodcia"));
-                    usuxopc.setCodusu(rs.getInt("iexcodusu"));
-                    usuxopc.setCodrol(rs.getInt("iexcodrol"));
-                    usuxopc.setCodopc(rs.getInt("iexcodopc"));
-                    usuxopc.setDesopc(rs.getString("iexdesopc"));
-                    usuxopc.setUrlopc(rs.getString("iexurlopc"));
-                    usuxopc.setUrlimg(rs.getString("iexurlimg"));
-                    usuxopc.setCodsec(rs.getInt("iexcodsec"));
-                    usuxopc.setDessec(rs.getString("iexdessec"));
-                    usuxopc.setOrdsec(rs.getInt("iexordsec"));
-                    usuxopc.setDessys(rs.getString("iexdessys"));
-                    usuxopc.setDessecimg(rs.getString("iexsecimg"));
-                    usuxopc.setIcon(rs.getString("icon"));
-                    usuxopc.setPath(rs.getString("iexactionspring"));
-                    usuxopc.setDessecCapi(cap.letras(usuxopc.getDessec()));
-
-                    String cadena = usuxopc.getPath();
-                    String nuevacadena = usuxopc.getPath().substring(1, cadena.length());
-                    usuxopc.setPath(nuevacadena);
-
-                    lista.add(usuxopc);
-                }
-                return lista;
-            }
-        });
+        return lsUsuxOpc;
     }
-
-
 }

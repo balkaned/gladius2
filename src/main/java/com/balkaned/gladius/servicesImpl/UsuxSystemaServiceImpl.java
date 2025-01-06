@@ -15,6 +15,4 @@ public class UsuxSystemaServiceImpl implements UsuxSystemaService {
     public UsuxSys eligeSystema(Integer codcia, Integer codusu, Integer sys){
         return dao.eligeSystema(codcia,codusu,sys);
     }
-
-
 }

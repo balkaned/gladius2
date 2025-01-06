@@ -9,30 +9,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("VacacionesDao")
+
 @Slf4j
+@Repository("VacacionesDao")
 public class VacacionesDaoImpl implements VacacionesDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "VacacionesDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<VacacionControl> listarVacacionesCtl(Empleado empleado) {
 
         String sql = " select  " +
-                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, to_char(iexfecini,'DD/MM/YYYY') as iexfecini, to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin,  " +
-                "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, iexdiascom, iexdiassaldo, " +
+                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, " +
+                "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
+                "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin,  " +
+                "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, " +
+                "iexdiascom, iexdiassaldo, " +
                 "iexusucrea, to_char(iexfeccrea,'DD/MM/YYYY') as iexfeccrea,  " +
                 "iexusumod, to_char(iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexvacctl " +

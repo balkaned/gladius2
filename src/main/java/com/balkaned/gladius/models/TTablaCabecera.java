@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class TTablaCabecera {
 
+    @Id
     private String iexcodtab;
     private String iexdestab;
     private String iexlbl1;

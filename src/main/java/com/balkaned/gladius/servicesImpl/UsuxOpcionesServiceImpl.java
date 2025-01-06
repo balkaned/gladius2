@@ -5,7 +5,6 @@ import com.balkaned.gladius.dao.UsuxOpcionesDao;
 import com.balkaned.gladius.services.UsuxOpcionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,6 +20,4 @@ public class UsuxOpcionesServiceImpl implements UsuxOpcionesService {
     public List<UsuxOpciones> listarOpciones(Integer codcia, Integer codusu, Integer codsys){
         return dao.listarOpciones(codcia,codusu,codsys);
     }
-
-
 }

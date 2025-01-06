@@ -1,10 +1,15 @@
 package com.balkaned.gladius.models;
 
+import com.balkaned.gladius.util.FormatterFecha;
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Turnodiario{
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodtra;
     private String iexcodfec;
@@ -53,4 +58,9 @@ public class Turnodiario{
     private Double canthoras;
     private String diaCalendar;
 
+    public void setDesfecdia(String desfecdia) {
+
+        FormatterFecha fec = new FormatterFecha();
+        this.diaCalendar = fec.fechaFormatterDia(desfecdia);
+    }
 }

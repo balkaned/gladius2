@@ -4,67 +4,62 @@ import com.balkaned.gladius.models.UsuxSys;
 import com.balkaned.gladius.dao.UsuxSystemaDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-@Repository("UsuxSystemaDao")
 @Slf4j
+@Repository("UsuxSystemaDao")
 public class UsuxSystemaDaoImpl implements UsuxSystemaDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "UsuxSystemaDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public UsuxSys eligeSystema(Integer codcia, Integer codusu, Integer sys) {
 
         String sql = "select " +
-                "                        u.IEXCODCIA, " +
-                "                        u.IEXCODUSU, " +
-                "                        y.IEXCODSYS, " +
-                "                        y.IEXDESSYS, " +
-                "                        p.IEXDESROL, " +
-                "                        count(1) as nroopciones " +
-                "                        from " +
-                "                        IEXUSUXCIA u   " +
-                "                        INNER JOIN IEXROLXOPC r  ON u.IEXCODROL = r.IEXCODROL " +
-                "                        INNER JOIN IEXOPCIONES o ON  r.IEXCODOPC = o.IEXCODOPC " +
-                "                        INNER JOIN IEXSECCION s  ON  o.IEXCODSEC = s.IEXCODSEC " +
-                "                        INNER JOIN IEXROLES p    ON u.IEXCODROL = p.IEXCODROL  " +
-                "						INNER JOIN IEXSYSTEMAS y ON s.IEXCODSYS = y.IEXCODSYS                          " +
-                "						where " +
-                "						 u.IEXCODCIA = "+codcia+" and " +
-                "                        u.IEXCODUSU = "+codusu+" and " +
-                "                        y.IEXCODSYS= "+sys+"  " +
-                "                    group by " +
-                "                    u.IEXCODCIA, " +
-                "                    u.IEXCODUSU, " +
-                "                    y.IEXCODSYS," +
-                "                    y.IEXDESSYS, p.IEXDESROL ";
+                "u.IEXCODCIA as IdCodCia, " +
+                "u.IEXCODUSU as IdCodUsu, " +
+                "y.IEXCODSYS as IdcodSys, " +
+                "y.IEXDESSYS as DesSystema, " +
+                "p.IEXDESROL as DesRol, " +
+                "count(1) as nroOrden " +
+                "from IEXUSUXCIA u " +
+                "INNER JOIN IEXROLXOPC r ON u.IEXCODROL = r.IEXCODROL " +
+                "INNER JOIN IEXOPCIONES o ON r.IEXCODOPC = o.IEXCODOPC " +
+                "INNER JOIN IEXSECCION s ON o.IEXCODSEC = s.IEXCODSEC " +
+                "INNER JOIN IEXROLES p ON u.IEXCODROL = p.IEXCODROL " +
+                "INNER JOIN IEXSYSTEMAS y ON s.IEXCODSYS = y.IEXCODSYS " +
+                "where u.IEXCODCIA = :codcia and " +
+                "u.IEXCODUSU = :codusu and " +
+                "y.IEXCODSYS = :sys " +
+                "group by " +
+                "u.IEXCODCIA, " +
+                "u.IEXCODUSU, " +
+                "y.IEXCODSYS, " +
+                "y.IEXDESSYS, " +
+                "p.IEXDESROL ";
 
-        return (UsuxSys) template.query(sql, new ResultSetExtractor<UsuxSys>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codusu", codusu)
+                .addValue("sys", sys);
 
-            public UsuxSys extractData(ResultSet rs) throws SQLException, DataAccessException {
+        UsuxSys usu = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(UsuxSys.class));
 
-                UsuxSys usuxsys = new UsuxSys();
-                while (rs.next()) {
-                    usuxsys.setIdCodCia(rs.getInt("iexcodcia"));
-                    usuxsys.setIdCodUsu(rs.getInt("iexcodusu"));
-                    usuxsys.setIdcodSys(rs.getInt("iexcodsys"));
-                    usuxsys.setDesSystema(rs.getString("iexdessys"));
-                    usuxsys.setDesRol(rs.getString("iexdesrol"));
-                    usuxsys.setNroOrden(rs.getInt("nroopciones"));
-                }
-                return usuxsys;
-            }
-        });
+        return usu;
     }
 
 }

@@ -5,11 +5,11 @@ import com.balkaned.gladius.dao.VacacionesDao;
 import com.balkaned.gladius.services.VacacionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class VacacionesServiceImpl implements VacacionesService {
+
     @Autowired
     VacacionesDao dao;
 
@@ -60,5 +60,8 @@ public class VacacionesServiceImpl implements VacacionesService {
     public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg) {
         return dao.getVacacionPrg(vacprg);
     }
-    public void  eliminarVacacionPrg(VacacionProgramacion vacprg){dao.eliminarVacacionPrg(vacprg);}
+
+    public void  eliminarVacacionPrg(VacacionProgramacion vacprg){
+        dao.eliminarVacacionPrg(vacprg);
+    }
 }

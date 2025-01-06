@@ -6,7 +6,6 @@ import com.balkaned.gladius.dao.UsuarioConeccionDao;
 import com.balkaned.gladius.services.UsuarioConeccionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

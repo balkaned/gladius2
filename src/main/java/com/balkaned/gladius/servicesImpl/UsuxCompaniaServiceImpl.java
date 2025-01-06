@@ -20,17 +20,14 @@ public class UsuxCompaniaServiceImpl implements UsuxCompaniaService {
     }
 
     public List<Empleado> listaTrabajadoresCia(Integer codcia) {
-
         return dao.listaTrabajadoresCia(codcia);
     }
 
     public void insertar(UsuxCompania usuxcia) {
-
         dao.insertar(usuxcia);
     }
 
     public void eliminar(UsuxCompania usuxcia) {
-
         dao.eliminar(usuxcia);
     }
 

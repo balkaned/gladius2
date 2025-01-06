@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Turno{
 
+    @Id
     private Integer codcia;
     private Integer iexcodturno;
     private String iexflgturno;
