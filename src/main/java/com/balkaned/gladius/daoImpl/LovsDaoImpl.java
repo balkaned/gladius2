@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("LovsDao")
 @Slf4j
+@Repository("LovsDao")
 public class LovsDaoImpl implements LovsDao {
 
     JdbcTemplate template;

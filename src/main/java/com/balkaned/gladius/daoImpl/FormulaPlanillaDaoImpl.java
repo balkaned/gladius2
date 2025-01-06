@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Repository("FormulaPlanillaDao")
 @Slf4j
+@Repository("FormulaPlanillaDao")
 public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
     private static final String CLASS_NAME = "FormulaPLanillaDao";

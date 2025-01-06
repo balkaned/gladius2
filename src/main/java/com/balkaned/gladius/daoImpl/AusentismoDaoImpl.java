@@ -66,7 +66,6 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 .addValue("iexcodtra", ausprg.getIexcodtra());
 
         return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
-        ;
     }
 
     public Integer validaAus(Integer codcia, Integer codtra, String fecini, String fecfin, Integer iexcorrel) {

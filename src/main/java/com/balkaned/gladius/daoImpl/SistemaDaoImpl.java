@@ -6,107 +6,100 @@ import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("SistemaDao")
 @Slf4j
+@Repository("SistemaDao")
 public class SistemaDaoImpl implements SistemaDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "SistemaDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Sistemas> listarSistemas() {
 
-        String sql = " select  " +
+        String sql = "select  " +
                 "iexcodsys, " +
                 "iexdessys " +
                 "from iexsystemas ";
 
-        return template.query(sql, new ResultSetExtractor<List<Sistemas>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-            public List<Sistemas> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Sistemas> lista = new ArrayList<Sistemas>();
+        List<Sistemas> lsSistemas = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Sistemas.class));
 
-                while (rs.next()) {
-                    Sistemas p = new Sistemas();
-
-                    p.setIexcodsys(rs.getInt("iexcodsys"));
-
-                    p.setIexdessys(rs.getString("iexdessys"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdessys(cap.letras(p.getIexdessys()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsSistemas;
     }
 
     public void insertarSistemas(Sistemas systema) {
 
-        template.update("  insert into iexsystemas( " +
-                        " iexcodsys,       iexdessys " +
-                        " ) values ( " +
-                        "  ? ,   ?   " +
-                        ")  ",
+        String sql = "insert into iexsystemas( " +
+                "iexcodsys, iexdessys " +
+                " ) values ( " +
+                " ?, ? " +
+                " ) ";
 
+        jdbc.update(sql,
                 systema.getIexcodsys(),
-                systema.getIexdessys());
+                systema.getIexdessys()
+        );
     }
 
     public Sistemas getSistemas(Integer codsis) {
 
-        String sql = " select  " +
+        String sql = "select  " +
                 "iexcodsys, " +
                 "iexdessys, " +
                 "iexactiondefault " +
-                "from iexsystemas where iexcodsys = " + codsis + " ";
+                "from iexsystemas " +
+                "where iexcodsys = :codsis ";
 
-        return (Sistemas) template.query(sql, new ResultSetExtractor<Sistemas>() {
-            public Sistemas extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Sistemas p = new Sistemas();
-                while (rs.next()) {
-                    p.setIexcodsys(rs.getInt("iexcodsys"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codsis", codsis);
 
-                    p.setIexdessys(rs.getString("iexdessys"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdessys(cap.letras(p.getIexdessys()));
+        Sistemas sistemas = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Sistemas.class));
 
-                    p.setIexactiondefault(rs.getString("iexactiondefault"));
-                }
-                return p;
-            }
-        });
+        return sistemas;
     }
 
     public void actualizarSistemas(Sistemas systema) {
 
-        template.update("  update iexsystemas  set  iexdessys =? " +
-                        " where iexcodsys=?     ",
+        String sql = "update iexsystemas set iexdessys =? " +
+                "where iexcodsys=? ";
 
+        jdbc.update(sql,
                 systema.getIexdessys(),
-                systema.getIexcodsys());
-
+                systema.getIexcodsys()
+        );
     }
 
     public void eliminarSistemas(Sistemas systema) {
 
-        template.update("  delete from  iexsystemas  " +
-                        "  where iexcodsys=?     ",
+        String sql = "delete from iexsystemas " +
+                "where iexcodsys=? ";
 
-                systema.getIexcodsys());
+        jdbc.update(sql,
+                systema.getIexcodsys()
+        );
     }
 
 }

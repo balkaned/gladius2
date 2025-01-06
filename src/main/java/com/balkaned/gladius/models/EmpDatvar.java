@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class EmpDatvar {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodpro;
     private String iexnroper;
@@ -20,4 +24,5 @@ public class EmpDatvar {
     private String iexusumod;
     private String iexfecmod;
     private String iexcodtra2;
+
 }

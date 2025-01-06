@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class AsientoContableCab {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexctbper_id;
     private String iexnroasiento;
@@ -26,4 +30,5 @@ public class AsientoContableCab {
     private String estado;
     private String iexestado;
     private String anio;
+
 }

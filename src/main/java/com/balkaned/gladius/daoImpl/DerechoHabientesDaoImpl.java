@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("DerechoHabientesDao")
 @Slf4j
+@Repository("DerechoHabientesDao")
 public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
 
     private static final String CLASS_NAME = "DerechoHabientesDao";

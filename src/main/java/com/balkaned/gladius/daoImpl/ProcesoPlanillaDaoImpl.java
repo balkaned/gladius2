@@ -2,154 +2,114 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
-import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("ProcesoPlanillaDao")
 @Slf4j
 public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "ProcesoPlanillaDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<ProcesoPlanilla> listar(String text) {
 
-        List<ProcesoPlanilla> lista = null;
         String sql = "select " +
-                "procodpro, " +
-                "prodespro, " +
-                "prodescorto, " +
-                "procodregimenlab, " +
-                "procodregimenlab desregimen, " +
-                "progrppro, " +
+                "procodpro as idProceso, " +
+                "prodespro as desProceso, " +
+                "prodescorto as desProcesoCorto, " +
+                "procodregimenlab as idRegLab, " +
+                "procodregimenlab as desRegLab, " +
+                "progrppro as desGrp, " +
                 "bolproceso, " +
                 "idtipproceso, " +
                 "bolprocesoind, " +
                 "bolprocesores " +
-                "from iexprocesos p   " +
-                "where " +
-                " prodespro like '%" + text + "%' order by procodpro asc ";
+                "from iexprocesos p " +
+                "where prodespro like '%:text%' " +
+                "order by procodpro asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("text", text);
 
-            public List<ProcesoPlanilla> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ProcesoPlanilla> lista = new ArrayList<ProcesoPlanilla>();
+        List<ProcesoPlanilla> lsProcesoPlan = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPlanilla.class));
 
-                while (rs.next()) {
-                    ProcesoPlanilla p = new ProcesoPlanilla();
-
-                    p.setIdProceso(rs.getInt("procodpro"));
-
-                    p.setDesProceso(rs.getString("prodespro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesProceso(cap.letras(p.getDesProceso()));
-
-                    p.setDesProcesoCorto(rs.getString("prodescorto"));
-                    p.setIdRegLab(rs.getString("procodregimenlab"));
-                    p.setDesRegLab(rs.getString("desregimen"));
-                    p.setDesGrp(rs.getString("progrppro"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsProcesoPlan;
     }
 
-    public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper){
+    public List<AsientoContableCab> listarAsieCab(Integer codcia, Integer codpro, String nroper) {
 
-        List<AsientoContableCab> lista = null;
-        String sql = "  select " +
-                " e.iexcodcia, e.iexctbper_id , e.iexnroasiento, e.iexcodpro ,  " +
-                " p.prodespro ,  e.iexnroper, e.iexpermes, e.iextcmb, e.iexcodmon, d.desdet desmon,  " +
-                " e.iexcodmon_ext,  d2.desdet desmon_ext,  e.tot_cre_na, e.tot_deb_na , e.tot_cre_me, e.tot_deb_me, e.iexglosacab  " +
-                " from iexctbpercab  e  " +
-                " inner join iexprocesos  p  on  e.iexcodpro= p.procodpro  " +
-                " left join iexttabled d on d.iexcodtab='52'  and d.iexkey = e.iexcodmon  " +
-                " left join iexttabled d2 on d.iexcodtab='52'  and d2.iexkey = e.iexcodmon_ext " +
-                " where  " +
-                " e.iexcodcia =  "+codcia+" and  e.iexcodpro="+codpro+" and e.iexpermes = '"+nroper+"'  ";
+        String sql = "select e.iexcodcia, e.iexctbper_id, e.iexnroasiento, e.iexcodpro, " +
+                "p.prodespro as desproceso, e.iexnroper, e.iexpermes, e.iextcmb, e.iexcodmon, d.desdet codmon_des, " +
+                "e.iexcodmon_ext, d2.desdet codmon_ext_des, e.tot_cre_na, e.tot_deb_na, e.tot_cre_me, " +
+                "e.tot_deb_me, e.iexglosacab " +
+                "from iexctbpercab e " +
+                "inner join iexprocesos p on e.iexcodpro = p.procodpro " +
+                "left join iexttabled d on d.iexcodtab='52' and d.iexkey = e.iexcodmon " +
+                "left join iexttabled d2 on d.iexcodtab='52' and d2.iexkey = e.iexcodmon_ext " +
+                "where e.iexcodcia = :codcia and e.iexcodpro = :codpro and " +
+                "e.iexpermes = ':nroper' ";
 
-        return template.query(sql, new ResultSetExtractor<List<AsientoContableCab>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codpro", codpro)
+                .addValue("nroper", nroper);
 
-            public List<AsientoContableCab> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<AsientoContableCab> lista = new ArrayList<AsientoContableCab>();
+        List<AsientoContableCab> lsAsient = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(AsientoContableCab.class));
 
-                while (rs.next()) {
-                    AsientoContableCab p = new AsientoContableCab();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexctbper_id(rs.getInt("iexctbper_id"));
-                    p.setIexnroasiento(rs.getString("iexnroasiento"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-                    p.setDesproceso(rs.getString("prodespro"));
-                    p.setIexnroper(rs.getString("iexnroper"));
-                    p.setIexpermes(rs.getString("iexpermes"));
-                    p.setIextcmb(rs.getDouble("iextcmb"));
-                    p.setIexcodmon(rs.getString("iexcodmon"));
-                    p.setCodmon_des(rs.getString("desmon"));
-                    p.setIexcodmon_ext(rs.getString("iexcodmon_ext"));
-                    p.setCodmon_ext_des(rs.getString("desmon_ext"));
-                    p.setTot_cre_na(rs.getDouble("tot_cre_na"));
-                    p.setTot_deb_na(rs.getDouble("tot_deb_na"));
-                    p.setTot_cre_me(rs.getDouble("tot_cre_me"));
-                    p.setTot_deb_me(rs.getDouble("tot_deb_me"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsAsient;
     }
 
-    public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes){
+    public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes) {
 
-        String sql = "  select  e.iexcodcia," +
-                "  case " +
-                "  when substring(e.iexpermes,5,2) ='01' then  'Enero' " +
-                "  when substring(e.iexpermes,5,2) ='02' then  'Febrero' " +
-                "  when substring(e.iexpermes,5,2) ='03' then  'Marzo' " +
-                "  when substring(e.iexpermes,5,2) ='04' then  'Abril' " +
-                "  when substring(e.iexpermes,5,2) ='05' then  'Mayo' " +
-                "  when substring(e.iexpermes,5,2) ='06' then  'Junio' " +
-                "  when substring(e.iexpermes,5,2) ='07' then  'Julio' " +
-                "  when substring(e.iexpermes,5,2) ='08' then  'Agosto' " +
-                "  when substring(e.iexpermes,5,2) ='09' then  'Setiembre' " +
-                "  when substring(e.iexpermes,5,2) ='10' then  'Octubre' " +
-                "  when substring(e.iexpermes,5,2) ='11' then  'Noviembre' " +
-                "  when substring(e.iexpermes,5,2) ='12' then  'Diciembre'  " +
+        String sql = "select e.iexcodcia, " +
+                " case " +
+                "  when substring(e.iexpermes,5,2) ='01' then 'Enero' " +
+                "  when substring(e.iexpermes,5,2) ='02' then 'Febrero' " +
+                "  when substring(e.iexpermes,5,2) ='03' then 'Marzo' " +
+                "  when substring(e.iexpermes,5,2) ='04' then 'Abril' " +
+                "  when substring(e.iexpermes,5,2) ='05' then 'Mayo' " +
+                "  when substring(e.iexpermes,5,2) ='06' then 'Junio' " +
+                "  when substring(e.iexpermes,5,2) ='07' then 'Julio' " +
+                "  when substring(e.iexpermes,5,2) ='08' then 'Agosto' " +
+                "  when substring(e.iexpermes,5,2) ='09' then 'Setiembre' " +
+                "  when substring(e.iexpermes,5,2) ='10' then 'Octubre' " +
+                "  when substring(e.iexpermes,5,2) ='11' then 'Noviembre' " +
+                "  when substring(e.iexpermes,5,2) ='12' then 'Diciembre' " +
                 " else " +
                 " 'Sin mes' " +
                 " end desmes, " +
                 " substring(e.iexpermes,5,2) as permes, " +
-                " p.procodregimenlab, " +
+                " p.procodregimenlab as codregimen, " +
                 " e.iexpermes, " +
                 " e.iexanio, " +
                 " e.iexnroper, " +
                 " e.iexfecini, " +
                 " e.iexfecfin, " +
                 " e.timerfecini, " +
-                " e.timerfecfin, "+
-                " e.iexfecpago, "+
-                " e.flgestado, "+
-                " p.progrppro, " +
+                " e.timerfecfin, " +
+                " e.iexfecpago, " +
+                " e.flgestado, " +
+                " p.progrppro as desgrppla, " +
                 " p.procodpro iexcodpro, " +
-                " p.prodespro, " +
+                " p.prodespro as desproceso, " +
                 " case " +
                 "  when flgestado ='1' then 'Creado' " +
                 "  when flgestado ='2' then 'Procesado' " +
@@ -160,259 +120,160 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 " from iexprocesos p,  iexproperiodo e " +
                 " where " +
                 " p.procodpro = e.iexcodpro and " +
-                " e.iexcodcia ="+codcia+" and " +
-                " iexpermes like '%"+permes+"%' and " +
-                " procodregimenlab='"+regpla+"' order by e.iexpermes, p.progrppro, e.iexnroper asc ";
+                " e.iexcodcia = :codcia and " +
+                " iexpermes like '%:permes%' and " +
+                " procodregimenlab = ':regpla' order by e.iexpermes, p.progrppro, e.iexnroper asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ProcesoPeriodo>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("permes", permes)
+                .addValue("regpla", regpla);
 
-            public List<ProcesoPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ProcesoPeriodo> lista = new ArrayList<ProcesoPeriodo>();
+        List<ProcesoPeriodo> lsProc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPeriodo.class));
 
-                while(rs.next()) {
-                    ProcesoPeriodo p = new ProcesoPeriodo();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-                    p.setIexanio(rs.getString("iexanio"));
-                    p.setIexnroper(rs.getString("iexnroper"));
-                    p.setIexpermes(rs.getString("iexpermes"));
-
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    //logger.info("fechaoriginal: "+p.getIexfecini());
-                    FormatterFecha f = new FormatterFecha();
-                    String fechaconv=f.fechaFormatterIngltoEsp(p.getIexfecini());
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setIexfecini(f.fechaFormatterDia(fechaconv)+" "+capit.letras(f.fechaFormatterMes(fechaconv))+", "+f.fechaFormatterAnio(fechaconv));
-
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    FormatterFecha f2 = new FormatterFecha();
-                    String fechaconv2=f2.fechaFormatterIngltoEsp(p.getIexfecfin());
-                    CapitalizarCadena capit2= new CapitalizarCadena();
-                    p.setIexfecfin(f2.fechaFormatterDia(fechaconv2)+" "+capit2.letras(f2.fechaFormatterMes(fechaconv2))+", "+f2.fechaFormatterAnio(fechaconv2));
-
-                    p.setTimerfecini(rs.getString("timerfecini"));
-                    p.setTimerfecfin(rs.getString("timerfecfin"));
-                    p.setIexfecpago(rs.getString("iexfecpago"));
-                    p.setFlgestado(rs.getString("flgestado"));
-
-                    p.setDesproceso(rs.getString("prodespro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesproceso(cap.letras(p.getDesproceso()));
-
-                    p.setDesestado(rs.getString("desestado"));
-                    p.setDesgrppla(rs.getString("progrppro"));
-                    p.setDesmes(rs.getString("desmes"));
-                    p.setCodregimen(rs.getString("procodregimenlab"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsProc;
     }
 
-    public void insertarProper(ProcesoPeriodo pperiodo){
+    public void insertarProper(ProcesoPeriodo pperiodo) {
 
-        template.update("  insert into iexproperiodo(iexcodcia, iexcodpro, iexnroper, iexpermes, iexfecini, iexfecfin, timerfecini, timerfecfin, iexfecpago, flgestado, iexfecope, iexanio , iexfeccerti) values (?,?,?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?,current_date ,?, to_date(?,'DD/MM/YYYY')) ",
+        String sql = "insert into iexproperiodo(iexcodcia, iexcodpro, iexnroper, iexpermes, " +
+                "iexfecini, iexfecfin, timerfecini, timerfecfin, iexfecpago, flgestado, iexfecope, " +
+                "iexanio , iexfeccerti) values (?,?,?,?,to_date(?,'DD/MM/YYYY'), " +
+                "to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), " +
+                "to_date(?,'DD/MM/YYYY'), ?, current_date,?, to_date(?,'DD/MM/YYYY')) ";
 
-        pperiodo.getIexcodcia(),
-        pperiodo.getIexcodpro(),
-        pperiodo.getIexnroper(),
-        pperiodo.getIexpermes(),
-        pperiodo.getIexfecini(),
-        pperiodo.getIexfecfin(),
-        pperiodo.getTimerfecini(),
-        pperiodo.getTimerfecfin(),
-        pperiodo.getIexfecpago(),
-        "1",
-        pperiodo.getIexanio(),
-        pperiodo.getIexfeccerti());
+        jdbc.update(sql,
+                pperiodo.getIexcodcia(),
+                pperiodo.getIexcodpro(),
+                pperiodo.getIexnroper(),
+                pperiodo.getIexpermes(),
+                pperiodo.getIexfecini(),
+                pperiodo.getIexfecfin(),
+                pperiodo.getTimerfecini(),
+                pperiodo.getTimerfecfin(),
+                pperiodo.getIexfecpago(),
+                "1",
+                pperiodo.getIexanio(),
+                pperiodo.getIexfeccerti()
+        );
     }
 
     @Override
-    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo) {
+    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String periodo) {
 
-        String sql=" select  " +
+        String sql = "select " +
                 "e.iexcodcia, " +
                 "e.iexcodpro, " +
-                "p.prodespro," +
-                "t.desdet," +
-                "e.iexnroper, e.iexpermes," +
+                "p.prodespro as desproceso, " +
+                "t.desdet as desregimen, " +
+                "e.iexnroper, " +
+                "e.iexpermes, " +
                 "to_char(e.iexfecini,'DD/MM/YYYY') iexfecini, " +
                 "to_char(e.iexfecfin,'DD/MM/YYYY') iexfecfin, " +
                 "TO_CHAR(e.timerfecini,'DD/MM/YYYY') timerfecini, " +
                 "TO_CHAR(e.timerfecfin,'DD/MM/YYYY') timerfecfin, " +
                 "TO_CHAR(e.iexfecpago,'DD/MM/YYYY') iexfecpago, " +
-                "to_char(e.timeini_iniciar,'yy-mm-dd hh24:mi:ss') timeini_iniciar,"+
-                "to_char(e.timefin_iniciar,'yy-mm-dd hh24:mi:ss') timefin_iniciar,"+
-                "timenroimp, "+
-                "to_char(e.timeini_proc,'yy-mm-dd hh24:mi:ss') timeini_proc,"+
-                "to_char(e.timefin_proc,'yy-mm-dd hh24:mi:ss') timefin_proc, "+
-                "timenroimp_proc, "+
-                "e.flgestado, "+
+                "to_char(e.timeini_iniciar,'yy-mm-dd hh24:mi:ss') timerfecini_iniciar, " +
+                "to_char(e.timefin_iniciar,'yy-mm-dd hh24:mi:ss') timerfecfin_iniciar, " +
+                "timenroimp as timerimp_iniciar, " +
+                "to_char(e.timeini_proc,'yy-mm-dd hh24:mi:ss') timerfecini_proc, " +
+                "to_char(e.timefin_proc,'yy-mm-dd hh24:mi:ss') timerfecfin_proc, " +
+                "timenroimp_proc as timerimp_proc, " +
+                "e.flgestado, " +
                 "   case e.flgestado " +
                 "   when  '1' Then 'Iniciado' " +
                 "   when  '2' Then 'Procesado' " +
                 "   when  '3' Then 'Cerrado' " +
                 "   when  '0' Then 'Creado' " +
                 "   end desestado, " +
-                " e.iexfecope, e.iexanio , e.utiltotal , p.progrppro, to_char(e.iexfeccerti,'DD/MM/YYYY') iexfeccerti , p.procodregimenlab, e.iextcmb  " +
-                " from iexproperiodo e, iexprocesos p , (  " +
+                "e.iexfecope, e.iexanio, e.utiltotal, " +
+                "p.progrppro as desgrppla, to_char(e.iexfeccerti,'DD/MM/YYYY') iexfeccerti, " +
+                "p.procodregimenlab as codregimen, e.iextcmb as tcmb" +
+                "from iexproperiodo e, iexprocesos p, (  " +
                 " select  iexkey, desdet from  iexttabled where iexcodtab='33'   " +
                 " ) t  " +
-                " where " +
-                " e.iexcodpro =  p.procodpro and  " +
-                " p.procodregimenlab= t.iexkey and  " +
-                " e.iexcodcia= "+codcia+" AND " +
-                " e.iexcodpro="+idproceso+" and  " +
-                " e.iexnroper='"+pperiodo+"' ";
+                "where e.iexcodpro =  p.procodpro and " +
+                "p.procodregimenlab = t.iexkey and " +
+                "e.iexcodcia = :codcia and " +
+                "e.iexcodpro = :idproceso and " +
+                "e.iexnroper = ':periodo' ";
 
-        return (ProcesoPeriodo) template.query(sql, new ResultSetExtractor<ProcesoPeriodo>() {
-            public ProcesoPeriodo extractData(ResultSet rs) throws SQLException, DataAccessException{
-                ProcesoPeriodo p = new ProcesoPeriodo();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("idproceso", idproceso)
+                .addValue("periodo", periodo);
 
-                while(rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-                    p.setIexanio(rs.getString("iexanio"));
-                    p.setIexnroper(rs.getString("iexnroper"));
-                    p.setIexpermes(rs.getString("iexpermes"));
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setTimerfecini(rs.getString("timerfecini"));
-                    p.setTimerfecfin(rs.getString("timerfecfin"));
-                    p.setIexfecpago(rs.getString("iexfecpago"));
-                    p.setFlgestado(rs.getString("flgestado"));
-                    p.setDesestado(rs.getString("desestado"));
-                    p.setIexfecope(rs.getString("iexfecope"));
+        ProcesoPeriodo proc = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPeriodo.class));
 
-                    p.setTimerfecini_iniciar(rs.getString("timeini_iniciar"));
-                    FormatterFecha f = new FormatterFecha();
-                    p.setTimerfecini_iniciar(f.fechaFormatterIngltoEspConHora(p.getTimerfecini_iniciar()));
-
-                    p.setTimerfecfin_iniciar(rs.getString("timefin_iniciar"));
-                    FormatterFecha f2 = new FormatterFecha();
-                    p.setTimerfecfin_iniciar(f2.fechaFormatterIngltoEspConHora(p.getTimerfecfin_iniciar()));
-
-                    p.setTimerimp_iniciar(rs.getDouble("timenroimp"));
-
-                    p.setTimerfecini_proc(rs.getString("timeini_proc"));
-                    FormatterFecha f3 = new FormatterFecha();
-                    p.setTimerfecini_proc(f3.fechaFormatterIngltoEspConHora(p.getTimerfecini_proc()));
-
-                    p.setTimerfecfin_proc(rs.getString("timefin_proc"));
-                    FormatterFecha f4 = new FormatterFecha();
-                    p.setTimerfecfin_proc(f4.fechaFormatterIngltoEspConHora(p.getTimerfecfin_proc()));
-
-                    p.setTimerimp_proc(rs.getDouble("timenroimp_proc"));
-
-                    p.setDesproceso(rs.getString("prodespro"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setDesproceso(cap2.letras(p.getDesproceso()));
-
-                    p.setDesregimen(rs.getString("desdet"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesregimen(cap.letras(p.getDesregimen()));
-
-                    p.setUtiltotal(rs.getDouble("utiltotal"));
-                    p.setDesgrppla(rs.getString("progrppro"));
-                    p.setIexfeccerti(rs.getString("iexfeccerti"));
-                    p.setCodregimen(rs.getString("procodregimenlab"));
-                    p.setTcmb(rs.getDouble("iextcmb"));
-                }
-                return p;
-            }
-        });
+        return proc;
     }
 
-    public void actualizarProper(ProcesoPeriodo pperiodo){
+    public void actualizarProper(ProcesoPeriodo pperiodo) {
 
-        template.update(" update iexproperiodo  set  iexpermes=?, iexfecini=TO_DATE(?,'DD/MM/YYYY'), iexfecfin=TO_DATE(?,'DD/MM/YYYY'), timerfecini=TO_DATE(?,'DD/MM/YYYY'), timerfecfin=TO_DATE(?,'DD/MM/YYYY'), iexfecpago=TO_DATE(?,'DD/MM/YYYY'), flgestado=?, iexfecope=current_date, iexanio=?, iexfeccerti=TO_DATE(?,'DD/MM/YYYY')  where  iexcodcia=? and iexcodpro=? and  iexnroper=? ",
+        String sql = "update iexproperiodo set iexpermes=?, iexfecini=TO_DATE(?,'DD/MM/YYYY'), " +
+                "iexfecfin=TO_DATE(?,'DD/MM/YYYY'), timerfecini=TO_DATE(?,'DD/MM/YYYY'), " +
+                "timerfecfin=TO_DATE(?,'DD/MM/YYYY'), iexfecpago=TO_DATE(?,'DD/MM/YYYY'), flgestado=?, " +
+                "iexfecope=current_date, iexanio=?, iexfeccerti=TO_DATE(?,'DD/MM/YYYY') " +
+                "where iexcodcia=? and iexcodpro=? and  iexnroper=? ";
 
-        pperiodo.getIexpermes(),
-        pperiodo.getIexfecini(),
-        pperiodo.getIexfecfin(),
-        pperiodo.getTimerfecini(),
-        pperiodo.getTimerfecfin(),
-        pperiodo.getIexfecpago(),
-        pperiodo.getFlgestado(),
-        pperiodo.getIexanio(),
-        pperiodo.getIexfeccerti(),
-        pperiodo.getIexcodcia(),
-        pperiodo.getIexcodpro(),
-        pperiodo.getIexnroper());
+        jdbc.update(sql,
+                pperiodo.getIexpermes(),
+                pperiodo.getIexfecini(),
+                pperiodo.getIexfecfin(),
+                pperiodo.getTimerfecini(),
+                pperiodo.getTimerfecfin(),
+                pperiodo.getIexfecpago(),
+                pperiodo.getFlgestado(),
+                pperiodo.getIexanio(),
+                pperiodo.getIexfeccerti(),
+                pperiodo.getIexcodcia(),
+                pperiodo.getIexcodpro(),
+                pperiodo.getIexnroper()
+        );
     }
 
     public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro) {
 
-        String sql="  select  " +
-                "  procodpro, bolproceso, bolproindividual, bolproresumen , rep_parameter  , " +
-                "  rep_ingresos ,   " +
-                "  rep_descuentos, " +
-                "  rep_aportes  " +
-                "  from iexprocesosxcia where procodcia ="+codcia+" and procodpro ="+codpro+"  ";
+        String sql = "select procodpro, bolproceso, bolproindividual, bolproresumen, " +
+                "rep_parameter, rep_ingresos, " +
+                "rep_descuentos, rep_aportes " +
+                "from iexprocesosxcia where procodcia = :codcia and procodpro = :codpro ";
 
-        return (ProcesoPlanillaxCia) template.query(sql, new ResultSetExtractor<ProcesoPlanillaxCia>() {
-            public ProcesoPlanillaxCia extractData(ResultSet rs) throws SQLException, DataAccessException{
-                ProcesoPlanillaxCia p = new ProcesoPlanillaxCia();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codpro", codpro);
 
-                while(rs.next()) {
-                    p.setBolproceso(rs.getString("bolproceso"));
-                    p.setBolproindividual(rs.getString("bolproindividual"));
-                    p.setBolproresumen(rs.getString("bolproresumen"));
-                    p.setRep_parameter(rs.getString("rep_parameter"));
-                    p.setRep_ingresos(rs.getString("rep_ingresos"));
-                    p.setRep_descuentos(rs.getString("rep_descuentos"));
-                    p.setRep_aportes(rs.getString("rep_aportes"));
-                }
-                return p;
-            }
-        });
+        ProcesoPlanillaxCia proc = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPlanillaxCia.class));
+
+        return proc;
     }
 
-    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon){
+    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
 
-        String sql = "select   " +
-                "d.iexcodcia, d.iexcodpro, p.prodespro,  d.iexnroper, d.procodcon, c.coodescon, count(1) cantidad, sum(provalor) valtot " +
-                "from iexpropertra_nomina d, iexconcepto c, iexprocesos p where " +
-                "d.procodcon = c.coocodcon and " +
-                "d.iexcodcia="+codcia+" and  " +
+        String sql = "select d.iexcodcia, d.iexcodpro as procodpro, p.prodespro as despro, d.iexnroper, " +
+                "d.procodcon, c.coodescon, count(1) cantidad, sum(provalor) provalo " +
+                "from iexpropertra_nomina d, iexconcepto c, iexprocesos p " +
+                "where d.procodcon = c.coocodcon and " +
+                "d.iexcodcia = :codcia and " +
                 "d.iexcodpro = p.procodpro and " +
-                "d.procodcon in ("+codcon+") and d.iexnroper >= '"+perini+"' and d.iexnroper<='"+perfin+"'  and provalor<>0 " +
-                "group by  " +
-                "d.iexcodcia, d.iexcodpro,  p.prodespro, d.iexnroper, d.procodcon,  c.coodescon " +
-                "order by d.iexcodcia, d.iexnroper,d.iexcodpro,  d.procodcon,  c.coodescon asc ";
+                "d.procodcon in (:codcon) and d.iexnroper >= ':perini' and " +
+                "d.iexnroper <= ':perfin' and provalor <> 0 " +
+                "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, " +
+                "d.procodcon, c.coodescon " +
+                "order by d.iexcodcia, d.iexnroper, d.iexcodpro, d.procodcon, c.coodescon asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ConceptoxProcesoxTra>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codcon", codcon)
+                .addValue("perini", perini)
+                .addValue("perfin", perfin);
 
-            public List<ConceptoxProcesoxTra> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ConceptoxProcesoxTra> lista = new ArrayList<ConceptoxProcesoxTra>();
+        List<ConceptoxProcesoxTra> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ConceptoxProcesoxTra.class));
 
-                while(rs.next()) {
-                    ConceptoxProcesoxTra p = new ConceptoxProcesoxTra();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setProcodpro(rs.getInt("iexcodpro"));
-                    p.setIexnroper(rs.getString("iexnroper"));
-
-                    p.setDespro(rs.getString("prodespro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDespro(cap.letras(p.getDespro()));
-
-                    p.setProcodcon(rs.getString("procodcon"));
-
-                    p.setCoodescon(rs.getString("coodescon"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setCoodescon(cap2.letras(p.getCoodescon()));
-
-                    p.setCantidad(rs.getDouble("cantidad"));
-                    p.setProvalor(rs.getDouble("valtot"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsConcept;
     }
 }

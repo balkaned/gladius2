@@ -3,38 +3,39 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.RetencionJudicial;
 import com.balkaned.gladius.dao.RetJudicialDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
-import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("RetJudicialDao")
+
 @Slf4j
+@Repository("RetJudicialDao")
 public class RetJudicialDaoImpl implements RetJudicialDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "RetJudicialDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<RetencionJudicial> listarRetencionJudicial(Empleado empleado) {
 
-        String sql = " select " +
-                "iexcodcia," +
-                "iexcodtra," +
-                "iexcorrel," +
-                "iexcodpro," +
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexcorrel, " +
+                "iexcodpro, " +
                 "p.prodespro as descodpro, " +
                 "iextipretjud, " +
                 "d.desdet as destipretjud, " +
@@ -47,85 +48,51 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "iexfeccrea, " +
                 "iexusumod, " +
                 "iexfecmod " +
-                "from iexretjudic , " +
-                " (  " +
-                "                        select  iexkey, desdet from iexttabled where iexcodtab='58'  " +
-                "                        ) d,  " +
-                "   iexprocesos p " +
-                "where  " +
-                "iexcodcia=" + empleado.getIexcodcia() + " and iexcodtra=" + empleado.getIexcodtra() + " and  iextipretjud = d.iexkey and iexcodpro= p.procodpro ";
+                "from iexretjudic, " +
+                " ( select  iexkey, desdet from iexttabled where iexcodtab='58') d, " +
+                "iexprocesos p " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iextipretjud = d.iexkey and " +
+                "iexcodpro = p.procodpro ";
 
-        return template.query(sql, new ResultSetExtractor<List<RetencionJudicial>>() {
-            public List<RetencionJudicial> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<RetencionJudicial> lista = new ArrayList<RetencionJudicial>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("codtra", empleado.getIexcodtra());
 
-                while (rs.next()) {
-                    RetencionJudicial p = new RetencionJudicial();
+        List<RetencionJudicial> lsRetencion = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(RetencionJudicial.class));
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-
-                    p.setDescodpro(rs.getString("descodpro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDescodpro(cap.letras(p.getDescodpro()));
-
-                    p.setIextipretjud(rs.getString("iextipretjud"));
-                    p.setDestipretjud(rs.getString("destipretjud"));
-                    p.setIexresolucion(rs.getString("iexresolucion"));
-
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit= new CapitalizarCadena();
-                    p.setIexfecini(f.fechaFormatterDia(p.getIexfecini())+" "+capit.letras(f.fechaFormatterMes(p.getIexfecini()))+", "+f.fechaFormatterAnio(p.getIexfecini()));
-
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    FormatterFecha f2 = new FormatterFecha();
-                    CapitalizarCadena capit2= new CapitalizarCadena();
-                    p.setIexfecfin(f2.fechaFormatterDia(p.getIexfecfin())+" "+capit2.letras(f2.fechaFormatterMes(p.getIexfecfin()))+", "+f2.fechaFormatterAnio(p.getIexfecfin()));
-
-                    p.setIexpordesct(rs.getDouble("iexpordesct"));
-                    p.setIeximpfijo(rs.getDouble("ieximpfijo"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsRetencion;
     }
 
     public Integer getIdRetencionJudicial(RetencionJudicial retjud) {
 
-        final Integer[] idfinal = {0};
+        String sql = "select coalesce(max(iexcorrel),0)+1 as idex " +
+                "from iexretjudic " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra ";
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexretjudic where iexcodcia=" + retjud.getIexcodcia() + " and iexcodtra=" + retjud.getIexcodtra() + " ";
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idfinal[0] = rs.getInt("idex");
-                }
-                return idfinal[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", retjud.getIexcodcia())
+                .addValue("codtra", retjud.getIexcodtra());
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarRetencionJudicial(RetencionJudicial retjud) {
 
-        template.update("  insert into iexretjudic( " +
-                        "iexcodcia,       iexcodtra,        iexcorrel,      iexcodpro, " +
-                        "iextipretjud,    iexresolucion,    iexfecini,      iexfecfin, " +
-                        "iexpordesct,     ieximpfijo,       iexusucrea,     iexfeccrea " +
-                        " ) values ( " +
-                        "  ?,   ? ,  ?,   ?,  " +
-                        "  ?,   ? ,   to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY') ," +
-                        "  ?  ,  ?,   ? ,  current_date " +
-                        ")  ",
+        String sql = "insert into iexretjudic( " +
+                "iexcodcia, iexcodtra, iexcorrel, iexcodpro, " +
+                "iextipretjud, iexresolucion, iexfecini, iexfecfin, " +
+                "iexpordesct, ieximpfijo, iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), " +
+                " ?, ?, ?, current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 retjud.getIexcodcia(),
                 retjud.getIexcodtra(),
                 retjud.getIexcorrel(),
@@ -136,16 +103,17 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 retjud.getIexfecfin(),
                 retjud.getIexpordesct(),
                 retjud.getIeximpfijo(),
-                "1");
+                "1"
+        );
     }
 
-    public RetencionJudicial getRetencionJudicial(RetencionJudicial retjud){
+    public RetencionJudicial getRetencionJudicial(RetencionJudicial retjud) {
 
-        String sql=" select " +
-                "iexcodcia," +
-                "iexcodtra," +
-                "iexcorrel," +
-                "iexcodpro," +
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexcorrel, " +
+                "iexcodpro, " +
                 "p.prodespro as descodpro, " +
                 "iextipretjud, " +
                 "d.desdet as destipretjud, " +
@@ -159,65 +127,57 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "iexusumod, " +
                 "iexfecmod " +
                 "from iexretjudic , " +
-                " (  " +
-                "                        select  iexkey, desdet from iexttabled where iexcodtab='58'  " +
-                "                        ) d,  " +
-                "   iexprocesos p " +
-                "where  " +
-                "iexcodcia="+retjud.getIexcodcia()+" and iexcodtra="+retjud.getIexcodtra()+" and iexcorrel="+retjud.getIexcorrel()+"  and iextipretjud = d.iexkey and iexcodpro= p.procodpro ";
+                " (select iexkey, desdet from iexttabled where iexcodtab='58') d, " +
+                " iexprocesos p " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexcorrel = :iexcorrel and " +
+                "iextipretjud = d.iexkey and " +
+                "iexcodpro = p.procodpro ";
 
-        return (RetencionJudicial) template.query(sql, new ResultSetExtractor<RetencionJudicial>() {
-            public RetencionJudicial extractData(ResultSet rs) throws SQLException, DataAccessException{
-                RetencionJudicial p = new RetencionJudicial();
-                while(rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIexcodpro(rs.getInt("iexcodpro"));
-                    p.setIextipretjud(rs.getString("iextipretjud"));
-                    p.setIexresolucion(rs.getString("iexresolucion"));
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setIexpordesct(rs.getDouble("iexpordesct"));
-                    p.setIeximpfijo(rs.getDouble("ieximpfijo"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", retjud.getIexcodcia())
+                .addValue("codtra", retjud.getIexcodtra())
+                .addValue("iexcorrel", retjud.getIexcorrel());
+
+        RetencionJudicial retencion = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(RetencionJudicial.class));
+
+        return retencion;
     }
 
-    public void actualizarRetencionJudicial(RetencionJudicial retjud){
+    public void actualizarRetencionJudicial(RetencionJudicial retjud) {
 
-        template.update("  update iexretjudic set  " +
-                        "  iexcodpro=?, " +
-                        "iextipretjud =?,    iexresolucion =?,    iexfecini =to_date(?,'DD/MM/YYYY'),      iexfecfin = to_date(?,'DD/MM/YYYY') , " +
-                        "iexpordesct =?,     ieximpfijo =?,       iexusumod =?,     iexfeccrea = current_date" +
-                        " where iexcodcia =?  and       iexcodtra=?  and        iexcorrel=?     ",
+        String sql = "update iexretjudic set " +
+                "iexcodpro=?, iextipretjud =?, iexresolucion =?, " +
+                "iexfecini = to_date(?,'DD/MM/YYYY'), iexfecfin = to_date(?,'DD/MM/YYYY'), " +
+                "iexpordesct =?, ieximpfijo =?, iexusumod =?, iexfeccrea = current_date " +
+                "where iexcodcia =? and iexcodtra=? and iexcorrel= ? ";
 
-        retjud.getIexcodpro(),
-        retjud.getIextipretjud(),
-        retjud.getIexresolucion(),
-        retjud.getIexfecini(),
-        retjud.getIexfecfin(),
-        retjud.getIexpordesct(),
-        retjud.getIeximpfijo(),
-        "1",
-        retjud.getIexcodcia(),
-        retjud.getIexcodtra(),
-        retjud.getIexcorrel());
+        jdbc.update(sql,
+                retjud.getIexcodpro(),
+                retjud.getIextipretjud(),
+                retjud.getIexresolucion(),
+                retjud.getIexfecini(),
+                retjud.getIexfecfin(),
+                retjud.getIexpordesct(),
+                retjud.getIeximpfijo(),
+                "1",
+                retjud.getIexcodcia(),
+                retjud.getIexcodtra(),
+                retjud.getIexcorrel()
+        );
     }
 
-    public void eliminarRetencionJudicial(RetencionJudicial retjud){
+    public void eliminarRetencionJudicial(RetencionJudicial retjud) {
 
-        template.update("  delete from iexretjudic  where iexcodcia =?  and       iexcodtra=?  and        iexcorrel=?     ",
+        String sql = "delete from iexretjudic " +
+                "where iexcodcia =? and iexcodtra=? and iexcorrel=? ";
 
-        retjud.getIexcodcia(),
-        retjud.getIexcodtra(),
-        retjud.getIexcorrel());
+        jdbc.update(sql,
+                retjud.getIexcodcia(),
+                retjud.getIexcodtra(),
+                retjud.getIexcorrel()
+        );
     }
-
 }

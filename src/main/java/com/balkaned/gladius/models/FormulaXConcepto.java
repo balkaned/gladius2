@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class FormulaXConcepto {
-    
+
+    @Id
     private String formprocodpro;
     private String formforcodfor;
     private String formproglosa;
@@ -26,4 +30,5 @@ public class FormulaXConcepto {
     private String conccoocodforvar;
     private String conccoodesabrev;
     private String conccoodescripcion;
+
 }

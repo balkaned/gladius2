@@ -4,134 +4,104 @@ import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.models.PrestamoCab;
 import com.balkaned.gladius.models.PrestamoDet;
 import com.balkaned.gladius.dao.PrestamoDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("PrestamoDao")
 @Slf4j
+@Repository("PrestamoDao")
 public class PrestamoDaoImpl implements PrestamoDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "PrestamoDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<PrestamoCab> listarPrestamoCab(Empleado empleado) {
 
-        String sql = " select " +
-                "c.iexcodcia	," +
-                "c.iexcodtra	," +
-                "c.iexcorrel	," +
-                "c.iextippres	," +
-                "i.desdet destippres," +
-                "c.iextipinteres	," +
-                "j.desdet destipinteres," +
-                "c.iexfrecuencia	," +
-                "j.desdet desfrecuencia," +
-                " to_char(c.iexfecpres,'DD/MM/YYYY') iexfecpres	," +
-                " to_char(c.iexfecinivig,'DD/MM/YYYY') iexfecinivig, " +
-                "c.iexnrocuotas	," +
-                "c.ieximpbru	," +
-                "c.iexinteres	," +
-                "c.ieximptotal	," +
-                "c.iexglosa	," +
-                "c.iexusucrea	," +
-                "to_char(c.iexfeccrea,'DD/MM/YYYY') iexfeccrea	," +
-                "c.iexusumod	," +
-                "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod	," +
-                "c.iexestado" +
-                " from  " +
-                "iexprestamocab c , " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='59'  )  i, " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='60'  )  j, " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='61'  )  h " +
-                " where " +
-                "c.iextippres =  i.iexkey and  " +
+        String sql = "select " +
+                "c.iexcodcia, " +
+                "c.iexcodtra, " +
+                "c.iexcorrel, " +
+                "c.iextippres, " +
+                "i.desdet destippres, " +
+                "c.iextipinteres, " +
+                "j.desdet destipinteres, " +
+                "c.iexfrecuencia, " +
+                "j.desdet destipfrecuencia, " +
+                "to_char(c.iexfecpres,'DD/MM/YYYY') iexfecpres, " +
+                "to_char(c.iexfecinivig,'DD/MM/YYYY') iexfecinivig, " +
+                "c.iexnrocuotas, " +
+                "c.ieximpbru, " +
+                "c.iexinteres, " +
+                "c.ieximptotal, " +
+                "c.iexglosa, " +
+                "c.iexusucrea, " +
+                "to_char(c.iexfeccrea,'DD/MM/YYYY') iexfeccrea, " +
+                "c.iexusumod, " +
+                "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod, " +
+                "c.iexestado " +
+                "from iexprestamocab c, " +
+                " (select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
+                " (select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
+                " (select iexkey, desdet from iexttabled where iexcodtab='61') h " +
+                "where c.iextippres =  i.iexkey and " +
                 "c.iextipinteres = j.iexkey and " +
-                "c.iexfrecuencia =  h.iexkey and  iexcodcia=" + empleado.getIexcodcia() + " and iexcodtra=" + empleado.getIexcodtra() + "  ";
+                "c.iexfrecuencia = h.iexkey and " +
+                "iexcodcia = :codcia and " +
+                "iexcodtra = :codtra ";
 
-        return template.query(sql, new ResultSetExtractor<List<PrestamoCab>>() {
-            public List<PrestamoCab> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<PrestamoCab> lista = new ArrayList<PrestamoCab>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("codtra", empleado.getIexcodtra());
 
-                while (rs.next()) {
-                    PrestamoCab p = new PrestamoCab();
+        List<PrestamoCab> lsPres = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(PrestamoCab.class));
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIextippres(rs.getString("iextippres"));
-                    p.setDestippres(rs.getString("destippres"));
-                    p.setDestipinteres(rs.getString("destipinteres"));
-                    p.setDestipfrecuencia(rs.getString("desfrecuencia"));
-                    p.setIextipinteres(rs.getString("iextipinteres"));
-                    p.setIexfrecuencia(rs.getString("iexfrecuencia"));
-                    p.setIexfecpres(rs.getString("iexfecpres"));
-                    p.setIexfecinivig(rs.getString("iexfecinivig"));
-                    p.setIexnrocuotas(rs.getDouble("iexnrocuotas"));
-                    p.setIeximpbru(rs.getDouble("ieximpbru"));
-                    p.setIexinteres(rs.getDouble("iexinteres"));
-                    p.setIeximptotal(rs.getDouble("ieximptotal"));
-
-                    p.setIexglosa(rs.getString("iexglosa"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexglosa(cap.letras(p.getIexglosa()));
-
-                    p.setIexestado(rs.getString("iexestado"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsPres;
     }
 
     public Integer getIdPrestamoCab(PrestamoCab prestcab) {
 
-        final Integer[] idfinal = {0};
+        String sql = "select coalesce(max(iexcorrel),0)+1 as idex " +
+                "from iexprestamocab " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra ";
 
-        String sql = " select  coalesce(max(iexcorrel),0)+1 as idex from iexprestamocab where iexcodcia=" + prestcab.getIexcodcia() + " and iexcodtra=" + prestcab.getIexcodtra() + " ";
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", prestcab.getIexcodcia())
+                .addValue("codtra", prestcab.getIexcodtra());
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idfinal[0] = rs.getInt("idex");
-                }
-                return idfinal[0];
-            }
-        });
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarPrestamoCab(PrestamoCab prestcab) {
 
-        template.update("  insert into iexprestamocab( " +
-                        " iexcodcia	    ,    iexcodtra	,      iexcorrel	,       iextippres	," +
-                        " iextipinteres	,    iexfrecuencia	,  iexfecpres	,       iexfecinivig , " +
-                        " iexnrocuotas	,    ieximpbru	,      iexinteres	,       ieximptotal	," +
-                        " iexglosa  ,        iexestado	,        iexusucrea	,      iexfeccrea		" +
-                        " ) values ( " +
-                        "  ?,   ? ,  ?,   ?,  " +
-                        "   ?,   ? ,  to_date(?,'DD/MM/YYYY'),   to_date(?,'DD/MM/YYYY'),  " +
-                        "   ?,   ? ,  ?,   ?,  " +
-                        "   ?,   ? ,  ?,   current_date " +
-                        " )  ",
+        String sql = "insert into iexprestamocab( " +
+                "iexcodcia, iexcodtra, iexcorrel, iextippres, " +
+                "iextipinteres, iexfrecuencia, iexfecpres, iexfecinivig, " +
+                "iexnrocuotas, ieximpbru, iexinteres, ieximptotal, " +
+                "iexglosa, iexestado, iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, ?, current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 prestcab.getIexcodcia(),
                 prestcab.getIexcodtra(),
                 prestcab.getIexcorrel(),
@@ -146,7 +116,8 @@ public class PrestamoDaoImpl implements PrestamoDao {
                 prestcab.getIeximptotal(),
                 prestcab.getIexglosa(),
                 prestcab.getIexestado(),
-                prestcab.getIexusucrea());
+                prestcab.getIexusucrea()
+        );
 
         generacuotasPrestamoCab(prestcab);
 
@@ -154,150 +125,117 @@ public class PrestamoDaoImpl implements PrestamoDao {
 
     public void generacuotasPrestamoCab(PrestamoCab prestcab) {
 
-        template.update("  call pl_prestamo_cuotas(?,?,?)  ",
+        String sql = "call pl_prestamo_cuotas(?,?,?) ";
 
+        jdbc.update(sql,
                 prestcab.getIexcodcia(),
                 prestcab.getIexcodtra(),
-                prestcab.getIexcorrel());
-
+                prestcab.getIexcorrel()
+        );
     }
 
     public PrestamoCab getPrestamoCab(PrestamoCab prestcab) {
 
-        String sql = " select " +
-                "c.iexcodcia	," +
-                "c.iexcodtra	," +
-                "c.iexcorrel	," +
-                "c.iextippres	," +
-                "i.desdet destippres," +
-                "c.iextipinteres	," +
-                "j.desdet destipinteres," +
-                "c.iexfrecuencia	," +
-                "j.desdet desfrecuencia," +
-                " to_char(c.iexfecpres,'DD/MM/YYYY') iexfecpres	," +
-                " to_char(c.iexfecinivig,'DD/MM/YYYY') iexfecinivig, " +
-                "c.iexnrocuotas	," +
-                "c.ieximpbru	," +
-                "c.iexinteres	," +
-                "c.ieximptotal	," +
-                "c.iexglosa	," +
-                "c.iexusucrea	," +
-                "to_char(c.iexfeccrea,'DD/MM/YYYY') iexfeccrea	," +
-                "c.iexusumod	," +
-                "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod	," +
-                "c.iexestado" +
-                "  from  " +
-                "iexprestamocab c , " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='59'  )  i, " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='60'  )  j, " +
-                "( select  iexkey, desdet from iexttabled where iexcodtab='61'  )  h " +
-                "where " +
-                "c.iextippres =  i.iexkey and  " +
+        String sql = "select " +
+                "c.iexcodcia, " +
+                "c.iexcodtra, " +
+                "c.iexcorrel, " +
+                "c.iextippres, " +
+                "i.desdet destippres, " +
+                "c.iextipinteres, " +
+                "j.desdet destipinteres, " +
+                "c.iexfrecuencia, " +
+                "j.desdet destipfrecuencia, " +
+                "to_char(c.iexfecpres,'DD/MM/YYYY') iexfecpres, " +
+                "to_char(c.iexfecinivig,'DD/MM/YYYY') iexfecinivig, " +
+                "c.iexnrocuotas, " +
+                "c.ieximpbru, " +
+                "c.iexinteres, " +
+                "c.ieximptotal, " +
+                "c.iexglosa, " +
+                "c.iexusucrea, " +
+                "to_char(c.iexfeccrea,'DD/MM/YYYY') iexfeccrea, " +
+                "c.iexusumod, " +
+                "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod, " +
+                "c.iexestado " +
+                "from iexprestamocab c, " +
+                " ( select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
+                " ( select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
+                " ( select iexkey, desdet from iexttabled where iexcodtab='61') h " +
+                "where c.iextippres =  i.iexkey and " +
                 "c.iextipinteres = j.iexkey and " +
-                "c.iexfrecuencia =  h.iexkey and  iexcodcia=" + prestcab.getIexcodcia() + " and iexcodtra=" + prestcab.getIexcodtra() + " and iexcorrel= " + prestcab.getIexcorrel() + " ";
+                "c.iexfrecuencia =  h.iexkey and iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and iexcorrel = :iexcorrel ";
 
-        return template.query(sql, new ResultSetExtractor<PrestamoCab>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", prestcab.getIexcodcia())
+                .addValue("codtra", prestcab.getIexcodtra())
+                .addValue("iexcorrel", prestcab.getIexcorrel());
 
-            public PrestamoCab extractData(ResultSet rs) throws SQLException, DataAccessException {
-                PrestamoCab p = new PrestamoCab();
-                while (rs.next()) {
+        PrestamoCab pres = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(PrestamoCab.class));
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIextippres(rs.getString("iextippres"));
-                    p.setDestippres(rs.getString("destippres"));
-                    p.setDestipinteres(rs.getString("destipinteres"));
-                    p.setDestipfrecuencia(rs.getString("desfrecuencia"));
-                    p.setIextipinteres(rs.getString("iextipinteres"));
-                    p.setIexfrecuencia(rs.getString("iexfrecuencia"));
-                    p.setIexfecpres(rs.getString("iexfecpres"));
-                    p.setIexfecinivig(rs.getString("iexfecinivig"));
-                    p.setIexnrocuotas(rs.getDouble("iexnrocuotas"));
-                    p.setIeximpbru(rs.getDouble("ieximpbru"));
-                    p.setIexinteres(rs.getDouble("iexinteres"));
-                    p.setIeximptotal(rs.getDouble("ieximptotal"));
-                    p.setIexglosa(rs.getString("iexglosa"));
-                    p.setIexestado(rs.getString("iexestado"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        return pres;
     }
 
     public List<PrestamoDet> listarPrestamoDet(PrestamoCab prestcab) {
 
-        String sql = "  select  " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexcorrel, " +
                 "iexidcuota, " +
-                "to_char(iexfecpre,'DD/MM/YYYY') iexfecpre , " +
-                "ieximpbru , " +
-                "iexinteres , " +
-                "ieximptotal , " +
-                "iexusucrea	, " +
+                "to_char(iexfecpre,'DD/MM/YYYY') iexfecpre, " +
+                "ieximpbru, " +
+                "iexinteres, " +
+                "ieximptotal, " +
+                "iexusucrea, " +
                 "to_char(iexfeccrea,'DD/MM/YYYY') iexfeccrea, " +
-                "iexusumod	, " +
-                "to_char(iexfecmod,'DD/MM/YYYY')	 iexfecmod, " +
-                "iexflgest	, " +
-                "iexcodpropla , " +
-                "iexcodconpla ," +
-                "ieximportepla	, " +
-                "iexglosa  " +
-                "from  " +
-                "iexprestamodet where iexcodcia=" + prestcab.getIexcodcia() + " and iexcodtra=" + prestcab.getIexcodtra() + " and iexcorrel = " + prestcab.getIexcorrel() + " ";
-        return template.query(sql, new ResultSetExtractor<List<PrestamoDet>>() {
-            public List<PrestamoDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<PrestamoDet> lista = new ArrayList<PrestamoDet>();
+                "iexusumod, " +
+                "to_char(iexfecmod,'DD/MM/YYYY') iexfecmod, " +
+                "iexflgest, " +
+                "iexcodpropla, " +
+                "iexcodconpla, " +
+                "ieximportepla, " +
+                "iexglosa " +
+                "from iexprestamodet " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexcorrel = :iexcorrel ";
 
-                while (rs.next()) {
-                    PrestamoDet p = new PrestamoDet();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", prestcab.getIexcodcia())
+                .addValue("codtra", prestcab.getIexcodtra())
+                .addValue("iexcorrel", prestcab.getIexcorrel());
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexcorrel(rs.getInt("iexcorrel"));
-                    p.setIexidcuota(rs.getInt("iexidcuota"));
-                    p.setIexfecpre(rs.getString("iexfecpre"));
-                    p.setIeximpbru(rs.getDouble("ieximpbru"));
-                    p.setIexinteres(rs.getDouble("iexinteres"));
-                    p.setIeximptotal(rs.getDouble("ieximptotal"));
-                    p.setIexflgest(rs.getString("iexflgest"));
-                    p.setIexcodpropla(rs.getInt("iexflgest"));
-                    p.setIexcodconpla(rs.getString("iexcodconpla"));
-                    p.setIeximportepla(rs.getDouble("ieximportepla"));
-                    p.setIexglosa(rs.getString("iexglosa"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
+        List<PrestamoDet> lsPrest = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(PrestamoDet.class));
 
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsPrest;
     }
 
-    public void eliminarPrestamoDetAll(PrestamoCab prestcab){
+    public void eliminarPrestamoDetAll(PrestamoCab prestcab) {
 
-        template.update("  delete from iexprestamodet  " +
-                        " where  iexcodcia= ?  and  iexcodtra = ? and  iexcorrel= ?    ",
-        prestcab.getIexcodcia(),
-        prestcab.getIexcodtra(),
-        prestcab.getIexcorrel());
-    }
+        String sql = "delete from iexprestamodet " +
+                "where iexcodcia = ? and iexcodtra = ? and iexcorrel= ? ";
 
-    public void eliminarPrestamoCab(PrestamoCab prestcab){
-
-        template.update("  delete from iexprestamocab  where iexcodcia = ?  and   iexcodtra =?  and    iexcorrel=?  ",
+        jdbc.update(sql,
                 prestcab.getIexcodcia(),
                 prestcab.getIexcodtra(),
-                prestcab.getIexcorrel());
+                prestcab.getIexcorrel()
+        );
+    }
+
+    public void eliminarPrestamoCab(PrestamoCab prestcab) {
+
+        String sql = "delete from iexprestamocab " +
+                "where iexcodcia = ?  and iexcodtra = ? and iexcorrel = ? ";
+
+        jdbc.update(sql,
+                prestcab.getIexcodcia(),
+                prestcab.getIexcodtra(),
+                prestcab.getIexcorrel()
+        );
     }
 
 }

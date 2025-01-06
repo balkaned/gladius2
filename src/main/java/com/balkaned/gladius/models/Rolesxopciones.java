@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class Rolesxopciones {
 
+    @Id
     private Integer iexcodrol;
     private String desrol;
     private Integer iexcodopc;

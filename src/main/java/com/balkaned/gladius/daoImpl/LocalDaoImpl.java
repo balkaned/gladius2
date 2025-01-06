@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("LocalDao")
 @Slf4j
+@Repository("LocalDao")
 public class LocalDaoImpl implements LocalDao {
 
     private static final String CLASS_NAME = "LocalDao";

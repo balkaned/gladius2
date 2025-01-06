@@ -16,8 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("EmpleadoDao")
 @Slf4j
+@Repository("EmpleadoDao")
 public class EmpleadoDaoImpl implements EmpleadoDao {
 
     JdbcTemplate template;

@@ -5,116 +5,95 @@ import com.balkaned.gladius.models.EmpDatvar;
 import com.balkaned.gladius.models.EmpSueldo;
 import com.balkaned.gladius.models.Empleado;
 import com.balkaned.gladius.dao.SueldoDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("SueldoDao")
 @Slf4j
+@Repository("SueldoDao")
 public class SueldosDaoImpl implements SueldoDao {
 
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "SueldoDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<EmpSueldo> obtenerEmpSueldo(Empleado empleado) {
 
-        List<EmpSueldo> lista = null;
-
         String sql = "select " +
-                "s.iexcodcia," +
-                "s.iexcodtra," +
-                "s.iexcodcon," +
-                "c.coodescon," +
-                "s.iexvalcon," +
+                "s.iexcodcia, " +
+                "s.iexcodtra, " +
+                "s.iexcodcon, " +
+                "c.coodescon as descon, " +
+                "s.iexvalcon, " +
                 "s.iexflgest " +
                 "from iexconcepto c, " +
                 "iexsueldos s " +
-                "where " +
-                "s.iexcodcia = " + empleado.getIexcodcia() + " and  " +
-                "s.iexcodtra= " + empleado.getIexcodtra() + "  and " +
-                "c.coocodcon=s.iexcodcon ";
+                "where s.iexcodcia = :codcia and " +
+                "s.iexcodtra = :codtra and " +
+                "c.coocodcon = s.iexcodcon ";
 
-        return template.query(sql, new ResultSetExtractor<List<EmpSueldo>>() {
-            public List<EmpSueldo> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<EmpSueldo> lista = new ArrayList<EmpSueldo>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("codtra", empleado.getIexcodtra());
 
-                while (rs.next()) {
-                    EmpSueldo con = new EmpSueldo();
+        List<EmpSueldo> lsEmplSueld = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpSueldo.class));
 
-                    con.setIexcodcia(rs.getInt("iexcodcia"));
-                    con.setIexcodtra(rs.getInt("iexcodtra"));
-                    con.setIexcodcon(rs.getString("iexcodcon"));
-                    con.setDescon(rs.getString("coodescon"));
-                    con.setIexvalcon(rs.getDouble("iexvalcon"));
-                    con.setIexflgest(rs.getString("iexflgest"));
-
-                    lista.add(con);
-                }
-                return lista;
-            }
-        });
+        return lsEmplSueld;
     }
 
     public List<Concepto> ListConceptos(Integer codcia, String Tipo) {
 
-        List<Concepto> lista = null;
+        String sql = "select " +
+                "coocodcon as codConcepto, " +
+                "coodescon as desConcepto " +
+                "from iexciaxcon, iexconcepto " +
+                "where iexcodcia = :codcia and " +
+                "iexcodcon = coocodcon and " +
+                "iextipreg = ':tipo' ";
 
-        String sql = "select  " +
-                "coocodcon, coodescon " +
-                "from iexciaxcon, iexconcepto where " +
-                "iexcodcia=" + codcia + " and  " +
-                "iexcodcon=coocodcon and iextipreg='" + Tipo + "' ";
+        SqlParameterSource namedParameter = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("tipo", Tipo);
 
-        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
-            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Concepto> lista = new ArrayList<Concepto>();
+        List<Concepto> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameter,
+                BeanPropertyRowMapper.newInstance(Concepto.class));
 
-                while (rs.next()) {
-                    Concepto con = new Concepto();
-
-                    con.setCodConcepto(rs.getString("coocodcon"));
-
-                    con.setDesConcepto(rs.getString("coodescon"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
-
-                    lista.add(con);
-                }
-                return lista;
-            }
-        });
+        return lsConcept;
     }
 
     public void insertarEmpSueldo(EmpSueldo empsueldo) {
 
-        template.update("INSERT INTO iexsueldos (iexcodcia, iexcodtra, iexcodcon, iexvalcon, iexflgest)  VALUES (?, ?, ?, ?, ? )",
+        String sql = "insert into iexsueldos (iexcodcia, iexcodtra, iexcodcon, iexvalcon, iexflgest) " +
+                "values (?, ?, ?, ?, ? ) ";
 
+        jdbc.update(sql,
                 empsueldo.getIexcodcia(),
                 empsueldo.getIexcodtra(),
                 empsueldo.getIexcodcon(),
                 empsueldo.getIexvalcon(),
-                empsueldo.getIexflgest());
+                empsueldo.getIexflgest()
+        );
     }
 
     public List<EmpDatvar> obtenerEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl) {
 
-        String sql = " select  " +
-                "v.iexcodcia," +
+        String sql = "select  " +
+                "v.iexcodcia, " +
                 "v.iexcodpro, " +
                 "v.iexnroper, " +
                 "v.iexcorrel, " +
@@ -128,39 +107,32 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexusumod, " +
                 "v.iexfecmod " +
                 "from iexconcepto c , iexdatavar v " +
-                "where " +
-                "v.iexcodcia = " + cia + " and  " +
-                "v.iexcodpro= " + codpro + "  and " +
-                "v.iexnroper = '" + nroper + "' and " +
-                "v.iexcorrel = " + correl + "  and " +
-                "v.iexcodtra = " + codtra + "  and v.iexcodcon = c.coocodcon ";
+                "where v.iexcodcia = :codcia and  " +
+                "v.iexcodpro = :codpro and " +
+                "v.iexnroper = ':nroper' and " +
+                "v.iexcorrel = :correl and " +
+                "v.iexcodtra = :codtra and " +
+                "v.iexcodcon = c.coocodcon ";
 
-        return template.query(sql, new ResultSetExtractor<List<EmpDatvar>>() {
-            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<EmpDatvar> lista = new ArrayList<EmpDatvar>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", cia)
+                .addValue("codpro", codpro)
+                .addValue("nroper", nroper)
+                .addValue("correl", correl)
+                .addValue("codtra", codtra);
 
-                while (rs.next()) {
-                    EmpDatvar con = new EmpDatvar();
+        List<EmpDatvar> lsEmpDat = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpDatvar.class));
 
-                    con.setIexcodcia(rs.getInt("iexcodcia"));
-                    con.setIexcodpro(rs.getInt("iexcodpro"));
-                    con.setIexnroper(rs.getString("iexnroper"));
-                    con.setIexcodtra(rs.getInt("iexcodtra"));
-                    con.setIexcorrel(rs.getInt("iexcorrel"));
-                    con.setIexcodcon(rs.getString("iexcodcon"));
-                    con.setCoodescon(rs.getString("coodescon"));
-                    con.setIexvalcon(rs.getDouble("iexvalcon"));
-
-                    lista.add(con);
-                }
-                return lista;
-            }
-        });
+        return lsEmpDat;
     }
 
     public void insertarEmpDatvar(EmpDatvar empdatvar) {
 
-        template.update("INSERT INTO  iexdatavar (iexcodcia, iexcodpro, iexnroper,  iexcorrel, iexcodtra, iexcodcon,  iexvalcon,  iexflgest )  VALUES (?, ?, ?, ?, ?,?,?,? )",
+        String sql = "insert into iexdatavar (iexcodcia, iexcodpro, iexnroper, iexcorrel, " +
+                "iexcodtra, iexcodcon, iexvalcon, iexflgest) values (?, ?, ?, ?, ?, ?, ?, ? ) ";
+
+        jdbc.update(sql,
                 empdatvar.getIexcodcia(),
                 empdatvar.getIexcodpro(),
                 empdatvar.getIexnroper(),
@@ -168,65 +140,69 @@ public class SueldosDaoImpl implements SueldoDao {
                 empdatvar.getIexcodtra(),
                 empdatvar.getIexcodcon(),
                 empdatvar.getIexvalcon(),
-                empdatvar.getIexflgest());
+                empdatvar.getIexflgest()
+        );
     }
 
     public EmpSueldo obtenerOneEmpSueldo(Empleado empleado, String concepto) {
 
         String sql = "select " +
-                "s.iexcodcia," +
-                "s.iexcodtra," +
-                "s.iexcodcon," +
-                "c.coodescon," +
-                "s.iexvalcon," +
+                "s.iexcodcia, " +
+                "s.iexcodtra, " +
+                "s.iexcodcon, " +
+                "c.coodescon as descon, " +
+                "s.iexvalcon, " +
                 "s.iexflgest " +
                 "from iexconcepto c, " +
                 "iexsueldos s " +
-                "where " +
-                "s.iexcodcia = " + empleado.getIexcodcia() + " and  " +
-                "s.iexcodtra= " + empleado.getIexcodtra() + "  and " +
-                "s.iexcodcon= '" + concepto + "'  and " +
-                "c.coocodcon=s.iexcodcon ";
+                "where s.iexcodcia = :codcia and  " +
+                "s.iexcodtra = :codtra and " +
+                "s.iexcodcon = ':concepto' and " +
+                "c.coocodcon = s.iexcodcon ";
 
-        return (EmpSueldo) template.query(sql, new ResultSetExtractor<EmpSueldo>() {
-            public EmpSueldo extractData(ResultSet rs) throws SQLException, DataAccessException {
-                EmpSueldo con = new EmpSueldo();
-                while (rs.next()) {
-                    con.setIexcodcia(rs.getInt("iexcodcia"));
-                    con.setIexcodtra(rs.getInt("iexcodtra"));
-                    con.setIexcodcon(rs.getString("iexcodcon"));
-                    con.setDescon(rs.getString("coodescon"));
-                    con.setIexvalcon(rs.getDouble("iexvalcon"));
-                    con.setIexflgest(rs.getString("iexflgest"));
-                }
-                return con;
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("codtra", empleado.getIexcodtra())
+                .addValue("concepto", concepto);
+
+        EmpSueldo emp = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpSueldo.class));
+
+        return emp;
     }
 
     public void actualizarEmpSueldo(EmpSueldo empsueldo) {
 
-        template.update("update  iexsueldos set iexvalcon=? where iexcodcia=? and iexcodtra=?  and iexcodcon=? ",
+        String sql = "update iexsueldos set iexvalcon=? " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and iexcodcon=? ";
 
+        jdbc.update(sql,
                 empsueldo.getIexvalcon(),
                 empsueldo.getIexcodcia(),
                 empsueldo.getIexcodtra(),
-                empsueldo.getIexcodcon());
+                empsueldo.getIexcodcon()
+        );
 
     }
 
     public void eliminarEmpSueldo(EmpSueldo empsueldo) {
 
-        template.update("delete from  iexsueldos  where iexcodcia=? and iexcodtra=?  and iexcodcon=? ",
+        String sql = "delete from iexsueldos " +
+                "where iexcodcia=? and iexcodtra=? " +
+                "and iexcodcon=? ";
 
+        jdbc.update(sql,
                 empsueldo.getIexcodcia(),
                 empsueldo.getIexcodtra(),
-                empsueldo.getIexcodcon());
+                empsueldo.getIexcodcon()
+        );
     }
 
-    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl, String concepto) {
+    public EmpDatvar obtenerOneEmpDatvar(Integer cia, Integer codpro, String nroper, Integer codtra,
+                                         Integer correl, String concepto) {
 
-        String sql = " select  " +
+        String sql = "select  " +
                 "v.iexcodcia," +
                 "v.iexcodpro, " +
                 "v.iexnroper, " +
@@ -241,96 +217,92 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexusumod, " +
                 "v.iexfecmod " +
                 "from iexconcepto c , iexdatavar v " +
-                "where " +
-                "v.iexcodcia = " + cia + " and  " +
-                "v.iexcodpro= " + codpro + "  and " +
-                "v.iexnroper = '" + nroper + "' and " +
-                "v.iexcorrel = " + correl + "  and " +
-                "v.iexcodtra = " + codtra + "  and  v.iexcodcon='" + concepto + "'  ";
+                "where v.iexcodcia = :codcia and " +
+                "v.iexcodpro = :codpro and " +
+                "v.iexnroper = ':nroper' and " +
+                "v.iexcorrel = :correl and " +
+                "v.iexcodtra = :codtra and " +
+                "v.iexcodcon = ':concepto' ";
 
-        return (EmpDatvar) template.query(sql, new ResultSetExtractor<EmpDatvar>() {
-            public EmpDatvar extractData(ResultSet rs) throws SQLException, DataAccessException {
-                EmpDatvar con = new EmpDatvar();
-                while (rs.next()) {
-                    con.setIexcodcia(rs.getInt("iexcodcia"));
-                    con.setIexcodpro(rs.getInt("iexcodpro"));
-                    con.setIexnroper(rs.getString("iexnroper"));
-                    con.setIexcodtra(rs.getInt("iexcodtra"));
-                    con.setIexcorrel(rs.getInt("iexcorrel"));
-                    con.setIexcodcon(rs.getString("iexcodcon"));
-                    con.setCoodescon(rs.getString("coodescon"));
-                    con.setIexvalcon(rs.getDouble("iexvalcon"));
-                }
-                return con;
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", cia)
+                .addValue("codpro", codpro)
+                .addValue("nroper", nroper)
+                .addValue("correl", correl)
+                .addValue("codtra", codtra)
+                .addValue("concepto", concepto);
+
+        EmpDatvar emp = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpDatvar.class));
+
+        return emp;
     }
 
     public void actualizarEmpDatvar(EmpDatvar empdatvar) {
 
-        template.update(" update iexdatavar set iexvalcon=?  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=? and iexcodtra=?  and  iexcodcon=?  ",
+        String sql = "update iexdatavar set iexvalcon=? " +
+                "where iexcodcia=? and iexcodpro=? and iexnroper=? and " +
+                "iexcorrel=? and iexcodtra=? and iexcodcon=? ";
 
+        jdbc.update(sql,
                 empdatvar.getIexvalcon(),
                 empdatvar.getIexcodcia(),
                 empdatvar.getIexcodpro(),
                 empdatvar.getIexnroper(),
                 empdatvar.getIexcorrel(),
                 empdatvar.getIexcodtra(),
-                empdatvar.getIexcodcon());
-
+                empdatvar.getIexcodcon()
+        );
     }
 
     public void eliminarEmpDatvar(EmpDatvar empdatvar) {
 
-        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=? and iexcodtra=?  and  iexcodcon=?  ",
+        String sql = "delete from iexdatavar " +
+                "where iexcodcia=? and iexcodpro=? and iexnroper=? " +
+                "and iexcorrel=? and iexcodtra=? and iexcodcon=? ";
 
+        jdbc.update(sql,
                 empdatvar.getIexcodcia(),
                 empdatvar.getIexcodpro(),
                 empdatvar.getIexnroper(),
                 empdatvar.getIexcorrel(),
                 empdatvar.getIexcodtra(),
-                empdatvar.getIexcodcon());
-
+                empdatvar.getIexcodcon()
+        );
     }
 
     public List<Concepto> ListConcepProVar(Integer codcia, Integer codpro, String Tipo) {
 
         String sql = "select  " +
-                "coocodcon, coodescon " +
-                "from iexciaxcon, iexconcepto , iexproxconcepto where " +
-                " procodcon =  iexcodcon and  iexcodcia=" + codcia + " and  " +
-                "iexcodcon=coocodcon and iextipreg='" + Tipo + "'  and procodpro =" + codpro + " ";
+                "coocodcon as codConcepto, " +
+                "coodescon as desConcepto" +
+                "from iexciaxcon, iexconcepto, iexproxconcepto " +
+                "where procodcon =  iexcodcon and " +
+                "iexcodcia = :codcia and " +
+                "iexcodcon = coocodcon and " +
+                "iextipreg = ':tipo' and " +
+                "procodpro = :codpro ";
 
-        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("tipo", Tipo)
+                .addValue("codpro", codpro);
 
-            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Concepto> lista = new ArrayList<Concepto>();
+        List<Concepto> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Concepto.class));
 
-                while (rs.next()) {
-                    Concepto con = new Concepto();
-
-                    con.setCodConcepto(rs.getString("coocodcon"));
-
-                    con.setDesConcepto(rs.getString("coodescon"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    con.setDesConcepto(cap.letras(con.getDesConcepto()));
-
-                    lista.add(con);
-                }
-                return lista;
-            }
-        });
+        return lsConcept;
     }
 
     public List<EmpDatvar> obtenerEmpResvar(Integer cia, Integer codpro, String nroper, Integer correl) {
 
-        String sql = " select  " +
-                "v.iexcodcia," +
+        String sql = "select " +
+                "v.iexcodcia, " +
                 "v.iexcodpro, " +
                 "v.iexnroper, " +
                 "v.iexcorrel, " +
                 "v.iexcodtra, " +
-                " a.iexapepat||' '||a.iexapemat||' '||a.iexnomtra as desnomtra, " +
+                " a.iexapepat||' '||a.iexapemat||' '||a.iexnomtra as nomdestra, " +
                 "v.iexcodcon, " +
                 "c.coodescon, " +
                 "v.iexvalcon, " +
@@ -339,70 +311,56 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexfeccrea, " +
                 "v.iexusumod, " +
                 "v.iexfecmod " +
-                "from iexconcepto c , iexdatavar v , iexempleado a " +
-                "where " +
-                "v.iexcodcia = " + cia + " and  " +
-                "v.iexcodpro= " + codpro + "  and " +
-                "v.iexnroper = '" + nroper + "' and " +
-                "v.iexcorrel = " + correl + "  and v.iexcodcon = c.coocodcon and a.iexcodcia = v.iexcodcia  and  a.iexcodtra = v.iexcodtra order by 6 asc ";
+                "from iexconcepto c, iexdatavar v, iexempleado a " +
+                "where v.iexcodcia = :codcia and " +
+                "v.iexcodpro = :codpro and " +
+                "v.iexnroper = ':nroper' and " +
+                "v.iexcorrel = :correl and " +
+                "v.iexcodcon = c.coocodcon and " +
+                "a.iexcodcia = v.iexcodcia and " +
+                "a.iexcodtra = v.iexcodtra " +
+                "order by 6 asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<EmpDatvar>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", cia)
+                .addValue("codpro", codpro)
+                .addValue("nroper", nroper)
+                .addValue("correl", correl);
 
-            public List<EmpDatvar> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<EmpDatvar> lista = new ArrayList<EmpDatvar>();
+        List<EmpDatvar> lsEmpDat = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(EmpDatvar.class));
 
-                while (rs.next()) {
-                    EmpDatvar con = new EmpDatvar();
-
-                    con.setIexcodcia(rs.getInt("iexcodcia"));
-                    con.setIexcodpro(rs.getInt("iexcodpro"));
-                    con.setIexnroper(rs.getString("iexnroper"));
-                    con.setIexcodtra(rs.getInt("iexcodtra"));
-
-                    con.setNomdestra(rs.getString("desnomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    con.setNomdestra(cap.letras(con.getNomdestra()));
-
-                    con.setIexcorrel(rs.getInt("iexcorrel"));
-                    con.setIexcodcon(rs.getString("iexcodcon"));
-
-                    con.setCoodescon(rs.getString("coodescon"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    con.setCoodescon(cap2.letras(con.getCoodescon()));
-
-                    con.setIexvalcon(rs.getDouble("iexvalcon"));
-                    con.setIexusucrea(rs.getString("iexusucrea"));
-                    con.setIexusumod(rs.getString("iexusumod"));
-                    con.setIexfeccrea(rs.getString("iexfeccrea"));
-                    con.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(con);
-                }
-                return lista;
-            }
-        });
+        return lsEmpDat;
     }
 
     public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl) {
 
-        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=?  ",
+        String sql = "delete from iexdatavar " +
+                "where iexcodcia=? and iexcodpro=? and " +
+                "iexnroper=? and iexcorrel=? ";
 
+        jdbc.update(sql,
                 cia,
                 codpro,
                 nroper,
-                correl);
+                correl
+        );
     }
 
     public void insertarDatvarmas(List<EmpDatvar> empdatvar) {
 
+        String sql = "";
+
         for (EmpDatvar empdat : empdatvar) {
 
-            template.update("  insert into iexdatavar ( " +
-                            "		 iexcodcia, iexcodpro, iexnroper, iexcorrel, iexcodtra, iexcodcon, iexvalcon , iexusucrea, iexfeccrea, iexfecmod, iexusumod" +
-                            "		 ) values( " +
-                            "		 ?,    ?,     ?,     ?,     ? ,     ? ,     ?  , ? , current_timestamp, current_timestamp, ? " +
-                            "		 ) ",
+            sql = "insert into iexdatavar ( " +
+                    "iexcodcia, iexcodpro, iexnroper, iexcorrel, iexcodtra, " +
+                    "iexcodcon, iexvalcon , iexusucrea, iexfeccrea, iexfecmod, iexusumod " +
+                    " ) values( " +
+                    " ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp, ? " +
+                    " ) ";
 
+            jdbc.update(sql,
                     empdat.getIexcodcia(),
                     empdat.getIexcodpro(),
                     empdat.getIexnroper(),
@@ -411,19 +369,24 @@ public class SueldosDaoImpl implements SueldoDao {
                     empdat.getIexcodcon(),
                     empdat.getIexvalcon(),
                     empdat.getIexusucrea(),
-                    empdat.getIexusucrea());
+                    empdat.getIexusucrea()
+            );
         }
     }
 
     public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto) {
 
-        template.update(" delete from iexdatavar  where iexcodcia=? and iexcodpro=? and iexnroper=?  and  iexcorrel=?  and iexcodtra=? and iexcodcon =? ",
+        String sql = "delete from iexdatavar " +
+                "where iexcodcia=? and iexcodpro=? and iexnroper=? " +
+                "and iexcorrel=? and iexcodtra=? and iexcodcon =? ";
 
+        jdbc.update(sql,
                 cia,
                 codpro,
                 nroper,
                 correl,
                 codtra,
-                concepto);
+                concepto
+        );
     }
 }

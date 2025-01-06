@@ -2,35 +2,34 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.Puesto;
 import com.balkaned.gladius.dao.PuestoDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("PuestoDao")
 @Slf4j
+@Repository("PuestoDao")
 public class PuestoDaoImpl implements PuestoDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "PuestoDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Puesto> listarPuesto(Integer codcia, String text) {
 
-        List<Puesto> lista = null;
-
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexpuesto, " +
                 "a.iexdespuesto, " +
@@ -39,48 +38,24 @@ public class PuestoDaoImpl implements PuestoDao {
                 "a.iexfeccrea, " +
                 "a.iexfecmod, " +
                 "a.iexcodcat, " +
-                "d.desdet as desdet " +
+                "d.desdet as descodcat " +
                 "from iexpuesto a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d  on a.iexcodcat = d.iexkey " +
-                "where a.iexcodcia=" + codcia + "  ";
+                "full outer join " +
+                "(select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
+                "where a.iexcodcia = :codcia ";
 
-        //System.out.println(sql);
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-        return template.query(sql, new ResultSetExtractor<List<Puesto>>() {
+        List<Puesto> puesto = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Puesto.class));
 
-            public List<Puesto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Puesto> lista = new ArrayList<Puesto>();
-
-                while (rs.next()) {
-                    Puesto p = new Puesto();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexpuesto(rs.getString("iexpuesto"));
-
-                    p.setIexdespuesto(rs.getString("iexdespuesto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
-
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-                    p.setDescodcat(rs.getString("desdet"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return puesto;
     }
 
     public Puesto getPuesto(Integer codcia, String codpuesto) {
 
-        List<Puesto> lista = null;
-
-        String sql = " select  " +
+        String sql = "select " +
                 "a.iexcodcia, " +
                 "a.iexpuesto, " +
                 "a.iexdespuesto, " +
@@ -89,90 +64,77 @@ public class PuestoDaoImpl implements PuestoDao {
                 "a.iexfeccrea, " +
                 "a.iexfecmod, " +
                 "a.iexcodcat, " +
-                "d.desdet as desdet " +
+                "d.desdet as descodcat " +
                 "from iexpuesto a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d  on a.iexcodcat = d.iexkey " +
-                "where a.iexcodcia=" + codcia + "  and a.iexpuesto='" + codpuesto + "' ";
+                "full outer join " +
+                "(select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
+                "where a.iexcodcia = :codcia and a.iexpuesto = ':codpuesto' ";
 
-        return (Puesto) template.query(sql, new ResultSetExtractor<Puesto>() {
-            public Puesto extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Puesto p = new Puesto();
-                while (rs.next()) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codpuesto", codpuesto);
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexpuesto(rs.getString("iexpuesto"));
+        Puesto puesto = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Puesto.class));
 
-                    p.setIexdespuesto(rs.getString("iexdespuesto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
-
-                    p.setIexcodcat(rs.getString("iexcodcat"));
-                    p.setDescodcat(rs.getString("desdet"));
-
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setIexfecmod(rs.getString("iexfecmod"));
-                }
-                return p;
-            }
-        });
+        return puesto;
     }
 
     public Integer getIdPuesto(Integer codcia) {
 
-        final Integer[] idcont = {0};
+        String sql = "select coalesce(max(cast(iexpuesto as integer)),0)+1 idcont " +
+                "from iexpuesto " +
+                "where iexcodcia = :codcia ";
 
-        String sql = " select  coalesce(max(cast(iexpuesto as integer)),0)+1  idcont from iexpuesto where iexcodcia =" + codcia;
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idcont[0] = Integer.valueOf(rs.getString("idcont"));
-                }
-                return idcont[0];
-            }
-        });
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarPuesto(Puesto puesto) {
 
-        template.update("  insert into iexpuesto( " +
-                        " iexcodcia,       iexpuesto,    iexdespuesto  ,iexcodcat ," +
-                        " iexusucrea,      iexfeccrea " +
-                        " ) values ( " +
-                        "  ? ,   ?    ,   ?   , ?, " +
-                        "  ? ,   current_date " +
-                        ")  ",
+        String sql = "insert into iexpuesto( " +
+                "iexcodcia, iexpuesto, iexdespuesto, iexcodcat, " +
+                "iexusucrea, iexfeccrea " +
+                " ) values ( " +
+                " ?, ?, ?, ?, " +
+                " ?, current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 puesto.getIexcodcia(),
                 puesto.getIexpuesto(),
                 puesto.getIexdespuesto(),
                 puesto.getIexcodcat(),
-                puesto.getIexusucrea());
-
+                puesto.getIexusucrea()
+        );
     }
 
     public void actualizarPuesto(Puesto puesto) {
 
-        template.update("  update iexpuesto  set " +
-                        "     iexdespuesto =?  ,iexcodcat=? ," +
-                        " iexusucrea =?,      iexfeccrea=current_date  " +
-                        " where iexcodcia=?  and  iexpuesto =?  ",
+        String sql = "update iexpuesto set " +
+                "iexdespuesto = ?, iexcodcat = ?, " +
+                "iexusucrea = ?, iexfeccrea=current_date " +
+                "where iexcodcia = ? and iexpuesto = ? ";
 
+        jdbc.update(sql,
                 puesto.getIexdespuesto(),
                 puesto.getIexcodcat(),
                 "1",
                 puesto.getIexcodcia(),
-                puesto.getIexpuesto());
-
+                puesto.getIexpuesto()
+        );
     }
 
-    public void eliminarPuesto(Puesto puesto){
+    public void eliminarPuesto(Puesto puesto) {
 
-        template.update("  delete from  iexpuesto  where iexcodcia=?  and  iexpuesto =?  ",
+        String sql = "delete from iexpuesto " +
+                "where iexcodcia=? and iexpuesto =? ";
 
-        puesto.getIexcodcia(),
-        puesto.getIexpuesto());
-
+        jdbc.update(sql,
+                puesto.getIexcodcia(),
+                puesto.getIexpuesto()
+        );
     }
 }

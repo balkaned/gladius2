@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class ProcesoForm {
 
+    @Id
     private Integer procodpro;
     private String prodespro;
     private String prodescorto;

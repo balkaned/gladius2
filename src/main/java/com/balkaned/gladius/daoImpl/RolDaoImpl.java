@@ -3,82 +3,72 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.models.Role;
 import com.balkaned.gladius.models.Rolesxopciones;
 import com.balkaned.gladius.dao.RolDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("RolDao")
+
 @Slf4j
+@Repository("RolDao")
 public class RolDaoImpl implements RolDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "RolDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Role> listarRoles() {
 
         String sql = "select " +
-                "c.iexcodrol    codrol, " +
-                "c.iexdesrol    desrol " +
+                "c.iexcodrol idRole, " +
+                "c.iexdesrol desRole " +
                 "from iexroles c ";
 
-        return template.query(sql, new ResultSetExtractor<List<Role>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-            public List<Role> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Role> lista = new ArrayList<Role>();
+        List<Role> lsR = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Role.class));
 
-                while (rs.next()) {
-                    Role rol = new Role();
-
-                    rol.setIdRole(rs.getInt("codrol"));
-
-                    rol.setDesRole(rs.getString("desrol"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    rol.setDesRole(cap.letras(rol.getDesRole()));
-
-                    lista.add(rol);
-                }
-                return lista;
-            }
-        });
+        return lsR;
     }
 
     public void insertarRole(Role rol) {
 
-        template.update("  insert into iexroles( " +
-                        " iexcodrol,       iexdesrol, iexflgest " +
-                        " ) values ( " +
-                        "  ? ,   ?  ,  ?   " +
-                        ")  ",
+        String sql = "insert into iexroles( " +
+                "iexcodrol, iexdesrol, iexflgest " +
+                " ) values ( " +
+                " ?, ?, ? " +
+                " ) ";
 
+        jdbc.update(sql,
                 rol.getIdRole(),
                 rol.getDesRole(),
-                rol.getFlgest());
+                rol.getFlgest()
+        );
     }
 
     public List<Rolesxopciones> listarRolesxOpcion(Integer codrol) {
 
-        String sql = "select  " +
-                "c.iexcodrol,  " +
-                "r.iexdesrol, " +
+        String sql = "select " +
+                "c.iexcodrol, " +
+                "r.iexdesrol as desrol, " +
                 "c.iexcodopc, " +
-                "o.iexdesopc, " +
-                "o.iexdessec, " +
-                "o.iexdessys, " +
-                "c.iexflgest,  " +
+                "o.iexdesopc as desopc, " +
+                "o.iexdessec as dessec, " +
+                "o.iexdessys as dessys, " +
+                "c.iexflgest, " +
                 "c.iex_consultar, " +
                 "c.iex_registrar, " +
                 "c.iex_modificar,  " +
@@ -92,66 +82,40 @@ public class RolDaoImpl implements RolDao {
                 "from iexrolxopc c, iexroles r, " +
                 "( select  " +
                 "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
-                "o.iexflgest, o.iexcodsec,  " +
+                "o.iexflgest, o.iexcodsec, " +
                 "e.iexdessec, " +
                 "s.iexdessys, " +
-                "o.iexdescripcion, o.iexcodapps, o.iexaction,   " +
+                "o.iexdescripcion, o.iexcodapps, o.iexaction, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
                 "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
-                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) " +
-                "o " +
-                "where " +
-                "c.iexcodrol = r.iexcodrol and  " +
-                "c.iexcodopc = o.iexcodopc and c.iexcodrol = " + codrol + "  order by o.iexdessec, iexdesopc asc  ";
+                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) o " +
+                "where c.iexcodrol = r.iexcodrol and " +
+                "c.iexcodopc = o.iexcodopc and " +
+                "c.iexcodrol = :codrol order by o.iexdessec, iexdesopc asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Rolesxopciones>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codrol", codrol);
 
-            public List<Rolesxopciones> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Rolesxopciones> lista = new ArrayList<Rolesxopciones>();
+        List<Rolesxopciones> lsRolesxOpc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Rolesxopciones.class));
 
-                while (rs.next()) {
-                    Rolesxopciones rol = new Rolesxopciones();
-
-                    rol.setIexcodrol(rs.getInt("iexcodrol"));
-                    rol.setDesrol(rs.getString("iexdesrol"));
-                    rol.setIexcodopc(rs.getInt("iexcodopc"));
-                    rol.setDesopc(rs.getString("iexdesopc"));
-
-                    rol.setDessec(rs.getString("iexdessec"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    rol.setDessec(cap.letras(rol.getDessec()));
-
-                    rol.setDessys(rs.getString("iexdessys"));
-                    rol.setIexflgest(rs.getString("iexflgest"));
-                    rol.setIex_consultar(rs.getString("iex_consultar"));
-                    rol.setIex_registrar(rs.getString("iex_registrar"));
-                    rol.setIex_modificar(rs.getString("iex_modificar"));
-                    rol.setIex_eliminar(rs.getString("iex_eliminar"));
-                    rol.setIex_descargar_xls(rs.getString("iex_descargar_xls"));
-                    rol.setIex_descargar_pdf(rs.getString("iex_descargar_pdf"));
-                    rol.setIexusucre(rs.getString("iexusucre"));
-                    rol.setIexfeccre(rs.getString("iexfeccre"));
-
-                    lista.add(rol);
-                }
-                return lista;
-            }
-        });
+        return lsRolesxOpc;
     }
 
     public void insertarRolesxopciones(Rolesxopciones rolxopc) {
 
-        template.update("  insert into iexrolxopc( " +
-                        " iexcodrol,         iexcodopc,       iexflgest,       iex_consultar, " +
-                        "   iex_registrar,     iex_modificar,   iex_eliminar,    iex_descargar_pdf, " +
-                        "   iex_descargar_xls, iexusucre,       iexfeccre " +
-                        " ) values ( " +
-                        "  ? ,   ? ,   ? ,  ?  ,  " +
-                        "  ? ,   ? ,   ? ,  ?   , " +
-                        "  ? ,   ? ,   current_date    " +
-                        ")  ",
+        String sql = "insert into iexrolxopc( " +
+                "iexcodrol, iexcodopc, iexflgest, iex_consultar, " +
+                "iex_registrar, iex_modificar, iex_eliminar, iex_descargar_pdf, " +
+                "iex_descargar_xls, iexusucre, iexfeccre " +
+                " ) values ( " +
+                "  ?, ?, ?, ?, " +
+                "  ?, ?, ?, ?, " +
+                "  ?, ?, current_date " +
+                " ) ";
 
+        jdbc.update(sql,
                 rolxopc.getIexcodrol(),
                 rolxopc.getIexcodopc(),
                 rolxopc.getIexflgest(),
@@ -161,55 +125,53 @@ public class RolDaoImpl implements RolDao {
                 rolxopc.getIex_eliminar(),
                 rolxopc.getIex_descargar_pdf(),
                 rolxopc.getIex_descargar_xls(),
-                rolxopc.getIexusucre());
+                rolxopc.getIexusucre()
+        );
     }
 
     public Role getRole(Role codrol) {
 
         String sql = "select " +
-                "c.iexcodrol    codrol, " +
-                "c.iexdesrol    desrol " +
-                "from iexroles c  where c.iexcodrol =" + codrol.getIdRole() + " ";
+                "c.iexcodrol idRole, " +
+                "c.iexdesrol desRole " +
+                "from iexroles c " +
+                "where c.iexcodrol = :codrol";
 
-        return (Role) template.query(sql, new ResultSetExtractor<Role>() {
-            public Role extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Role rol = new Role();
-                while (rs.next()) {
-                    rol.setIdRole(rs.getInt("codrol"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codrol", codrol);
 
-                    rol.setDesRole(rs.getString("desrol"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    rol.setDesRole(cap.letras(rol.getDesRole()));
-                }
-                return rol;
-            }
-        });
+        Role rol = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Role.class));
+
+        return rol;
     }
 
     public void actualizarRole(Role rol) {
 
-        template.update("  update iexroles set  " +
-                        "        iexdesrol=?, iexflgest=? " +
-                        "  where iexcodrol=?  ",
+        String sql = "update iexroles set " +
+                "iexdesrol=?, iexflgest=? " +
+                "where iexcodrol=? ";
 
+        jdbc.update(sql,
                 rol.getDesRole(),
                 rol.getFlgest(),
-                rol.getIdRole());
+                rol.getIdRole()
+        );
     }
 
     public Rolesxopciones getRolesxopciones(Rolesxopciones rolxopc) {
 
-        String sql = "select  " +
-                "c.iexcodrol,  " +
-                "r.iexdesrol, " +
+        String sql = "select " +
+                "c.iexcodrol, " +
+                "r.iexdesrol as desrol, " +
                 "c.iexcodopc, " +
-                "o.iexdesopc, " +
-                "o.iexdessec, " +
-                "o.iexdessys, " +
-                "c.iexflgest,  " +
+                "o.iexdesopc as desopc, " +
+                "o.iexdessec as dessec, " +
+                "o.iexdessys as dessys, " +
+                "c.iexflgest, " +
                 "c.iex_consultar, " +
                 "c.iex_registrar, " +
-                "c.iex_modificar,  " +
+                "c.iex_modificar, " +
                 "c.iex_eliminar, " +
                 "c.iex_descargar_pdf, " +
                 "c.iex_descargar_xls, " +
@@ -218,56 +180,39 @@ public class RolDaoImpl implements RolDao {
                 "c.iexusumod, " +
                 "c.iexfecmod " +
                 "from iexrolxopc c, iexroles r, " +
-                "( select  " +
+                " ( select " +
                 "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
                 "o.iexflgest, o.iexcodsec,  " +
                 "e.iexdessec, " +
                 "s.iexdessys, " +
-                "o.iexdescripcion, o.iexcodapps, o.iexaction,   " +
+                "o.iexdescripcion, o.iexcodapps, o.iexaction, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
                 "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
-                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) " +
-                "o " +
-                "where " +
-                "c.iexcodrol = r.iexcodrol and  " +
-                "c.iexcodopc = o.iexcodopc  and c.iexcodrol =" + rolxopc.getIexcodrol() + "  and c.iexcodopc=" + rolxopc.getIexcodopc() + "   ";
+                "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) o " +
+                "where c.iexcodrol = r.iexcodrol and " +
+                "c.iexcodopc = o.iexcodopc  and c.iexcodrol = :codrol  and " +
+                "c.iexcodopc = :codopc ";
 
-        return (Rolesxopciones) template.query(sql, new ResultSetExtractor<Rolesxopciones>() {
-            public Rolesxopciones extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Rolesxopciones rol = new Rolesxopciones();
-                while (rs.next()) {
-                    rol.setIexcodrol(rs.getInt("iexcodrol"));
-                    rol.setDesrol(rs.getString("iexdesrol"));
-                    rol.setIexcodopc(rs.getInt("iexcodopc"));
-                    rol.setDesopc(rs.getString("iexdesopc"));
-                    rol.setDessec(rs.getString("iexdessec"));
-                    rol.setDessys(rs.getString("iexdessys"));
-                    rol.setIexflgest(rs.getString("iexflgest"));
-                    rol.setIex_consultar(rs.getString("iex_consultar"));
-                    rol.setIex_registrar(rs.getString("iex_registrar"));
-                    rol.setIex_modificar(rs.getString("iex_modificar"));
-                    rol.setIex_eliminar(rs.getString("iex_eliminar"));
-                    rol.setIex_descargar_xls(rs.getString("iex_descargar_xls"));
-                    rol.setIex_descargar_pdf(rs.getString("iex_descargar_pdf"));
-                    rol.setIexusucre(rs.getString("iexusucre"));
-                    rol.setIexfeccre(rs.getString("iexfeccre"));
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codrol", rolxopc.getIexcodrol())
+                .addValue("codopc", rolxopc.getIexcodopc());
 
-                    log.info("rol.getIexflgest():" + rol.getIexflgest());
-                }
-                return rol;
-            }
-        });
+        Rolesxopciones rolxopciones = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Rolesxopciones.class));
+
+        return rolxopciones;
     }
 
     public void actualizarRolesxopciones(Rolesxopciones rolxopc) {
 
-        template.update("  update iexrolxopc set" +
-                        "        iexflgest=?,       iex_consultar=?, " +
-                        "   iex_registrar=?,     iex_modificar=?,   iex_eliminar=?,    iex_descargar_pdf=?, " +
-                        "   iex_descargar_xls=?, iexusumod=?,       iexfecmod = current_date " +
-                        "  where iexcodrol =?  and  iexcodopc =? ",
+        String sql = "update iexrolxopc set " +
+                "iexflgest=?, iex_consultar=?, " +
+                "iex_registrar=?, iex_modificar=?, iex_eliminar=?, iex_descargar_pdf=?, " +
+                "iex_descargar_xls=?, iexusumod=?, iexfecmod = current_date " +
+                "where iexcodrol =? and iexcodopc =? ";
 
+        jdbc.update(sql,
                 rolxopc.getIexflgest(),
                 rolxopc.getIex_consultar(),
                 rolxopc.getIex_registrar(),
@@ -277,22 +222,29 @@ public class RolDaoImpl implements RolDao {
                 rolxopc.getIex_descargar_xls(),
                 rolxopc.getIexusucre(),
                 rolxopc.getIexcodrol(),
-                rolxopc.getIexcodopc());
+                rolxopc.getIexcodopc()
+        );
     }
 
     public void eliminarRole(Role rol) {
 
-        template.update("  delete  from iexroles  where iexcodrol=?  ",
+        String sql = "delete from iexroles " +
+                "where iexcodrol=? ";
 
-                rol.getIdRole());
+        jdbc.update(sql,
+                rol.getIdRole()
+        );
     }
 
     public void eliminarRolesxopciones(Rolesxopciones rolxopc) {
 
-        template.update("  delete  from iexrolxopc where iexcodrol =?  and  iexcodopc =? ",
+        String sql = "delete from iexrolxopc " +
+                "where iexcodrol =? and iexcodopc =? ";
 
+        jdbc.update(sql,
                 rolxopc.getIexcodrol(),
-                rolxopc.getIexcodopc());
+                rolxopc.getIexcodopc()
+        );
     }
 
 }

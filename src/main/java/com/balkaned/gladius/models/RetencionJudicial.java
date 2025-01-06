@@ -1,10 +1,14 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
 public class RetencionJudicial {
 
+    @Id
     private Integer iexcodcia;
     private Integer iexcodtra;
     private Integer iexcorrel;

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("ConceptoDao")
 @Slf4j
+@Repository("ConceptoDao")
 public class ConceptoDaoImpl implements ConceptoDao {
 
     private static final String CLASS_NAME = "ConceptoDao";

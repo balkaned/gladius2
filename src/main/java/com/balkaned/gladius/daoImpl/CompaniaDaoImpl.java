@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("CompaniaDao")
 @Slf4j
+@Repository("CompaniaDao")
 public class CompaniaDaoImpl implements CompaniaDao {
 
     private static final String CLASS_NAME = "CompaniaDao";
