@@ -1,5 +1,6 @@
 package com.balkaned.gladius.models;
 
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -125,7 +126,7 @@ public class Empleado {
     private String desprovin_origen;
     private String desdistri_origen;
     private String iexflgcomi_mix;
-    private String iexctlasipag ;
+    private String iexctlasipag;
     private String despuesto;
     private String desccosto;
     private String desarea;
@@ -183,4 +184,21 @@ public class Empleado {
     private String letraIni;
     private String nomCompactoUpper;
 
+    public void setIexnomtra(String iexnomtra) {
+
+        if (iexnomtra != null) {
+            char firstCharacter = iexnomtra.charAt(0);
+            char char1UpperCase = Character.toUpperCase(firstCharacter);
+            String cast1 = String.valueOf(char1UpperCase);
+
+            this.letraIni = cast1;
+
+            String strMain = iexnomtra;
+            String[] arrSplit = strMain.split(" ");
+
+            CapitalizarCadena cap = new CapitalizarCadena();
+            String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(this.iexapepat);
+            this.nomCompactoUpper = nombrecompleto;
+        }
+    }
 }
