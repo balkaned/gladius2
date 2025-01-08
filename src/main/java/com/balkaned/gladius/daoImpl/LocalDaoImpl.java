@@ -126,5 +126,4 @@ public class LocalDaoImpl implements LocalDao {
                 ubic.getIexubicod()
         );
     }
-
 }

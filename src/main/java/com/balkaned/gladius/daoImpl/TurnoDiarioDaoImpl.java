@@ -50,12 +50,9 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexdesusu, " +
                 "t.iexfeccrea " +
                 "from iexturno t " +
-                "where iexcodcia = :codcia ";
+                "where iexcodcia = "+codcia+" ";
 
-        SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("codcia", codcia);
-
-        return template.query(sql, new ResultSetExtractor<List<Turno>>() {
+        return jdbc.query(sql, new ResultSetExtractor<List<Turno>>() {
             public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Turno> lista = new ArrayList<Turno>();
 

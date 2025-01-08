@@ -65,7 +65,7 @@ public class SeccionDaoImpl implements SeccionDao {
 
     public void insertarSeccion(Seccion seccion) {
 
-        String sql = "insert into iexseccion( " +
+        String sql = "insert into iexseccion ( " +
                 "iexcodsec, iexdessec, iexordsec, iexcodsys, iexsecurl, " +
                 "iexsecimg, iexsecobs, iexactiondef " +
                 " ) values ( " +
@@ -137,5 +137,4 @@ public class SeccionDaoImpl implements SeccionDao {
                 seccion.getIexcodsec()
         );
     }
-
 }

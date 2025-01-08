@@ -234,7 +234,7 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "iexcodcia, iexcodcon, iexflgest, iexdefval, iextipreg " +
                 " ) values ( " +
                 " ?, ?, ?, ?, ? " +
-                ") ";
+                " ) ";
 
         jdbc.update(sql, codcia, codcon, "1", 0.0, tipreg);
     }

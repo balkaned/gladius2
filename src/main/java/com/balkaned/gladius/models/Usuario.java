@@ -1,12 +1,15 @@
 package com.balkaned.gladius.models;
 
 import lombok.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Blob;
 
+@Entity
 @Data
 public class Usuario {
 
+    @Id
     private Integer idUsuario;
     private String usuario;
     private String password;

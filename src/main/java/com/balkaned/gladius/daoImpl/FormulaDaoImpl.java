@@ -63,7 +63,7 @@ public class FormulaDaoImpl implements FormulaDao {
 
     public void actualizar(FormulaPlanilla fplanilla) {
 
-        String sql = "call pl_gestion_formula(?,?, ?, ?, ?, ?, ? ,? , '', '', '1', ?, ?, ?) ";
+        String sql = "call pl_gestion_formula (?,?, ?, ?, ?, ?, ? ,? , '', '', '1', ?, ?, ?) ";
 
         jdbc.update(sql,
                 fplanilla.getIdProceso(),

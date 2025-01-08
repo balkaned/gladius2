@@ -152,7 +152,8 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coocodforvar desVariable, " +
                 "coodesabrev desAbreviacion, " +
                 "coodescripcion descripcion " +
-                "from iexconcepto where TRIM(coocodcon) = TRIM(:id) ";
+                "from iexconcepto " +
+                "where TRIM(coocodcon) = TRIM(:id) ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id", id);
@@ -165,7 +166,8 @@ public class ConceptoDaoImpl implements ConceptoDao {
 
     public void eliminar(String id) {
 
-        String sql = "delete from iexconcepto where trim(coocodcon) = trim(?) ";
+        String sql = "delete from iexconcepto " +
+                "where trim(coocodcon) = trim(?) ";
 
         jdbc.update(sql, id);
     }

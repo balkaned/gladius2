@@ -32,7 +32,7 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
 
         String sql = "select a.iexccodcta, a.iexdescta, d.desdet " +
                 "from iexccontable a " +
-                "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65' ) d " +
+                "full outer join (select iexkey, desdet from iexttabled where iexcodtab='65' ) d " +
                 "on a.iextipocta = d.iexkey " +
                 "where iexcodcia = 1";
 
@@ -69,8 +69,7 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
-                "from " +
-                "iexccontable a " +
+                "from iexccontable a " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65') d on a.iextipocta = d.iexkey " +
                 "where iexcodcia= :iexcodcia ";
 
@@ -101,7 +100,8 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
 
     public void eliminarCuentaContable(CuentaContable ccontable) {
 
-        String sql = "delete from iexccontable where iexcodcia=? and iexccodcta=? ";
+        String sql = "delete from iexccontable " +
+                "where iexcodcia=? and iexccodcta=? ";
 
         jdbc.update(sql, ccontable.getIexcodcia(),
                 ccontable.getIexccodcta()

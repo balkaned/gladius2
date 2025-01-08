@@ -39,10 +39,9 @@ public class CcostoDaoImpl implements CcostoDao {
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
-                "from " +
-                "iexccosto a " +
+                "from iexccosto a " +
                 "full outer join (select iexkey, desdet from iexttabled " +
-                "where iexcodtab='64') d on a.iexcodcat = d.iexkey " +
+                "   where iexcodtab='64') d on a.iexcodcat = d.iexkey " +
                 "where iexcodcia= :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -66,11 +65,11 @@ public class CcostoDaoImpl implements CcostoDao {
                 "a.iexusumod, " +
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
-                "from " +
-                "iexccosto a " +
+                "from iexccosto a " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64') d " +
                 "   on a.iexcodcat = d.iexkey " +
-                "where iexcodcia= :iexcodcia and a.iexccosto= :iexccosto ";
+                "where iexcodcia= :iexcodcia and " +
+                "a.iexccosto= :iexccosto ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia)
@@ -85,7 +84,8 @@ public class CcostoDaoImpl implements CcostoDao {
     public Integer getIdCentroCosto(Integer codcia) {
 
         String sql = "select coalesce(max(cast(iexccosto as integer)),0)+1 idcont " +
-                "from iexccosto where iexcodcia = :codcia ";
+                "from iexccosto " +
+                "where iexcodcia = :codcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia);
@@ -101,7 +101,7 @@ public class CcostoDaoImpl implements CcostoDao {
                 " ) values ( " +
                 " ?, ?, ?, ?, " +
                 " ?, current_date " +
-                ") ";
+                " ) ";
 
         jdbc.update(sql,
                 ccosto.getIexcodcia(),
@@ -117,7 +117,8 @@ public class CcostoDaoImpl implements CcostoDao {
         String sql = "update iexccosto set " +
                 "iexdesccosto=?, iexcodcat=?, " +
                 "iexusumod =?, iexfecmod=current_date " +
-                "where iexcodcia=? and iexccosto=? ";
+                "where iexcodcia=? " +
+                "and iexccosto=? ";
 
         jdbc.update(sql,
                 ccosto.getIexdesccosto(),

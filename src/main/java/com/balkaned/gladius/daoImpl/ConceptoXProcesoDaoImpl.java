@@ -106,7 +106,8 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
 
     public void eliminar(Integer idproceso, String idconcepto) {
 
-        String sql = "delete from iexproxconcepto where procodpro =? and procodcon=? ";
+        String sql = "delete from iexproxconcepto " +
+                "where procodpro =? and procodcon=? ";
 
         jdbc.update(sql, idproceso, idconcepto);
     }

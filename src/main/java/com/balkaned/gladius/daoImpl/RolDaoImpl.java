@@ -246,5 +246,4 @@ public class RolDaoImpl implements RolDao {
                 rolxopc.getIexcodopc()
         );
     }
-
 }

@@ -30,8 +30,12 @@ public class OpcionDaoImpl implements OpcionDao {
     public List<Opciones> listarOpciones() {
 
         String sql = "select  " +
-                "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
-                "o.iexflgest, o.iexcodsec, " +
+                "o.iexcodopc, " +
+                "o.iexdesopc, " +
+                "o.iexurlopc, " +
+                "o.iexurlimg, " +
+                "o.iexflgest, " +
+                "o.iexcodsec, " +
                 "e.iexdessec, " +
                 "s.iexdessys as dessys, " +
                 "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring, " +
@@ -142,5 +146,4 @@ public class OpcionDaoImpl implements OpcionDao {
                 opc.getIexcodopc()
         );
     }
-
 }

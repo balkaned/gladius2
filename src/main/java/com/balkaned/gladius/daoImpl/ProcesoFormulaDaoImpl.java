@@ -188,13 +188,14 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     public void insertar(ConceptoXProceso cproceso) {
 
-        String sql = "insert into iexproxconcepto(procodpro, procodcon, procodconpdt, proflgbol, proorden, " +
+        String sql = "insert into iexproxconcepto(procodpro, " +
+                "procodcon, procodconpdt, proflgbol, proorden, " +
                 "provalor,protipcon,prodescustom, " +
                 "tip_ingreso, flg_pry_5ta, flg_des_5ta_mes, flg_ess_reg, flg_ess_pesq, flg_ess_agrac, " +
                 "flg_ess_sctr, flg_extra_solid, flg_fondo_art, flg_apo_senati, flg_onp, flg_afp, " +
                 "flg_fond_compl_jub, flg_esp_pens_pesq, flg_5ta, flg_ess_seg_pen, flg_cont_asis_previs, " +
                 "flg_promediable, flg_agrupable, nro_meses_prom_atras " +
-                " ) values (?,?,?,?,?,?,?,?,  ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? ) ";
+                " ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
         jdbc.update(sql,
                 cproceso.getProcodpro(),
@@ -230,8 +231,10 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
 
     public void actualizar(ConceptoXProceso cproceso) {
 
-        String sql = "update iexproxconcepto set procodconpdt = ?, proflgbol = ?, proorden = ?, " +
-                "provalor = ?, protipcon = ?, prodescustom = ? , " +
+        String sql = "update iexproxconcepto set procodconpdt = ?, " +
+                "proflgbol = ?, proorden = ?, " +
+                "provalor = ?, protipcon = ?, " +
+                "prodescustom = ? , " +
                 "tip_ingreso = ?, " +
                 "flg_pry_5ta = ?, " +
                 "flg_des_5ta_mes = ?, " +

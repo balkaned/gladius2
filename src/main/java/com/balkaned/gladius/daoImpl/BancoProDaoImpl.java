@@ -104,7 +104,7 @@ public class BancoProDaoImpl implements BancoProDao {
                 " ) values ( " +
                 " ?, ?, ?, ?, " +
                 " ?, ?, current_date " +
-                ") ";
+                " ) ";
 
         jdbc.update(sql,
                 bancopro.getIexcodcia(),
@@ -119,8 +119,10 @@ public class BancoProDaoImpl implements BancoProDao {
     public void actualizarBancoPro(BancoPro bancopro) {
 
         String sql = "update iexprobancos set " +
-                "iextipcta = ?, iexctaban =?, iexusumod=?, iexfecmod=current_date " +
-                "where iexcodcia=? and iexcodban=? and iexcodpro=? ";
+                "iextipcta = ?, iexctaban =?, iexusumod=?, iexfecmod = current_date " +
+                "where iexcodcia=? and " +
+                "iexcodban=? and " +
+                "iexcodpro=? ";
 
         jdbc.update(sql,
                 bancopro.getIextipcta(),
@@ -135,7 +137,8 @@ public class BancoProDaoImpl implements BancoProDao {
     public void eliminarBancoPro(BancoPro bancopro) {
 
         String sql = "delete from iexprobancos " +
-                "where iexcodcia=? and iexcodban=? and iexcodpro=? ";
+                "where iexcodcia=? and " +
+                "iexcodban=? and iexcodpro=? ";
 
         jdbc.update(sql,
                 bancopro.getIexcodcia(),

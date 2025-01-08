@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("ProcesoPlanillaDao")
 @Slf4j
+@Repository("ProcesoPlanillaDao")
 public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     private static final String CLASS_NAME = "ProcesoPlanillaDao";
@@ -253,8 +253,14 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
 
-        String sql = "select d.iexcodcia, d.iexcodpro as procodpro, p.prodespro as despro, d.iexnroper, " +
-                "d.procodcon, c.coodescon, count(1) cantidad, sum(provalor) provalo " +
+        String sql = "select d.iexcodcia, " +
+                "d.iexcodpro as procodpro, " +
+                "p.prodespro as despro," +
+                " d.iexnroper, " +
+                "d.procodcon, " +
+                "c.coodescon, " +
+                "count(1) cantidad, " +
+                "sum(provalor) provalo " +
                 "from iexpropertra_nomina d, iexconcepto c, iexprocesos p " +
                 "where d.procodcon = c.coocodcon and " +
                 "d.iexcodcia = :codcia and " +

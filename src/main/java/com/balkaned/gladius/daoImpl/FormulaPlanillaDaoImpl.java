@@ -127,7 +127,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
                 "procodpro = " + idprod + " and " +
                 "trim(coocodforvar) in " + variable_sql;
 
-        return (String) jdbc.query(sql, new ResultSetExtractor<String>() {
+        return (String) jdbc.query(sql,  new ResultSetExtractor<String>() {
             public String extractData(ResultSet rs) throws SQLException, DataAccessException {
                 while (rs.next()) {
                     variable_sql2[0] = variable_sql2[0] + "'" + rs.getString("coocodforvar") + "',";

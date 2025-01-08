@@ -69,7 +69,8 @@ public class ContratoDaoImpl implements ContratoDao {
 
         String sql = "select coalesce(max(iexcorrel),0)+1 as idex " +
                 "from iexcontctl " +
-                "where iexcodcia = :iexcodcia and iexcodtra = :iexcodtra ";
+                "where iexcodcia = :iexcodcia and " +
+                "iexcodtra = :iexcodtra ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", contemp.getIexcodcia())
@@ -159,7 +160,9 @@ public class ContratoDaoImpl implements ContratoDao {
 
     public void eliminarContratoEmp(ContratoEmp contemp) {
 
-        String sql = "delete from iexcontctl where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
+        String sql = "delete from iexcontctl " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and iexcorrel=? ";
 
         jdbc.update(sql,
                 contemp.getIexcodcia(),

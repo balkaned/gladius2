@@ -42,12 +42,12 @@ public class AfpDaoImpl implements AfpDao {
                 "iexremmax_asegu, " +
                 "iexcomis_onp " +
                 "from iexafponpper c, " +
-                "( " +
+                " ( " +
                 " select " +
                 " iexkey codafp, desdet desafp " +
                 " from iexttabled where iexcodtab='11' " +
-                ") d where " +
-                "c.iexcodafp= d.codafp and iexpermes= :text ";
+                " ) d where " +
+                "c.iexcodafp = d.codafp and iexpermes = :text ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("text", text);
@@ -71,7 +71,7 @@ public class AfpDaoImpl implements AfpDao {
                 "iexaporte_oblig," +
                 "iexremmax_asegu," +
                 "iexcomis_onp " +
-                ") values (?,?,?,?,?,?,?,?,?,?) ";
+                " ) values (?,?,?,?,?,?,?,?,?,?) ";
 
         jdbc.update(sql,
                 afp.getIexpermes(),
@@ -102,11 +102,11 @@ public class AfpDaoImpl implements AfpDao {
                 "iexremmax_asegu, " +
                 "iexcomis_onp " +
                 "from iexafponpper c, " +
-                "( " +
+                " ( " +
                 "   select " +
                 "   iexkey codafp, desdet desafp " +
                 "   from iexttabled where iexcodtab='11' " +
-                ") d where " +
+                " ) d where " +
                 "c.iexcodafp= d.codafp and " +
                 "iexpermes= :iexpermes and " +
                 "c.iexcodafp= :iexcodafp ";
@@ -123,8 +123,8 @@ public class AfpDaoImpl implements AfpDao {
 
     public void actualizar(Afp afp) {
 
-        String sql = "update iexafponpper set " +
-                "iexcomis_fija=?, " +
+        String sql = "update iexafponpper " +
+                "set iexcomis_fija=?, " +
                 "iexcomis_sflu=?, " +
                 "iexcomis_sflu_mix=?, " +
                 "iexcomis_anual_mix=?, " +
@@ -132,7 +132,8 @@ public class AfpDaoImpl implements AfpDao {
                 "iexaporte_oblig=?, " +
                 "iexremmax_asegu =?, " +
                 "iexcomis_onp=? " +
-                "where iexpermes=? and iexcodafp=? ";
+                "where iexpermes=? and " +
+                "iexcodafp=? ";
 
         jdbc.update(sql,
                 afp.getIexcomis_fija(),
@@ -150,9 +151,9 @@ public class AfpDaoImpl implements AfpDao {
 
     public void eliminar(Afp afp) {
 
-        String sql = "delete from iexafponpper where " +
-                " iexpermes=? and " +
-                " iexcodafp=? ";
+        String sql = "delete from iexafponpper " +
+                "where iexpermes=? and " +
+                "iexcodafp=? ";
 
         jdbc.update(sql,
                 afp.getIexpermes(),
@@ -169,5 +170,4 @@ public class AfpDaoImpl implements AfpDao {
                 perfin2
         );
     }
-
 }

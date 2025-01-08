@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
+
 @Slf4j
 @Repository("PrestamoDao")
 public class PrestamoDaoImpl implements PrestamoDao {
@@ -237,5 +238,4 @@ public class PrestamoDaoImpl implements PrestamoDao {
                 prestcab.getIexcorrel()
         );
     }
-
 }

@@ -61,5 +61,4 @@ public class UsuxSystemaDaoImpl implements UsuxSystemaDao {
 
         return usu;
     }
-
 }

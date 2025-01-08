@@ -36,12 +36,12 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexaniotrib, " +
                 "iexrem_acum, " +
                 "iexrem5taafec_acum, " +
-                "iexrenta5ta_acum , " +
+                "iexrenta5ta_acum, " +
                 "iexremafec5ta_otrcia, " +
                 "iexrent5ta_otrcia, " +
-                "iexrem4ta_acum	, " +
+                "iexrem4ta_acum, " +
                 "iexrenta4ta_acum, " +
-                "iexremotr_acum	, " +
+                "iexremotr_acum, " +
                 "iexrenta_acum, " +
                 "iexusucrea, " +
                 "iexfeccrea, " +
@@ -64,16 +64,17 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
 
     public void insertarEmpAcum(EmpAcum empacu) {
 
-        jdbc.update("insert into iexacumval( " +
-                        "iexcodcia, iexcodtra, iexaniotrib, iexrem_acum, " +
-                        "iexrem5taafec_acum, iexrenta5ta_acum, iexremafec5ta_otrcia, iexrent5ta_otrcia, " +
-                        "iexrem4ta_acum, iexrenta4ta_acum, iexremotr_acum, iexrenta_acum, " +
-                        "iexusucrea, iexfeccrea) values ( " +
-                        "  ? ,       ?    ,       ?   ,        ?  ," +
-                        "  ? ,       ?    ,       ?   ,        ?  ," +
-                        "  ? ,       ?    ,       ?   ,        ?  ," +
-                        "  ? ,   current_date) ",
+        String sql = "insert into iexacumval( " +
+                "iexcodcia, iexcodtra, iexaniotrib, iexrem_acum, " +
+                "iexrem5taafec_acum, iexrenta5ta_acum, iexremafec5ta_otrcia, iexrent5ta_otrcia, " +
+                "iexrem4ta_acum, iexrenta4ta_acum, iexremotr_acum, iexrenta_acum, " +
+                "iexusucrea, iexfeccrea) values ( " +
+                " ?,?,?,?, " +
+                " ?,?,?,?, " +
+                " ?,?,?,?, " +
+                " ?, current_date) ";
 
+        jdbc.update(sql,
                 empacu.getIexcodcia(),
                 empacu.getIexcodtra(),
                 empacu.getIexaniotrib(),
@@ -86,7 +87,8 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 empacu.getIexrenta4ta_acum(),
                 empacu.getIexremotr_acum(),
                 empacu.getIexrenta_acum(),
-                empacu.getIexusucrea());
+                empacu.getIexusucrea()
+        );
     }
 
     public Integer validarAnioTrib(EmpAcum empacu) {
@@ -151,8 +153,8 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
     public void actualizarEmpAcum(EmpAcum empacu) {
 
         String sql = "update iexacumval set " +
-                "iexrem_acum=?, " +
-                "iexrem5taafec_acum =?, iexrenta5ta_acum =?, iexremafec5ta_otrcia =?, iexrent5ta_otrcia =?, " +
+                "iexrem_acum=?, iexrem5taafec_acum =?, iexrenta5ta_acum =?, " +
+                "iexremafec5ta_otrcia =?, iexrent5ta_otrcia =?, " +
                 "iexrem4ta_acum=?, iexrenta4ta_acum=?, iexremotr_acum =?, iexrenta_acum =?, " +
                 "iexusucrea=?, iexfecmod=current_date " +
                 "where iexcodcia=? and iexcodtra=? and iexaniotrib=? ";

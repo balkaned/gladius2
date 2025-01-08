@@ -40,62 +40,35 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     public List<Usuario> listar(String text, Integer pag, Integer numregs) {
 
-        String sql = "select  * from ( " +
-                "   select " +
-                "   row_number()over() idx, " +
-                "   u.iexcodusu, " +
-                "   u.iexdesusu, " +
-                "   u.iexpassw, " +
-                "   coalesce(u.iexusucre,0) iexusucre, " +
-                "   u2.iexdesusu usucre, " +
-                "   to_char(u.iexfeccre,'dd/mm/yyyy') iexfeccre, " +
-                "   coalesce(u.iexusumod ,0) iexusumod, " +
-                "   u3.iexdesusu usumod, " +
-                "   to_char(u.iexfecmod,'dd/mm/yyyy') iexfecmod, " +
-                "	case u.iexflgest WHEN '1' then 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO, " +
-                " u.iexcodusu_mat, " +
-                " u.iexemail, " +
-                " u.iexurlfoto " +
-                " from iexusuario u " +
-                " left outer join iexusuario u2 on u.iexusucre = u2.iexcodusu " +
-                " left outer join iexusuario u3 on u.iexusumod = u3.iexcodusu " +
-                " where " +
-                " upper(u.iexdesusu) like '%:text%' " +
-                " order by u.iexcodusu desc ) keke ";
+        String sql = "select * from ( " +
+                "select " +
+                "row_number()over() idx, " +
+                "u.iexcodusu as idUsuario, " +
+                "u.iexdesusu as usuario, " +
+                "u.iexpassw as password, " +
+                "coalesce(u.iexusucre,0) idUsuarioCrea, " +
+                "u2.iexdesusu desUsuarioCrea, " +
+                "to_char(u.iexfeccre,'dd/mm/yyyy') fechaCrea, " +
+                "coalesce(u.iexusumod ,0) idUsuarioMod, " +
+                "u3.iexdesusu desUsuarioMod, " +
+                "to_char(u.iexfecmod,'dd/mm/yyyy') fechaModfica, " +
+                "case u.iexflgest WHEN '1' then 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO, " +
+                "u.iexcodusu_mat as idUsuMat, " +
+                "u.iexemail as email, " +
+                "u.iexurlfoto as urlfoto " +
+                "from iexusuario u " +
+                "left outer join iexusuario u2 on u.iexusucre = u2.iexcodusu " +
+                "left outer join iexusuario u3 on u.iexusumod = u3.iexcodusu " +
+                "where upper(u.iexdesusu) like '%:text%' " +
+                "order by u.iexcodusu desc ) keke ";
 
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("text", text);
 
-        return template.query(sql, new ResultSetExtractor<List<Usuario>>() {
+        List<Usuario> lsUsuario = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Usuario.class));
 
-            public List<Usuario> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Usuario> lista = new ArrayList<Usuario>();
-
-                while (rs.next()) {
-                    Usuario p = new Usuario();
-
-                    p.setIdUsuario(rs.getInt("iexcodusu"));
-                    p.setUsuario(rs.getString("iexdesusu"));
-                    p.setPassword(rs.getString("iexpassw"));
-                    p.setIdUsuarioCrea(rs.getInt("iexusucre"));
-                    p.setIdUsuarioMod(rs.getInt("iexusumod"));
-                    p.setDesUsuarioCrea(rs.getString("usucre"));
-                    p.setDesUsuarioMod(rs.getString("usumod"));
-
-                    p.setFechaCrea(rs.getString("iexfeccre"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit = new CapitalizarCadena();
-                    p.setFechaCrea(f.fechaFormatterDia(p.getFechaCrea()) + " " + capit.letras(f.fechaFormatterMes(p.getFechaCrea())) + ", " + f.fechaFormatterAnio(p.getFechaCrea()));
-
-                    p.setFechaModfica(rs.getString("iexfecmod"));
-                    p.setEstado(rs.getString("estado"));
-                    p.setIdUsuMat(rs.getInt("iexcodusu_mat"));
-                    p.setEmail(rs.getString("iexemail"));
-                    p.setUrlfoto(rs.getString("iexurlfoto"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsUsuario;
     }
 
     public void insertar(Usuario usuario) {

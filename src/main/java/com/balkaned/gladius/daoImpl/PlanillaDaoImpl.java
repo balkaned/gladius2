@@ -98,7 +98,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexcodtra = :codtra and " +
                 "n.procodcon in ('T4000','G0019','D2070','T4020','P0145','P0146') and " +
                 "p.procodregimenlab = '01' and progrppro in ('PLA','LIQ','GRA') " +
-                ") k " +
+                " ) k " +
                 "group by " +
                 "k.iexcodcia, " +
                 "k.iexcodpro, " +
@@ -477,12 +477,13 @@ public class PlanillaDaoImpl implements PlanillaDao {
         Iterator<ProPeriodoDet> L_data = null;
         ProPeriodoDet data = null;
 
-        // Carga las fórmulas desde base de datos para el proceso en curso
+        /* Carga las fórmulas desde base de datos para el proceso en curso */
         List<FormulaPlanilla> lstFormula = formulaPlanillaService.listar(String.valueOf(idproceso));
 
-        String v_variables_concat = null; // En esta variable se alojarán las variables concatenadas con los valores
+        /* En esta variable se alojarán las variables concatenadas con los valores */
+        String v_variables_concat = null;
 
-        // Inicializa la iteración de la lista de personas.
+        /* Inicializa la iteración de la lista de personas. */
         Iterator<PlaProPeriodo> pi;
         PlaProPeriodo pi_persona = null;
 
@@ -515,7 +516,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         Iterator<ProPeriodoDet> i_Data2;
         ProPeriodoDet p_Data2 = null;
 
-        // Recorre todos los trabajadores para colocarle el hilo al que pertenece
+        /* Recorre todos los trabajadores para colocarle el hilo al que pertenece */
         Integer thread_id = thread;
         pi = Persona.iterator();
 
@@ -529,20 +530,25 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         }
 
-        l_formula = lstFormula.iterator();  // Se delcara la iteración de la lista formula por cada trabajador
+        /* Se delcara la iteración de la lista formula por cada trabajador */
+        l_formula = lstFormula.iterator();
 
-        while (l_formula.hasNext()) { // Iteración de fórmula por cada trabajador. Por cada trabajador se va a recorrer la lista de formula.
+        /* Iteración de fórmula por cada trabajador. Por cada trabajador se va a recorrer la lista de formula. */
+        while (l_formula.hasNext()) {
 
             for_det = l_formula.next();
-            // Se asigna valor de la lista al objeto Fórmula.
-            log.info("--Formula :" + for_det.getIdFormula());  // Se verifica el identificador de la formula
+            /* Se asigna valor de la lista al objeto Fórmula. */
+            /* Se verifica el identificador de la formula */
+            log.info("--Formula :" + for_det.getIdFormula());
 
             if (for_det.getTipOut().equals("1") || for_det.getTipOut().equals("3")) {
-                l_variables_glob = null; // Selecciona los conceptos que son grupo de conceptos resultantes
+                /* Selecciona los conceptos que son grupo de conceptos resultantes */
+                l_variables_glob = null;
                 v_variables_glob_concat = "";
-                v_resultado_glob_Final = 0.0; // Sumarizar los valores en el concepto grupo resultante
+                /* Sumarizar los valores en el concepto grupo resultante */
+                v_resultado_glob_Final = 0.0;
 
-                // Guardar los valores del  resultado en una nueva concatenacion de variables
+                /* Guardar los valores del  resultado en una nueva concatenacion de variables */
                 sql_var_general = formulaPlanillaService.getListVars(idproceso, for_det.getDesVar());
                 LoadGrpcon = formulaPlanillaService.obtenerListVariables_glb(idproceso, for_det.getDesVar());
 
@@ -552,14 +558,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     congrp = i_grpcon.next();
 
                     try {
-                        // Actualizar la suma por cada trabajador de los conceptos globales
+                        /* Actualizar la suma por cada trabajador de los conceptos globales */
                         update_prc_proceso_upd_grupocon_v3(codcia, codtra, idproceso, idPeriodo, correl, congrp.getConvar(), congrp.getProcodcon(), thread_id);
                     } catch (Exception e) {
                         log.info(e.getMessage());
                     }
                 }
 
-                // Inicia la iteración por persona
+                /* Inicia la iteración por persona */
                 LoadData2 = getMetanominaDatav3(codcia, idproceso, idPeriodo, codtra, sql_var_general, correl, thread_id);
 
                 pi = Persona.iterator();
@@ -584,17 +590,19 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                 log.info("Ejecución de Procedure");
 
-                if (for_det.getGrpeje().equals("1")) {   // Ejecución del procedure por trabajador
+                /* Ejecución del procedure por trabajador */
+                if (for_det.getGrpeje().equals("1")) {
 
                     log.info("Ejecución de Procedure x trabajador :" + for_det.getSqlprogram());
 
-                    // Grabar la data en la metanómina  /// crear método
-                    // guardarInformacionMeta(LoadData2,codcia, idproceso, idPeriodo);
-                    // Iterar por trabajador. Ejecutar el procedure de planillas
+                    /* Grabar la data en la metanómina
+                       guardarInformacionMeta(LoadData2,codcia, idproceso, idPeriodo);
+                       Iterar por trabajador. Ejecutar el procedure de planillas */
 
                     pi = Persona.iterator();
 
-                    while (pi.hasNext()) { // Iteración por cada trabajador
+                    /* Iteración por cada trabajador */
+                    while (pi.hasNext()) {
                         pi_persona = pi.next();
 
                         try {
@@ -605,17 +613,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     }
 
                     log.info("Se ejecuto el procedure 1");
-                    // Traer la data de la base de datos
-                    // Traer la data de la metanómina a memoria
-                    // LoadData2=getProPeriodoDet(codcia, idproceso, idPeriodo,1);
-                    // Colocar la data en el DataLoad.
+                    /* Traer la data de la base de datos
+                       Traer la data de la metanómina a memoria
+                       LoadData2=getProPeriodoDet(codcia, idproceso, idPeriodo,1);
+                       Colocar la data en el DataLoad. */
 
-                } else if (for_det.getGrpeje().equals("2")) {  // ejecucion del procedure de modo masivo
+                    /* Ejecucion del procedure de modo masivo */
+                } else if (for_det.getGrpeje().equals("2")) {
 
                     log.info("Ejecucion de Procedure x masivo :" + for_det.getSqlprogram());
-                    // Grabar la data en la metanomina
-                    // guardarInformacionMeta(LoadData2,codcia, idproceso, idPeriodo);
-                    // Ejecutar el procedure de planillas modo masivo.
+                    /* Grabar la data en la metanomina
+                       guardarInformacionMeta(LoadData2,codcia, idproceso, idPeriodo);
+                       Ejecutar el procedure de planillas modo masivo. */
                     log.info("Se ejecuto el procedure 2");
 
                     try {
@@ -626,16 +635,17 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                     log.info("Finalizo procedure 2");
 
-                    // Traer la data de la base de datos
-                    // LoadData2=getProPeriodoDet(codcia, idproceso, idPeriodo,1);
-                    // Traer la data de la metanomina a memoria
-                    // Colocar la data en el DataLoad.
+                    /* Traer la data de la base de datos
+                       LoadData2=getProPeriodoDet(codcia, idproceso, idPeriodo,1);
+                       Traer la data de la metanomina a memoria
+                       Colocar la data en el DataLoad. */
                 }
             }
-        } // While de la fórmula
+        }
+        /* While de la fórmula */
 
-        // Verificar la lista de
-        // Actualiza estado del proceso
+        /* Verificar la lista de
+           Actualiza estado del proceso */
     }
 
     public void update_iexpropertra_proc(Integer thread_id, Integer codcia, Integer idproceso, String idPeriodo,

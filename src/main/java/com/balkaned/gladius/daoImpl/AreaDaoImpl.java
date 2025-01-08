@@ -92,7 +92,8 @@ public class AreaDaoImpl implements AreaDao {
     public Integer getIdArea(Integer codcia) {
 
         String sql = "select coalesce(max(cast(iexcodarea as integer)),0)+1 idcont " +
-                "from iexarea where iexcodcia = :iexcodcia ";
+                "from iexarea " +
+                "where iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia);
@@ -108,7 +109,7 @@ public class AreaDaoImpl implements AreaDao {
                 " ) values ( " +
                 "  ?, ?, ?, ?, " +
                 "  ?, current_date, ?, ? " +
-                ") ";
+                " ) ";
 
         jdbc.update(sql,
                 area.getIexcodcia(),
@@ -126,7 +127,8 @@ public class AreaDaoImpl implements AreaDao {
         String sql = "update iexarea set " +
                 "iexdesarea=?, iexdesarea_descripcion=?, " +
                 "iexusumod=?, iexfecmod=current_date, iexcodcat=?, iexareapadre=? " +
-                "where iexcodcia=? and iexcodarea = ? ";
+                "where iexcodcia=? and " +
+                "iexcodarea = ? ";
 
         jdbc.update(sql,
                 area.getIexdesarea(),
@@ -141,7 +143,8 @@ public class AreaDaoImpl implements AreaDao {
 
     public void eliminarArea(Area area) {
 
-        String sql = "delete from iexarea where iexcodcia=? and iexcodarea = ? ";
+        String sql = "delete from iexarea " +
+                "where iexcodcia=? and iexcodarea = ? ";
 
         jdbc.update(sql,
                 area.getIexcodcia(),

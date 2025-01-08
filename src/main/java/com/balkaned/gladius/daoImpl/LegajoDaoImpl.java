@@ -70,8 +70,8 @@ public class LegajoDaoImpl implements LegajoDao {
 
         final Integer[] idfinal = {0};
 
-        String sql = "SELECT coalesce(max(iexcodgrpfile),0)+1 idcont " +
-                "FROM iexgrpfile WHERE IEXCODCIA = :iexcodcia ";
+        String sql = "select coalesce(max(iexcodgrpfile),0)+1 idcont " +
+                "from iexgrpfile where iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", grpfile.getIexcodcia());
@@ -121,8 +121,6 @@ public class LegajoDaoImpl implements LegajoDao {
     }
 
     public Integer obtieneIdImage(Integer codcia, Integer idgrpfile) {
-
-        final Integer[] idfinal = {0};
 
         String sql = "SELECT coalesce(max(iexcodimage),0)+1 idcont " +
                 "FROM iexfileimage WHERE IEXCODCIA = :codcia and iexcodgrpfile = :idgrpfile ";
