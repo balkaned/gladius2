@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static groovy.text.markup.IncludeType.template;
+
 @Slf4j
 @Repository("EmpleadoDao")
 public class EmpleadoDaoImpl implements EmpleadoDao {
@@ -565,31 +567,26 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public void actualizarDireccion(Empleado empleado) {
 
-        String sql = "update  iexempleado set  " +
-                        " iextipvia_dom1=?,        iexnomvia_dom1 =?,             iexnrovia_dom1 =?,     		 iexdeptin_dom1 =?, " +
-                        " iexinterior_dom1=?,      iexmanzana_dom1 =?,  		   iexlote_dom1 =?,  			  iexkilometro_dom1 =?, " +
-                        " iexblock_dom1 =?,         iexetapa_dom1 =?,   		   iextipzona_dom1 =?,   		  iexnomzona_dom1 =?,  " +
-                        //" iexreferencia_dom1 =?,    iexubigeo_dom1 =?,             iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
-                        " iexreferencia_dom1 =?,    iextipvia_dom2 =?,   		  iexnomvia_dom2 =?,  " +
-                        " iexnrovia_dom2 =?,        iexdeptin_dom2 =?,             iexinterior_dom2 =?,          iexmanzana_dom2 =?,  " +
-                        " iexlote_dom2  =?,          iexkilometro_dom2  =?,          iexblock_dom2  =?,             iexetapa_dom2 =? , " +
-                        //" iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?,        iexubigeo_dom2 =? ," +
-                        " iextipzona_dom2 =?,       iexnomzona_dom2  =?,    		   iexreferencia_dom2 =?, " +
-                        " iexflgdomicilio =? , " +
-                        " iexfecmoddom=CURRENT_TIMESTAMP,  iexusumoddom=?  , " +
+        String sql = "update iexempleado set " +
+                "iextipvia_dom1=?, iexnomvia_dom1 =?, iexnrovia_dom1 =?, iexdeptin_dom1 =?, " +
+                "iexinterior_dom1=?, iexmanzana_dom1 =?, iexlote_dom1 =?, iexkilometro_dom1 =?, " +
+                "iexblock_dom1 =?, iexetapa_dom1 =?, iextipzona_dom1 =?, iexnomzona_dom1 =?, " +
+                "iexreferencia_dom1 =?, iextipvia_dom2 =?, iexnomvia_dom2 =?, " +
+                "iexnrovia_dom2 =?, iexdeptin_dom2 =?, iexinterior_dom2 =?, iexmanzana_dom2 =?, " +
+                "iexlote_dom2 =?, iexkilometro_dom2 =?, iexblock_dom2 =?, iexetapa_dom2 =?, " +
+                "iextipzona_dom2 =?, iexnomzona_dom2 =?, iexreferencia_dom2 =?, " +
+                "iexflgdomicilio =?, exfecmoddom=CURRENT_TIMESTAMP, iexusumoddom=?, " +
+                " iexnacion_origen1 =?, " +
+                " iexdepart_origen1 =?, " +
+                " iexprovin_origen1 =?, " +
+                " iexubigeo_dom1 =?, " +
+                " iexnacion_origen2 =?, " +
+                " iexdepart_origen2 =?, " +
+                " iexprovin_origen2 =?, " +
+                " iexubigeo_dom2 =? " +
+                " where iexcodcia=? and iexcodtra=? ";
 
-                        " iexnacion_origen1 =?  ,   " +
-                        " iexdepart_origen1 =?  , " +
-                        " iexprovin_origen1 =?  , " +
-                        " iexubigeo_dom1 =? , " +
-
-                        " iexnacion_origen2 =?  , " +
-                        " iexdepart_origen2  =? ,  " +
-                        " iexprovin_origen2 =?,  " +
-                        " iexubigeo_dom2 =? " +
-
-                        " where  iexcodcia=?   and  iexcodtra=?  ",
-
+        jdbc.update(sql,
                 empleado.getIextipvia_dom1(),
                 empleado.getIexnomvia_dom1(),
                 empleado.getIexnrovia_dom1(),
@@ -630,13 +627,13 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIexdistri_origen2(),
 
                 empleado.getIexcodcia(),
-                empleado.getIexcodtra());
-
+                empleado.getIexcodtra()
+        );
     }
 
     public List<Empleado> validarCabecera(Empleado empleado) {
 
-        String sql = " select " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexnomtra, " +
@@ -676,58 +673,45 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexfeccmod, " +
                 "iexusucrea, " +
                 "iexusumod " +
-                "from iexempleado where iexcodcia = " + empleado.getIexcodcia() + "  and  iextipdocid='" + empleado.getIextipdocid() + "' and iexnrodoc='" + empleado.getIexnrodoc() + "' and iexflgest='1'  ";
-        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
-            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Empleado> lista = new ArrayList<Empleado>();
+                "from iexempleado " +
+                "where iexcodcia = :codcia and " +
+                "iextipdocid = ':iextipdocid' and " +
+                "iexnrodoc = ':iexnrodoc' and " +
+                "iexflgest = '1' ";
 
-                while (rs.next()) {
-                    Empleado p = new Empleado();
+        SqlParameterSource namedPArameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("iextipdocid", empleado.getIextipdocid())
+                .addValue("iexnrodoc", empleado.getIexnrodoc());
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    p.setIextipdocid(rs.getString("iextipdocid"));
-                    p.setIexnrodoc(rs.getString("iexnrodoc"));
-                    p.setIexfecnac(rs.getString("iexfecnac"));
-                    p.setIexfecing(rs.getString("iexfecing"));
-                    p.setIextipcese(rs.getString("iextipcese"));
+        List<Empleado> lsEmpl = namedParameterJdbcTemplate.query(sql, namedPArameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
 
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsEmpl;
     }
 
     public Integer obtieneIdEmpleado(Empleado empleado) {
 
-        final Integer[] idcont = {0};
+        String sql = "select coalesce(max(iexcodtra),0)+1 idcont " +
+                "from iexempleado where iexcodcia = :codcia ";
 
-        String sql = " SELECT coalesce(max(iexcodtra),0)+1 idcont  FROM IEXEMPLEADO WHERE IEXCODCIA=" + empleado.getIexcodcia();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia());
 
-        return (Integer) template.query(sql, new ResultSetExtractor<Integer>() {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-                while (rs.next()) {
-                    idcont[0] = rs.getInt("idcont");
-                    log.info("idcont: " + idcont[0]);
-                }
-                return idcont[0];
-            }
-        });
+        return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, Integer.class);
     }
 
     public void insertarCabecera(Empleado empleado) {
 
-        template.update(" insert into iexempleado(   " +
-                        " iexcodcia,     iexcodtra,         iexnomtra,     iexapepat,    iexapemat, " +
-                        " iextipdocid,   iexnrodoc,         iexfecnac,     iexfecing,     " +
-                        " iexcodsex,      iexflgest,     iexcodant,    iextiptra, " +
-                        " iexfeccrea,                 iexusucrea ) values " +
-                        "  ( ?,?,?,?,?,   ?,?,to_date(?,'DD/MM/YYYY'),to_date(?,'DD/MM/YYYY'),    ?,?,?,?,  current_date,? )",
+        String sql = "insert into iexempleado( " +
+                "iexcodcia, iexcodtra, iexnomtra, iexapepat, iexapemat, " +
+                "iextipdocid, iexnrodoc, iexfecnac, iexfecing, " +
+                "iexcodsex, iexflgest, iexcodant, iextiptra, " +
+                "iexfeccrea, iexusucrea) values " +
+                " (?,?,?,?,?,?,?,to_date(?,'DD/MM/YYYY'), " +
+                "to_date(?,'DD/MM/YYYY'),?,?,?,?, current_date,? ) ";
 
+        jdbc.update(sql,
                 empleado.getIexcodcia(),
                 empleado.getIexcodtra(),
                 empleado.getIexnomtra(),
@@ -741,24 +725,27 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 1,
                 empleado.getIexcodant(),
                 empleado.getIextiptra(),
-                empleado.getIexusucrea());
+                empleado.getIexusucrea()
+        );
     }
 
     public void actualizarFoto(Empleado empleado) {
 
-        template.update("update  iexempleado set  " +
-                        "    iexlogo=? where  iexcodcia=?   and  iexcodtra=?  ",
+        String sql = "update iexempleado set iexlogo=? " +
+                "where iexcodcia=? and iexcodtra=? ";
 
+        jdbc.update(sql,
                 empleado.getIexlogo(),
                 empleado.getIexcodcia(),
-                empleado.getIexcodtra());
-
+                empleado.getIexcodtra()
+        );
     }
 
     public Empleado recuperarTurnos(Integer ciaid, Integer codtra) {
 
-        String sql = " select " +
-                "    iexcodcia , iexcodtra, " +
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
                 "iextipturno, " +
                 "iexlunes, " +
                 "iexmartes, " +
@@ -773,56 +760,44 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexturjue, " +
                 "iexturvie, " +
                 "iextursab, " +
-                "iexturdom , iexctlasipag  " +
-                " from iexempleado where iexcodcia=" + ciaid + " and iexcodtra=" + codtra + " ";
-        return (Empleado) template.query(sql, new ResultSetExtractor<Empleado>() {
-            public Empleado extractData(ResultSet rs) throws SQLException, DataAccessException {
-                Empleado p = new Empleado();
-                while (rs.next()) {
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIextipturno(rs.getString("iextipturno"));
-                    p.setIexlunes(rs.getString("iexlunes"));
-                    p.setIexmartes(rs.getString("iexmartes"));
-                    p.setIexmiercoles(rs.getString("iexmiercoles"));
-                    p.setIexjueves(rs.getString("iexjueves"));
-                    p.setIexviernes(rs.getString("iexviernes"));
-                    p.setIexsabado(rs.getString("iexsabado"));
-                    p.setIexdomingo(rs.getString("iexdomingo"));
-                    p.setIexturlun(rs.getInt("iexturlun"));
-                    p.setIexturmar(rs.getInt("iexturmar"));
-                    p.setIexturmie(rs.getInt("iexturmie"));
-                    p.setIexturjue(rs.getInt("iexturjue"));
-                    p.setIexturvie(rs.getInt("iexturvie"));
-                    p.setIextursab(rs.getInt("iextursab"));
-                    p.setIexturdom(rs.getInt("iexturdom"));
-                    p.setIexctlasipag(rs.getString("iexctlasipag"));
-                }
-                return p;
-            }
-        });
+                "iexturdom, " +
+                "iexctlasipag " +
+                "from iexempleado " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", ciaid)
+                .addValue("codtra", codtra);
+
+        Empleado empl = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
+
+        return empl;
     }
 
     public void actualizarTurnos(Empleado empleado) {
 
-        template.update("update  iexempleado set  " +
-                        "iextipturno=? , " +
-                        "iexlunes=? , " +
-                        "iexmartes=? , " +
-                        "iexmiercoles =? , " +
-                        "iexjueves=? , " +
-                        "iexviernes=? , " +
-                        "iexsabado=? , " +
-                        "iexdomingo=? , " +
-                        "iexturlun=?, " +
-                        "iexturmar=?, " +
-                        "iexturmie=?, " +
-                        "iexturjue=?, " +
-                        "iexturvie=?, " +
-                        "iextursab=?, " +
-                        "iexturdom=?  , iexctlasipag = ? " +
-                        "  where  iexcodcia=?   and  iexcodtra=?  ",
+        String sql = "update iexempleado set " +
+                "iextipturno=?, " +
+                "iexlunes=?, " +
+                "iexmartes=?, " +
+                "iexmiercoles =?, " +
+                "iexjueves =?, " +
+                "iexviernes =?, " +
+                "iexsabado =?, " +
+                "iexdomingo =?, " +
+                "iexturlun =?, " +
+                "iexturmar =?, " +
+                "iexturmie =?, " +
+                "iexturjue =?, " +
+                "iexturvie =?, " +
+                "iextursab =?, " +
+                "iexturdom =?, " +
+                "iexctlasipag = ? " +
+                "where iexcodcia=? and iexcodtra=? ";
 
+        jdbc.update(sql,
                 empleado.getIextipturno(),
                 empleado.getIexlunes(),
                 empleado.getIexmartes(),
@@ -839,15 +814,14 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIextursab(),
                 empleado.getIexturdom(),
                 empleado.getIexctlasipag(),
-                //pst.setString(14, "usuario");
                 empleado.getIexcodcia(),
-                empleado.getIexcodtra());
-
+                empleado.getIexcodtra()
+        );
     }
 
     public List<Empleado> listarEmpleadoInactivos(Integer codcia) {
 
-        String sql = " select " +
+        String sql = "select " +
                 "iexcodcia, " +
                 "iexcodtra, " +
                 "iexnomtra, " +
@@ -888,219 +862,122 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexfeccmod, " +
                 "iexusucrea, " +
                 "iexusumod " +
-                "from iexempleado where iexcodcia=" + codcia + " and iexflgest='0' and  iexfecret is not null  order by iexapepat , iexapemat, iexnomtra, iexfecret asc  ";
+                "from iexempleado " +
+                "where iexcodcia = :codcia and " +
+                "iexflgest='0' and " +
+                "iexfecret is not null " +
+                "order by iexapepat, iexapemat, iexnomtra, iexfecret asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
 
-            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Empleado> lista = new ArrayList<Empleado>();
-                while (rs.next()) {
-                    Empleado p = new Empleado();
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
+        List<Empleado> lsEmpl = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
 
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setIexnomtra(cap.letras(p.getIexnomtra()));
-
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    CapitalizarCadena cap2 = new CapitalizarCadena();
-                    p.setIexapepat(cap2.letras(p.getIexapepat()));
-
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    CapitalizarCadena cap3 = new CapitalizarCadena();
-                    p.setIexapemat(cap3.letras(p.getIexapemat()));
-
-                    p.setIextipdocid(rs.getString("iextipdocid"));
-                    p.setIexnrodoc(rs.getString("iexnrodoc"));
-                    p.setIexfecnac(rs.getString("iexfecnac"));
-                    p.setIexfecing(rs.getString("iexfecing"));
-                    p.setIextipcese(rs.getString("iextipcese"));
-                    p.setIexfecret(rs.getString("iexfecret"));
-                    p.setIexcodsex(rs.getString("iexcodsex"));
-                    p.setIexpaisemisor(rs.getString("iexpaisemisor"));
-                    p.setIexflgest(rs.getString("iexflgest"));
-                    p.setIexcodant(rs.getString("iexcodant"));
-                    p.setIextiptra(rs.getString("iextiptra"));
-                    p.setIexmodform(rs.getString("iexmodform"));
-                    p.setIexnacion_origen(rs.getString("iexnacion_origen"));
-                    p.setIexdepart_origen(rs.getString("iexdepart_origen"));
-                    p.setIexprovin_origen(rs.getString("iexprovin_origen"));
-                    p.setIexdistri_origen(rs.getString("iexdistri_origen"));
-                    p.setIexcentroform(rs.getString("iexcentroform"));
-                    p.setIexflgdomicil(rs.getString("iexflgdomicil"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setDestipcese(rs.getString("destipcese"));
-                    p.setDessex(rs.getString("dessex"));
-                    p.setDespaisemisor(rs.getString("despaisemisor"));
-                    p.setDesestado(rs.getString("desestado"));
-                    p.setDestiptra(rs.getString("destiptra"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsEmpl;
     }
 
     public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew) {
 
-        template.update("call pl_reingresa_trabajador(?,?,?,? ,?  )",
+        String sql = "call pl_reingresa_trabajador(?,?,?,?,?) ";
 
+        jdbc.update(sql,
                 ciaid,
                 codtra,
                 fechaing,
                 desusu,
-                codnew);
+                codnew
+        );
     }
 
     public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado) {
 
-        String sql = "  select  " +
-                "                        e.iexcodcia,  " +
-                "                        e.iexcodtra,  " +
-                "                        e.iexnomtra,  " +
-                "                        e.iexapepat,  " +
-                "                        e.iexapemat,  " +
-                "                        e.iextipdocid, " +
-                "			             d.desdet destipdoc, " +
-                "                        e.iexnrodoc,  " +
-                "                        to_char(e.iexfecnac,'dd/mm/yyyy') iexfecnac,  " +
-                "                        to_char(e.iexfecing,'dd/mm/yyyy') iexfecing,  " +
-                "                        to_char(e.iexfecret,'dd/mm/yyyy') iexfecret,  " +
-                "                        e.iextipcese,  " +
-                "                        '' as destipcese,  " +
-                "                        e.iexcodsex,   " +
-                "                        d2.desdet dessex,  " +
-                "                        e.iexpaisemisor,  " +
-                "                        '' as despaisemisor,  " +
-                "                        e.iexflgest,  " +
-                "                        d3.desdet desestado,  " +
-                "                        e.iexcodant,  " +
-                "                        e.iextiptra,  " +
-                "                        d4.desdet destiptra,  " +
-                "			     p1.iexdespuesto despuesto , " +
-                "                        e.iexmodform,   " +
-                "                        '' desmodform,   " +
-                "                        e.iexnacion_origen,   " +
-                "                        '' desnacion_origen,  " +
-                "                        e.iexdepart_origen,   " +
-                "                        '' desdepart_origen,  " +
-                "                        e.iexprovin_origen,  " +
-                "                        '' desprovin_origen,  " +
-                "                        e.iexdistri_origen,  " +
-                "                        '' desdistri_origen,  " +
-                "                        e.iexgrdinstruccion,  " +
-                "                        '' desinstruccion,  " +
-                "                        e.iexcentroform,  " +
-                "                        '' descentroform,  " +
-                "                        e.iexflgdomicil,  " +
-                "                        e.iexfeccrea,  " +
-                "                        e.iexfeccmod,  " +
-                "                        e.iexusucrea,  " +
-                "                        e.iexusumod   " +
-                "                        from iexempleado e " +
-                "						left join  iexttabled  d on d.iexcodtab='3' and d.iexkey =  e.iextipdocid   " +
-                "						left join  iexttabled  d2 on d2.iexcodtab='50' and d2.iexkey =  e.iexcodsex   " +
-                "						left join  iexttabled  d3 on d3.iexcodtab='54' and d3.iexkey =  e.iexflgest    " +
-                "						left join  iexpuesto  p1  on p1.iexcodcia= e.iexcodcia and p1.iexpuesto =  e.iexpuesto   " +
-                "						left join  iexttabled  d4 on d4.iexcodtab='8' and d4.iexkey =  e.iextiptra    " +
-                "						where e.iexcodcia=" + empleado.getIexcodcia() + " " +
-                "                       and e.iexcodtra=" + empleado.getIexcodtra() + " ";
-
+        String sql = "select " +
+                "e.iexcodcia, " +
+                "e.iexcodtra, " +
+                "e.iexnomtra, " +
+                "e.iexapepat, " +
+                "e.iexapemat, " +
+                "e.iextipdocid as iextipdocid, " +
+                "d.desdet destipdoc, " +
+                "e.iexnrodoc, " +
+                "to_char(e.iexfecnac,'dd/mm/yyyy') iexfecnac, " +
+                "to_char(e.iexfecing,'dd/mm/yyyy') iexfecing, " +
+                "to_char(e.iexfecret,'dd/mm/yyyy') iexfecret, " +
+                "e.iextipcese, " +
+                "'' as destipcese, " +
+                "e.iexcodsex, " +
+                "d2.desdet dessex, " +
+                "e.iexpaisemisor, " +
+                "'' as despaisemisor, " +
+                "e.iexflgest, " +
+                "d3.desdet desestado, " +
+                "e.iexcodant, " +
+                "e.iextiptra, " +
+                "d4.desdet destiptra, " +
+                "p1.iexdespuesto iexpuesto, " +
+                "e.iexmodform, " +
+                "'' desmodform, " +
+                "e.iexnacion_origen, " +
+                "'' desnacion_origen, " +
+                "e.iexdepart_origen, " +
+                "'' desdepart_origen, " +
+                "e.iexprovin_origen, " +
+                "'' desprovin_origen, " +
+                "e.iexdistri_origen, " +
+                "'' desdistri_origen, " +
+                "e.iexgrdinstruccion, " +
+                "'' desinstruccion, " +
+                "e.iexcentroform, " +
+                "'' descentroform, " +
+                "e.iexflgdomicil, " +
+                "e.iexfeccrea, " +
+                "e.iexfeccmod, " +
+                "e.iexusucrea, " +
+                "e.iexusumod " +
+                "from iexempleado e " +
+                "left join iexttabled d on d.iexcodtab = '3' and d.iexkey = e.iextipdocid " +
+                "left join iexttabled d2 on d2.iexcodtab = '50' and d2.iexkey = e.iexcodsex " +
+                "left join iexttabled d3 on d3.iexcodtab = '54' and d3.iexkey = e.iexflgest " +
+                "left join iexpuesto p1 on p1.iexcodcia = e.iexcodcia and p1.iexpuesto = e.iexpuesto " +
+                "left join iexttabled d4 on d4.iexcodtab = '8' and d4.iexkey = e.iextiptra " +
+                "where e.iexcodcia = :codcia " +
+                "and e.iexcodtra = :codtra ";
 
         if (empleado.getTxtfinder() != null) {
-            sql = sql + "and  '%'||iexnomtra||'%'||iexapepat||'%'||iexapemat||'%'||iexnrodoc||'%'  like '%" + empleado.getTxtfinder().toUpperCase() + "%' ";
+            sql = sql + " and '%'||iexnomtra||'%'||iexapepat||'%'||iexapemat||'%'||iexnrodoc||'%' " +
+                    "like '%:txtfinder%' ";
         }
 
         if (empleado.getIextiptra() != null && !empleado.getIextiptra().equals("%")) {
-            sql = sql + "and  iextiptra  like '%" + empleado.getIextiptra() + "%' ";
+            sql = sql + " and iextiptra like '%:tiptra%' ";
         }
 
 
         if (empleado.getIexflgest() != null && !empleado.getIexflgest().equals("%")) {
-            sql = sql + "and  iexflgest  like '%" + empleado.getIexflgest() + "%' ";
+            sql = sql + " and iexflgest like '%:iexflgest%' ";
         }
-
-        /*if (empleado.getIexcodsex() != null && !empleado.getIexcodsex().equals("%")) {
-            sql = sql + "and  iexcodsex  like '%" + empleado.getIexcodsex() + "%' ";
-        }*/
 
         if (empleado.getFeciniing_par() != "" && empleado.getFecfining_par() != "") {
             if (empleado.getFeciniing_par() != null && empleado.getFecfining_par() != null) {
-                sql = sql + "and  iexfecing >= to_date('" + empleado.getFeciniing_par() + "','dd/mm/yyyy')  and iexfecing <= to_date('" + empleado.getFecfining_par() + "','dd/mm/yyyy') ";
+                sql = sql + " and iexfecing >= to_date(':feciniing_par','dd/mm/yyyy') and " +
+                        "iexfecing <= to_date(':fecfining_par','dd/mm/yyyy') ";
             }
         }
 
-        sql = sql + " order by iexapepat, iexapemat , iexnomtra asc";
+        sql = sql + " order by iexapepat, iexapemat, iexnomtra asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
-            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Empleado> lista = new ArrayList<Empleado>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", empleado.getIexcodcia())
+                .addValue("codtra", empleado.getIexcodtra())
+                .addValue("txtfinder", empleado.getTxtfinder())
+                .addValue("tiptra", empleado.getIextiptra())
+                .addValue("iexflgest", empleado.getIexflgest())
+                .addValue("feciniing_par", empleado.getFeciniing_par());
 
-                while (rs.next()) {
-                    Empleado p = new Empleado();
-                    CapitalizarCadena cap = new CapitalizarCadena();
+        List<Empleado> lsEmpl = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    p.setIextipdocid(rs.getString("destipdoc"));
-                    p.setIexnrodoc(rs.getString("iexnrodoc"));
-                    p.setIexfecnac(rs.getString("iexfecnac"));
-
-                    p.setIexfecing(rs.getString("iexfecing"));
-                    FormatterFecha f = new FormatterFecha();
-                    CapitalizarCadena capit = new CapitalizarCadena();
-                    p.setIexfecing(f.fechaFormatterDia(p.getIexfecing()) + " " + capit.letras(f.fechaFormatterMes(p.getIexfecing())) + ", " + f.fechaFormatterAnio(p.getIexfecing()));
-
-                    p.setIextipcese(rs.getString("iextipcese"));
-                    p.setIexfecret(rs.getString("iexfecret"));
-                    //p.setIexcodsex(cap.letras(rs.getString("dessex")));
-                    p.setIexcodsex(rs.getString("iexcodsex"));
-                    p.setIexpaisemisor(rs.getString("iexpaisemisor"));
-                    p.setIexflgest(rs.getString("iexflgest"));
-                    p.setIexcodant(rs.getString("iexcodant"));
-                    p.setIextiptra(rs.getString("iextiptra"));
-                    p.setIexmodform(rs.getString("iexmodform"));
-                    p.setIexnacion_origen(rs.getString("iexnacion_origen"));
-                    p.setIexdepart_origen(rs.getString("iexdepart_origen"));
-                    p.setIexprovin_origen(rs.getString("iexprovin_origen"));
-                    p.setIexdistri_origen(rs.getString("iexdistri_origen"));
-                    p.setIexcentroform(rs.getString("iexcentroform"));
-                    p.setIexflgdomicil(rs.getString("iexflgdomicil"));
-                    p.setIexfeccrea(rs.getString("iexfeccrea"));
-                    p.setIexusucrea(rs.getString("iexusucrea"));
-                    p.setIexusumod(rs.getString("iexusumod"));
-                    p.setDestipcese(rs.getString("destipcese"));
-                    p.setDessex(rs.getString("dessex"));
-                    p.setDespaisemisor(rs.getString("despaisemisor"));
-                    p.setDesestado(rs.getString("desestado"));
-                    p.setDestiptra(rs.getString("destiptra"));
-                    p.setIexpuesto(cap.letras(rs.getString("despuesto")));
-
-                    if (p.getIexnomtra() != null) {
-                        char firstCharacter = p.getIexnomtra().charAt(0);
-                        char char1UpperCase = Character.toUpperCase(firstCharacter);
-                        String cast1 = String.valueOf(char1UpperCase);
-
-                        p.setLetraIni(cast1);
-
-                        String strMain = p.getIexnomtra();
-                        String[] arrSplit = strMain.split(" ");
-
-                        String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(p.getIexapepat());
-                        p.setNomCompactoUpper(nombrecompleto);
-                    }
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsEmpl;
     }
 }
