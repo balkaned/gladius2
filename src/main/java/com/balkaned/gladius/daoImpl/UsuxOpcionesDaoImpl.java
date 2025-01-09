@@ -85,7 +85,7 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                 "WHEN S.IEXCODSEC = '7' THEN 'layers' " +
                 "WHEN S.IEXCODSEC = '11' THEN 'codesandbox' " +
                 "END as icon, " +
-                "iexactionspring as Path" +
+                "iexactionspring as Path " +
                 "FROM IEXUSUXCIA U " +
                 "INNER JOIN IEXROLXOPC R ON U.IEXCODROL = R.IEXCODROL " +
                 "INNER JOIN IEXOPCIONES O ON R.IEXCODOPC = O.IEXCODOPC " +

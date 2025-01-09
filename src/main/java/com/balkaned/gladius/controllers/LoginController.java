@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+
 @Slf4j
+@RestController
 public class LoginController {
+
     @Autowired
     UsuarioConeccionService usuarioConeccionService;
 
@@ -67,7 +69,9 @@ public class LoginController {
     }
 
     @RequestMapping("/verificarLogin2")
-    public ModelAndView verificarLogin2(ModelMap model, HttpServletRequest request, @ModelAttribute("usuarioConeccion") UsuarioConeccion uc, BindingResult result, SessionStatus status) {
+    public ModelAndView verificarLogin2(ModelMap model, HttpServletRequest request,
+                                        @ModelAttribute("usuarioConeccion") UsuarioConeccion uc,
+                                        BindingResult result, SessionStatus status) {
 
         UsuarioConeccion uc2 = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
         log.info("uc.getUser(): " + uc.getUser());
@@ -195,5 +199,4 @@ public class LoginController {
 
         return new ModelAndView("redirect:/login2");
     }
-
 }

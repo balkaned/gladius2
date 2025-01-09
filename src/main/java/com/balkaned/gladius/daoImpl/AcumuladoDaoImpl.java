@@ -120,12 +120,12 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexaniotrib, " +
                 "iexrem_acum, " +
                 "iexrem5taafec_acum, " +
-                "iexrenta5ta_acum , " +
+                "iexrenta5ta_acum, " +
                 "iexremafec5ta_otrcia, " +
                 "iexrent5ta_otrcia, " +
-                "iexrem4ta_acum	, " +
+                "iexrem4ta_acum, " +
                 "iexrenta4ta_acum, " +
-                "iexremotr_acum	, " +
+                "iexremotr_acum, " +
                 "iexrenta_acum, " +
                 "iexusucrea, " +
                 "iexfeccrea, " +

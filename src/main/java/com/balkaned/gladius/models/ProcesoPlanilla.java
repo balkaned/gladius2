@@ -19,5 +19,4 @@ public class ProcesoPlanilla {
     private String bolProceso;
     private String bolProcesoind;
     private String bolProcesores;
-
 }

@@ -2,647 +2,433 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.LovsDao;
-import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Repository("LovsDao")
 public class LovsDaoImpl implements LovsDao {
 
-    JdbcTemplate template;
+    private static final String CLASS_NAME = "LovsDao";
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
-        template = new JdbcTemplate(datasource);
+        jdbc = new JdbcTemplate(datasource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
     public List<Lovs> getLovs(String id_table, String text) {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,100)) des " +
-                "from iexttabled where iexcodtab='" + id_table + "'  and '%'||desdet||'%' like '%'||'" + text + "'||'%' ";
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,100)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab = :id_table and '%'||desdet||'%' like '%'||:text||'%' ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_table", id_table)
+                .addValue("text", text);
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
+        List<Lovs> lsLov = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
-
-                    p.setIdLov(rs.getString("cod"));
-                    p.setDesLov(rs.getString("des"));
-
-                    CapitalizarCadena cap = new CapitalizarCadena();
-                    p.setDesLov(cap.letras(p.getDesLov()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLov;
     }
 
     public List<RegimenLaboral> getRegimenLab() {
 
-        List<RegimenLaboral> lista = null;
-        String sql = " select " +
-                "codregimen, " +
-                "desregimen " +
+        String sql = "select " +
+                "codregimen as idRegimenLab, " +
+                "desregimen as desRegimenLab " +
                 "from iexregimenlab ";
 
-        return template.query(sql, new ResultSetExtractor<List<RegimenLaboral>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-            public List<RegimenLaboral> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<RegimenLaboral> lista = new ArrayList<RegimenLaboral>();
+        List<RegimenLaboral> lsReg = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(RegimenLaboral.class));
 
-                while (rs.next()) {
-                    RegimenLaboral p = new RegimenLaboral();
-
-                    p.setIdRegimenLab(rs.getInt("codregimen"));
-                    p.setDesRegimenLab(rs.getString("desregimen"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsReg;
     }
 
     public List<Concepto> getConceptoxProc(Integer id_proc) {
 
-        List<Concepto> lista = null;
-        String sql = " select  " +
-                " PROCODPRO, " +
-                " COOCODCON, " +
-                " COODESCON, " +
-                " COOCODFORVAR, " +
-                " COODESABREV, " +
-                " COODESCRIPCION  " +
-                " from iexproxconcepto "
-                + "   inner join iexconcepto on  procodcon=coocodcon " +
-                " where " +
-                " procodpro=" + id_proc + " ";
+        String sql = "select " +
+                "PROCODPRO as idProceso, " +
+                "COOCODCON as codConcepto, " +
+                "COODESCON as desConcepto, " +
+                "COOCODFORVAR as desVariable, " +
+                "COODESABREV as desAbreviacion, " +
+                "COODESCRIPCION as descripcion" +
+                "from iexproxconcepto " +
+                "inner join iexconcepto on procodcon = coocodcon " +
+                "where procodpro = :id_proc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_proc", id_proc);
 
-            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Concepto> lista = new ArrayList<Concepto>();
+        List<Concepto> lsConcepto = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Concepto.class));
 
-                while (rs.next()) {
-                    Concepto p = new Concepto();
-
-                    p.setIdProceso(rs.getInt("PROCODPRO"));
-                    p.setCodConcepto(rs.getString("COOCODCON"));
-                    p.setDesVariable(rs.getString("COOCODFORVAR"));
-
-                    p.setDesConcepto(rs.getString("COODESCON"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesConcepto(cap.letras(p.getDesConcepto()));
-
-                    p.setDesAbreviacion(rs.getString("COODESABREV"));
-
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setDesAbreviacionCapit(cap2.letras(p.getDesAbreviacion()));
-
-                    p.setDescripcion(rs.getString("COODESCRIPCION"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsConcepto;
     }
 
     public List<Area> getAreaCia(Integer id_cia) {
 
-        List<Area> lista = null;
-        String sql = " select iexcodcia, iexcodarea, iexdesarea from iexarea where iexcodcia=" + id_cia + "";
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodarea, " +
+                "iexdesarea " +
+                "from iexarea " +
+                "where iexcodcia = :id_cia ";
 
-        return template.query(sql, new ResultSetExtractor<List<Area>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_cia", id_cia);
 
-            public List<Area> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Area> lista = new ArrayList<Area>();
+        List<Area> lsArea = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Area.class));
 
-                while (rs.next()) {
-                    Area p = new Area();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodarea(rs.getString("iexcodarea"));
-
-                    p.setIexdesarea(rs.getString("iexdesarea"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesarea(cap.letras(p.getIexdesarea()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsArea;
     }
 
     public List<Puesto> getPuestoCia(Integer id_cia) {
 
-        List<Puesto> lista = null;
-        String sql = " select  iexcodcia, iexpuesto, iexdespuesto from iexpuesto  where iexcodcia=" + id_cia + "";
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexpuesto, " +
+                "iexdespuesto " +
+                "from iexpuesto " +
+                "where iexcodcia = :id_cia ";
 
-        return template.query(sql, new ResultSetExtractor<List<Puesto>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_cia", id_cia);
 
-            public List<Puesto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Puesto> lista = new ArrayList<Puesto>();
+        List<Puesto> lsPuesto = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Puesto.class));
 
-                while (rs.next()) {
-                    Puesto p = new Puesto();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexpuesto(rs.getString("iexpuesto"));
-
-                    p.setIexdespuesto(rs.getString("iexdespuesto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdespuesto(cap.letras(p.getIexdespuesto()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsPuesto;
     }
 
     public List<CentroCosto> getCCostoCia(Integer id_cia) {
 
-        List<CentroCosto> lista = null;
-        String sql = " select iexcodcia, iexccosto, iexdesccosto from iexccosto where iexcodcia=" + id_cia + "";
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexccosto, " +
+                "iexdesccosto " +
+                "from iexccosto " +
+                "where iexcodcia = :id_cia ";
 
-        return template.query(sql, new ResultSetExtractor<List<CentroCosto>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_cia", id_cia);
 
-            public List<CentroCosto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<CentroCosto> lista = new ArrayList<CentroCosto>();
+        List<CentroCosto> lsCentroC = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(CentroCosto.class));
 
-                while (rs.next()) {
-                    CentroCosto p = new CentroCosto();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexccosto(rs.getString("iexccosto"));
-
-                    p.setIexdesccosto(rs.getString("iexdesccosto"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexdesccosto(cap.letras(p.getIexdesccosto()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsCentroC;
     }
 
     public List<Local> getUbicacionCia(Integer id_cia) {
 
-        List<Local> lista = null;
-        String sql = " select iexcodcia, iexubicod, iexubides from iexubicacion where iexcodcia=" + id_cia + "";
+        String sql = "select iexcodcia, iexubicod, iexubides " +
+                "from iexubicacion " +
+                "where iexcodcia = :id_cia ";
 
-        return template.query(sql, new ResultSetExtractor<List<Local>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_cia", id_cia);
 
-            public List<Local> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Local> lista = new ArrayList<Local>();
+        List<Local> lsLocal = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Local.class));
 
-                while (rs.next()) {
-                    Local p = new Local();
-
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexubicod(rs.getString("iexubicod"));
-
-                    p.setIexubides(rs.getString("iexubides"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexubides(cap.letras(p.getIexubides()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLocal;
     }
 
     public List<Ubigeo> getUbigeo(String text_buscar) {
 
-        List<Ubigeo> lista = null;
-        String sql = " SELECT " +
-                "d.iddep, d.desdep," +
-                "p.idprov,  p.desprov, " +
-                "iexkey iddistri, desdet desdistri FROM IEXTTABLED f , " +
-                "(SELECT iexkey iddep, desdet desdep FROM IEXTTABLED WHERE IEXCODTAB='48') d," +
-                "(SELECT iexkey idprov , desdet desprov  FROM IEXTTABLED WHERE IEXCODTAB='49' ) p " +
-                "WHERE " +
-                "substring(f.iexkey,1,2) = d.iddep   and " +
+        String sql = "select " +
+                "d.iddep as iddepartamento, " +
+                "d.desdep as desdepartamento, " +
+                "p.idprov as idprovincia, " +
+                "p.desprov, " +
+                "iexkey iddistrito, " +
+                "desdet desdistrito " +
+                "from iexttabled f, " +
+                "   (SELECT iexkey iddep, desdet desdep FROM IEXTTABLED WHERE IEXCODTAB='48') d, " +
+                "   (SELECT iexkey idprov , desdet desprov FROM IEXTTABLED WHERE IEXCODTAB='49') p " +
+                "where substring(f.iexkey,1,2) = d.iddep and " +
                 "substring(f.iexkey,1,4) = p.idprov and " +
-                "IEXCODTAB='28' and '%'||d.iddep||'%'||p.idprov||'%'||iexkey||'%'||d.desdep||'%'||p.desprov||'%'||desdet||'%' like '%'||'" + text_buscar + "'||'%' ";
+                "iexcodtab = '28' and " +
+                "'%'||d.iddep||'%'||p.idprov||'%'||iexkey||'%'||d.desdep||'%'||p.desprov||'%'||desdet||'%' " +
+                "like '%'||:text_buscar||'%' ";
 
-        return template.query(sql, new ResultSetExtractor<List<Ubigeo>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("text_buscar", text_buscar);
 
-            public List<Ubigeo> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Ubigeo> lista = new ArrayList<Ubigeo>();
+        List<Ubigeo> lsUbigeo = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Ubigeo.class));
 
-                while (rs.next()) {
-                    Ubigeo p = new Ubigeo();
-
-                    p.setIddepartamento(rs.getString("iddep"));
-                    p.setDesdepartamento(rs.getString("desdep"));
-                    p.setIdprovincia(rs.getString("idprov"));
-                    p.setDesprovincia(rs.getString("desprov"));
-                    p.setIddistrito(rs.getString("iddistri"));
-                    p.setDesdistrito(rs.getString("desdistri"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsUbigeo;
     }
 
     public List<Lovs> getRegimenProc() {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
+        String sql = "select " +
                 "iexkey cod, " +
                 "trim(substring(desdet,1,40)) des " +
-                " from iexttabled where iexcodtab='33' and  iexkey in (  " +
+                "from iexttabled " +
+                "where iexcodtab='33' and  iexkey in (  " +
                 "  select procodregimenlab from iexprocesos " +
-                ")";
+                " ) ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
+        List<Lovs> lovs = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
-
-                    p.setIdLov(rs.getString("cod"));
-
-                    p.setDesLov(rs.getString("des"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesLov(cap.letras(p.getDesLov()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lovs;
     }
 
     public List<ProcesoPlanilla> getProxRegimen(String regimen) {
 
-        List<ProcesoPlanilla> lista = null;
-        String sql = " select " +
-                " procodpro, " +
-                " prodespro " +
-                " from iexprocesos where procodregimenlab='" + regimen + "' order by 2 asc ";
+        String sql = "select " +
+                "procodpro as idProceso, " +
+                "prodespro as desProceso" +
+                "from iexprocesos " +
+                "where procodregimenlab = :regimen order by 2 asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("regimen", regimen);
 
-            public List<ProcesoPlanilla> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ProcesoPlanilla> lista = new ArrayList<ProcesoPlanilla>();
+        List<ProcesoPlanilla> lsPro = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPlanilla.class));
 
-                while (rs.next()) {
-                    ProcesoPlanilla p = new ProcesoPlanilla();
-
-                    p.setIdProceso(rs.getInt("procodpro"));
-
-                    p.setDesProceso(rs.getString("prodespro"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesProceso(cap.letras(p.getDesProceso()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsPro;
     }
 
     public List<ProcesoPeriodo> getPerxproc(Integer codcia, String proceso) {
 
-        List<ProcesoPeriodo> lista = null;
-        //String sql = " select iexnroper, iexpermes, iexfecini, iexfecfin from iexproperiodo where iexcodcia="+codcia+" and iexcodpro="+proceso+" and flgestado not in ('3') order by iexnroper asc  ";
-        String sql = " select iexnroper, iexpermes, iexfecini, iexfecfin from iexproperiodo where iexcodcia=" + codcia + " and iexcodpro=" + proceso + "   order by iexnroper asc  ";
+        String sql = "select iexnroper, iexpermes, iexfecini, iexfecfin " +
+                "from iexproperiodo " +
+                "where iexcodcia = :codcia and " +
+                "iexcodpro = :proceso " +
+                "order by iexnroper asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ProcesoPeriodo>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("proceso", proceso);
 
-            public List<ProcesoPeriodo> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ProcesoPeriodo> lista = new ArrayList<ProcesoPeriodo>();
+        List<ProcesoPeriodo> lsPro = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPeriodo.class));
 
-                while (rs.next()) {
-                    ProcesoPeriodo p = new ProcesoPeriodo();
-
-                    p.setIexnroper(rs.getString("iexnroper"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsPro;
     }
 
     public List<Lovs> getRegimenProcGrppla(String grppla) {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
-                " from iexttabled where iexcodtab='33' and  iexkey in (  " +
-                "  select procodregimenlab from iexprocesos where progrppro ='" + grppla + "' " +
-                ")";
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab = '33' and iexkey in ( " +
+                "  select procodregimenlab from iexprocesos where progrppro = :grppla " +
+                " ) ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("grppla", grppla);
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
+        List<Lovs> lsLovs = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                    p.setIdLov(rs.getString("cod"));
-                    p.setDesLov(rs.getString("des"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLovs;
     }
 
     public List<ProcesoPlanilla> getProxRegimenGrppla(String regimen, String grppla) {
 
-        List<ProcesoPlanilla> lista = null;
-        String sql = " select " +
-                " procodpro, " +
-                " prodespro " +
-                " from iexprocesos where procodregimenlab='" + regimen + "' and progrppro='" + grppla + "' order by 2 asc ";
+        String sql = "select " +
+                "procodpro as idProceso, " +
+                "prodespro as desProceso " +
+                "from iexprocesos " +
+                "where procodregimenlab = :regimen and " +
+                "progrppro = :grppla " +
+                "order by 2 asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<ProcesoPlanilla>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("regimen", regimen)
+                .addValue("grppla", grppla);
 
-            public List<ProcesoPlanilla> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<ProcesoPlanilla> lista = new ArrayList<ProcesoPlanilla>();
+        List<ProcesoPlanilla> lsProc = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPlanilla.class));
 
-                while (rs.next()) {
-                    ProcesoPlanilla p = new ProcesoPlanilla();
-
-                    p.setIdProceso(rs.getInt("procodpro"));
-                    p.setDesProceso(rs.getString("prodespro"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsProc;
     }
 
     public List<Concepto> getConceptoLov() {
 
-        List<Concepto> lista = null;
-        String sql = " select  " +
-                " COOCODCON, " +
-                " COODESCON, " +
-                " COOCODFORVAR, " +
-                " COODESABREV, " +
-                " COODESCRIPCION  " +
-                " from  iexconcepto  ";
-        return template.query(sql, new ResultSetExtractor<List<Concepto>>() {
+        String sql = "select " +
+                "COOCODCON as codConcepto, " +
+                "COODESCON as desConcepto, " +
+                "COOCODFORVAR as desVariable, " +
+                "COODESABREV as desAbreviacion, " +
+                "COODESCRIPCION as descripcion" +
+                "from iexconcepto ";
 
-            public List<Concepto> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Concepto> lista = new ArrayList<Concepto>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-                while (rs.next()) {
-                    Concepto p = new Concepto();
+        List<Concepto> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Concepto.class));
 
-                    p.setCodConcepto(rs.getString("COOCODCON"));
-                    p.setDesVariable(rs.getString("COOCODFORVAR"));
-                    p.setDesConcepto(rs.getString("COODESCON"));
-                    p.setDesAbreviacion(rs.getString("COODESABREV"));
-
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesAbreviacionCapit(cap.letras(p.getDesAbreviacion()));
-
-                    p.setDescripcion(rs.getString("COODESCRIPCION"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsConcept;
     }
 
     public List<Lovs> getLovsDept(String id_table, String id_pais) {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
-                "from iexttabled where iexcodtab='48'  and des1det='" + id_pais + "' ";
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab = '48' and " +
+                "des1det = :id_pais ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_pais", id_pais);
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
+        List<Lovs> lsLovs = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
-
-                    p.setIdLov(rs.getString("cod"));
-                    p.setDesLov(rs.getString("des"));
-
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesLov(cap.letras(p.getDesLov()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLovs;
     }
 
     public List<Lovs> getLovsProv(String id_table, String id_dept) {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
-                "from iexttabled where iexcodtab='49'  and des1det='" + id_dept + "' ";
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab = '49' and " +
+                "des1det = :id_dept ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("id_dept", id_dept);
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
+        List<Lovs> lsLovs = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
-
-                    p.setIdLov(rs.getString("cod"));
-                    p.setDesLov(rs.getString("des"));
-
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesLov(cap.letras(p.getDesLov()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLovs;
     }
 
     public List<Lovs> getLovsDist(String id_table, String id_prov) {
 
-        List<Lovs> lista = null;
-        String sql = " select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
-                "from iexttabled where iexcodtab='28'  and des2det='" + id_prov + "' ";
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab='28' and " +
+                "des2det = :id_prov ";
 
-        return template.query(sql, new ResultSetExtractor<List<Lovs>>() {
+        SqlParameterSource namedParemeters = new MapSqlParameterSource()
+                .addValue("id_prov", id_prov);
 
-            public List<Lovs> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Lovs> lista = new ArrayList<Lovs>();
+        List<Lovs> lsLovs = namedParameterJdbcTemplate.query(sql, namedParemeters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
 
-                while (rs.next()) {
-                    Lovs p = new Lovs();
-
-                    p.setIdLov(rs.getString("cod"));
-                    p.setDesLov(rs.getString("des"));
-
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setDesLov(cap.letras(p.getDesLov()));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsLovs;
     }
 
     public List<VacacionControl> getSaldoVacTra(Integer codcia, Integer codtra, String pervac) {
 
-        List<VacacionControl> lista = null;
-        String sql = " select  " +
-                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin,   iexdiassaldo " +
+        String sql = "select " +
+                "iexcodcia, iexcodtra, iexpermesini, " +
+                "iexpermesfin, iexdiassaldo " +
                 "from iexvacctl " +
-                "where iexcodcia=" + codcia + " and iexcodtra=" + codtra + " and  iexpermesini = '" + pervac + "' ";
-        return template.query(sql, new ResultSetExtractor<List<VacacionControl>>() {
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexpermesini = :pervac ";
 
-            public List<VacacionControl> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<VacacionControl> lista = new ArrayList<VacacionControl>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codtra", codtra)
+                .addValue("pervac", pervac);
 
-                while (rs.next()) {
-                    VacacionControl p = new VacacionControl();
+        List<VacacionControl> lsVacControl = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(VacacionControl.class));
 
-                    p.setIexpermesini(rs.getString("iexpermesini"));
-                    p.setIexpermesfin(rs.getString("iexpermesfin"));
-                    p.setIexdiassaldo(rs.getDouble("iexdiassaldo"));
-
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsVacControl;
     }
 
 
     public List<VacacionControl> listaSaldoVacTra(Integer codcia, String regimen, Integer codtra) {
 
-        List<VacacionControl> lista = null;
-        String sql = " select  " +
-                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, to_char(iexfecini,'DD/MM/YYYY') as iexfecini, to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin,  " +
-                "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, iexdiascom, iexdiassaldo, " +
-                "iexusucrea, to_char(iexfeccrea,'DD/MM/YYYY') as iexfeccrea,  " +
+        String sql = "select " +
+                "iexcodcia, iexcodtra, " +
+                "iexpermesini, iexpermesfin, " +
+                "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
+                "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
+                "iexdiasgan, iexdiasgoz, iexdiasven, " +
+                "iexdiasper, iexdiascom, iexdiassaldo, " +
+                "iexusucrea, to_char(iexfeccrea,'DD/MM/YYYY') as iexfeccrea, " +
                 "iexusumod, to_char(iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexvacctl " +
-                "where iexcodcia=" + codcia + " and iexcodtra=" + codtra + " and iexdiasgan>0 order by iexpermesini desc  ";
-        return template.query(sql, new ResultSetExtractor<List<VacacionControl>>() {
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexdiasgan > 0 " +
+                "order by iexpermesini desc ";
 
-            public List<VacacionControl> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<VacacionControl> lista = new ArrayList<VacacionControl>();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("codtra", codtra);
 
-                while (rs.next()) {
-                    VacacionControl p = new VacacionControl();
+        List<VacacionControl> lsVac = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(VacacionControl.class));
 
-                    p.setIexcodcia(rs.getInt("iexcodcia"));
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-                    p.setIexpermesini(rs.getString("iexpermesini"));
-                    p.setIexpermesfin(rs.getString("iexpermesfin"));
-                    p.setIexfecini(rs.getString("iexfecini"));
-                    p.setIexfecfin(rs.getString("iexfecfin"));
-                    p.setIexdiasgan(rs.getDouble("iexdiasgan"));
-                    p.setIexdiassaldo(rs.getDouble("iexdiassaldo"));
-                    lista.add(p);
-                }
-                return lista;
-            }
-        });
+        return lsVac;
     }
 
     public List<Empleado> listaTrabajadoresReg(Integer codcia, String regimen) {
 
-        String sql = " select  " +
+        String sql = "select " +
                 "iexcodtra, " +
-                "iexapepat, iexapemat, iexnomtra, " +
-                " to_char(iexfecing,'dd/mm/yyyy') as fecing " +
-                "from iexempleado where iexcodcia=" + codcia + " and iexflgest='1' and iexreglab='" + regimen + "' order by 2,3,4 asc ";
+                "iexapepat, " +
+                "iexapemat, " +
+                "iexnomtra, " +
+                "to_char(iexfecing,'dd/mm/yyyy') as iexfecing " +
+                "from iexempleado " +
+                "where iexcodcia = :codcia and " +
+                "iexflgest = '1' and " +
+                "iexreglab = :regimen " +
+                "order by 2,3,4 asc ";
 
-        return template.query(sql, new ResultSetExtractor<List<Empleado>>() {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("regimen", regimen);
 
-            public List<Empleado> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Empleado> lista = new ArrayList<Empleado>();
+        List<Empleado> lsEmpleado = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
 
-                while (rs.next()) {
-                    Empleado p = new Empleado();
-
-                    p.setIexcodtra(rs.getInt("iexcodtra"));
-
-                    p.setIexapepat(rs.getString("iexapepat"));
-                    CapitalizarCadena cap= new CapitalizarCadena();
-                    p.setIexapepat(cap.letras(p.getIexapepat()));
-
-                    p.setIexapemat(rs.getString("iexapemat"));
-                    CapitalizarCadena cap1= new CapitalizarCadena();
-                    p.setIexapemat(cap1.letras(p.getIexapemat()));
-
-                    p.setIexnomtra(rs.getString("iexnomtra"));
-                    CapitalizarCadena cap2= new CapitalizarCadena();
-                    p.setIexnomtra(cap2.letras(p.getIexnomtra()));
-
-                    p.setIexfecing(rs.getString("fecing"));
-
-                    lista.add(p);
-                }
-
-                return lista;
-            }
-        });
+        return lsEmpleado;
     }
 
     public List<Lovs> getLovsCContables() {
-        String sql = "select iexkey cod, trim(substring(desdet,1,40)) des from iexttabled where iexcodtab='65'";
 
-        return template.query(sql, rs -> {
-            List<Lovs> lista = new ArrayList<>();
+        String sql = "select " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
+                "from iexttabled " +
+                "where iexcodtab = '65' ";
 
-            while (rs.next()) {
-                Lovs p = new Lovs();
-                p.setIdLov(rs.getString("cod"));
-                p.setDesLov(rs.getString("des"));
-                lista.add(p);
-            }
+        SqlParameterSource namedParameters = new MapSqlParameterSource();
 
-            return lista;
-        });
+        List<Lovs> lsLovs = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Lovs.class));
+
+        return lsLovs;
     }
 }
