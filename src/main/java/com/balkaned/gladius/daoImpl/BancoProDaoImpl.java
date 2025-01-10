@@ -80,9 +80,9 @@ public class BancoProDaoImpl implements BancoProDao {
                 "   on a.iexcodban = c.iexkey " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='66' ) d " +
                 "   on a.iextipcta = d.iexkey " +
-                "full outer join iexprocesos f on a.iexcodpro =f.procodpro  " +
-                "where iexcodcia= :iexcodcia and " +
-                "iexcodban= :iexcodban and " +
+                "full outer join iexprocesos f on a.iexcodpro =f.procodpro " +
+                "where iexcodcia = :iexcodcia and " +
+                "iexcodban = :iexcodban and " +
                 "a.iexcodpro = :iexcodpro ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -146,5 +146,4 @@ public class BancoProDaoImpl implements BancoProDao {
                 bancopro.getIexcodpro()
         );
     }
-
 }

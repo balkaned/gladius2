@@ -60,7 +60,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
                 "c.iexschema as schema " +
                 "from iexcompania c " +
                 "full outer join ( select iexkey, desdet from iexttabled where iexcodtab='1') d " +
-                "on c.iexcodact = d.iexkey  where c.iexcodcia = :iexcodcia ";
+                "on c.iexcodact = d.iexkey " +
+                "where c.iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia);
@@ -249,7 +250,8 @@ public class CompaniaDaoImpl implements CompaniaDao {
 
     public void eliminarCompania(Compania com) {
 
-        String sql = "delete from iexcompania where iexcodcia = ? ";
+        String sql = "delete from iexcompania " +
+                "where iexcodcia = ? ";
 
         jdbc.update(sql, com.getIdCodcia());
     }

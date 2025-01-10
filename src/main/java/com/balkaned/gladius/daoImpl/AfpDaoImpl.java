@@ -61,15 +61,15 @@ public class AfpDaoImpl implements AfpDao {
     public void insertar(Afp afp) {
 
         String sql = "insert into iexafponpper ( " +
-                "iexpermes," +
-                "iexcodafp," +
-                "iexcomis_fija," +
-                "iexcomis_sflu," +
-                "iexcomis_sflu_mix," +
-                "iexcomis_anual_mix," +
-                "iexprima_seguro," +
-                "iexaporte_oblig," +
-                "iexremmax_asegu," +
+                "iexpermes, " +
+                "iexcodafp, " +
+                "iexcomis_fija, " +
+                "iexcomis_sflu, " +
+                "iexcomis_sflu_mix, " +
+                "iexcomis_anual_mix, " +
+                "iexprima_seguro, " +
+                "iexaporte_oblig, " +
+                "iexremmax_asegu, " +
                 "iexcomis_onp " +
                 " ) values (?,?,?,?,?,?,?,?,?,?) ";
 
@@ -107,9 +107,9 @@ public class AfpDaoImpl implements AfpDao {
                 "   iexkey codafp, desdet desafp " +
                 "   from iexttabled where iexcodtab='11' " +
                 " ) d where " +
-                "c.iexcodafp= d.codafp and " +
-                "iexpermes= :iexpermes and " +
-                "c.iexcodafp= :iexcodafp ";
+                "c.iexcodafp = d.codafp and " +
+                "iexpermes = :iexpermes and " +
+                "c.iexcodafp = :iexcodafp ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexpermes", afp.getIexpermes())

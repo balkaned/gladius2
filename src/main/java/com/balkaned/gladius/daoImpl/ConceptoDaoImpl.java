@@ -54,7 +54,8 @@ public class ConceptoDaoImpl implements ConceptoDao {
                 "coocodforvar desVariable, " +
                 "coodesabrev desAbreviacion, " +
                 "coodescripcion descripcion " +
-                "from iexconcepto order by coodescon asc ";
+                "from iexconcepto " +
+                "order by coodescon asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource();
 

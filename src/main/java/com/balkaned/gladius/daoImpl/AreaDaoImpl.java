@@ -42,12 +42,12 @@ public class AreaDaoImpl implements AreaDao {
                 "d.desdet as descodcat, " +
                 " case " +
                 " WHEN length(a.iexareapadre) > 0 THEN a.iexareapadre " +
-                " else 'null'  end iexareapadre, " +
+                " else 'null' end iexareapadre, " +
                 "f.iexdesarea as desareapadre " +
                 "from iexarea a " +
                 "full outer join iexarea f on a.iexcodcia= f.iexcodcia and  a.iexareapadre = f.iexcodarea " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='62' ) d on a.iexcodcat = d.iexkey " +
-                "where a.iexcodcia= :iexcodcia " +
+                "where a.iexcodcia = :iexcodcia " +
                 "order by a.iexcodcia, a.iexcodarea asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

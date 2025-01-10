@@ -95,9 +95,9 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
 
         String sql = "select count(iexcodtra) as result " +
                 "from iexacumval " +
-                "where iexcodcia= :iexcodcia " +
-                "and iexcodtra= :iexcodtra " +
-                "and iexaniotrib= :iexaniotrib ";
+                "where iexcodcia = :iexcodcia " +
+                "and iexcodtra = :iexcodtra " +
+                "and iexaniotrib = :iexaniotrib ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", empacu.getIexcodcia())
@@ -133,8 +133,8 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexfecmod " +
                 "from iexacumval " +
                 "where iexcodcia = :iexcodcia and " +
-                "iexcodtra= :iexcodtra and " +
-                "iexaniotrib= :iexaniotrib ";
+                "iexcodtra = :iexcodtra and " +
+                "iexaniotrib = :iexaniotrib ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia)

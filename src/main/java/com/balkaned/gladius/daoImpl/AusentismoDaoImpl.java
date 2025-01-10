@@ -40,8 +40,8 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "  ( " +
                 "  select  iexkey, desdet from iexttabled where iexcodtab='57' " +
                 "  ) d " +
-                "where v.iexcodcia= :iexcodcia and " +
-                "v.iexcodtra= :iexcodtra and " +
+                "where v.iexcodcia = :iexcodcia and " +
+                "v.iexcodtra = :iexcodtra and " +
                 "v.iextipaus = d.iexkey ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -143,36 +143,36 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "to_char(a.iexfecini,'dd/mm/yyyy') iexfecini, " +
                 "to_char(a.iexfecfin,'dd/mm/yyyy') iexfecfin, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "   when (a.iexfecini >=to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'dd/mm/yyyy')) " +
                 "       then (a.iexfecfin -  a.iexfecini) +1 " +
-                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	    then (a.iexfecfin -  to_date(' :fecini ','dd/mm/yyyy')) +1 " +
-                "	when (a.iexfecini >= to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	    then ( to_date(':fecfin','dd/mm/yyyy') - a.iexfecini) +1 " +
-                "	when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	    then ( to_date(' :fecfin ','dd/mm/yyyy') - to_date(' :fecini ','dd/mm/yyyy')) +1 " +
+                "   when (a.iexfecini < to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then (a.iexfecfin -  to_date(:fecini,'dd/mm/yyyy')) +1 " +
+                "	when (a.iexfecini >= to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(:fecfin,'dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then ( to_date(:fecfin,'dd/mm/yyyy') - a.iexfecini) +1 " +
+                "	when (a.iexfecini < to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then ( to_date(:fecfin,'dd/mm/yyyy') - to_date(:fecini,'dd/mm/yyyy')) +1 " +
                 "end dias_aus, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy'))" +
-                "	    then   to_char(a.iexfecfin,'dd/mm/yyyy') " +
-                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin <= to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "   when (a.iexfecini >=to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(:fecfin,'dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then to_char(a.iexfecfin,'dd/mm/yyyy') " +
+                "   when (a.iexfecini < to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'dd/mm/yyyy')) " +
                 "	    then  to_char(a.iexfecfin,'dd/mm/yyyy') " +
-                "	when (a.iexfecini >= to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecini <= to_date(' :fecfin ','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	    then ' :fecfin ' " +
-                "   when (a.iexfecini < to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin >  to_date(' :fecfin ','dd/mm/yyyy')) " +
-                "	    then ' :fecfin ' " +
+                "	when (a.iexfecini >= to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecini <= to_date(:fecfin,'dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then :fecfin " +
+                "   when (a.iexfecini < to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin >  to_date(:fecfin,'dd/mm/yyyy')) " +
+                "	    then :fecfin " +
                 "end  fecfinrep, " +
                 "k.des1det codcon, " +
                 "k.desdet destipaus " +
@@ -185,16 +185,16 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "	 where " +
                 "	 c.iexcodcia = a.iexcodcia and " +
                 "	 c.iexcodtra = a.iexcodtra and " +
-                "	 c.iexcodcia= :codcia and c.iexreglab=' :regimen ' and " +
+                "	 c.iexcodcia= :codcia and c.iexreglab=:regimen and " +
                 "	 ( " +
-                "	    (a.iexfecini >=to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecini <=to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    (a.iexfecini >=to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecini <=to_date(:fecfin,'dd/mm/yyyy')) " +
                 "		or " +
-                "	    (a.iexfecfin >=to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin <=to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "	    (a.iexfecfin >=to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin <=to_date(:fecfin,'dd/mm/yyyy')) " +
                 "		or " +
-                "		(a.iexfecini <to_date(' :fecini ','dd/mm/yyyy') and " +
-                "       a.iexfecfin >to_date(' :fecfin ','dd/mm/yyyy')) " +
+                "		(a.iexfecini <to_date(:fecini,'dd/mm/yyyy') and " +
+                "       a.iexfecfin >to_date(:fecfin,'dd/mm/yyyy')) " +
                 " ) ";
 
         if (codtra != null && codtra.intValue() != 0) {
@@ -221,7 +221,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
         String sql = "select v.iexcodcia, v.iexcodtra, v.iexcorrel, " +
                 "to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
-                "v.iexnrodias, v.iextipaus , d.desdet as destipaus, v.iexglosa, " +
+                "v.iexnrodias, v.iextipaus, d.desdet as destipaus, v.iexglosa, " +
                 "v.iexusucrea, to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, " +
                 "v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexausprg v, " +

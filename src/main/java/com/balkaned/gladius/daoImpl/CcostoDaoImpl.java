@@ -68,8 +68,8 @@ public class CcostoDaoImpl implements CcostoDao {
                 "from iexccosto a " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='64') d " +
                 "   on a.iexcodcat = d.iexkey " +
-                "where iexcodcia= :iexcodcia and " +
-                "a.iexccosto= :iexccosto ";
+                "where iexcodcia = :iexcodcia and " +
+                "a.iexccosto = :iexccosto ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia)

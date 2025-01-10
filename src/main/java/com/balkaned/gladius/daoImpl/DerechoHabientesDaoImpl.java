@@ -59,7 +59,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexblock_dom1, " +
                 "d.iexetapa_dom1, " +
                 "d.iextipzona_dom1, " +
-                "d.iexnomzona_dom1,  " +
+                "d.iexnomzona_dom1, " +
                 "d.iexreferencia_dom1, " +
                 "d.iexubigeo_dom1, " +
                 "d.iextipvia_dom2, " +
@@ -86,13 +86,13 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexnacion_origen2, " +
                 "d.iexdepart_origen2, " +
                 "d.iexprovin_origen2 " +
-                "from iexempderhab d, iexempleado p , (select  iexkey, desdet from iexttabled where iexcodtab='19') g,  " +
-                "(select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
-                " where " +
-                "d.iexcodcia = p.iexcodcia and  " +
-                "d.iexcodtra = p.iexcodtra  and " +
+                "from iexempderhab d, iexempleado p, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='19') g, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
+                " where d.iexcodcia = p.iexcodcia and " +
+                "d.iexcodtra = p.iexcodtra and " +
                 "d.iextipvinculo = g.iexkey and " +
-                "d.iextipnroiddep = j.iexkey  and " +
+                "d.iextipnroiddep = j.iexkey and " +
                 "d.iexcodcia = :codcia " +
                 "d.iexcodtra = :codtra ";
 
@@ -120,17 +120,17 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexapepatdep, " +
                 "d.iexapematdep, " +
                 "d.iexnomdep " +
-                "from iexempderhab d, iexempleado p , (select  iexkey, desdet from iexttabled where iexcodtab='19') g,  " +
-                "(select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
-                "where " +
-                "d.iexcodcia = p.iexcodcia and  " +
-                "d.iexcodtra = p.iexcodtra  and " +
+                "from iexempderhab d, iexempleado p, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='19') g, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
+                "where d.iexcodcia = p.iexcodcia and " +
+                "d.iexcodtra = p.iexcodtra and " +
                 "d.iextipvinculo = g.iexkey and " +
-                "d.iextipnroiddep = j.iexkey  and " +
+                "d.iextipnroiddep = j.iexkey and " +
                 "d.iexcodcia = :codcia and " +
                 "d.iexcodtra = :codtra and " +
-                "d.iextipnroiddep = ':iextipnroiddep' and " +
-                "d.iexnroiddep = ':iexnroiddep' ";
+                "d.iextipnroiddep = :iextipnroiddep and " +
+                "d.iexnroiddep = :iexnroiddep ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", derhab.getIexcodcia())
@@ -161,39 +161,39 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
     public void insertar(DerechoHabiente derhab) {
 
         String sql = "insert into iexempderhab( " +
-                " iexcodcia,           iexcodtra,         	iexcoddep,         iextipnroiddep,      iexnroiddep, " +
-                " iexpaisemisor,       iexfecnac,         	iexapepatdep,      iexapematdep,        iexnomdep, " +
-                " iexsexo,             iextipvinculo,     	iextipdocacredit,  iexnrodocacredit,    iexmesconcep, " +
-                " iextipvia_dom1,      iexnomvia_dom1,    	iexnrovia_dom1, " +
-                " iexdeptin_dom1,      iexinterior_dom1,  	iexmanzana_dom1, " +
-                " iexlote_dom1,        iexkilometro_dom1, 	iexblock_dom1, " +
-                " iexetapa_dom1,       iextipzona_dom1,   	iexnomzona_dom1, " +
-                " iexreferencia_dom1,  iexubigeo_dom1, " +
-                " iextipvia_dom2,      iexnomvia_dom2,        iexnrovia_dom2,    iexdeptin_dom2, " +
-                " iexinterior_dom2,    iexmanzana_dom2,       iexlote_dom2,      iexkilometro_dom2, " +
-                " iexblock_dom2,       iexetapa_dom2,         iextipzona_dom2,   iexnomzona_dom2, " +
-                " iexreferencia_dom2,  iexubigeo_dom2,         " +
-                " iexcenasis,          iexcodlar,             iexnrotelf,        iexemail , " +
-                " iexnacion_origen1, " +
-                " iexdepart_origen1, " +
-                " iexprovin_origen1, " +
-                " iexnacion_origen2, " +
-                " iexdepart_origen2, " +
-                " iexprovin_origen2 " +
+                "iexcodcia, iexcodtra, iexcoddep, iextipnroiddep, iexnroiddep, " +
+                "iexpaisemisor, iexfecnac, iexapepatdep, iexapematdep, iexnomdep, " +
+                "iexsexo, iextipvinculo, iextipdocacredit, iexnrodocacredit, iexmesconcep, " +
+                "iextipvia_dom1, iexnomvia_dom1, iexnrovia_dom1, " +
+                "iexdeptin_dom1, iexinterior_dom1, iexmanzana_dom1, " +
+                "iexlote_dom1, iexkilometro_dom1, iexblock_dom1, " +
+                "iexetapa_dom1, iextipzona_dom1, iexnomzona_dom1, " +
+                "iexreferencia_dom1, iexubigeo_dom1, " +
+                "iextipvia_dom2, iexnomvia_dom2, iexnrovia_dom2, iexdeptin_dom2, " +
+                "iexinterior_dom2, iexmanzana_dom2, iexlote_dom2, iexkilometro_dom2, " +
+                "iexblock_dom2, iexetapa_dom2, iextipzona_dom2, iexnomzona_dom2, " +
+                "iexreferencia_dom2, iexubigeo_dom2, " +
+                "iexcenasis, iexcodlar, iexnrotelf, iexemail, " +
+                "iexnacion_origen1, " +
+                "iexdepart_origen1, " +
+                "iexprovin_origen1, " +
+                "iexnacion_origen2, " +
+                "iexdepart_origen2, " +
+                "iexprovin_origen2 " +
                 " ) values " +
-                " (   ? ,  ? , ?,   ?,   ?,  " +
-                " ? ,  to_date(?,'DD/MM/YYYY'),  ?,   ?,   ?,  " +
-                " ? ,  ?,  ?,   ?,   ?,   " +
-                " ?,   ?,  ?  , " +
-                " ?,   ?,  ?  , " +
-                " ?,   ?,  ?  , " +
-                " ?,   ?,  ?  , " +
-                " ?,   ?,            " +
-                " ?,   ?,  ?  , ? ,  " +
-                " ?,   ?,  ?  , ? ,  " +
-                " ?,   ?,  ?  , ? ,  " +
-                " ?,   ?,             " +
-                " ?,   ?,  ?  , ? ,   " +
+                " ( ?, ?, ?, ?, ?, " +
+                " ?, to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
+                " ?, ?, ?, ?, ?, " +
+                " ?, ?, ?, " +
+                " ?, ?, ?, " +
+                " ?, ?, ?, " +
+                " ?, ?, ?, " +
+                " ?, ?, " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, ?, ?, " +
+                " ?, ?, " +
+                " ?, ?, ?, ?, " +
                 " ?, ?, ?, ?, ?, ? ) ";
 
         jdbc.update(sql,
@@ -284,7 +284,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexblock_dom1, " +
                 "d.iexetapa_dom1, " +
                 "d.iextipzona_dom1, " +
-                "d.iexnomzona_dom1,  " +
+                "d.iexnomzona_dom1, " +
                 "d.iexreferencia_dom1, " +
                 "d.iexubigeo_dom1, " +
                 "d.iextipvia_dom2, " +
@@ -311,13 +311,13 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexnacion_origen2, " +
                 "d.iexdepart_origen2, " +
                 "d.iexprovin_origen2 " +
-                "from iexempderhab d, iexempleado p, (select  iexkey, desdet from iexttabled where iexcodtab='19') g, " +
-                "(select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
-                "where " +
-                "d.iexcodcia = p.iexcodcia and " +
-                "d.iexcodtra = p.iexcodtra  and " +
+                "from iexempderhab d, iexempleado p, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='19') g, " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
+                "where d.iexcodcia = p.iexcodcia and " +
+                "d.iexcodtra = p.iexcodtra and " +
                 "d.iextipvinculo = g.iexkey and " +
-                "d.iextipnroiddep = j.iexkey  and " +
+                "d.iextipnroiddep = j.iexkey and " +
                 "d.iexcodcia = :codcia and " +
                 "d.iexcodtra = :codtra and " +
                 "d.iexcoddep = :coddep ";
@@ -336,26 +336,27 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
     public void actualizar(DerechoHabiente derhab) {
 
         String sql = "update iexempderhab set " +
-                " iextipnroiddep =?,     iexnroiddep =?, " +
-                " iexpaisemisor =?,      iexfecnac =to_date(?,'DD/MM/YYYY'),         	iexapepatdep =?,      iexapematdep =?,        iexnomdep =?, " +
-                " iexsexo=?,             iextipvinculo=?,     	iextipdocacredit=?,  iexnrodocacredit=?,    iexmesconcep=?, " +
-                " iextipvia_dom1=?,      iexnomvia_dom1=?,    	iexnrovia_dom1=?, " +
-                " iexdeptin_dom1=?,      iexinterior_dom1=?,  	iexmanzana_dom1=?, " +
-                " iexlote_dom1=?,        iexkilometro_dom1=?, 	iexblock_dom1=?, " +
-                " iexetapa_dom1=?,       iextipzona_dom1=?,   	iexnomzona_dom1=?, " +
-                " iexreferencia_dom1=?,  iexubigeo_dom1=?, " +
-                " iextipvia_dom2=?,      iexnomvia_dom2=?,        iexnrovia_dom2=?,    iexdeptin_dom2=?, " +
-                " iexinterior_dom2=?,    iexmanzana_dom2=?,       iexlote_dom2=?,      iexkilometro_dom2=?, " +
-                " iexblock_dom2=?,       iexetapa_dom2=?,         iextipzona_dom2=?,   iexnomzona_dom2=?, " +
-                " iexreferencia_dom2=?,  iexubigeo_dom2=?,         " +
-                " iexcenasis=?,          iexcodlar=?,             iexnrotelf=?,        iexemail=?  , " +
-                " iexnacion_origen1 =?, " +
-                " iexdepart_origen1 =?, " +
-                " iexprovin_origen1 =?, " +
-                " iexnacion_origen2 =?, " +
-                " iexdepart_origen2 =?, " +
-                " iexprovin_origen2 =? " +
-                " where iexcodcia=? and iexcodtra=? and iexcoddep=? ";
+                "iextipnroiddep =?, iexnroiddep =?, " +
+                "iexpaisemisor =?, iexfecnac =to_date(?,'DD/MM/YYYY'), iexapepatdep =?, iexapematdep =?, " +
+                "iexnomdep =?, iexsexo=?, iextipvinculo=?, iextipdocacredit=?, iexnrodocacredit=?, " +
+                "iexmesconcep=?, iextipvia_dom1=?, iexnomvia_dom1=?, iexnrovia_dom1=?, " +
+                "iexdeptin_dom1=?, iexinterior_dom1=?, iexmanzana_dom1=?, " +
+                "iexlote_dom1=?, iexkilometro_dom1=?, iexblock_dom1=?, " +
+                "iexetapa_dom1=?, iextipzona_dom1=?, iexnomzona_dom1=?, " +
+                "iexreferencia_dom1=?, iexubigeo_dom1=?, iextipvia_dom2=?, iexnomvia_dom2=?, " +
+                "iexnrovia_dom2=?, iexdeptin_dom2=?, " +
+                "iexinterior_dom2=?, iexmanzana_dom2=?, iexlote_dom2=?, iexkilometro_dom2=?, " +
+                "iexblock_dom2=?, iexetapa_dom2=?, iextipzona_dom2=?, iexnomzona_dom2=?, " +
+                "iexreferencia_dom2=?, iexubigeo_dom2=?, " +
+                "iexcenasis=?, iexcodlar=?, iexnrotelf=?, iexemail=?, " +
+                "iexnacion_origen1 =?, " +
+                "iexdepart_origen1 =?, " +
+                "iexprovin_origen1 =?, " +
+                "iexnacion_origen2 =?, " +
+                "iexdepart_origen2 =?, " +
+                "iexprovin_origen2 =? " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and iexcoddep=? ";
 
         jdbc.update(sql,
                 derhab.getIextipnroiddep(),
@@ -417,7 +418,8 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
     public void eliminar(DerechoHabiente derhab) {
 
         String sql = "delete from iexempderhab " +
-                "where iexcodcia=? and iexcodtra=? and iexcoddep=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? and iexcoddep=? ";
 
         jdbc.update(sql,
                 derhab.getIexcodcia(),
@@ -425,5 +427,4 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 derhab.getIexcoddep())
         ;
     }
-
 }

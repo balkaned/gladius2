@@ -115,7 +115,7 @@ public class DashboardDaoImpl implements DashboardDao {
 
         String sql = "select count(*) as cantidad " +
                 "from iexempleado e " +
-                "where e.iexflgest='1' " +
+                "where e.iexflgest = '1' " +
                 "and e.iexcodcia = :codcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -219,7 +219,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 "   from iexempleado e " +
                 "   inner join iexarea ar1 on ar1.iexcodarea=e.iexarea " +
                 "   where e.iexcodcia = :codcia " +
-                "   and e.iexflgest='1' " +
+                "   and e.iexflgest = '1' " +
                 "   and ar1.iexcodcia = :codcia " +
                 "   and e.iexarea=ar.iexcodarea) as cantidad " +
                 "from iexarea ar " +
@@ -243,10 +243,10 @@ public class DashboardDaoImpl implements DashboardDao {
                 "from iexempleado e1 " +
                 "inner join iexttabled tb1 on tb1.iexkey = e1.iexcodafp " +
                 "where e1.iexcodcia = :codcia " +
-                "and tb1.iexcodtab='11' " +
-                "and e1.iexflgest='1' " +
-                "and e1.iexcodafp=tb1.iexkey " +
-                "group by tb1.iexcodtab,tb1.desdet ";
+                "and tb1.iexcodtab = '11' " +
+                "and e1.iexflgest = '1' " +
+                "and e1.iexcodafp = tb1.iexkey " +
+                "group by tb1.iexcodtab, tb1.desdet ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia);
@@ -269,7 +269,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 "and tb1.iexcodtab = '36' " +
                 "and e1.iexflgest = '1' " +
                 "and e1.iexcodban_hab = tb1.iexkey " +
-                "group by tb1.iexcodtab,tb1.desdet ";
+                "group by tb1.iexcodtab, tb1.desdet ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia);

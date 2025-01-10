@@ -196,7 +196,8 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
                 "coodescon desconceptaux " +
                 "from iexproxcon_agrup " +
                 "inner join iexconcepto on coocodcon = grpidconaux " +
-                "where grpidpro = :idproceso and grpidcon = trim(:idconcepto) ";
+                "where grpidpro = :idproceso and " +
+                "grpidcon = trim(:idconcepto) ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idproceso", idproceso)
@@ -223,7 +224,9 @@ public class ConceptoXProcesoDaoImpl implements ConceptoXProcesoDao {
     public void eliminaAgrup(ConceptoxAgrup conxagrup) {
 
         String sql = "delete from iexproxcon_agrup " +
-                "where grpidpro=? and trim(grpidcon)=trim(?) and trim(grpidconaux) = trim(?) ";
+                "where grpidpro=? and " +
+                "trim(grpidcon)=trim(?) and " +
+                "trim(grpidconaux) = trim(?) ";
 
         jdbc.update(sql,
                 conxagrup.getIdproceso(),

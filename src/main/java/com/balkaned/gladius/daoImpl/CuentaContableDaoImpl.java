@@ -71,7 +71,7 @@ public class CuentaContableDaoImpl implements CuentaContableDao {
                 "a.iexfecmod " +
                 "from iexccontable a " +
                 "full outer join (select  iexkey, desdet from iexttabled where iexcodtab='65') d on a.iextipocta = d.iexkey " +
-                "where iexcodcia= :iexcodcia ";
+                "where iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", codcia);

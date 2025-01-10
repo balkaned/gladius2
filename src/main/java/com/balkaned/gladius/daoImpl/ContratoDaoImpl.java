@@ -83,12 +83,13 @@ public class ContratoDaoImpl implements ContratoDao {
 
         String sql = "insert into iexcontctl( " +
                 "iexcodcia, iexcodtra, iexcorrel, iextipcont, " +
-                "iexfecini, iexfecfin, iexmodcont, iexusucrea, iexestado, " +
-                "iexfeccrea " +
+                "iexfecini, iexfecfin, iexmodcont, iexusucrea," +
+                " iexestado, iexfeccrea " +
                 " ) values ( " +
                 " ?, ?, ?, ?, " +
-                " to_date(?,'DD/MM/YYYY'), to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
-                " current_date " +
+                " to_date(?,'DD/MM/YYYY'), " +
+                "to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
+                "current_date " +
                 " ) ";
 
         jdbc.update(sql,
@@ -141,7 +142,7 @@ public class ContratoDaoImpl implements ContratoDao {
     public void actualizarContratoEmp(ContratoEmp contemp) {
 
         String sql = "update iexcontctl set " +
-                "iextipcont=?, iexfecini=to_date(?,'DD/MM/YYYY'), iexfecfin=to_date(?,'DD/MM/YYYY'), " +
+                "iextipcont=?, iexfecini = to_date(?,'DD/MM/YYYY'), iexfecfin=to_date(?,'DD/MM/YYYY'), " +
                 "iexmodcont=?, iexusumod=?, iexfecmod=current_date, iexestado = ? " +
                 "where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
 
