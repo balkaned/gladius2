@@ -29,7 +29,7 @@ public class SistemaDaoImpl implements SistemaDao {
 
     public List<Sistemas> listarSistemas() {
 
-        String sql = "select  " +
+        String sql = "select " +
                 "iexcodsys, " +
                 "iexdessys " +
                 "from iexsystemas ";

@@ -153,16 +153,19 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexhrssale_antes, " +
                 "t.iexminsale_antes, " +
                 "t.iexhrstarde, " +
-                "t.iexmintarde, t.iexausenid, " +
-                "t.iexpermiso, t.iexvacaind, " +
-                "t.iexindferiado, t.iexindfalta " +
+                "t.iexmintarde, " +
+                "t.iexausenid, " +
+                "t.iexpermiso, " +
+                "t.iexvacaind, " +
+                "t.iexindferiado, " +
+                "t.iexindfalta " +
                 "from iexturnodia t, iexturno e " +
                 "where t.iexcodcia = e.iexcodcia and " +
                 "t.iexcodturno = e.iexcodturno and " +
                 "t.iexcodcia = :codcia and " +
                 "t.iexcodtra = :codtra and " +
-                "t.iexfecdia >= to_date(':fecini','dd/mm/yyyy') and " +
-                "t.iexfecdia <= to_date(':fecfin','dd/mm/yyyy') " +
+                "t.iexfecdia >= to_date(:fecini,'dd/mm/yyyy') and " +
+                "t.iexfecdia <= to_date(:fecfin,'dd/mm/yyyy') " +
                 "order by iexcodfec asc ";
 
         SqlParameterSource namedParameteres = new MapSqlParameterSource()
@@ -280,7 +283,8 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
     public void eliminarTurno(Turno turno) {
 
         String sql = "delete from iexturno " +
-                "where iexcodcia=? and iexcodturno =? ";
+                "where iexcodcia=? and " +
+                "iexcodturno =? ";
 
         jdbc.update(sql,
                 turno.getCodcia(),
@@ -327,13 +331,15 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "to_char(t.iexhriniperm,'HH24:MI') iexhriniperm, " +
                 "to_char(t.iexhrfinperm,'HH24:MI') iexhrfinperm, " +
                 "t.iexhrsperm, " +
-                "t.iexminsperm, t.iexindferiado, t.iexindfalta " +
+                "t.iexminsperm, " +
+                "t.iexindferiado, " +
+                "t.iexindfalta " +
                 "from iexturnodia t, iexturno e " +
                 "where t.iexcodcia = e.iexcodcia and " +
                 "t.iexcodturno = e.iexcodturno and " +
                 "t.iexcodcia = :codcia and " +
                 "t.iexcodtra = :codtra and " +
-                "t.iexcodfec = ':codfec' ";
+                "t.iexcodfec = :codfec ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -398,7 +404,8 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
     public void eliminaTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
 
         String sql = "delete from iexturnodia " +
-                "where iexcodcia=? and iexcodtra=? and " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
                 "iexcodfec = to_char(to_date(?,'dd/mm/yyyy'),'yyyymmdd') ";
 
         jdbc.update(sql,
@@ -407,8 +414,10 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 fecdia
         );
 
-        String sql2 = "delete from iexturno_marks where iexcodcia=? and " +
-                "iexcodtra=? and iexcodfecha=to_char(to_date(?,'dd/mm/yyyy'), 'yyyymmdd') ";
+        String sql2 = "delete from iexturno_marks " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
+                "iexcodfecha = to_char(to_date(?,'dd/mm/yyyy'), 'yyyymmdd') ";
 
         jdbc.update(sql2,
                 codcia,
@@ -433,12 +442,15 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
     public List<TurnoMarks> obtenerTurnoDiaMarks(Integer codcia, Integer codtra, String codfec) {
 
-        String sql = "select iexcodcia, iexcodtra, iexcodfecha, " +
-                "to_char(iexfechamarks,'dd/mm/yyyy hh24:mi:ss') as iexfechamarks, iexflgmanual " +
+        String sql = "select iexcodcia, " +
+                "iexcodtra, " +
+                "iexcodfecha, " +
+                "to_char(iexfechamarks,'dd/mm/yyyy hh24:mi:ss') as iexfechamarks, " +
+                "iexflgmanual " +
                 "from iexturno_marks " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
-                "iexcodfecha = ':codfec' ";
+                "iexcodfecha = :codfec ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -477,7 +489,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "from iexmarkas_manual " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
-                "iexcodfecha = ':codfec' " +
+                "iexcodfecha = :codfec " +
                 "order by iexfechamarks asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -508,7 +520,9 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
         String sql = "delete from iexmarkas_manual " +
                 "where iexcodcia=? " +
-                "and iexcodtra=? and iexcodfecha=? and iexfechamarks=to_timestamp(?,'dd/mm/yyyy hh24:mi:ss') ";
+                "and iexcodtra=? and " +
+                "iexcodfecha=? and " +
+                "iexfechamarks = to_timestamp(?,'dd/mm/yyyy hh24:mi:ss') ";
 
         jdbc.update(sql,
                 codcia,

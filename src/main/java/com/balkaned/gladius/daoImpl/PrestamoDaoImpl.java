@@ -55,10 +55,10 @@ public class PrestamoDaoImpl implements PrestamoDao {
                 "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod, " +
                 "c.iexestado " +
                 "from iexprestamocab c, " +
-                " (select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
-                " (select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
-                " (select iexkey, desdet from iexttabled where iexcodtab='61') h " +
-                "where c.iextippres =  i.iexkey and " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab='61') h " +
+                "where c.iextippres = i.iexkey and " +
                 "c.iextipinteres = j.iexkey and " +
                 "c.iexfrecuencia = h.iexkey and " +
                 "iexcodcia = :codcia and " +
@@ -160,13 +160,15 @@ public class PrestamoDaoImpl implements PrestamoDao {
                 "to_char(c.iexfecmod,'DD/MM/YYYY') iexfecmod, " +
                 "c.iexestado " +
                 "from iexprestamocab c, " +
-                " ( select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
-                " ( select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
-                " ( select iexkey, desdet from iexttabled where iexcodtab='61') h " +
+                "   ( select iexkey, desdet from iexttabled where iexcodtab='59') i, " +
+                "   ( select iexkey, desdet from iexttabled where iexcodtab='60') j, " +
+                "   ( select iexkey, desdet from iexttabled where iexcodtab='61') h " +
                 "where c.iextippres =  i.iexkey and " +
                 "c.iextipinteres = j.iexkey and " +
-                "c.iexfrecuencia =  h.iexkey and iexcodcia = :codcia and " +
-                "iexcodtra = :codtra and iexcorrel = :iexcorrel ";
+                "c.iexfrecuencia =  h.iexkey and " +
+                "iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexcorrel = :iexcorrel ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", prestcab.getIexcodcia())
@@ -218,7 +220,9 @@ public class PrestamoDaoImpl implements PrestamoDao {
     public void eliminarPrestamoDetAll(PrestamoCab prestcab) {
 
         String sql = "delete from iexprestamodet " +
-                "where iexcodcia = ? and iexcodtra = ? and iexcorrel= ? ";
+                "where iexcodcia = ? and " +
+                "iexcodtra = ? and " +
+                "iexcorrel= ? ";
 
         jdbc.update(sql,
                 prestcab.getIexcodcia(),
@@ -230,7 +234,9 @@ public class PrestamoDaoImpl implements PrestamoDao {
     public void eliminarPrestamoCab(PrestamoCab prestcab) {
 
         String sql = "delete from iexprestamocab " +
-                "where iexcodcia = ?  and iexcodtra = ? and iexcorrel = ? ";
+                "where iexcodcia = ? and " +
+                "iexcodtra = ? and " +
+                "iexcorrel = ? ";
 
         jdbc.update(sql,
                 prestcab.getIexcodcia(),

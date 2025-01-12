@@ -71,7 +71,8 @@ public class LegajoDaoImpl implements LegajoDao {
         final Integer[] idfinal = {0};
 
         String sql = "select coalesce(max(iexcodgrpfile),0)+1 idcont " +
-                "from iexgrpfile where iexcodcia = :iexcodcia ";
+                "from iexgrpfile " +
+                "where iexcodcia = :iexcodcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("iexcodcia", grpfile.getIexcodcia());
@@ -106,7 +107,7 @@ public class LegajoDaoImpl implements LegajoDao {
     public void insertarImage(FileImageLegajo fileImageLegajo) {
 
         String sql = "insert into iexfileimage (iexcodcia, iexcodgrpfile, iexcodimage, " +
-                "iexurlimage, iexdesimage, iexestado , iexusucrea, iexfeccrea) values " +
+                "iexurlimage, iexdesimage, iexestado, iexusucrea, iexfeccrea) values " +
                 " ( ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP) ";
 
         jdbc.update(sql,
@@ -122,8 +123,10 @@ public class LegajoDaoImpl implements LegajoDao {
 
     public Integer obtieneIdImage(Integer codcia, Integer idgrpfile) {
 
-        String sql = "SELECT coalesce(max(iexcodimage),0)+1 idcont " +
-                "FROM iexfileimage WHERE IEXCODCIA = :codcia and iexcodgrpfile = :idgrpfile ";
+        String sql = "select coalesce(max(iexcodimage),0)+1 idcont " +
+                "from iexfileimage " +
+                "where IEXCODCIA = :codcia and " +
+                "iexcodgrpfile = :idgrpfile ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -165,8 +168,10 @@ public class LegajoDaoImpl implements LegajoDao {
                 "iexgrpfile = ?, " +
                 "iexdesgrpfile = ?, " +
                 "iexusumod = ?, iexestado = ?, " +
-                "iexfecmod = CURRENT_TIMESTAMP where iexcodcia = ? and " +
-                "iexcodgrpfile = ? and iexcodtra = ? ";
+                "iexfecmod = CURRENT_TIMESTAMP " +
+                "where iexcodcia = ? and " +
+                "iexcodgrpfile = ? and " +
+                "iexcodtra = ? ";
 
         jdbc.update(sql,
                 grpfile.getIexgrpfile(),
@@ -181,8 +186,10 @@ public class LegajoDaoImpl implements LegajoDao {
 
     public void eliminarGrpFile(Grpfile grpfile) {
 
-        String sql = "delete from iexgrpfile where iexcodcia=? and " +
-                "iexcodgrpfile = ? and iexcodtra = ? ";
+        String sql = "delete from iexgrpfile " +
+                "where iexcodcia=? and " +
+                "iexcodgrpfile = ? and " +
+                "iexcodtra = ? ";
 
         jdbc.update(sql,
                 grpfile.getIexcodcia(),
@@ -194,7 +201,8 @@ public class LegajoDaoImpl implements LegajoDao {
     public void eliminarImage(FileImageLegajo fileImageLegajo) {
 
         String sql = "delete from iexfileimage " +
-                "where iexcodcia =? and iexcodgrpfile =? and iexcodimage =? ";
+                "where iexcodcia =? and " +
+                "iexcodgrpfile =? and iexcodimage =? ";
 
         jdbc.update(sql,
                 fileImageLegajo.getIexcodcia(),
@@ -206,7 +214,9 @@ public class LegajoDaoImpl implements LegajoDao {
     public void aprobarDocumento(FileImageLegajo fileImageLegajo) {
 
         String sql = "update iexfileimage set iexestado=?, iexusuaprob=?, iexfecaprob=? " +
-                "where iexcodcia=? and iexcodgrpfile=? and iexcodimage=? ";
+                "where iexcodcia=? and " +
+                "iexcodgrpfile=? and " +
+                "iexcodimage=? ";
 
         jdbc.update(sql,
                 fileImageLegajo.getIexestado(),

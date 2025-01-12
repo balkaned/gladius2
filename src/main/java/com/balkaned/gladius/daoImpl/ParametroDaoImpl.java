@@ -41,9 +41,10 @@ public class ParametroDaoImpl implements ParametroDao {
                 "p.iexusumod, " +
                 "p.iexfecmod " +
                 "from iexparameter p, iexconcepto c, " +
-                " (select iexkey, desdet from iexttabled where iexcodtab='67') g " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab='67') g " +
                 "where p.iexcodcon = c.coocodcon and " +
-                "p.iextippar = g.iexkey order by p.iextippar, p.iexcodcon asc ";
+                "p.iextippar = g.iexkey " +
+                "order by p.iextippar, p.iexcodcon asc ";
 
         SqlParameterSource namedParameter = new MapSqlParameterSource();
 
@@ -86,10 +87,11 @@ public class ParametroDaoImpl implements ParametroDao {
                 "p.iexusumod, " +
                 "p.iexfecmod " +
                 "from iexparameter p, iexconcepto c, " +
-                " ( select iexkey, desdet from iexttabled where iexcodtab='67') g " +
-                " where " +
-                " p.iexcodcon = c.coocodcon and " +
-                " p.iextippar = g.iexkey and p.iexcodcon = :codcon ";
+                "   ( select iexkey, desdet from iexttabled where iexcodtab='67') g " +
+                "where " +
+                "p.iexcodcon = c.coocodcon and " +
+                "p.iextippar = g.iexkey and " +
+                "p.iexcodcon = :codcon ";
 
         SqlParameterSource namedParameter = new MapSqlParameterSource()
                 .addValue("codcon", codcon);
@@ -118,7 +120,8 @@ public class ParametroDaoImpl implements ParametroDao {
 
     public void eliminarParametrosGen(ParametrosGen par) {
 
-        String sql = "delete from iexparameter where iexcodcon = ? ";
+        String sql = "delete from iexparameter " +
+                "where iexcodcon = ? ";
 
         jdbc.update(sql, par.getIexcodcon());
     }

@@ -58,9 +58,9 @@ public class TtableDaoImpl implements TtableDao {
                 "iexlblval12, " +
                 "iexlblval13, " +
                 "iexlblval14, " +
-                "iexlblval15," +
-                "iexlblval16," +
-                "iexlblflg9," +
+                "iexlblval15, " +
+                "iexlblval16, " +
+                "iexlblflg9, " +
                 "iexlblflg10, " +
                 "iexlblflg11," +
                 "iexlblflg12, " +
@@ -173,7 +173,7 @@ public class TtableDaoImpl implements TtableDao {
                 "iexlblflg15, " +
                 "iexlblflg16 " +
                 "from iexttablec " +
-                "where iexcodtab = ':idttabla' ";
+                "where iexcodtab = :idttabla ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idttabla", idttabla);
@@ -262,7 +262,7 @@ public class TtableDaoImpl implements TtableDao {
                 "val15det, " +
                 "val16det " +
                 "from iexttabled " +
-                "where iexcodtab = ':idttabla' ";
+                "where iexcodtab = :idttabla ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idttabla", idttabla);
@@ -293,7 +293,8 @@ public class TtableDaoImpl implements TtableDao {
                 "val14det=?, " +
                 "val15det=?, " +
                 "val16det=? " +
-                "where iexcodtab=? and iexkey=? ";
+                "where iexcodtab=? and " +
+                "iexkey=? ";
 
         jdbc.update(sql,
                 ttd.getDesdet(),
@@ -341,8 +342,8 @@ public class TtableDaoImpl implements TtableDao {
                 "val15det, " +
                 "val16det " +
                 "from iexttabled " +
-                "where iexcodtab = ':idttabla' and " +
-                "iexkey = ':idttabladet' ";
+                "where iexcodtab = :idttabla and " +
+                "iexkey = :idttabladet ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idttabla", idttabla)
@@ -377,7 +378,8 @@ public class TtableDaoImpl implements TtableDao {
     public void eliminarTTablade(String idttabla, String idttabladet) {
 
         String sql = "delete from iexttabled " +
-                "where iexcodtab = ? and iexkey=? ";
+                "where iexcodtab = ? and " +
+                "iexkey=? ";
 
         jdbc.update(sql,
                 idttabla,

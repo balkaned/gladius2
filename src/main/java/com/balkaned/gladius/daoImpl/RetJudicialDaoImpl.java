@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "iexusumod, " +
                 "iexfecmod " +
                 "from iexretjudic, " +
-                " ( select  iexkey, desdet from iexttabled where iexcodtab='58') d, " +
+                "   ( select  iexkey, desdet from iexttabled where iexcodtab='58') d, " +
                 "iexprocesos p " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
@@ -126,9 +125,9 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "iexfeccrea, " +
                 "iexusumod, " +
                 "iexfecmod " +
-                "from iexretjudic , " +
-                " (select iexkey, desdet from iexttabled where iexcodtab='58') d, " +
-                " iexprocesos p " +
+                "from iexretjudic, " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab='58') d, " +
+                "iexprocesos p " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
                 "iexcorrel = :iexcorrel and " +
@@ -152,7 +151,9 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
                 "iexcodpro=?, iextipretjud =?, iexresolucion =?, " +
                 "iexfecini = to_date(?,'DD/MM/YYYY'), iexfecfin = to_date(?,'DD/MM/YYYY'), " +
                 "iexpordesct =?, ieximpfijo =?, iexusumod =?, iexfeccrea = current_date " +
-                "where iexcodcia =? and iexcodtra=? and iexcorrel= ? ";
+                "where iexcodcia =? and " +
+                "iexcodtra=? and " +
+                "iexcorrel= ? ";
 
         jdbc.update(sql,
                 retjud.getIexcodpro(),
@@ -172,7 +173,9 @@ public class RetJudicialDaoImpl implements RetJudicialDao {
     public void eliminarRetencionJudicial(RetencionJudicial retjud) {
 
         String sql = "delete from iexretjudic " +
-                "where iexcodcia =? and iexcodtra=? and iexcorrel=? ";
+                "where iexcodcia =? and " +
+                "iexcodtra=? and " +
+                "iexcorrel=? ";
 
         jdbc.update(sql,
                 retjud.getIexcodcia(),

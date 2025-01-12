@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -94,7 +95,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexcorrel = e.iexcorrel and " +
                 "n.iexcodcia = :codcia and " +
                 "n.iexcodpro = p.procodpro and " +
-                "substring(n.iexnroper,1,4) = ':anio' and " +
+                "substring(n.iexnroper,1,4) = :anio and " +
                 "n.iexcodtra = :codtra and " +
                 "n.procodcon in ('T4000','G0019','D2070','T4020','P0145','P0146') and " +
                 "p.procodregimenlab = '01' and progrppro in ('PLA','LIQ','GRA') " +
@@ -139,7 +140,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "j.iexcodtra = e.iexcodtra and " +
                 "j.iexcodcia = :codcia and " +
                 "iexcodpro = :idproceso and " +
-                "iexnroper = ':perpro' and " +
+                "iexnroper = :perpro and " +
                 "j.procodcon= ':codcon'  and j.provalor <>0 " +
                 "order by e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra, j.procodcon asc ";
 
@@ -213,8 +214,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexcodcia = :codcia and " +
                 "n.iexcodpro = p.procodpro and " +
                 "n.iexcodtra = :codtra and " +
-                "n.iexnroper >= ':perini' and " +
-                "n.iexnroper <= ':perfin' and " +
+                "n.iexnroper >= :perini and " +
+                "n.iexnroper <= :perfin and " +
                 "n.procodcon in ('T4000','T4010','D2070','T4020','T4030') " +
                 " ) k " +
                 "group by " +
@@ -228,8 +229,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "k.iextipdoc, " +
                 "k.iexnrodoc, " +
                 "k.iexfecini, " +
-                "k.iexfecfin," +
-                "k.iexcorrel order by k.iexnroper, k.iexcodpro asc ";
+                "k.iexfecfin, " +
+                "k.iexcorrel " +
+                "order by k.iexnroper, k.iexcodpro asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -303,8 +305,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "n.iexcodpro = :codpro and " +
                 "n.iexcodpro = p.procodpro and " +
                 "n.iexcodtra = :codtra and " +
-                "n.iexnroper >= ':perini' and " +
-                "n.iexnroper <= ':perfin' and " +
+                "n.iexnroper >= :perini and " +
+                "n.iexnroper <= :perfin and " +
                 "n.procodcon in ('T4000','T4010','D2070','T4020','T4030')) k " +
                 "group by " +
                 "k.iexcodcia, " +
@@ -318,7 +320,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "k.iexnrodoc, " +
                 "k.iexfecini, " +
                 "k.iexfecfin, " +
-                "k.iexcorrel order by k.iexnroper, k.iexcodpro asc ";
+                "k.iexcorrel " +
+                "order by k.iexnroper, k.iexcodpro asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -352,8 +355,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
         String sql = "select iexdesfile " +
                 "from iexsunatfile " +
                 "where iexcodcia = :codcia and " +
-                "iexcodfile = ':file' and " +
-                "iexpermes = ':permes' ";
+                "iexcodfile = :file and " +
+                "iexpermes = :permes ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -392,10 +395,10 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "TO_CHAR(p.iexfeccese,'DD/MM/YYYY') iexfeccese, " +
                 "p.iextipcese, p.iexobscese, p.iexanio_benef, p.iexmes_benef, " +
                 "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc, p.iexdominical " +
-                "from iexpropertra p, iexempleado e where " +
-                "p.iexcodcia = e.iexcodcia and " +
+                "from iexpropertra p, iexempleado e " +
+                "where p.iexcodcia = e.iexcodcia and " +
                 "p.iexcodtra = e.iexcodtra and p.iexcodcia = :codcia and p.iexcodpro = :idproceso and " +
-                "p.iexnroper = ':perpro' and iexcorrel = :correl ";
+                "p.iexnroper = :perpro and iexcorrel = :correl ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -537,14 +540,15 @@ public class PlanillaDaoImpl implements PlanillaDao {
         while (l_formula.hasNext()) {
 
             for_det = l_formula.next();
-            /* Se asigna valor de la lista al objeto Fórmula. */
-            /* Se verifica el identificador de la formula */
+            /* Se asigna valor de la lista al objeto Fórmula.
+               Se verifica el identificador de la formula */
             log.info("--Formula :" + for_det.getIdFormula());
 
             if (for_det.getTipOut().equals("1") || for_det.getTipOut().equals("3")) {
                 /* Selecciona los conceptos que son grupo de conceptos resultantes */
                 l_variables_glob = null;
                 v_variables_glob_concat = "";
+
                 /* Sumarizar los valores en el concepto grupo resultante */
                 v_resultado_glob_Final = 0.0;
 
@@ -625,6 +629,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     /* Grabar la data en la metanomina
                        guardarInformacionMeta(LoadData2,codcia, idproceso, idPeriodo);
                        Ejecutar el procedure de planillas modo masivo. */
+
                     log.info("Se ejecuto el procedure 2");
 
                     try {
@@ -701,12 +706,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     "p.iexcodtra = a.iexcodtra and " +
                     "p.iexcorrel = a.iexcorrel and " +
                     "p.iexcodcia = :codcia and p.iexcodpro = :idproceso and " +
-                    "p.iexnroper = ':perpro' and p.coocodforvar in :sqlcomand and " +
+                    "p.iexnroper = :perpro and p.coocodforvar in :sqlcomand and " +
                     "p.iexcorrel = :correl and a.thread = :thread order by 4,5 asc ";
         } else {
             sql = " select " +
                     "p.iexcodcia, p.iexcodpro, p.iexnroper, p.iexcodtra, p.procodcon as codcon, " +
-                    "p.coocodforvar as varcon, p.provalor as value" +
+                    "p.coocodforvar as varcon, p.provalor as value " +
                     "from iexpropertra_nomina_proc p, iexpropertra_proc a " +
                     "where p.iexcodcia = a.iexcodcia and " +
                     "p.iexcodpro = a.iexcodpro and " +
@@ -715,7 +720,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     "p.iexcorrel = a.iexcorrel and " +
                     "p.iexcodcia = :codcia and " +
                     "p.iexcodpro = :idproceso and " +
-                    "p.iexnroper = ':perpro' and " +
+                    "p.iexnroper = :perpro and " +
                     "p.iexcodtra = :codtra and " +
                     "p.coocodforvar in :sqlcomand and " +
                     "p.iexcorrel = :correl and " +
@@ -808,7 +813,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
     public void update_iexproperiodo(Integer codcia, Integer idproceso, String idPeriodo) {
         String sql = "update iexproperiodo set flgestado='2' " +
-                "where iexcodcia=? and iexcodpro=? and iexnroper=? ";
+                "where iexcodcia=? and iexcodpro=? " +
+                "and iexnroper=? ";
 
         jdbc.update(sql,
                 codcia,
@@ -822,9 +828,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
         String sql = "update iexproperiodo " +
                 "set timefin_proc = now(), " +
                 "timenroimp_proc = round(EXTRACT (SECOND FROM ( now() - timeini_proc ))) " +
-                "where iexcodcia = :codcia and " +
-                "iexcodpro = :idproceso and " +
-                "iexnroper = ':perpro' ";
+                "where iexcodcia = ? and " +
+                "iexcodpro = ? and " +
+                "iexnroper = ? ";
 
         jdbc.update(sql,
                 codcia,
@@ -863,11 +869,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "TO_CHAR(p.iexfeccese,'DD/MM/YYYY') iexfeccese, " +
                 "p.iextipcese, p.iexobscese, p.iexanio_benef, p.iexmes_benef, " +
                 "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc " +
-                "from iexpropertra p, iexempleado e where " +
-                "p.iexcodcia = e.iexcodcia and " +
-                "p.iexcodtra = e.iexcodtra and p.iexcodcia = :codcia and " +
-                "p.iexcodpro = :idproceso and p.iexnroper = ':perpro' and " +
-                "p.iexcodtra = :codtra and iexcorrel = :correl ";
+                "from iexpropertra p, iexempleado e " +
+                "where p.iexcodcia = e.iexcodcia and " +
+                "p.iexcodtra = e.iexcodtra and " +
+                "p.iexcodcia = :codcia and " +
+                "p.iexcodpro = :idproceso and " +
+                "p.iexnroper = :perpro and " +
+                "p.iexcodtra = :codtra and " +
+                "iexcorrel = :correl ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -897,10 +906,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "where j.procodcon = c.coocodcon and " +
                 "iexcodcia = :codcia and " +
                 "iexcodpro = :idproceso and " +
-                "iexnroper = ':perpro' and " +
+                "iexnroper = :perpro and " +
                 "iexcodtra = :codtra and " +
                 "iexcorrel = :correl and " +
-                "j.protipcon = ':flgcon' order by j.procodcon asc ";
+                "j.protipcon = :flgcon " +
+                "order by j.procodcon asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -933,10 +943,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "where j.procodcon = c.coocodcon and " +
                 "iexcodcia = :codcia and " +
                 "iexcodpro = :idproceso and " +
-                "iexnroper = ':perpro' and " +
+                "iexnroper = :perpro and " +
                 "iexcodtra = :codtra and " +
                 "iexcorrel = :correl and " +
-                "j.protipcon = ':flgcon' and provalor <> 0 ";
+                "j.protipcon = :flgcon and " +
+                "provalor <> 0 ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -967,7 +978,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "   on m.codmon = c.moneda " +
                 "where c.iexcodcia = :codcia and " +
                 "c.iexcodpro = :idproceso and " +
-                "c.iexnroper = ':perpro' and " +
+                "c.iexnroper = :perpro and " +
                 "c.iexcorrel = :correl ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -1001,9 +1012,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
         String sql = "select glosatxt " +
                 "from iexpropertra_txtbank " +
-                "where iexcodcia = :codcia and iexcodpro = :idproceso and " +
-                "iexnroper = ':nroper' and iexcorrel = :correl and " +
-                "codbank = ':codbank' and moneda = ':codmon' ";
+                "where iexcodcia = :codcia and " +
+                "iexcodpro = :idproceso and " +
+                "iexnroper = :nroper and " +
+                "iexcorrel = :correl and " +
+                "codbank = :codbank and " +
+                "moneda = :codmon ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -1031,19 +1045,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "d.nrodias, " +
                 "d.codcon " +
                 "from iexpropertra_vac d, iexempleado e, " +
-                " ( " +
-                " select iexkey, desdet from iexttabled where iexcodtab='56' " +
-                " ) tt, iexpuesto p " +
+                "   ( " +
+                "   select iexkey, desdet from iexttabled where iexcodtab='56' " +
+                "   ) tt, iexpuesto p " +
                 "where d.iexcodcia = e.iexcodcia and " +
                 "d.iexcodtra = e.iexcodtra and " +
                 "d.tipvac = tt.iexkey and " +
                 "e.iexcodcia = p.iexcodcia and " +
                 "e.iexpuesto = p.iexpuesto and " +
-                "d.iexcodcia = :codcia and d.iexcodpro = :idproceso and d.iexnroper = ':perpro' " +
-                "order by " +
-                "e.iexapepat, " +
-                "e.iexapemat, " +
-                "e.iexnomtra asc ";
+                "d.iexcodcia = :codcia and " +
+                "d.iexcodpro = :idproceso and " +
+                "d.iexnroper = :perpro " +
+                "order by e.iexapepat, e.iexapemat, e.iexnomtra asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -1068,19 +1081,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "d.nrodias, " +
                 "d.codcon " +
                 "from iexpropertra_aus d, iexempleado e, " +
-                " ( " +
-                " select iexkey, desdet from iexttabled where iexcodtab='57' " +
-                " ) tt, iexpuesto p " +
+                "   ( " +
+                "   select iexkey, desdet from iexttabled where iexcodtab='57' " +
+                "   ) tt, iexpuesto p " +
                 "where d.iexcodcia = e.iexcodcia and " +
                 "d.iexcodtra = e.iexcodtra and " +
                 "d.tipaus = tt.iexkey and " +
                 "e.iexcodcia = p.iexcodcia and " +
                 "e.iexpuesto = p.iexpuesto and " +
-                "d.iexcodcia = :codcia and d.iexcodpro = :idproceso and d.iexnroper = ':perpro' " +
-                "order by " +
-                "e.iexapepat, " +
-                "e.iexapemat, " +
-                "e.iexnomtra asc ";
+                "d.iexcodcia = :codcia and " +
+                "d.iexcodpro = :idproceso and " +
+                "d.iexnroper = :perpro " +
+                "order by e.iexapepat, e.iexapemat, e.iexnomtra asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -1204,14 +1216,18 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
                 "to_char(iexfecha,'dd/mm/yyyy hh24:mi:ss') as iexcodfec, " +
                 "iextipmarka as tipmarka, " +
                 "to_char(iexfeccrea,'dd/mm/yyyy hh24:mi:ss') iesfeccrea, " +
                 "iexusucrea " +
-                "from iexasistencia where iexcodcia = :codcia and " +
-                "iexcodtra = :codtra and iexfecha >= to_date(':fecini','dd/mm/yyyy') and " +
-                "iexfecha <= to_date(':fecfin','dd/mm/yyyy') order by iexfecha asc ";
+                "from iexasistencia " +
+                "where iexcodcia = :codcia and " +
+                "iexcodtra = :codtra and " +
+                "iexfecha >= to_date(:fecini,'dd/mm/yyyy') and " +
+                "iexfecha <= to_date(:fecfin,'dd/mm/yyyy') " +
+                "order by iexfecha asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)

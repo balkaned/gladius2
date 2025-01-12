@@ -60,7 +60,8 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfeccrea, " +
                 "a.iexfecmod " +
                 "from iexubicacion a " +
-                "where a.iexcodcia = :codcia and iexubicod = ':codubicacion' ";
+                "where a.iexcodcia = :codcia and " +
+                "iexubicod = ':codubicacion' ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -75,7 +76,8 @@ public class LocalDaoImpl implements LocalDao {
     public Integer getIdUbicaion(Integer codcia) {
 
         String sql = "select coalesce(max(cast(iexubicod as integer)),0)+1 idcont " +
-                "from iexubicacion where iexcodcia = :codcia ";
+                "from iexubicacion " +
+                "where iexcodcia = :codcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia);
@@ -89,9 +91,9 @@ public class LocalDaoImpl implements LocalDao {
                 "iexcodcia, iexubicod, iexubides, " +
                 "iexusucrea, iexfeccrea " +
                 " ) values ( " +
-                "  ? ,   ?    ,   ?   ,  " +
-                "  ? , current_date " +
-                ") ";
+                "  ?, ?, ?, " +
+                "  ?, current_date " +
+                " ) ";
 
         jdbc.update(sql,
                 ubic.getIexcodcia(),
@@ -104,9 +106,9 @@ public class LocalDaoImpl implements LocalDao {
     public void actualizarUbicaion(Local ubic) {
 
         String sql = "update iexubicacion set " +
-                "iexubides=?, " +
-                "iexusumod=?, iexfecmod = current_date " +
-                "where iexcodcia=? and iexubicod = ? ";
+                "iexubides=?, iexusumod=?, iexfecmod = current_date " +
+                "where iexcodcia=? and " +
+                "iexubicod = ? ";
 
         jdbc.update(sql,
                 ubic.getIexubides(),
@@ -119,7 +121,8 @@ public class LocalDaoImpl implements LocalDao {
     public void eliminarUbicacion(Local ubic) {
 
         String sql = "delete from iexubicacion " +
-                "where iexcodcia=? and iexubicod = ? ";
+                "where iexcodcia=? and " +
+                "iexubicod = ? ";
 
         jdbc.update(sql,
                 ubic.getIexcodcia(),

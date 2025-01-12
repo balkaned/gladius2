@@ -42,7 +42,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "bolprocesores, " +
                 "diasteo " +
                 "from iexprocesos " +
-                "order by procodpro ASC";
+                "order by procodpro ASC ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource();
 
@@ -78,8 +78,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "con.coodesabrev as formcoodesabrev, " +
                 "con.coodescripcion as formcoodescripcion " +
                 "from iexformula_cab frm " +
-                "inner join iexconcepto con " +
-                "on frm.forcodcon = con.coocodcon " +
+                "inner join iexconcepto con on frm.forcodcon = con.coocodcon " +
                 "where frm.procodpro = 1 " +
                 "order by frm.fororden asc ";
 
@@ -101,7 +100,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "inner join iexconcepto b " +
                 "on a.procodcon = b.coocodcon " +
                 "where a.procodpro = 1 " +
-                "and a.protipcon = ':id' ";
+                "and a.protipcon = :id ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id", id);
@@ -126,7 +125,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "protipcon, " +
                 "prodescustom " +
                 "from iexproxconcepto inner join iexconcepto on procodcon = coocodcon " +
-                "where procodpro = :idproceso and protipcon = ':tipcon' ";
+                "where procodpro = :idproceso and protipcon = :tipcon ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idproceso", idproceso)
@@ -174,7 +173,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "from iexproxconcepto, iexconcepto " +
                 "where procodcon = coocodcon " +
                 "and procodpro = :idproceso and " +
-                "trim(procodcon) = trim(':idconcepto') ";
+                "trim(procodcon) = trim(:idconcepto) ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idproceso", idproceso)
@@ -249,13 +248,14 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "flg_afp = ?, " +
                 "flg_fond_compl_jub = ?, " +
                 "flg_esp_pens_pesq = ?, " +
-                "flg_5ta  = ? , " +
+                "flg_5ta  = ?, " +
                 "flg_ess_seg_pen = ?, " +
                 "flg_cont_asis_previs= ?, " +
                 "flg_promediable = ?, " +
                 "flg_agrupable = ?, " +
                 "nro_meses_prom_atras = ? " +
-                "where procodpro = ? and trim(procodcon)=trim(?) ";
+                "where procodpro = ? and " +
+                "trim(procodcon) = trim(?) ";
 
         jdbc.update(sql,
                 cproceso.getProcodconpdt(),
@@ -312,7 +312,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     @Override
     public void eliminarProcesoFormula(Integer id) {
 
-        String sql = "call pl_gestion_procesos(?,'','','0','','3','','','','')";
+        String sql = "call pl_gestion_procesos(?,'','','0','','3','','','','') ";
 
         jdbc.update(sql,
                 id
@@ -333,9 +333,10 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "bolprocesoind, " +
                 "bolprocesores " +
                 "from iexprocesos p, " +
-                " (select  iexkey, desdet from  iexttabled where iexcodtab='33') t " +
+                "   (select  iexkey, desdet from  iexttabled where iexcodtab='33') t " +
                 "where p.procodregimenlab = t.iexkey and " +
-                "procodpro = :id order by 1 asc ";
+                "procodpro = :id " +
+                "order by 1 asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id", id);

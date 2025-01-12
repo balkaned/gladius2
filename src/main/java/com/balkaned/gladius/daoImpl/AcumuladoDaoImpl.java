@@ -157,7 +157,9 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
                 "iexremafec5ta_otrcia =?, iexrent5ta_otrcia =?, " +
                 "iexrem4ta_acum=?, iexrenta4ta_acum=?, iexremotr_acum =?, iexrenta_acum =?, " +
                 "iexusucrea=?, iexfecmod=current_date " +
-                "where iexcodcia=? and iexcodtra=? and iexaniotrib=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
+                "iexaniotrib=? ";
 
         jdbc.update(sql,
                 empacu.getIexrem_acum(),
@@ -179,7 +181,9 @@ public class AcumuladoDaoImpl implements AcumuladoDao {
     public void eliminarEmpAcum(EmpAcum empacu) {
 
         String sql = "delete from iexacumval " +
-                "where iexcodcia=? and iexcodtra=? and iexaniotrib=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
+                "iexaniotrib=? ";
 
         jdbc.update(sql,
                 empacu.getIexcodcia(),

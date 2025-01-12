@@ -41,7 +41,7 @@ public class PuestoDaoImpl implements PuestoDao {
                 "d.desdet as descodcat " +
                 "from iexpuesto a " +
                 "full outer join " +
-                "(select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
                 "where a.iexcodcia = :codcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -67,8 +67,8 @@ public class PuestoDaoImpl implements PuestoDao {
                 "d.desdet as descodcat " +
                 "from iexpuesto a " +
                 "full outer join " +
-                "(select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
-                "where a.iexcodcia = :codcia and a.iexpuesto = ':codpuesto' ";
+                "   (select  iexkey, desdet from iexttabled where iexcodtab='63' ) d on a.iexcodcat = d.iexkey " +
+                "where a.iexcodcia = :codcia and a.iexpuesto = :codpuesto ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -116,7 +116,8 @@ public class PuestoDaoImpl implements PuestoDao {
         String sql = "update iexpuesto set " +
                 "iexdespuesto = ?, iexcodcat = ?, " +
                 "iexusucrea = ?, iexfeccrea=current_date " +
-                "where iexcodcia = ? and iexpuesto = ? ";
+                "where iexcodcia = ? and " +
+                "iexpuesto = ? ";
 
         jdbc.update(sql,
                 puesto.getIexdespuesto(),
@@ -130,7 +131,8 @@ public class PuestoDaoImpl implements PuestoDao {
     public void eliminarPuesto(Puesto puesto) {
 
         String sql = "delete from iexpuesto " +
-                "where iexcodcia=? and iexpuesto =? ";
+                "where iexcodcia=? and " +
+                "iexpuesto =? ";
 
         jdbc.update(sql,
                 puesto.getIexcodcia(),

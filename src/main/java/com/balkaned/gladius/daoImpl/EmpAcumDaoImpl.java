@@ -40,7 +40,7 @@ public class EmpAcumDaoImpl implements EmpAcumDao {
                 "iexrent5ta_otrcia, " +
                 "iexrem4ta_acum, " +
                 "iexrenta4ta_acum, " +
-                "iexremotr_acum	, " +
+                "iexremotr_acum, " +
                 "iexrenta_acum, " +
                 "iexusucrea, " +
                 "iexfeccrea, " +

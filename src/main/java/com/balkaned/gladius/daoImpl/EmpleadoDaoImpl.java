@@ -222,7 +222,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " ( select p.iexdespuesto from iexpuesto p " +
                 "   where p.iexcodcia = e.iexcodcia and p.iexpuesto = e.iexpuesto) despuesto " +
                 "from iexempleado e " +
-                "where e.iexcodcia = :codcia and e.iexcodtra = :codtra ";
+                "where e.iexcodcia = :codcia and " +
+                "e.iexcodtra = :codtra ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", ciaid)
@@ -237,8 +238,11 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     public Empleado recuperarLaboral(Integer ciaid, Integer codtra) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, " +
-                "iextiptra, iexsituapen, to_char(iexfecing,'DD/MM/YYYY') iexfecing, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iextiptra, " +
+                "iexsituapen, " +
+                "to_char(iexfecing,'DD/MM/YYYY') iexfecing, " +
                 "TO_CHAR(iexfecret,'DD/MM/YYYY') iexfecret, iextipcont, " +
                 "to_char(iexfecini_cont,'DD/MM/YYYY') iexfecini_cont, " +
                 "TO_CHAR(iexfecfin_cont,'DD/MM/YYYY') iexfecfin_cont, " +
@@ -263,7 +267,10 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     public Empleado recuperarPagos(Integer ciaid, Integer codtra) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, iextippago, iexperrem, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iextippago, " +
+                "iexperrem, " +
                 "coalesce(iexmontorem,0) as iexmontorem, " +
                 "iexcodban_hab, " +
                 "iextipban_hab, " +
@@ -335,7 +342,9 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     public Empleado recuperarDireccion(Integer ciaid, Integer codtra) {
 
-        String sql = "select iexcodcia, iexcodtra, " +
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodtra, " +
                 "iextipvia_dom1, iexnomvia_dom1, iexnrovia_dom1, iexdeptin_dom1, " +
                 "iexinterior_dom1, iexmanzana_dom1, iexlote_dom1, iexkilometro_dom1, " +
                 "iexblock_dom1, iexetapa_dom1, iextipzona_dom1, iexnomzona_dom1, " +
@@ -476,7 +485,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexflgbancci_cts =?, iexcodmon_cts =?, iextipban_cts=?, " +
                 "iexnrocta_cts=?, iexfecmodpag=CURRENT_TIMESTAMP, " +
                 "iexusumodpag=?  " +
-                "where iexcodcia=? and iexcodtra=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? ";
 
         jdbc.update(sql,
                 empleado.getIextippago(),
@@ -522,8 +532,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexflgcomi_mix = ?, " +
                 "iexflgmas_vida = ?, " +
                 "iexflgjubil = ?, " +
-                "iexfecmodseg=CURRENT_TIMESTAMP, " +
-                "iexusumodseg=? " +
+                "iexfecmodseg = CURRENT_TIMESTAMP, " +
+                "iexusumodseg =? " +
                 "where iexcodcia=? and " +
                 "iexcodtra=? ";
 
@@ -574,7 +584,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 " iexdepart_origen2 =?, " +
                 " iexprovin_origen2 =?, " +
                 " iexubigeo_dom2 =? " +
-                " where iexcodcia=? and iexcodtra=? ";
+                " where iexcodcia=? and " +
+                "iexcodtra=? ";
 
         jdbc.update(sql,
                 empleado.getIextipvia_dom1(),
@@ -605,17 +616,14 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 empleado.getIexreferencia_dom2(),
                 empleado.getIexflgdomicilio(),
                 empleado.getIexusumod(),
-
                 empleado.getIexnacion_origen1(),
                 empleado.getIexdepart_origen1(),
                 empleado.getIexprovin_origen1(),
                 empleado.getIexdistri_origen1(),
-
                 empleado.getIexnacion_origen2(),
                 empleado.getIexdepart_origen2(),
                 empleado.getIexprovin_origen2(),
                 empleado.getIexdistri_origen2(),
-
                 empleado.getIexcodcia(),
                 empleado.getIexcodtra()
         );
@@ -665,8 +673,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexusumod " +
                 "from iexempleado " +
                 "where iexcodcia = :codcia and " +
-                "iextipdocid = ':iextipdocid' and " +
-                "iexnrodoc = ':iexnrodoc' and " +
+                "iextipdocid = :iextipdocid and " +
+                "iexnrodoc = :iexnrodoc and " +
                 "iexflgest = '1' ";
 
         SqlParameterSource namedPArameters = new MapSqlParameterSource()
@@ -683,7 +691,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     public Integer obtieneIdEmpleado(Empleado empleado) {
 
         String sql = "select coalesce(max(iexcodtra),0)+1 idcont " +
-                "from iexempleado where iexcodcia = :codcia ";
+                "from iexempleado " +
+                "where iexcodcia = :codcia ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", empleado.getIexcodcia());
@@ -722,7 +731,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
     public void actualizarFoto(Empleado empleado) {
 
         String sql = "update iexempleado set iexlogo=? " +
-                "where iexcodcia=? and iexcodtra=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? ";
 
         jdbc.update(sql,
                 empleado.getIexlogo(),
@@ -785,7 +795,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iextursab =?, " +
                 "iexturdom =?, " +
                 "iexctlasipag = ? " +
-                "where iexcodcia=? and iexcodtra=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? ";
 
         jdbc.update(sql,
                 empleado.getIextipturno(),

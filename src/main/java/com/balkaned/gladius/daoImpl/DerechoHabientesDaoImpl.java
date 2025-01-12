@@ -424,7 +424,7 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
         jdbc.update(sql,
                 derhab.getIexcodcia(),
                 derhab.getIexcodtra(),
-                derhab.getIexcoddep())
-        ;
+                derhab.getIexcoddep()
+        );
     }
 }

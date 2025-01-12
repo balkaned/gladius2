@@ -30,7 +30,10 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public List<VacacionControl> listarVacacionesCtl(Empleado empleado) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, iexpermesini, iexpermesfin, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexpermesini, " +
+                "iexpermesfin, " +
                 "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, " +
@@ -39,7 +42,8 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "iexusumod, to_char(iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexvacctl " +
                 "where iexcodcia = :codcia and " +
-                "iexcodtra = :codtra order by iexpermesini desc ";
+                "iexcodtra = :codtra " +
+                "order by iexpermesini desc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", empleado.getIexcodcia())
@@ -54,11 +58,15 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public List<VacacionProgramacion> listarVacacionesPer(Empleado empleado, String perini, String perfin) {
 
         String sql = "select " +
-                "v.iexcodcia, v.iexcodtra, v.iexcorrel, " +
+                "v.iexcodcia, " +
+                "v.iexcodtra, " +
+                "v.iexcorrel, " +
                 "to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "v.iexnrodias, v.iextipvac, d.desdet as destipvac, v.iexglosa, " +
-                "v.iexpermesini, v.iexpermesfin, v.iexusucrea, " +
+                "v.iexpermesini, " +
+                "v.iexpermesfin, " +
+                "v.iexusucrea, " +
                 "to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, " +
                 "v.iexusumod, to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexvacprg v, " +
@@ -67,8 +75,8 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "   ) d " +
                 "where v.iexcodcia = :codcia and " +
                 "v.iexcodtra = :codtra and " +
-                "v.iexpermesini = ':perini' and " +
-                "v.iexpermesfin = ':perfin' and " +
+                "v.iexpermesini = :perini and " +
+                "v.iexpermesfin = :perfin and " +
                 "v.iextipvac = d.iexkey " +
                 "order by v.iexfecini desc ";
 
@@ -90,8 +98,8 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "from iexvacctl " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
-                "iexpermesini = ':perini' and " +
-                "iexpermesfin = ':perfin' ";
+                "iexpermesini = :perini and " +
+                "iexpermesfin = :perfin ";
 
         SqlParameterSource namedPArameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -109,28 +117,28 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "from ( " +
                 "   select coalesce(count(iexcorrel),0) dias from iexvacprg " +
                 "   where iexcodcia = :codcia and iexcodtra = :codtra " +
-                "   and to_date(':fecini','dd/mm/yyyy') >= iexfecini and " +
-                "   to_date(':fecini','dd/mm/yyyy') <= iexfecfin " +
+                "   and to_date(:fecini,'dd/mm/yyyy') >= iexfecini and " +
+                "   to_date(:fecini,'dd/mm/yyyy') <= iexfecfin " +
                 "	    union " +
                 "	select coalesce(count(iexcorrel),0) dias from iexvacprg " +
                 "   where iexcodcia = :codcia and iexcodtra = :codtra " +
-                "   and to_date(':fecfin','dd/mm/yyyy') >= iexfecini and " +
-                "   to_date(':fecfin','dd/mm/yyyy') <= iexfecfin " +
+                "   and to_date(:fecfin,'dd/mm/yyyy') >= iexfecini and " +
+                "   to_date(:fecfin,'dd/mm/yyyy') <= iexfecfin " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexvacprg " +
                 "   where iexcodcia = :codcia and iexcodtra = :codtra " +
-                "   and to_date(':fecini','dd/mm/yyyy') <= iexfecini and " +
-                "   to_date(':fecfin','dd/mm/yyyy') >= iexfecini " +
+                "   and to_date(:fecini,'dd/mm/yyyy') <= iexfecini and " +
+                "   to_date(:fecfin,'dd/mm/yyyy') >= iexfecini " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexvacprg " +
                 "   where iexcodcia = :codcia and iexcodtra = :codtra " +
-                "   and to_date(':fecini','dd/mm/yyyy') <= iexfecfin and " +
-                "   to_date(':fecfin','dd/mm/yyyy') >= iexfecfin " +
+                "   and to_date(:fecini,'dd/mm/yyyy') <= iexfecfin and " +
+                "   to_date(:fecfin,'dd/mm/yyyy') >= iexfecfin " +
                 "       union " +
                 "   select coalesce(count(iexcorrel),0) dias from iexvacprg " +
                 "   where iexcodcia = :codcia and iexcodtra = :codtra and " +
-                "   to_date(':fecini','dd/mm/yyyy') <= iexfecini and " +
-                "   to_date(':fecfin','dd/mm/yyyy') >= iexfecfin " +
+                "   to_date(:fecini,'dd/mm/yyyy') <= iexfecini and " +
+                "   to_date(:fecfin,'dd/mm/yyyy') >= iexfecfin " +
                 " ) e ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -211,36 +219,36 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "to_char(a.iexfecini,'DD/MM/YYYY') iexfecini, " +
                 "to_char(a.iexfecfin,'DD/MM/YYYY') iexfecfin, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecini <= to_date(':fecfin','DD/MM/YYYY') and " +
-                "       a.iexfecfin <= to_date(':fecfin','DD/MM/YYYY')) " +
+                "   when (a.iexfecini >=to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecini <= to_date(:fecfin,'DD/MM/YYYY') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'DD/MM/YYYY')) " +
                 "	    then  (a.iexfecfin -  a.iexfecini) +1  " +
-                "   when (a.iexfecini < to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecfin <= to_date(':fecfin','DD/MM/YYYY')) " +
-                "	    then (a.iexfecfin - to_date(':fecini','DD/MM/YYYY')) +1	" +
-                "	when (a.iexfecini >= to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecini <= to_date(':fecfin','DD/MM/YYYY') and " +
-                "       a.iexfecfin > to_date(':fecfin','DD/MM/YYYY')) " +
-                "	    then (to_date(':fecfin','DD/MM/YYYY') - a.iexfecini) +1	" +
-                "	when (a.iexfecini < to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecfin > to_date(':fecfin','DD/MM/YYYY')) " +
-                "	    then (to_date(':fecfin','DD/MM/YYYY') - to_date(':fecini','DD/MM/YYYY')) +1 " +
+                "   when (a.iexfecini < to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'DD/MM/YYYY')) " +
+                "	    then (a.iexfecfin - to_date(:fecini,'DD/MM/YYYY')) +1	" +
+                "	when (a.iexfecini >= to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecini <= to_date(:fecfin,'DD/MM/YYYY') and " +
+                "       a.iexfecfin > to_date(:fecfin,'DD/MM/YYYY')) " +
+                "	    then (to_date(:fecfin,'DD/MM/YYYY') - a.iexfecini) +1	" +
+                "	when (a.iexfecini < to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecfin > to_date(:fecfin,'DD/MM/YYYY')) " +
+                "	    then (to_date(:fecfin,'DD/MM/YYYY') - to_date(:fecini,'DD/MM/YYYY')) +1 " +
                 "   end iexnrodias, " +
                 "case " +
-                "   when (a.iexfecini >=to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecini <= to_date(':fecfin','DD/MM/YYYY') and " +
-                "       a.iexfecfin <= to_date(':fecfin','DD/MM/YYYY')) " +
+                "   when (a.iexfecini >=to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecini <= to_date(:fecfin,'DD/MM/YYYY') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'DD/MM/YYYY')) " +
                 "	    then to_char(a.iexfecfin,'DD/MM/YYYY') " +
-                "   when (a.iexfecini < to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecfin <= to_date(':fecfin','DD/MM/YYYY')) " +
+                "   when (a.iexfecini < to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecfin <= to_date(:fecfin,'DD/MM/YYYY')) " +
                 "	    then to_char(a.iexfecfin,'DD/MM/YYYY') " +
-                "	when (a.iexfecini >= to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecini <= to_date(':fecfin','DD/MM/YYYY') and " +
-                "       a.iexfecfin > to_date(':fecfin','DD/MM/YYYY')) " +
-                "	    then ':fecfin' " +
-                "	  when (a.iexfecini < to_date(':fecini','DD/MM/YYYY') and " +
-                "       a.iexfecfin > to_date(':fecfin','DD/MM/YYYY')) " +
-                "	    then ':fecfin' " +
+                "	when (a.iexfecini >= to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecini <= to_date(:fecfin,'DD/MM/YYYY') and " +
+                "       a.iexfecfin > to_date(:fecfin,'DD/MM/YYYY')) " +
+                "	    then :fecfin " +
+                "	  when (a.iexfecini < to_date(:fecini,'DD/MM/YYYY') and " +
+                "       a.iexfecfin > to_date(:fecfin,'DD/MM/YYYY')) " +
+                "	    then :fecfin " +
                 "end fecfinrep, " +
                 "k.des1det codcon, " +
                 "k.desdet destipvac " +
@@ -255,16 +263,16 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "	c.iexcodcia = a.iexcodcia and " +
                 "	c.iexcodtra = a.iexcodtra and " +
                 "	c.iexcodcia = :codcia and " +
-                "   c.iexreglab = ':regimen' and " +
+                "   c.iexreglab = :regimen and " +
                 "	( " +
-                "	(a.iexfecini >= to_date(':fecini','DD/MM/YYYY') and " +
-                "   a.iexfecini <= to_date(':fecfin','DD/MM/YYYY')) " +
+                "	(a.iexfecini >= to_date(:fecini,'DD/MM/YYYY') and " +
+                "   a.iexfecini <= to_date(:fecfin,'DD/MM/YYYY')) " +
                 "	or " +
-                "	(a.iexfecfin >= to_date(':fecini','DD/MM/YYYY') and " +
-                "   a.iexfecfin <= to_date(':fecfin','DD/MM/YYYY')) " +
+                "	(a.iexfecfin >= to_date(:fecini,'DD/MM/YYYY') and " +
+                "   a.iexfecfin <= to_date(:fecfin,'DD/MM/YYYY')) " +
                 "	or " +
-                "   (a.iexfecini < to_date(':fecini','DD/MM/YYYY') and " +
-                "   a.iexfecfin > to_date(':fecfin','DD/MM/YYYY')) " +
+                "   (a.iexfecini < to_date(:fecini,'DD/MM/YYYY') and " +
+                "   a.iexfecfin > to_date(:fecfin,'DD/MM/YYYY')) " +
                 "   ) ";
 
         if (codtra != null && codtra != 0) {
@@ -297,7 +305,7 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "from iexempleado " +
                 "where iexcodcia = :codcia and " +
                 "iexflgest = '1' and " +
-                "iexreglab = ':regimen' " +
+                "iexreglab = :regimen " +
                 "order by 2,3,4 asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -314,7 +322,9 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public VacacionProgramacion getVacacionPrg(VacacionProgramacion vacprg) {
 
         String sql = "select " +
-                "v.iexcodcia, v.iexcodtra, v.iexcorrel, " +
+                "v.iexcodcia, " +
+                "v.iexcodtra, " +
+                "v.iexcorrel, " +
                 "to_char(v.iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(v.iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "v.iexnrodias, v.iextipvac, d.desdet as destipvac, " +
@@ -322,9 +332,9 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "to_char(v.iexfeccrea,'DD/MM/YYYY') as iexfeccrea, v.iexusumod, " +
                 "to_char(v.iexfecmod,'DD/MM/YYYY') as iexfecmod " +
                 "from iexvacprg v, " +
-                " ( " +
-                " select  iexkey, desdet from iexttabled where iexcodtab='56' " +
-                " ) d " +
+                "   ( " +
+                "   select  iexkey, desdet from iexttabled where iexcodtab='56' " +
+                "   ) d " +
                 "where v.iexcodcia = :codcia and " +
                 "v.iexcodtra = :codtra and " +
                 "v.iexcorrel = :iexcorrel and " +
@@ -345,8 +355,11 @@ public class VacacionesDaoImpl implements VacacionesDao {
     public List<VacacionControl> listaSaldoVacTra(Integer codcia, String regimen, Integer codtra) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, iexpermesini, " +
-                "iexpermesfin, to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexpermesini, " +
+                "iexpermesfin, " +
+                "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "iexdiasgan, iexdiasgoz, iexdiasven, iexdiasper, " +
                 "iexdiascom, iexdiassaldo, iexusucrea, " +
@@ -402,8 +415,10 @@ public class VacacionesDaoImpl implements VacacionesDao {
 
     public void eliminarVacacionPrg(VacacionProgramacion vacprg) {
 
-        String sql = "delete from iexvacprg where iexcodcia=? and " +
-                "iexcodtra=? and iexcorrel= ? ";
+        String sql = "delete from iexvacprg " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
+                "iexcorrel= ? ";
 
         jdbc.update(sql,
                 vacprg.getIexcodcia(),

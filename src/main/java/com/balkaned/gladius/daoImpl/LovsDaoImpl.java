@@ -33,7 +33,8 @@ public class LovsDaoImpl implements LovsDao {
                 "iexkey idLov, " +
                 "trim(substring(desdet,1,100)) desLov " +
                 "from iexttabled " +
-                "where iexcodtab = :id_table and '%'||desdet||'%' like '%'||:text||'%' ";
+                "where iexcodtab = :id_table and " +
+                "'%'||desdet||'%' like '%'||:text||'%' ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id_table", id_table)
@@ -68,7 +69,7 @@ public class LovsDaoImpl implements LovsDao {
                 "COODESCON as desConcepto, " +
                 "COOCODFORVAR as desVariable, " +
                 "COODESABREV as desAbreviacion, " +
-                "COODESCRIPCION as descripcion" +
+                "COODESCRIPCION as descripcion " +
                 "from iexproxconcepto " +
                 "inner join iexconcepto on procodcon = coocodcon " +
                 "where procodpro = :id_proc ";
@@ -138,7 +139,10 @@ public class LovsDaoImpl implements LovsDao {
 
     public List<Local> getUbicacionCia(Integer id_cia) {
 
-        String sql = "select iexcodcia, iexubicod, iexubides " +
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexubicod, " +
+                "iexubides " +
                 "from iexubicacion " +
                 "where iexcodcia = :id_cia ";
 
@@ -184,7 +188,8 @@ public class LovsDaoImpl implements LovsDao {
                 "iexkey cod, " +
                 "trim(substring(desdet,1,40)) des " +
                 "from iexttabled " +
-                "where iexcodtab='33' and  iexkey in (  " +
+                "where iexcodtab='33' and  " +
+                "iexkey in (  " +
                 "  select procodregimenlab from iexprocesos " +
                 " ) ";
 
@@ -200,9 +205,10 @@ public class LovsDaoImpl implements LovsDao {
 
         String sql = "select " +
                 "procodpro as idProceso, " +
-                "prodespro as desProceso" +
+                "prodespro as desProceso " +
                 "from iexprocesos " +
-                "where procodregimenlab = :regimen order by 2 asc ";
+                "where procodregimenlab = :regimen " +
+                "order by 2 asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("regimen", regimen);
@@ -215,7 +221,11 @@ public class LovsDaoImpl implements LovsDao {
 
     public List<ProcesoPeriodo> getPerxproc(Integer codcia, String proceso) {
 
-        String sql = "select iexnroper, iexpermes, iexfecini, iexfecfin " +
+        String sql = "select " +
+                "iexnroper, " +
+                "iexpermes, " +
+                "iexfecini, " +
+                "iexfecfin " +
                 "from iexproperiodo " +
                 "where iexcodcia = :codcia and " +
                 "iexcodpro = :proceso " +
@@ -278,7 +288,7 @@ public class LovsDaoImpl implements LovsDao {
                 "COODESCON as desConcepto, " +
                 "COOCODFORVAR as desVariable, " +
                 "COODESABREV as desAbreviacion, " +
-                "COODESCRIPCION as descripcion" +
+                "COODESCRIPCION as descripcion " +
                 "from iexconcepto ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource();
@@ -346,8 +356,11 @@ public class LovsDaoImpl implements LovsDao {
     public List<VacacionControl> getSaldoVacTra(Integer codcia, Integer codtra, String pervac) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, iexpermesini, " +
-                "iexpermesfin, iexdiassaldo " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexpermesini, " +
+                "iexpermesfin, " +
+                "iexdiassaldo " +
                 "from iexvacctl " +
                 "where iexcodcia = :codcia and " +
                 "iexcodtra = :codtra and " +
@@ -368,8 +381,10 @@ public class LovsDaoImpl implements LovsDao {
     public List<VacacionControl> listaSaldoVacTra(Integer codcia, String regimen, Integer codtra) {
 
         String sql = "select " +
-                "iexcodcia, iexcodtra, " +
-                "iexpermesini, iexpermesfin, " +
+                "iexcodcia, " +
+                "iexcodtra, " +
+                "iexpermesini, " +
+                "iexpermesfin, " +
                 "to_char(iexfecini,'DD/MM/YYYY') as iexfecini, " +
                 "to_char(iexfecfin,'DD/MM/YYYY') as iexfecfin, " +
                 "iexdiasgan, iexdiasgoz, iexdiasven, " +

@@ -102,7 +102,8 @@ public class FormulaDaoImpl implements FormulaDao {
     public void eliminar(Integer idprod, Integer idfor) {
 
         String sql = "delete from iexformula_cab " +
-                "where procodpro=? and forcodfor=? ";
+                "where procodpro=? and " +
+                "forcodfor=? ";
 
         jdbc.update(sql,
                 idprod,
@@ -131,7 +132,8 @@ public class FormulaDaoImpl implements FormulaDao {
                 "a.sqlprogram, " +
                 "a.grpeje " +
                 "from iexformula_cab a inner join iexconcepto c on a.forcodcon = c.coocodcon " +
-                "where a.procodpro = :idprod and a.forcodfor = :idformula " +
+                "where a.procodpro = :idprod and " +
+                "a.forcodfor = :idformula " +
                 "order by a.fororden asc ";
 
         SqlParameterSource namedParameter = new MapSqlParameterSource()
@@ -147,7 +149,8 @@ public class FormulaDaoImpl implements FormulaDao {
     public void grabaVariableResultado(Integer idprod, Integer idformula, String Variable, String resultado) {
 
         String sql = "UPDATE iexformula_cab SET forvardes=?, forresult= ?, forflgest=3 " +
-                "WHERE procodpro = ? and forcodfor= ? ";
+                "WHERE procodpro = ? and " +
+                "forcodfor= ? ";
 
         jdbc.update(sql,
                 Variable,

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class SueldosDaoImpl implements SueldoDao {
                 "from iexciaxcon, iexconcepto " +
                 "where iexcodcia = :codcia and " +
                 "iexcodcon = coocodcon and " +
-                "iextipreg = ':tipo' ";
+                "iextipreg = :tipo ";
 
         SqlParameterSource namedParameter = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -109,7 +110,7 @@ public class SueldosDaoImpl implements SueldoDao {
                 "from iexconcepto c , iexdatavar v " +
                 "where v.iexcodcia = :codcia and  " +
                 "v.iexcodpro = :codpro and " +
-                "v.iexnroper = ':nroper' and " +
+                "v.iexnroper = :nroper and " +
                 "v.iexcorrel = :correl and " +
                 "v.iexcodtra = :codtra and " +
                 "v.iexcodcon = c.coocodcon ";
@@ -157,7 +158,7 @@ public class SueldosDaoImpl implements SueldoDao {
                 "iexsueldos s " +
                 "where s.iexcodcia = :codcia and  " +
                 "s.iexcodtra = :codtra and " +
-                "s.iexcodcon = ':concepto' and " +
+                "s.iexcodcon = :concepto and " +
                 "c.coocodcon = s.iexcodcon ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -175,7 +176,8 @@ public class SueldosDaoImpl implements SueldoDao {
 
         String sql = "update iexsueldos set iexvalcon=? " +
                 "where iexcodcia=? and " +
-                "iexcodtra=? and iexcodcon=? ";
+                "iexcodtra=? and " +
+                "iexcodcon=? ";
 
         jdbc.update(sql,
                 empsueldo.getIexvalcon(),
@@ -189,7 +191,8 @@ public class SueldosDaoImpl implements SueldoDao {
     public void eliminarEmpSueldo(EmpSueldo empsueldo) {
 
         String sql = "delete from iexsueldos " +
-                "where iexcodcia=? and iexcodtra=? " +
+                "where iexcodcia=? and " +
+                "iexcodtra=? " +
                 "and iexcodcon=? ";
 
         jdbc.update(sql,
@@ -216,13 +219,13 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexfeccrea, " +
                 "v.iexusumod, " +
                 "v.iexfecmod " +
-                "from iexconcepto c , iexdatavar v " +
+                "from iexconcepto c, iexdatavar v " +
                 "where v.iexcodcia = :codcia and " +
                 "v.iexcodpro = :codpro and " +
-                "v.iexnroper = ':nroper' and " +
+                "v.iexnroper = :nroper and " +
                 "v.iexcorrel = :correl and " +
                 "v.iexcodtra = :codtra and " +
-                "v.iexcodcon = ':concepto' ";
+                "v.iexcodcon = :concepto ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", cia)
@@ -241,8 +244,12 @@ public class SueldosDaoImpl implements SueldoDao {
     public void actualizarEmpDatvar(EmpDatvar empdatvar) {
 
         String sql = "update iexdatavar set iexvalcon=? " +
-                "where iexcodcia=? and iexcodpro=? and iexnroper=? and " +
-                "iexcorrel=? and iexcodtra=? and iexcodcon=? ";
+                "where iexcodcia=? and " +
+                "iexcodpro=? and " +
+                "iexnroper=? and " +
+                "iexcorrel=? and " +
+                "iexcodtra=? and " +
+                "iexcodcon=? ";
 
         jdbc.update(sql,
                 empdatvar.getIexvalcon(),
@@ -258,8 +265,12 @@ public class SueldosDaoImpl implements SueldoDao {
     public void eliminarEmpDatvar(EmpDatvar empdatvar) {
 
         String sql = "delete from iexdatavar " +
-                "where iexcodcia=? and iexcodpro=? and iexnroper=? " +
-                "and iexcorrel=? and iexcodtra=? and iexcodcon=? ";
+                "where iexcodcia=? and " +
+                "iexcodpro=? and " +
+                "iexnroper=? " +
+                "and iexcorrel=? and " +
+                "iexcodtra=? and " +
+                "iexcodcon=? ";
 
         jdbc.update(sql,
                 empdatvar.getIexcodcia(),
@@ -280,7 +291,7 @@ public class SueldosDaoImpl implements SueldoDao {
                 "where procodcon =  iexcodcon and " +
                 "iexcodcia = :codcia and " +
                 "iexcodcon = coocodcon and " +
-                "iextipreg = ':tipo' and " +
+                "iextipreg = :tipo and " +
                 "procodpro = :codpro ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -314,7 +325,7 @@ public class SueldosDaoImpl implements SueldoDao {
                 "from iexconcepto c, iexdatavar v, iexempleado a " +
                 "where v.iexcodcia = :codcia and " +
                 "v.iexcodpro = :codpro and " +
-                "v.iexnroper = ':nroper' and " +
+                "v.iexnroper = :nroper and " +
                 "v.iexcorrel = :correl and " +
                 "v.iexcodcon = c.coocodcon and " +
                 "a.iexcodcia = v.iexcodcia and " +
@@ -336,8 +347,10 @@ public class SueldosDaoImpl implements SueldoDao {
     public void eliminarAllDatvar(Integer cia, Integer codpro, String nroper, Integer correl) {
 
         String sql = "delete from iexdatavar " +
-                "where iexcodcia=? and iexcodpro=? and " +
-                "iexnroper=? and iexcorrel=? ";
+                "where iexcodcia=? and " +
+                "iexcodpro=? and " +
+                "iexnroper=? and " +
+                "iexcorrel=? ";
 
         jdbc.update(sql,
                 cia,
@@ -357,7 +370,8 @@ public class SueldosDaoImpl implements SueldoDao {
                     "iexcodcia, iexcodpro, iexnroper, iexcorrel, iexcodtra, " +
                     "iexcodcon, iexvalcon , iexusucrea, iexfeccrea, iexfecmod, iexusumod " +
                     " ) values( " +
-                    " ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, current_timestamp, ? " +
+                    " ?, ?, ?, ?, ?, ?, ?, ?, " +
+                    "current_timestamp, current_timestamp, ? " +
                     " ) ";
 
             jdbc.update(sql,
@@ -377,8 +391,12 @@ public class SueldosDaoImpl implements SueldoDao {
     public void eliminarAllDatvarEmp(Integer cia, Integer codpro, String nroper, Integer correl, Integer codtra, String concepto) {
 
         String sql = "delete from iexdatavar " +
-                "where iexcodcia=? and iexcodpro=? and iexnroper=? " +
-                "and iexcorrel=? and iexcodtra=? and iexcodcon =? ";
+                "where iexcodcia=? and " +
+                "iexcodpro=? and " +
+                "iexnroper=? " +
+                "and iexcorrel=? and " +
+                "iexcodtra=? and " +
+                "iexcodcon =? ";
 
         jdbc.update(sql,
                 cia,

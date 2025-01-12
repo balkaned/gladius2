@@ -92,7 +92,8 @@ public class RolDaoImpl implements RolDao {
                 "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) o " +
                 "where c.iexcodrol = r.iexcodrol and " +
                 "c.iexcodopc = o.iexcodopc and " +
-                "c.iexcodrol = :codrol order by o.iexdessec, iexdesopc asc ";
+                "c.iexcodrol = :codrol " +
+                "order by o.iexdessec, iexdesopc asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codrol", codrol);
@@ -191,7 +192,8 @@ public class RolDaoImpl implements RolDao {
                 "full outer join iexseccion e  on e.iexcodsec = o.iexcodsec " +
                 "full outer join iexsystemas s on e.iexcodsys = s.iexcodsys ) o " +
                 "where c.iexcodrol = r.iexcodrol and " +
-                "c.iexcodopc = o.iexcodopc  and c.iexcodrol = :codrol  and " +
+                "c.iexcodopc = o.iexcodopc and " +
+                "c.iexcodrol = :codrol and " +
                 "c.iexcodopc = :codopc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

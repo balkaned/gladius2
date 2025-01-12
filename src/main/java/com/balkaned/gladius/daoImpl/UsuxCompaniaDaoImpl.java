@@ -53,7 +53,7 @@ public class UsuxCompaniaDaoImpl implements UsuxCompaniaDao {
                 + "u.IEXCODUSU codusu, "
                 + "COALESCE (u.iexcodtra, null, 0) iexcodtra, iexapepat||' '||iexapemat||' '||iexnomtra as destra "
                 + "from  public.IEXCOMPANIA c "
-                + "INNER JOIN IEXUSUXCIA  u ON c.IEXCODCIA = u.IEXCODCIA "
+                + "INNER JOIN IEXUSUXCIA u ON c.IEXCODCIA = u.IEXCODCIA "
                 + "INNER JOIN public.IEXROLES r ON u.IEXCODROL=r.IEXCODROL "
                 + "left outer JOIN iexempleado e ON u.IEXCODcia=e.IEXCODcia and u.iexcodtra = e.iexcodtra "
                 + "where u.IEXCODUSU = :codusu ";

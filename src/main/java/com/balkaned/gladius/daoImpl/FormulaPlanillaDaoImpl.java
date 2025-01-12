@@ -182,7 +182,8 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
                 "procodcon " +
                 "from iexproxconcepto, iexconcepto " +
                 "where procodcon = coocodcon and " +
-                "procodpro = :idprod and flg_agrupable = '1' and " +
+                "procodpro = :idprod and " +
+                "flg_agrupable = '1' and " +
                 "trim(coocodforvar) in :variable_sql ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

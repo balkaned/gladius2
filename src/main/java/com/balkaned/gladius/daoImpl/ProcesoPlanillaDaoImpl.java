@@ -63,8 +63,9 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "inner join iexprocesos p on e.iexcodpro = p.procodpro " +
                 "left join iexttabled d on d.iexcodtab='52' and d.iexkey = e.iexcodmon " +
                 "left join iexttabled d2 on d.iexcodtab='52' and d2.iexkey = e.iexcodmon_ext " +
-                "where e.iexcodcia = :codcia and e.iexcodpro = :codpro and " +
-                "e.iexpermes = ':nroper' ";
+                "where e.iexcodcia = :codcia and " +
+                "e.iexcodpro = :codpro and " +
+                "e.iexpermes = :nroper ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -122,7 +123,8 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 " p.procodpro = e.iexcodpro and " +
                 " e.iexcodcia = :codcia and " +
                 " iexpermes like '%:permes%' and " +
-                " procodregimenlab = ':regpla' order by e.iexpermes, p.progrppro, e.iexnroper asc ";
+                " procodregimenlab = :regpla " +
+                "order by e.iexpermes, p.progrppro, e.iexnroper asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -191,13 +193,12 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "p.progrppro as desgrppla, to_char(e.iexfeccerti,'DD/MM/YYYY') iexfeccerti, " +
                 "p.procodregimenlab as codregimen, e.iextcmb as tcmb" +
                 "from iexproperiodo e, iexprocesos p, (  " +
-                " select  iexkey, desdet from  iexttabled where iexcodtab='33'   " +
-                " ) t  " +
+                " select  iexkey, desdet from  iexttabled where iexcodtab='33' ) t " +
                 "where e.iexcodpro =  p.procodpro and " +
                 "p.procodregimenlab = t.iexkey and " +
                 "e.iexcodcia = :codcia and " +
                 "e.iexcodpro = :idproceso and " +
-                "e.iexnroper = ':periodo' ";
+                "e.iexnroper = :periodo ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -216,7 +217,9 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "iexfecfin=TO_DATE(?,'DD/MM/YYYY'), timerfecini=TO_DATE(?,'DD/MM/YYYY'), " +
                 "timerfecfin=TO_DATE(?,'DD/MM/YYYY'), iexfecpago=TO_DATE(?,'DD/MM/YYYY'), flgestado=?, " +
                 "iexfecope=current_date, iexanio=?, iexfeccerti=TO_DATE(?,'DD/MM/YYYY') " +
-                "where iexcodcia=? and iexcodpro=? and  iexnroper=? ";
+                "where iexcodcia=? and " +
+                "iexcodpro=? and " +
+                "iexnroper=? ";
 
         jdbc.update(sql,
                 pperiodo.getIexpermes(),
@@ -236,10 +239,17 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro) {
 
-        String sql = "select procodpro, bolproceso, bolproindividual, bolproresumen, " +
-                "rep_parameter, rep_ingresos, " +
-                "rep_descuentos, rep_aportes " +
-                "from iexprocesosxcia where procodcia = :codcia and procodpro = :codpro ";
+        String sql = "select procodpro, " +
+                "bolproceso, " +
+                "bolproindividual, " +
+                "bolproresumen, " +
+                "rep_parameter, " +
+                "rep_ingresos, " +
+                "rep_descuentos, " +
+                "rep_aportes " +
+                "from iexprocesosxcia " +
+                "where procodcia = :codcia and " +
+                "procodpro = :codpro ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -255,7 +265,7 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
         String sql = "select d.iexcodcia, " +
                 "d.iexcodpro as procodpro, " +
-                "p.prodespro as despro," +
+                "p.prodespro as despro, " +
                 " d.iexnroper, " +
                 "d.procodcon, " +
                 "c.coodescon, " +
@@ -265,10 +275,11 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "where d.procodcon = c.coocodcon and " +
                 "d.iexcodcia = :codcia and " +
                 "d.iexcodpro = p.procodpro and " +
-                "d.procodcon in (:codcon) and d.iexnroper >= ':perini' and " +
-                "d.iexnroper <= ':perfin' and provalor <> 0 " +
-                "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, " +
-                "d.procodcon, c.coodescon " +
+                "d.procodcon in (:codcon) and " +
+                "d.iexnroper >= :perini and " +
+                "d.iexnroper <= :perfin and " +
+                "provalor <> 0 " +
+                "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, d.procodcon, c.coodescon " +
                 "order by d.iexcodcia, d.iexnroper, d.iexcodpro, d.procodcon, c.coodescon asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

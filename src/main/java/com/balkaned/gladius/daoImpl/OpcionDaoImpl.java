@@ -38,7 +38,10 @@ public class OpcionDaoImpl implements OpcionDao {
                 "o.iexcodsec, " +
                 "e.iexdessec, " +
                 "s.iexdessys as dessys, " +
-                "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring, " +
+                "o.iexdescripcion, " +
+                "o.iexcodapps, " +
+                "o.iexaction, " +
+                "o.iexactionspring, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
                 "full outer join iexseccion e on e.iexcodsec = o.iexcodsec " +
@@ -74,7 +77,7 @@ public class OpcionDaoImpl implements OpcionDao {
                 " ?, ?, ?, ?, " +
                 " ?, ?, ?, ?, ?, ?, " +
                 " ?, current_date " +
-                ") ";
+                " ) ";
 
         jdbc.update(sql,
                 opc.getIexcodopc(),
@@ -94,9 +97,11 @@ public class OpcionDaoImpl implements OpcionDao {
     public Opciones getOpciones(Integer codopc) {
 
         String sql = "select " +
-                "o.iexcodopc, o.iexdesopc, o.iexurlopc, o.iexurlimg, " +
+                "o.iexcodopc, o.iexdesopc, " +
+                "o.iexurlopc, o.iexurlimg, " +
                 "o.iexflgest, o.iexcodsec, " +
-                "e.iexdessec as dessec, s.iexdessys as dessys, " +
+                "e.iexdessec as dessec, " +
+                "s.iexdessys as dessys, " +
                 "o.iexdescripcion, o.iexcodapps, o.iexaction, o.iexactionspring, " +
                 "o.iexusucre, o.iexfeccre, o.iexusumod, o.iexfecmod " +
                 "from iexopciones o " +
@@ -118,7 +123,7 @@ public class OpcionDaoImpl implements OpcionDao {
         String sql = "update iexopciones set " +
                 "iexdesopc =? , iexurlopc =?, iexurlimg =?, " +
                 "iexflgest =?, iexcodsec =?, iexdescripcion =?, iexcodapps =?, " +
-                "iexaction =?, iexactionspring=?,   " +
+                "iexaction =?, iexactionspring=?, " +
                 "iexusumod =?, iexfeccre = current_date " +
                 "where iexcodopc = ? ";
 
