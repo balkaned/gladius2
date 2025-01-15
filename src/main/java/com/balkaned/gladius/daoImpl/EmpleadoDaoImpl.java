@@ -157,11 +157,11 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
             }
         }
 
-        sql = sql + " order by iexapepat, iexapemat , iexnomtra asc";
+        sql = sql + " order by iexapepat, iexapemat, iexnomtra asc";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", empleado.getIexcodcia())
-                .addValue("txtfinder", empleado.getTxtfinder().toUpperCase())
+                .addValue("txtfinder", empleado.getTxtfinder())
                 .addValue("tiptra", empleado.getIextiptra())
                 .addValue("flgest", empleado.getIexflgeps())
                 .addValue("feciniing_par", empleado.getFeciniing_par())

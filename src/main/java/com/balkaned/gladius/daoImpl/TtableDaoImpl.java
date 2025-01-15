@@ -62,7 +62,7 @@ public class TtableDaoImpl implements TtableDao {
                 "iexlblval16, " +
                 "iexlblflg9, " +
                 "iexlblflg10, " +
-                "iexlblflg11," +
+                "iexlblflg11, " +
                 "iexlblflg12, " +
                 "iexlblflg13, " +
                 "iexlblflg14, " +
@@ -72,7 +72,10 @@ public class TtableDaoImpl implements TtableDao {
                 "where '%'||iexcodtab||'%'||iexdestab||'%' like '%:text%' " +
                 "order by iexcodtab asc ";
 
-        SqlParameterSource namedParameters = new MapSqlParameterSource();
+        log.info("ZZZZZZZZZZZZZZZZZZZZZZz text: "+text);
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("text", text.toString());
 
         List<TTablaCabecera> lsTable = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(TTablaCabecera.class));
