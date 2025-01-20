@@ -46,8 +46,10 @@ public class AfpDaoImpl implements AfpDao {
                 " select " +
                 " iexkey codafp, desdet desafp " +
                 " from iexttabled where iexcodtab='11' " +
-                " ) d where " +
-                "c.iexcodafp = d.codafp and iexpermes = :text ";
+                " ) d " +
+                "where " +
+                "c.iexcodafp = d.codafp and " +
+                "iexpermes = :text ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("text", text);

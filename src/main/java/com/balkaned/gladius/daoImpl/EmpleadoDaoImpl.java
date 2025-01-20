@@ -90,6 +90,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iexcodtra, " +
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
+                "e.iexnomtra || ' ' || e.iexapepat as completo," +
                 "e.iexapemat, " +
                 "e.iextipdocid, " +
                 "d.desdet iextipdocid, " +

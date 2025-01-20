@@ -156,7 +156,7 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "	    then ( to_date(:fecfin,'dd/mm/yyyy') - a.iexfecini) +1 " +
                 "	when (a.iexfecini < to_date(:fecini,'dd/mm/yyyy') and " +
                 "       a.iexfecfin >  to_date(:fecfin,'dd/mm/yyyy')) " +
-                "	    then ( to_date(:fecfin,'dd/mm/yyyy') - to_date(:fecini,'dd/mm/yyyy')) +1 " +
+                "	    then (to_date(:fecfin,'dd/mm/yyyy') - to_date(:fecini,'dd/mm/yyyy')) +1 " +
                 "end dias_aus, " +
                 "case " +
                 "   when (a.iexfecini >=to_date(:fecini,'dd/mm/yyyy') and " +
@@ -229,9 +229,9 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 " select  iexkey, desdet from iexttabled where iexcodtab='57' " +
                 " ) d " +
                 "where " +
-                "v.iexcodcia= :iexcodcia and " +
-                "v.iexcodtra= :iexcodtra and " +
-                "v.iexcorrel= :iexcorrel and " +
+                "v.iexcodcia = :iexcodcia and " +
+                "v.iexcodtra = :iexcodtra and " +
+                "v.iexcorrel = :iexcorrel and " +
                 "v.iextipaus = d.iexkey ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

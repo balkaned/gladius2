@@ -5,8 +5,8 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 @Data
+@Entity
 public class Empleado {
 
     @Id
@@ -184,8 +184,9 @@ public class Empleado {
     private String letraIni;
     private String nomCompactoUpper;
 
-    public void setIexnomtra(String iexnomtra) {
+    private String completo;
 
+    public void setIexnomtra(String iexnomtra) {
         if (iexnomtra != null) {
             char firstCharacter = iexnomtra.charAt(0);
             char char1UpperCase = Character.toUpperCase(firstCharacter);
@@ -193,12 +194,17 @@ public class Empleado {
 
             this.letraIni = cast1;
 
-            String strMain = iexnomtra;
+            /*String strMain = iexnomtra;
             String[] arrSplit = strMain.split(" ");
 
             CapitalizarCadena cap = new CapitalizarCadena();
-            String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(this.iexapepat);
-            this.nomCompactoUpper = nombrecompleto;
+            String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(this.getIexapepat());
+            this.nomCompactoUpper = nombrecompleto;*/
         }
+    }
+
+    public void setCompleto(String completo) {
+        CapitalizarCadena cap = new CapitalizarCadena();
+        this.nomCompactoUpper = cap.letras(completo);
     }
 }
