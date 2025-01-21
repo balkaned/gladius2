@@ -41,11 +41,13 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "bolprocesoind, " +
                 "bolprocesores " +
                 "from iexprocesos p " +
-                "where prodespro like '%:text%' " +
+                "where prodespro like :text " +
                 "order by procodpro asc ";
 
+        String finalText= "%" + text + "%";
+
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("text", text);
+                .addValue("text", finalText);
 
         List<ProcesoPlanilla> lsProcesoPlan = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ProcesoPlanilla.class));

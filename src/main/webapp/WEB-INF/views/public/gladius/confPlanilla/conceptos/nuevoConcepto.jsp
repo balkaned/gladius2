@@ -75,7 +75,7 @@
             <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarConcepto" novalidate>
               <div class="col-sm-6 col-md-3">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id</label>
-                <input class="form-control" name="codConcepto" type="text" maxlength="5" value="" placeholder="#" required/>
+                <input class="form-control" name="codConcepto" type="text" maxlength="5" value="" placeholder="P0100" required/>
               </div>
               <div class="col-sm-6 col-md-9">
                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombre del concepto</label>
