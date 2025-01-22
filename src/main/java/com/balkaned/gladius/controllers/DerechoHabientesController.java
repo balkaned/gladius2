@@ -369,13 +369,13 @@ public class DerechoHabientesController {
         DerechoHabiente derhab3=derechoHabientesService.recuperar(derhab2);
 
         model.addAttribute("derhabx",derhab3);
-        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", derhab3.getIexnacion_origen1()));  // enlista los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", derhab3.getIexdepart_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", derhab3.getIexprovin_origen1()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDept_origen1", lovsService.getLovsDept("", derhab3.getIexnacion_origen1()));  // lista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen1", lovsService.getLovsProv("", derhab3.getIexdepart_origen1()));   // lista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen1", lovsService.getLovsDist("", derhab3.getIexprovin_origen1()));   // lista los departamentos que tiene registrado el trabajdor
 
-        model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", derhab3.getIexnacion_origen2()));  // enlista los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", derhab3.getIexdepart_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
-        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", derhab3.getIexprovin_origen2()));   // enlista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDept_origen2", lovsService.getLovsDept("", derhab3.getIexnacion_origen2()));  // lista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovProvin_origen2", lovsService.getLovsProv("", derhab3.getIexdepart_origen2()));   // lista los departamentos que tiene registrado el trabajdor
+        model.addAttribute("lovDist_origen2", lovsService.getLovsDist("", derhab3.getIexprovin_origen2()));   // lista los departamentos que tiene registrado el trabajdor
 
         return new ModelAndView("public/gladius/organizacion/gestionEmpleado/derechoHabientes/editarDerechoHab");
     }

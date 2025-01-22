@@ -105,7 +105,7 @@ function formatearFecha2(){
                                                 <select class="form-select" name="iexpaisemisor" id="iexpaisemisor" required >
                                                   <option value="" selected >Seleccionar pais emisor</option>
                                                   <c:forEach var="lovPaisEmisor" items="${lovPaisEmisor}">
-                                                      <option value="${lovPaisEmisor.idLov}"   ${lovPaisEmisor.idLov == requestScope.iexpaisemisor ? 'selected' : ''}  >  ${lovPaisEmisor.desLov} </option>
+                                                      <option value="${lovPaisEmisor.idLov}" ${lovPaisEmisor.idLov == requestScope.iexpaisemisor ? 'selected' : ''}  >  ${lovPaisEmisor.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>
@@ -241,7 +241,7 @@ function formatearFecha2(){
                                                 <select class="form-select" name="iexpaisemisor1" id="iexpaisemisor1" required>
                                                   <option value="" selected >Seleccionar pais</option>
                                                   <c:forEach var="lovPaisEmisor1" items="${lovPaisEmisor}">
-                                                      <option value="${lovPaisEmisor1.idLov}"   ${lovPaisEmisor1.idLov == requestScope.iexnacion_origen1 ? 'selected' : ''}  >  ${lovPaisEmisor1.desLov} </option>
+                                                      <option value="${lovPaisEmisor1.idLov}" ${lovPaisEmisor1.idLov == requestScope.iexnacion_origen1 ? 'selected' : ''}> ${lovPaisEmisor1.desLov} </option>
                                                   </c:forEach>
                                                 </select>
                                             </div>

@@ -807,7 +807,7 @@
                                           </div>
                                           <div class="col-sm-6 col-md-5">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nom. vía</label>
-                                                <input class="form-control" name="iexnomvia_dom1" maxlength="30" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="Los Girasoles" required  disabled />
+                                                <input class="form-control" name="iexnomvia_dom1" maxlength="20" value="${requestScope.emp5.iexnomvia_dom1}" type="text" placeholder="Los Girasoles" required  disabled />
                                           </div>
                                           <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro vía</label>

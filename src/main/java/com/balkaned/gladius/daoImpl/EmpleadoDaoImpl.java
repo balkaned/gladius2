@@ -576,7 +576,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexnrovia_dom2 =?, iexdeptin_dom2 =?, iexinterior_dom2 =?, iexmanzana_dom2 =?, " +
                 "iexlote_dom2 =?, iexkilometro_dom2 =?, iexblock_dom2 =?, iexetapa_dom2 =?, " +
                 "iextipzona_dom2 =?, iexnomzona_dom2 =?, iexreferencia_dom2 =?, " +
-                "iexflgdomicilio =?, exfecmoddom=CURRENT_TIMESTAMP, iexusumoddom=?, " +
+                "iexflgdomicilio =?, iexfecmoddom=CURRENT_TIMESTAMP, iexusumoddom=?, " +
                 " iexnacion_origen1 =?, " +
                 " iexdepart_origen1 =?, " +
                 " iexprovin_origen1 =?, " +

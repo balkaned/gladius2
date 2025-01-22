@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -81,16 +82,16 @@ public class ContratoDaoImpl implements ContratoDao {
 
     public void insertarContratoEmp(ContratoEmp contemp) {
 
+        log.info("contemp: {} ", contemp);
+
         String sql = "insert into iexcontctl( " +
                 "iexcodcia, iexcodtra, iexcorrel, iextipcont, " +
-                "iexfecini, iexfecfin, iexmodcont, iexusucrea," +
-                " iexestado, iexfeccrea " +
-                " ) values ( " +
+                "iexfecini, iexfecfin, iexmodcont, iexusucrea, " +
+                "iexestado, iexfeccrea) values ( " +
                 " ?, ?, ?, ?, " +
                 " to_date(?,'DD/MM/YYYY'), " +
-                "to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
-                "current_date " +
-                " ) ";
+                " to_date(?,'DD/MM/YYYY'), ?, ?, ?, " +
+                " current_date) ";
 
         jdbc.update(sql,
                 contemp.getIexcodcia(),
@@ -144,7 +145,9 @@ public class ContratoDaoImpl implements ContratoDao {
         String sql = "update iexcontctl set " +
                 "iextipcont=?, iexfecini = to_date(?,'DD/MM/YYYY'), iexfecfin=to_date(?,'DD/MM/YYYY'), " +
                 "iexmodcont=?, iexusumod=?, iexfecmod=current_date, iexestado = ? " +
-                "where iexcodcia=? and iexcodtra=? and iexcorrel=? ";
+                "where iexcodcia=? and " +
+                "iexcodtra=? and " +
+                "iexcorrel=? ";
 
         jdbc.update(sql,
                 contemp.getIextipcont(),
@@ -163,7 +166,8 @@ public class ContratoDaoImpl implements ContratoDao {
 
         String sql = "delete from iexcontctl " +
                 "where iexcodcia=? and " +
-                "iexcodtra=? and iexcorrel=? ";
+                "iexcodtra=? and " +
+                "iexcorrel=? ";
 
         jdbc.update(sql,
                 contemp.getIexcodcia(),

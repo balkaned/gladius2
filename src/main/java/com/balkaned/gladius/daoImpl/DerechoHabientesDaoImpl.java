@@ -87,13 +87,13 @@ public class DerechoHabientesDaoImpl implements DerechoHabientesDao {
                 "d.iexdepart_origen2, " +
                 "d.iexprovin_origen2 " +
                 "from iexempderhab d, iexempleado p, " +
-                "   (select  iexkey, desdet from iexttabled where iexcodtab='19') g, " +
-                "   (select  iexkey, desdet from iexttabled where iexcodtab='3') j " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab = '19') g, " +
+                "   (select iexkey, desdet from iexttabled where iexcodtab = '3') j " +
                 " where d.iexcodcia = p.iexcodcia and " +
                 "d.iexcodtra = p.iexcodtra and " +
                 "d.iextipvinculo = g.iexkey and " +
                 "d.iextipnroiddep = j.iexkey and " +
-                "d.iexcodcia = :codcia " +
+                "d.iexcodcia = :codcia and " +
                 "d.iexcodtra = :codtra ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()

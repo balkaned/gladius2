@@ -26,7 +26,7 @@ public class ContratoEmp {
     private String iexfecmod;
     private String iexestado;
 
-    public void setIexfecini(String iexfecini) {
+    /*public void setIexfecini(String iexfecini) {
         FormatterFecha f = new FormatterFecha();
         CapitalizarCadena capit = new CapitalizarCadena();
         this.iexfecini = f.fechaFormatterDia(iexfecini) + " " + capit.letras(f.fechaFormatterMes(iexfecini)) + ", " + f.fechaFormatterAnio(iexfecini);
@@ -36,5 +36,6 @@ public class ContratoEmp {
         FormatterFecha f = new FormatterFecha();
         CapitalizarCadena capit2 = new CapitalizarCadena();
         this.iexfecfin = f.fechaFormatterDia(iexfecfin) + " " + capit2.letras(f.fechaFormatterMes(iexfecfin)) + ", " + f.fechaFormatterAnio(iexfecfin);
-    }
+    }*/
+
 }
