@@ -206,7 +206,7 @@ public class SueldosDaoImpl implements SueldoDao {
                                          Integer correl, String concepto) {
 
         String sql = "select  " +
-                "v.iexcodcia," +
+                "v.iexcodcia, " +
                 "v.iexcodpro, " +
                 "v.iexnroper, " +
                 "v.iexcorrel, " +

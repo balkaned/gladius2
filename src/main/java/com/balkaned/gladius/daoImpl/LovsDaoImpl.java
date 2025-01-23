@@ -185,13 +185,11 @@ public class LovsDaoImpl implements LovsDao {
     public List<Lovs> getRegimenProc() {
 
         String sql = "select " +
-                "iexkey cod, " +
-                "trim(substring(desdet,1,40)) des " +
+                "iexkey idLov, " +
+                "trim(substring(desdet,1,40)) desLov " +
                 "from iexttabled " +
-                "where iexcodtab='33' and  " +
-                "iexkey in (  " +
-                "  select procodregimenlab from iexprocesos " +
-                " ) ";
+                "where iexcodtab = '33' and " +
+                "iexkey in (select procodregimenlab from iexprocesos) ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource();
 
@@ -233,7 +231,7 @@ public class LovsDaoImpl implements LovsDao {
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
-                .addValue("proceso", proceso);
+                .addValue("proceso", Integer.parseInt(proceso));
 
         List<ProcesoPeriodo> lsPro = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ProcesoPeriodo.class));

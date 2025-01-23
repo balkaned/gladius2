@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
@@ -88,7 +87,7 @@ public class EmpleadoController {
         log.info("fecha nac: " + emp.getIexfecnac());
         model.addAttribute("fecnacIEX", emp.getIexfecnac());
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl", emp.getNomCompactoUpper());
+        model.addAttribute("nombrecompl", emp.getCompleto());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
@@ -239,9 +238,11 @@ public class EmpleadoController {
         String iexemail_coorp = request.getParameter("iexemail_coorp");
         String iexestcivil = request.getParameter("iexestcivil");
 
+        log.info("iexnomtra: {} ",iexnomtra);
+
         p.setIexcodcia(iexcodcia);
         p.setIexcodtra(Integer.valueOf(iexcodtra));
-        p.setIexnomtra(iexnomtra.toUpperCase());
+        p.setIexnomtraUpd(iexnomtra.toUpperCase());
         p.setIexapepat(iexapepat.toUpperCase());
         p.setIexapemat(iexapemat.toUpperCase());
         p.setIextipdocid(iextipdocid);

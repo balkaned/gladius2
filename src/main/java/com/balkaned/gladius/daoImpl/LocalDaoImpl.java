@@ -61,7 +61,7 @@ public class LocalDaoImpl implements LocalDao {
                 "a.iexfecmod " +
                 "from iexubicacion a " +
                 "where a.iexcodcia = :codcia and " +
-                "iexubicod = ':codubicacion' ";
+                "iexubicod = :codubicacion ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)

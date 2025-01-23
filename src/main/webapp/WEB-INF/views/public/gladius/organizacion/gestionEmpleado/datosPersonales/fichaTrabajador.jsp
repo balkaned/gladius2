@@ -107,7 +107,7 @@
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro documento</label>
-                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="street" required/>
+                                            <input class="form-control" name="iexnrodoc" maxlength="15" type="text" value="${requestScope.emp.iexnrodoc}" placeholder="Ingrese número de documento" required/>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
                                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
@@ -125,15 +125,15 @@
                                         <div class="row col-12 g-3 mt-0">
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nombres</label>
-                                                <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="street" required />
+                                                <input class="form-control" name="iexnomtra" type="text" value="${requestScope.emp.iexnomtra}" placeholder="Juan" required />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido paterno</label>
-                                                <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="street" required/>
+                                                <input class="form-control" name="iexapepat" type="text" value="${requestScope.emp.iexapepat}" placeholder="Ubillus" required />
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Apellido materno</label>
-                                                <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="street" required />
+                                                <input class="form-control" name="iexapemat" type="text" value="${requestScope.emp.iexapemat}" placeholder="García" required />
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-4">

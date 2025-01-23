@@ -90,7 +90,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iexcodtra, " +
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
-                "e.iexnomtra || ' ' || e.iexapepat as completo," +
+                "e.iexnomtra || ' ' || e.iexapepat as completo, " +
                 "e.iexapemat, " +
                 "e.iextipdocid, " +
                 "d.desdet iextipdocid, " +
@@ -182,6 +182,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
                 "e.iexapemat, " +
+                "e.iexnomtra || ' ' || e.iexapepat || ' ' || e.iexapemat as completo, " +
                 "e.iextipdocid, " +
                 "e.iexnrodoc, " +
                 "to_char(e.iexfecnac,'dd/mm/yyyy') iexfecnac, " +
@@ -379,7 +380,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
         String sql = "update iexempleado set " +
                 "iexnomtra=?, iexapepat=?, iexapemat=?, " +
-                "iextipdocid=?, iexnrodoc=?, iexfecnac=to_date(?,'DD/MM/YYYY'), " +
+                "iextipdocid=?, iexnrodoc=?, iexfecnac = to_date(?,'DD/MM/YYYY'), " +
                 "iexcodsex=?, iexpaisemisor=?, iexflgest=?, iexcodant=?, " +
                 "iexmodform=?, iexnacion_origen=?, iexdepart_origen=?, iexprovin_origen=?, " +
                 "iexdistri_origen=?, iexgrdinstruccion=?, iexcentroform=?, iexflgdomicil=?, " +
@@ -387,8 +388,13 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "iexemail_coorp=?, iexusumod=?, iexestcivil=? " +
                 "where iexcodcia=? and iexcodtra=? ";
 
+        log.info("empleado.getIexnomtra(): {} ",empleado.getIexnomtra());
+        log.info("empleado.getIexnomtraUpd(): {} ",empleado.getIexnomtraUpd());
+        log.info("empleado.getIexapepat(): {} ",empleado.getIexapepat());
+        log.info("empleado.getIexapemat(): {} ",empleado.getIexapemat());
+
         jdbc.update(sql,
-                empleado.getIexnomtra(),
+                empleado.getIexnomtraUpd(),
                 empleado.getIexapepat(),
                 empleado.getIexapemat(),
                 empleado.getIextipdocid(),

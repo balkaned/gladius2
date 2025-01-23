@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "where prodespro like :text " +
                 "order by procodpro asc ";
 
-        String finalText= "%" + text + "%";
+        String finalText = "%" + text + "%";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("text", finalText);
@@ -82,51 +83,61 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     public List<ProcesoPeriodo> listarProRegpla(Integer codcia, String regpla, String permes) {
 
-        String sql = "select e.iexcodcia, " +
-                " case " +
-                "  when substring(e.iexpermes,5,2) ='01' then 'Enero' " +
-                "  when substring(e.iexpermes,5,2) ='02' then 'Febrero' " +
-                "  when substring(e.iexpermes,5,2) ='03' then 'Marzo' " +
-                "  when substring(e.iexpermes,5,2) ='04' then 'Abril' " +
-                "  when substring(e.iexpermes,5,2) ='05' then 'Mayo' " +
-                "  when substring(e.iexpermes,5,2) ='06' then 'Junio' " +
-                "  when substring(e.iexpermes,5,2) ='07' then 'Julio' " +
-                "  when substring(e.iexpermes,5,2) ='08' then 'Agosto' " +
-                "  when substring(e.iexpermes,5,2) ='09' then 'Setiembre' " +
-                "  when substring(e.iexpermes,5,2) ='10' then 'Octubre' " +
-                "  when substring(e.iexpermes,5,2) ='11' then 'Noviembre' " +
-                "  when substring(e.iexpermes,5,2) ='12' then 'Diciembre' " +
-                " else " +
-                " 'Sin mes' " +
-                " end desmes, " +
-                " substring(e.iexpermes,5,2) as permes, " +
-                " p.procodregimenlab as codregimen, " +
-                " e.iexpermes, " +
-                " e.iexanio, " +
-                " e.iexnroper, " +
-                " e.iexfecini, " +
-                " e.iexfecfin, " +
-                " e.timerfecini, " +
-                " e.timerfecfin, " +
-                " e.iexfecpago, " +
-                " e.flgestado, " +
-                " p.progrppro as desgrppla, " +
-                " p.procodpro iexcodpro, " +
-                " p.prodespro as desproceso, " +
-                " case " +
-                "  when flgestado ='1' then 'Creado' " +
-                "  when flgestado ='2' then 'Procesado' " +
-                "  when flgestado ='3' then 'Cerrado' " +
-                "  else " +
-                "   'sin estado' " +
-                "  end desestado " +
-                " from iexprocesos p,  iexproperiodo e " +
-                " where " +
-                " p.procodpro = e.iexcodpro and " +
-                " e.iexcodcia = :codcia and " +
-                " iexpermes like '%:permes%' and " +
-                " procodregimenlab = :regpla " +
+        String sql = "select " +
+                "e.iexcodcia, " +
+                "case " +
+                "when substring(e.iexpermes,5,2) ='01' then 'Enero' " +
+                "when substring(e.iexpermes,5,2) ='02' then 'Febrero' " +
+                "when substring(e.iexpermes,5,2) ='03' then 'Marzo' " +
+                "when substring(e.iexpermes,5,2) ='04' then 'Abril' " +
+                "when substring(e.iexpermes,5,2) ='05' then 'Mayo' " +
+                "when substring(e.iexpermes,5,2) ='06' then 'Junio' " +
+                "when substring(e.iexpermes,5,2) ='07' then 'Julio' " +
+                "when substring(e.iexpermes,5,2) ='08' then 'Agosto' " +
+                "when substring(e.iexpermes,5,2) ='09' then 'Setiembre' " +
+                "when substring(e.iexpermes,5,2) ='10' then 'Octubre' " +
+                "when substring(e.iexpermes,5,2) ='11' then 'Noviembre' " +
+                "when substring(e.iexpermes,5,2) ='12' then 'Diciembre' " +
+                "else " +
+                "'Sin mes' " +
+                "end desmes, " +
+                "substring(e.iexpermes,5,2) as permes, " +
+                "p.procodregimenlab as codregimen, " +
+                "e.iexpermes, " +
+                "e.iexanio, " +
+                "e.iexnroper, " +
+                "e.iexfecini, " +
+                "e.iexfecfin, " +
+                "e.timerfecini, " +
+                "e.timerfecfin, " +
+                "e.iexfecpago, " +
+                "e.flgestado, " +
+                "p.progrppro as desgrppla, " +
+                "p.procodpro iexcodpro, " +
+                "p.prodespro as desproceso, " +
+                "case " +
+                "when flgestado ='1' then 'Creado' " +
+                "when flgestado ='2' then 'Procesado' " +
+                "when flgestado ='3' then 'Cerrado' " +
+                "else " +
+                "'sin estado' " +
+                "end desestado " +
+                "from iexprocesos p, iexproperiodo e " +
+                "where p.procodpro = e.iexcodpro and " +
+                "e.iexcodcia = :codcia and " +
+                "iexpermes like :permes and " +
+                "procodregimenlab = :regpla " +
                 "order by e.iexpermes, p.progrppro, e.iexnroper asc ";
+
+        //String finalPermes = "'%" + permes + "%'";
+        String finalPermes = "'" + permes + "'";
+        String finalRegpla = "'" + regpla + "'";
+
+        log.info("codcia: {} ", codcia);
+        log.info("permes: {} ", permes);
+        log.info("finalPermes: {} ", finalPermes);
+        log.info("regpla: {} ", regpla);
+        log.info("finalRegpla: {} ", finalRegpla);
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -135,6 +146,9 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
         List<ProcesoPeriodo> lsProc = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ProcesoPeriodo.class));
+
+        log.info("lsProc: {} ", lsProc);
+        //log.info("lsProc: {} ", lsProc.get(0).getDesgrppla());
 
         return lsProc;
     }

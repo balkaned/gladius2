@@ -36,7 +36,7 @@ public class LegajoDaoImpl implements LegajoDao {
                 "i.iexcodtra, " +
                 "grp.iexkey idgrp, " +
                 "grp.desdet as desgrangrupo, " +
-                "i.iexcodgrpfile,  " +
+                "i.iexcodgrpfile, " +
                 "i.iexdesgrpfile, " +
                 "e.iexcodimage, " +
                 "e.iexurlimage, " +
@@ -46,19 +46,21 @@ public class LegajoDaoImpl implements LegajoDao {
                 "from iexgrpfile i " +
                 "inner join ( select  iexkey, desdet " +
                 "from iexttabled where iexcodtab='91') grp on i.iexgrpfile = grp.iexkey " +
-                "left outer join  iexfileimage e on i.iexcodcia = e.iexcodcia and i.iexcodgrpfile = e.iexcodgrpfile " +
+                "left outer join  iexfileimage e on i.iexcodcia = e.iexcodcia and " +
+                "   i.iexcodgrpfile = e.iexcodgrpfile " +
                 "where i.iexcodcia = :codcia and " +
                 "i.iexcodtra = :codtra ";
 
         if (!grpfile.equals("%")) {
-            sql = sql + " and  i.iexgrpfile=':grpfile' ";
+            sql = sql + " and i.iexgrpfile = :grpfile ";
         }
 
         sql = sql + " order by grp.iexkey, i.iexcodgrpfile asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
-                .addValue("codtra", codtra);
+                .addValue("codtra", codtra)
+                .addValue("grpfile", grpfile);
 
         List<Grpfile> lsGrpFile = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Grpfile.class));

@@ -96,10 +96,10 @@ public class ParametroDaoImpl implements ParametroDao {
         SqlParameterSource namedParameter = new MapSqlParameterSource()
                 .addValue("codcon", codcon);
 
-        ParametrosGen param = namedParameterJdbcTemplate.queryForObject(sql, namedParameter,
+        List<ParametrosGen> lsParam = namedParameterJdbcTemplate.query(sql, namedParameter,
                 BeanPropertyRowMapper.newInstance(ParametrosGen.class));
 
-        return param;
+        return lsParam.get(0);
     }
 
     public void actualizarParametrosGen(ParametrosGen par) {

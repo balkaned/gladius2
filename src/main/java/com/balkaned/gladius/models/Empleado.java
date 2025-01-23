@@ -185,6 +185,7 @@ public class Empleado {
     private String nomCompactoUpper;
 
     private String completo;
+    private String iexnomtraUpd;
 
     public void setIexnomtra(String iexnomtra) {
         if (iexnomtra != null) {
@@ -193,6 +194,7 @@ public class Empleado {
             String cast1 = String.valueOf(char1UpperCase);
 
             this.letraIni = cast1;
+            this.iexnomtra = iexnomtra;
 
             /*String strMain = iexnomtra;
             String[] arrSplit = strMain.split(" ");
@@ -206,5 +208,6 @@ public class Empleado {
     public void setCompleto(String completo) {
         CapitalizarCadena cap = new CapitalizarCadena();
         this.nomCompactoUpper = cap.letras(completo);
+        this.completo = completo;
     }
 }

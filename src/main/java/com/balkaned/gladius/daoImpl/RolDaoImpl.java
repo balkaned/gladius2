@@ -130,7 +130,7 @@ public class RolDaoImpl implements RolDao {
         );
     }
 
-    public Role getRole(Role codrol) {
+    public Role getRole(Role role) {
 
         String sql = "select " +
                 "c.iexcodrol idRole, " +
@@ -139,7 +139,7 @@ public class RolDaoImpl implements RolDao {
                 "where c.iexcodrol = :codrol";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("codrol", codrol);
+                .addValue("codrol", role.getIdRole());
 
         Role rol = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Role.class));
