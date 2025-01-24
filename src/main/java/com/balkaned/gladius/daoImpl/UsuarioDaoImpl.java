@@ -51,7 +51,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 "from iexusuario u " +
                 "left outer join iexusuario u2 on u.iexusucre = u2.iexcodusu " +
                 "left outer join iexusuario u3 on u.iexusumod = u3.iexcodusu " +
-                "where upper(u.iexdesusu) like '%:text%' " +
+                /*"where upper(u.iexdesusu) like '%:text%' " +*/
                 "order by u.iexcodusu desc ) keke ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -65,7 +65,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     public void insertar(Usuario usuario) {
 
-        String sql = "call pl_gestion_usuarios(?,?,?,?,?,?,?,?,?) ";
+        String sql = " call pl_gestion_usuarios(?,?,?,?,?,?,?,?,?) ";
 
         jdbc.update(sql,
                 0,
@@ -86,10 +86,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 "u.iexcodusu as idUsuario, " +
                 "u.iexdesusu as usuario, " +
                 "u.iexpassw as password, " +
-                "coalesce(u.iexusucre,0) iexusucre as idUsuarioCrea, " +
-                "u2.iexdesusu usucre as desUsuarioCrea, " +
+                "coalesce(u.iexusucre,0) as idUsuarioCrea, " +
+                "u2.iexdesusu as desUsuarioCrea, " +
                 "to_char(u.iexfeccre,'dd/mm/yyyy') fechaCrea, " +
-                "coalesce(u.iexusumod ,0) iexusumod as idUsuarioMod, " +
+                "coalesce(u.iexusumod ,0) as idUsuarioMod, " +
                 "u3.iexdesusu desUsuarioMod, " +
                 "to_char(u.iexfecmod,'dd/mm/yyyy') fechaModfica, " +
                 "case u.iexflgest WHEN '1' then 'ACTIVO' ELSE 'INACTIVO' END AS estado, " +

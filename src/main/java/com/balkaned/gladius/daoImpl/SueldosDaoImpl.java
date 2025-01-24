@@ -227,6 +227,13 @@ public class SueldosDaoImpl implements SueldoDao {
                 "v.iexcodtra = :codtra and " +
                 "v.iexcodcon = :concepto ";
 
+        log.info("cia: {} ", cia);
+        log.info("codpro: {} ", codpro);
+        log.info("nroper: {} ", nroper);
+        log.info("codtra: {} ", codtra);
+        log.info("correl: {} ", correl);
+        log.info("concepto: {} ", concepto);
+
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", cia)
                 .addValue("codpro", codpro)
@@ -235,10 +242,17 @@ public class SueldosDaoImpl implements SueldoDao {
                 .addValue("codtra", codtra)
                 .addValue("concepto", concepto);
 
-        EmpDatvar emp = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+        List<EmpDatvar> lsEmp = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(EmpDatvar.class));
 
-        return emp;
+        log.info("lsEmp: {} ", lsEmp);
+
+        if (!lsEmp.isEmpty()) {
+            EmpDatvar empDat = lsEmp.get(0);
+            return empDat;
+        } else {
+            return null;
+        }
     }
 
     public void actualizarEmpDatvar(EmpDatvar empdatvar) {

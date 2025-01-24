@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -69,16 +70,22 @@ public class TtableDaoImpl implements TtableDao {
                 "iexlblflg15, " +
                 "iexlblflg16 " +
                 "from iexttablec " +
-                "where '%'||iexcodtab||'%'||iexdestab||'%' like '%:text%' " +
+                /*"where '%'||iexcodtab||'%'||iexdestab||'%' like :text " +*/
                 "order by iexcodtab asc ";
 
-        log.info("ZZZZZZZZZZZZZZZZZZZZZZz text: "+text);
+        log.info("text: {} ", text);
+
+        String finalText = "'%" + text + "%'";
+
+        log.info("finalText: {} ", finalText);
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("text", text.toString());
+                .addValue("text", finalText);
 
         List<TTablaCabecera> lsTable = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(TTablaCabecera.class));
+
+        log.info("lsTable: {} ", lsTable);
 
         return lsTable;
     }

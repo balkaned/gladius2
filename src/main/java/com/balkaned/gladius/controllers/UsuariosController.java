@@ -107,9 +107,9 @@ public class UsuariosController {
         uc.setUser(usuario2);
 
         UsuarioConeccion ucConsulta = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
-        log.info("ucConsulta.getUser():" + ucConsulta.getUser());
+        /*log.info("ucConsulta.getUser():" + ucConsulta.getUser());*/
 
-        if (ucConsulta.getUser() == null) {
+        if (ucConsulta == null) {
             if (password.equals(password2)) {
                 msg_txtpassword = "Correcto";
                 cont++;

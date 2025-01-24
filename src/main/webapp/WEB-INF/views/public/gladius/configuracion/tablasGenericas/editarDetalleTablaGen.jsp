@@ -55,7 +55,7 @@
                           <input class="form-control" name="codtab" type="hidden" value="${codTab}" />
                           <input class="form-control" name="iexkey" type="hidden" value="${ttabladxx.iexkey}" />
 
-                          <div class="col-sm-6 col-md-2">
+                          <div class="col-sm-6 col-md-3">
                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id detalle tbl</label>
                                  <input class="form-control" name="iexkey2" type="number"  value="${ttabladxx.iexkey}" required readonly disabled />
                           </div>

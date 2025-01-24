@@ -63,6 +63,10 @@ public class LoginController {
             if (request.getSession().getAttribute("tiposession").equals("6")) {
                 model.addAttribute("mensaje", "Usuario no existe o esta desactivado o falta permisos");
             }
+
+            if (request.getSession().getAttribute("tiposession").equals("7")) {
+                model.addAttribute("mensaje", "Falta asignar al usuario a alguna compañía");
+            }
         }
 
         return new ModelAndView("public/login2a");
@@ -74,6 +78,14 @@ public class LoginController {
                                         BindingResult result, SessionStatus status) {
 
         UsuarioConeccion uc2 = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
+
+        if(uc2 == null){
+            log.info("Falta asignar al usuario a alguna compañía.");
+            request.getSession().setAttribute("tiposession", "7");
+
+            return new ModelAndView("redirect:/login2");
+        }
+
         log.info("uc.getUser(): " + uc.getUser());
         log.info("uc2.getUser(): " + uc2.getUser());
 
