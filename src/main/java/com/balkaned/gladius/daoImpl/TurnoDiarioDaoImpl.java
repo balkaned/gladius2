@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +35,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
-    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini) {
+    public List<TurnoSetManual> listarTurnosModalAsis(Integer codcia, String fecini) {
 
         String sql = "select " +
                 "t.iexcodcia, " +
@@ -53,12 +52,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "from iexturno t " +
                 "where iexcodcia = " + codcia + " ";
 
-        return jdbc.query(sql, new ResultSetExtractor<List<Turno>>() {
-            public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Turno> lista = new ArrayList<Turno>();
+        return jdbc.query(sql, new ResultSetExtractor<List<TurnoSetManual>>() {
+            public List<TurnoSetManual> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<TurnoSetManual> lista = new ArrayList<TurnoSetManual>();
 
                 while (rs.next()) {
-                    Turno p = new Turno();
+                    TurnoSetManual p = new TurnoSetManual();
 
                     p.setCodcia(rs.getInt("iexcodcia"));
                     p.setIexcodturno(rs.getInt("iexcodturno"));
@@ -172,14 +171,22 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         log.info("fecini: {} ", fecini);
         log.info("fecfin: {} ", fecfin);
 
-        String finalFecini = "'" + fecini + "'";
-        String finalFecfin = "'" + fecfin + "'";
+        FormatterFecha fec1 = new FormatterFecha();
+        String fechaIniFormat = fec1.fechaFormatterIngltoEsp2(fecini);
+        log.info("fechaIniFormat: {} ",fechaIniFormat);
+
+        FormatterFecha fec2 = new FormatterFecha();
+        String fechaFinFormat = fec2.fechaFormatterIngltoEsp2(fecfin);
+        log.info("fechaFinFormat: {} ",fechaFinFormat);
+
+        String finalFecini = "'" + fechaIniFormat + "'";
+        String finalFecfin = "'" + fechaFinFormat + "'";
 
         SqlParameterSource namedParameteres = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
                 .addValue("codtra", codtra)
-                .addValue("fecini", fecini)
-                .addValue("fecfin", fecfin);
+                .addValue("fecini", fechaIniFormat)
+                .addValue("fecfin", fechaFinFormat);
 
         List<Turnodiario> lsTurno = namedParameterJdbcTemplate.query(sql, namedParameteres,
                 BeanPropertyRowMapper.newInstance(Turnodiario.class));

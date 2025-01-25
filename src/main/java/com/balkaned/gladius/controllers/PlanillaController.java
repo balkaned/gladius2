@@ -1263,7 +1263,7 @@ public class PlanillaController {
 
         log.info("fecini: {} ", fecini);
 
-        List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
+        List<TurnoSetManual> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
 
         log.info("lstTurnos.get(0).getAnioDes(): " + lstTurnos.get(0).getAnioDes());
         log.info("lstTurnos.get(0).getMesDes(): " + lstTurnos.get(0).getMesDes());

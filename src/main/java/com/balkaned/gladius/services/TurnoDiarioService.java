@@ -2,11 +2,11 @@ package com.balkaned.gladius.services;
 
 
 import com.balkaned.gladius.models.*;
-
 import java.util.List;
 
 public interface TurnoDiarioService {
-    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini);
+
+    public List<TurnoSetManual> listarTurnosModalAsis(Integer codcia, String fecini);
 
     public List<Turno> listarTurnos(Integer codcia);
 
