@@ -300,7 +300,7 @@ public class SueldosDaoImpl implements SueldoDao {
 
         String sql = "select  " +
                 "coocodcon as codConcepto, " +
-                "coodescon as desConcepto" +
+                "coodescon as desConcepto " +
                 "from iexciaxcon, iexconcepto, iexproxconcepto " +
                 "where procodcon =  iexcodcon and " +
                 "iexcodcia = :codcia and " +

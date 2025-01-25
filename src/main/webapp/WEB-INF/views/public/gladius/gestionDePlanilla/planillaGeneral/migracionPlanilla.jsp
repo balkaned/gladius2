@@ -243,7 +243,7 @@
                                          <div class="dropdown-menu dropdown-menu-end py-2">
                                               <!--<a id="dropdownmenutable" class="dropdown-item" onclick="return actualizar();" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>-->
                                               <!--<div class="dropdown-divider"></div>-->
-                                              <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-download me-2"></span>Boleta</a>
+                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download me-2"></span>Boleta</a>
                                          </div>
                                        </div>
                                     </td>

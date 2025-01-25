@@ -35,7 +35,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -1261,6 +1260,8 @@ public class PlanillaController {
 
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String fecini = request.getParameter("fecini");
+
+        log.info("fecini: {} ", fecini);
 
         List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
 

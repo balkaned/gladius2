@@ -386,9 +386,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
         String sql = "select p.iexcodcia, p.iexcodpro, p.iexnroper, p.iexpermes, " +
                 "p.iexcorrel, p.iexcodtra, e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra as destra, " +
                 "p.iextipdoc, p.iexnrodoc, p.iexcodpuesto, " +
-                "p.iexcodarea, p.iexcodlocal, p.iexcodccosto, p.iexfecini, " +
-                "p.iexfecfin, p.iexdiamestot, p.iexdiasteorico, p.iexdiavaca, p.iexdiadm, " +
-                "p.iexdiasub, p.iexdialic, p.iexdiaperm, p.iexdiafalta, " +
+                "p.iexcodarea, p.iexcodlocal, p.iexcodccosto, p.iexfecini, p.iexfecini as feciniFormat, " +
+                "p.iexfecfin, p.iexfecfin as fecfinFormat, p.iexdiamestot, p.iexdiasteorico, p.iexdiavaca, " +
+                "p.iexdiadm, p.iexdiasub, p.iexdialic, p.iexdiaperm, p.iexdiafalta, " +
                 "p.iexdiaefectivo, p.iexdiaspago, p.totalingreso, p.totaldescuento, " +
                 "p.totalneto, p.totalaporte, p.iexusucrea, p.iexfeccrea, " +
                 "p.iexcodafp, p.iextipafp, to_char(p.iexfecing,'DD/MM/YYYY') iexfecing, " +
@@ -464,7 +464,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "set timeini_proc = now() " +
                 "where iexcodcia = ? and " +
                 "iexcodpro = ? and " +
-                "iexnroper= '?' ";
+                "iexnroper= ? ";
 
         jdbc.update(sql,
                 codcia,
@@ -880,7 +880,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
+                .addValue("idproceso", idproceso)
                 .addValue("perpro", perpro)
+                .addValue("codtra", codtra)
                 .addValue("correl", correl);
 
         PlaProPeriodo plaProPeriodo = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,

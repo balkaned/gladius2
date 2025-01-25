@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexdesusu, " +
                 "t.iexfeccrea " +
                 "from iexturno t " +
-                "where iexcodcia = "+codcia+" ";
+                "where iexcodcia = " + codcia + " ";
 
         return jdbc.query(sql, new ResultSetExtractor<List<Turno>>() {
             public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -72,9 +73,9 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexdesusu(rs.getString("iexdesusu"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
 
-                    log.info("fecini: " + fecini);
-                    Date fecha = new Date(fecini);
-                    log.info("fecha: " + fecha);
+                    log.info("fecini DAO: " + fecini);
+                    //Date fecha = new Date(fecini);
+                    //log.info("fecha: " + fecha);
 
                     FormatterFecha fec = new FormatterFecha();
                     String mes = fec.fechaFormatterMes(fecini);
@@ -167,6 +168,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexfecdia >= to_date(:fecini,'dd/mm/yyyy') and " +
                 "t.iexfecdia <= to_date(:fecfin,'dd/mm/yyyy') " +
                 "order by iexcodfec asc ";
+
+        log.info("fecini: {} ", fecini);
+        log.info("fecfin: {} ", fecfin);
+
+        String finalFecini = "'" + fecini + "'";
+        String finalFecfin = "'" + fecfin + "'";
 
         SqlParameterSource namedParameteres = new MapSqlParameterSource()
                 .addValue("codcia", codcia)

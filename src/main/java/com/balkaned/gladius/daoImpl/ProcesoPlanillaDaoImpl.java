@@ -207,7 +207,8 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "   end desestado, " +
                 "e.iexfecope, e.iexanio, e.utiltotal, " +
                 "p.progrppro as desgrppla, to_char(e.iexfeccerti,'DD/MM/YYYY') iexfeccerti, " +
-                "p.procodregimenlab as codregimen, e.iextcmb as tcmb" +
+                "p.procodregimenlab as codregimen, " +
+                "e.iextcmb as tcmb " +
                 "from iexproperiodo e, iexprocesos p, (  " +
                 " select  iexkey, desdet from  iexttabled where iexcodtab='33' ) t " +
                 "where e.iexcodpro =  p.procodpro and " +
