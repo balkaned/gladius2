@@ -57,6 +57,7 @@ public class Turnodiario{
     private Double totalhoras;
     private Double canthoras;
     private String diaCalendar;
+    private String desfecdia2;
 
     public void setDesfecdia(String desfecdia) {
 

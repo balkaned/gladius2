@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TurnoDiarioService {
 
-    public List<TurnoSetManual> listarTurnosModalAsis(Integer codcia, String fecini);
+    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini);
 
     public List<Turno> listarTurnos(Integer codcia);
 

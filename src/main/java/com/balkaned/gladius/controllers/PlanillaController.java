@@ -11,6 +11,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.util.FormatterFecha;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -1261,12 +1262,7 @@ public class PlanillaController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
         String fecini = request.getParameter("fecini");
 
-        log.info("fecini: {} ", fecini);
-
-        List<TurnoSetManual> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
-
-        log.info("lstTurnos.get(0).getAnioDes(): " + lstTurnos.get(0).getAnioDes());
-        log.info("lstTurnos.get(0).getMesDes(): " + lstTurnos.get(0).getMesDes());
+        List<Turno> lstTurnos = turnoDiarioService.listarTurnosModalAsis(idCompania, fecini);
 
         String json = new Gson().toJson(lstTurnos);
         response.setContentType("application/json");
@@ -1315,9 +1311,6 @@ public class PlanillaController {
         String codtra = request.getParameter("codtra");
         String codfec = request.getParameter("codfec");
 
-        log.info("codtra: " + codtra);
-        log.info("codfec: " + codfec);
-
         Turnodiario turno = turnoDiarioService.obtenerTurnoDia(idCompania, Integer.valueOf(codtra), codfec.trim());
 
         String json = new Gson().toJson(turno);
@@ -1344,11 +1337,6 @@ public class PlanillaController {
         String codTurnoSelected = request.getParameter("codTurnoSelected");
         Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
 
-        log.info("iexcodfec: " + iexcodfec);
-        log.info("desfecdia: " + desfecdia);
-        log.info("codTurnoSelected: " + codTurnoSelected);
-        log.info("idTrabAsis: " + idTrabAsis);
-
         turnoDiarioService.actualizaTurnoDia(idCompania, idTrabAsis, Integer.valueOf(codTurnoSelected), desfecdia, user);
 
         String json = new Gson().toJson(null);
@@ -1372,9 +1360,6 @@ public class PlanillaController {
 
         String desfecdia = request.getParameter("desfecdia");
         Integer idTrabAsis = Integer.valueOf(request.getParameter("idTrabAsis"));
-
-        log.info("desfecdia: " + desfecdia);
-        log.info("idTrabAsis: " + idTrabAsis);
 
         turnoDiarioService.calificarTurnoDia(idCompania, idTrabAsis, desfecdia, user);
 
@@ -1462,12 +1447,22 @@ public class PlanillaController {
         String v_fecfin = request.getParameter("fecfin");
         String codtra = request.getParameter("codtra");
 
-        log.info("v_fecini: " + v_fecini);
-        log.info("v_fecfin: " + v_fecfin);
-        log.info("codtra: " + codtra);
-        log.info("user: " + user);
+        log.info("v_fecini: "+v_fecini);
+        log.info("v_fecfin: "+v_fecfin);
 
-        // marcasTurnodia
+        FormatterFecha fec1 = new FormatterFecha();
+        String fechaIniFormat = fec1.fechaFormatterIngltoEsp2(v_fecini);
+
+        FormatterFecha fec2 = new FormatterFecha();
+        String fechaFinFormat = fec2.fechaFormatterIngltoEsp2(v_fecfin);
+
+        v_fecini = fechaIniFormat;
+        v_fecfin = fechaFinFormat;
+
+        log.info("v_fecini: "+v_fecini);
+        log.info("v_fecfin: "+v_fecfin);
+
+        // MarcasTurnodia
         Date d1 = null;
         Date d2 = null;
 
@@ -1491,7 +1486,6 @@ public class PlanillaController {
 
                 do {
                     log.info("fecha index =" + sdf.format(c.getTime()));
-                    //daoturno.marcacionesTurnoDia(v_codcia, Empleado.getIexcodtra(), sdf.format(c.getTime()), (String) session.getAttribute("desusu"));
                     turnoDiarioService.marcacionesTurnoDia(idCompania, Integer.valueOf(codtra), sdf.format(c.getTime()), user);
 
                     c.add(Calendar.DATE, 1);
@@ -1794,9 +1788,6 @@ public class PlanillaController {
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         String codfec = request.getParameter("codfec");
 
-        log.info("codtra: " + codtra);
-        log.info("codfec: " + codfec);
-
         List<TurnoMarks> lstTurn = turnoDiarioService.obtenerTurnoDiaMarks(idCompania, codtra, codfec);
 
         String json = new Gson().toJson(lstTurn);
@@ -1849,9 +1840,6 @@ public class PlanillaController {
 
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         String codfec = request.getParameter("codfec");
-
-        log.info("codtra: " + codtra);
-        log.info("codfec: " + codfec);
 
         List<MarkaManual> lstMarkMan = turnoDiarioService.obtenerMarksMDia(idCompania, codtra, codfec);
 

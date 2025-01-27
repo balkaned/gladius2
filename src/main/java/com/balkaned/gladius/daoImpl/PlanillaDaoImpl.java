@@ -3,6 +3,7 @@ package com.balkaned.gladius.daoImpl;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.FormulaPlanillaService;
+import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -1231,11 +1232,17 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "iexfecha <= to_date(:fecfin,'dd/mm/yyyy') " +
                 "order by iexfecha asc ";
 
+        FormatterFecha fec1 = new FormatterFecha();
+        String fechaIniFormat = fec1.fechaFormatterIngltoEsp2(fecini);
+
+        FormatterFecha fec2 = new FormatterFecha();
+        String fechaFinFormat = fec2.fechaFormatterIngltoEsp2(fecfin);
+
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
                 .addValue("codtra", codtra)
-                .addValue("fecini", fecini)
-                .addValue("fecfin", fecfin);
+                .addValue("fecini", fechaIniFormat)
+                .addValue("fecfin", fechaFinFormat);
 
         List<Asistencia> lsAsis = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Asistencia.class));

@@ -66,6 +66,26 @@ public class FormatterFecha {
         }
     }
 
+    public String fechaFormatterMes2(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("MMMM");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     public String fechaFormatterAnio(String fecha) {
 
         if (fecha == null) {
@@ -74,6 +94,26 @@ public class FormatterFecha {
 
         try {
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("yyyy");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public String fechaFormatterAnio2(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
             Date fechaDate = formatoOriginal.parse(fecha);
 
             SimpleDateFormat formatoDeseado = new SimpleDateFormat("yyyy");

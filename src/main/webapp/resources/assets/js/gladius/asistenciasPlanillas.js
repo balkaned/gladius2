@@ -143,7 +143,6 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
                     var inib = data[0].iexcoddiasem-2;
-                    console.log("inicioDiaSemana: "+inicioDiaSemana);
 
                     if(i==0){
                         for(let l=1; l < inicioDiaSemana; l++){
@@ -162,8 +161,8 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                     opt2 += "<td id='background"+i+"' class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
                                "<span id='spanDiaCalendar"+i+"' class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
                                "<span id='spanturno"+i+"' class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
-                               "<span id='spanfecdia"+i+"'class='text-500'>"+data[i].desfecdia+"</span><br>"+
-                               "<input type='hidden' id='ip_desfecdia"+i+"' value='"+data[i].desfecdia+"' />"+
+                               "<span id='spanfecdia"+i+"'class='text-500'>"+data[i].desfecdia2+"</span><br>"+
+                               "<input type='hidden' id='ip_desfecdia"+i+"' value='"+data[i].desfecdia2+"' />"+
                                "<span id='spandesiniturno"+i+"' class='text-500'>Turno: "+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
 
                                if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
@@ -178,13 +177,12 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
                     j++;
                     f++;
-                    console.log("j: "+j);
 
                     if(z==1){
-                        fecIni7 = data[i].desfecdia;
+                        fecIni7 = data[i].desfecdia2;
                     }else if(j % 7 == 0){
                         f=1;
-                        fecfin7 = data[i].desfecdia;
+                        fecfin7 = data[i].desfecdia2;
                         z=0;
 
                         opt2 += "<td class='pt-0 pb-2 mt-2'>"+
@@ -206,7 +204,6 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
                     opt2 += "</td>";
                  }
 
-                 console.log("f: "+f);
                  var fa=f-1
                  var fb=1;
 
@@ -233,7 +230,6 @@ function verAsistenciaPeriodoTrabInicializacion(codtra,nombretrab,fecini,fecfin,
 
                  for (var i in data) {
                      var inicioDiaSemana2 = data[0].iexcoddiasem;
-                     console.log("inicioDiaSeman2: "+inicioDiaSemana2);
 
                      y=b-inicioDiaSemana2;
                      a=b-inicioDiaSemana2+1;
@@ -474,7 +470,6 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                  for (var i in data) {
                     var inicioDiaSemana = data[0].iexcoddiasem;
                     var inib = data[0].iexcoddiasem-2;
-                    console.log("inicioDiaSemana: "+inicioDiaSemana);
 
                     if(i==0){
                         for(let l=1; l < inicioDiaSemana; l++){
@@ -493,8 +488,8 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                     opt2 += "<td id='background"+i+"' class='pt-2 pb-2 ps-2 pe-2 bg-300 bg-opacity-50 border border-100'>"+
                                "<span id='spanDiaCalendar"+i+"' class='ms-1 text-900 fs-0'>"+data[i].diaCalendar+"</span><br>"+
                                "<span id='spanturno"+i+"' class='text-500'>["+data[i].iexflgturno+"]</span><br>"+
-                               "<span id='spanfecdia"+i+"'class='text-500'>"+data[i].desfecdia+"</span><br>"+
-                               "<input type='hidden' id='ip_desfecdia"+i+"' value='"+data[i].desfecdia+"' />"+
+                               "<span id='spanfecdia"+i+"'class='text-500'>"+data[i].desfecdia2+"</span><br>"+
+                               "<input type='hidden' id='ip_desfecdia"+i+"' value='"+data[i].desfecdia2+"' />"+
                                "<span id='spandesiniturno"+i+"' class='text-500'>Turno: "+data[i].desiniturno+" - "+data[i].desfinturno+"</span><br>";
 
                                if(data[i].desiniasist=="undefined" || data[i].desiniasist==null || data[i].desiniasist==""){
@@ -509,13 +504,12 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                     j++;
                     f++;
-                    console.log("j: "+j);
 
                     if(z==1){
-                        fecIni7 = data[i].desfecdia;
+                        fecIni7 = data[i].desfecdia2;
                     }else if(j % 7 == 0){
                         f=1;
-                        fecfin7 = data[i].desfecdia;
+                        fecfin7 = data[i].desfecdia2;
                         z=0;
 
                         opt2 += "<td class='pt-0 pb-2 mt-2'>"+
@@ -537,7 +531,6 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                     opt2 += "</td>";
                  }
 
-                 console.log("f: "+f);
                  var fa=f-1
                  var fb=1;
 
@@ -564,15 +557,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
 
                  for (var i in data) {
                      var inicioDiaSemana2 = data[0].iexcoddiasem;
-                     console.log("inicioDiaSeman2: "+inicioDiaSemana2);
 
                      y=b-inicioDiaSemana2;
                      a=b-inicioDiaSemana2+1;
 
                      if(b % 7 == 0){
-                         console.log("y: "+y);
-                         console.log("a: "+a);
-
                          $('#spanDiaCalendar'+y).addClass('text-warning');
 
                          $('#popoverVer'+y).removeClass('text-success');
@@ -623,6 +612,12 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                            $('#spandesiniturno'+i).addClass('text-white');
                         }
                     }
+
+                    console.log("---------------------------------");
+                    console.log("data[i].diaCalendar: "+data[i].diaCalendar);
+                    console.log("i: "+i);
+                    console.log("data[i].iexcodturno: "+data[i].iexcodturno);
+                    console.log("data[i].iexindfalta: "+data[i].iexindfalta);
 
                     if(data[i].iexcodturno != 999){
                         if(data[i].iexvacaind==1){
@@ -697,11 +692,6 @@ function program_tur_row(codturno,codtra,j){
        var codturno = codturno.value;
        var fecini7 = document.getElementById("fecIni7"+j).value;
        var fecfin7 = document.getElementById("fecfin7"+j).value;
-
-       console.log("fecini7: "+fecini7);
-       console.log("fecfin7: "+fecfin7);
-       console.log("codturno: "+codturno);
-       console.log("codtra: "+codtra);
 
        $.ajax({
             async: false,
@@ -810,14 +800,14 @@ function traerMarcacionesAsisModal(codtra,codfec,ind,fecini,codigoTurnoSeleccion
                             "<input id='indice"+ind+"' type='hidden' value="+ind+"/>"+
                             "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Fecha: </div>"+
-                                "<div class='fs--1 text-600'>"+data.desfecdia+" ["+data.iexcodfec+"]</div>"+
-                                "<input id='ipHiddenDesfecdia"+ind+"' type='hidden' value="+data.desfecdia+">"+
+                                "<div class='fs--1 text-600'>"+data.desfecdia2+" ["+data.iexcodfec+"]</div>"+
+                                "<input id='ipHiddenDesfecdia"+ind+"' type='hidden' value="+data.desfecdia2+">"+
                                 "<input id='ipHiddeniexcodfec"+ind+"' type='hidden' value="+data.iexcodfec+">"+
                             "</div>"+
                             "<div class='col-sm-6 col-md-12'>"+
                                 "<div class='fs--1 text-1000 fw-semi-bold'>Turno: </div>";
 
-                                traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.desfecdia,data.iexcodfec);
+                                traerLstTurnosModal(fecini,codigoTurnoSeleccionado,ind,data.desfecdia2,data.iexcodfec);
 
                                 var opcionPopoverA = sessionStorage.getItem("opcionPopoverA");
 
@@ -1009,6 +999,7 @@ function setearVariableCodTurnoSes(ind,desfecdia){
 }
 
 function grabarTurnoDia(ind){
+
     var iexcodfec = document.getElementById("iexcodfec"+ind).value;
     var desfecdia = document.getElementById("desfecdia"+ind).value;
     var codTurnoSelected = document.getElementById("cod_turno"+ind).value;
@@ -1033,6 +1024,7 @@ function grabarTurnoDia(ind){
 }
 
 function calificarTurnoDia(ind){
+
     var iexcodfec = document.getElementById("ipHiddeniexcodfec"+ind).value;
     var idTrabAsis= document.getElementById("idTrabAsis").value;
     var desfecdia = document.getElementById("ipHiddenDesfecdia"+ind).value;
@@ -1122,6 +1114,7 @@ function verTurnos(){
 }
 
 function traerTurnos(){
+
         var idTrabAsisHidden = document.getElementById("idTrabAsisHidden").value;
         var trabAsisHidden = document.getElementById("trabAsisHidden").value;
         var feciniAsisHidden = document.getElementById("feciniAsisHidden").value;
@@ -1416,6 +1409,7 @@ function verMarcaciones(){
 }
 
 function traertLstNroFechaHora(codtra,iexcodfec){
+
     var html2 = "";
 
     $.ajax({
@@ -1515,9 +1509,6 @@ function deleteMarcMan(codtra,a,ind){
     if (opcion == true) {
         var iexcodfec = document.getElementById("ipHiddeniexcodfec"+ind).value;
         var fechadel = document.getElementById("iexfecmarkasIp_"+a+"_"+ind).value;
-
-        console.log("iexcodfec: "+iexcodfec);
-        console.log("fechadel: "+fechadel);
 
         $.ajax({
              async: false,

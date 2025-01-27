@@ -14,11 +14,11 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -35,7 +35,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(datasource);
     }
 
-    public List<TurnoSetManual> listarTurnosModalAsis(Integer codcia, String fecini) {
+    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini) {
 
         String sql = "select " +
                 "t.iexcodcia, " +
@@ -52,12 +52,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "from iexturno t " +
                 "where iexcodcia = " + codcia + " ";
 
-        return jdbc.query(sql, new ResultSetExtractor<List<TurnoSetManual>>() {
-            public List<TurnoSetManual> extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<TurnoSetManual> lista = new ArrayList<TurnoSetManual>();
+        return jdbc.query(sql, new ResultSetExtractor<List<Turno>>() {
+            public List<Turno> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Turno> lista = new ArrayList<Turno>();
 
                 while (rs.next()) {
-                    TurnoSetManual p = new TurnoSetManual();
+                    Turno p = new Turno();
 
                     p.setCodcia(rs.getInt("iexcodcia"));
                     p.setIexcodturno(rs.getInt("iexcodturno"));
@@ -72,20 +72,13 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                     p.setIexdesusu(rs.getString("iexdesusu"));
                     p.setIexfeccrea(rs.getString("iexfeccrea"));
 
-                    log.info("fecini DAO: " + fecini);
-                    //Date fecha = new Date(fecini);
-                    //log.info("fecha: " + fecha);
-
                     FormatterFecha fec = new FormatterFecha();
-                    String mes = fec.fechaFormatterMes(fecini);
+                    String mes = fec.fechaFormatterMes2(fecini);
                     p.setMesDes(mes);
 
                     FormatterFecha fec2 = new FormatterFecha();
-                    String anio = fec2.fechaFormatterAnio(fecini);
+                    String anio = fec2.fechaFormatterAnio2(fecini);
                     p.setAnioDes(anio);
-
-                    log.info("mes: " + mes);
-                    log.info("anio: " + anio);
 
                     lista.add(p);
                 }
@@ -129,6 +122,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexcodfec, " +
                 "t.iexfecdia, " +
                 "to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia, " +
+                "to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia2, " +
                 "t.iexcodturno, " +
                 "e.iexflgturno, " +
                 "e.iexdesturno as desturno, " +
@@ -168,19 +162,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexfecdia <= to_date(:fecfin,'dd/mm/yyyy') " +
                 "order by iexcodfec asc ";
 
-        log.info("fecini: {} ", fecini);
-        log.info("fecfin: {} ", fecfin);
 
         FormatterFecha fec1 = new FormatterFecha();
         String fechaIniFormat = fec1.fechaFormatterIngltoEsp2(fecini);
-        log.info("fechaIniFormat: {} ",fechaIniFormat);
 
         FormatterFecha fec2 = new FormatterFecha();
         String fechaFinFormat = fec2.fechaFormatterIngltoEsp2(fecfin);
-        log.info("fechaFinFormat: {} ",fechaFinFormat);
-
-        String finalFecini = "'" + fechaIniFormat + "'";
-        String finalFecfin = "'" + fechaFinFormat + "'";
 
         SqlParameterSource namedParameteres = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
@@ -314,6 +301,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 "t.iexcodfec, " +
                 "t.iexfecdia, " +
                 "to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia, " +
+                "to_char(t.iexfecdia,'dd/mm/yyyy') desfecdia2, " +
                 "t.iexcodturno, " +
                 "e.iexflgturno, " +
                 "e.iexdesturno as desturno, " +
@@ -381,7 +369,12 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
     public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
 
-        String sql = "call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ";
+        String sql = " call pl_califica_asistencia(?, to_date(?,'dd/mm/yyyy'), ?, ?) ";
+
+        log.info("codcia: {} ", codcia);
+        log.info("codtra: {} ", codtra);
+        log.info("fecdia: {} ", fecdia);
+        log.info("desusu: {} ", desusu);
 
         jdbc.update(sql,
                 codcia,

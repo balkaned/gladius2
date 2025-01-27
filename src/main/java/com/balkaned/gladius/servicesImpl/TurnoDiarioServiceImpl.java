@@ -19,7 +19,7 @@ public class TurnoDiarioServiceImpl implements TurnoDiarioService {
     @Autowired
     TurnoDiarioDao dao;
 
-    public List<TurnoSetManual> listarTurnosModalAsis(Integer codcia, String fecini) {
+    public List<Turno> listarTurnosModalAsis(Integer codcia, String fecini) {
         return dao.listarTurnosModalAsis(codcia, fecini);
     }
 
