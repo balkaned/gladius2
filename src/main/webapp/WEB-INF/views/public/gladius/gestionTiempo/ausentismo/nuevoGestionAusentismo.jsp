@@ -146,7 +146,7 @@ Email : janquirozs@gmail.com --%>
               <div class="col-xl-8">
                 <div class="row gx-3 gy-4">
                   <form class="row g-3 mb-0 needs-validation" method="POST" id="gtmvac" name="gtmvac" action="insertarGestionAusentismo" novalidate>
-                    <div class="col-sm-6 col-md-5">
+                    <div class="col-sm-6 col-md-6">
                       <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                       <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                         <option value="" selected >Seleccionar regimen</option>

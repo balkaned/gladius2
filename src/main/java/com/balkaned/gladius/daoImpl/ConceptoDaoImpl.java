@@ -5,12 +5,14 @@ import com.balkaned.gladius.dao.ConceptoDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -163,10 +165,15 @@ public class ConceptoDaoImpl implements ConceptoDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id", id);
 
-        Concepto concepto = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(Concepto.class));
+        try {
+            List<Concepto> lsConcepto = namedParameterJdbcTemplate.query(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(Concepto.class));
 
-        return concepto;
+            return lsConcepto.get(0);
+        } catch (IncorrectResultSizeDataAccessException ex) {
+            log.info(CLASS_NAME + " recuperar: No se encontraron resultados ", ex);
+            return null;
+        }
     }
 
     public void eliminar(String id) {

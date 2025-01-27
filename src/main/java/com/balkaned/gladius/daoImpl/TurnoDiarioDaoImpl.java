@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -369,12 +370,17 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
 
     public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
 
-        String sql = " call pl_califica_asistencia(?, to_date(?,'dd/mm/yyyy'), ?, ?) ";
+        String sql = " call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ";
 
         log.info("codcia: {} ", codcia);
-        log.info("codtra: {} ", codtra);
         log.info("fecdia: {} ", fecdia);
+        log.info("codtra: {} ", codtra);
         log.info("desusu: {} ", desusu);
+
+        /*FormatterFecha fec = new FormatterFecha();
+        String fecdiaFormat = fec.fechaFormatterEspToIngl(fecdia);
+
+        log.info("fecdiaFormat: {} ", fecdiaFormat);*/
 
         jdbc.update(sql,
                 codcia,

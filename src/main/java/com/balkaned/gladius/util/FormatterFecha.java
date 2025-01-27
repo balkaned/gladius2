@@ -26,6 +26,26 @@ public class FormatterFecha {
         }
     }
 
+    public String fechaFormatterEspToIngl(String fecha) {
+
+        if (fecha == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/mm/yyyy");
+            Date fechaDate = formatoOriginal.parse(fecha);
+
+            SimpleDateFormat formatoDeseado = new SimpleDateFormat("yyyy-mm-dd");
+            String fechaFormateada = formatoDeseado.format(fechaDate);
+
+            return fechaFormateada;
+
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     public String fechaFormatterDia(String fecha) {
 
         if (fecha == null) {

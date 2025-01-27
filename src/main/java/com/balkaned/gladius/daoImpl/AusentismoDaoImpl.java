@@ -132,12 +132,14 @@ public class AusentismoDaoImpl implements AusentismoDao {
                 "c.iexcodcia, " +
                 "c.iexcodtra, " +
                 "c.iexapepat ||' '|| c.iexapemat||' '|| c.iexnomtra nomtra, " +
+                "c.iexapepat ||' '|| c.iexapemat||' '|| c.iexnomtra nomtra2, " +
                 "case " +
                 "   when iexflgest='1' then 'activo' " +
                 "   when iexflgest='0' then 'inactivo' " +
                 "   else 'inactivo' end desestado, " +
                 "to_char(c.iexfecing,'dd/mm/yyyy') fecing, " +
-                "c.iexnrodoc, " +
+                "to_char(c.iexfecing,'dd/mm/yyyy') fecing2, " +
+                "c.iexnrodoc as nrodoc, " +
                 "a.iextipaus, " +
                 "a.iexcorrel as aus_id, " +
                 "to_char(a.iexfecini,'dd/mm/yyyy') iexfecini, " +

@@ -4,12 +4,14 @@ import com.balkaned.gladius.models.EmpAcum;
 import com.balkaned.gladius.dao.EmpAcumDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 
 @Slf4j
@@ -56,9 +58,14 @@ public class EmpAcumDaoImpl implements EmpAcumDao {
                 .addValue("codtra", codtra)
                 .addValue("anio", anio);
 
-        EmpAcum empAcum = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(EmpAcum.class));
+        try {
+            EmpAcum empAcum = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(EmpAcum.class));
 
-        return empAcum;
+            return empAcum;
+        } catch (EmptyResultDataAccessException ex) {
+            log.info(CLASS_NAME + " getEmpAcum: No se encontraron resultados ", ex);
+            return null;
+        }
     }
 }

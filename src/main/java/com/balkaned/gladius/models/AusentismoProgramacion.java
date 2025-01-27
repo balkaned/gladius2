@@ -41,6 +41,9 @@ public class AusentismoProgramacion {
     private String iexfeciniDes;
     private String iexfecfinDes;
 
+    private String nomtra2;
+    private String fecing2;
+
     public String getIexfeciniDes() {
         FormatterFecha f = new FormatterFecha();
         CapitalizarCadena capit = new CapitalizarCadena();

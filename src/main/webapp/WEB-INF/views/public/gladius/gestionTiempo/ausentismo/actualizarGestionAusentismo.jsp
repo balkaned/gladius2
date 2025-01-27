@@ -154,7 +154,7 @@
                                 <input type="text" name="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}" class="form-control" readonly disabled>
                                 <input type="hidden" name="iexcorrel" id="iexcorrel" value="${requestScope.xAusentismoDet.iexcorrel}" />
                             </div>
-                            <div class="col-sm-6 col-md-5">
+                            <div class="col-sm-6 col-md-6">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
                                     <option value="" selected>Seleccionar regimen</option>
@@ -193,7 +193,7 @@
                             </div>
                             <div class="col-sm-4 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dias</label>
-                                <input type="text" name="iexnrodias" class="form-control" id="iexnrodias" value="${requestScope.xAusentismoDet.iexnrodias}" readonly disabled>
+                                <input type="text" name="iexnrodias" class="form-control" id="iexnrodias" value="${requestScope.xAusentismoDet.iexnrodias}" >
                             </div>
 
                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">

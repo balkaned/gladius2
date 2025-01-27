@@ -280,14 +280,15 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
 
-        String sql = "select d.iexcodcia, " +
+        String sql = "select " +
+                "d.iexcodcia, " +
                 "d.iexcodpro as procodpro, " +
                 "p.prodespro as despro, " +
-                " d.iexnroper, " +
+                "d.iexnroper, " +
                 "d.procodcon, " +
                 "c.coodescon, " +
                 "count(1) cantidad, " +
-                "sum(provalor) provalo " +
+                "sum(provalor) provalor " +
                 "from iexpropertra_nomina d, iexconcepto c, iexprocesos p " +
                 "where d.procodcon = c.coocodcon and " +
                 "d.iexcodcia = :codcia and " +
@@ -299,6 +300,14 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, d.procodcon, c.coodescon " +
                 "order by d.iexcodcia, d.iexnroper, d.iexcodpro, d.procodcon, c.coodescon asc ";
 
+        log.info("codcia: {} ", codcia);
+        log.info("codcon: {} ", codcon);
+        log.info("perini: {} ", perini);
+        log.info("perfin: {} ", perfin);
+
+        String finalPerini = "'" + perini + "'";
+        String finalPerfin = "'" + perfin + "'";
+
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("codcia", codcia)
                 .addValue("codcon", codcon)
@@ -307,6 +316,8 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
         List<ConceptoxProcesoxTra> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ConceptoxProcesoxTra.class));
+
+        log.info("lsconcept: {} ", lsConcept);
 
         return lsConcept;
     }

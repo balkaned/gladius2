@@ -301,7 +301,8 @@ public class VacacionesDaoImpl implements VacacionesDao {
                 "iexapepat, " +
                 "iexapemat, " +
                 "iexnomtra, " +
-                "to_char(iexfecing,'dd/mm/yyyy') as fecing " +
+                "to_char(iexfecing,'dd/mm/yyyy') as fecing, " +
+                "to_char(iexfecing,'dd/mm/yyyy') as iexfecing " +
                 "from iexempleado " +
                 "where iexcodcia = :codcia and " +
                 "iexflgest = '1' and " +

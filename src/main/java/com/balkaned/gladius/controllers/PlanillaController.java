@@ -1252,7 +1252,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerLstTurnosModal", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerLstTurnosModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerLstTurnosModal");
+        //log.info("/traerLstTurnosModal");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -1274,7 +1274,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerLstTurnoDiarioModal", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerLstTurnoDiarioModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerLstTurnoDiarioModal");
+        //log.info("/traerLstTurnoDiarioModal");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -1299,7 +1299,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerMarcacionesAsisModal", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerMarcacionesAsisModal(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerMarcacionesAsisModal");
+        //log.info("/traerMarcacionesAsisModal");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -1776,7 +1776,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traertLstNroFechaHora", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traertLstNroFechaHora(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traertLstNroFechaHora");
+        //log.info("/traertLstNroFechaHora");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -1829,7 +1829,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerMarcManualData", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerMarcManualData(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerMarcManualData");
+        //log.info("/traerMarcManualData");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {

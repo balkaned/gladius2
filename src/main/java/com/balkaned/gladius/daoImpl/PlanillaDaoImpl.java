@@ -162,7 +162,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         String sql = "select " +
                 "k.iexcodcia, " +
                 "k.iexcodpro, " +
-                "k.despro, " +
+                "k.despro as descodpro, " +
                 "k.iexnroper, " +
                 "k.iexcodtra, " +
                 "k.progrppro, " +
@@ -222,7 +222,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "group by " +
                 "k.iexcodcia, " +
                 "k.iexcodpro, " +
-                "k.despro, " +
+                "k.despro as descodpro, " +
                 "k.iexnroper, " +
                 "k.iexcodtra, " +
                 "k.progrppro, " +
@@ -252,7 +252,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         String sql = "select " +
                 "k.iexcodcia, " +
                 "k.iexcodpro, " +
-                "k.despro, " +
+                "k.descodpro, " +
                 "k.iexnroper, " +
                 "k.iexcodtra, " +
                 "k.progrppro, " +
@@ -312,7 +312,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "group by " +
                 "k.iexcodcia, " +
                 "k.iexcodpro, " +
-                "k.despro, " +
+                "k.descodpro, " +
                 "k.iexnroper, " +
                 "k.iexcodtra, " +
                 "k.progrppro, " +

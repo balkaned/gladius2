@@ -613,11 +613,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                         }
                     }
 
-                    console.log("---------------------------------");
+                    /*console.log("---------------------------------");
                     console.log("data[i].diaCalendar: "+data[i].diaCalendar);
                     console.log("i: "+i);
                     console.log("data[i].iexcodturno: "+data[i].iexcodturno);
-                    console.log("data[i].iexindfalta: "+data[i].iexindfalta);
+                    console.log("data[i].iexindfalta: "+data[i].iexindfalta);*/
 
                     if(data[i].iexcodturno != 999){
                         if(data[i].iexvacaind==1){
@@ -1324,9 +1324,25 @@ function reporteAsistencias(){
     console.log("feciniProcesada: "+feciniProcesada);
     console.log("fecfinProcesada: "+fecfinProcesada);
 
+    var varRecup = feciniProcesada;
+    var parts = varRecup.split("-");
+    var anio1 = parts[0];
+    var mes1 = parts[1];
+    var dia1 = parts[2];
+    var completo1 = dia1+"-"+mes1+"-"+anio1;
+    console.log("completo1: "+completo1);
+
+    var varRecup2 = fecfinProcesada;
+    var parts2 = varRecup2.split("-");
+    var anio2 = parts[0];
+    var mes2 = parts[1];
+    var dia2 = parts[2];
+    var completo2 = dia2+"-"+mes2+"-"+anio2;
+    console.log("completo2: "+completo2);
+
     //var nombrejasper="AsistEmpTra";
     var nombrejasper="asistencia";
-    var params="5UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel+"UP_FECINI="+feciniProcesada+"UP_FECFIN="+fecfinProcesada;
+    var params="5UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel+"UP_FECINI="+completo1+"UP_FECFIN="+completo2;
 
     document.getElementById("btnReportAsis").href="AWSorFTP_flgsource@verReportePDF@"+iexcodcia+"@"+idTrabAsisHidden+"@null@null@"+nombrejasper+"@"+params+"@null@null@null";
 }

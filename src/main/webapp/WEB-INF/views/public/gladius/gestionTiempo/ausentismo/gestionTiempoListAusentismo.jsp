@@ -145,7 +145,7 @@
                         <form class="row g-3 mb-0 needs-validation" method="POST" action="gestionTiempoListAusentismo" novalidate>
                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}"/>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-7">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
                                 <select class="form-select" name="iexcodreg" id="iexcodreg" required>
                                     <option value="" selected>Seleccionar regimen</option>
@@ -217,16 +217,16 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
                                     </div>
                                 </td>
-                                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}">#${LstAusentismoView.iexcorrel}</a></td>
+                                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.aus_id}">#${LstAusentismoView.aus_id}</a></td>
                                 <td class="total align-middle text-center fw-semi-bold text-1000">${LstAusentismoView.nrodoc}</td>
-                                <td class="total align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-5">${LstAusentismoView.desnomtra}</td>
+                                <td class="total align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-5">${LstAusentismoView.nomtra2}</td>
                                 <c:if test="${LstAusentismoView.desestado=='activo'}">
                                     <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td>
                                 </c:if>
                                 <c:if test="${LstAusentismoView.desestado=='inactivo'}">
                                     <td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td>
                                 </c:if>
-                                <td class="fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><span class="fa-regular fa-calendar me-2"></span>${LstAusentismoView.fecing}</td>
+                                <td class="fulfilment_status align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><span class="fa-regular fa-calendar me-2"></span>${LstAusentismoView.fecing2}</td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center  fs--2 text-start"><span class="badge badge-phoenix fs--2 badge-phoenix-info"class="badge-label">${LstAusentismoView.destipaus}</span></td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center  text-1000 fs--1 text-start ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecini}</td>
                                 <td class="delivery_type align-middle white-space-nowrap text-center text-1000 fs--1 text-start ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstAusentismoView.iexfecfin}</td>
@@ -237,9 +237,9 @@
                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                            <a id="dropdownmenutable"class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
+                                            <a id="dropdownmenutable"class="dropdown-item" href="editarGestionAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.aus_id}"><span class="fa-solid fa-pencil me-2"></span>Editar</a>
                                             <div class="dropdown-divider"></div>
-                                            <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.iexcorrel}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                            <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarAusentismo@${LstAusentismoView.iexcodtra}@${LstAusentismoView.aus_id}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                         </div>
                                     </div>
                                 </td>
