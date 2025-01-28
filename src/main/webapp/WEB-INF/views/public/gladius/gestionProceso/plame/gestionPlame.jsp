@@ -142,40 +142,40 @@
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn"
+                                    <a class="btn btn-primary btn-sm" href="#" id="actualizarBtn"
                                     type="submit" onclick="SendSunatFile('gestionPlame','14')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle fw-semi-bold text-20">Dias no laborados [15]</td>
+                                <td class="align-middle fw-semi-bold text-20">Dias no laborados [15] .snl</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=15" id="descargarBtn2"
                                         onclick="SendSunatFile('REP','15')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn2" onclick="SendSunatFile('gestionPlame','15')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-primary btn-sm" href="#" id="actualizarBtn2" onclick="SendSunatFile('gestionPlame','15')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle fw-semi-bold text-20">Detalle de ingreso, descuento[18]</td>
+                                <td class="align-middle fw-semi-bold text-20">Detalle de ingreso, descuento[18] .rem</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=18" id="descargarBtn3"
                                         onclick="SendSunatFile('REP','18')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar
                                     </a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn3" onclick="SendSunatFile('gestionPlame','18')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-primary btn-sm" href="#" id="actualizarBtn3" onclick="SendSunatFile('gestionPlame','18')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle fw-semi-bold text-20">Otras condiciones [26]</td>
+                                <td class="align-middle fw-semi-bold text-20">Otras condiciones [26] .toc</td>
                                 <td class="align-middle fw-semi-bold text-20">
                                     <a class="btn btn-phoenix-secondary btn-sm" href="expPlameFile?permes=${requestScope.permes}&file=26" id="descargarBtn4"
                                         onclick="SendSunatFile('REP','26')"><span class="fa-solid fa-download fs--1 me-2"></span>Descargar</a>
                                 </td>
                                 <td class="align-middle fw-semi-bold text-20">
-                                    <a class="btn btn-phoenix-secondary btn-sm" href="#" id="actualizarBtn4" onclick="SendSunatFile('gestionPlame','26')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
+                                    <a class="btn btn-primary btn-sm" href="#" id="actualizarBtn4" onclick="SendSunatFile('gestionPlame','26')"><span class="fa-solid fa-rotate fs--1 me-2"></span>Actualizar</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -49,24 +49,24 @@
       <div class="container">
         <div class="row flex-center min-vh-100 py-5">
           <div class="col-sm-12 col-md-4">
-                <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.jsp">
+            <a class="d-flex flex-center text-decoration-none mb-2" href="../../../index.jsp">
                 <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                    <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="58" />
+                    <img src="resources/assets/img/icons/logoLast3.png" alt="" width="58" />
                 </div>
             </a>
-            <div class="text-center mb-5">
-              <!--<h3 class="text-1000">Login</h3>-->
-              <!--<h1 class="display-6 text-white">Sign in to gladius</h1>-->
+            <div class="text-center mb-3">
+              <!--<h3 class="text-1000 text-white">Login</h3>-->
+              <h1 class="display-6 text-white fs-2 ">Sign in to gladius</h1>
             </div>
 
-            <!--<button class="btn btn-phoenix-secondary w-100 mb-3"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
-            <button class="btn btn-phoenix-secondary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>-->
+            <button class="btn btn-phoenix-warning w-100 mb-2"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
+            <button class="btn btn-phoenix-primary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>
 
             <!--<div class="position-relative">
               <hr class="bg-200 mt-5 mb-4" />
               <div class="divider-content-center">or use email</div>
             </div>-->
-            <div class="bg-blanco border border-0 rounded-2 p-4 col-12">
+            <div class="bg-blanco border border-0 rounded-2 p-4 col-12 mt-2">
                 <div class="mb-3 text-start col-sm-6 col-md-12">
                   <label class="form-label" for="email">Usuario</label>
                   <div class="form-icon-container">

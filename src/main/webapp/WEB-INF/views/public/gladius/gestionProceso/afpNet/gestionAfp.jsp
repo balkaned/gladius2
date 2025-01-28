@@ -86,7 +86,7 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 id="h2top" class="mb-0">Reporte afp net</h2>
+                    <h2 id="h2top" class="mb-0">Reporte afp Net</h2>
                 </div>
             </div>
 
@@ -102,20 +102,20 @@
                                     <td class="align-middle fw-semi-bold text-20">Periodo mensual</td>
                                     <td>
                                         <div class="col-sm-6 col-md-3">
-                                            <input type="text" name="permes"  id="permes"  value="${requestScope.permes}" class="form-control" placeholder="YYYYMM" >
+                                            <input type="text" name="permes"  id="permes"  value="${requestScope.permes}" class="form-control" placeholder="yyyymm" >
                                         </div>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class="align-middle fw-semi-bold text-20">Generar afp net</td>
+                                    <td class="align-middle fw-semi-bold text-20">Generar afp Net .xls</td>
                                     <td class="align-middle fw-semi-bold text-20">
-                                        <a class="btn btn-phoenix-secondary btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1UP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
-                                              onclick="SendAfpFile('REP','1')"><span class="fa-solid fa-download me-2"></span>Descargar
+                                        <a class="btn btn-phoenix-success btn-sm" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@null@null@null@Afpnet@1UP_PERMES=${P_PERMES}@null@null@null" id="descargaBtn"
+                                              onclick="SendAfpFile('REP','1')"><span class="fa-solid fa-download me-2"></span>Descargar Excel
                                         </a>
                                     </td>
                                     <td class="align-middle fw-semi-bold text-20">
-                                        <a class="btn btn-phoenix-secondary btn-sm" href="#" id="procesarBtn" onclick="SendAfpFile('gestionAfp','2')"><span class="fa-solid fa-diagram-predecessor me-2"></span>Procesar
+                                        <a class="btn btn-primary btn-sm" href="#" id="procesarBtn" onclick="SendAfpFile('gestionAfp','2')"><span class="fa-solid fa-diagram-predecessor me-2"></span>Procesar
                                         </a>
                                     </td>
                                 </tr>

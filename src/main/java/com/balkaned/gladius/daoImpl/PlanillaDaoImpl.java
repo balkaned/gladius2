@@ -6,14 +6,18 @@ import com.balkaned.gladius.services.FormulaPlanillaService;
 import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -353,21 +357,25 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
     public List<String> PlameMes(Integer codcia, String permes, String file) {
 
-        String sql = "select iexdesfile " +
+        String sql = "select " +
+                "iexdesfile " +
                 "from iexsunatfile " +
-                "where iexcodcia = :codcia and " +
-                "iexcodfile = :file and " +
-                "iexpermes = :permes ";
+                "where iexcodcia = " + codcia + " and " +
+                "iexcodfile = '" + file + "' and " +
+                "iexpermes = '" + permes + "' ";
 
-        SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("codcia", codcia)
-                .addValue("file", file)
-                .addValue("permes", permes);
+        return jdbc.query(sql, new ResultSetExtractor<List<String>>() {
+            public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<String> lista = new ArrayList<String>();
+                String p = null;
+                while (rs.next()) {
+                    p = rs.getString(1);
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
 
-        List<String> lsPlameMes = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(String.class));
-
-        return lsPlameMes;
     }
 
 

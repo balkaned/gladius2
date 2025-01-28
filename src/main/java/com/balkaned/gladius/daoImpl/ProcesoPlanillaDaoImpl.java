@@ -2,16 +2,22 @@ package com.balkaned.gladius.daoImpl;
 
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
+import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -278,7 +284,7 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
         return proc;
     }
 
-    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
+    /*public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
 
         String sql = "select " +
                 "d.iexcodcia, " +
@@ -320,5 +326,55 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
         log.info("lsconcept: {} ", lsConcept);
 
         return lsConcept;
+    }*/
+
+    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
+
+        String sql = "select " +
+                "d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, d.procodcon, " +
+                "c.coodescon, count(1) cantidad, sum(provalor) valtot " +
+                "from iexpropertra_nomina d, iexconcepto c, iexprocesos p " +
+                "where d.procodcon = c.coocodcon and " +
+                "d.iexcodcia = " + codcia + " and  " +
+                "d.iexcodpro = p.procodpro and " +
+                "d.procodcon in (" + codcon + ") and " +
+                "d.iexnroper >= '" + perini + "' and " +
+                "d.iexnroper <= '" + perfin + "'  and " +
+                "provalor <> 0 " +
+                "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, d.procodcon, c.coodescon " +
+                "order by d.iexcodcia, d.iexnroper, d.iexcodpro, d.procodcon, c.coodescon asc ";
+
+        return jdbc.query(sql, new ResultSetExtractor<List<ConceptoxProcesoxTra>>() {
+
+            public List<ConceptoxProcesoxTra> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ConceptoxProcesoxTra> lista = new ArrayList<ConceptoxProcesoxTra>();
+
+                while (rs.next()) {
+                    ConceptoxProcesoxTra p = new ConceptoxProcesoxTra();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setProcodpro(rs.getInt("iexcodpro"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+
+                    p.setDespro(rs.getString("prodespro"));
+                    CapitalizarCadena cap = new CapitalizarCadena();
+                    p.setDespro(cap.letras(p.getDespro()));
+
+                    p.setProcodcon(rs.getString("procodcon"));
+
+                    p.setCoodescon(rs.getString("coodescon"));
+                    CapitalizarCadena cap2 = new CapitalizarCadena();
+                    p.setCoodescon(cap2.letras(p.getCoodescon()));
+
+                    p.setCantidad(rs.getDouble("cantidad"));
+                    p.setProvalor(rs.getDouble("valtot"));
+
+                    lista.add(p);
+                }
+
+                log.info("lista: {} ", lista);
+                return lista;
+            }
+        });
     }
 }

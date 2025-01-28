@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -79,7 +80,7 @@ public class SunatFileController {
         String v_idperiodo = "";
 
         Integer v_codcia = idCompania;
-        String ruc =rucComp;
+        String ruc = rucComp;
         v_idperiodo = request.getParameter("permes");
         file2 = request.getParameter("file");
         String idplame = "0601" + v_idperiodo + ruc;
@@ -110,6 +111,8 @@ public class SunatFileController {
         Map<String, Object> parametros = new HashMap<>();
 
         List<String> lista = planillaService.PlameMes(idCompania, v_idperiodo, file2);
+
+        log.info("lista: {} ", lista);
 
         try {
             PrintWriter writer = response.getWriter();
