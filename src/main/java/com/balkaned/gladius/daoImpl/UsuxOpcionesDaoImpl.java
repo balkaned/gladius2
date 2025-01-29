@@ -73,6 +73,7 @@ public class UsuxOpcionesDaoImpl implements UsuxOpcionesDao {
                 "O.IEXURLIMG as urlimg, " +
                 "S.IEXCODSEC as codsec, " +
                 "S.IEXDESSEC as dessec, " +
+                "S.IEXDESSEC as dessec2, " +
                 "S.IEXSECIMG as dessecimg, " +
                 "S.IEXORDSEC as ordsec, " +
                 "Y.IEXDESSYS as dessys, " +

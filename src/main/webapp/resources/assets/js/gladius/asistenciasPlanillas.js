@@ -613,11 +613,11 @@ function verAsistenciaPeriodoTrab(codtra,nombretrab,fecini,fecfin,iexcodpro,iexp
                         }
                     }
 
-                    /*console.log("---------------------------------");
+                    console.log("---------");
                     console.log("data[i].diaCalendar: "+data[i].diaCalendar);
                     console.log("i: "+i);
                     console.log("data[i].iexcodturno: "+data[i].iexcodturno);
-                    console.log("data[i].iexindfalta: "+data[i].iexindfalta);*/
+                    console.log("data[i].iexindfalta: "+data[i].iexindfalta);
 
                     if(data[i].iexcodturno != 999){
                         if(data[i].iexvacaind==1){

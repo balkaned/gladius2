@@ -368,7 +368,7 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         );
     }
 
-    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+    /*public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
 
         String sql = " call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ";
 
@@ -377,10 +377,10 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
         log.info("codtra: {} ", codtra);
         log.info("desusu: {} ", desusu);
 
-        /*FormatterFecha fec = new FormatterFecha();
+        FormatterFecha fec = new FormatterFecha();
         String fecdiaFormat = fec.fechaFormatterEspToIngl(fecdia);
 
-        log.info("fecdiaFormat: {} ", fecdiaFormat);*/
+        log.info("fecdiaFormat: {} ", fecdiaFormat);
 
         jdbc.update(sql,
                 codcia,
@@ -388,6 +388,22 @@ public class TurnoDiarioDaoImpl implements TurnoDiarioDao {
                 codtra,
                 desusu
         );
+    }*/
+
+    public void calificarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {
+
+        log.info("codcia: {} ", codcia);
+        log.info("fecdia: {} ", fecdia);
+        log.info("codtra: {} ", codtra);
+        log.info("desusu: {} ", desusu);
+
+        jdbc.update(" call pl_califica_asistencia(?,to_date(?,'dd/mm/yyyy'),?,?) ",
+                codcia,
+                fecdia,
+                codtra,
+                desusu);
+
+        log.info("Actualización Completada...");
     }
 
     public void programarTurnoDia(Integer codcia, Integer codtra, String fecdia, String desusu) {

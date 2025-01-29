@@ -32,6 +32,7 @@ public class UsuxOpciones {
     public String dessecCapi;
     public String icon;
     public String path;
+    private String dessec2;
 
     public void setPath(String path) {
         String cadena = path;
@@ -44,6 +45,7 @@ public class UsuxOpciones {
 
         CapitalizarCadena cap = new CapitalizarCadena();
 
-        this.dessec = cap.letras(dessec);;
+        this.dessec = cap.letras(dessec);
+        this.dessecCapi = cap.letras(dessec);
     }
 }
