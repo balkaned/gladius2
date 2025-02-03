@@ -47,9 +47,14 @@
 
     function updtipturno(){
         document.getElementById("accion").value="UPDTIPTURNO";
-        //alert("Fecha :"+document.getElementById("iexcodfec").value+" , turno : "+ document.getElementById("iexcodturno").value);
-        confirm("Esta seguro de actualizar los horarios?");
-        document.getElementById("GestionTiempos").submit();
+
+        var opcion = confirm("Esta seguro de actualizar los horarios?");
+
+        if (opcion == true) {
+            document.getElementById("GestionTiempos").submit();
+        } else {
+            return false;
+        }
     }
 
     function jumpTo(idselect) {
@@ -170,7 +175,6 @@
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-3 mb-0 needs-validation" id="GestionTiempos" method="POST" action="grabarTurno@${idTrab}" novalidate >
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                         <input type="hidden" name="accion"  id="accion"   >
                                         <input type="hidden" name="iexcodfec"  id="iexcodfec"   >
                                         <input type="hidden" name="desfecdia"  id="desfecdia"   >
@@ -276,7 +280,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12 col-sm-6 mt-2">
-                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary btn-sm" type="submit" onclick="updtipturno();"><span class="fa-solid fa-business-time me-2"></span>Guardar horario</button>
+                                                        <button name="btn_actualizar_tipo_turno" id="btn_actualizar_tipo_turno" class="btn btn-primary btn-sm" type="submit" onclick="return updtipturno();"><span class="fa-solid fa-business-time me-2"></span>Guardar horario</button>
                                                     </div>
                                                 </td>
                                             </tr>

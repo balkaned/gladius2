@@ -72,7 +72,7 @@ public class SeccionesController {
         sec.setIexdessec(request.getParameter("iexdessec").toUpperCase());
         sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
         sec.setIexordsec(Integer.parseInt(request.getParameter("iexordsec")));
-        sec.setIexsecimg(request.getParameter("iexsecimg"));
+        sec.setIexsecimg(request.getParameter("iexecimg"));
         sec.setIexsecurl(request.getParameter("iexsecurl"));
         sec.setIexsecobs(request.getParameter("iexsecobs"));
         sec.setIexactiondef(request.getParameter("iexactiondef"));
@@ -115,7 +115,7 @@ public class SeccionesController {
         sec.setIexdessec(request.getParameter("iexdessec").toUpperCase());
         sec.setIexcodsys(Integer.parseInt(request.getParameter("iexcodsys")));
         sec.setIexordsec(Integer.parseInt(request.getParameter("iexordsec")));
-        sec.setIexsecimg(request.getParameter("iexsecimg"));
+        sec.setIexsecimg(request.getParameter("iexecimg"));
         sec.setIexsecurl(request.getParameter("iexsecurl"));
         sec.setIexsecobs(request.getParameter("iexsecobs"));
         sec.setIexactiondef(request.getParameter("iexactiondef"));

@@ -11,6 +11,7 @@
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
     <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
+    <script src="resources/assets/js/gladius/derechoHab.js"></script>
   </head>
 
 <script>
@@ -276,7 +277,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
-                                                <select class="form-select" name="iexubigeo_dom1" id="iexdistri_origen1">
+                                                <select class="form-select" name="iexubigeo_dom1" id="iexubigeo_dom1">
                                                   <option value="" selected >Seleccionar distrito</option>
                                                   <c:forEach var="lovDist_origen1" items="${requestScope.lovDist_origen1}">
                                                       <option value="${lovDist_origen1.idLov}"  ${lovDist_origen1.idLov == requestScope.derhabx.iexubigeo_dom1 ? 'selected' : ''}   >${lovDist_origen1.desLov}</option>
@@ -371,7 +372,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
-                                                <select class="form-select" name="iexubigeo_dom2" id="iexdistri_origen2">
+                                                <select class="form-select" name="iexubigeo_dom2" id="iexubigeo_dom2">
                                                     <option value="" selected >Seleccionar distrito</option>
                                                     <c:forEach var="lovDist_origen2" items="${requestScope.lovDist_origen2}">
                                                         <option value="${lovDist_origen2.idLov}"  ${lovDist_origen2.idLov == requestScope.derhabx.iexubigeo_dom2 ? 'selected' : ''}   >${lovDist_origen2.desLov}</option>

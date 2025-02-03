@@ -11,6 +11,7 @@
   <head>
     <jsp:include page="../../../../links.jsp"></jsp:include>
     <script src="resources/assets/js/gladius/scriptsEmpl.js"></script>
+    <script src="resources/assets/js/gladius/derechoHab.js"></script>
   </head>
 
 <script>
@@ -193,7 +194,7 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de via 1</label>
-                                                <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" placeholder="435"/>
+                                                <input class="form-control" name="iexnrovia_dom1" maxlength="5" type="text" placeholder="435" required />
                                             </div>
                                             <div class="col-sm-6 col-md-3">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro de dpto 1</label>
@@ -259,7 +260,7 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 1</label>
-                                                <select class="form-select" name="iexubigeo_dom1" id="iexdistri_origen1">
+                                                <select class="form-select" name="iexubigeo_dom1" id="iexubigeo_dom1">
                                                   <option value="" selected >Seleccionar distrito</option>
                                                 </select>
                                             </div>
@@ -345,14 +346,14 @@ function formatearFecha2(){
                                             </div>
                                             <div class="col-sm-6 col-md-4">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Distrito 2</label>
-                                                <select class="form-select" name="iexubigeo_dom2" id="iexdistri_origen2">
+                                                <select class="form-select" name="iexubigeo_dom2" id="iexubigeo_dom2">
                                                   <option value="" selected >Seleccionar distrito</option>
                                                 </select>
                                             </div>
                                             <hr/>
                                             <div class="col-sm-6 col-md-6">
                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Domicilio</label>
-                                                <select class="form-select" name="iexcenasis" id="iexcenasis">
+                                                <select class="form-select" name="iexcenasis" id="iexcenasis" required>
                                                   <option value="" selected >Seleccionar domicilio</option>
                                                   <option value="1" >Direccion principal</option>
                                                   <option value="2" >Direccion secundaria</option>

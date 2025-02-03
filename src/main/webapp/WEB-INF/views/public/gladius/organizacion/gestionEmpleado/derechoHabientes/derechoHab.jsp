@@ -14,9 +14,10 @@
   </head>
 
   <script>
-    function subirImagenDer(){
-        var uploadFileDer = $("#uploadFileDer").val();
+    function subirImagenDer(iexcoddep){
+        var uploadFileDer = $("#uploadFileDer"+iexcoddep).val();
         console.log("uploadFileDer: "+uploadFileDer);
+        console.log("iexcoddep: "+iexcoddep);
 
         var parts=uploadFileDer.split(".");
         var part1=parts[0];
@@ -148,16 +149,16 @@
                                                                 <form id="fmrDerHabImg" method="post"
                                                                 action="AWSorFTP_flgsource_MultipartUpload@subirFotoDerHabiente@${idComp}@${idTrab}@null"
                                                                 enctype="multipart/form-data" >
-                                                                    <input type="hidden" name="idimg" value="${nrodoc}" >
+                                                                    <input type="hidden" name="idimg" value="${LovDerhab.iexnroiddep}" >
                                                                     <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >
                                                                     <div class="mb-3">
                                                                           <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
-                                                                          <input class="form-control" id="uploadFileDer" name="uploadFile" type="file" />
+                                                                          <input class="form-control" id="uploadFileDer${LovDerhab.iexcoddep}" name="uploadFile" value="" type="file" />
                                                                     </div>
 
                                                                     <div class="col-sm-6 col-md-12 mt-2 mb-4">
                                                                       <div class="form-floating">
-                                                                          <a class="btn btn-primary btn-sm" onclick="subirImagenDer();" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></a>
+                                                                          <a class="btn btn-primary btn-sm" onclick="subirImagenDer(${LovDerhab.iexcoddep});" ><span class="fa-solid fas fa-camera me-2"></span><span>Subir foto</span></a>
                                                                       </div>
                                                                     </div>
                                                                 </form>

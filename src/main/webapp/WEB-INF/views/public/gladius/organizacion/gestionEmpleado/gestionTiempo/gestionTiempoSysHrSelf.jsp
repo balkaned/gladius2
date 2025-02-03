@@ -14,91 +14,96 @@
   </head>
 
 <script>
-function enviaForm(variable){
-    if(variable==1){
-        document.getElementById("accion").value="QRY";
-    }else if(variable==2){
-        document.getElementById("accion").value="DELMAS";
-    }else if(variable==3){
-        document.getElementById("accion").value="PROMAS";
-    }else if(variable==4){
-        document.getElementById("accion").value="MARCAS";
-    }else if(variable==5){
-        document.getElementById("accion").value="CALIFICA";
-    }else if(variable==6){
-        document.getElementById ("GestionTiempos").encoding="multipart/form-data";
-        document.getElementById("accion").value="UPXLSMAR";
+    function enviaForm(variable){
+        if(variable==1){
+            document.getElementById("accion").value="QRY";
+        }else if(variable==2){
+            document.getElementById("accion").value="DELMAS";
+        }else if(variable==3){
+            document.getElementById("accion").value="PROMAS";
+        }else if(variable==4){
+            document.getElementById("accion").value="MARCAS";
+        }else if(variable==5){
+            document.getElementById("accion").value="CALIFICA";
+        }else if(variable==6){
+            document.getElementById ("GestionTiempos").encoding="multipart/form-data";
+            document.getElementById("accion").value="UPXLSMAR";
+        }
+        document.getElementById("GestionTiempos").submit();
     }
-    document.getElementById("GestionTiempos").submit();
-}
 
-function updturnpForm(desfec,  turno){
-    document.getElementById("iexcodfec").value=turno;
-    document.getElementById("desfecdia").value=desfec;
-    document.getElementById("iexcodturno").value=document.getElementById(turno).value;
-    document.getElementById("accion").value="UPDTURNO";
-    //alert("Fecha :"+document.getElementById("iexcodfec").value+" , turno : "+ document.getElementById("iexcodturno").value);
-    document.getElementById("GestionTiempos").submit();
-}
+    function updturnpForm(desfec,  turno){
+        document.getElementById("iexcodfec").value=turno;
+        document.getElementById("desfecdia").value=desfec;
+        document.getElementById("iexcodturno").value=document.getElementById(turno).value;
+        document.getElementById("accion").value="UPDTURNO";
+        //alert("Fecha :"+document.getElementById("iexcodfec").value+" , turno : "+ document.getElementById("iexcodturno").value);
+        document.getElementById("GestionTiempos").submit();
+    }
 
-function updtipturno(){
-    document.getElementById("accion").value="UPDTIPTURNO";
-    //alert("Fecha :"+document.getElementById("iexcodfec").value+" , turno : "+ document.getElementById("iexcodturno").value);
-    confirm("Esta seguro de actualizar los horarios?");
-    document.getElementById("GestionTiempos").submit();
-}
+    function updtipturno(){
+        document.getElementById("accion").value="UPDTIPTURNO";
 
-function jumpTo(idselect) {
-   var x = document.getElementById(idselect);
-   if (x.value === "1") {
-        document.getElementById("iexlunes").disabled = false;
-        document.getElementById("iexmartes").disabled = false;
-        document.getElementById("iexmiercoles").disabled = false;
-        document.getElementById("iexjueves").disabled = false;
-        document.getElementById("iexviernes").disabled = false;
-        document.getElementById("iexsabado").disabled = false;
-        document.getElementById("iexdomingo").disabled = false;
-        document.getElementById("iexturlun").disabled = false;
-        document.getElementById("iexturmar").disabled = false;
-        document.getElementById("iexturmie").disabled = false;
-        document.getElementById("iexturjue").disabled = false;
-        document.getElementById("iexturvie").disabled = false;
-        document.getElementById("iextursab").disabled = false;
-        document.getElementById("iexturdom").disabled = false;
-   }else{
-        document.getElementById("iexlunes").disabled = true;
-        document.getElementById("iexmartes").disabled = true;
-        document.getElementById("iexmiercoles").disabled = true;
-        document.getElementById("iexjueves").disabled = true;
-        document.getElementById("iexviernes").disabled = true;
-        document.getElementById("iexsabado").disabled = true;
-        document.getElementById("iexdomingo").disabled = true;
-        document.getElementById("iexturlun").disabled = true;
-        document.getElementById("iexturmar").disabled = true;
-        document.getElementById("iexturmie").disabled = true;
-        document.getElementById("iexturjue").disabled = true;
-        document.getElementById("iexturvie").disabled = true;
-        document.getElementById("iextursab").disabled = true;
-        document.getElementById("iexturdom").disabled = true;
-   }
-}
+        var opcion = confirm("Esta seguro de actualizar los horarios?");
 
-function program_tur_col(turno, dia){
-    alert("Turno:"+turno.value+" , Dia:"+dia);
-    document.getElementById("accion").value="UPDALLCOL";
-    document.getElementById("parcodturno").value=turno.value;
-    document.getElementById("pardiades").value=dia;
-    document.getElementById("GestionTiempos").submit();
-}
+        if (opcion == true) {
+            document.getElementById("GestionTiempos").submit();
+        } else {
+            return false;
+        }
+    }
 
-function program_tur_row(turno, fecini,  fecfin){
-     alert("Turno :"+turno.value+" , Fecini:"+fecini+", Fecfin:"+fecfin);
-     document.getElementById("accion").value="UPDALLROW";
-     document.getElementById("parfecini").value=fecini;
-     document.getElementById("parfecfin").value=fecfin;
-     document.getElementById("parcodturno").value=turno.value;
-     document.getElementById("GestionTiempos").submit();
-}
+    function jumpTo(idselect) {
+       var x = document.getElementById(idselect);
+       if (x.value === "1") {
+            document.getElementById("iexlunes").disabled = false;
+            document.getElementById("iexmartes").disabled = false;
+            document.getElementById("iexmiercoles").disabled = false;
+            document.getElementById("iexjueves").disabled = false;
+            document.getElementById("iexviernes").disabled = false;
+            document.getElementById("iexsabado").disabled = false;
+            document.getElementById("iexdomingo").disabled = false;
+            document.getElementById("iexturlun").disabled = false;
+            document.getElementById("iexturmar").disabled = false;
+            document.getElementById("iexturmie").disabled = false;
+            document.getElementById("iexturjue").disabled = false;
+            document.getElementById("iexturvie").disabled = false;
+            document.getElementById("iextursab").disabled = false;
+            document.getElementById("iexturdom").disabled = false;
+       }else{
+            document.getElementById("iexlunes").disabled = true;
+            document.getElementById("iexmartes").disabled = true;
+            document.getElementById("iexmiercoles").disabled = true;
+            document.getElementById("iexjueves").disabled = true;
+            document.getElementById("iexviernes").disabled = true;
+            document.getElementById("iexsabado").disabled = true;
+            document.getElementById("iexdomingo").disabled = true;
+            document.getElementById("iexturlun").disabled = true;
+            document.getElementById("iexturmar").disabled = true;
+            document.getElementById("iexturmie").disabled = true;
+            document.getElementById("iexturjue").disabled = true;
+            document.getElementById("iexturvie").disabled = true;
+            document.getElementById("iextursab").disabled = true;
+            document.getElementById("iexturdom").disabled = true;
+       }
+    }
+
+    function program_tur_col(turno, dia){
+        alert("Turno:"+turno.value+" , Dia:"+dia);
+        document.getElementById("accion").value="UPDALLCOL";
+        document.getElementById("parcodturno").value=turno.value;
+        document.getElementById("pardiades").value=dia;
+        document.getElementById("GestionTiempos").submit();
+    }
+
+    function program_tur_row(turno, fecini,  fecfin){
+         alert("Turno :"+turno.value+" , Fecini:"+fecini+", Fecfin:"+fecfin);
+         document.getElementById("accion").value="UPDALLROW";
+         document.getElementById("parfecini").value=fecini;
+         document.getElementById("parfecfin").value=fecfin;
+         document.getElementById("parcodturno").value=turno.value;
+         document.getElementById("GestionTiempos").submit();
+    }
 </script>
 
   <body>
@@ -151,7 +156,6 @@ function program_tur_row(turno, fecini,  fecfin){
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-3 mb-0 needs-validation" id="GestionTiempos" method="POST" action="grabarTurno@${idTrab}" novalidate >
                                         <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                        <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
                                         <input type="hidden" name="accion"  id="accion"   >
                                         <input type="hidden" name="iexcodfec"  id="iexcodfec"   >
                                         <input type="hidden" name="desfecdia"  id="desfecdia"   >

@@ -245,7 +245,7 @@ public class GestionTiemposController {
 
         empleadoService.actualizarTurnos(emp2);
 
-        return new ModelAndView("redirect:/gestionTiempo@" + idCompania);
+        return new ModelAndView("redirect:/gestionTiempo@" + idTrab);
     }
 
     @RequestMapping("/listAsistencia")

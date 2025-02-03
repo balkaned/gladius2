@@ -56,7 +56,7 @@
             </a>
             <div class="text-center mb-3">
               <!--<h3 class="text-1000 text-white">Login</h3>-->
-              <h1 class="display-6 text-white fs-0 ">Logearse al nuevo y renovado Gladius v2</h1>
+              <h1 class="display-6 text-white fs-0 ">Login al nuevo y renovado Gladius</h1>
             </div>
 
             <button class="btn btn-phoenix-warning w-100 mb-2"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
