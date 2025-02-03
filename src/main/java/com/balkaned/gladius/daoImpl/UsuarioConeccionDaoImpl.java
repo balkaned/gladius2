@@ -50,10 +50,15 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("id", Integer.parseInt(id));
 
-        List<UsuarioConeccion> lsUsuario = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(UsuarioConeccion.class));
+        try {
+            List<UsuarioConeccion> lsUsuario = namedParameterJdbcTemplate.query(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(UsuarioConeccion.class));
 
-        return lsUsuario.get(0);
+            return lsUsuario.get(0);
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(CLASS_NAME + " obtenerUsuarioConeccionBYId, No se encontraron resultados. " + ex);
+            return null;
+        }
     }
 
     @Override

@@ -4,12 +4,14 @@ import com.balkaned.gladius.models.UsuxSys;
 import com.balkaned.gladius.dao.UsuxSystemaDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 
 @Slf4j
@@ -56,9 +58,13 @@ public class UsuxSystemaDaoImpl implements UsuxSystemaDao {
                 .addValue("codusu", codusu)
                 .addValue("sys", sys);
 
-        UsuxSys usu = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(UsuxSys.class));
-
-        return usu;
+        try {
+            UsuxSys usu = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(UsuxSys.class));
+            return usu;
+        } catch (EmptyResultDataAccessException ex) {
+            log.info(CLASS_NAME + "eligeSystema, No se encontraron resultados. " + ex);
+            return null;
+        }
     }
 }

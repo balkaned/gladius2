@@ -100,16 +100,13 @@
                </span>-->
 
                <div class="col-xl-12">
-               	<c:if test="${mensaje!=null}">
-               		   <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
-               			<span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
-               			<div class="col-11">
-               				<strong class="text-black">Error de session</strong>
-               				 <p class="mb-0 fw-semi-bold text-1000">${mensaje}. <a href="#">Mas información</a></p>
-               			</div>
-               			<button class="btn-close fs-0" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-               		   </div>
-               	</c:if>
+                    <c:if test="${mensaje!=null}">
+                       <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center alert-dismissible fade show" role="alert">
+                            <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                            <p class="mb-0 text-1000 fs--1 col-12">${mensaje} <a href="#" class="fs--1">Mas información.</a></p>
+                            <a class="text-danger fs-0 fw-bold ms-3" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
+                        </div>
+                    </c:if>
                </div>
             </div>
           </div>

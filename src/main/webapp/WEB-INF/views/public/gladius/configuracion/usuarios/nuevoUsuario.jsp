@@ -48,12 +48,12 @@
               <div class="col-xl-7">
                   <c:if test="${msg!=null}">
                        <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
-                        <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
-                        <div class="col-11">
-                            <strong class="text-black">Error al guardar</strong>
-                             <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información.</a></p>
-                        </div>
-                        <a class="text-danger fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
+                            <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                            <div class="col-11">
+                                <strong class="text-black">Error al guardar</strong>
+                                 <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información.</a></p>
+                            </div>
+                            <a class="text-danger fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                        </div>
                   </c:if>
               </div>

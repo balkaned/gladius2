@@ -79,22 +79,22 @@ public class LoginController {
 
         UsuarioConeccion uc2 = usuarioConeccionService.obtenerUsuarioConeccionByName(uc);
 
-        if(uc2 == null){
-            log.info("Falta asignar al usuario a alguna compañía.");
-            request.getSession().setAttribute("tiposession", "7");
-
-            return new ModelAndView("redirect:/login2");
-        }
-
-        log.info("uc.getUser(): " + uc.getUser());
-        log.info("uc2.getUser(): " + uc2.getUser());
-
         if (uc.getUser() == null || uc.getUser().equals("")) {
             log.info("Campos Vacios");
             request.getSession().setAttribute("tiposession", "4");
 
             return new ModelAndView("redirect:/login2");
         }
+
+        if(uc2 == null){
+            log.info("Usuario no existe o esta desactivado o falta permisos.");
+            request.getSession().setAttribute("tiposession", "6");
+
+            return new ModelAndView("redirect:/login2");
+        }
+
+        log.info("uc.getUser(): " + uc.getUser());
+        log.info("uc2.getUser(): " + uc2.getUser());
 
         if (uc2.getUser() == null) {
             log.info("Usuario o Contraseña Incorrecta");
@@ -104,6 +104,7 @@ public class LoginController {
         }
 
         if (uc2.getUser().equals("sinbd")) {
+            log.info("Sin Base de datos.");
             request.getSession().setAttribute("tiposession", "5");
 
             return new ModelAndView("redirect:/login2");
@@ -112,13 +113,19 @@ public class LoginController {
         if (uc2.getPass().equals(uc.getPass())) {
             UsuarioConeccion uc3 = usuarioConeccionService.obtenerUsuarioConeccionById(uc2.getId_usuario());
 
-            log.info("ID_Usuario: " + uc2.getId_usuario());
-            log.info("uc3.getId_usuario(): " + uc3.getId_usuario());
-            log.info("uc3.getUser: " + uc3.getUser());
+            log.info("ID_Usuario: {} ", uc2.getId_usuario());
+            log.info("uc3: {} ", uc3);
 
-            if (uc3.getUser() == null) {
+            /*if (uc3.getUser() == null) {
                 log.info("Usuario no existe o esta desactivado: ");
                 request.getSession().setAttribute("tiposession", "6");
+
+                return new ModelAndView("redirect:/login2");
+            }*/
+
+            if (uc3 == null) {
+                log.info("Falta asignar al usuario a alguna compañía: ");
+                request.getSession().setAttribute("tiposession", "7");
 
                 return new ModelAndView("redirect:/login2");
             }
