@@ -90,7 +90,9 @@
                   </div>
                   <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                <button class="btn btn-primary w-100 mb-3" href="nuevoTurno"><span class="fas fa-key me-2"></span>Login</button>
+                <!--<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
+                <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>-->
                 <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->
 
                 <!--<span style="float:left; text-align:left; font-size: 11px; height:50px; width:280px; border:0px solid green; color:#D90000;">

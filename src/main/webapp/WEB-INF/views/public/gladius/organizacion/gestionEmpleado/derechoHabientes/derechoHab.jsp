@@ -27,7 +27,7 @@
 
         if(part2=="jpg" || part2=="png"){
             $('#modalLoadingDer').modal('show');
-            $("#fmrDerHabImg").submit();
+            $("#fmrDerHabImg"+iexcoddep).submit();
         }else{
             alert("Solo se pueden subir imágenes en formato .jpg o .png");
 
@@ -110,7 +110,7 @@
                                                     <a class="d-flex align-items-center text-900" href="#">
                                                         <div class="avatar avatar-m">
                                                             <img class="rounded-circle"
-                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${iexlogo}@${LovDerhab.iexcoddep}@null@null@null@null@null"
+                                                            src="AWSorFTP_flgsource@verFotoDerechoHab@${idComp}@null@${LovDerhab.iexnroiddep}.jpg@${LovDerhab.iexcoddep}@null@null@null@null@null"
                                                             alt="" />
                                                         </div>
                                                         <h6 class="mb-0 ms-3 text-900">${LovDerhab.iexnomdep} ${LovDerhab.iexapepatdep}  ${LovDerhab.iexapematdep} </h6>
@@ -141,12 +141,12 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                       <div class="modal-content border">
                                                           <div class="modal-header border-200 bg-soft p-4">
-                                                            <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de derecho habiente</h5>
+                                                            <h5 class="modal-title text-1000 fs-2 lh-sm">Imagen de derecho habiente cod derHab: ${LovDerhab.iexcoddep}</h5>
                                                             <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                                                           </div>
                                                           <div class="modal-body bg-soft pt-4 pb-2 px-4">
                                                               <div class="col-12 col-md-12">
-                                                                <form id="fmrDerHabImg" method="post"
+                                                                <form id="fmrDerHabImg${LovDerhab.iexcoddep}" method="post"
                                                                 action="AWSorFTP_flgsource_MultipartUpload@subirFotoDerHabiente@${idComp}@${idTrab}@null"
                                                                 enctype="multipart/form-data" >
                                                                     <input type="hidden" name="idimg" value="${LovDerhab.iexnroiddep}" >
