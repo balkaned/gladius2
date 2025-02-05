@@ -59,8 +59,8 @@
               <h1 class="display-6 text-white fs-0 ">Login al nuevo y renovado Gladius</h1>
             </div>
 
-            <button class="btn btn-phoenix-warning w-100 mb-2"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
-            <button class="btn btn-phoenix-primary w-100"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>
+            <button class="btn btn-phoenix-warning w-100 border border-500 mb-2"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
+            <button class="btn btn-phoenix-info w-100 border border-500"><span class="fab fa-facebook text-primary me-2 fs--1"></span>Sign in with facebook</button>
 
             <!--<div class="position-relative">
               <hr class="bg-200 mt-5 mb-4" />
@@ -90,7 +90,7 @@
                   </div>
                   <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                 </div>
-                <button class="btn btn-primary w-100 mb-3" href="nuevoTurno"><span class="fas fa-key me-2"></span>Login</button>
+                <button type="submit" class="btn btn-primary w-100 mb-3" href="#"><span class="fas fa-rocket me-2"></span>Login</button>
                 <!--<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
                 <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>-->
                 <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->

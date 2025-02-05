@@ -92,13 +92,13 @@
             <!--<img class="card-img-top" src="resources/assets/img//generic/66.jpg" alt="..." />-->
             <img class="card-img-top" height="180" src="AWSorFTP_flgsource@verLogo@${compList.id_companias}@null@${compList.urlLogo}@null@null@null@null@null@null" />
             <div class="card-body bg-soft rounded-0 border-top" style="border-radius: 0px 0px 20px 20px !important">
-              <h5 class="card-title">${compList.nombre}</h5>
+              <h5 class="card-title">${compList.nombreCap}</h5>
               <p class="fs--1 card-text mb-0">Tipo de conexión: ${compList.iexflgsource}
                 <c:if test="${compList.iexflgsource=='1'}"><i style="font-size: 20px;" class="fa-brands fa-aws ps-2 pe-2"></i> Buckets</c:if>
                 <c:if test="${compList.iexflgsource=='2'}"><span class="fw-bold">FTP </span>Filezilla</c:if>
               </p>
               <p class="fs--1 card-text mb-0">Ruc: ${compList.ruc}</p>
-              <p class="fs--1 card-text">Dirección: ${compList.direccion}</p>
+              <p class="fs--1 card-text">Dirección: ${compList.direccionCap}</p>
               <a class="btn btn-sm  btn-primary" href="ingresarCompania@${compList.id_companias}@${compList.id_usuario}">Ingresar</a>
             </div>
           </div>

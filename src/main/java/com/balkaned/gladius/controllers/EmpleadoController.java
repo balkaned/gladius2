@@ -87,12 +87,12 @@ public class EmpleadoController {
         log.info("fecha nac: " + emp.getIexfecnac());
         model.addAttribute("fecnacIEX", emp.getIexfecnac());
         model.addAttribute("emp", emp);
-        model.addAttribute("nombrecompl", emp.getCompleto());
+        model.addAttribute("nombrecompl", emp.getCompletoDetalleEmpl());
         model.addAttribute("direccion", emp.getDireccion1());
         model.addAttribute("telefono", emp.getIexnrotelf());
         model.addAttribute("email", emp.getIexemail());
         model.addAttribute("nrodoc", emp.getIexnrodoc());
-        model.addAttribute("puesto", emp.getDespuesto());
+        model.addAttribute("puesto", emp.getDespuestoCap());
         model.addAttribute("fechaMod", emp.getIexfeccmod());
         model.addAttribute("estado", emp.getIexflgest());
         model.addAttribute("idComp", idCompania);

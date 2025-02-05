@@ -90,7 +90,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iexcodtra, " +
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
-                "e.iexnomtra || ' ' || e.iexapepat as completo, " +
+                "e.iexnomtra || '/' || e.iexapepat as completo, " +
                 "e.iexapemat, " +
                 "e.iextipdocid, " +
                 "d.desdet iextipdocid, " +
@@ -110,6 +110,7 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iextiptra, " +
                 "d4.desdet destiptra, " +
                 "p1.iexdespuesto iexpuesto, " +
+                "p1.iexdespuesto iexpuestoCap, " +
                 "e.iexmodform, " +
                 "'' desmodform, " +
                 "e.iexnacion_origen, " +
@@ -182,7 +183,8 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
                 "e.iexnomtra, " +
                 "e.iexapepat, " +
                 "e.iexapemat, " +
-                "e.iexnomtra || ' ' || e.iexapepat || ' ' || e.iexapemat as completo, " +
+                //"e.iexnomtra || ' ' || e.iexapepat || ' ' || e.iexapemat as completo, " +
+                "e.iexnomtra || '/' || e.iexapepat || '/' || e.iexapemat as completoDetalleEmpl, " +
                 "e.iextipdocid, " +
                 "e.iexnrodoc, " +
                 "to_char(e.iexfecnac,'dd/mm/yyyy') iexfecnac, " +

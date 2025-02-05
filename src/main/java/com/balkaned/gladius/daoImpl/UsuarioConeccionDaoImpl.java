@@ -99,8 +99,10 @@ public class UsuarioConeccionDaoImpl implements UsuarioConeccionDao {
                 "us.iexdesusu, " +
                 "cp.iexcodcia as id_companias, " +
                 "cp.iexdescia as nombre, " +
+                "cp.iexdescia as nombreCap, " +
                 "cp.iexnroruc as ruc, " +
                 "cp.iexdireccion as direccion, " +
+                "cp.iexdireccion as direccionCap, " +
                 "cp.iexreplogo as urlLogo, " +
                 "cp.iexschema as schema, " +
                 "cp.iexflgsource " +

@@ -54,6 +54,9 @@ public class Compania {
     private String iexdesobservacion;
     private String schema;
 
+    private String nombreCap;
+    private String direccionCap;
+
     public void setDescCiaCorto(String descCiaCorto) {
         CapitalizarCadena cap = new CapitalizarCadena();
         this.descCiaCorto = cap.letras(descCiaCorto);
@@ -74,4 +77,13 @@ public class Compania {
         this.desCargoRep = cap3.letras(desCargoRep);
     }
 
+    public void setNombreCap(String nombreCap) {
+        CapitalizarCadena cap4 = new CapitalizarCadena();
+        this.nombreCap = cap4.letras(nombreCap);
+    }
+
+    public void setDireccionCap(String direccionCap) {
+        CapitalizarCadena cap5 = new CapitalizarCadena();
+        this.direccionCap = cap5.letras(direccionCap);
+    }
 }

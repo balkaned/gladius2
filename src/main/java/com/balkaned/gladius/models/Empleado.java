@@ -2,9 +2,12 @@ package com.balkaned.gladius.models;
 
 import com.balkaned.gladius.util.CapitalizarCadena;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Slf4j
 @Data
 @Entity
 public class Empleado {
@@ -186,6 +189,9 @@ public class Empleado {
 
     private String completo;
     private String iexnomtraUpd;
+    private String iexpuestoCap;
+    private String completoDetalleEmpl;
+    private String despuestoCap;
 
     public void setIexnomtra(String iexnomtra) {
         if (iexnomtra != null) {
@@ -195,19 +201,77 @@ public class Empleado {
 
             this.letraIni = cast1;
             this.iexnomtra = iexnomtra;
-
-            /*String strMain = iexnomtra;
-            String[] arrSplit = strMain.split(" ");
-
-            CapitalizarCadena cap = new CapitalizarCadena();
-            String nombrecompleto = cap.letras(arrSplit[0]) + " " + cap.letras(this.getIexapepat());
-            this.nomCompactoUpper = nombrecompleto;*/
         }
     }
 
     public void setCompleto(String completo) {
         CapitalizarCadena cap = new CapitalizarCadena();
         this.nomCompactoUpper = cap.letras(completo);
-        this.completo = completo;
+
+        log.info("completo: {} ", completo);
+
+        if (completo != null) {
+            String strMain = completo;
+            log.info("strMain: {} ", strMain);
+
+            String[] parts = strMain.split("/");
+            String part1 = parts[0];
+            String part2 = parts[1];
+            log.info("part1: {} ", part1);
+            log.info("part2: {} ", part2);
+
+            String[] partsNom = part1.split(" ");
+            log.info("partsNom: {} ", partsNom);
+            String part1a = partsNom[0];
+            log.info("part1a: {} ", part1a);
+
+            CapitalizarCadena cap2 = new CapitalizarCadena();
+            String nombrecompletoCap = cap2.letras(part1a) + " " + cap2.letras(part2);
+            log.info("nombrecompletoCap: {} ", nombrecompletoCap);
+
+            this.completo = nombrecompletoCap;
+        }
+    }
+
+    public void setIexpuestoCap(String iexpuestoCap) {
+
+        CapitalizarCadena cap3 = new CapitalizarCadena();
+        this.iexpuestoCap = cap3.letras(iexpuestoCap);
+    }
+
+    public void setCompletoDetalleEmpl(String completoDetalleEmpl) {
+
+        log.info("completoDetalleEmpl: {} ", completoDetalleEmpl);
+
+        if (completoDetalleEmpl != null) {
+            String strMain = completoDetalleEmpl;
+            log.info("strMain: {} ", strMain);
+
+            String[] parts = strMain.split("/");
+            String part1 = parts[0];
+            String part2 = parts[1];
+            String part3 = parts[2];
+            log.info("part1: {} ", part1);
+            log.info("part2: {} ", part2);
+            log.info("part3: {} ", part3);
+
+            String[] partsNom = part1.split(" ");
+            log.info("partsNom: {} ", partsNom);
+            String part1a = partsNom[0];
+            log.info("part1a: {} ", part1a);
+
+            CapitalizarCadena cap2 = new CapitalizarCadena();
+            String nombrecompletoCap = cap2.letras(part1a) + " " + cap2.letras(part2) + " " + cap2.letras(part3);
+            log.info("nombrecompletoCap: {} ", nombrecompletoCap);
+
+            this.completoDetalleEmpl = nombrecompletoCap;
+        }
+    }
+
+    public void setDespuesto(String despuesto) {
+        this.despuesto = despuesto;
+
+        CapitalizarCadena cap = new CapitalizarCadena();
+        this.despuestoCap = cap.letras(despuesto);
     }
 }
