@@ -5,6 +5,7 @@ import com.balkaned.gladius.models.UsuarioConeccion;
 import com.balkaned.gladius.models.UsuxCompania;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.util.EncryptarMD5;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -131,7 +132,11 @@ public class UsuariosController {
 
                 Usuario p = new Usuario();
                 p.setUsuario(usuario2);
-                p.setPassword(password);
+
+                EncryptarMD5 enc = new EncryptarMD5();
+                p.setPassword(enc.getMD5(password));
+                log.info("p.getPassword(): " + p.getPassword());
+
                 p.setEstado(estado);
                 p.setEmail(email2);
                 p.setUrlfoto(foto);

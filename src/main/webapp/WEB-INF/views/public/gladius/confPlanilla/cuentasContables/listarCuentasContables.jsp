@@ -62,7 +62,7 @@
                           <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}'/>
                         </div>
                       </th>
-                      <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">Codigo</th>
+                      <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">CODIGO</th>
                       <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">DESCRIPCION DE CUENTA</th>
                       <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO DE CUENTA</th>
                       <th class="sort align-middle text-center pe-0" scope="col" ></th>

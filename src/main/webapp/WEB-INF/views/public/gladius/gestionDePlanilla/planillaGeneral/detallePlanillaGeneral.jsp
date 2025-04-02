@@ -61,7 +61,7 @@
               </div>
             </div>
 
-            <div id="orderTable" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5,"pagination":true}'>
+            <div id="orderTable" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":10,"pagination":true}'>
               <div class="mb-3">
                 <div class="row g-3">
                   <div class="col-auto">
@@ -102,7 +102,7 @@
                   <input type="hidden" name="codcia" id="codcia" value="${idCom}" />
 
                   <c:if test="${requestScope.xproplaper.desgrppla=='PLA' || requestScope.xproplaper.desgrppla=='ADE'}">
-                      <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5, "pagination":true }' >
+                      <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1"  >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -117,7 +117,7 @@
                                   <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="itp">I/T/P</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="est">ESTADO</th>
                                   <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="fecini">FECINI</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DTEO</th>
+                                  <th class="sort align-middle text-center ps-4 pe-4" scope="col" >DTEO</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DTOT</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >VAC</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >DME</th>
@@ -158,7 +158,7 @@
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">Proc</td>
                                     <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.feciniFormat}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600"><a onclick="verAsistenciaPeriodoTrabInicializacion('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-3"></span> ${LstPlanillaRes.iexdiasteorico}</a></td>
+                                    <td class="align-middle text-start fw-semi-bold text-600 pe-3"><a onclick="verAsistenciaPeriodoTrabInicializacion('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-3"></span> ${LstPlanillaRes.iexdiasteorico}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiamestot}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiavaca}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdiadm}</td>

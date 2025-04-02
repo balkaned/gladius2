@@ -107,6 +107,7 @@ public class EmpleadoController {
         } else {
             sexo = emp.getIexcodsex();
         }
+
         log.info("sexo: " + sexo);
         model.addAttribute("sexo", sexo);
 

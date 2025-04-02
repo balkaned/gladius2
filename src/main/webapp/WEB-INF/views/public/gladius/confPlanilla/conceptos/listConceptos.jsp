@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div id="orderTable" data-list='{"valueNames":["id","concept","var","des","abr"],"page":10,"pagination":true}'>
+    <div id="orderTable" data-list='{"valueNames":["id","concept","var","des","abr"],"page":15,"pagination":true}'>
       <div class="mb-3">
         <div class="row g-3">
           <div class="col-auto">
@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","concept","var","des","abr"],"page":10, "pagination":true }'>
+      <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" >
         <div class="table-responsive scrollbar mx-n1 px-1">
           <table class="table table-sm fs--1 mb-0">
             <thead>
