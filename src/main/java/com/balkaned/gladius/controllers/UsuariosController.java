@@ -135,7 +135,6 @@ public class UsuariosController {
 
                 EncryptarMD5 enc = new EncryptarMD5();
                 p.setPassword(enc.getMD5(password));
-                log.info("p.getPassword(): " + p.getPassword());
 
                 p.setEstado(estado);
                 p.setEmail(email2);
@@ -210,7 +209,10 @@ public class UsuariosController {
         Usuario p = new Usuario();
         p.setIdUsuario(codusuario);
         p.setUsuario(usuariox);
-        p.setPassword(password);
+
+        EncryptarMD5 enc = new EncryptarMD5();
+        p.setPassword(enc.getMD5(password));
+
         p.setEmail(emailx);
         p.setEstado(estado);
         //p.setUrlfoto(urlfoto);

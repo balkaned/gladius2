@@ -4,6 +4,7 @@ package com.balkaned.gladius.controllers;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.util.EncryptarMD5;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -110,7 +111,21 @@ public class LoginController {
             return new ModelAndView("redirect:/login2");
         }
 
-        if (uc2.getPass().equals(uc.getPass())) {
+        log.info("uc2.getPass(): "+uc2.getPass());
+        log.info("uc.getPass(): "+uc.getPass());
+
+        /*EncryptarMD5 enc = new EncryptarMD5();
+        log.info("decode1: "+enc.decodeMD5(uc2.getPass()));
+
+        EncryptarMD5 enc2 = new EncryptarMD5();
+        log.info("decode2: "+enc2.decodeMD5(uc.getPass()));*/
+
+        EncryptarMD5 enc3 = new EncryptarMD5();
+        String encondePassFromHtml = enc3.getMD5(uc.getPass());
+        log.info("encondePassFromHtml: "+encondePassFromHtml);
+
+        //if (uc2.getPass().equals(uc.getPass())) {
+        if (uc2.getPass().equals(encondePassFromHtml)) {
             UsuarioConeccion uc3 = usuarioConeccionService.obtenerUsuarioConeccionById(uc2.getId_usuario());
 
             log.info("ID_Usuario: {} ", uc2.getId_usuario());
