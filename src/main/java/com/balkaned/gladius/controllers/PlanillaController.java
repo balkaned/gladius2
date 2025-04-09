@@ -677,6 +677,40 @@ public class PlanillaController {
         return null;
     }
 
+    @RequestMapping(value = "/traerDatosDeBoletaParamBuscar", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView traerDatosDeBoletaParamBuscar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoletaParamBuscar");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        Integer iexcodpro = Integer.valueOf(request.getParameter("iexcodpro"));
+        Integer iexcodtra = Integer.valueOf(request.getParameter("iexcodtra"));
+        String iexperiodo = request.getParameter("iexperiodo");
+        Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
+        String txtbuscar = request.getParameter("txtbuscar");
+
+        log.info("iexcodpro: "+iexcodpro);
+        log.info("iexcodtra: "+iexcodtra);
+        log.info("iexperiodo: "+iexperiodo);
+        log.info("iexcorrel: "+iexcorrel);
+        log.info("txtbuscar: "+txtbuscar);
+
+
+        List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZerosBuscar(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "0",txtbuscar);
+
+        String json = new Gson().toJson(listap);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
     @RequestMapping(value = "/botonEliminarPlanTrab", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView botonEliminarPlanTrab(HttpServletRequest request, HttpServletResponse response) throws IOException {
         log.info("/botonEliminarPlanTrab");

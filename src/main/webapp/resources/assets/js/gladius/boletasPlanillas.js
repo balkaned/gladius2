@@ -19,6 +19,13 @@ function generarBoleta(iexcodpro,iexcodtra,iexperiodo,iexcorrel,xgrppla,iexcodre
              document.getElementById("idTrabBolHidden").value=data.iexcodtra;
              document.getElementById("trabBol").value=data.destra;
              document.getElementById("feciniBol").value=data.iexfecing;
+
+             document.getElementById("iexcodproGenBol").value=iexcodpro;
+             document.getElementById("iexcodtraGenBol").value=iexcodtra;
+             document.getElementById("iexperiodoGenBol").value=iexperiodo;
+             document.getElementById("iexcorrelGenBol").value=iexcorrel;
+             document.getElementById("xgrpplaGenBol").value=xgrppla;
+             document.getElementById("iexcodregGenBol").value=iexcodreg;
          }
     });
 
@@ -43,7 +50,7 @@ function generarBoleta(iexcodpro,iexcodtra,iexperiodo,iexcorrel,xgrppla,iexcodre
                                  "</div>"+
                                "</td>"+
                                "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
-                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'><span class='badge badge-phoenix fs--2 badge-phoenix-primary'>"+data[i].coodescon+"</span></td>"+
+                               "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'>"+data[i].coodescon+"</td>"+
                                "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
                             "</tr>";
               }
@@ -262,4 +269,49 @@ function eliminarPlanTrab(){
     } else {
         return false;
     }
+}
+
+function buscarParams(event) {
+
+  var value = $("#inputParams").val();
+  //alert("value: "+value);
+
+  var iexcodpro = $("#iexcodproGenBol").val();
+  var iexcodtra = $("#iexcodtraGenBol").val();
+  var iexperiodo = $("#iexperiodoGenBol").val();
+  var iexcorrel = $("#iexcorrelGenBol").val();
+  var xgrppla = $("#xgrpplaGenBol").val();
+  var iexcodreg = $("#iexcodregGenBol").val();
+
+  $.ajax({
+       url: "traerDatosDeBoletaParamBuscar",
+       data: {
+           "iexcodpro": iexcodpro,
+           "iexcodtra": iexcodtra,
+           "iexperiodo": iexperiodo,
+           "iexcorrel": iexcorrel,
+           "xgrppla": xgrppla,
+           "iexcodreg": iexcodreg,
+           "txtbuscar": value
+       },
+       success: function (data) {
+            var opt = "";
+
+            for (var i in data) {
+                opt += "<tr class='hover-actions-trigger btn-reveal-trigger position-static'>"+
+                             "<td class='fs--1 align-middle px-0 py-3'>"+
+                               "<div class='form-check mb-0 fs-0'>"+
+                                 "<input class='form-check-input' id='checkbox-bulk-order-select' type='checkbox' />"+
+                               "</div>"+
+                             "</td>"+
+                             "<td class='codcon align-middle white-space-nowrap py-0'><a class='fw-semi-bold' href='#'>#"+data[i].procodcon+"</a></td>"+
+                             "<td class='descon align-middle text-start fw-semi-bold ps-0 pe-0 text-1000'>"+data[i].coodescon+"</td>"+
+                             "<td class='valor align-middle text-end fw-semi-bold text-1000 ps-0 pe-3 white-space-nowrap'>"+data[i].provalor+"</td>"+
+                         "</tr>";
+            }
+            //$("#customer-order-table-body-param").html("");
+            $("#customer-order-table-body-param").html(opt);
+       }
+  });
+
 }

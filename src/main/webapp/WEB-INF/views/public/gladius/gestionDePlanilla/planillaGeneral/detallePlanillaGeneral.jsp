@@ -449,6 +449,12 @@
                               <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>
+                      <input class="form-control" name="iexcodproGenBol" id="iexcodproGenBol" type="hidden" value="" />
+                      <input class="form-control" name="iexcodtraGenBol" id="iexcodtraGenBol" type="hidden" value="" />
+                      <input class="form-control" name="iexperiodoGenBol" id="iexperiodoGenBol" type="hidden" value="" />
+                      <input class="form-control" name="iexcorrelGenBol" id="iexcorrelGenBol" type="hidden" value="" />
+                      <input class="form-control" name="xgrpplaGenBol" id="xgrpplaGenBol" type="hidden" value="" />
+                      <input class="form-control" name="iexcodregGenBol" id="iexcodregGenBol" type="hidden" value="" />
                       <div class="row mt-3 g-3">
                           <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id trab</label>
@@ -475,7 +481,7 @@
                                   <div class="col-auto">
                                     <div class="search-box">
                                       <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <input id="inputParams" onkeyup="return buscarParams(event);" class="form-control search-input search" type="search" placeholder="Search parámetros" aria-label="Search"/>
                                         <span class="fas fa-search search-box-icon"></span>
                                       </form>
                                     </div>
@@ -513,7 +519,7 @@
                                 <div class="col-auto">
                                   <div class="search-box">
                                     <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <input class="form-control search-input search" type="search" placeholder="Search Ingresos" aria-label="Search"/>
                                       <span class="fas fa-search search-box-icon"></span>
                                     </form>
                                   </div>
@@ -551,7 +557,7 @@
                                   <div class="col-auto">
                                     <div class="search-box">
                                       <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <input class="form-control search-input search" type="search" placeholder="Search Descuentos" aria-label="Search"/>
                                         <span class="fas fa-search search-box-icon"></span>
                                       </form>
                                     </div>
@@ -589,7 +595,7 @@
                                 <div class="col-auto">
                                   <div class="search-box">
                                     <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                      <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                      <input class="form-control search-input search" type="search" placeholder="Search Aportes" aria-label="Search"/>
                                       <span class="fas fa-search search-box-icon"></span>
                                     </form>
                                   </div>
@@ -627,7 +633,7 @@
                                   <div class="col-auto">
                                     <div class="search-box">
                                       <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                        <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                        <input class="form-control search-input search" type="search" placeholder="Search Neto" aria-label="Search"/>
                                         <span class="fas fa-search search-box-icon"></span>
                                       </form>
                                     </div>
@@ -665,7 +671,7 @@
                                     <div class="col-auto">
                                       <div class="search-box">
                                         <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                          <input class="form-control search-input search" type="search" placeholder="Search conceptos" aria-label="Search"/>
+                                          <input class="form-control search-input search" type="search" placeholder="Search Totales" aria-label="Search"/>
                                           <span class="fas fa-search search-box-icon"></span>
                                         </form>
                                       </div>

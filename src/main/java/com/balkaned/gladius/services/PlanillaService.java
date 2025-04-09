@@ -42,6 +42,8 @@ public interface PlanillaService {
 
     public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
 
+    public List<ConceptoxProcesoxTra> listProperconConZerosBuscar(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon, String textbuscar);
+
     public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
 
     public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl);

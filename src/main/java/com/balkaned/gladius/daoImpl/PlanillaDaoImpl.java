@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -930,6 +929,41 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 .addValue("codtra", codtra)
                 .addValue("correl", correl)
                 .addValue("flgcon", flgcon);
+
+        List<ConceptoxProcesoxTra> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ConceptoxProcesoxTra.class));
+
+        return lsConcept;
+    }
+
+    public List<ConceptoxProcesoxTra> listProperconConZerosBuscar(Integer codcia, Integer idproceso, String perpro,
+                                                            Integer codtra, Integer correl, String flgcon, String textbuscar) {
+
+        String sql = "select " +
+                "j.procodcon, " +
+                "c.coodescon, " +
+                "j.provalor " +
+                "from iexpropertra_nomina j, iexconcepto c " +
+                "where j.procodcon = c.coocodcon and " +
+                "iexcodcia = :codcia and " +
+                "iexcodpro = :idproceso and " +
+                "iexnroper = :perpro and " +
+                "iexcodtra = :codtra and " +
+                "iexcorrel = :correl and " +
+                "j.protipcon = :flgcon and " +
+                "c.coodescon like :text " +
+                "order by j.procodcon asc ";
+
+        String finalText = "%" + textbuscar + "%";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("idproceso", idproceso)
+                .addValue("perpro", perpro)
+                .addValue("codtra", codtra)
+                .addValue("correl", correl)
+                .addValue("flgcon", flgcon)
+                .addValue("text", finalText);
 
         List<ConceptoxProcesoxTra> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ConceptoxProcesoxTra.class));

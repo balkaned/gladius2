@@ -87,6 +87,10 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.listProperconConZeros(codcia, idproceso, perpro, codtra, correl, flgcon);
     }
 
+    public List<ConceptoxProcesoxTra> listProperconConZerosBuscar(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon, String textbuscar) {
+        return dao.listProperconConZerosBuscar(codcia, idproceso, perpro, codtra, correl, flgcon, textbuscar);
+    }
+
     public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon) {
         return dao.listProperconSinZeros(codcia, idproceso, perpro, codtra, correl, flgcon);
     }
