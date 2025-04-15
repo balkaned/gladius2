@@ -193,7 +193,7 @@
                  </div>
               </div>
 
-              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10,"pagination":true}'>
+              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","tipodoc","nrodoc","trab"],"page":15,"pagination":true}'>
                   <div class="mb-3">
                     <div class="g-3">
                       <div class="col-auto">
@@ -205,7 +205,7 @@
                         </div>
                       </div>
 
-                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10, "pagination":true }' >
+                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -216,9 +216,9 @@
                                   </div>
                                 </th>
                                 <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID</th>
-                                <th class="sort align-middle text-center ps-2" scope="col" data-sort="trab">TIPO DOC</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="id_concept">NRO DOC</th>
-                                <th class="sort align-middle white-space-nowrap text-center ps-3" scope="col" data-sort="des_concept">TRABAJADOR</th>
+                                <th class="sort align-middle text-center ps-2" scope="col" data-sort="tipodoc">TIPO DOC</th>
+                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="nrodoc">NRO DOC</th>
+                                <th class="sort align-middle white-space-nowrap text-center ps-3" scope="col" data-sort="trab">TRABAJADOR</th>
                                 <th class="sort align-middle text-center ps-2 pe-2" scope="col" ></th>
                               </tr>
                             </thead>
@@ -227,12 +227,12 @@
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                     <td class="fs--1 align-middle px-0 py-3">
                                       <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                        <input class="form-check-input" type="checkbox" />
                                       </div>
                                     </td>
                                     <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
-                                    <td class="trab align-middle text-center fw-semi-bold text-1000 ps-2">${LstPlanillaRes.iextipdoc}</td>
-                                    <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5">${LstPlanillaRes.iexnrodoc}</td>
+                                    <td class="tipodoc align-middle text-center fw-semi-bold text-1000 ps-2">${LstPlanillaRes.iextipdoc}</td>
+                                    <td class="nrodoc align-middle text-center fw-semi-bold text-1000 ps-5">${LstPlanillaRes.iexnrodoc}</td>
                                     <td class="trab align-middle text-start white-space-nowrap fw-semi-bold text-1000 ps-3">${LstPlanillaRes.destra}</td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">

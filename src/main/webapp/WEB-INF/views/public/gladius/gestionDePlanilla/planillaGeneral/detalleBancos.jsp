@@ -165,7 +165,7 @@
                  </div>
               </div>
 
-              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","banc","desmon","nro_cuenta","import"],"page":10,"pagination":true}'>
+              <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","banc","desmon","nro_cuenta","import"],"page":15,"pagination":true}'>
                   <div class="mb-3">
                     <div class="g-3">
                       <div class="col-auto">
@@ -177,7 +177,7 @@
                         </div>
                       </div>
 
-                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","banc","desmon","nro_cuenta","import"],"page":10, "pagination":true }' >
+                      <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" >
                         <div class="table-responsive scrollbar mx-n1 px-1">
                           <table class="table table-sm fs--1 mb-0">
                             <thead>
@@ -188,7 +188,7 @@
                                   </div>
                                 </th>
                                 <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID</th>
-                                <th class="sort align-middle text-center ps-5" scope="col" data-sort="banc">BANCO</th>
+                                <th class="sort align-middle text-center ps-2" scope="col" data-sort="banc">BANCO</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" data-sort="">ABRV. MONEDA</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" data-sort="desmon">MONEDA</th>
                                 <th class="sort align-middle text-center ps-5" scope="col" data-sort="nro_cuenta" >NRO CUENTA</th>
@@ -205,8 +205,8 @@
                                         <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a href="#">#${xbankproper.codbank}</a></td>
-                                    <td class="banc align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desbank}</td>
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a href="#">${xbankproper.codbank}</a></td>
+                                    <td class="banc align-middle text-start fw-semi-bold text-1000 ps-2">${xbankproper.desbank}</td>
                                     <td class="align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${xbankproper.moneda}</span></td>
                                     <td class="desmon align-middle text-start fw-semi-bold text-1000 ps-5">${xbankproper.desmoneda}</td>
                                     <td class="nro_cuenta align-middle text-start fw-semi-bold text-1000 ps-5"><span class="fa-regular fa-credit-card me-2"></span>${xbankproper.nroctabank}</td>

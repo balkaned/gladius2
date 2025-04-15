@@ -99,7 +99,7 @@
                 </div>
             </div>
 
-            <div id="orderTable" class="mt-3" data-list='{"valueNames":["periodo","proceso"],"page":10,"pagination":true}'>
+            <div id="orderTable" class="mt-3" data-list='{"valueNames":["periodo","proceso"],"page":15,"pagination":true}'>
                 <div class="mb-3">
                 	<div class="row g-3">
                 	  <div class="col-auto">
@@ -140,28 +140,28 @@
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                         <td class="fs--1 align-middle px-0 py-3">
                                             <div class="form-check mb-0 fs-0">
-                                                <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
+                                                <input class="form-check-input" type="checkbox" />
                                             </div>
                                         </td>
-                                        <td class="periodo align-middle white-space-nowrap py-0"><span class="fa-regular fa-calendar me-2"></span> ${Res_planAllPerTra.iexnroper}</td>
+                                        <td class="periodo align-middle white-space-nowrap py-0"><a href="#"><span class="fa-regular fa-calendar me-2"></span>${Res_planAllPerTra.iexnroper}</a></td>
                                         <td class="align-middle text-center fw-semi-bold text-1000">${Res_planAllPerTra.iexcodpro}</td>
                                         <td class="proceso align-middle text-start white-space-nowrap">${Res_planAllPerTra.descodpro}</td>
                                         <td class="align-middle text-center fw-semi-bold text-1000">${Res_planAllPerTra.iexcorrel}</td>
 
-                                        <td class="align-middle text-end fw-bold text-1000">
+                                        <td class="align-middle text-end fs--1 fw-bold text-1400">
                                             <fmt:formatNumber value="${Res_planAllPerTra.totalingreso}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
-                                        <td class="align-middle text-center">
+                                        <td class="align-middle text-end">
                                             <fmt:formatNumber value="${Res_planAllPerTra.desc5ta}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <fmt:formatNumber value="${Res_planAllPerTra.totaldescuento}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
+                                        <td class="align-middle text-end text-danger">
+                                            -<fmt:formatNumber value="${Res_planAllPerTra.totaldescuento}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
-                                        <td class="align-middle text-center">
+                                        <td class="align-middle text-end">
                                             <fmt:formatNumber value="${Res_planAllPerTra.totalneto}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <fmt:formatNumber value="${Res_planAllPerTra.totalaporte}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
+                                        <td class="align-middle text-center text-success">
+                                            +<fmt:formatNumber value="${Res_planAllPerTra.totalaporte}" type="number" maxFractionDigits="2" pattern='###,###.00'/>
                                         </td>
 
                                         <td class="align-middle text-center white-space-nowrap pe-0 action">
@@ -170,7 +170,7 @@
                                             data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                             <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                             <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <!--<a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="#"><span class="fa-solid fa-download me-2"></span>Boleta</a></div>-->
+                                              <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-download me-2"></span>Boleta por periodo</a></div>
                                           </div>
                                         </td>
                                     </tr>

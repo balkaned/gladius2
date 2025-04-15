@@ -49,8 +49,7 @@
                     <h2 id="h2top" class="mb-0">Turnos</h2>
                   </div>
                 </div>
-                <div id="orderTable"
-                  data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+                <div id="orderTable" data-list='{"valueNames":["id","turn","abrv"],"page":10,"pagination":true}'>
                   <div class="mb-4">
                     <div class="row g-3">
                       <div class="col-auto">
@@ -80,10 +79,9 @@
                                   data-bulk-select='{"body":"order-table-body"}' />
                               </div>
                             </th>
-                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order"
-                              style="width:5%;">ID</th>
-                            <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">TURNO</th>
-                            <th class="sort align-middle text-center ps-6" scope="col" data-sort="date">ABREVIATURA</th>
+                            <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                            <th class="sort align-middle text-center ps-5" scope="col" data-sort="turn">TURNO</th>
+                            <th class="sort align-middle text-center ps-6" scope="col" data-sort="abrv">ABREVIATURA</th>
                             <th class="sort align-middle text-center ps-8" scope="col" data-sort="date">HORA INICIO
                             </th>
                             <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">HORA FIN</th>
@@ -96,17 +94,16 @@
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
-                                  <input class="form-check-input" type="checkbox"
-                                    data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold"
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold"
                                   href="editarTurno@${turn.iexcodturno}">#${turn.iexcodturno}</a></td>
-                               <td class="total align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${turn.iexdesturno}</span></td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgturno}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorini}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorfin}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${turn.iexflgdiasig}
+                               <td class="turn align-middle text-center fw-semi-bold text-1000"><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${turn.iexdesturno}</span></td>
+                              <td class="abrv align-middle text-center fw-semi-bold text-1000">${turn.iexflgturno}</td>
+                              <td class="align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorini}</td>
+                              <td class="align-middle text-center fw-semi-bold text-1000"><span class="fa-regular fa-clock me-2"></span>${turn.iexhorfin}</td>
+                              <td class="align-middle text-center fw-semi-bold text-1000">${turn.iexflgdiasig}
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                 <div class="font-sans-serif btn-reveal-trigger position-static">
                                   <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

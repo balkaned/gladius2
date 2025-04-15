@@ -47,7 +47,7 @@
                 </div>
               </div>
 
-              <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+              <div id="orderTable" data-list='{"valueNames":["id","sis","sec","opc"],"page":15,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">
                     <div class="col-auto">
@@ -75,16 +75,16 @@
                               <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                             </div>
                           </th>
-                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SISTEMAS</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">SECCION</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">OPCIONES</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">CONS</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">REG</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">MOD</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">ELI</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">REP</th>
-                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="date">EXP</th>
+                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="sis">SISTEMAS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="sec">SECCION</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="opc">OPCIONES</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">CONS</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">REG</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">MOD</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">ELI</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">REP</th>
+                          <th class="sort align-middle text-center ps-5" scope="col" data-sort="">EXP</th>
                           <th class="sort align-middle text-center ps-5" scope="col" >EST</th>
                           <th class="sort align-middle text-center ps-5" scope="col" ></th>
                         </tr>
@@ -94,19 +94,19 @@
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
-                                  <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">#${xRolxopc.iexcodopc}</a></td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${xRolxopc.dessys}</span></td>
-                              <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
-                              <td class="total align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_consultar}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_registrar}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_modificar}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_eliminar}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_xls}</td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_pdf}</td>
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarOpcionxRol@${xRolxopc.iexcodopc}@${idRol}">#${xRolxopc.iexcodopc}</a></td>
+                              <td class="sis align-middle text-start fw-semi-bold text-1000 ps-5"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${xRolxopc.dessys}</span></td>
+                              <td class="sec align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.dessec}</td>
+                              <td class="opc align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-5">${xRolxopc.desopc}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_consultar}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_registrar}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_modificar}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_eliminar}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_xls}</td>
+                              <td class="align-middle text-start fw-semi-bold text-1000 ps-5">${xRolxopc.iex_descargar_pdf}</td>
                                 <c:if test="${xRolxopc.iexflgest=='1'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Activo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${xRolxopc.iexflgest==null}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${xRolxopc.iexflgest=='0'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Inactivo</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>

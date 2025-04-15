@@ -284,10 +284,10 @@
                                   <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                     <td class="fs--1 align-middle px-0 py-3">
                                       <div class="form-check mb-0 fs-0">
-                                        <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                        <input class="form-check-input" type="checkbox" />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">#${fdatavar.iexcodtra}</a></td>
+                                    <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="editarConcepto@${concepto.codConcepto}">${fdatavar.iexcodtra}</a></td>
                                     <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.nomdestra}</td>
                                     <td class="id_concept align-middle text-center fw-semi-bold text-1000 ps-5"><span class="badge badge-tag me-2 mb-2">${fdatavar.iexcodcon}</span></td>
                                     <td class="des_concept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatavar.coodescon}</td>

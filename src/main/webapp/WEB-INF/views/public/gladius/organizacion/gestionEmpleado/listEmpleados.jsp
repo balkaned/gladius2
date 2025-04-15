@@ -47,7 +47,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Refunded<span class="text-700 fw-semi-bold"></span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Failed<span class="text-700 fw-semi-bold"></span></a></li>-->
               </ul>
-              <div id="orderTable" data-list='{"valueNames":["id","tipodoc","nrodoc","nombreyapp","sexo","´puesto","tipotrab","estado"],"page":15,"pagination":true}'>
+              <div id="orderTable" data-list='{"valueNames":["id","tipodoc","nrodoc","nombreyapp","sexo","puesto","tipotrab","estado","fecini","fecfin"],"page":15,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">
                     <div class="col-auto">
@@ -97,8 +97,8 @@
                           <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="puesto">PUESTO</th>
                           <th class="sort align-middle text-start pe-0" scope="col" data-sort="tipotrab">TIPO TRAB</th>
                           <th class="sort align-middle text-center ps-5 pe-5" scope="col" data-sort="estado">ESTADO</th>
-                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECINI</th>
-                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="date">FECFIN</th>
+                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="fecini">FECINI</th>
+                          <th class="sort align-middle text-center pe-3" scope="col" data-sort="fecfin">FECFIN</th>
                           <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
@@ -126,8 +126,8 @@
                               <td class="tipotrab align-middle white-space-nowrap fs-9 text-start">${empl.iexpuestoCap}</td>
                                 <c:if test="${empl.desestado=='Activo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
                                 <c:if test="${empl.desestado=='Inactivo'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${empl.desestado}</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
-                              <td class="delivery_type align-middle white-space-nowrap fs-9 ps-4 text-start"><span class="fa-regular fa-calendar fs-0 me-2"></span>${empl.iexfecing}</td>
-                              <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start"></td>
+                              <td class="fecini align-middle white-space-nowrap fs-9 ps-4 text-start"><span class="fa-regular fa-calendar fs-0 me-2"></span>${empl.iexfecing}</td>
+                              <td class="fecfin align-middle white-space-nowrap text-900 fs--1 text-start"></td>
 
                               <td class="align-middle text-end white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">

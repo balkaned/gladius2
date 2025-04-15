@@ -107,7 +107,7 @@
                                         <th class="sort white-space-nowrap align-middle text-center ps-2" scope="col"
                                             data-sort="date">ID PROCESO
                                         </th>
-                                        <th class="sort align-middle text-center ps-2" scope="col"
+                                        <th class="sort align-middle text-center ps-7 pe-7" scope="col"
                                             data-sort="date">PROCESO
                                         </th>
                                         <th class="sort align-middle text-center" scope="col"
@@ -116,24 +116,24 @@
                                         <th class="sort align-middle white-space-nowrap text-center ps-3 pe-0" scope="col"
                                             data-sort="date">TOTAL DE INGRESO
                                         </th>
-                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
+                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-0" scope="col"
                                             data-sort="date">
                                             IMPORTE AFECTO 5TA
                                         </th>
-                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
+                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-0" scope="col"
                                             data-sort="date">
                                             ING 5TA OTRCIA MES
                                         </th>
-                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
+                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-0" scope="col"
                                             data-sort="date">RENTA 5TA
                                         </th>
-                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-3" scope="col"
+                                        <th class="sort white-space-nowrap align-middle text-center ps-3 pe-0" scope="col"
                                             data-sort="date">RENTA 5TA OTRCIA MES
                                         </th>
-                                        <th class="sort white-space-nowrap align-middle text-start ps-3 pe-3" scope="col"
+                                        <th class="sort white-space-nowrap align-middle text-start ps-3 pe-0" scope="col"
                                             data-sort="date">NETO A RECIBIR
                                         </th>
-                                        <th class="sort align-middle text-center pe-0"></th>
+                                        <th class="sort align-middle text-center ps-0"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list" id="order-table-body">
@@ -148,41 +148,36 @@
                                         <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                             <td class="fs--1 align-middle px-0 py-3">
                                                 <div class="form-check mb-0 fs-0">
-                                                    <input class="form-check-input" type="checkbox"
-                                                           data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}'/>
+                                                    <input class="form-check-input" type="checkbox" />
                                                 </div>
                                             </td>
-                                            <td class="order align-middle white-space-nowrap py-0"><span class="fa-regular fa-calendar me-2"></span>${Res_planilla5ta.iexnroper}</td>
-                                            <td class="total align-middle text-center fw-semi-bold text-1000">
-                                                    ${Res_planilla5ta.iexcodpro}</td>
-                                            <td class="total align-middle text-center fw-semi-bold text-600 ps-2 pe-2"><span
-                                                    class="badge badge-phoenix fs--2 badge-phoenix-primary"><span
-                                                    class="badge-label">${Res_planilla5ta.descodpro}</span></span></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-1000">
-                                                    ${Res_planilla5ta.iexcorrel}</td>
+                                            <td class="order align-middle white-space-nowrap py-0"><a href="#"><span class="fa-regular fa-calendar me-2"></span>${Res_planilla5ta.iexnroper}</a></td>
+                                            <td class="total align-middle text-center fw-semi-bold text-1000">${Res_planilla5ta.iexcodpro}</td>
+                                            <td class="total align-middle text-start  fs--2 fw-semi-bold text-700 ps-5 pe-5">${Res_planilla5ta.descodpro}</td>
+                                            <td class="total align-middle text-center fw-semi-bold text-1000">${Res_planilla5ta.iexcorrel}</td>
                                             <td class="total align-middle text-end fw-bold text-1000">
                                                 <fmt:formatNumber value="${Res_planilla5ta.totalingreso}"
                                                                   type="number" maxFractionDigits="2"
                                                                   pattern='###,###.00'/></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-700">
+                                            <td class="total align-middle text-end fw-semi-bold text-700">
                                                 <fmt:formatNumber value="${Res_planilla5ta.impafecto5ta}"
                                                                   type="number" maxFractionDigits="2"
                                                                   pattern='###,###.00'/></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-700">
+                                            <td class="total align-middle text-end fw-semi-bold text-700">
                                                 <fmt:formatNumber
                                                         value="${Res_planilla5ta.remafect5taotrcia_mes}"
                                                         type="number" maxFractionDigits="2"
                                                         pattern='###,###.00'/></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-700">
+                                            <td class="total align-middle text-end text-danger fw-semi-bold text-700">-
                                                 <fmt:formatNumber value="${Res_planilla5ta.desc5ta}"
                                                                   type="number" maxFractionDigits="2"
                                                                   pattern='###,###.00'/></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-700">
+                                            <td class="total align-middle text-end fw-semi-bold text-700">
                                                 <fmt:formatNumber
                                                         value="${Res_planilla5ta.rentafect5taotrcia_mes}"
                                                         type="number" maxFractionDigits="2"
                                                         pattern='###,###.00'/></td>
-                                            <td class="total align-middle text-center fw-semi-bold text-1000">
+                                            <td class="total align-middle text-end text-success fw-semi-bold text-1000 pe-3">
                                                 <fmt:formatNumber value="${Res_planilla5ta.totalneto}"
                                                                   type="number" maxFractionDigits="2"
                                                                   pattern='###,###.00'/>

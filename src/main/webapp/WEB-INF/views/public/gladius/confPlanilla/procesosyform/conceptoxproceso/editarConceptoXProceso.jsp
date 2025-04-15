@@ -341,7 +341,7 @@
                               <tbody class="list" id="customer-order-table-body">
                                 <c:forEach var="LstconceptoxProcesod" items="${requestScope.LstconceptoxProcesod}">
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                      <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
+                                      <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!"></a></td>
                                       <td class="align-middle text-start fw-semi-bold ps-3 pe-3 text-1000"><a href="#">${LstconceptoxProcesod.desprocesoaux}</a></td>
                                       <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${LstconceptoxProcesod.codconceptaux}</span></td>
                                       <td class="align-middle white-space-nowrap text-start text-body fs-9 ps-3 pe-3">${LstconceptoxProcesod.desconceptaux}</td>
@@ -352,8 +352,6 @@
                                           data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                           <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-
-                                            <div class="dropdown-divider"></div>
                                             <a id="dropdownmenutable" class="dropdown-item" onclick="return deleteConceptoPromediable('${LstconceptoxProcesod.idproceso}','${LstconceptoxProcesod.codconcepto}','${LstconceptoxProcesod.idprocesoaux}','${LstconceptoxProcesod.codconceptaux}');" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
                                         </div>
                                       </td>
@@ -410,7 +408,7 @@
 
                     <div class="col-sm-6 col-md-5 mt-3">
                           <!--<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>-->
-                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
+                          <select name="idconceptoAgrp" id="idconceptoAgrp" class="select-choices" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required >
                             <option value="" selected >Seleccionar concepto</option>
                             <c:forEach var="listaConAgrp" items="${listaConAgrp}">
                                 <option value="${listaConAgrp.procodcon}" >${listaConAgrp.procodcon} - ${listaConAgrp.coodescon}</option>
@@ -436,19 +434,18 @@
                               <tbody class="list" id="customer-order-table-body-agrup">
                                 <c:forEach var="listTblAgrpConc" items="${requestScope.listTblAgrpConc}">
                                     <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                      <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!">#</a></td>
+                                      <td class="align-middle white-space-nowrap ps-3 pe-3"><a class="fw-semi-bold" href="#!"></a></td>
                                       <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3"><span class="badge badge-tag me-2 mb-2">${listTblAgrpConc.codconceptaux}</span></td>
-                                      <td class="align-middle white-space-nowrap text-center text-body fs-9 ps-3 pe-3"><a href="#">${listTblAgrpConc.desconceptaux}</a></td>
+                                      <td class="align-middle white-space-nowrap text-start text-body fs-9 ps-3 pe-3"><a href="#">${listTblAgrpConc.desconceptaux}</a></td>
 
                                       <td class="align-middle text-center white-space-nowrap pe-0 action">
                                         <div class="font-sans-serif btn-reveal-trigger position-static">
                                           <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
-                                          data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                            data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                           <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                           <div class="dropdown-menu dropdown-menu-end py-2">
-
-                                            <div class="dropdown-divider"></div>
-                                            <a id="dropdownmenutable" class="dropdown-item" onclick="return deleteConceptoAgrup('${listTblAgrpConc.idproceso}','${listTblAgrpConc.codconcepto}','${listTblAgrpConc.codconceptaux}');" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a></div>
+                                            <a id="dropdownmenutable" class="dropdown-item" onclick="return deleteConceptoAgrup('${listTblAgrpConc.idproceso}','${listTblAgrpConc.codconcepto}','${listTblAgrpConc.codconceptaux}');" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                          </div>
                                         </div>
                                       </td>
                                     </tr>

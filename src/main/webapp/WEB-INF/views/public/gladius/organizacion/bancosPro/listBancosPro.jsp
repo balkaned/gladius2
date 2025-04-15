@@ -45,7 +45,7 @@
                 </div>
               </div>
 
-              <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
+              <div id="orderTable" data-list='{"valueNames":["id","banc","proc","tip","nro"],"page":10,"pagination":true}'>
                 <div class="mb-4">
                   <div class="row g-3">
                     <div class="col-auto">
@@ -72,11 +72,11 @@
                               <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                             </div>
                           </th>
-                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">ID</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">BANCO</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">PROCESO</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">TIPO</th>
-                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="date">NRO CTA</th>
+                          <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="banc">BANCO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="proc">PROCESO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="tip">TIPO</th>
+                          <th class="sort align-middle text-center pe-0" scope="col" data-sort="nro">NRO CTA</th>
                           <th class="sort align-middle text-center pe-0" scope="col" ></th>
                         </tr>
                       </thead>
@@ -85,17 +85,17 @@
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
-                                  <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
-                              <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarBancoPro@${banc.iexcodban}@${banc.iexcodpro}">#${banc.iexcodban}</a></td>
-                              <td class="total align-middle text-start ps-5 fw-semi-bold text-1000">${banc.desban}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">${banc.prodespro}</td>
-                              <td class="total align-middle text-center fw-semi-bold text-1000">
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="editarBancoPro@${banc.iexcodban}@${banc.iexcodpro}">#${banc.iexcodban}</a></td>
+                              <td class="banc align-middle text-start ps-5 fw-semi-bold text-1000">${banc.desban}</td>
+                              <td class="proc align-middle text-center fw-semi-bold text-1000">${banc.prodespro}</td>
+                              <td class="tip align-middle text-center fw-semi-bold text-1000">
                                 <c:if test="${banc.destipcta=='CUENTA AHORROS'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
                                 <c:if test="${banc.destipcta=='CUENTA INTERBANCARIA'}"><span class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span class="badge-label">CCI: ${banc.destipcta}</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
                               </td>
-                              <td class="total align-middle text-start fw-semi-bold text-1000">${banc.iexctaban}</td>
+                              <td class="nro align-middle text-start fw-semi-bold text-1000">${banc.iexctaban}</td>
                               <td class="align-middle text-center white-space-nowrap pe-0 action">
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"

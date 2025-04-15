@@ -113,7 +113,7 @@
                             <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                               <td class="fs--1 align-middle px-0 py-3">
                                 <div class="form-check mb-0 fs-0">
-                                  <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
                               <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" onclick="cargarinfoEmpl();" href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>

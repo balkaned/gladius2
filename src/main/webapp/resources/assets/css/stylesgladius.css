@@ -628,7 +628,15 @@ width:31px;
 }
 
 .text-yellow{
-color: #ffd600;
+    color: #ffd600;
+}
+
+.choices .choices__inner {
+    font-size:13px !important;
+}
+
+.choices__list{
+    font-size:12px !important;
 }
 
 
