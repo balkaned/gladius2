@@ -69,8 +69,14 @@
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>7.0.42</version>
-			<!--  <version>7.0.64</version>-->
 		</dependency>
+		<!--<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat</artifactId>
+			<version>9.0.1</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>-->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -168,7 +174,7 @@
 				<artifactId>jasypt-maven-plugin</artifactId>
 				<version>3.0.5</version>
 			</plugin>
-			<!--<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -178,9 +184,9 @@
 					<source>8</source>
 					<target>8</target>
 					<meminitial>256</meminitial>
-					<maxmem>256</maxmem>
+					<maxmem>512</maxmem>
 				</configuration>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 </project>

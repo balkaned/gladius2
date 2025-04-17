@@ -265,13 +265,15 @@ public class Empleado {
             log.info("nombrecompletoCap: {} ", nombrecompletoCap);
 
             this.completoDetalleEmpl = nombrecompletoCap;
+            this.nomCompactoUpper = nombrecompletoCap;
         }
     }
 
     public void setDespuesto(String despuesto) {
-        this.despuesto = despuesto;
+
 
         CapitalizarCadena cap = new CapitalizarCadena();
         this.despuestoCap = cap.letras(despuesto);
+        this.despuesto = cap.letras(despuesto);
     }
 }
