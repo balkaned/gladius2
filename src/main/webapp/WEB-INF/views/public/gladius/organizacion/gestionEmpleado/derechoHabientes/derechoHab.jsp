@@ -25,11 +25,11 @@
 
         console.log("part2: "+part2);
 
-        if(part2=="jpg" || part2=="png"){
+        if(part2=="jpg" || part2=="png" || part2=="jpeg"){
             $('#modalLoadingDer').modal('show');
             $("#fmrDerHabImg"+iexcoddep).submit();
         }else{
-            alert("Solo se pueden subir imágenes en formato .jpg o .png");
+            alert("Solo se pueden subir imágenes en formato .jpeg, .jpg, .png");
 
             return;
         }
@@ -153,7 +153,7 @@
                                                                         <input type="hidden" name="idimg" value="${LovDerhab.iexnroiddep}" >
                                                                         <input type="hidden" name="idDerHab" value="${LovDerhab.iexcoddep}" >
                                                                         <div class="mb-3">
-                                                                              <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
+                                                                              <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpeg, .jpg, .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
                                                                               <input class="form-control" id="uploadFileDer${LovDerhab.iexcoddep}" name="uploadFile" value="" type="file" />
                                                                         </div>
 

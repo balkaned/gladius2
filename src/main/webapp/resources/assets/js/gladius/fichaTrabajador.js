@@ -193,7 +193,6 @@ $(document).ready(function(){
       var iexflgeps=$("#iexflgeps").val();
 
       console.log("iexflgeps: "+iexflgeps);
-      //alert(iexflgeps);
 
       if(iexflgeps==1){
         document.getElementById("iexcodeps").required="true";

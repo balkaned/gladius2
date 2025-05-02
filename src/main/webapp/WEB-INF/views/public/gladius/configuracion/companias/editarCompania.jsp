@@ -28,11 +28,11 @@
           var part1=parts[0];
           var part2=parts[1];
 
-          if(part2=="jpg" || part2=="png"){
+          if(part2=="jpg" || part2=="png" || part2=="jpeg"){
             $('#modalLoading').modal('show');
             $("#formComp").submit();
           }else{
-            alert("Solo se pueden subir imágenes en formato .jpg o .png");
+            alert("Solo se pueden subir imágenes en formato .jpeg, .jpg, .png");
 
             return;
           }

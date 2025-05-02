@@ -15,11 +15,11 @@
         var part1=parts[0];
         var part2=parts[1];
 
-        if(part2=="jpg" || part2=="png"){
+        if(part2=="jpg" || part2=="png" || part2=="jpeg"){
             $('#modalLoading').modal('show');
             $("#formEmplImg").submit();
         }else{
-            alert("Solo se pueden subir imágenes en formato .jpg o .png");
+            alert("Solo se pueden subir imágenes en formato .jpeg, .jpg, .png");
 
             return;
         }
@@ -173,7 +173,7 @@
               enctype="multipart/form-data">
                   <input type="hidden" name="idimg" value="${nrodoc}" >
                   <div class="mb-3">
-                        <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
+                        <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpeg, .jpg o .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
                         <input class="form-control" id="uploadFile" name="uploadFile" type="file" />
                   </div>
 
