@@ -27,5 +27,6 @@ public class Concepto {
     public void setDesAbreviacion(String desAbreviacion) {
         CapitalizarCadena cap2 = new CapitalizarCadena();
         this.desAbreviacion = cap2.letras(desAbreviacion);
+        this.desAbreviacionCapit = cap2.letras(desAbreviacion);
     }
 }
