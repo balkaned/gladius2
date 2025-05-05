@@ -100,4 +100,19 @@ $(document).ready(function() {
     element.setAttribute('onclick',dato);
 });
 
+/*function obtenerFormula(idProceso,idFormula){
+    $("#bodyTraducido2").html("<div></div>");
+    $.ajax({
+     url: "obtenerFormula",
+     data: {
+         "idproceso": idProceso,
+         "idformula": idFormula
+         },
+     success: function (data) {
+         document.getElementById("textAreaTraductor").value=data.desFormula;
+         traducirFormula();
+     }
+    });
+}*/
+
 //CKEDITOR.replace('text-box');

@@ -134,7 +134,7 @@
                                                 <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
                                                 <div class="dropdown-menu">
-                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#traductorModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-bolt fs--1 me-2"></span>Traducir</a>
+                                                  <a id="dropdownmenutable" class="dropdown-item" href="#"  onclick="traducirFormula();"data-bs-toggle="modal" data-bs-target="#traductorModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-bolt fs--1 me-2"></span>Traducir</a>
                                                 </div>
                                               </div>
                                             </div>

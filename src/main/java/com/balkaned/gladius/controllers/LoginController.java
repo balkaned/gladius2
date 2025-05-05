@@ -180,9 +180,11 @@ public class LoginController {
 
         log.info("idUser: " + idUser);
         List<Compania> companiaList = usuarioConeccionService.listarCompaniasBycodUsu(idUser);
+        String usuario = (String) request.getSession().getAttribute("user");
 
         model.addAttribute("compList", companiaList);
         model.addAttribute("schema", "dark");
+        model.addAttribute("usuario", usuario);
 
         return new ModelAndView("public/ecompanias");
     }
@@ -192,15 +194,20 @@ public class LoginController {
 
         log.info("idUser: " + idUser);
         List<Compania> companiaList = usuarioConeccionService.listarCompaniasBycodUsu(idUser);
+        String usuario = (String) request.getSession().getAttribute("user");
 
         model.addAttribute("compList", companiaList);
         model.addAttribute("schema", "dark");
 
-        request.getSession().setAttribute("email", null);
+        //request.getSession().setAttribute("email", null);
         request.getSession().setAttribute("firstCharacter", null);
         request.getSession().setAttribute("idCompania", null);
         request.getSession().setAttribute("nombrecomp", null);
         request.getSession().setAttribute("ruccomp", null);
+
+        model.addAttribute("usuario", usuario);
+        String email = (String) request.getSession().getAttribute("email");
+        model.addAttribute("email", email);
 
         return new ModelAndView("public/ecompanias");
     }

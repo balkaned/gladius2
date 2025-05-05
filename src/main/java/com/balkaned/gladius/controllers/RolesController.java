@@ -82,6 +82,13 @@ public class RolesController {
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
         model.addAttribute("idRol", idRol);
+
+        Role rol = new Role();
+        rol.setIdRole(Integer.valueOf(idRol));
+
+        Role rolResult = rolService.getRole(rol);
+        model.addAttribute("rolDescript", rolResult.getDesRole());
+
         model.addAttribute("xRolxopc", rolService.listarRolesxOpcion(Integer.valueOf(idRol)));
 
         return new ModelAndView("public/gladius/configuracion/roles/listRolesxOpcion");

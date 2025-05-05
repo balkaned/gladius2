@@ -373,10 +373,9 @@
                           <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="shield"></span><span>${nombreComp}</span></a></li>
                           <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="credit-card"></span><span>Ruc: ${rucComp}</span></a></li>
                           <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="user"></span><span>Rol: <span class="badge badge-phoenix fs--2 badge-phoenix-info ps-2"><span class="badge-label">${ususys.desSystema} ${ususys.desRol}</span></span></a></li>
-
-                                  <!--<span class="mt-2 text-black" id="span4">${nombreComp}</span>
-                                  <span class="mt-2 text-black" id="span5">Ruc: ${rucComp}</span>
-                                  <span class="mt-2 text-black" id="span6a">Rol: Admin</span>-->
+                              <!--<span class="mt-2 text-black" id="span4">${nombreComp}</span>
+                              <span class="mt-2 text-black" id="span5">Ruc: ${rucComp}</span>
+                              <span class="mt-2 text-black" id="span6a">Rol: Admin</span>-->
                       </ul>
                     </div>
                     <div class="mb-1 mx-3">

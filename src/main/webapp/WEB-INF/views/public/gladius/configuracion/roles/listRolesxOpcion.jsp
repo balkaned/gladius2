@@ -44,6 +44,9 @@
               <div class="row g-3 mb-4">
                 <div class="col-auto">
                   <h2 id="h2top" class="mb-0">Roles x opcion</h2>
+                  <div class="col-12">
+                      <span class="badge badge-tag me-2 mb-2">Rol: ${rolDescript}</span>
+                  </div>
                 </div>
               </div>
 

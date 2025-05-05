@@ -361,13 +361,12 @@
                   <h6 class="mt-2 text-black">${usuario}</h6>
                   <ul class="nav d-flex flex-column mb-2 pb-1">
                       <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="mail"></span><span>${email}</span></a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="shield"></span><span>${nombreComp}</span></a></li>
+                      <!--<li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="shield"></span><span>${nombreComp}</span></a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="credit-card"></span><span>Ruc: ${rucComp}</span></a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="user"></span><span>Rol: </span></span></a></li>
-
-                              <!--<span class="mt-2 text-black" id="span4">${nombreComp}</span>
-                              <span class="mt-2 text-black" id="span5">Ruc: ${rucComp}</span>
-                              <span class="mt-2 text-black" id="span6a">Rol: Admin</span>-->
+                      <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-900" data-feather="user"></span><span>Rol: </span></span></a></li>-->
+                          <!--<span class="mt-2 text-black" id="span4">${nombreComp}</span>
+                          <span class="mt-2 text-black" id="span5">Ruc: ${rucComp}</span>
+                          <span class="mt-2 text-black" id="span6a">Rol: Admin</span>-->
                   </ul>
                 </div>
                 <div class="mb-1 mx-3">
