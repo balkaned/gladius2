@@ -56,7 +56,7 @@
                 </a>
                 <div class="text-center mb-3">
                   <!--<h3 class="text-1000 text-white">Login</h3>-->
-                  <h1 class="display-6 text-white fs-0 ">Login al nuevo y renovado Gladius</h1>
+                  <!--<h1 class="display-6 text-white fs-0 ">Login al nuevo y renovado Gladius</h1>-->
                 </div>
 
                 <!--<button class="btn btn-phoenix-warning w-100 border border-500 mb-2"><span class="fab fa-google text-danger me-2 fs--1"></span>Sign in with google</button>
@@ -84,7 +84,7 @@
                     <div class="row flex-between-center mb-4">
                       <div class="col-sm-6">
                         <div class="form-check mb-0">
-                          <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
+                          <!--<input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />-->
                           <!--<label class="form-check-label mb-0" for="basic-checkbox">Recordar contraseña</label>-->
                         </div>
                       </div>
