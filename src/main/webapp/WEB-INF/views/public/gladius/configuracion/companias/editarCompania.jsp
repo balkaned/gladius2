@@ -29,6 +29,10 @@
       function subirimagen(){
           var uploadFile = $("#uploadFile").val();
 
+          if(uploadFile == null){
+            return;
+          }
+
           var parts=uploadFile.split(".");
           var part1=parts[0];
           var part2=parts[1];
@@ -62,13 +66,32 @@
               </ol>
             </nav>
             <div class="mb-9">
-              <div class="row g-3 mb-4">
+              <div class="row g-3 mb-2">
                 <div class="col-auto">
                   <h2 id="h2top" class="mb-0">Editar compañía</h2>
                 </div>
               </div>
 
-              <form id="frmGeneral" class="row g-3 mb-4 needs-validation" method="POST" action="modificarCompania" novalidate >
+              <div class="col-md-6 col-sm-6 ">
+                   <p class="fs--1 mb-2 ms-0 text-1000">Para subir una imgen, antes debe completar los datos de conexión AWS o FTP, que estan en la siguiente pestaña, de lo contrario mostrará error.</p>
+                   <!--<img id="imgcompanyTbl" src="verFoto@LOGO@${idCia}@${requestScope.xCia.urlLogo}@null" class="avatar" alt="Avatar" width="100" height="100" >-->
+
+                   <c:if test="${requestScope.xCia.urlLogo==null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg"/></c:if>
+
+                   <c:if test="${requestScope.xCia.urlLogo!=null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
+                   src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
+                   /></c:if>
+
+                   <form id="formComp" method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
+                     <input type="hidden" name="idimg" value="${idCia}" >
+                     <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpeg, .jpg y .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
+                     <input type="file" id="uploadFile" name="uploadFile" class="form-control" />
+
+                     <a class="btn btn-primary btn-sm mt-3" href="#" onclick="subirimagen();" ><span class="fas fa-cloud-upload-alt me-2"></span>Upload</a>
+                   </form>
+                </div>
+
+              <form id="frmGeneral" class="row g-3 mb-4 mt-2 needs-validation" method="POST" action="modificarCompania" novalidate >
                   <div class="row g-3">
                        <div class="col-xl-9">
                          <div class="row gx-3 gy-4">
@@ -93,25 +116,6 @@
                                             <div class="row g-3 mt-0">
                                                  <div class="col-xl-12">
                                                    <div class="row gx-3 gy-4">
-                                                      <div class="col-md-9 col-sm-6 ">
-                                                         <p class="fs--1 mb-2 ms-0 text-1000">Para subir una imgen, antes debe completar los datos de conexión AWS o FTP, que estan en la siguiente pestaña, de lo contrario mostrará error.</p>
-                                                         <!--<img id="imgcompanyTbl" src="verFoto@LOGO@${idCia}@${requestScope.xCia.urlLogo}@null" class="avatar" alt="Avatar" width="100" height="100" >-->
-
-                                                         <c:if test="${requestScope.xCia.urlLogo==null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4" src="resources/assets/img/user_blank.jpg"/></c:if>
-
-                                                         <c:if test="${requestScope.xCia.urlLogo!=null}"><img id="imgcompanyedit" class="rounded-circle img-thumbnail bg-white shadow-sm mb-4"
-                                                         src="AWSorFTP_flgsource@verLogo@${idCia}@null@${requestScope.xCia.urlLogo}@null@null@null@null@nul@null"
-                                                         /></c:if>
-
-                                                         <form id="formComp" method="post" action="AWSorFTP_flgsource_MultipartUpload@subirLogoCompania@${idCia}@null@null" enctype="multipart/form-data">
-                                                           <input type="hidden"  name="idimg" value="${idCia}" >
-                                                           <p class="fs--1 mb-0 ms-1 text-600" style="font-style:italic;">Solo en formato .jpeg, .jpg y .png, se sugiere utilizar una imagen de 400 x 400 pixeles</p>
-                                                           <input type="file" id="uploadFile" name="uploadFile" class="form-control" />
-
-                                                           <a class="btn btn-phoenix-secondary btn-sm mt-3" href="#" onclick="subirimagen();" ><span class="fas fa-cloud-upload-alt me-2"></span>Upload</a>
-                                                         </form>
-                                                      </div>
-
                                                       <div class="row gx-3 gy-4">
                                                           <input class="form-control" name="iexcodcia2" type="hidden" value="${idCia}" />
 

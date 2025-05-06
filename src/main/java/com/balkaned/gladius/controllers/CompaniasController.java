@@ -143,19 +143,10 @@ public class CompaniasController {
         cia.setIexsourcedes(request.getParameter("iexsourcedes"));
         cia.setIexregiondes(request.getParameter("iexregiondes"));
 
-        log.info("ZZZZZZZZZZZZ: {} ",cia);
-
-        log.info("cia.setIexflgsource: "+cia.getIexflgsource());
-        log.info("cia.setIexurlfileserver: "+cia.getIexurlfileserver());
-        log.info("cia.setIexportsource: "+cia.getIexportsource());
-        log.info("cia.setIexususource: "+cia.getIexususource());
-        log.info("cia.setIexpasssource: "+cia.getIexpasssource());
-        log.info("cia.setIexsourcedes: "+cia.getIexsourcedes());
-        log.info("cia.setIexregiondes: "+cia.getIexregiondes());
-
         companiaService.actualizarCompania(cia);
 
-        return new ModelAndView("redirect:/listCompanias");
+        //return new ModelAndView("redirect:/listCompanias");
+        return new ModelAndView("redirect:/editarCompania@" + cia.getIdCodcia());
     }
 
     @RequestMapping("/insertarConceptoComp")
