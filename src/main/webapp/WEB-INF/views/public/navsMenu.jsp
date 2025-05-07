@@ -19,25 +19,6 @@
           var seleccion="";
 
           $(document).ready(function(){
-             /*$("#btnMenuCollapse").click(function(){
-                if(flag==0){
-                    $('#usermenu').addClass('collapsedspan');
-                    $('#span1').addClass('collapsedspan');
-                    $('#span2').addClass('collapsedspan');
-                    $('#span3').addClass('collapsedspan');
-                    //$('#navbarVerticalCollapse').addClass('expandedmenu');
-                    flag=1;
-                }else{
-                    $('#usermenu').removeClass('collapsedspan');
-                    $('#span1').removeClass('collapsedspan');
-                    $('#span2').removeClass('collapsedspan');
-                    $('#span3').removeClass('collapsedspan');
-                    //$('#navbarVerticalCollapse').removeClass('expandedmenu');
-                    //$('#navbarVerticalCollapse').addClass('resizemenu');
-                    flag=0;
-                }
-             });*/
-
              // Menu lateral general
              $('#menunav a').click(function(){
                   $(this).addClass('active');
@@ -47,11 +28,6 @@
 
              var menunav = sessionStorage.getItem("menunav");
              $('#'+menunav).addClass("active");
-
-             //console.log("#dotmenuicon"+menunav);
-             //var id2="circle"+menunav;
-             //console.log("id2: "+id2);
-             //document.getElementById(id2).style.display = '';
           });
         </script>
         <div class="collapse navbar-collapse" id="navbarVerticalCollapse">

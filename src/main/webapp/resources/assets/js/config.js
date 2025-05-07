@@ -21,7 +21,7 @@
   };
 
   const initialConfig = {
-    phoenixIsNavbarVerticalCollapsed: false,
+    phoenixIsNavbarVerticalCollapsed: true,
     phoenixTheme: 'light',
     phoenixNavbarTopStyle: 'default',
     phoenixNavbarVerticalStyle: 'default',

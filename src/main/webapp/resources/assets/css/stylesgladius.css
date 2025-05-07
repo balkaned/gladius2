@@ -433,12 +433,12 @@
 
 .navbar-vertical-content{
     /*background-color:#111827;*/
-    background-color: #E9E9E8;
+    background-color: #E2E5EA;
 }
 
 .navbar.navbar-vertical.navbar-expand-lg{
     /*background-color:#111827 !important;*/
-    background-color: #E9E9E8 !important;
+    background-color: #E2E5EA !important;
 }
 
 #navbar2a{
@@ -448,16 +448,17 @@
 
 .navbar-vertical-footer{
     /*background-color:#1E283D !important;*/
-    background-color: #E9E9E8 !important;
+    background-color: #E2E5EA !important;
     color:white;
     /*border-top:1px solid #373E53 !important;*/
     border-top:1px solid #BCBCBC !important;
+    border-right:1px solid #BCBCBC !important;
 }
 
 .nav-link-icon{
     /*color:#B8BABF !important;*/
     /*color:#A6A6A6 !important;*/
-    color: #787878 !important;
+    color: #6B6A6A !important;
 }
 
 #topdiv{
