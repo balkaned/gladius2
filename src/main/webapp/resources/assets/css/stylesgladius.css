@@ -464,7 +464,7 @@
 .navbar-vertical-content::-webkit-scrollbar {
   width: 8px !important;
 }
-/
+
 .navbar-vertical-content::-webkit-scrollbar-track {
   background-color:#CCCCCC;
   margin-top:8px;
@@ -489,8 +489,9 @@ border-radius:0px !important;*/
 
 #spntop{
 font-size:12px;
-color:#9BA0B8;
+/*color:#9BA0B8;*/
 /*color:#525B75;*/
+color: white;
 }
 
 /*#customer-order-table-body tr td{
@@ -574,6 +575,10 @@ width:31px;
 
 .colorgraytheme{
     color:#9BA0B8;
+}
+
+.colorwhite{
+    color: white;
 }
 
 .bgNight{

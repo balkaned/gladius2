@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -269,9 +270,9 @@ public class GestionTtableController {
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
     }
 
-    @RequestMapping("/addTblGenDetalle")
-    public ModelAndView modificarTblGenDetalle(ModelMap model, HttpServletRequest request) {
-        log.info("/addTblGenDetalle");
+    @RequestMapping("/addorUpdTblGenDetalle")
+    public ModelAndView addorUpdTblGenDetalle(ModelMap model, HttpServletRequest request) {
+        log.info("/addorUpdTblGenDetalle");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -280,16 +281,152 @@ public class GestionTtableController {
 
         sessionattributes.getVariablesSession(model, request);
 
+        String accion = request.getParameter("accion");
+        log.info("accion: {} ", accion);
+
         String iexcodtab = request.getParameter("iexcodtab2");
-        String iexkey = request.getParameter("iexkey");
-        String desdet = request.getParameter("desdet");
 
-        TTablaDetalle p = new TTablaDetalle();
-        p.setIexcodtab(iexcodtab);
-        p.setIexkey(iexkey);
-        p.setDesdet(desdet);
+        if (accion.equals("INSDET")) {
 
-        ttableService.insertarTtablad(p);
+            String iexkey = request.getParameter("iexkey");
+            String desdet = request.getParameter("desdet");
+
+            TTablaDetalle p = new TTablaDetalle();
+            p.setIexcodtab(iexcodtab);
+            p.setIexkey(iexkey);
+            p.setDesdet(desdet);
+
+            ttableService.insertarTtablad(p);
+        }
+
+        if (accion.equals("UPDDET")) {
+            String iexkey = request.getParameter("iexkey");
+            String desdet = request.getParameter("desdet");
+
+            String des1det = request.getParameter("des1det");
+            String des2det = request.getParameter("des2det");
+            String des3det = request.getParameter("des3det");
+            String des4det = request.getParameter("des4det");
+            String des5det = request.getParameter("des5det");
+            String des6det = request.getParameter("des6det");
+            String des7det = request.getParameter("des7det");
+            String des8det = request.getParameter("des8det");
+            String val9det = request.getParameter("val9det");
+            String val10det = request.getParameter("val10det");
+            String val11det = request.getParameter("val11det");
+            String val12det = request.getParameter("val12det");
+            String val13det = request.getParameter("val13det");
+            String val14det = request.getParameter("val14det");
+            String val15det = request.getParameter("val15det");
+            String val16det = request.getParameter("val16det");
+
+            TTablaDetalle p = new TTablaDetalle();
+            p.setIexcodtab(iexcodtab);
+            p.setIexkey(iexkey);
+            p.setDesdet(desdet);
+
+            if (request.getParameter("des1det") == null) {
+                p.setDes1det("");
+            } else {
+                p.setDes1det(des1det);
+            }
+
+            if (request.getParameter("des2det") == null) {
+                p.setDes2det("");
+            } else {
+                p.setDes2det(des2det);
+            }
+
+            if (request.getParameter("des3det") == null) {
+                p.setDes3det("");
+            } else {
+                p.setDes3det(des3det);
+            }
+
+            if (request.getParameter("des4det") == null) {
+                p.setDes4det("");
+            } else {
+                p.setDes4det(des4det);
+            }
+
+            if (request.getParameter("des5det") == null) {
+                p.setDes5det("");
+            } else {
+                p.setDes5det(des5det);
+            }
+
+            if (request.getParameter("des6det") == null) {
+                p.setDes6det("");
+            } else {
+                p.setDes6det(des6det);
+            }
+
+            if (request.getParameter("des7det") == null) {
+                p.setDes7det("");
+            } else {
+                p.setDes7det(des7det);
+            }
+
+            if (request.getParameter("des8det") == null) {
+                p.setDes8det("");
+            } else {
+                p.setDes8det(des8det);
+            }
+
+            if (request.getParameter("val9det") == null || request.getParameter("val9det") == "") {
+                p.setVal9det(0.0);
+            } else {
+                p.setVal9det(Double.parseDouble(val9det));
+            }
+
+            if (request.getParameter("val10det") == null || request.getParameter("val10det") == "") {
+                p.setVal10det(0.0);
+            } else {
+                p.setVal10det(Double.parseDouble(val10det));
+            }
+
+            if (request.getParameter("val11det") == null || request.getParameter("val11det") == "") {
+                p.setVal11det(0.0);
+            } else {
+                p.setVal11det(Double.parseDouble(val11det));
+            }
+
+            if (request.getParameter("val12det") == null || request.getParameter("val12det") == "") {
+                p.setVal12det(0.0);
+            } else {
+                p.setVal12det(Double.parseDouble(val12det));
+            }
+
+            if (request.getParameter("val13det") == null || request.getParameter("val13det") == "") {
+                p.setVal13det(0.0);
+            } else {
+                p.setVal13det(Double.parseDouble(val13det));
+            }
+
+            if (request.getParameter("val14det") == null || request.getParameter("val14det") == "") {
+                p.setVal14det(0.0);
+            } else {
+                p.setVal14det(Double.parseDouble(val14det));
+            }
+
+            if (request.getParameter("val15det") == null || request.getParameter("val15det") == "") {
+                p.setVal15det(0.0);
+            } else {
+                p.setVal15det(Double.parseDouble(val15det));
+            }
+
+            if (request.getParameter("val16det") == null || request.getParameter("val16det") == "") {
+                p.setVal16det(0.0);
+            } else {
+                p.setVal16det(Double.parseDouble(val16det));
+            }
+
+            ttableService.actualizarTTablad(p);
+
+            List<TTablaDetalle> lstTTablad = ttableService.listarTTablad(iexcodtab);
+            log.info("lstTTablad: {} ", lstTTablad);
+            model.addAttribute("LstTTablad", lstTTablad);
+        }
 
         return new ModelAndView("redirect:/verDetalleTblGen@" + iexcodtab);
     }
@@ -317,6 +454,39 @@ public class GestionTtableController {
         model.addAttribute("codTab", idTbl);
 
         return new ModelAndView("public/gladius/configuracion/tablasGenericas/editarDetalleTablaGen");
+    }
+
+    @RequestMapping("/recuperarDetalleTblGen@{idTbl}@{idKey}@{desTab}")
+    public ModelAndView recuperarDetalleTblGen(ModelMap model, HttpServletRequest request,
+                                               @PathVariable String idTbl, @PathVariable String idKey, @PathVariable String desTab) {
+        log.info("/recuperarDetalleTblGen");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("idTbl", idTbl);
+        model.addAttribute("idKey", idKey);
+
+        TTablaDetalle ttabladxx = ttableService.recuperarTTablad(idTbl, idKey);
+
+        log.info("ttabladxx: {} ", ttabladxx);
+        model.addAttribute("ttabladxx", ttabladxx);
+
+        model.addAttribute("desTab", desTab);
+        model.addAttribute("codTab", idTbl);
+
+        List<TTablaDetalle> lstTTablad = ttableService.listarTTablad(idTbl);
+        log.info("lstTTablad: {} ", lstTTablad);
+        model.addAttribute("LstTTablad", lstTTablad);
+
+        model.addAttribute("accionx", "UPDDET");
+
+        return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
     }
 
     @RequestMapping("/modificarDetalleTblGen")

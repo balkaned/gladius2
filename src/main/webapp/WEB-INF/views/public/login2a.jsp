@@ -66,16 +66,16 @@
                   <hr class="bg-200 mt-5 mb-4" />
                   <div class="divider-content-center">or use email</div>
                 </div>-->
-                <div class="bg-blanco border border-0 rounded-2 p-4 col-12 mt-2">
+                <div class="bg-azul-intenso border border-0 rounded-2 p-4 col-12 mt-2">
                     <div class="mb-3 text-start col-sm-6 col-md-12">
-                      <label class="form-label" for="email">Usuario</label>
+                      <label class="form-label text-white" for="email">Usuario</label>
                       <div class="form-icon-container">
                         <!--<input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>-->
                         <f:input id="iptUs" type="text" path="user" cssClass="form-control form-icon-input" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/><span class="fas fa-user text-900 fs--1 form-icon"></span>
                       </div>
                     </div>
                     <div class="mb-3 text-start col-sm-6 col-md-12">
-                      <label class="form-label" for="password">Contraseña</label>
+                      <label class="form-label text-white" for="password">Contraseña</label>
                       <div class="form-icon-container">
                         <!--<input class="form-control form-icon-input" id="password" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>-->
                         <f:input id="ippass" value="" type="password" path="pass" cssClass="form-control form-icon-input" placeholder="Ingrese Contraseña"/><span class="fas fa-key text-900 fs--1 form-icon"></span>
@@ -88,7 +88,7 @@
                           <!--<label class="form-check-label mb-0" for="basic-checkbox">Recordar contraseña</label>-->
                         </div>
                       </div>
-                      <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
+                      <div class="col-auto"><a class="fs--1 fw-semi-bold text-white" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                     </div>
                     <!--<button type="submit" class="btn btn-primary w-100 mb-3" href="#"><span class="fas fa-rocket me-2"></span>Ingresar</button>-->
                     <button type="submit" class="btn btn-primary w-100 mb-3" href="#">Ingresar</button>

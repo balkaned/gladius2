@@ -221,6 +221,7 @@
                                             </div>
                                           </div>
                                       </div>
+                                      </form>
 
                                       <div class="tab-content" id="myTabContent">
                                           <div class="tab-pane fade" id="tab-meeting" role="tabpanel" aria-labelledby="activity-tab">
@@ -350,7 +351,7 @@
                          </div>
                        </div>
                   </div>
-              </form>
+
             </div>
             <jsp:include page="../../../footer.jsp"></jsp:include>
           </div>
