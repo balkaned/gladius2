@@ -18,11 +18,6 @@
      /*color:#111827 !important;*/
 }
 
-.nav-link-icon{
-    /*color:#B8BABF !important;*/
-    color:#A6A6A6 !important;
-}
-
 #p2{
     color:#525B75 !important;
     /*color:white !important;*/
@@ -39,12 +34,6 @@
 
 .content{
     /*background-color:#F1F5F9;*/
-}
-
-.navbar-vertical-footer{
-    background-color:#1E283D !important;
-    color:white;
-    border-top:1px solid #373E53 !important;
 }
 
 .btn.p-0.border.border-200.btn-support-chat{
@@ -118,10 +107,6 @@
 
 .navbar-vertical-label-under{
     font-size:12px !important;
-}
-
-.navbar.navbar-vertical.navbar-expand-lg{
-    background-color:#111827 !important;
 }
 
 .collapse.navbar-collapse div ul li div #span1{
@@ -447,7 +432,32 @@
 }
 
 .navbar-vertical-content{
-    background-color:#111827;
+    /*background-color:#111827;*/
+    background-color: #E9E9E8;
+}
+
+.navbar.navbar-vertical.navbar-expand-lg{
+    /*background-color:#111827 !important;*/
+    background-color: #E9E9E8 !important;
+}
+
+#navbar2a{
+    /*border-right: 1px solid #373E53 !important;*/
+    border-right: 1px solid #BCBCBC !important;
+}
+
+.navbar-vertical-footer{
+    /*background-color:#1E283D !important;*/
+    background-color: #E9E9E8 !important;
+    color:white;
+    /*border-top:1px solid #373E53 !important;*/
+    border-top:1px solid #BCBCBC !important;
+}
+
+.nav-link-icon{
+    /*color:#B8BABF !important;*/
+    /*color:#A6A6A6 !important;*/
+    color: #787878 !important;
 }
 
 #topdiv{
@@ -460,6 +470,7 @@
 #nombreFichaTrab{
     font-size:20px;
 }
+
 /*
 .navbar-vertical-content::-webkit-scrollbar {
   width: 8px !important;
@@ -620,10 +631,6 @@ width:31px;
 
 .cursiva{
     font-style: italic !important;
-}
-
-#navbar2a{
-    border-right: 1px solid #373E53 !important;
 }
 
 .sans{
