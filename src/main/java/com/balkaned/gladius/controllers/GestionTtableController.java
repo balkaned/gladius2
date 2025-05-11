@@ -285,18 +285,150 @@ public class GestionTtableController {
         log.info("accion: {} ", accion);
 
         String iexcodtab = request.getParameter("iexcodtab2");
+        log.info("iexcodtab: {} ", iexcodtab);
 
         if (accion.equals("INSDET")) {
-
             String iexkey = request.getParameter("iexkey");
             String desdet = request.getParameter("desdet");
+            log.info("iexkey: {} ", iexkey);
+            log.info("desdet: {} ", desdet);
 
-            TTablaDetalle p = new TTablaDetalle();
-            p.setIexcodtab(iexcodtab);
-            p.setIexkey(iexkey);
-            p.setDesdet(desdet);
+            List<TTablaDetalle> lstTTabladRecup = ttableService.listarTTablad(iexcodtab);
+            log.info("lstTTabladRecup: {} ", lstTTabladRecup);
 
-            ttableService.insertarTtablad(p);
+            int cont = 0;
+
+            for (TTablaDetalle item : lstTTabladRecup) {
+                if (item.getIexkey().equals(iexkey)) {
+                    cont++;
+                }
+            }
+
+            log.info("cont: {} ", cont);
+
+            if (cont == 0) {
+                String des1det = request.getParameter("des1det");
+                String des2det = request.getParameter("des2det");
+                String des3det = request.getParameter("des3det");
+                String des4det = request.getParameter("des4det");
+                String des5det = request.getParameter("des5det");
+                String des6det = request.getParameter("des6det");
+                String des7det = request.getParameter("des7det");
+                String des8det = request.getParameter("des8det");
+                String val9det = request.getParameter("val9det");
+                String val10det = request.getParameter("val10det");
+                String val11det = request.getParameter("val11det");
+                String val12det = request.getParameter("val12det");
+                String val13det = request.getParameter("val13det");
+                String val14det = request.getParameter("val14det");
+                String val15det = request.getParameter("val15det");
+                String val16det = request.getParameter("val16det");
+
+                TTablaDetalle p = new TTablaDetalle();
+                p.setIexcodtab(iexcodtab);
+                p.setIexkey(iexkey);
+                p.setDesdet(desdet);
+
+                if (request.getParameter("des1det") == null) {
+                    p.setDes1det("");
+                } else {
+                    p.setDes1det(des1det);
+                }
+
+                if (request.getParameter("des2det") == null) {
+                    p.setDes2det("");
+                } else {
+                    p.setDes2det(des2det);
+                }
+
+                if (request.getParameter("des3det") == null) {
+                    p.setDes3det("");
+                } else {
+                    p.setDes3det(des3det);
+                }
+                if (request.getParameter("des4det") == null) {
+                    p.setDes4det("");
+                } else {
+                    p.setDes4det(des4det);
+                }
+
+                if (request.getParameter("des5det") == null) {
+                    p.setDes5det("");
+                } else {
+                    p.setDes5det(des5det);
+                }
+
+                if (request.getParameter("des6det") == null) {
+                    p.setDes6det("");
+                } else {
+                    p.setDes6det(des6det);
+                }
+
+                if (request.getParameter("des7det") == null) {
+                    p.setDes7det("");
+                } else {
+                    p.setDes7det(des7det);
+                }
+
+                if (request.getParameter("des8det") == null) {
+                    p.setDes8det("");
+                } else {
+                    p.setDes8det(des8det);
+                }
+
+                if (request.getParameter("val9det") == null || request.getParameter("val9det") == "") {
+                    p.setVal9det(0.0);
+                } else {
+                    p.setVal9det(Double.parseDouble(val9det));
+                }
+
+                if (request.getParameter("val10det") == null || request.getParameter("val10det") == "") {
+                    p.setVal10det(0.0);
+                } else {
+                    p.setVal10det(Double.parseDouble(val10det));
+                }
+
+                if (request.getParameter("val11det") == null || request.getParameter("val11det") == "") {
+                    p.setVal11det(0.0);
+                } else {
+                    p.setVal11det(Double.parseDouble(val11det));
+                }
+
+                if (request.getParameter("val12det") == null || request.getParameter("val12det") == "") {
+                    p.setVal12det(0.0);
+                } else {
+                    p.setVal12det(Double.parseDouble(val12det));
+                }
+
+                if (request.getParameter("val13det") == null || request.getParameter("val13det") == "") {
+                    p.setVal13det(0.0);
+                } else {
+                    p.setVal13det(Double.parseDouble(val13det));
+                }
+
+                if (request.getParameter("val14det") == null || request.getParameter("val14det") == "") {
+                    p.setVal14det(0.0);
+                } else {
+                    p.setVal14det(Double.parseDouble(val14det));
+                }
+
+                if (request.getParameter("val15det") == null || request.getParameter("val15det") == "") {
+                    p.setVal15det(0.0);
+                } else {
+                    p.setVal15det(Double.parseDouble(val15det));
+                }
+
+                if (request.getParameter("val16det") == null || request.getParameter("val16det") == "") {
+                    p.setVal16det(0.0);
+                } else {
+                    p.setVal16det(Double.parseDouble(val16det));
+                }
+
+                ttableService.insertarTtablad(p);
+            }else{
+                log.info("El id Key ya existe, ingrese otro número");
+                model.addAttribute("msg","El id Key, ya existe ingrese otro número");
+            }
         }
 
         if (accion.equals("UPDDET")) {
@@ -428,7 +560,7 @@ public class GestionTtableController {
             model.addAttribute("LstTTablad", lstTTablad);
         }
 
-        return new ModelAndView("redirect:/verDetalleTblGen@" + iexcodtab);
+        return new ModelAndView("public/gladius/configuracion/tablasGenericas/verDetalleTablasGen");
     }
 
     @RequestMapping("/editarDetalleTblGen@{idTbl}@{idKey}@{desTab}")

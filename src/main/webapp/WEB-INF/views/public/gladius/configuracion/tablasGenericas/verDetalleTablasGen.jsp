@@ -54,6 +54,18 @@
                   <h2 id="h2top" class="mb-0">Detalle de tablas genéricas</h2>
                 </div>
               </div>
+              <div class="col-xl-7">
+                <c:if test="${msg!=null}">
+                     <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center" role="alert">
+                          <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
+                          <div class="col-11">
+                              <strong class="text-black">Error al guardar</strong>
+                               <p class="mb-0 fw-semi-bold text-1000">${msg} <a href="#">Mas información.</a></p>
+                          </div>
+                          <a class="text-danger fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
+                     </div>
+                </c:if>
+              </div>
 
               <div class="row g-3">
                  <div class="col-xl-7">
@@ -250,7 +262,7 @@
                           <tr>
                             <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
                               <div class="form-check mb-0 fs-0">
-                                <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+                                <!--<input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />-->
                               </div>
                             </th>
                             <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">KEY</th>
@@ -263,7 +275,7 @@
                               <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                 <td class="fs--1 align-middle px-0 py-3">
                                   <div class="form-check mb-0 fs-0">
-                                    <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
+                                    <!--<input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />-->
                                   </div>
                                 </td>
                                 <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" >#${LstTTablad.iexkey}</a></td>
