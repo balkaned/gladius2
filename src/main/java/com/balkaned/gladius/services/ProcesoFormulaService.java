@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProcesoFormulaService {
     public List<ProcesoForm> listProcesoFormula();
 
-    public List<FormulaXConcepto> listFormulaXConcepto();
+    public List<FormulaXConcepto> listFormulaXConcepto(String codpro);
 
     public List<Proceso> listProceso(String id);
 

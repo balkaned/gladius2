@@ -125,11 +125,11 @@
                                         </select>
                                     </div>
 
-                                    <div id="orderTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
+                                    <div id="orderTable" data-list='{"valueNames":["codcon","concept"],"page":10,"pagination":true}'>
                                         <div class="mb-0">
                                           <div class="row g-3">
                                             <div class="col-auto">
-                                              <!--<a class="btn btn-primary btn-sm" href="nuevoConcepto" ><span class="fas fa-plus me-2"></span>Add concepto</a>-->
+                                              <a class="btn btn-primary btn-sm" href="nuevoConcepto" target="_blank" ><span class="fas fa-plus me-2"></span>Add concepto</a>
                                               <div class="btn-group mb-1 me-1 ms-0 mt-1">
                                                 <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-passport fs--1 me-2"></span></span class="ps-5">Traductor de fórmula</span></button>
                                                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
@@ -151,23 +151,22 @@
 
                                         <div class="row col-sm-6 col-md-12 mt-4">
                                             <div class="col-sm-6 col-md-5">
-                                                <div class="" id="customerOrdersTable" data-list='{"valueNames":["concept"],"page":10,"pagination":true}'>
+                                                <div>
                                                     <div class="scrollbar">
                                                         <table class="fs--1 mb-0">
                                                           <thead>
                                                             <tr>
-                                                              <!--<th class="sort white-space-nowrap align-middle ps-0 pe-0 text-start" style="width:5%;" scope="col" >#</th>-->
-                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" ><span class="badge badge-tag me-2 mb-2">Conceptos</span></th>
+                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="codcon" ><span class="badge badge-tag me-2 mb-2">Conceptos</span></th>
+                                                              <th class="sort white-space-nowrap align-middle ps-3 pe-0" scope="col" data-sort="concept" ><span class="badge badge-tag me-2 mb-2">Descripcion</span></th>
                                                             </tr>
                                                           </thead>
-                                                          <tbody class="list" id="customer-order-table-body" >
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn btn-phoenix-warning btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$resultado$</a></td></tr>
-                                                            <tr><td class="concept align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn btn-phoenix-warning btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$salto$</a></td></tr>
+                                                          <tbody class="list" >
+                                                            <tr><td class="align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$resultado$');" class="hashtag btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">resultado</a></td></tr>
+                                                            <tr><td class="align-middle white-space-nowrap ps-3 pe-3"><a onclick="addOperador('$salto$');" class="hashtag btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">salto</a></td></tr>
                                                             <c:forEach var="Lovs_conxprod" items="${requestScope.Lovs_conxprod}">
                                                                 <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                  <td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-phoenix-primary btn-sm me-2 mt-1 pt-1 pb-1 pe-2 ps-2">${Lovs_conxprod.desVariable}</a> <span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
-                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag btn btn-link pe-3 ps-0 text-900 text-primary me-0"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
-                                                                  <!--<td class="concept align-middle white-space-nowrap ps-3 pe-3" ><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="hashtag badge badge-phoenix badge-phoenix-primary fs--1 me-2"><span class="fa-solid fa-share-from-square me-2"></span>${Lovs_conxprod.desVariable}</a> <span class="d-none d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>-->
+                                                                  <td class="codcon ps-3 pe-3"><a onclick="addOperador('${Lovs_conxprod.desVariable}');" class="d-sm-inline me-2 mt-1 pt-1 pb-1 pe-2 ps-2">$VAL_${Lovs_conxprod.codConcepto}$</a></td>
+                                                                  <td class="concept ps-3 pe-3"><span class="d-sm-inline">${Lovs_conxprod.desAbreviacionCapit}</span></td>
                                                                 </tr>
                                                             </c:forEach>
                                                           </tbody>

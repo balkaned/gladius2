@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
     }
 
     @Override
-    public List<FormulaXConcepto> listFormulaXConcepto() {
+    public List<FormulaXConcepto> listFormulaXConcepto(String codpro) {
 
         String sql = "select " +
                 "frm.procodpro as formprocodpro, " +
@@ -79,10 +80,11 @@ public class ProcesoFormulaDaoImpl implements ProcesoFormulaDao {
                 "con.coodescripcion as formcoodescripcion " +
                 "from iexformula_cab frm " +
                 "inner join iexconcepto con on frm.forcodcon = con.coocodcon " +
-                "where frm.procodpro = 1 " +
+                "where frm.procodpro = :codpro " +
                 "order by frm.fororden asc ";
 
-        SqlParameterSource namedParameters = new MapSqlParameterSource();
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codpro", Integer.parseInt(codpro));
 
         List<FormulaXConcepto> lsForm = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(FormulaXConcepto.class));

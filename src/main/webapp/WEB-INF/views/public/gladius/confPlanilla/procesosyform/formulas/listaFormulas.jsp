@@ -116,7 +116,7 @@
                             <td class="ordej align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#${formxcon.formfororden}</a></td>
                             <td class="idoper align-middle text-center fw-semi-bold text-1000">${formxcon.formforcodfor}</td>
                             <td class="codconcept align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2"><span class="badge-label">${formxcon.formforcodcon}</span></td>
-                            <td class="concept align-middle text-start text-body fs-9">${formxcon.conccoodescon}</td>
+                            <td class="concept align-middle text-start text-body fs-9">${formxcon.formcoodescon}</td>
                             <td class="glosa align-middle text-start text-body fs-9">${formxcon.formproglosa}</td>
 
                             <c:if test="${formxcon.formforflgest=='1'}"><td class="estado align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">1: Creado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="info" style="height:12.8px;width:12.8px;"></span></span></td></c:if>

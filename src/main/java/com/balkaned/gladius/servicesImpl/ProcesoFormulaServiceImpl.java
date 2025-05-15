@@ -15,19 +15,16 @@ public class ProcesoFormulaServiceImpl implements ProcesoFormulaService {
 
     @Override
     public List<ProcesoForm> listProcesoFormula() {
-
         return dao.listProcesoFormula();
     }
 
     @Override
-    public List<FormulaXConcepto> listFormulaXConcepto() {
-
-        return dao.listFormulaXConcepto();
+    public List<FormulaXConcepto> listFormulaXConcepto(String codpro) {
+        return dao.listFormulaXConcepto(codpro);
     }
 
     @Override
     public List<Proceso> listProceso(String id) {
-
         return dao.listConcepto(id);
     }
 

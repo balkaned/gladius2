@@ -31,4 +31,5 @@ public class FormulaXConcepto {
     private String conccoodesabrev;
     private String conccoodescripcion;
 
+    private String formcoodescon;
 }

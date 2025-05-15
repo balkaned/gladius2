@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -48,7 +49,7 @@ public class FormulaController {
         }
 
         sessionattributes.getVariablesSession(model, request);
-        List<FormulaXConcepto> formulaXConceptoList = procesoFormulaService.listFormulaXConcepto();
+        List<FormulaXConcepto> formulaXConceptoList = procesoFormulaService.listFormulaXConcepto(String.valueOf(idProceso));
         model.addAttribute("formulaXConceptoList", formulaXConceptoList);
         model.addAttribute("idProceso", idProceso);
 
@@ -63,7 +64,7 @@ public class FormulaController {
 
     @RequestMapping("/formularCodigo@{idProceso}@{idFormula}")
     public ModelAndView formular(
-            ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso, @PathVariable("idFormula") Integer idFormula) {
+            ModelMap model, HttpServletRequest request, @PathVariable("idProceso") Integer idProceso, @PathVariable("idFormula") Integer idFormula) throws UnsupportedEncodingException {
         log.info("/formularCodigo");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -85,6 +86,8 @@ public class FormulaController {
         String desproceso2 = cap.letras(pro.getDesProceso());
         model.addAttribute("desproceso", desproceso2);
         model.addAttribute("desregimen", pro.getDesRegLab());
+
+        request.setCharacterEncoding("UTF-8");
 
         return new ModelAndView("public/gladius/confPlanilla/procesosyform/formulas/formularCodigo");
     }
