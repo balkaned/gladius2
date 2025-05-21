@@ -10,44 +10,8 @@
 <html lang="en-US" dir="ltr">
   <head>
     <jsp:include page="../../../links.jsp"></jsp:include>
+    <script src="resources/assets/js/gladius/editarCompania.js"></script>
   </head>
-  <script>
-      function mostrarAlert(){
-          var div=document.getElementById('alert');
-          div.style.display = '';
-
-          setTimeout(function() {
-              $("#alerts").hide(6000);
-          }, 3000);
-      }
-
-      function submitFrmGeneral(){
-        $("#frmGeneral").submit();
-        mostrarAlert();
-      }
-
-      function subirimagen(){
-          var uploadFile = $("#uploadFile").val();
-
-          if(uploadFile == null){
-            return;
-          }
-
-          var parts=uploadFile.split(".");
-          var part1=parts[0];
-          var part2=parts[1];
-
-          if(part2=="jpg" || part2=="png" || part2=="jpeg"){
-            $('#modalLoading').modal('show');
-            $("#formComp").submit();
-          }else{
-            alert("Solo se pueden subir imágenes en formato .jpeg, .jpg, .png");
-
-            return;
-          }
-      }
-  </script>
-
 
   <body>
     <!-- ===============================================-->
@@ -98,7 +62,7 @@
                            <div class="form-group row mt-2">
                                 <div class="col-md-7 col-lg-9 col-xl-9">
                                     <div class="lead-details-container">
-                                      <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTab" role="tablist" style="overflow-y: hidden;">
+                                      <ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-2" id="myTabComp" role="tablist" style="overflow-y: hidden;">
                                         <li class="nav-item text-nowrap me-2" role="presentation">
                                             <a class="nav-link active" id="activity-tab" data-bs-toggle="tab" href="#tab-activity" role="tab" aria-controls="tab-activity" aria-selected="false" tabindex="-1"><span class="fa-solid fa-building me-2 tab-icon-color"></span>Datos principales</a>
                                         </li>
@@ -229,22 +193,22 @@
                                             <div class="row g-3 mt-0">
                                                  <div class="col-xl-12">
                                                    <div class="row gx-3 gy-4">
-                                                        <form class="form-horizontal form-label-left needs-validation"  id="formconcept"  method="POST" action="insertarConceptoComp" name="ciafijvar" id="ciafijvar" novalidate>
-                                                           <input type="hidden"  name="idcia"  id="idcia"  value="${requestScope.xCia.idCodcia}" readonly>
-                                                           <input type="hidden"  name="accion" value="INSCONS" >
+                                                        <form class="form-horizontal form-label-left needs-validation"  id="formconcept"  method="POST" action="" name="ciafijvar" id="ciafijvar" novalidate >
+                                                           <input type="hidden" name="idcia"  id="idciaConcept"  value="${requestScope.xCia.idCodcia}" readonly >
+                                                           <input type="hidden" name="accion" value="INSCONS" >
 
                                                            <div class="col-sm-6 col-md-7">
                                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                                                               <select name="id_concepto" id="id_concepto"  class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
+                                                               <select name="id_concepto" id="id_concepto" class="form-select" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}' required>
                                                                    <option value="">Seleccionar concepto</option>
-                                                                   <c:forEach  var="lovConcepto" items="${lovConcepto}">
+                                                                   <c:forEach var="lovConcepto" items="${lovConcepto}">
                                                                        <option value="${lovConcepto.codConcepto}" >${lovConcepto.codConcepto} - ${lovConcepto.desConcepto}</option>
                                                                     </c:forEach>
                                                                </select>
                                                            </div>
                                                            <div class="col-sm-6 col-md-4 mt-3">
                                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de registro</label>
-                                                               <select name="tipo_reg" id="tipo_reg" class="form-select " required>
+                                                               <select name="tipo_reg" id="tipo_reg" class="form-select " required >
                                                                    <option value="">Tipo de registro</option>
                                                                    <option value="1">Datos Dijos</option>
                                                                    <option value="2">Datos Variable</option>
@@ -253,26 +217,26 @@
                                                            <div class="ln_solid"></div>
                                                            <div class="form-group">
                                                                 <div class="col-md-6 col-sm-6 mt-3">
-                                                                     <button class="btn btn-success btn-sm" type="submit"><span class="fas fa-plus me-2"></span>Add concepto</button>
+                                                                     <a class="btn btn-success btn-sm" onclick="insertarConceptosTable();"><span class="fas fa-plus me-2"></span>Add concepto</a>
                                                                 </div>
                                                            </div>
                                                         </form>
                                                         </br>
-                                                        <div class="col-sm-6 col-md-6">
+                                                        <div class="col-sm-6 col-md-12">
                                                            <div>
                                                                <div>
                                                                    <div>
                                                                        <td>
-                                                                           <div class="" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                                                           <div class="" id="customerOrdersTable">
                                                                                <div class="table-responsive scrollbar">
-                                                                                    <table class="table table-sm fs--1">
+                                                                                    <table class="table table-striped table-sm fs--1">
                                                                                       <div class="fs--1 fw-bold">Conceptos fijos</div>
-                                                                                      <tbody class="list" id="customer-order-table-body">
+                                                                                      <tbody class="list border border-300" id="customer-order-table-body-conceptFijos">
                                                                                         <c:forEach var="xCiaFij" items="${xCiaFij}">
-                                                                                            <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
-                                                                                              <td class="align-middle white-space-nowrap text-center text-700 "><span class="badge badge-tag ">${xCiaFij.iexcodcon}</span></td>
+                                                                                            <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                                                                              <td class="align-middle white-space-nowrap text-center text-700 "><span class="badge badge-tag">${xCiaFij.iexcodcon}</span></td>
                                                                                               <td class="align-middle white-space-nowrap text-start text-700 "><span class="badge badge-phoenix fs--2 badge-phoenix-primary"><span class="badge-label">${xCiaFij.iexdescon}</span></td>
-                                                                                              <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaFij.iexcodcon}">x</a></td>
+                                                                                              <td><a class="pe-2" onclick="delConceptosCompaniatbl('${idCia}','${xCiaFij.iexcodcon}');" href="#">x</a></td>
                                                                                             </tr>
                                                                                         </c:forEach>
                                                                                       </tbody>
@@ -281,16 +245,16 @@
                                                                            </div>
                                                                        </td>
                                                                        <td class="">
-                                                                           <div class="" id="customerOrdersTable" data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}'>
+                                                                           <div class="" id="customerOrdersTable">
                                                                               <div class="table-responsive scrollbar">
-                                                                                   <table class="table table-sm fs--1">
+                                                                                   <table class="table table-striped table-sm fs--1">
                                                                                      <div class="fs--1 fw-bold mt-4">Conceptos variables</div>
-                                                                                     <tbody class="list" id="customer-order-table-body">
+                                                                                     <tbody class="list border border-300" id="customer-order-table-body-conceptVar">
                                                                                        <c:forEach var="xCiaVar" items="${xCiaVar}">
-                                                                                           <tr class="border border-300 rounded-2 hover-actions-trigger btn-reveal-trigger position-static">
+                                                                                           <tr class="hover-actions-trigger btn-reveal-trigger position-static">
                                                                                              <td class="align-middle white-space-nowrap text-center text-700"><span class="badge badge-tag">${xCiaVar.iexcodcon}</span></td>
                                                                                              <td class="align-middle white-space-nowrap text-start text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">${xCiaVar.iexdescon}</span></td>
-                                                                                             <td><a class="pe-2" href="delConceptoComp@${idCia}@${xCiaVar.iexcodcon}">x</a></td>
+                                                                                             <td><a class="pe-2" onclick="delConceptosCompaniatbl('${idCia}','${xCiaVar.iexcodcon}');" href="#">x</a></td>
                                                                                            </tr>
                                                                                        </c:forEach>
                                                                                      </tbody>

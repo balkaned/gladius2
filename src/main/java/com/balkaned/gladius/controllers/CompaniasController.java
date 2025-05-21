@@ -1,17 +1,24 @@
 package com.balkaned.gladius.controllers;
 
 
+import com.balkaned.gladius.models.Ciaxcon;
 import com.balkaned.gladius.models.Compania;
+import com.balkaned.gladius.models.Lovs;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -167,6 +174,62 @@ public class CompaniasController {
         return new ModelAndView("redirect:/editarCompania@" + pcodcia);
     }
 
+    @RequestMapping(value = "/insertarConceptoCompania", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView insertarConceptoCompania(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/insertarConceptoCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        String pcodcia = request.getParameter("idcia");
+        String pcodcon = request.getParameter("id_concepto");
+        String ptipreg = request.getParameter("tipo_reg");
+        companiaService.insertarCiaxcion(Integer.valueOf(pcodcia), pcodcon, ptipreg);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/getConceptosFijos", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView getConceptosFijos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/getConceptosFijos");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        String pcodcia = request.getParameter("idcia");
+        List<Ciaxcon> lsCiaFij = companiaService.listarCiaxcon(Integer.valueOf(pcodcia), "1");
+
+        String json = new Gson().toJson(lsCiaFij);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/getConceptosVariables", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView getConceptosVariables(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/getConceptosVariables");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        String pcodcia = request.getParameter("idcia");
+        List<Ciaxcon> lsCiaVar =  companiaService.listarCiaxcon(Integer.valueOf(pcodcia), "2");
+
+        String json = new Gson().toJson(lsCiaVar);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
+    }
+
     @RequestMapping("/delConceptoComp@{idCia}@{idCon}")
     public ModelAndView delConceptoComp(ModelMap model, HttpServletRequest request,
                                         @PathVariable String idCia,
@@ -182,6 +245,26 @@ public class CompaniasController {
         companiaService.deleteCiaxcon(Integer.valueOf(idCia), idCon);
 
         return new ModelAndView("redirect:/editarCompania@" + idCia);
+    }
+
+    @RequestMapping(value = "/delConceptoCompania", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView delConceptoCompania(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/delConceptoCompania");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {return new ModelAndView("redirect:/login2");}
+
+        String pcodcia = request.getParameter("idcia");
+        String idCon = request.getParameter("idCon");
+
+        companiaService.deleteCiaxcon(Integer.valueOf(pcodcia), idCon);
+
+        String json = new Gson().toJson(null);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+
+        return null;
     }
 
     @RequestMapping("/deleteCompania@{idComp}")
