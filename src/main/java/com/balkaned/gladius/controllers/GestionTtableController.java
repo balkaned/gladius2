@@ -428,6 +428,9 @@ public class GestionTtableController {
             }else{
                 log.info("El id Key ya existe, ingrese otro número");
                 model.addAttribute("msg","El id Key, ya existe ingrese otro número");
+
+                List<TTablaDetalle> lstTTablad = ttableService.listarTTablad(iexcodtab);
+                model.addAttribute("LstTTablad", lstTTablad);
             }
         }
 
@@ -556,7 +559,6 @@ public class GestionTtableController {
             ttableService.actualizarTTablad(p);
 
             List<TTablaDetalle> lstTTablad = ttableService.listarTTablad(iexcodtab);
-            log.info("lstTTablad: {} ", lstTTablad);
             model.addAttribute("LstTTablad", lstTTablad);
         }
 
