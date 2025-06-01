@@ -126,19 +126,19 @@
                                                 <td><input type='text' name='des5det' value="${ttabladxx.des5det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
                                             </tr>
                                       </c:if>
-                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='6'}">
+                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg6=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlbl6}</td>
                                                 <td><input type='text' name='des6det' value="${ttabladxx.des6det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
                                             </tr>
                                       </c:if>
-                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='7'}"  >
+                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg7=='1'}"  >
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlbl7}</td>
                                                 <td><input type='text' name='des7det' value="${ttabladxx.des7det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                       </c:if>
-                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg2=='8'}">
+                                      <c:if test="${sessionScope.ttablaclbl.iexlblflg8=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlbl8}</td>
                                                 <td><input type='text' name='des8det' value="${ttabladxx.des8det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
@@ -151,49 +151,49 @@
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg9=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval9}</td>
-                                                <td><input type='text' name='val9det' value="${ttabladxx.val9det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
+                                                <td><input type='number' name='val9det' value="${ttabladxx.val9det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg10=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval10}</td>
-                                                <td><input type='text' name='val10det' value="${ttabladxx.val10det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2"  ></td>
+                                                <td><input type='number' name='val10det' value="${ttabladxx.val10det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg11=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval11}</td>
-                                                <td><input type='text' name='val11det' value="${ttabladxx.val11det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
+                                                <td><input type='number' name='val11det' value="${ttabladxx.val11det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg12=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval12}</td>
-                                                <td><input type='text' name='val12det' value="${ttabladxx.val12det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
+                                                <td><input type='number' name='val12det' value="${ttabladxx.val12det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg13=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval13}</td>
-                                                <td><input type='text' name='val13det' value="${ttabladxx.val13det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
+                                                <td><input type='number' name='val13det' value="${ttabladxx.val13det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg14=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval14}</td>
-                                                <td><input type='text' name='val14det' value="${ttabladxx.val14det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2" ></td>
+                                                <td><input type='number' name='val14det' value="${ttabladxx.val14det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg15=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval15}</td>
-                                                <td><input type='text' name='val15det' value="${ttabladxx.val15det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2"></td>
+                                                <td><input type='number' name='val15det' value="${ttabladxx.val15det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                          <c:if test="${sessionScope.ttablaclbl.iexlblflg16=='1'}">
                                             <tr>
                                                 <td class="form-label fs--1 text-700 ps-4 text-none mb-2">${sessionScope.ttablaclbl.iexlblval16}</td>
-                                                <td><input type='text' name='val16det' value="${ttabladxx.val16det}" placeholder="Ingrese valor" class="form-control ms-2 mt-2"></td>
+                                                <td><input type='number' name='val16det' value="${ttabladxx.val16det}" step=0.01 placeholder="Ingrese número" class="form-control ms-2 mt-2"></td>
                                             </tr>
                                          </c:if>
                                      </table>

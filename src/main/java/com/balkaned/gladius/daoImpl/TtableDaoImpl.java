@@ -317,13 +317,13 @@ public class TtableDaoImpl implements TtableDao {
                 ttd.getDes7det(),
                 ttd.getDes8det(),
                 ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
+                ttd.getVal10det(),
+                ttd.getVal11det(),
+                ttd.getVal12det(),
+                ttd.getVal13det(),
+                ttd.getVal14det(),
+                ttd.getVal15det(),
+                ttd.getVal16det(),
                 ttd.getIexcodtab(),
                 ttd.getIexkey()
         );
@@ -434,13 +434,13 @@ public class TtableDaoImpl implements TtableDao {
                 ttd.getDes7det(),
                 ttd.getDes8det(),
                 ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det(),
-                ttd.getVal9det()
+                ttd.getVal10det(),
+                ttd.getVal11det(),
+                ttd.getVal12det(),
+                ttd.getVal13det(),
+                ttd.getVal14det(),
+                ttd.getVal15det(),
+                ttd.getVal16det()
         );
     }
 

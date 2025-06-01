@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -315,6 +314,7 @@ public class GestionTtableController {
                 String des6det = request.getParameter("des6det");
                 String des7det = request.getParameter("des7det");
                 String des8det = request.getParameter("des8det");
+
                 String val9det = request.getParameter("val9det");
                 String val10det = request.getParameter("val10det");
                 String val11det = request.getParameter("val11det");
@@ -425,6 +425,9 @@ public class GestionTtableController {
                 }
 
                 ttableService.insertarTtablad(p);
+
+                List<TTablaDetalle> lstTTablad2 = ttableService.listarTTablad(iexcodtab);
+                model.addAttribute("LstTTablad", lstTTablad2);
             }else{
                 log.info("El id Key ya existe, ingrese otro número");
                 model.addAttribute("msg","El id Key, ya existe ingrese otro número");
@@ -446,6 +449,7 @@ public class GestionTtableController {
             String des6det = request.getParameter("des6det");
             String des7det = request.getParameter("des7det");
             String des8det = request.getParameter("des8det");
+
             String val9det = request.getParameter("val9det");
             String val10det = request.getParameter("val10det");
             String val11det = request.getParameter("val11det");
