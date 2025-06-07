@@ -356,6 +356,8 @@ public class PlanillaController {
 
             ExecutorService executor = Executors.newFixedThreadPool(4);
 
+            log.info("iexcodtra: "+iexcodtra);
+
             Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
             executor.execute(worker);
 
