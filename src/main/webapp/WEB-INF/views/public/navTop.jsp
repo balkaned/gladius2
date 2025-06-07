@@ -9,7 +9,9 @@
             <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
             <a class="navbar-brand me-1 me-sm-3" href="#" >
               <div class="d-flex align-items-center">
-                <div class="d-flex align-items-center"><img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="27" />
+                <div class="d-flex align-items-center">
+                    <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="27" />
+                    <span id="spntop" class="pe-3 ps-4"><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                   <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->
                   <p style="color:white !important;font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
@@ -19,13 +21,15 @@
             </a>
           </div>
 
+
           <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:30rem;">
             <form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
               <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm bg-${schema}" type="search" placeholder="Search..." aria-label="Search" />-->
-              <!--<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />-->
-              <span id="spntop" class="pe-4 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
+              <input class="bg-100 form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
+              <!--<span id="spntop" class="pe-4 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>-->
               <!--<span class="fas fa-search search-box-icon"></span>-->
             </form>
+
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
               <button class="btn btn-link btn-close-falcon p-0" aria-label="Close"></button>
             </div>

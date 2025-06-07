@@ -433,12 +433,12 @@
 
 .navbar-vertical-content{
     /*background-color:#111827;*/
-    background-color: #E2E5EA;
+    /*background-color: #E2E5EA;*/
 }
 
 .navbar.navbar-vertical.navbar-expand-lg{
     /*background-color:#111827 !important;*/
-    background-color: #E2E5EA !important;
+    /*background-color: #E2E5EA !important;*/
 }
 
 #navbar2a{
@@ -448,11 +448,11 @@
 
 .navbar-vertical-footer{
     /*background-color:#1E283D !important;*/
-    background-color: #E2E5EA !important;
-    color:white;
+    /*background-color: #E2E5EA !important;*/
+    /*color:white;*/
     /*border-top:1px solid #373E53 !important;*/
     border-top:1px solid #BCBCBC !important;
-    border-right:1px solid #BCBCBC !important;
+    border-right:0px solid #BCBCBC !important;
 }
 
 .nav-link-icon{
