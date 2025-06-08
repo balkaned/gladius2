@@ -75,13 +75,13 @@
                 <div class="bg-white border border-0 rounded-0 p-4 col-12 mt-0">
                     <a class="d-flex flex-center text-decoration-none mb-0" href="../../../index.jsp">
                         <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                            <img class="mt-3" src="resources/assets/img/icons/logoLast4.png" alt="" width="30" />
-                            <div class="text-center mb-0">
+                            <img class="mt-3" src="resources/assets/img/icons/logoLoginGlad1.png" alt="" width="180" />
+                            <!--<div class="text-center mb-0">
                               <label class="labelglad text-1000 mt-0 ms-1">Gladius</label>
-                            </div>
+                            </div>-->
                         </div>
                     </a>
-                    <h5 class="fs--1 mb-4 fw-bold text-center">Ingresa tus datos para continuar</h5>
+                    <h5 class="mt-4 fs--1 mb-4 fw-bold text-center">Ingresa tus datos para continuar</h5>
                     <div class="mb-3 text-start col-sm-6 col-md-12">
                       <label class="form-label" for="email">Usuario</label>
                       <div class="form-icon-container">
