@@ -94,7 +94,7 @@
                                           <li id="menunav" class="nav-item">
                                             <a class="nav-link" id="${usuxsysxopc.path}" href="${usuxsysxopc.path}" data-bs-toggle="" aria-expanded="false">
                                               <div class="d-flex align-items-center">
-                                                <span class="nav-link-text"><span class="${usuxsysxopc.urlimg} fs--1 me-2"></span>${usuxsysxopc.desopc}</span>
+                                                <span class="nav-link-text"><span class="${usuxsysxopc.urlimg} me-3"></span>${usuxsysxopc.desopc}</span>
                                                 <!--<span id="circle${usuxsysxopc.path}" class="fa-solid fa-circle text-success ms-1 new-page-indicator" style="font-size: 6px; display:none;"></span>-->
                                               </div>
                                             </a>

@@ -31,7 +31,7 @@
   </head>
   <style>
     body {
-        background-image: url("resources/assets/img/bg/bgloginglad2.jpg");
+        background-image: url("resources/assets/img/bg/bgloginglad6.jpg");
     }
 
     .labelglad{
@@ -41,7 +41,7 @@
 
     #logobanner{
         border-radius: 16px 16px 0px 0px;
-        background-image: url("resources/assets/img/bg/bgLogo7.png");
+        background-image: url("resources/assets/img/bg/bgLogo1.png");
         height:100px;
     }
 
@@ -83,7 +83,7 @@
                     <div class="mt-0 mb-0">
                         <a class="d-flex flex-center text-decoration-none mb-0" href="../../../index.jsp">
                             <div class="d-flex align-items-center mt-1 fw-bolder fs-5 d-inline-block">
-                                <img class="mt-3" src="resources/assets/img/icons/logoLoginGlad3.png" alt="" width="150" />
+                                <img class="mt-2" src="resources/assets/img/icons/logoLoginGlad4.png" alt="" width="150" />
                                 <!--<label class="mt-3 text-black fs-2 fs-semi-bold" >Gladius</label>-->
                             </div>
                         </a>
@@ -95,7 +95,7 @@
                           <label class="form-label" for="email">Usuario</label>
                           <div class="form-icon-container">
                             <!--<input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>-->
-                            <f:input id="iptUs" type="text" path="user" cssClass="form-control form-icon-input" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/><span class="fas fa-user text-900 fs--1 form-icon"></span>
+                            <f:input id="iptUs" type="text" path="user" cssClass="form-control" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/>
                           </div>
                         </div>
 
