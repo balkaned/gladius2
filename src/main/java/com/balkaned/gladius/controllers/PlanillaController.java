@@ -11,6 +11,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
+import com.balkaned.gladius.servicesImpl.WorkerThread;
 import com.balkaned.gladius.util.FormatterFecha;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
@@ -82,6 +83,7 @@ public class PlanillaController {
 
     @Autowired
     TurnoDiarioService turnoDiarioService;
+
 
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
@@ -370,9 +372,9 @@ public class PlanillaController {
             Runnable worker4 = new WorkerThread("Hilo 4", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s4, 4);
             executor.execute(worker4);
 
-            /////////////////////////////////////////////////////////////////////
             executor.shutdown();
             while (!executor.isTerminated()) {
+
             }
 
             log.info("Finished all threads");

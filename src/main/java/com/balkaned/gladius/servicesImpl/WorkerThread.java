@@ -1,10 +1,10 @@
-package com.balkaned.gladius.models;
+package com.balkaned.gladius.servicesImpl;
 
 
+import com.balkaned.gladius.models.PlaProPeriodo;
 import com.balkaned.gladius.services.PlanillaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 @Slf4j
