@@ -42,6 +42,12 @@
     #logobanner{
         border-radius: 16px 16px 0px 0px;
         background-image: url("resources/assets/img/bg/bgLogo7.png");
+        height:100px;
+    }
+
+    #spanIconEye{
+        border:0px solid red;
+        margin-top:-10px;
     }
   </style>
 
@@ -72,29 +78,31 @@
                   <div class="divider-content-center">or use email</div>
                 </div>-->
                 <div class="bg-white border border-0 rounded-4 col-12 mt-0">
-                    <div id="logobanner" class="bg-dark ms-0 mb-2 pb-2 border-0" >
+                    <div id="logobanner" class="bg-dark ms-0 mb-0 pb-0 border-0" >
+                    </div>
+                    <div class="mt-0 mb-0">
                         <a class="d-flex flex-center text-decoration-none mb-0" href="../../../index.jsp">
-                            <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                                <!--<img class="mt-4" src="resources/assets/img/icons/logoLoginGlad1.png" alt="" width="180" />-->
-                                <label class="mt-3 text-black fs-2 fs-semi-bold" >Gladius</label>
+                            <div class="d-flex align-items-center mt-1 fw-bolder fs-5 d-inline-block">
+                                <img class="mt-3" src="resources/assets/img/icons/logoLoginGlad3.png" alt="" width="150" />
+                                <!--<label class="mt-3 text-black fs-2 fs-semi-bold" >Gladius</label>-->
                             </div>
                         </a>
-                        <h5 class="mt-0 mb-3 fs--1 fw-bold text-center">Ingresa tus datos para continuar</h5>
+                        <!--<label class="p-4 mt-0 mb-0 fs--1 text-600 text-start">Inicie sessión para obtener acceso a todas las funcionalidades de planillas, y cálculos de planillas, también obtendrá acceso a la información de cada trabajador y más.</label>-->
                     </div>
 
-                    <div class="p-4">
-                        <div class="mb-3 text-start col-sm-6 col-md-12">
+                    <div class="p-4 mt-0">
+                        <div class="mb-2 text-start col-sm-6 col-md-12">
                           <label class="form-label" for="email">Usuario</label>
                           <div class="form-icon-container">
                             <!--<input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>-->
                             <f:input id="iptUs" type="text" path="user" cssClass="form-control form-icon-input" aria-describedby="emailHelp" placeholder="Ingrese Usuario" value=""/><span class="fas fa-user text-900 fs--1 form-icon"></span>
                           </div>
                         </div>
+
                         <div class="mb-3 text-start col-sm-6 col-md-12">
                           <label class="form-label" for="password">Contraseña</label>
-                          <div class="form-icon-container">
-                            <!--<input class="form-control form-icon-input" id="password" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>-->
-                            <f:input id="ippass" value="" type="password" path="pass" cssClass="form-control form-icon-input" placeholder="Ingrese Contraseña"/><span class="fas fa-key text-900 fs--1 form-icon"></span>
+                          <div class="form-icon-container" data-password="data-password">
+                            <f:input class="form-control form-icon-input" value="" id="ippass" path="pass" type="password" placeholder="Ingrese una constraseña" data-password-input="data-password-input" /><span class="fa-regular fa-eye text-body fs-0 form-icon"></span>
                           </div>
                         </div>
                         <div class="row flex-between-center mb-4">
@@ -120,7 +128,7 @@
                             <c:if test="${mensaje!=null}">
                                <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center alert-dismissible fade show" role="alert">
                                     <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
-                                    <p class="mb-0 text-1000 text-white fs--1 col-12">${mensaje} <a href="#" class="fs--1">Mas información.</a></p>
+                                    <p class="mb-0 text-1000 fs--1 col-12">${mensaje} <a href="#" class="fs--1">Mas información.</a></p>
                                     <a class="text-danger fs-0 fw-bold ms-3" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                                 </div>
                             </c:if>
