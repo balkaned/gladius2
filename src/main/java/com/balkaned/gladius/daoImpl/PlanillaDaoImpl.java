@@ -484,6 +484,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo,
                                 Integer codtra, Integer correl, Integer thread) {
 
+        log.info("Logro llegar hasta acáZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz");
+
         Integer v_salto = 0;
         Iterator<ProPeriodoDet> L_data = null;
         ProPeriodoDet data = null;
@@ -541,7 +543,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         }
 
-        /* Se delcara la iteración de la lista formula por cada trabajador */
+        /* Se delcara la iteración de la lista fórmula por cada trabajador */
         l_formula = lstFormula.iterator();
 
         /* Iteración de fórmula por cada trabajador. Por cada trabajador se va a recorrer la lista de formula. */

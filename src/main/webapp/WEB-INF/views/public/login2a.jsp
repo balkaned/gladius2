@@ -42,7 +42,7 @@
     #logobanner{
         border-radius: 16px 16px 0px 0px;
         background-image: url("resources/assets/img/bg/bgLogo1.png");
-        height:100px;
+        height:120px;
     }
 
     #spanIconEye{

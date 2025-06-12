@@ -5,13 +5,15 @@ import com.balkaned.gladius.models.PlaProPeriodo;
 import com.balkaned.gladius.services.PlanillaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Slf4j
 public class WorkerThread implements Runnable {
 
     @Autowired
-    PlanillaService planillaService;
+    private PlanillaService planillaService;
 
     private String command;
     private Integer p_codcia;
@@ -35,6 +37,15 @@ public class WorkerThread implements Runnable {
 
     @Override
     public void run() {
+
+        log.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz");
+        log.info("v_plaproper: ",v_plaproper);
+        log.info("p_codcia: ",p_codcia);
+        log.info("p_codpro: ",p_codpro);
+        log.info("p_nroper: ",p_nroper);
+        log.info("p_codtra: ",p_codtra);
+        log.info("p_correl: ",p_correl);
+        log.info("thread: ",thread);
 
         log.info(Thread.currentThread().getName() + " Start. Command = " + command);
 

@@ -2,15 +2,20 @@
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+    <style>
+        #navtop{
+            background-image: url("resources/assets/img/bg/bgnavtopdark3.png");
+        }
+    </style>
 
-    <nav class="bgNight navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
+    <nav id="navtop" class="bgNight navbar navbar-top fixed-top navbar-expand" id="navbarDefault">
         <div class="collapse navbar-collapse justify-content-between">
           <div class="navbar-logo">
             <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
             <a class="navbar-brand me-1 me-sm-3" href="#" >
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center">
-                    <img src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="27" />
+                    <img src="resources/assets/img/icons/logoTopNav6.png" alt="phoenix" width="35" />
                     <span id="spntop" class="pe-3 ps-4"><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                   <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->

@@ -358,7 +358,15 @@ public class PlanillaController {
 
             ExecutorService executor = Executors.newFixedThreadPool(4);
 
+            log.info("idCompania: "+idCompania);
+            log.info("iexcodpro: "+iexcodpro);
+            log.info("iexperiodo: "+iexperiodo);
             log.info("iexcodtra: "+iexcodtra);
+            log.info("iexcorrel: "+iexcorrel);
+            log.info("lp_persona_s1: "+lp_persona_s1);
+            log.info("lp_persona_s2: "+lp_persona_s2);
+            log.info("lp_persona_s3: "+lp_persona_s3);
+            log.info("lp_persona_s4: "+lp_persona_s4);
 
             Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
             executor.execute(worker);
