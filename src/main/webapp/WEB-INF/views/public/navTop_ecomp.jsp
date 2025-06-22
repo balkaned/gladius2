@@ -1,6 +1,6 @@
 <style>
     #navtop{
-        background-image: url("resources/assets/img/bg/bgnavtopdark3.png");
+        background-image: url("resources/assets/img/bg/bgnavtopdark4.png");
     }
 </style>
 

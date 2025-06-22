@@ -31,7 +31,7 @@
   </head>
   <style>
     body {
-        background-image: url("resources/assets/img/bg/bgloginglad6.jpg");
+        background-image: url("resources/assets/img/bg/bgloginglad7.jpg");
     }
 
     .labelglad{
@@ -41,8 +41,8 @@
 
     #logobanner{
         border-radius: 16px 16px 0px 0px;
-        background-image: url("resources/assets/img/bg/bgLogo1.png");
-        height:120px;
+        background-image: url("resources/assets/img/bg/bgLogo7.png");
+        height:100px;
     }
 
     #spanIconEye{

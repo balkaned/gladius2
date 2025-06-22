@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <nav id="navbar2a" class="bg-100 navbar navbar-vertical navbar-expand-lg border-end border-100 border-1" >
+    <nav id="navbar2a" class="bg-100 navbar navbar-vertical navbar-expand-lg border-end border-300" >
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
           if (navbarStyle && navbarStyle !== 'transparent') {
@@ -105,7 +105,7 @@
                 </c:forEach>
         </div>
 
-        <div class="navbar-vertical-footer bg-100">
+        <div class="navbar-vertical-footer bg-100 border border-300">
           <a id="btnMenuCollap" class="btn navbar-vertical-toggle fw-semi-bold w-100 white-space-nowrap d-flex align-items-center">
             <span class="uil uil-left-arrow-to-left fs-0"></span>
             <span class="uil uil-arrow-from-right fs-0"></span>

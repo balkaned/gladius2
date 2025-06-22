@@ -1,5 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
+import com.balkaned.gladius.dao.FormulaPlanillaDao;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.services.FormulaPlanillaService;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +31,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private JdbcTemplate jdbc;
     private FormulaPlanillaService formulaPlanillaService;
+
+    @Autowired
+    FormulaPlanillaDao formularPlanillaDao;
 
     @Autowired
     public void setDataSource(DataSource datasource) {
@@ -484,14 +489,17 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo,
                                 Integer codtra, Integer correl, Integer thread) {
 
-        log.info("Logro llegar hasta acáZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz");
+        log.info("Inicio método DAO ProcesarPla2020...");
 
         Integer v_salto = 0;
         Iterator<ProPeriodoDet> L_data = null;
         ProPeriodoDet data = null;
 
+        log.info("idproceso: {} ", idproceso);
+
         /* Carga las fórmulas desde base de datos para el proceso en curso */
-        List<FormulaPlanilla> lstFormula = formulaPlanillaService.listar(String.valueOf(idproceso));
+        List<FormulaPlanilla> lstFormula = formularPlanillaDao.listar(idproceso.toString());
+        log.info("lstFormula: {} ", lstFormula);
 
         /* En esta variable se alojarán las variables concatenadas con los valores */
         String v_variables_concat = null;
@@ -563,8 +571,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 v_resultado_glob_Final = 0.0;
 
                 /* Guardar los valores del  resultado en una nueva concatenacion de variables */
-                sql_var_general = formulaPlanillaService.getListVars(idproceso, for_det.getDesVar());
-                LoadGrpcon = formulaPlanillaService.obtenerListVariables_glb(idproceso, for_det.getDesVar());
+                sql_var_general = formularPlanillaDao.getListVars(idproceso, for_det.getDesVar());
+                log.info("sql_var_general: {} ", sql_var_general);
+
+                LoadGrpcon = formularPlanillaDao.obtenerListVariables_glb(idproceso, for_det.getDesVar());
+                log.info("LoadGrpcon: {} ", LoadGrpcon);
 
                 i_grpcon = LoadGrpcon.iterator();
 
@@ -581,6 +592,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                 /* Inicia la iteración por persona */
                 LoadData2 = getMetanominaDatav3(codcia, idproceso, idPeriodo, codtra, sql_var_general, correl, thread_id);
+                log.info("LoadData2: {} ", LoadData2);
 
                 pi = Persona.iterator();
                 while (pi.hasNext()) {
@@ -596,8 +608,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
                         }
                     }
 
-                    v_resultadoFinal = formulaPlanillaService.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
+                    log.info("....3....");
+                    //v_resultadoFinal = formulaPlanillaService.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
+                    v_resultadoFinal = formularPlanillaDao.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
+                    log.info("v_resultadoFinal: {} ", v_resultadoFinal);
 
+                    log.info("....4....");
                     guardarMetaTrav2(codcia, idproceso, pi_persona.getIexcodtra(), idPeriodo, for_det.getIdConcepto(), v_resultadoFinal, correl);
                 }
             } else if (for_det.getTipOut().equals("2")) {
@@ -620,6 +636,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                         pi_persona = pi.next();
 
                         try {
+                            log.info("....5....");
                             update_slq_program(for_det.getSqlprogram(), codcia, pi_persona.getIexcodtra(), idproceso, idPeriodo);
                         } catch (Exception e) {
                             log.info(e.getMessage());
@@ -643,6 +660,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     log.info("Se ejecuto el procedure 2");
 
                     try {
+                        log.info("....6....");
                         update_slq_program_masivo(for_det.getSqlprogram(), codcia, 1, idproceso, idPeriodo);
                     } catch (Exception e) {
                         log.info(e.getMessage());
@@ -701,8 +719,6 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public List<ProPeriodoDet> getMetanominaDatav3(Integer codcia, Integer idproceso, String perpro, Integer codtra,
                                                    String sqlcomand, Integer correl, Integer thread) {
 
-        String var_concat = "";
-
         String sql = "";
 
         if (codtra == -1) {
@@ -715,9 +731,13 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     "p.iexnroper = a.iexnroper and " +
                     "p.iexcodtra = a.iexcodtra and " +
                     "p.iexcorrel = a.iexcorrel and " +
-                    "p.iexcodcia = :codcia and p.iexcodpro = :idproceso and " +
-                    "p.iexnroper = :perpro and p.coocodforvar in :sqlcomand and " +
-                    "p.iexcorrel = :correl and a.thread = :thread order by 4,5 asc ";
+                    "p.iexcodcia = " + codcia + " and " +
+                    "p.iexcodpro = " + idproceso + " and " +
+                    "p.iexnroper = '" + perpro + "' and " +
+                    "p.coocodforvar in " + sqlcomand + " and " +
+                    "p.iexcorrel = " + correl + " and " +
+                    "a.thread = " + thread + " " +
+                    "order by 4,5 asc ";
         } else {
             sql = " select " +
                     "p.iexcodcia, p.iexcodpro, p.iexnroper, p.iexcodtra, p.procodcon as codcon, " +
@@ -728,27 +748,39 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     "p.iexnroper = a.iexnroper and " +
                     "p.iexcodtra = a.iexcodtra and " +
                     "p.iexcorrel = a.iexcorrel and " +
-                    "p.iexcodcia = :codcia and " +
-                    "p.iexcodpro = :idproceso and " +
-                    "p.iexnroper = :perpro and " +
-                    "p.iexcodtra = :codtra and " +
-                    "p.coocodforvar in :sqlcomand and " +
-                    "p.iexcorrel = :correl and " +
-                    "a.thread = :thread order by 4,5 asc ";
+                    "p.iexcodcia = " + codcia + " and " +
+                    "p.iexcodpro = " + idproceso + " and " +
+                    "p.iexnroper = '" + perpro + "' and " +
+                    "p.iexcodtra = " + codtra + " and " +
+                    "p.coocodforvar in " + sqlcomand + " and " +
+                    "p.iexcorrel = " + correl + " and " +
+                    "a.thread = " + thread + " " +
+                    "order by 4,5 asc ";
         }
 
-        SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("codcia", codcia)
-                .addValue("idproceso", idproceso)
-                .addValue("perpro", perpro)
-                .addValue("codtra", codtra)
-                .addValue("sqlcomand", sqlcomand)
-                .addValue("correl", correl);
+        log.info("sql: {} ", sql);
 
-        List<ProPeriodoDet> lsProPer = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(ProPeriodoDet.class));
+        return jdbc.query(sql, new ResultSetExtractor<List<ProPeriodoDet>>() {
 
-        return lsProPer;
+            public List<ProPeriodoDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ProPeriodoDet> lista = new ArrayList<ProPeriodoDet>();
+
+                while (rs.next()) {
+                    ProPeriodoDet p = new ProPeriodoDet();
+
+                    p.setIexcodcia(rs.getInt("iexcodcia"));
+                    p.setIexcodpro(rs.getInt("iexcodpro"));
+                    p.setIexnroper(rs.getString("iexnroper"));
+                    p.setIexcodtra(rs.getInt("iexcodtra"));
+                    p.setCodcon(rs.getString("codcon"));
+                    p.setVarcon(rs.getString("varcon"));
+                    p.setValue(rs.getDouble("value"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
     }
 
     public void guardarMetaTrav2(Integer codcia, Integer idproceso, Integer idcodtra, String idPeriodo,
@@ -939,7 +971,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
     }
 
     public List<ConceptoxProcesoxTra> listProperconConZerosBuscar(Integer codcia, Integer idproceso, String perpro,
-                                                            Integer codtra, Integer correl, String flgcon, String textbuscar) {
+                                                                  Integer codtra, Integer correl, String flgcon, String textbuscar) {
 
         String sql = "select " +
                 "j.procodcon, " +

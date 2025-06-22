@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -63,12 +64,22 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
                 "order by a.fororden asc ";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("text", text);
+                .addValue("text", Integer.parseInt(text));
 
-        List<FormulaPlanilla> lsFormPlanilla = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));
+        /*List<FormulaPlanilla> lsFormPlanilla = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));*/
 
-        return lsFormPlanilla;
+        try {
+            List<FormulaPlanilla> lsFormPlanilla = namedParameterJdbcTemplate.query(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));
+
+            return lsFormPlanilla;
+        } catch (NullPointerException ex) {
+            log.info("No se encontraron resultados");
+            return null;
+        }
+
+        //return lsFormPlanilla;
     }
 
     public String getListVars(Integer idprod, String script) {
@@ -127,7 +138,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
                 "procodpro = " + idprod + " and " +
                 "trim(coocodforvar) in " + variable_sql;
 
-        return (String) jdbc.query(sql,  new ResultSetExtractor<String>() {
+        return (String) jdbc.query(sql, new ResultSetExtractor<String>() {
             public String extractData(ResultSet rs) throws SQLException, DataAccessException {
                 while (rs.next()) {
                     variable_sql2[0] = variable_sql2[0] + "'" + rs.getString("coocodforvar") + "',";
@@ -169,6 +180,8 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
         variable_sql = "( " + variable_sql + "'')";
 
+        log.info("variable_sql: {} ", variable_sql);
+
         List<ConceptoXProceso> listVariable2 = obtenerListVariablesConc(idprod, variable_sql);
 
         return listVariable2;
@@ -176,31 +189,62 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
     public List<ConceptoXProceso> obtenerListVariablesConc(Integer idprod, String variable_sql) {
 
-        String sql = "select " +
-                "coocodforvar as convar, " +
+        /*String sql = "select " +
+                "coocodforvar, " +
                 "flg_agrupable, " +
                 "procodcon " +
                 "from iexproxconcepto, iexconcepto " +
                 "where procodcon = coocodcon and " +
                 "procodpro = :idprod and " +
                 "flg_agrupable = '1' and " +
-                "trim(coocodforvar) in :variable_sql ";
+                "trim(coocodforvar) in :finalVariable_sql ";
+
+        String finalVariable_sql = "" + variable_sql + "";
+        log.info("finalVariable_sql: {} ", finalVariable_sql);
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("idprod", idprod)
-                .addValue("variable_sql", variable_sql);
+                .addValue("finalVariable_sql", finalVariable_sql);
 
         List<ConceptoXProceso> lsConceptxPro = namedParameterJdbcTemplate.query(sql, namedParameters,
                 BeanPropertyRowMapper.newInstance(ConceptoXProceso.class));
 
-        return lsConceptxPro;
+        return lsConceptxPro;*/
+
+        String sql = "select " +
+                "coocodforvar, " +
+                "flg_agrupable, " +
+                "procodcon " +
+                "from iexproxconcepto, iexconcepto " +
+                "where procodcon = coocodcon and " +
+                "procodpro = " + idprod + " and " +
+                "flg_agrupable = '1' and " +
+                "trim(coocodforvar) in " + variable_sql + " ";
+
+        return jdbc.query(sql, new ResultSetExtractor<List<ConceptoXProceso>>() {
+
+            public List<ConceptoXProceso> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<ConceptoXProceso> lista = new ArrayList<ConceptoXProceso>();
+
+                while (rs.next()) {
+                    ConceptoXProceso p = new ConceptoXProceso();
+
+                    p.setCoocodforvar(rs.getString("coocodforvar"));
+                    p.setFlg_agrupable(rs.getString("flg_agrupable"));
+                    p.setProcodcon(rs.getString("procodcon"));
+
+                    lista.add(p);
+                }
+                return lista;
+            }
+        });
     }
 
     public Double realEjecucion(String v_script_dec, String v_script_ini, String v_script_body) {
 
         /* Si los proceso previos se han desarrolldo correctamente
-           Se rocede a Ejecutar el sscript completo para ver si la formula es correcta.
-           Si es correcta la formula retornara la formula concatenada. */
+           Se procede a Ejecutar el sscript completo para ver si la fórmula es correcta.
+           Si es correcta la fórmula retornará la fórmula concatenada. */
 
         String target;
         String v_dias;

@@ -40,6 +40,7 @@ public class ConceptoXProceso {
 	private String flg_promediable;
 	private String flg_agrupable;
 	private Integer nro_meses_prom_atras;
+	private String coocodforvar;
 
 	public void setCoodescon(String coodescon) {
 		CapitalizarCadena cap = new CapitalizarCadena();

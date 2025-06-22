@@ -11,7 +11,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
-import com.balkaned.gladius.servicesImpl.WorkerThread;
+import com.balkaned.gladius.models.WorkerThread;
 import com.balkaned.gladius.util.FormatterFecha;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
@@ -368,7 +368,9 @@ public class PlanillaController {
             log.info("lp_persona_s3: "+lp_persona_s3);
             log.info("lp_persona_s4: "+lp_persona_s4);
 
-            Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
+            planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+
+            /*Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
             executor.execute(worker);
 
             Runnable worker2 = new WorkerThread("Hilo 2", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s2, 2);
@@ -383,7 +385,7 @@ public class PlanillaController {
             executor.shutdown();
             while (!executor.isTerminated()) {
 
-            }
+            }*/
 
             log.info("Finished all threads");
 

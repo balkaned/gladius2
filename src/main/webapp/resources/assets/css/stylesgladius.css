@@ -129,7 +129,7 @@
 }
 
 .nav-item a{
-/*font-size:13px !important;*/
+    /*font-size:13px !important;*/
 }
 
 .nav-link{
@@ -221,13 +221,13 @@
 #navbarDefault{
     border-top:0px solid #3874FF !important;
     height:10px !important;
-    border-bottom:1px solid #3B4045;
+    border-bottom: 0px solid #3B4045;
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{
     /*background-color: #1E283D !important;*/
     /*background-color: #111827 !important;*/
-    border:0px solid black;
+    border: 0px solid black;
 }
 
 .logo-text.ms-2.d-none.d-sm-block{
@@ -443,7 +443,7 @@
 
 #navbar2a{
     /*border-right: 1px solid #373E53 !important;*/
-    border-right: 1px solid #BCBCBC !important;
+    /*border-right: 1px solid #BCBCBC !important;*/
 }
 
 .navbar-vertical-footer{
@@ -451,8 +451,8 @@
     /*background-color: #E2E5EA !important;*/
     /*color:white;*/
     /*border-top:1px solid #373E53 !important;*/
-    border-top:1px solid #BCBCBC !important;
-    border-right:0px solid #BCBCBC !important;
+    /*border-top:1px solid #BCBCBC !important;
+    border-right:0px solid #BCBCBC !important;*/
 }
 
 .nav-link-icon{
@@ -474,106 +474,106 @@
 
 /*
 .navbar-vertical-content::-webkit-scrollbar {
-  width: 8px !important;
+    width: 8px !important;
 }
 
 .navbar-vertical-content::-webkit-scrollbar-track {
-  background-color:#CCCCCC;
-  margin-top:8px;
-  margin-bottom:3px;
-  border-radius: 30px !important;
+    background-color:#CCCCCC;
+    margin-top:8px;
+    margin-bottom:3px;
+    border-radius: 30px !important;
 }
 
 .navbar-vertical-content::-webkit-scrollbar-thumb {
-  background: red;
-  border-radius: 10px;
+    background: red;
+    border-radius: 10px;
 }
 
 .navbar-vertical-content::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+    background: #b30000;
 }*/
 
 .nav-link:hover{
-/*background-color:#F1F2F3 !important;
-border-radius:0px !important;*/
-/*border-right:3px solid #F48225 !important;*/
+    /*background-color:#F1F2F3 !important;
+    border-radius:0px !important;*/
+    /*border-right:3px solid #F48225 !important;*/
 }
 
 #spntop{
-font-size:12px;
-/*color:#9BA0B8;*/
-/*color:#525B75;*/
-color: white;
+    font-size:12px;
+    /*color:#9BA0B8;*/
+    /*color:#525B75;*/
+    color: white;
 }
 
 /*#customer-order-table-body tr td{
-height:5px !important;
-border:1px solid red;
+    height:5px !important;
+    border:1px solid red;
 }*/
 
 #kanban{
-border:0px solid red;
-margin-top:-20px;
+    border:0px solid red;
+    margin-top:-20px;
 }
 
 .kanban-container.scrollbar{
-border:0px solid green;
-width:107%;
-margin-left:-40px;
-height:90%;
+    border:0px solid green;
+    width:107%;
+    margin-left:-40px;
+    height:90%;
 }
 
 #imgcompanyTbl{
-border:0px solid grey;
-border-radius:100px;
-margin-bottom:20px;
+    border:0px solid grey;
+    border-radius:100px;
+    margin-bottom:20px;
 }
 
 #imgtop2{
-background-color:grey;
+    background-color:grey;
 }
 
 .badgecirclered{
-border:0px solid red;
-padding:6px;
-background-color:red;
-border-radius:100px;
-color:white;
-font-weight:700;
+    border:0px solid red;
+    padding:6px;
+    background-color:red;
+    border-radius:100px;
+    color:white;
+    font-weight:700;
 }
 
 .badgecirclegreen{
-border:0px solid green;
-padding:6px;
-background-color:#90D67F;
-border-radius:100px;
-color:white;
-font-weight:700;
+    border:0px solid green;
+    padding:6px;
+    background-color:#90D67F;
+    border-radius:100px;
+    color:white;
+    font-weight:700;
 }
 
 .activelsempl{
-background-color:#DCE0E6;
-border-radius:7px;
+    background-color:#DCE0E6;
+    border-radius:7px;
 }
 
 #dropdownmenutable{
-font-size:13.5px;
+    font-size:13.5px;
 }
 
 #imgcompanyedit{
-border:0px solid red;
-width:100px;
-height:100px;
-margin:0;
+    border:0px solid red;
+    width:100px;
+    height:100px;
+    margin:0;
 }
 
 #linav a div span{
-color:grey;
+    color:grey;
 }
 
 #imgCumple{
-height:31px;
-width:31px;
+    height:31px;
+    width:31px;
 }
 
 .hashtag{
