@@ -261,6 +261,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
         vformula = v_script_dec + " " + v_script_ini + " " + v_script_body + " result2.setValue($resultado$); "
                 + " result3.setValue($salto$); ";
+        log.info("vformula: {} ", vformula);
 
         engine.put("result2", result2);
         engine.put("result3", result3);

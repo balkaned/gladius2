@@ -30,8 +30,8 @@
     </script>
   </head>
   <style>
-    body {
-        background-image: url("resources/assets/img/bg/bgloginglad7.jpg");
+    #bodyLogin {
+        background-image: url("resources/assets/img/bg/bgloginglad8.jpg");
     }
 
     .labelglad{
@@ -42,7 +42,7 @@
     #logobanner{
         border-radius: 16px 16px 0px 0px;
         background-image: url("resources/assets/img/bg/bgLogo7.png");
-        height:100px;
+        height:125px;
     }
 
     #spanIconEye{
@@ -51,7 +51,7 @@
     }
   </style>
 
-  <body>
+  <body id="bodyLogin">
     <f:form id="form" methot="post" modelAttribute="usuarioConeccion" action="verificarLogin2">
         <!-- ===============================================-->
         <!--    Main Content-->
@@ -77,17 +77,20 @@
                   <hr class="bg-200 mt-5 mb-4" />
                   <div class="divider-content-center">or use email</div>
                 </div>-->
-                <div class="bg-white border border-0 rounded-4 col-12 mt-0">
+                <div id="logindiv" class="bg-white border border-300 rounded-4 col-12 mt-0">
                     <div id="logobanner" class="bg-dark ms-0 mb-0 pb-0 border-0" >
                     </div>
                     <div class="mt-0 mb-0">
                         <a class="d-flex flex-center text-decoration-none mb-0" href="../../../index.jsp">
                             <div class="d-flex align-items-center mt-1 fw-bolder fs-5 d-inline-block">
-                                <img class="mt-2" src="resources/assets/img/icons/logoLoginGlad4.png" alt="" width="150" />
+                                <img class="mt-2" src="resources/assets/img/icons/logoLoginGlad4.png" alt="" width="170" />
                                 <!--<label class="mt-3 text-black fs-2 fs-semi-bold" >Gladius</label>-->
                             </div>
                         </a>
-                        <!--<label class="p-4 mt-0 mb-0 fs--1 text-600 text-start">Inicie sessión para obtener acceso a todas las funcionalidades de planillas, y cálculos de planillas, también obtendrá acceso a la información de cada trabajador y más.</label>-->
+                        <!--<label class="p-4 mt-0 mb-0 fs--1 text-1000 text-start">Inicie sessión para obtener acceso a todas las funcionalidades de planillas, y cálculos de planillas, también obtendrá acceso a la información de cada trabajador y más.</label>-->
+                        <div class="col-sm-6 col-md-12 text-center">
+                            <label class="mt-0 mb-0 fs--1 fw-bold text-1000 text-center">Inicie sessión para continuar</label>
+                        </div>
                     </div>
 
                     <div class="p-4 mt-0">
@@ -144,5 +147,5 @@
         <!--    End of Main Content-->
         <!-- ===============================================-->
     </f:form>
-    </body>
+  </body>
 </html>

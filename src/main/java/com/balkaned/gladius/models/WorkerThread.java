@@ -2,21 +2,12 @@ package com.balkaned.gladius.models;
 
 
 import com.balkaned.gladius.dao.PlanillaDao;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 @Slf4j
-@Getter
-@Setter
 public class WorkerThread implements Runnable {
-
-    /*@Autowired
-    PlanillaService planillaService;*/
 
     @Autowired
     PlanillaDao planillaDao;
@@ -44,18 +35,10 @@ public class WorkerThread implements Runnable {
 
     @Override
     public void run() {
-        log.info("v_plaproper: ",this.v_plaproper);
-        log.info("p_codcia: ",this.p_codcia);
-        log.info("p_codpro: ",this.p_codpro);
-        log.info("p_nroper: ",this.p_nroper);
-        log.info("p_codtra: ",this.p_codtra);
-        log.info("p_correl: ",this.p_correl);
-        log.info("thread: ",this.thread);
 
         log.info(Thread.currentThread().getName() + " Start. Command = " + command);
 
         try {
-            //planillaService.procesarPla2020(this.v_plaproper, this.p_codcia, this.p_codpro, this.p_nroper, this.p_codtra, this.p_correl, this.thread);
             planillaDao.procesarPla2020(this.v_plaproper, this.p_codcia, this.p_codpro, this.p_nroper, this.p_codtra, this.p_correl, this.thread);
         } catch (Exception ex) {
             log.info(ex.getMessage());

@@ -489,7 +489,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo,
                                 Integer codtra, Integer correl, Integer thread) {
 
-        log.info("Inicio método DAO ProcesarPla2020...");
+        log.info("Inicio del método Dao ProcesarPla2020...");
 
         Integer v_salto = 0;
         Iterator<ProPeriodoDet> L_data = null;
@@ -560,10 +560,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
             for_det = l_formula.next();
             /* Se asigna valor de la lista al objeto Fórmula.
                Se verifica el identificador de la formula */
-            log.info("--Formula :" + for_det.getIdFormula());
+            log.info("--Formula : {} ", for_det.getIdFormula());
 
+            log.info("for_det.getTipOut(): {} ", for_det.getTipOut());
             if (for_det.getTipOut().equals("1") || for_det.getTipOut().equals("3")) {
                 /* Selecciona los conceptos que son grupo de conceptos resultantes */
+
                 l_variables_glob = null;
                 v_variables_glob_concat = "";
 
@@ -608,13 +610,11 @@ public class PlanillaDaoImpl implements PlanillaDao {
                         }
                     }
 
-                    log.info("....3....");
-                    //v_resultadoFinal = formulaPlanillaService.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
                     v_resultadoFinal = formularPlanillaDao.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
                     log.info("v_resultadoFinal: {} ", v_resultadoFinal);
 
-                    log.info("....4....");
                     guardarMetaTrav2(codcia, idproceso, pi_persona.getIexcodtra(), idPeriodo, for_det.getIdConcepto(), v_resultadoFinal, correl);
+                    log.info("Finalizó método guardarMetaTrav2...");
                 }
             } else if (for_det.getTipOut().equals("2")) {
 
@@ -677,8 +677,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
         }
         /* While de la fórmula */
 
-        /* Verificar la lista de
-           Actualiza estado del proceso */
+        /* Verificar la lista de Actualiza estado del proceso */
     }
 
     public void update_iexpropertra_proc(Integer thread_id, Integer codcia, Integer idproceso, String idPeriodo,
@@ -790,9 +789,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "set provalor = ? " +
                 "where iexcodcia = ? and " +
                 "iexcodpro = ? and " +
-                "iexnroper = '?' and " +
+                "iexnroper = ? and " +
                 "iexcodtra = ? and " +
-                "trim(procodcon) = trim('?') and " +
+                "trim(procodcon) = trim(?) and " +
                 "iexcorrel = ? ";
 
         jdbc.update(sql,
