@@ -368,9 +368,9 @@ public class PlanillaController {
             log.info("lp_persona_s3: "+lp_persona_s3);
             log.info("lp_persona_s4: "+lp_persona_s4);
 
-            planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+            //planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
 
-            /*Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
+            Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
             executor.execute(worker);
 
             Runnable worker2 = new WorkerThread("Hilo 2", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s2, 2);
@@ -385,7 +385,7 @@ public class PlanillaController {
             executor.shutdown();
             while (!executor.isTerminated()) {
 
-            }*/
+            }
 
             log.info("Finished all threads");
 
@@ -637,7 +637,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoleta", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoleta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoleta");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -665,7 +664,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaParam", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaParam(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaParam");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -693,7 +691,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaParamBuscar", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaParamBuscar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaParamBuscar");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -707,13 +704,6 @@ public class PlanillaController {
         String iexperiodo = request.getParameter("iexperiodo");
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String txtbuscar = request.getParameter("txtbuscar");
-
-        log.info("iexcodpro: "+iexcodpro);
-        log.info("iexcodtra: "+iexcodtra);
-        log.info("iexperiodo: "+iexperiodo);
-        log.info("iexcorrel: "+iexcorrel);
-        log.info("txtbuscar: "+txtbuscar);
-
 
         List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZerosBuscar(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "0",txtbuscar);
 
@@ -856,7 +846,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaIngresos", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaIngresos(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaIngresos");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -884,7 +873,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaDescuentos", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaDescuentos(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaDescuentos");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -912,7 +900,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaAportes", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaAportes(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaAportes");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -940,7 +927,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaNeto", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaNeto(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaNeto");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -968,7 +954,6 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoletaTotales", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoletaTotales(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("/traerDatosDeBoletaTotales");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {

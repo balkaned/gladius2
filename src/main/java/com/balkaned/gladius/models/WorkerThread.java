@@ -2,11 +2,13 @@ package com.balkaned.gladius.models;
 
 
 import com.balkaned.gladius.dao.PlanillaDao;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Slf4j
+@Data
 public class WorkerThread implements Runnable {
 
     @Autowired
@@ -39,7 +41,7 @@ public class WorkerThread implements Runnable {
         log.info(Thread.currentThread().getName() + " Start. Command = " + command);
 
         try {
-            planillaDao.procesarPla2020(this.v_plaproper, this.p_codcia, this.p_codpro, this.p_nroper, this.p_codtra, this.p_correl, this.thread);
+            planillaDao.procesarPla2020(v_plaproper, p_codcia, p_codpro, p_nroper, p_codtra, p_correl, thread);
         } catch (Exception ex) {
             log.info(ex.getMessage());
         }

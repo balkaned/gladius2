@@ -145,8 +145,8 @@
                                     <td class="total align-middle text-start fs-9 ">${List_Procesos.iexfecope}</td>
 
                                     <td class="total align-middle text-center fw-semi-bold text-1000 ps-2 pe-2">
-                                        <c:if test="${List_Procesos.desestado=='Creado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">CREADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="alert-octagon" style="height:12.8px;width:12.8px;"></span></span></c:if>
-                                        <c:if test="${List_Procesos.desestado=='Procesado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">PROCESADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                                        <c:if test="${List_Procesos.desestado=='Creado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-info"><span class="badge-label">CREADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></c:if>
+                                        <c:if test="${List_Procesos.desestado=='Procesado'}"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">PROCESADO</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></c:if>
                                    </td>
 
                                     <td class="align-middle text-end white-space-nowrap pe-0 action">

@@ -76,13 +76,13 @@
                   <c:if test="${requestScope.xproplaper.flgestado!='3'}" >
                       <div class="col-auto">
                          <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
-                        <a class="btn btn-phoenix-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>1. Iniciar</a>
+                        <a class="btn btn-phoenix-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>Iniciar</a>
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleVariable@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-code-compare me-2"></span>Variables</a>
                         <!--<a class="btn btn-phoenix-secondary btn-sm mt-1" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>5. Procesar</a>
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>5. Bancos</a>
-                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>0. Borrar todo</a>
+                        <a class="btn btn-phoenix-success btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>Procesar</a>
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>Bancos</a>
+                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
                         <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('35')" href="#"><span class="fas fa-magnifying-glass me-2"></span>Buscar todo</a>
                         <!--<a class="btn  btn-sm btn-danger mt-1" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>-->
                       </div>
@@ -334,7 +334,7 @@
 
                   <div class="col-auto mt-4">
                       <a class="btn btn-phoenix-secondary btn-sm" onclick="traerOtrosDatos('${iexcodpro}','${iexperiodo}','1');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
-                      <a class="btn btn-phoenix-secondary btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
+                      <a class="btn btn-phoenix-warning btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
                       <div class="btn-group mb-1 me-1 ms-0 mt-1">
                         <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
@@ -347,7 +347,7 @@
                         </div>
                       </div>
 
-                      <a class="btn btn-phoenix-secondary btn-sm" onclick="return traerTodasLasBoletasPDF();" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>6. Boletas PDF</a>
+                      <a class="btn btn-phoenix-secondary btn-sm" onclick="return traerTodasLasBoletasPDF();" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>Boletas PDF</a>
                       <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migrar planilla</a>
                   </div>
 
