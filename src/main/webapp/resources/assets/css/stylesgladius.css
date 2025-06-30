@@ -218,10 +218,11 @@
     color:#3874ff !important;
 }*/
 
-#navbarDefault{
-    border-top:0px solid #3874FF !important;
-    height:10px !important;
-    border-bottom: 0px solid #3B4045;
+#navbarDefault2{
+    /*background-image: url("img/bg/bgnavtopdark5.png");*/
+    /*border-top:0px solid #3874FF !important;*/
+    /*height:10px !important;*/
+    /*border-bottom: 0px solid #3B4045;*/
 }
 
 .navbar.navbar-top.fixed-top.navbar-expand{

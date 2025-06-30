@@ -8,30 +8,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-
-<head>
-
-<jsp:include page="links.jsp"></jsp:include>
-
-<script>
-      var phoenixIsRTL = window.config.config.phoenixIsRTL;
-      if (phoenixIsRTL) {
-        var linkDefault = document.getElementById('style-default');
-        var userLinkDefault = document.getElementById('user-style-default');
-        linkDefault.setAttribute('disabled', true);
-        userLinkDefault.setAttribute('disabled', true);
-        document.querySelector('html').setAttribute('dir', 'rtl');
-      } else {
-        var linkRTL = document.getElementById('style-rtl');
-        var userLinkRTL = document.getElementById('user-style-rtl');
-        linkRTL.setAttribute('disabled', true);
-        userLinkRTL.setAttribute('disabled', true);
-      }
+  <head>
+    <jsp:include page="links.jsp"></jsp:include>
+    <script>
+          var phoenixIsRTL = window.config.config.phoenixIsRTL;
+          if (phoenixIsRTL) {
+            var linkDefault = document.getElementById('style-default');
+            var userLinkDefault = document.getElementById('user-style-default');
+            linkDefault.setAttribute('disabled', true);
+            userLinkDefault.setAttribute('disabled', true);
+            document.querySelector('html').setAttribute('dir', 'rtl');
+          } else {
+            var linkRTL = document.getElementById('style-rtl');
+            var userLinkRTL = document.getElementById('user-style-rtl');
+            linkRTL.setAttribute('disabled', true);
+            userLinkRTL.setAttribute('disabled', true);
+          }
     </script>
   </head>
   <style>
     #bodyLogin {
-        background-image: url("resources/assets/img/bg/bgloginglad9.jpg");
+        /*background-image: url("resources/assets/img/bg/bgloginglad9.jpg");*/
+        background-color:white;
     }
 
     .labelglad{
@@ -53,7 +51,7 @@
   </style>
 
   <body id="bodyLogin">
-    <f:form id="form" methot="post" modelAttribute="usuarioConeccion" action="verificarLogin2">
+    <f:form id="form" methot="post" modelAttribute="usuarioConeccion" action="verificarLogin2" >
         <!-- ===============================================-->
         <!--    Main Content-->
         <!-- ===============================================-->
@@ -78,7 +76,7 @@
                   <hr class="bg-200 mt-5 mb-4" />
                   <div class="divider-content-center">or use email</div>
                 </div>-->
-                <div id="logindiv" class="bg-white border border-0 rounded-4 col-12 mt-0">
+                <div id="logindiv" class="bg-white border border-300 rounded-4 col-12 mt-0">
                     <div id="logobanner" class="bg-dark ms-0 mb-0 pb-0 border-0" >
                     </div>
                     <div class="mt-0 mb-0">
@@ -119,7 +117,7 @@
                           <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                         </div>
                         <!--<button type="submit" class="btn btn-primary w-100 mb-3" href="#"><span class="fas fa-rocket me-2"></span>Ingresar</button>-->
-                        <button type="submit" class="btn btn-primary bg-black border rounded-5 w-100 mb-3" href="#">Iniciar sesión</button>
+                        <button type="submit" class="btn btn-primary bg-black text-white border rounded-5 w-100 mb-3" href="#">Iniciar sesión</button>
                         <!--<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
                         <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>-->
                         <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->

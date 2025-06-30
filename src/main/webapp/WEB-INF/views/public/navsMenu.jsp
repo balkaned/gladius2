@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <nav id="navbar2a" class="bg-200 navbar navbar-vertical navbar-expand-lg border-end border-300" >
+    <nav id="navbar2a" class="bg-200 navbar navbar-vertical navbar-expand-lg border-end border-400" >
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
           if (navbarStyle && navbarStyle !== 'transparent') {
@@ -30,7 +30,7 @@
              $('#'+menunav).addClass("active");
           });
         </script>
-        <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="" id="navbarVerticalCollapse">
           <!-- scrollbar removed-->
           <div class="navbar-vertical-content">
             <ul class="navbar-nav flex-column" id="navbarVerticalNav">

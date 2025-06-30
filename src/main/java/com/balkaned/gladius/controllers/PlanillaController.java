@@ -368,7 +368,7 @@ public class PlanillaController {
             log.info("lp_persona_s3: "+lp_persona_s3);
             log.info("lp_persona_s4: "+lp_persona_s4);
 
-            //planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+            planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
 
             Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
             executor.execute(worker);
