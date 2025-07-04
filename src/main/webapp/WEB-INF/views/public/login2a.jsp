@@ -28,8 +28,8 @@
   </head>
   <style>
     #bodyLogin {
-        /*background-image: url("resources/assets/img/bg/bgloginglad9.jpg");*/
-        background-color:white;
+        background-image: url("resources/assets/img/bg/bgloginglad14.jpg");
+        /*background-color:white;*/
     }
 
     .labelglad{
