@@ -56,7 +56,7 @@
                         <span class="badge badge-tag me-2 mb-2">Regimen: ${requestScope.xproplaper.desregimen}</span>
                       </div>
                   </div>
-                  <p class="col-8 mb-0 mt-0 fs--1">Proceso: ${requestScope.xproplaper.desproceso} ${requestScope.xproplaper.iexnroper} [${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin}] &nbspGrupoPlanilla: ${requestScope.xproplaper.desgrppla}<span class="badge badge-phoenix fs--2 badge-phoenix-primary ms-2"><span class="badge-label">${requestScope.xproplaper.desestado}</span></p>
+                  <p class="col-8 mb-0 mt-0 fs--1">Proceso: ${requestScope.xproplaper.desproceso} Periodo: ${requestScope.xproplaper.iexnroper} [${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin}] &nbspGrupoPlanilla: ${requestScope.xproplaper.desgrppla}<span class="badge badge-phoenix fs--2 badge-phoenix-primary ms-2"><span class="badge-label">${requestScope.xproplaper.desestado}</span></p>
                 </div>
               </div>
             </div>
@@ -74,17 +74,25 @@
                   </div>
 
                   <c:if test="${requestScope.xproplaper.flgestado!='3'}" >
+                      <c:if test="${requestScope.xproplaper.desgrppla!='LIQ'}">
+                          <div class="col-auto">
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
+                            <a class="btn btn-phoenix-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>Iniciar</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleVariable@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-code-compare me-2"></span>Variables</a>
+                            <!--<a class="btn btn-phoenix-secondary btn-sm mt-1" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
+                            <a class="btn btn-phoenix-success btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>Procesar</a>
+                            <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>Bancos</a>
+                            <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
+                            <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('35')" href="#"><span class="fas fa-magnifying-glass me-2"></span>Buscar todo</a>
+                            <!--<a class="btn  btn-sm btn-danger mt-1" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>-->
+                          </div>
+                      </c:if>
+                  </c:if>
+                  <c:if test="${requestScope.xproplaper.desgrppla=='LIQ'}">
                       <div class="col-auto">
-                         <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
-                        <a class="btn btn-phoenix-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-play me-2"></span>Iniciar</a>
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleVariable@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-code-compare me-2"></span>Variables</a>
-                        <!--<a class="btn btn-phoenix-secondary btn-sm mt-1" href="#"><span class="fas fa-arrows-turn-to-dots me-2"></span>2. Turnos</a>
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" onclick="return enviaForm('34')" href="#"><span class="fas fa-database me-2"></span>4. Consolida</a>-->
-                        <a class="btn btn-phoenix-success btn-sm mt-1" onclick="return enviaForm('3')" href="#"><span class="fas fa-wrench me-2"></span>Procesar</a>
-                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="verDetalleBancos@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-vault me-2"></span>Bancos</a>
-                        <a class="btn btn-phoenix-danger btn-sm mt-1" onclick="return enviaForm('6')" href="#"><span class="fas fa-trash me-2"></span>Borrar todo</a>
-                        <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('35')" href="#"><span class="fas fa-magnifying-glass me-2"></span>Buscar todo</a>
-                        <!--<a class="btn  btn-sm btn-danger mt-1" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>-->
+                        <a class="btn btn-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
+                        <!--<input type="button" name="Ingresarliq" value="Ingresar" onclick="enviaForm('2')"    class="btn btn-primary dropdown-toggle"    >-->
                       </div>
                   </c:if>
                 </div>
@@ -332,7 +340,6 @@
                       </div>
                   </c:if>
 
-                  ${requestScope.xproplaper.desgrppla}
                   <c:if test="${requestScope.xproplaper.desgrppla=='LIQ'}">
                     <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1"  >
                         <div class="table-responsive scrollbar mx-n1 px-1">
@@ -348,13 +355,12 @@
                                   <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="trab">TRABAJADOR</th>
                                   <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="itp">KEY</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="est">FECING</th>
-                                  <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="fecini">FECINI</th>
+                                  <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="fecini">FECCESE</th>
                                   <th class="sort align-middle text-center ps-4 pe-4" scope="col" >TIPO CESE</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >AÑO S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >MESES S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >N° DE DIAS</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >BOL TRUNC</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >ESTADO</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" ></th>
                                 </tr>
                             </thead>
@@ -381,7 +387,7 @@
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>
                                     <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600 pe-3"><a onclick="verAsistenciaPeriodoTrabInicializacion('${LstPlanillaRes.iexcodtra}','${LstPlanillaRes.destra}','${LstPlanillaRes.feciniFormat}','${LstPlanillaRes.fecfinFormat}','${iexcodpro}','${iexperiodo}');" href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-3"></span> ${LstPlanillaRes.iextipcese}</a></td>
+                                    <td class="align-middle text-start fw-semi-bold text-600 pe-3"><a href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-3"></span> ${LstPlanillaRes.iextipcese}</a></td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexanio_benef}</td>
                                     <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexmes_benef}</td>
                                     <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdia_benef}</td>
@@ -394,7 +400,7 @@
                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                          <a id="dropdownmenutable" class="dropdown-item" onclick="generarBoleta('${iexcodpro}','${LstPlanillaRes.iexcodtra}','${iexperiodo}','1','${requestScope.xproplaper.desgrppla}','${iexcodreg}');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
+                                          <a id="dropdownmenutable" class="dropdown-item" onclick="" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
                                       </div>
                                     </td>
                                   </tr>

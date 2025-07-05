@@ -76,7 +76,7 @@
                   <hr class="bg-200 mt-5 mb-4" />
                   <div class="divider-content-center">or use email</div>
                 </div>-->
-                <div id="logindiv" class="bg-white border border-200 rounded-4 col-12 mt-0">
+                <div id="logindiv" class="bg-white border border-300 rounded-4 col-12 mt-0">
                     <div id="logobanner" class="bg-dark ms-0 mb-0 pb-0 border-0" >
                     </div>
                     <div class="mt-0 mb-0">
