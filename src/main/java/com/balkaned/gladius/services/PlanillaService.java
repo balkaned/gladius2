@@ -22,6 +22,8 @@ public interface PlanillaService {
 
     public List<PlaProPeriodo> listPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
 
+    public List<PlaProPeriodo> listLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
+
     public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
 
     public void calificacion_tiempo_mas(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);

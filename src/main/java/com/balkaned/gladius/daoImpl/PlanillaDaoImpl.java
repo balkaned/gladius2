@@ -8,6 +8,7 @@ import com.balkaned.gladius.util.FormatterFecha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -425,6 +426,39 @@ public class PlanillaDaoImpl implements PlanillaDao {
         return lsPlaPro;
     }
 
+    public List<PlaProPeriodo> listLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra,
+                                             Integer correl, String txt) {
+        String sql = "select p.iexcodcia, p.iexcodpro, p.iexnroper, p.iexpermes, p.iexcorrel, " +
+                "p.iexcodtra, e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra as destra, " +
+                "p.iextipdoc, p.iexnrodoc, p.iexcodpuesto, " +
+                "p.iexcodarea, p.iexcodlocal, p.iexcodccosto, p.iexfecini as feciniFormat, " +
+                "p.iexfecfin, p.iexdiamestot, p.iexdiasteorico, p.iexdiavaca, p.iexdiadm, " +
+                "p.iexdiasub, p.iexdialic, p.iexdiaperm, p.iexdiafalta, " +
+                "p.iexdiaefectivo, p.iexdiaspago, p.totalingreso, p.totaldescuento, " +
+                "p.totalneto, p.totalaporte, p.iexusucrea, p.iexfeccrea, " +
+                "p.iexcodafp, p.iextipafp, to_char(p.iexfecing,'DD/MM/YYYY') iexfecing, " +
+                "TO_CHAR( p.iexfeccese ,'DD/MM/YYYY') iexfeccese, " +
+                "p.iextipcese, p.iexobscese, p.iexanio_benef, p.iexmes_benef, " +
+                "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc " +
+                "from iexpropertra p, " +
+                "iexempleado e " +
+                "where p.iexcodcia = e.iexcodcia and " +
+                "p.iexcodtra = e.iexcodtra and " +
+                "p.iexcodcia = :codcia and " +
+                "p.iexcodpro = :idproceso and " +
+                "p.iexnroper = :perpro ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("idproceso", idproceso)
+                .addValue("perpro", perpro);
+
+        List<PlaProPeriodo> lsPlaPro = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(PlaProPeriodo.class));
+
+        return lsPlaPro;
+    }
+
     public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl,
                              String grppla, String usu) {
 
@@ -817,9 +851,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
         log.info("sql_program: {} ", sql_program);
 
-        if(sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
+        if (sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
             log.info("update_slq_program, sql_pogram trae vacio, no se ejecutara el procedure...");
-        }else{
+        } else {
             String sql = "call " + sql_program.trim() + " (?,?,?,?) ";
             log.info("sql: {} ", sql);
 
@@ -837,9 +871,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
         log.info("sql_program: {} ", sql_program);
 
-        if(sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
+        if (sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
             log.info("update_slq_program_masivo, sql_pogram trae vacio, no se ejecutara el procedure...");
-        }else{
+        } else {
             String sql = "call " + sql_program.trim() + " (?,?,?,?) ";
             log.info("sql: {} ", sql);
 
@@ -946,10 +980,14 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 .addValue("codtra", codtra)
                 .addValue("correl", correl);
 
-        PlaProPeriodo plaProPeriodo = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(PlaProPeriodo.class));
-
-        return plaProPeriodo;
+        try {
+            PlaProPeriodo plaProPeriodo = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(PlaProPeriodo.class));
+            return plaProPeriodo;
+        } catch (EmptyResultDataAccessException ex) {
+            log.info(CLASS_NAME + " listPlaProperTra, No se encontraron resultados" + ex.getMessage(), ex);
+            return null;
+        }
     }
 
     public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia, Integer idproceso, String perpro,

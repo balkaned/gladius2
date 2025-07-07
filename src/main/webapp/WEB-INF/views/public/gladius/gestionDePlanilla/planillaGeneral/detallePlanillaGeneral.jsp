@@ -91,6 +91,7 @@
                   </c:if>
                   <c:if test="${requestScope.xproplaper.desgrppla=='LIQ'}">
                       <div class="col-auto">
+                        <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
                         <a class="btn btn-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
                         <!--<input type="button" name="Ingresarliq" value="Ingresar" onclick="enviaForm('2')"    class="btn btn-primary dropdown-toggle"    >-->
                       </div>
@@ -361,7 +362,7 @@
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >MESES S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >N° DE DIAS</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >BOL TRUNC</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" ></th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody class="list" id="customer-order-table-body">
@@ -375,24 +376,16 @@
                                     <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
                                     <td class="trab align-middle text-start fw-semi-bold ps-3 white-space-nowrap pe-3 text-1000">
                                         ${LstPlanillaRes.destra}
-                                        <div class="btn-group font-sans-serif btn-reveal-trigger position-static ms-2">
-                                            <button class="btn btn-phoenix-secondary pt-1 pb-1 ps-0 pe-2 btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-caret-down ms-2"></span></button>
-                                            <div class="dropdown-menu dropdown-menu-end py-2">
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="detalleEmpl@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-person me-2"></span>Detalle empleado</a>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoFijo@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-1-wave fs--1 me-2"></span>Sueldo fijo</a>
-                                              <div class="dropdown-divider"></div>
-                                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="sueldoVariable@${LstPlanillaRes.iexcodtra}"><span class="fa-solid fa-money-bill-trend-up me-2"></span>Sueldo variable</a>
-                                            </div>
-                                        </div>
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>
                                     <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600 pe-3"><a href="#" data-bs-toggle="modal" data-bs-target="#modalAsistencias" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-window-restore ms-3"></span> ${LstPlanillaRes.iextipcese}</a></td>
-                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexanio_benef}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexmes_benef}</td>
-                                    <td class="abr al align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.iexdia_benef}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.flgboltrunc}</td>
-                                    <td class="align-middle text-start fw-semi-bold text-600">${LstPlanillaRes.flgciedet}</td>
+                                    <td class="fecini align-middle text-start fs-9 ps-3"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfeccese}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-600 pe-3">${LstPlanillaRes.iextipcese}</a></td>
+                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexanio_benef}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexmes_benef}</td>
+                                    <td class="abr al align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexdia_benef}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.flgboltrunc}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.flgciedet}</td>
 
                                     <td class="align-middle text-center white-space-nowrap pe-0 action">
                                       <div class="font-sans-serif btn-reveal-trigger position-static">
@@ -400,7 +393,9 @@
                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                          <a id="dropdownmenutable" class="dropdown-item" onclick="" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
+                                            <a class="dropdown-item" href="#"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                            <a id="dropdownmenutable" class="dropdown-item" onclick="generarBoleta('${iexcodpro}','${LstPlanillaRes.iexcodtra}','${iexperiodo}','1','${requestScope.xproplaper.desgrppla}','${iexcodreg}');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
+                                        </div>
                                       </div>
                                     </td>
                                   </tr>
@@ -421,87 +416,80 @@
                     </div>
                   </c:if>
 
-                  <div class="col-auto mt-4">
-                      <a class="btn btn-phoenix-secondary btn-sm" onclick="traerOtrosDatos('${iexcodpro}','${iexperiodo}','1');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
-                      <a class="btn btn-phoenix-warning btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
+                  <c:if test="${requestScope.xproplaper.desgrppla!='LIQ'}">
+                      <div class="col-auto mt-4">
+                          <a class="btn btn-phoenix-secondary btn-sm" onclick="traerOtrosDatos('${iexcodpro}','${iexperiodo}','1');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalOtrosDatos" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-briefcase me-2"></span>Otros datos</a>
+                          <a class="btn btn-phoenix-warning btn-sm" href="buscarAfpsDesdePlanillas@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-handshake me-2"></span>Afp</a>
 
-                      <div class="btn-group mb-1 me-1 ms-0 mt-1">
-                        <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
-                        <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
-                        <div class="dropdown-menu">
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@ReportDatVarPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel variables</a>
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpRes@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual</a>
-                          <div class="dropdown-divider"></div>
-                          <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpCtl@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual resumen</a>
-                        </div>
+                          <div class="btn-group mb-1 me-1 ms-0 mt-1">
+                            <button class="btn btn-sm btn-phoenix-secondary" type="button"><span class="fa-solid fa-hashtag fs--1 me-2"></span></span class="ps-5">Exportar</span></button>
+                            <button class="btn btn-sm dropdown-toggle dropdown-toggle-split btn-phoenix-secondary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only"></span></button>
+                            <div class="dropdown-menu">
+                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@ReportDatVarPla@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel variables</a>
+                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpRes@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual</a>
+                              <div class="dropdown-divider"></div>
+                              <a id="dropdownmenutable" target="_blank" class="dropdown-item" href="AWSorFTP_flgsource@verReporteExcel@${idComp}@-1@null@null@BoletaEmpCtl@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fa-solid fa-download fs--1 me-2"></span>Excel planilla mensual resumen</a>
+                            </div>
+                          </div>
+
+                          <a class="btn btn-phoenix-secondary btn-sm" onclick="return traerTodasLasBoletasPDF();" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>Boletas PDF</a>
+                          <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migrar planilla</a>
                       </div>
 
-                      <a class="btn btn-phoenix-secondary btn-sm" onclick="return traerTodasLasBoletasPDF();" target="_blank" href="AWSorFTP_flgsource@verReportePDF@${idComp}@-1@null@null@BoletaEmp@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-2"></span>Boletas PDF</a>
-                      <a class="btn btn-phoenix-primary btn-sm" href="migracionPlanilla@${iexcodreg}@${xproplaper.iexcodpro}@${iexperiodo}"><span class="fas fa-diagram-successor me-2"></span>Migrar planilla</a>
-                  </div>
+                      <table class="w-100 table-stats table-stats mt-4">
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td class="py-2 col-4">
+                            <div class="d-inline-flex align-items-center">
+                              <div class="d-flex bg-success-100 rounded-circle flex-center me-3" style="width:24px; height:24px"><span class="text-success-600 dark__text-success-300" data-feather="play" style="width:16px; height:16px"></span></div>
+                              <p class="fw-bold mb-0">Tiempo de Inicializacion</p>
+                            </div>
+                          </td>
+                          <td class="py-2">
+                            <p class="ps-6 ps-sm-0 fw-semi-bold mb-0 mb-0 pb-3 pb-sm-0 fs--1">[${requestScope.xproplaper.timerfecini_iniciar}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerfecfin_iniciar}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerimp_iniciar}]&nbsp<span class="text-primary">segs</span></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="py-2">
+                            <div class="d-flex align-items-center">
+                              <div class="d-flex bg-info-100 rounded-circle flex-center me-3" style="width:24px; height:24px"><span class="text-info-600 dark__text-info-300" data-feather="clock" style="width:16px; height:16px"></span></div>
+                              <p class="fw-bold mb-0">Tiempo de Procesos</p>
+                            </div>
+                          </td>
+                          <td class="py-2">
+                            <p class="ps-6 ps-sm-0 fw-semi-bold mb-0 fs--1">[${requestScope.xproplaper.timerfecini_proc}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerfecfin_proc}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerimp_proc}]&nbsp<span class="text-primary">segs</span></p>
+                          </td>
+                        </tr>
+                      </table>
 
-                  <table class="w-100 table-stats table-stats mt-4">
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td class="py-2 col-4">
-                        <div class="d-inline-flex align-items-center">
-                          <div class="d-flex bg-success-100 rounded-circle flex-center me-3" style="width:24px; height:24px"><span class="text-success-600 dark__text-success-300" data-feather="play" style="width:16px; height:16px"></span></div>
-                          <p class="fw-bold mb-0">Tiempo de Inicializacion</p>
+                      <div class="card shadow-none border border-300 my-5 overflow-docs overflow-hidden" data-component-card="data-component-card" style="min-height: 250px;">
+                        <div class="card-header p-4 border-bottom border-300 bg-soft">
+                          <div class="row g-3 justify-content-between align-items-end">
+                            <div class="col-12 col-md">
+                              <h4 class="text-900 mb-0" data-anchor="data-anchor">Reporte embedded</h4>
+                              <p class="mb-0 mt-2 text-800">Click en Preview para traer los datos planilla general o click en exportar para generar un archivo excel de salida en formato .xls</p>
+                            </div>
+                            <div class="col col-md-auto">
+                              <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
+                                <a  class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span class="fas fa-download me-1"></span>Exportar excel</a>
+                                <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteEmbeddedResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
+                              </nav>
+                            </div>
+                          </div>
                         </div>
-                      </td>
-                      <td class="py-2">
-                        <p class="ps-6 ps-sm-0 fw-semi-bold mb-0 mb-0 pb-3 pb-sm-0 fs--1">[${requestScope.xproplaper.timerfecini_iniciar}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerfecfin_iniciar}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerimp_iniciar}]&nbsp<span class="text-primary">segs</span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="py-2">
-                        <div class="d-flex align-items-center">
-                          <div class="d-flex bg-info-100 rounded-circle flex-center me-3" style="width:24px; height:24px"><span class="text-info-600 dark__text-info-300" data-feather="clock" style="width:16px; height:16px"></span></div>
-                          <p class="fw-bold mb-0">Tiempo de Procesos</p>
-                        </div>
-                      </td>
-                      <td class="py-2">
-                        <p class="ps-6 ps-sm-0 fw-semi-bold mb-0 fs--1">[${requestScope.xproplaper.timerfecini_proc}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerfecfin_proc}]&nbsp&nbsp&nbsp[${requestScope.xproplaper.timerimp_proc}]&nbsp<span class="text-primary">segs</span></p>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <div class="card shadow-none border border-300 my-5 overflow-docs overflow-hidden" data-component-card="data-component-card" style="min-height: 250px;">
-                    <div class="card-header p-4 border-bottom border-300 bg-soft">
-                      <div class="row g-3 justify-content-between align-items-end">
-                        <div class="col-12 col-md">
-                          <h4 class="text-900 mb-0" data-anchor="data-anchor">Reporte embedded</h4>
-                          <p class="mb-0 mt-2 text-800">Click en Preview para traer los datos planilla general o click en exportar para generar un archivo excel de salida en formato .xls</p>
-                        </div>
-                        <div class="col col-md-auto">
-                          <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
-                            <a  class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span class="fas fa-download me-1"></span>Exportar excel</a>
-                            <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteEmbeddedResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
-                          </nav>
+                        <div class="card-body p-0">
+                          <div class="p-4">
+                            <div class="col-12 d-flex mt-2">
+                                <div id="idresult" class="col-12 overflow-auto border border-200 rounded-1" style="height:600px;"></div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="p-4">
-                        <div class="col-12 d-flex mt-2">
-                            <div id="idresult" class="col-12 overflow-auto border border-200 rounded-1" style="height:600px;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--<div class="col-auto mt-4">
-                      <a class="btn btn-primary btn-sm" onclick="traerDatosReporteResumenPlanilla();" href="#"><span class="fas fa-arrow-down me-2"></span>Traer embedded-reporting</a>
-                      <a class="btn btn-phoenix-secondary btn-sm" onclick="#" href="#"><span class="fas fa-download me-2"></span>Exportar a excel</a>
-                  </div>-->
-                  <!--<div id="idresult" style="width:700px; height:600px; overflow: scroll;" ></div>-->
-                  <!--<div class="d-flex mt-2 bg-200 border border-200 rounded-1 ">
-                    <div id="idresult" class="overflow-auto" style="height:600px;"></div>
-                  </div>-->
+                  </c:if>
               </form>
             </div>
             <jsp:include page="../../../footer.jsp"></jsp:include>

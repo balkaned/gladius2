@@ -28,7 +28,7 @@
   </head>
   <style>
     #bodyLogin {
-        background-image: url("resources/assets/img/bg/bgloginglad14.jpg");
+        background-image: url("resources/assets/img/bg/bgloginglad14a.jpg");
         /*background-color:white;*/
     }
 

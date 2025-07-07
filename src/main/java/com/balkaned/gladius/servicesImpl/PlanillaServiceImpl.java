@@ -47,6 +47,10 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.listPlaProper(codcia, idproceso, perpro, codtra, correl, txt);
     }
 
+    public List<PlaProPeriodo> listLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt) {
+        return dao.listLiqProper(codcia, idproceso, perpro, codtra, correl, txt);
+    }
+
     public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu) {
         dao.iniPlaProper(codcia, idproceso, perpro, codtra, correl, grppla, usu);
     }

@@ -37,6 +37,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -270,8 +271,18 @@ public class PlanillaController {
         model.addAttribute("iexperiodo", periodo);
         model.addAttribute("idCom", idCompania);
 
-        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso), periodo));
-        model.addAttribute("LstPlanillaRes", planillaService.listPlaProper(idCompania, codproceso, periodo, -1, 1, "%"));
+        ProcesoPeriodo proPer = procesoPlanillaService.recuperarPeriodo2(idCompania, Integer.valueOf(codproceso), periodo);
+        model.addAttribute("xproplaper", proPer);
+
+        List<PlaProPeriodo> lstPlanillaRes = null;
+
+        if (proPer.getDesgrppla().equals("LIQ")) {
+            lstPlanillaRes = planillaService.listLiqProper(idCompania, codproceso, periodo, -1, 0, "%");
+        } else {
+            lstPlanillaRes = planillaService.listPlaProper(idCompania, codproceso, periodo, -1, 1, "%");
+        }
+
+        model.addAttribute("LstPlanillaRes", lstPlanillaRes);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaGeneral");
     }
@@ -358,15 +369,15 @@ public class PlanillaController {
 
             ExecutorService executor = Executors.newFixedThreadPool(4);
 
-            log.info("idCompania: "+idCompania);
-            log.info("iexcodpro: "+iexcodpro);
-            log.info("iexperiodo: "+iexperiodo);
-            log.info("iexcodtra: "+iexcodtra);
-            log.info("iexcorrel: "+iexcorrel);
-            log.info("lp_persona_s1: "+lp_persona_s1);
-            log.info("lp_persona_s2: "+lp_persona_s2);
-            log.info("lp_persona_s3: "+lp_persona_s3);
-            log.info("lp_persona_s4: "+lp_persona_s4);
+            log.info("idCompania: " + idCompania);
+            log.info("iexcodpro: " + iexcodpro);
+            log.info("iexperiodo: " + iexperiodo);
+            log.info("iexcodtra: " + iexcodtra);
+            log.info("iexcorrel: " + iexcorrel);
+            log.info("lp_persona_s1: " + lp_persona_s1);
+            log.info("lp_persona_s2: " + lp_persona_s2);
+            log.info("lp_persona_s3: " + lp_persona_s3);
+            log.info("lp_persona_s4: " + lp_persona_s4);
 
             planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
 
@@ -637,6 +648,7 @@ public class PlanillaController {
 
     @RequestMapping(value = "/traerDatosDeBoleta", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView traerDatosDeBoleta(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("/traerDatosDeBoleta");
 
         String user = (String) request.getSession().getAttribute("user");
         if (user == null || user.equals("") || user.equals("null")) {
@@ -652,7 +664,22 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        PlaProPeriodo plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+        log.info("iexcodpro: {} ", iexcodpro);
+        log.info("iexcodtra: {} ", iexcodtra);
+        log.info("iexperiodo: {} ", iexperiodo);
+        log.info("xgrppla: {} ", xgrppla);
+        log.info("iexcorrel: {} ", iexcorrel);
+        log.info("iexcodreg: {} ", iexcodreg);
+
+        PlaProPeriodo plaperpro7 = null;
+
+        if(xgrppla.equals("LIQ")) {
+            plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+        }else {
+            plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+        }
+
+        log.info("plaperpro7: {} ", plaperpro7);
 
         String json = new Gson().toJson(plaperpro7);
         response.setContentType("application/json");
@@ -705,7 +732,7 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String txtbuscar = request.getParameter("txtbuscar");
 
-        List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZerosBuscar(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "0",txtbuscar);
+        List<ConceptoxProcesoxTra> listap = planillaService.listProperconConZerosBuscar(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, "0", txtbuscar);
 
         String json = new Gson().toJson(listap);
         response.setContentType("application/json");
@@ -1480,8 +1507,8 @@ public class PlanillaController {
         String v_fecfin = request.getParameter("fecfin");
         String codtra = request.getParameter("codtra");
 
-        log.info("v_fecini: "+v_fecini);
-        log.info("v_fecfin: "+v_fecfin);
+        log.info("v_fecini: " + v_fecini);
+        log.info("v_fecfin: " + v_fecfin);
 
         FormatterFecha fec1 = new FormatterFecha();
         String fechaIniFormat = fec1.fechaFormatterIngltoEsp2(v_fecini);
@@ -1492,8 +1519,8 @@ public class PlanillaController {
         v_fecini = fechaIniFormat;
         v_fecfin = fechaFinFormat;
 
-        log.info("v_fecini: "+v_fecini);
-        log.info("v_fecfin: "+v_fecfin);
+        log.info("v_fecini: " + v_fecini);
+        log.info("v_fecfin: " + v_fecfin);
 
         // MarcasTurnodia
         Date d1 = null;
@@ -1987,7 +2014,7 @@ public class PlanillaController {
                 do {
                     log.info("fecha index = " + sdf.format(c.getTime()));
 
-                    turnoDiarioService.actualizaTurnoDia(idCompania,codtra, Integer.valueOf(codturno),sdf.format(c.getTime()),user);
+                    turnoDiarioService.actualizaTurnoDia(idCompania, codtra, Integer.valueOf(codturno), sdf.format(c.getTime()), user);
                     c.add(Calendar.DATE, 1);
                 } while (c2.compareTo(c) >= 0);
             }
@@ -2027,16 +2054,16 @@ public class PlanillaController {
         Date d1 = null;
         Date d2 = null;
 
-        Integer day_week=0;
-        Integer day_week_par=0;
+        Integer day_week = 0;
+        Integer day_week_par = 0;
         day_week_par = Integer.valueOf(dia);
 
-        if (fecini!= null && fecfin!= null  )  {
-            d1 =new SimpleDateFormat("dd/mm/yyyy").parse(fecini);
-            d2 =new SimpleDateFormat("dd/mm/yyyy").parse(fecfin);
+        if (fecini != null && fecfin != null) {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(fecini);
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(fecfin);
 
             int days;
-            days = daysBetween(d1,d2)+1;
+            days = daysBetween(d1, d2) + 1;
 
             /// Pasar a stored procedure
             // parametros:
@@ -2048,7 +2075,7 @@ public class PlanillaController {
             ///  dias_sem
 
             //daoturno.actualizaTurnoDiaCol(v_codcia, Empleado.getIexcodtra(), Integer.parseInt(v_codturno),v_fecini , v_fecfin , Integer.parseInt(v_diades), (String)session.getAttribute("desusu") );
-            turnoDiarioService.actualizaTurnoDiaCol(idCompania,codtra,Integer.parseInt(codturno),fecini,fecfin,Integer.parseInt(dia),user);
+            turnoDiarioService.actualizaTurnoDiaCol(idCompania, codtra, Integer.parseInt(codturno), fecini, fecfin, Integer.parseInt(dia), user);
 
             //// Fin de pasar a stored procedures
             /*if (days>=1  &&  days <=60){
