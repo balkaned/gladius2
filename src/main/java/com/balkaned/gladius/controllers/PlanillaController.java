@@ -85,6 +85,9 @@ public class PlanillaController {
     @Autowired
     TurnoDiarioService turnoDiarioService;
 
+    @Autowired
+    EmpleadoService empleadoService;
+
 
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
@@ -664,18 +667,11 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        log.info("iexcodpro: {} ", iexcodpro);
-        log.info("iexcodtra: {} ", iexcodtra);
-        log.info("iexperiodo: {} ", iexperiodo);
-        log.info("xgrppla: {} ", xgrppla);
-        log.info("iexcorrel: {} ", iexcorrel);
-        log.info("iexcodreg: {} ", iexcodreg);
-
         PlaProPeriodo plaperpro7 = null;
 
-        if(xgrppla.equals("LIQ")) {
+        if (xgrppla.equals("LIQ")) {
             plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
-        }else {
+        } else {
             plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
         }
 
@@ -2110,5 +2106,66 @@ public class PlanillaController {
         response.getWriter().write(json);
 
         return null;
+    }
+
+    @RequestMapping("/ingresarLiq@{codreg}@{codproceso}@{periodo}")
+    public ModelAndView ingresarLiq(ModelMap model, HttpServletRequest request,
+                                    @PathVariable Integer codreg,
+                                    @PathVariable Integer codproceso,
+                                    @PathVariable String periodo) {
+        log.info("/ingresarLiq");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("lstEmpleado", empleadoService.listarEmpleadoActivos(idCompania));
+        model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
+
+        model.addAttribute("codreg", codreg);
+        model.addAttribute("codproceso", codproceso);
+        model.addAttribute("periodo", periodo);
+        model.addAttribute("idCom", idCompania);
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/ingresarLiq");
+    }
+
+    @RequestMapping("/insertarTrabLiq")
+    public ModelAndView insertarTrabLiq(ModelMap model, HttpServletRequest request) {
+        log.info("/insertarTrabLiq");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        String usuario = (String) request.getSession().getAttribute("user");
+        String idusuario = (String) request.getSession().getAttribute("idUser");
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        String iexcodreg = request.getParameter("iexcodreg");
+        Integer iexcodpro = Integer.parseInt(request.getParameter("iexcodpro"));
+        String iexperiodo = request.getParameter("iexperiodo");
+
+        Integer idxtra = Integer.parseInt(request.getParameter("idxtrabajador"));
+        String tipcese = request.getParameter("idxtipcese");
+        String observ = request.getParameter("txtobservacion");
+        String feccese = request.getParameter("txtfeccese");
+        String flgboltrunc = request.getParameter("flgboltrunc");
+
+        if(flgboltrunc.equals("on")){
+            flgboltrunc = "1";
+        }else{
+            flgboltrunc = "0";
+        }
+
+        String result = planillaService.creaLiqPla(idCompania, iexcodpro, iexperiodo, idxtra, 0, tipcese, observ, feccese, usuario, flgboltrunc);
+
+        return new ModelAndView("redirect:/listarDetallePlanillaGen@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
     }
 }

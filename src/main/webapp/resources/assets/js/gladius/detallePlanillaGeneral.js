@@ -67,6 +67,8 @@ function enviaForm(variable){
             document.getElementById("accion").value="CALFASIST";
         }else if(variable==35){
             document.getElementById("accion").value="QRYPLA";
+        }else if(variable==36){
+            document.getElementById("accion").value="PINLIQ";
         }
 
         document.getElementById("frmplaserv").submit();

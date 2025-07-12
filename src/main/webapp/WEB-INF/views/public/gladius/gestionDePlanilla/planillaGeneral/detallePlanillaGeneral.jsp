@@ -92,8 +92,7 @@
                   <c:if test="${requestScope.xproplaper.desgrppla=='LIQ'}">
                       <div class="col-auto">
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
-                        <a class="btn btn-primary btn-sm mt-1" onclick="return enviaForm('2')" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
-                        <!--<input type="button" name="Ingresarliq" value="Ingresar" onclick="enviaForm('2')"    class="btn btn-primary dropdown-toggle"    >-->
+                        <a class="btn btn-primary btn-sm mt-1" href="ingresarLiq@${iexcodreg}@${iexcodpro}@${iexperiodo}" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
                       </div>
                   </c:if>
                 </div>
@@ -352,12 +351,12 @@
                                       <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
                                     </div>
                                   </th>
-                                  <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id" style="width:5%;">ID</th>
+                                  <th class="sort white-space-nowrap align-middle pe-2" scope="col" data-sort="id" style="width:5%;">ID</th>
                                   <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="trab">TRABAJADOR</th>
                                   <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="itp">KEY</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="est">FECING</th>
-                                  <th class="sort align-middle text-center ps-4 pe-4" scope="col" data-sort="fecini">FECCESE</th>
-                                  <th class="sort align-middle text-center ps-4 pe-4" scope="col" >TIPO CESE</th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="fecini">FECCESE</th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TIPO CESE</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >AÑO S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >MESES S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >N° DE DIAS</th>
@@ -374,11 +373,11 @@
                                       </div>
                                     </td>
                                     <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
-                                    <td class="trab align-middle text-start fw-semi-bold ps-3 white-space-nowrap pe-3 text-1000">
+                                    <td class="trab align-middle text-start fw-semi-bold white-space-nowrap ps-1 pe-1text-1000">
                                         ${LstPlanillaRes.destra}
                                     </td>
                                     <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>
-                                    <td class="fecini align-middle text-start fs-9"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
+                                    <td class="fecini align-middle text-start fs-9 ps-1 pe-4"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
                                     <td class="fecini align-middle text-start fs-9 ps-3"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfeccese}</td>
                                     <td class="align-middle text-center fw-semi-bold text-600 pe-3">${LstPlanillaRes.iextipcese}</a></td>
                                     <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexanio_benef}</td>

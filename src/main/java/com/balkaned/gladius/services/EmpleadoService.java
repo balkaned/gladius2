@@ -44,6 +44,8 @@ public interface EmpleadoService {
 
     public List<Empleado> listarEmpleadoInactivos(Integer codcia);
 
+    public List<Empleado> listarEmpleadoActivos(Integer codcia);
+
     public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew);
 
     public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado);

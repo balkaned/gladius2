@@ -67,4 +67,7 @@ public interface PlanillaDao {
     public void migraInsertarPla(List<EmpDatvar> empdatvar);
 
     public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin);
+
+    public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc);
+
 }

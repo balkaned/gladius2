@@ -1382,5 +1382,41 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
         return lsAsis;
     }
+
+    public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc) {
+        log.info("Crea liquidaciones ");
+
+        String sql = "call pl_crea_liq(?,?,?,?,?,?,?,?,?,?,?) ";
+
+        log.info("codcia: {} ", codcia);
+        log.info("idproceso: {} ", idproceso);
+        log.info("perpro: {} ", perpro);
+        log.info("codtra: {} ", codtra);
+        log.info("correl: {} ", correl);
+        log.info("tipcese: {} ", tipcese);
+        log.info("observa: {} ", observa);
+        log.info("fecese: {} ", fecese);
+        log.info("usu: {} ", usu);
+        log.info("flgboltrunc: {} ", flgboltrunc);
+
+
+        jdbc.update(sql,
+                codcia,
+                idproceso,
+                perpro,
+                codtra,
+                correl,
+                tipcese,
+                observa,
+                fecese,
+                usu,
+                flgboltrunc,
+                "1"
+        );
+
+        log.info("Fin de crear liquidaciones ");
+        return null;
+    }
+
 }
 

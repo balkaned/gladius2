@@ -138,4 +138,8 @@ public class PlanillaServiceImpl implements PlanillaService {
     public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin) {
         return dao.consultaMarka(codcia, codtra, fecini, fecfin);
     }
+
+    public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc) {
+        return dao.creaLiqPla(codcia, idproceso, perpro, codtra, correl, tipcese, observa, fecese, usu, flgboltrunc);
+    }
 }

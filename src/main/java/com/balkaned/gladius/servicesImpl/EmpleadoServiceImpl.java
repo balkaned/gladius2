@@ -93,6 +93,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return dao.listarEmpleadoInactivos(codcia);
     }
 
+    public List<Empleado> listarEmpleadoActivos(Integer codcia){
+        return dao.listarEmpleadoActivos(codcia);
+    }
+
     public List<Empleado> listarEmpleadoByCodTrab(Empleado empleado) {
         return dao.listarEmpleadoByCodTrab(empleado);
     }

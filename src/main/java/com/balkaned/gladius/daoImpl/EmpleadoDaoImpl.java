@@ -887,6 +887,63 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
         return lsEmpl;
     }
 
+    public List<Empleado> listarEmpleadoActivos(Integer codcia) {
+
+        String sql = "select " +
+                "iexcodcia, " +
+                "iexcodtra, "+
+                "iexnomtra, " +
+                "iexapepat, " +
+                "iexapemat, " +
+                "iextipdocid, " +
+                "iexnrodoc, " +
+                "to_char(iexfecnac,'dd/mm/yyyy') iexfecnac, " +
+                "to_char(iexfecing,'dd/mm/yyyy') iexfecing, " +
+                "to_char(iexfecret,'dd/mm/yyyy') iexfecret, " +
+                "iextipcese, " +
+                "'' as destipcese, " +
+                "iexcodsex, " +
+                "'' dessex, " +
+                "iexpaisemisor, " +
+                "'' as despaisemisor, " +
+                "iexflgest, " +
+                "'' desestado, " +
+                "iexcodant, " +
+                "iextiptra, " +
+                "'' destiptra, " +
+                "iexmodform, " +
+                "'' desmodform, " +
+                "iexnacion_origen, " +
+                "'' desnacion_origen, " +
+                "iexdepart_origen, " +
+                "'' desdepart_origen, " +
+                "iexprovin_origen, " +
+                "'' desprovin_origen, " +
+                "iexdistri_origen, " +
+                "'' desdistri_origen, " +
+                "iexgrdinstruccion, " +
+                "'' desinstruccion, " +
+                "iexcentroform, " +
+                "'' descentroform, " +
+                "iexflgdomicil, " +
+                "iexfeccrea, " +
+                "iexfeccmod, " +
+                "iexusucrea, " +
+                "iexusumod " +
+                "from iexempleado " +
+                "where iexcodcia = :codcia and " +
+                "iexflgest='1' " +
+                "order by iexapepat, iexapemat, iexnomtra asc ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia);
+
+        List<Empleado> lsEmpl = namedParameterJdbcTemplate.query(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(Empleado.class));
+
+        return lsEmpl;
+    }
+
     public void reingresarEmpleado(Integer ciaid, Integer codtra, String fechaing, String desusu, Integer codnew) {
 
         String sql = "call pl_reingresa_trabajador(?,?,?,?,?) ";
