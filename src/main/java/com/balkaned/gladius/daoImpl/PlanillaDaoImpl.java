@@ -1312,12 +1312,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
     public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl) {
 
-        log.info("--- Migraciones  --- ");
-        log.info("codcia : " + cia);
-        log.info("proceso : " + codpro);
-        log.info("perpro : " + nroper);
-        log.info("codtra : " + codtra);
-        log.info("correl : " + correl);
+        log.info("Migraciones");
 
         String sql = "call pl_migra_planilla_tra(?,?,?,?,?) ";
 
@@ -1384,21 +1379,9 @@ public class PlanillaDaoImpl implements PlanillaDao {
     }
 
     public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc) {
-        log.info("Crea liquidaciones ");
+        log.info("Crea liquidaciones");
 
         String sql = "call pl_crea_liq(?,?,?,?,?,?,?,?,?,?,?) ";
-
-        log.info("codcia: {} ", codcia);
-        log.info("idproceso: {} ", idproceso);
-        log.info("perpro: {} ", perpro);
-        log.info("codtra: {} ", codtra);
-        log.info("correl: {} ", correl);
-        log.info("tipcese: {} ", tipcese);
-        log.info("observa: {} ", observa);
-        log.info("fecese: {} ", fecese);
-        log.info("usu: {} ", usu);
-        log.info("flgboltrunc: {} ", flgboltrunc);
-
 
         jdbc.update(sql,
                 codcia,
@@ -1414,8 +1397,50 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "1"
         );
 
-        log.info("Fin de crear liquidaciones ");
+        log.info("Fin de crear liquidaciones");
         return null;
+    }
+
+    public PlaProPeriodo getLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt) {
+
+        String sql = "select p.iexcodcia, p.iexcodpro, p.iexnroper, p.iexpermes, p.iexcorrel, " +
+                "p.iexcodtra, e.iexapepat||' '||e.iexapemat||' '||e.iexnomtra as destra, " +
+                "p.iextipdoc, p.iexnrodoc, p.iexcodpuesto, " +
+                "p.iexcodarea, p.iexcodlocal, p.iexcodccosto, p.iexfecini, " +
+                "p.iexfecfin, p.iexdiamestot, p.iexdiasteorico, p.iexdiavaca, p.iexdiadm, " +
+                "p.iexdiasub, p.iexdialic, p.iexdiaperm, p.iexdiafalta, " +
+                "p.iexdiaefectivo, p.iexdiaspago, p.totalingreso, p.totaldescuento, " +
+                "p.totalneto, p.totalaporte, p.iexusucrea, p.iexfeccrea, " +
+                "p.iexcodafp, p.iextipafp, to_char(p.iexfecing,'DD/MM/YYYY') iexfecing, " +
+                "TO_CHAR( p.iexfeccese ,'DD/MM/YYYY') iexfeccese, " +
+                "p.iextipcese, p.iexobscese, p.iexanio_benef, p.iexmes_benef, " +
+                "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc, " +
+                "p.flgciedet, p.fecpago fecpago " +
+                "from iexpropertra p, iexempleado e " +
+                "where p.iexcodcia = e.iexcodcia and " +
+                "p.iexcodtra = e.iexcodtra and " +
+                "p.iexcodcia = :codcia and " +
+                "p.iexcodpro = :idproceso and " +
+                "p.iexnroper = :perpro and " +
+                "p.iexcodtra = :codtra and " +
+                "p.iexcorrel = :correl ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codcia", codcia)
+                .addValue("idproceso", idproceso)
+                .addValue("perpro", perpro)
+                .addValue("codtra", codtra)
+                .addValue("correl", correl);
+
+        try {
+            PlaProPeriodo plapro = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                    BeanPropertyRowMapper.newInstance(PlaProPeriodo.class));
+
+            return plapro;
+        } catch (EmptyResultDataAccessException ex) {
+            log.info(CLASS_NAME + "getLiaProper: No se encontraron resultados.");
+            return null;
+        }
     }
 
 }

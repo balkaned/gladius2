@@ -69,5 +69,8 @@ public interface PlanillaService {
     public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin);
 
     public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc);
+
+    public PlaProPeriodo getLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
+
 }
 

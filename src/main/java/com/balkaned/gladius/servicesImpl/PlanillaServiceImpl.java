@@ -142,4 +142,9 @@ public class PlanillaServiceImpl implements PlanillaService {
     public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc) {
         return dao.creaLiqPla(codcia, idproceso, perpro, codtra, correl, tipcese, observa, fecese, usu, flgboltrunc);
     }
+
+    public PlaProPeriodo getLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt) {
+        return dao.getLiqProper(codcia, idproceso, perpro, codtra, correl, txt);
+    }
+
 }

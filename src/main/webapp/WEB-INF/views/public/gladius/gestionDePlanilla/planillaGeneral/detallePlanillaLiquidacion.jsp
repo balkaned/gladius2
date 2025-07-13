@@ -14,15 +14,20 @@
 
   <script>
     function formatearFecha1(){
-      var fechaSeleccionada = $('#txtfeccese').val();
+      var fechaSeleccionada = $('#iexfeccese').val();
 
       var anio=fechaSeleccionada.substring(0, 4);
       var mes=fechaSeleccionada.substring(5, 7);
       var dia=fechaSeleccionada.substring(8, 10);
 
       var fechaFormat=dia+"/"+mes+"/"+anio;
-      $("#txtfeccese").val(fechaFormat);
+      $("#iexfeccese").val(fechaFormat);
     }
+
+    $(document).ready(function(){
+        var fechacargada=$("#iexfeccesehidden").val();
+        $("#iexfeccese").val(fechacargada);
+    });
   </script>
 
   <body>
@@ -39,13 +44,13 @@
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#!">Gestión de Planillas</a></li>
                 <li class="breadcrumb-item active">Planilla General</li>
-                <li class="breadcrumb-item active">Ingresar Trabajador a Liquidación</li>
+                <li class="breadcrumb-item active">Detalle Planilla Liquidación</li>
               </ol>
             </nav>
             <div class="mb-12">
               <div class="row g-3 mb-2">
                 <div class="col-auto">
-                  <h2 id="h2top" class="mb-0">Ingresar trab. a liquidación</h2>
+                  <h2 id="h2top" class="mb-0">Detalle trab planilla liq.</h2>
                 </div>
               </div>
 
@@ -57,6 +62,63 @@
                         <input type="hidden" name="iexperiodo"  value="${periodo}">
                         <input type="hidden" name="iexcodreg"  value="${codreg}">
 
+                      	<div class="col-sm-6 col-md-6">
+                        	<label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen</label>
+                        	<input class="form-control" name="iexnroiddep" type="text" placeholder="#" value="${requestScope.xproplaper.desregimen}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Procesos</label>
+                            <input class="form-control" name="iexnroiddep" type="text" placeholder="#" value="${requestScope.xproplaper.desproceso}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
+                            <input class="form-control" name="iexnroiddep" type="text" placeholder="#" value="${requestScope.xproplaper.iexnroper} [ ${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id de liquidaciones</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexcorrel}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Id de trabajador</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexcodtra}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-7">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
+                            <input class="form-control" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.destra}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de ingreso</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexfecing}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de cese </label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                            <input class="form-control datetimepicker" name="iexfeccese" id="iexfeccese" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                            <input class="form-control" id="iexfeccesehidden" type="hidden" value="${LstPlanillaRes.iexfeccese}" />
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Año</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexanio_benef}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Meses</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexmes_benef}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Dia</label>
+                            <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.iexdia_benef}" disabled />
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo cese</label>
+                              <select id="idxtipcese" name="idxtipcese" class="form-select" required >
+                                  <option value="" selected >Seleccionar</option>
+                                  <c:forEach var="lstTipCese" items="${lstTipCese}">
+                                      <option value="${lstTipCese.idLov}" ${lstTipCese.idLov == LstPlanillaRes.iextipcese ? 'selected' : ''}>${lstTipCese.desLov}</option>
+                                  </c:forEach>
+                              </select>
+                        </div>
+
+
+
                       	<div class="col-sm-6 col-md-7">
                         	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Trabajador</label>
                         	  <select name="idxtrabajador" class="form-select" required >
@@ -66,19 +128,8 @@
                         		  </c:forEach>
                         	  </select>
                         </div>
-                      	<div class="col-sm-6 col-md-6">
-                              <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo cese</label>
-                              <select id="idxtipcese" name="idxtipcese" class="form-select" required >
-                                  <option value="" selected >Seleccionar</option>
-                                  <c:forEach var="lstTipCese" items="${lstTipCese}">
-                                      <option value="${lstTipCese.idLov}" >${lstTipCese.desLov}</option>
-                                  </c:forEach>
-                              </select>
-                        </div>
-                      	<div class="col-sm-6 col-md-3">
-                        	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2" >Fecha de cese</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                        	  <input class="form-control datetimepicker" name="txtfeccese" id="txtfeccese" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                        </div>
+
+
                       	<div class="col-sm-6 col-md-12">
                       	  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Observación</label>
                       	  <input class="form-control" name="txtobservacion" type="text" value="" placeholder="Ingrese observación aqui" required />
@@ -99,7 +150,7 @@
                       		  <a class="btn btn-phoenix-primary px-5" href="listarDetallePlanillaGen@${codreg}@${codproceso}@${periodo}">Atras</a>
                       		</div>
                       		<div class="col-auto">
-                      		  <button class="btn btn-primary px-5 px-sm-4" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Ingresar a Liquidación</button>
+                      		  <button class="btn btn-primary px-5 px-sm-9" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">Ingresar a Liquidación</button>
                       		</div>
                       	  </div>
                       	</div>

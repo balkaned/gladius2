@@ -392,7 +392,7 @@
                                         data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
-                                            <a class="dropdown-item" href="#"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                            <a class="dropdown-item" href="detallePlanLiq@${iexcodreg}@${iexcodpro}@${iexperiodo}@${LstPlanillaRes.iexcodtra}@${LstPlanillaRes.iexcorrel}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                             <a id="dropdownmenutable" class="dropdown-item" onclick="generarBoleta('${iexcodpro}','${LstPlanillaRes.iexcodtra}','${iexperiodo}','1','${requestScope.xproplaper.desgrppla}','${iexcodreg}');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
                                         </div>
                                       </div>

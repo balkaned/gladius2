@@ -2158,14 +2158,57 @@ public class PlanillaController {
         String feccese = request.getParameter("txtfeccese");
         String flgboltrunc = request.getParameter("flgboltrunc");
 
-        if(flgboltrunc.equals("on")){
+        if (flgboltrunc.equals("on")) {
             flgboltrunc = "1";
-        }else{
+        } else {
             flgboltrunc = "0";
         }
 
         String result = planillaService.creaLiqPla(idCompania, iexcodpro, iexperiodo, idxtra, 0, tipcese, observ, feccese, usuario, flgboltrunc);
 
         return new ModelAndView("redirect:/listarDetallePlanillaGen@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
+    }
+
+    @RequestMapping("/detallePlanLiq@{codreg}@{codproceso}@{periodo}@{codtra}@{correl}")
+    public ModelAndView detallePlanLiq(ModelMap model, HttpServletRequest request,
+                                       @PathVariable Integer codreg,
+                                       @PathVariable Integer codproceso,
+                                       @PathVariable String periodo,
+                                       @PathVariable String codtra,
+                                       @PathVariable String correl) {
+        log.info("/detallePlanLiq");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
+
+        model.addAttribute("codreg", codreg);
+        model.addAttribute("codproceso", codproceso);
+        model.addAttribute("periodo", periodo);
+        model.addAttribute("idCom", idCompania);
+
+        log.info("idCompania: {} ", idCompania);
+        log.info("codproceso: {} ", codproceso);
+        log.info("periodo: {} ", periodo);
+        log.info("codtra: {} ", codtra);
+        log.info("correl: {} ", correl);
+
+        PlaProPeriodo plaperpro = planillaService.getLiqProper(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl), "");
+        log.info("plaperpro: {} ", plaperpro);
+
+        model.addAttribute("LstPlanillaRes", plaperpro);
+        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, codproceso, periodo));
+        /*model.addAttribute("lovConcepProVar", dao.ListConcepProVar((Integer) session.getAttribute("codcia"), v_codpro, "2"));
+        model.addAttribute("fdatavar", dao.obtenerEmpDatvar((Integer) session.getAttribute("codcia"), v_codpro, v_nroper, Integer.parseInt(V_codtra), Integer.parseInt(V_correl)));
+        
+        model.addAttribute("lst_tipcese", daolov.getLovs("17", "%"));*/
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaLiquidacion");
     }
 }
