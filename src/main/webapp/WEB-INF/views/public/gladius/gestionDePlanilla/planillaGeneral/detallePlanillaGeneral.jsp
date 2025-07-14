@@ -271,7 +271,7 @@
                   <c:if test="${requestScope.xproplaper.desgrppla=='UTI' }">
                       <div id="customerOrdersTable" class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","itp","est","fecini"],"page":5, "pagination":true }'>
                           <div class="table-responsive scrollbar mx-n1 px-1">
-                            <table class="table table-sm fs--1 mb-0">
+                            <table class="table table-sm fs--1 mb-0 ">
                               <thead>
                                   <tr>
                                     <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">

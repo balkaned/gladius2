@@ -2186,8 +2186,6 @@ public class PlanillaController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
-
         model.addAttribute("codreg", codreg);
         model.addAttribute("codproceso", codproceso);
         model.addAttribute("periodo", periodo);
@@ -2204,10 +2202,15 @@ public class PlanillaController {
 
         model.addAttribute("LstPlanillaRes", plaperpro);
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, codproceso, periodo));
-        /*model.addAttribute("lovConcepProVar", dao.ListConcepProVar((Integer) session.getAttribute("codcia"), v_codpro, "2"));
-        model.addAttribute("fdatavar", dao.obtenerEmpDatvar((Integer) session.getAttribute("codcia"), v_codpro, v_nroper, Integer.parseInt(V_codtra), Integer.parseInt(V_correl)));
-        
-        model.addAttribute("lst_tipcese", daolov.getLovs("17", "%"));*/
+
+        List<Concepto> lstConcep = sueldoService.ListConcepProVar(idCompania, codproceso, "2");
+        log.info("lstConcep: {} ", lstConcep);
+        model.addAttribute("lovConcepProVar", lstConcep);
+        model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
+
+        List<EmpDatvar> lstEmpDatVar = sueldoService.obtenerEmpDatvar(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl));
+        log.info("lstEmpDatVar: {} ", lstEmpDatVar);
+        model.addAttribute("fdatvar", lstEmpDatVar);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaLiquidacion");
     }
