@@ -2347,4 +2347,38 @@ public class PlanillaController {
 
         return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo + "@" + iexcodtra + "@" + iexcorrel);
     }
+
+    @RequestMapping("/actualizarValorTrabConceptLiqVar@{codtra}@{codproceso}@{periodo}@{iexcodcon}@{iexcorrel}@{iexcodreg}@{valor}")
+    public ModelAndView actualizarValorTrabConceptLiqVar(ModelMap model, HttpServletRequest request,
+                                                         @PathVariable String codtra,
+                                                         @PathVariable Integer codproceso,
+                                                         @PathVariable String periodo,
+                                                         @PathVariable String iexcodcon,
+                                                         @PathVariable Integer iexcorrel,
+                                                         @PathVariable Integer iexcodreg,
+                                                         @PathVariable String valor) {
+        log.info("/actualizarValorTrabConceptLiqVar");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        EmpDatvar empdatvar2 = new EmpDatvar();
+        empdatvar2.setIexcodcia(idCompania);
+        empdatvar2.setIexcodtra(Integer.parseInt(codtra));
+        empdatvar2.setIexcodpro(codproceso);
+        empdatvar2.setIexnroper(periodo);
+        empdatvar2.setIexcodcon(iexcodcon);
+        empdatvar2.setIexvalcon(Double.parseDouble(valor));
+        empdatvar2.setIexflgest("1");
+        empdatvar2.setIexcorrel(iexcorrel);
+
+        sueldoService.actualizarEmpDatvar(empdatvar2);
+
+        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + codproceso + "@" + periodo + "@" + codtra + "@" + iexcorrel);
+    }
 }
