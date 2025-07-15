@@ -147,4 +147,8 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.getLiqProper(codcia, idproceso, perpro, codtra, correl, txt);
     }
 
+    public String updLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc, String fecpag) {
+        return dao.updLiqPla(codcia, idproceso, perpro, codtra, correl, tipcese, observa, fecese, usu, flgboltrunc, fecpag);
+    }
+
 }

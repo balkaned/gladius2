@@ -1605,11 +1605,6 @@ public class PlanillaController {
         String v_fecfin = request.getParameter("fecfin");
         String codtra = request.getParameter("codtra");
 
-        log.info("v_fecini: " + v_fecini);
-        log.info("v_fecfin: " + v_fecfin);
-        log.info("codtra: " + codtra);
-        log.info("user: " + user);
-
         Date d1 = null;
         Date d2 = null;
 
@@ -1664,11 +1659,6 @@ public class PlanillaController {
         Integer v_idproceso = Integer.valueOf(request.getParameter("iexcodpro"));
         String v_periodo = request.getParameter("iexperiodo");
         String iexcorrel = request.getParameter("iexcorrel");
-
-        log.info("codtra: " + codtra);
-        log.info("v_idproceso: " + v_idproceso);
-        log.info("v_periodo: " + v_periodo);
-        log.info("iexcorrel: " + iexcorrel);
 
         turnoDiarioService.consolidaAsistencia(idCompania, v_idproceso, codtra, v_periodo, Integer.valueOf(iexcorrel), "");
 
@@ -1921,10 +1911,6 @@ public class PlanillaController {
         Integer codtra = Integer.valueOf(request.getParameter("codtra"));
         String iexcodturno = request.getParameter("iexcodturno");
         String desfecdia = request.getParameter("desfecdia");
-
-        log.info("codtra: " + codtra);
-        log.info("iexcodturno: " + iexcodturno);
-        log.info("desfecdia: " + desfecdia);
 
         turnoDiarioService.automarkTurnoDia(idCompania, codtra, Integer.valueOf(iexcodturno), desfecdia, user);
 
@@ -2186,32 +2172,179 @@ public class PlanillaController {
         sessionattributes.getVariablesSession(model, request);
         Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
 
-        model.addAttribute("codreg", codreg);
-        model.addAttribute("codproceso", codproceso);
-        model.addAttribute("periodo", periodo);
-        model.addAttribute("idCom", idCompania);
-
-        log.info("idCompania: {} ", idCompania);
+        log.info("codreg: {} ", codreg);
         log.info("codproceso: {} ", codproceso);
         log.info("periodo: {} ", periodo);
         log.info("codtra: {} ", codtra);
         log.info("correl: {} ", correl);
 
-        PlaProPeriodo plaperpro = planillaService.getLiqProper(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl), "");
-        log.info("plaperpro: {} ", plaperpro);
+        model.addAttribute("iexcodreg", codreg);
+        model.addAttribute("iexcodpro", codproceso);
+        model.addAttribute("iexperiodo", periodo);
 
+        PlaProPeriodo plaperpro = planillaService.getLiqProper(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl), "");
         model.addAttribute("LstPlanillaRes", plaperpro);
+
         model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(idCompania, codproceso, periodo));
 
         List<Concepto> lstConcep = sueldoService.ListConcepProVar(idCompania, codproceso, "2");
-        log.info("lstConcep: {} ", lstConcep);
         model.addAttribute("lovConcepProVar", lstConcep);
+
         model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
 
         List<EmpDatvar> lstEmpDatVar = sueldoService.obtenerEmpDatvar(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl));
-        log.info("lstEmpDatVar: {} ", lstEmpDatVar);
         model.addAttribute("fdatvar", lstEmpDatVar);
 
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaLiquidacion");
+    }
+
+    @SneakyThrows
+    @RequestMapping(value = "/gestionarPlanLiq", method = RequestMethod.POST)
+    public ModelAndView gestionarPlanLiq(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+        log.info("/gestionarPlanLiq");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+        String usuario = (String) request.getSession().getAttribute("user");
+
+        String accion = request.getParameter("accion");
+        log.info("accion: {} ", accion);
+
+        String codreg = request.getParameter("iexcodreg");
+        String codtra = request.getParameter("iexcodtra");
+        String correl = request.getParameter("iexcorrel");
+        String codproceso = request.getParameter("iexcodpro");
+        String periodo = request.getParameter("iexperiodo");
+        String tipcese = request.getParameter("idxtipcese");
+        String fecpag = request.getParameter("iexfecpago");
+        String observa = request.getParameter("txtobservacion");
+        String feccese = request.getParameter("iexfeccese");
+        String flgboltrunc = request.getParameter("flgboltrunc");
+        String slccodcon = request.getParameter("slccodcon");
+        String txtimporte = request.getParameter("txtimporte");
+
+        log.info("codreg: {} ", codreg);
+        log.info("codtra: {} ", codtra);
+        log.info("correl: {} ", correl);
+        log.info("codproceso: {} ", codproceso);
+        log.info("periodo: {} ", periodo);
+        log.info("tipcese: {} ", tipcese);
+        log.info("fecpag: {} ", fecpag);
+        log.info("observa: {} ", observa);
+        log.info("feccese: {} ", feccese);
+        log.info("slccodcon: {} ", feccese);
+        log.info("txtimporte: {} ", feccese);
+
+        if (flgboltrunc.equals("on")) {
+            flgboltrunc = "1";
+        } else {
+            flgboltrunc = "0";
+        }
+
+        log.info("flgboltrunc: {} ", flgboltrunc);
+
+        if (accion.equals("UPDLIQ")) {
+            planillaService.updLiqPla(
+                    idCompania,
+                    Integer.parseInt(codproceso),
+                    periodo,
+                    Integer.parseInt(codtra),
+                    Integer.parseInt(correl),
+                    tipcese,
+                    observa,
+                    feccese,
+                    usuario,
+                    flgboltrunc,
+                    fecpag
+            );
+        }
+
+        if (accion.equals("INSVARLIQ")) {
+            EmpDatvar empdatvar = new EmpDatvar();
+            empdatvar.setIexcodcia(idCompania);
+            empdatvar.setIexcodtra(Integer.parseInt(codtra));
+            empdatvar.setIexcodpro(Integer.parseInt(codproceso));
+            empdatvar.setIexnroper(periodo);
+            empdatvar.setIexcodcon(slccodcon);
+            empdatvar.setIexvalcon(Double.parseDouble(txtimporte));
+            empdatvar.setIexflgest("1");
+            empdatvar.setIexcorrel(Integer.parseInt(correl));
+
+            sueldoService.insertarEmpDatvar(empdatvar);
+        }
+
+        model.addAttribute("iexcodreg", codreg);
+        model.addAttribute("iexcodpro", codproceso);
+        model.addAttribute("iexperiodo", periodo);
+
+        PlaProPeriodo plaperpro = planillaService.getLiqProper(
+                idCompania,
+                Integer.parseInt(codproceso),
+                periodo,
+                Integer.parseInt(codtra),
+                Integer.parseInt(correl),
+                ""
+        );
+        model.addAttribute("LstPlanillaRes", plaperpro);
+
+        model.addAttribute("xproplaper", procesoPlanillaService.recuperarPeriodo2(
+                idCompania,
+                Integer.parseInt(codproceso),
+                periodo)
+        );
+
+        List<Concepto> lstConcep = sueldoService.ListConcepProVar(idCompania, Integer.parseInt(codproceso), "2");
+        model.addAttribute("lovConcepProVar", lstConcep);
+
+        model.addAttribute("lstTipCese", lovsService.getLovs("17", "%"));
+
+        List<EmpDatvar> lstEmpDatVar = sueldoService.obtenerEmpDatvar(
+                idCompania,
+                Integer.parseInt(codproceso),
+                periodo,
+                Integer.parseInt(codtra),
+                Integer.parseInt(correl)
+        );
+        model.addAttribute("fdatvar", lstEmpDatVar);
+
+        return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaLiquidacion");
+    }
+
+    @RequestMapping("/eliminarPlanConcepVarLiq@{iexcodpro}@{iexperiodo}@{iexcorrel}@{iexcodtra}@{iexcodcon}@{iexcodreg}")
+    public ModelAndView eliminarPlanConcepVarLiq(ModelMap model, HttpServletRequest request,
+                                                 @PathVariable Integer iexcodpro,
+                                                 @PathVariable String iexperiodo,
+                                                 @PathVariable Integer iexcorrel,
+                                                 @PathVariable Integer iexcodtra,
+                                                 @PathVariable String iexcodcon,
+                                                 @PathVariable String iexcodreg) {
+        log.info("/eliminarPlanConcepVarLiq");
+
+        String user = (String) request.getSession().getAttribute("user");
+        if (user == null || user.equals("") || user.equals("null")) {
+            return new ModelAndView("redirect:/login2");
+        }
+
+        sessionattributes.getVariablesSession(model, request);
+        Integer idCompania = (Integer) request.getSession().getAttribute("idCompania");
+
+        EmpDatvar empdatvar3 = new EmpDatvar();
+        empdatvar3.setIexcodcia(idCompania);
+        empdatvar3.setIexcodtra(iexcodtra);
+        empdatvar3.setIexcodpro(iexcodpro);
+        empdatvar3.setIexnroper(iexperiodo);
+        empdatvar3.setIexcodcon(iexcodcon);
+        empdatvar3.setIexvalcon(0.0);
+        empdatvar3.setIexflgest("1");
+        empdatvar3.setIexcorrel(iexcorrel);
+
+        sueldoService.eliminarEmpDatvar(empdatvar3);
+
+        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo + "@" + iexcodtra + "@" + iexcorrel);
     }
 }

@@ -38,7 +38,7 @@
     }
 
     #logobanner{
-        border-radius: 16px 16px 0px 0px;
+        border-radius: 13px 13px 0px 0px;
         /*border-radius: 0px 0px 0px 0px;*/
         background-image: url("resources/assets/img/bg/bgLogo1.png");
         height:125px;
@@ -80,7 +80,7 @@
                     <div id="logobanner" class="bg-dark ms-0 mb-0 pb-0 border-0" >
                     </div>
                     <div class="mt-0 mb-0">
-                        <a class="d-flex flex-center text-decoration-none mb-0" href="../../../index.jsp">
+                        <a class="d-flex flex-center text-decoration-none mb-0" target="_blank" href="https://balkaned.com/">
                             <div class="d-flex align-items-center mt-1 fw-bolder fs-5 d-inline-block">
                                 <img class="mt-2" src="resources/assets/img/icons/logoLoginGlad4.png" alt="" width="170" />
                                 <!--<label class="mt-3 text-black fs-2 fs-semi-bold" >Gladius</label>-->
@@ -117,7 +117,7 @@
                           <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                         </div>
                         <!--<button type="submit" class="btn btn-primary w-100 mb-3" href="#"><span class="fas fa-rocket me-2"></span>Ingresar</button>-->
-                        <button type="submit" class="btn btn-primary bg-black text-white border rounded-5 w-100 mb-3" href="#">Iniciar sesión</button>
+                        <button type="submit" class="btn btn-primary text-white w-100 mb-3" href="#">Iniciar sesión</button>
                         <!--<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
                         <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>-->
                         <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->

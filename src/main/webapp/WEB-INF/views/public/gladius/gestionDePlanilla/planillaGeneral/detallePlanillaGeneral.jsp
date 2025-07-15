@@ -50,7 +50,6 @@
               <div class="g-3 mb-2">
                 <div class="col-12">
                   <h2 id="h2top" class="mb-2">Gestión de planillas </h2>
-
                   <div class="row col-12">
                       <div class="col-12">
                         <span class="badge badge-tag me-2 mb-2">Regimen: ${requestScope.xproplaper.desregimen}</span>
@@ -92,7 +91,7 @@
                   <c:if test="${requestScope.xproplaper.desgrppla=='LIQ'}">
                       <div class="col-auto">
                         <a class="btn btn-phoenix-secondary btn-sm mt-1" href="buscarPlanillaGen"><span class="fas fa-reply me-2"></span>Atras</a>
-                        <a class="btn btn-primary btn-sm mt-1" href="ingresarLiq@${iexcodreg}@${iexcodpro}@${iexperiodo}" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
+                        <a class="btn btn-primary btn-sm mt-1 ms-1" href="ingresarLiq@${iexcodreg}@${iexcodpro}@${iexperiodo}" href="#"><span class="fas fa-plus me-2"></span>Ingresar</a>
                       </div>
                   </c:if>
                 </div>
