@@ -2155,13 +2155,14 @@ public class PlanillaController {
         return new ModelAndView("redirect:/listarDetallePlanillaGen@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo);
     }
 
-    @RequestMapping("/detallePlanLiq@{codreg}@{codproceso}@{periodo}@{codtra}@{correl}")
+    @RequestMapping("/detallePlanLiq@{codreg}@{codproceso}@{periodo}@{codtra}@{correl}@{grppla}")
     public ModelAndView detallePlanLiq(ModelMap model, HttpServletRequest request,
                                        @PathVariable Integer codreg,
                                        @PathVariable Integer codproceso,
                                        @PathVariable String periodo,
                                        @PathVariable String codtra,
-                                       @PathVariable String correl) {
+                                       @PathVariable String correl,
+                                       @PathVariable String grppla) {
         log.info("/detallePlanLiq");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -2177,10 +2178,12 @@ public class PlanillaController {
         log.info("periodo: {} ", periodo);
         log.info("codtra: {} ", codtra);
         log.info("correl: {} ", correl);
+        log.info("grppla: {} ", grppla);
 
         model.addAttribute("iexcodreg", codreg);
         model.addAttribute("iexcodpro", codproceso);
         model.addAttribute("iexperiodo", periodo);
+        model.addAttribute("xgrppla", grppla);
 
         PlaProPeriodo plaperpro = planillaService.getLiqProper(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl), "");
         model.addAttribute("LstPlanillaRes", plaperpro);
@@ -2227,6 +2230,7 @@ public class PlanillaController {
         String flgboltrunc = request.getParameter("flgboltrunc");
         String slccodcon = request.getParameter("slccodcon");
         String txtimporte = request.getParameter("txtimporte");
+        String grppla = request.getParameter("grppla");
 
         log.info("codreg: {} ", codreg);
         log.info("codtra: {} ", codtra);
@@ -2239,6 +2243,7 @@ public class PlanillaController {
         log.info("feccese: {} ", feccese);
         log.info("slccodcon: {} ", feccese);
         log.info("txtimporte: {} ", feccese);
+        log.info("grppla: {} ", grppla);
 
         if (flgboltrunc.equals("on")) {
             flgboltrunc = "1";
@@ -2276,6 +2281,37 @@ public class PlanillaController {
             empdatvar.setIexcorrel(Integer.parseInt(correl));
 
             sueldoService.insertarEmpDatvar(empdatvar);
+        }
+
+        if (accion.equals("DELPRO")) {
+            planillaService.delPlaProper(
+                    idCompania,
+                    Integer.parseInt(codproceso),
+                    periodo,
+                    Integer.parseInt(codtra),
+                    Integer.parseInt(correl),
+                    grppla,
+                    usuario
+            );
+
+            return new ModelAndView("redirect:/listarDetallePlanillaGen@" + codreg + "@" + codproceso + "@" + periodo);
+        }
+
+        if (accion.equals("CIERRLIQ")) {
+            planillaService.cieLiqPla(
+                    idCompania,
+                    Integer.parseInt(codproceso),
+                    periodo,
+                    Integer.parseInt(codtra),
+                    Integer.parseInt(correl),
+                    tipcese,
+                    observa,
+                    feccese,
+                    usuario,
+                    flgboltrunc
+            );
+
+            //return new ModelAndView("redirect:/listarDetallePlanillaGen@" + codreg + "@" + codproceso + "@" + periodo);
         }
 
         model.addAttribute("iexcodreg", codreg);

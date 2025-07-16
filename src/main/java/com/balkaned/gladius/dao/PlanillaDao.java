@@ -74,4 +74,6 @@ public interface PlanillaDao {
 
     public String updLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc, String fecpag);
 
+    public String cieLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc);
+
 }

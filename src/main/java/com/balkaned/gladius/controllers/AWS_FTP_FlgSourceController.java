@@ -534,13 +534,24 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    AmazonS3 s12 = null;
-                    S3Object o12 = null;
-                    s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                    fileName = "reportes/" + nombreJasper + ".jasper";
-                    o12 = s12.getObject(bucket_name, fileName);
-                    inputStreamRep = o12.getObjectContent();
-                    log.info("Obtiene Reporte jasper Path: " + fileName);
+                    if (nombreJasper.equals("BoletaEmpTraLiq")) {
+                        String nombreJasperLiq = "BoletaEmpTra";
+                        AmazonS3 s12 = null;
+                        S3Object o12 = null;
+                        s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/" + nombreJasperLiq + ".jasper";
+                        o12 = s12.getObject(bucket_name, fileName);
+                        inputStreamRep = o12.getObjectContent();
+                        log.info("Obtiene Reporte jasper Path: " + fileName);
+                    } else if (nombreJasper.equals("BoletaEmpTra")) {
+                        AmazonS3 s12 = null;
+                        S3Object o12 = null;
+                        s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                        fileName = "reportes/" + nombreJasper + ".jasper";
+                        o12 = s12.getObject(bucket_name, fileName);
+                        inputStreamRep = o12.getObjectContent();
+                        log.info("Obtiene Reporte jasper Path: " + fileName);
+                    }
 
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
@@ -589,8 +600,10 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    // Parámetro Subreporte solo para BoletaEmpleados
-                    if (nombreJasper.equals("BoletaEmpTra") || nombreJasper.equals("BoletaEmp")) {
+                    // Parámetro Subreporte solo para BoletaEmpleados y Boleta Liquidación
+                    if (nombreJasper.equals("BoletaEmpTra") ||
+                            nombreJasper.equals("BoletaEmp") ||
+                            nombreJasper.equals("BoletaEmpTraLiq")) {
                         log.info("Sub report BoletaEmpleados");
                         for (ParametroReport item2 : lspreport) {
                             log.info("item.getNombreParametro(): " + item2.getNombreParametro());
@@ -599,12 +612,12 @@ public class AWS_FTP_FlgSourceController {
                                 log.info("Ingreso if cuando parametro es P_CODPRO");
 
                                 ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
+                                log.info("pro: {} ", pro);
 
-                                // Subreporte parámetros
+                                /* 1.Inicio Subreporte parámetros */
                                 InputStream inputStreamParam = null;
                                 String reportejaspSubReportParam = pro.getRep_parameter();
                                 log.info("reportejaspSubReportParam: " + reportejaspSubReportParam);
-
                                 AmazonS3 s13 = null;
                                 S3Object o13 = null;
                                 s13 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -612,14 +625,13 @@ public class AWS_FTP_FlgSourceController {
                                 o13 = s13.getObject(bucket_name, fileName);
                                 inputStreamParam = o13.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
-
                                 parametros.put("SUBREPORT_DIR", inputStreamParam);
+                                /* Fin Subreporte parámetros */
 
-                                // Subreporte ingresos
+                                /* 2.Inicio Subreporte Ingresos */
                                 InputStream inputStreamIngresos = null;
                                 String reportejaspSubReportIngresos = pro.getRep_ingresos();
                                 log.info("reportejaspSubReportIngresos: " + reportejaspSubReportIngresos);
-
                                 AmazonS3 s14 = null;
                                 S3Object o14 = null;
                                 s14 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -627,14 +639,13 @@ public class AWS_FTP_FlgSourceController {
                                 o14 = s14.getObject(bucket_name, fileName);
                                 inputStreamIngresos = o14.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
-
                                 parametros.put("SUBREPORT_DIR02", inputStreamIngresos);
+                                /* Fin Subreporte Ingresos */
 
-                                // Subreporte descuentos
+                                /* 3.Inicio Subreporte Descuentos */
                                 InputStream inputStreamDescuentos = null;
                                 String reportejaspSubReportDescuentos = pro.getRep_descuentos();
                                 log.info("reportejaspSubReportDescuentos: " + reportejaspSubReportDescuentos);
-
                                 AmazonS3 s15 = null;
                                 S3Object o15 = null;
                                 s15 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -642,14 +653,13 @@ public class AWS_FTP_FlgSourceController {
                                 o15 = s15.getObject(bucket_name, fileName);
                                 inputStreamDescuentos = o15.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
-
                                 parametros.put("SUBREPORT_DIR03", inputStreamDescuentos);
+                                /* Fin Subreporte Descuentos */
 
-                                // Subreporte aportes
+                                /* 4.Inicio Subreporte Aportes */
                                 InputStream inputStreamAportes = null;
                                 String reportejaspSubReportAportes = pro.getRep_aportes();
                                 log.info("reportejaspSubReportAportes: " + reportejaspSubReportAportes);
-
                                 AmazonS3 s16 = null;
                                 S3Object o16 = null;
                                 s16 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -657,8 +667,24 @@ public class AWS_FTP_FlgSourceController {
                                 o16 = s16.getObject(bucket_name, fileName);
                                 inputStreamAportes = o16.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
-
                                 parametros.put("SUBREPORT_DIR04", inputStreamAportes);
+                                /* Fin Subreporte Aportes */
+
+                                if (nombreJasper.equals("BoletaEmpTraLiq")) {
+                                    /* 5.Inicio Subreporte BoletaLiqParam */
+                                    InputStream inputStreamBoletaLiq = null;
+                                    String reportejaspSubReportBoletaLiq = "BoletaLiqParam";
+                                    log.info("reportejaspSubReportBoletaLiq: " + reportejaspSubReportBoletaLiq);
+                                    AmazonS3 s17 = null;
+                                    S3Object o17 = null;
+                                    s16 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                    fileName = "reportes/" + reportejaspSubReportBoletaLiq + ".jasper";
+                                    o16 = s16.getObject(bucket_name, fileName);
+                                    inputStreamBoletaLiq = o16.getObjectContent();
+                                    log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+                                    parametros.put("SUBREPORT_DIR05", inputStreamBoletaLiq);
+                                    /* Fin Subreporte BoletaLiqParam */
+                                }
                             }
                         }
                     }
@@ -767,16 +793,16 @@ public class AWS_FTP_FlgSourceController {
                         img12.setIexcodcia(Integer.valueOf(codciax));
                         img12.setIexcodgrpfile(Integer.valueOf(idGrpfileLegajox));
 
-                        log.info("idGrpfileLegajox: "+idGrpfileLegajox);
-                        log.info("idImageLegajox: "+idImageLegajox);
+                        log.info("idGrpfileLegajox: " + idGrpfileLegajox);
+                        log.info("idImageLegajox: " + idImageLegajox);
 
-                        String varRecup=idImageLegajox;
+                        String varRecup = idImageLegajox;
                         String[] parts = varRecup.split("-");
                         String iexcodimage = parts[0];
                         String iexgrpfile = parts[1];
 
-                        log.info("iexcodimage: "+iexcodimage);
-                        log.info("iexgrpfile: "+iexgrpfile);
+                        log.info("iexcodimage: " + iexcodimage);
+                        log.info("iexgrpfile: " + iexgrpfile);
 
                         img12.setIexcodimage(Integer.valueOf(iexcodimage));
 

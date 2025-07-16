@@ -151,4 +151,8 @@ public class PlanillaServiceImpl implements PlanillaService {
         return dao.updLiqPla(codcia, idproceso, perpro, codtra, correl, tipcese, observa, fecese, usu, flgboltrunc, fecpag);
     }
 
+    public String cieLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc) {
+        return dao.cieLiqPla(codcia, idproceso, perpro, codtra, correl, tipcese, observa, fecese, usu, flgboltrunc);
+    }
+
 }

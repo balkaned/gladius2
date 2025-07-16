@@ -122,10 +122,30 @@
             } else {
                return false;
             }
+          } else if(variable==17){
+                var opcion = confirm("Esta seguro que desea cerrar la planilla para este trabajador?");
+
+                if (opcion == true) {
+                   document.getElementById("accion").value="CIERRLIQ";
+                   document.getElementById("formLiqPlanillas").submit();
+                   return true;
+                } else {
+                   return false;
+                }
+          } else if(variable==18){
+                var opcion = confirm("Esta seguro que desea eliminar al trabajador de la planilla liquidación?");
+
+                if (opcion == true) {
+                   document.getElementById("accion").value="DELPRO";
+                   document.getElementById("formLiqPlanillas").submit();
+                   return true;
+                } else {
+                   return false;
+                }
           }
      }
 
-     function descargarBoleta(idComp){
+     function descargarBoletaLiq(idComp){
          var codtra = $("#iexcodtra").val();
 
          var iexcodpro = $("#iexcodpro").val();
@@ -134,7 +154,7 @@
 
          var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
 
-         document.getElementById("botonDescargarBoletaTrab").href="AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@BoletaEmpTra@"+params+"@null@null@null";
+         document.getElementById("botonDescargarBoletaTrabLiq").href="AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@BoletaEmpTraLiq@"+params+"@null@null@null";
      }
   </script>
 
@@ -245,7 +265,12 @@
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
-                                <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="${LstPlanillaRes.flgciedet}" disabled />
+                                <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                                    <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="Abierto" disabled />
+                                </c:if>
+                                <c:if test="${LstPlanillaRes.flgciedet=='3'}">
+                                    <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="Cerrado" disabled />
+                                </c:if>
                             </div>
                             <div class="col-12 gy-3">
                                 <div class="col-12">
@@ -270,7 +295,9 @@
                               <input class="form-control" name="txtimporte" id="txtimporte" maxlength="10" step=0.01 type="number" value="" placeholder="334.00" required/>
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <button class="btn btn-phoenix-primary btn-sm mt-5" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add variable</button>
+                                <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                                    <button class="btn btn-phoenix-primary btn-sm mt-5" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add variable</button>
+                                </c:if>
                             </div>
 
                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
@@ -343,7 +370,12 @@
                                         <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="#">${fdatvar.iexcodcon}</a></td>
                                         <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${fdatvar.coodescon}</td>
                                         <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
-                                             <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}_valor" name="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" value="${fdatvar.iexvalcon}"
+                                            <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                                                <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}_valor" name="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" value="${fdatvar.iexvalcon}" />
+                                            </c:if>
+                                            <c:if test="${LstPlanillaRes.flgciedet=='3'}">
+                                                <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}_valor" name="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" value="${fdatvar.iexvalcon}" disabled />
+                                            </c:if>
                                         </td>
 
                                         <td class="align-middle text-end white-space-nowrap pe-0 action">
@@ -352,9 +384,19 @@
                                              data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                              <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                              <div class="dropdown-menu dropdown-menu-end py-2">
-                                                  <a id="dropdownmenutable_${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatvar.iexcodtra}_${fdatvar.iexcodcon}','${fdatvar.iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                                  <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                                                    <a id="dropdownmenutable_${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatvar.iexcodtra}_${fdatvar.iexcodcon}','${fdatvar.iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                                  </c:if>
+                                                  <c:if test="${LstPlanillaRes.flgciedet=='3'}">
+                                                    <a id="dropdownmenutable_${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item disabled" onclick="return actualizar('${fdatvar.iexcodtra}_${fdatvar.iexcodcon}','${fdatvar.iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                                  </c:if>
                                                   <div class="dropdown-divider"></div>
-                                                  <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${fdatvar.iexcodtra}@${fdatvar.iexcodcon}@${iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                  <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                                                    <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${fdatvar.iexcodtra}@${fdatvar.iexcodcon}@${iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                  </c:if>
+                                                  <c:if test="${LstPlanillaRes.flgciedet=='3'}">
+                                                    <a id="dropdownmenutable" class="dropdown-item disabled" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${fdatvar.iexcodtra}@${fdatvar.iexcodcon}@${iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                  </c:if>
                                              </div>
                                            </div>
                                         </td>
@@ -378,13 +420,13 @@
                       </div>
                   </div>
 
-                  <label class="fs--3" >flgciedet=${LstPlanillaRes.flgciedet}</label>
+                  <label class="fs--2 me-2" >flgciedet: (${LstPlanillaRes.flgciedet}) </label>
                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
                     <a name="procesar" onclick="enviaForm('16')" class="btn btn-phoenix-success btn-sm"><span class="fas fa-wrench me-2"></span>Procesar</a>
                   </c:if>
 
-                    <a id="botonDescargarBoletaTrab" target="_blank"
-                        onclick="descargarBoleta(${idComp});"
+                    <a id="botonDescargarBoletaTrabLiq" target="_blank"
+                        onclick="descargarBoletaLiq(${idComp});"
                         class="btn btn-phoenix-primary btn-sm"><span class="fas fa-plus-minus me-2"></span>Liq. Benef. sociales (LBS)</a>
 
                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
@@ -396,7 +438,7 @@
 
                   <a target="_blank"
                     href="AWSorFTP_flgsource@verReportePDF@${idComp}@${LstPlanillaRes.iexcodtra}@null@null@CertiLiqTra@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=${LstPlanillaRes.iexcorrel}@null@null@null"
-                    class="btn btn-phoenix-secondary btn-sm"><span class="fas fa-bookmark me-2"></span>Certificado de trab.</a>
+                    class="btn btn-phoenix-warning btn-sm"><span class="fas fa-bookmark me-2"></span>Certificado de trab.</a>
               </form>
             </div>
             <jsp:include page="../../../footer.jsp"></jsp:include>
