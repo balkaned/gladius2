@@ -2310,8 +2310,6 @@ public class PlanillaController {
                     usuario,
                     flgboltrunc
             );
-
-            //return new ModelAndView("redirect:/listarDetallePlanillaGen@" + codreg + "@" + codproceso + "@" + periodo);
         }
 
         model.addAttribute("iexcodreg", codreg);

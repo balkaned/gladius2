@@ -439,7 +439,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 "p.iexcodafp, p.iextipafp, to_char(p.iexfecing,'DD/MM/YYYY') iexfecing, " +
                 "TO_CHAR( p.iexfeccese ,'DD/MM/YYYY') iexfeccese, " +
                 "p.iextipcese, p.iexobscese, p.iexanio_benef, p.iexmes_benef, " +
-                "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc " +
+                "p.iexdia_benef, p.iexinivaca, p.iexfinvaca, p.usumod, p.fecmod, p.flgboltrunc, p.flgciedet " +
                 "from iexpropertra p, " +
                 "iexempleado e " +
                 "where p.iexcodcia = e.iexcodcia and " +

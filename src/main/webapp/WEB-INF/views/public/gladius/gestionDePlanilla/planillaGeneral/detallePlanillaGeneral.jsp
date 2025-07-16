@@ -352,14 +352,15 @@
                                   </th>
                                   <th class="sort white-space-nowrap align-middle pe-2" scope="col" data-sort="id" style="width:5%;">ID</th>
                                   <th class="sort align-middle text-center pe-0 ps-0 white-space-nowrap" scope="col" data-sort="trab">TRABAJADOR</th>
-                                  <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="itp">KEY</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="est">FECING</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="fecini">FECCESE</th>
+                                  <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="key">KEY</th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="fecing">FECING</th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="feccese">FECCESE</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TIPO CESE</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >AÑO S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >MESES S.</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >N° DE DIAS</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" >BOL TRUNC</th>
+                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >ESTADO</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col"></th>
                                 </tr>
                             </thead>
@@ -375,15 +376,17 @@
                                     <td class="trab align-middle text-start fw-semi-bold white-space-nowrap ps-1 pe-1text-1000">
                                         ${LstPlanillaRes.destra}
                                     </td>
-                                    <td class="est align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>
-                                    <td class="fecini align-middle text-start fs-9 ps-1 pe-4"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
-                                    <td class="fecini align-middle text-start fs-9 ps-3"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfeccese}</td>
+                                    <td class="key align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>
+                                    <td class="fecing align-middle text-start fs-9 ps-1 pe-4"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfecing}</td>
+                                    <td class="feccese align-middle text-start fs-9 ps-3"><span class="fa-regular fa-calendar me-2"></span>${LstPlanillaRes.iexfeccese}</td>
                                     <td class="align-middle text-center fw-semi-bold text-600 pe-3">${LstPlanillaRes.iextipcese}</a></td>
                                     <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexanio_benef}</td>
                                     <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexmes_benef}</td>
-                                    <td class="abr al align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexdia_benef}</td>
+                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.iexdia_benef}</td>
                                     <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.flgboltrunc}</td>
-                                    <td class="align-middle text-center fw-semi-bold text-600">${LstPlanillaRes.flgciedet}</td>
+
+                                    <c:if test="${LstPlanillaRes.flgciedet == '3'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-danger"><span class="badge-label">Cerrado</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
+                                    <c:if test="${LstPlanillaRes.flgciedet != '3'}"><td class="payment_status align-middle white-space-nowrap text-center fw-bold text-700"><span class="badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">Abierto</span><span class="ms-1" style="height:12.8px;width:12.8px;"></span></span></td></c:if>
 
                                     <td class="align-middle text-center white-space-nowrap pe-0 action">
                                       <div class="font-sans-serif btn-reveal-trigger position-static">

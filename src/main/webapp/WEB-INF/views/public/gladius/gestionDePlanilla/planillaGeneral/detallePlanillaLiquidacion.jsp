@@ -179,6 +179,7 @@
               <div class="row g-3 mb-2">
                 <div class="col-auto">
                   <h2 id="h2top" class="mb-0">Detalle Liq. Trabajador</h2>
+                  <span class="badge badge-tag me-2 mb-2 fs--3">flgciedet: (${LstPlanillaRes.flgciedet})</span>
                 </div>
               </div>
               <form id="formLiqPlanillas" class="row g-3 mb-0 needs-validation" method="POST" action="gestionarPlanLiq" novalidate >
@@ -327,7 +328,7 @@
                      </div>
                   </div>
 
-                  <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10,"pagination":true}'>
+                  <div class="mt-4" id="orderTable" data-list='{"valueNames":["id","desconcept","val"],"page":10,"pagination":true}'>
                       <div class="mb-3">
                         <div class="g-3">
                           <div class="col-auto">
@@ -339,7 +340,7 @@
                             </div>
                           </div>
 
-                          <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","trab","id_concept","des_concept"],"page":10, "pagination":true }' >
+                          <div class="mt-3 mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1" data-list='{"valueNames":["id","desconcept","val"],"page":10, "pagination":true }' >
                             <div class="table-responsive scrollbar mx-n1 px-1">
                               <table class="table table-sm fs--1 mb-0">
                                 <thead>
@@ -350,8 +351,8 @@
                                       </div>
                                     </th>
                                     <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="id">ID CONCEPT</th>
-                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="trab">DESCRIPCIÓN CONCEPTO</th>
-                                    <th class="sort align-middle text-center ps-5" scope="col" >VALOR</th>
+                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="desconcept">DESCRIPCIÓN CONCEPTO</th>
+                                    <th class="sort align-middle text-center ps-5" scope="col" data-sort="val" >VALOR</th>
                                     <th class="sort align-middle text-center ps-5" scope="col" ></th>
                                   </tr>
                                 </thead>
@@ -364,8 +365,8 @@
                                           </div>
                                         </td>
                                         <td class="id align-middle white-space-nowrap text-start fw-semi-bold text-1000 ps-0"><a class="fw-semi-bold" href="#">${fdatvar.iexcodcon}</a></td>
-                                        <td class="trab align-middle text-start fw-semi-bold text-1000 ps-5">${fdatvar.coodescon}</td>
-                                        <td class="align-middle text-start fw-semi-bold text-1000 ps-5">
+                                        <td class="desconcept align-middle text-start fw-semi-bold text-1000 ps-5">${fdatvar.coodescon}</td>
+                                        <td class="val align-middle text-start fw-semi-bold text-1000 ps-5">
                                             <c:if test="${LstPlanillaRes.flgciedet!='3'}">
                                                 <input class="form-control text-end" style="width:120px !important;" type="number" step=0.01 id="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}_valor" name="${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" value="${fdatvar.iexvalcon}" />
                                             </c:if>
@@ -415,15 +416,13 @@
                         </div>
                       </div>
                   </div>
-
-                  <label class="fs--2 me-2" >flgciedet: (${LstPlanillaRes.flgciedet}) </label>
                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
                     <a name="procesar" onclick="enviaForm('16')" class="btn btn-phoenix-success btn-sm"><span class="fas fa-wrench me-2"></span>Procesar</a>
                   </c:if>
 
-                    <a id="botonDescargarBoletaTrabLiq" target="_blank"
+                  <a id="botonDescargarBoletaTrabLiq" target="_blank"
                         onclick="descargarBoletaLiq(${idComp});"
-                        class="btn btn-phoenix-primary btn-sm"><span class="fas fa-plus-minus me-2"></span>Liq. Benef. sociales (LBS)</a>
+                        class="btn btn-phoenix-secondary btn-sm"><span class="fas fa-calculator me-2"></span>Liq. Benef. sociales (LBS)</a>
 
                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
                     <a name="Cerrar" onclick="enviaForm('17')" class="btn btn-phoenix-secondary btn-sm"><span class="fas fa-user-lock me-2"></span>Cerrar</a>
@@ -434,7 +433,7 @@
 
                   <a target="_blank"
                     href="AWSorFTP_flgsource@verReportePDF@${idComp}@${LstPlanillaRes.iexcodtra}@null@null@CertiLiqTra@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=${LstPlanillaRes.iexcorrel}@null@null@null"
-                    class="btn btn-phoenix-warning btn-sm"><span class="fas fa-bookmark me-2"></span>Certificado de trab.</a>
+                    class="btn btn-phoenix-primary btn-sm"><span class="fas fa-bookmark me-2"></span>Certificado de trab.</a>
               </form>
             </div>
             <jsp:include page="../../../footer.jsp"></jsp:include>
