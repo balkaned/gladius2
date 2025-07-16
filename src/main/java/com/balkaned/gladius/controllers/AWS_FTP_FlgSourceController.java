@@ -511,6 +511,8 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
+                    log.info("nombreJasper: {} ", nombreJasper);
+
                     // Obtiene foto empleado y logo solo para FichaTrabajador
                     if (nombreJasper.equals("FichaTrabajador")) {
                         log.info("Sub report Foto y Logo FichaTrabajador");
@@ -534,16 +536,7 @@ public class AWS_FTP_FlgSourceController {
                         }
                     }
 
-                    if (nombreJasper.equals("BoletaEmpTraLiq")) {
-                        String nombreJasperLiq = "BoletaEmpTra";
-                        AmazonS3 s12 = null;
-                        S3Object o12 = null;
-                        s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                        fileName = "reportes/" + nombreJasperLiq + ".jasper";
-                        o12 = s12.getObject(bucket_name, fileName);
-                        inputStreamRep = o12.getObjectContent();
-                        log.info("Obtiene Reporte jasper Path: " + fileName);
-                    } else if (nombreJasper.equals("BoletaEmpTra")) {
+                    if (nombreJasper.equals("BoletaEmpTra")) {
                         AmazonS3 s12 = null;
                         S3Object o12 = null;
                         s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
@@ -556,7 +549,6 @@ public class AWS_FTP_FlgSourceController {
                     Map parametros = new HashMap();
                     parametros.put("P_CODCIA", Integer.valueOf(codciax));
                     parametros.put("P_CODTRA", Integer.parseInt(idTrabx));
-                    //parametros.put("SUBREPORT_DIR", request.getServletContext().getRealPath(""));
 
                     // Añade parámetros solo para FichaTrabajador
                     if (nombreJasper.equals("FichaTrabajador")) {
@@ -568,53 +560,53 @@ public class AWS_FTP_FlgSourceController {
 
                     // Agregamos más parámetros al Reporte que vienen desde la url
                     if (lspreport.size() > 0) {
-                        log.info("Agregamos más parámetros al Reporte que vienen desde la url");
+                        log.info("Agregamos mas parametros al Reporte que vienen desde la url");
                         for (ParametroReport item : lspreport) {
                             if (item.getNombreParametro().contains("FEC") || item.getNombreParametro().contains("fec") || item.getNombreParametro().contains("Fec")) {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se inserto parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se inserto parametro item.getValorParametro(): " + item.getValorParametro());
                             } else if (item.getNombreParametro().contains("CORREL") || item.getNombreParametro().contains("correl") || item.getNombreParametro().contains("Correl") || item.getNombreParametro().contains("CORR")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se inserto parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se inserto parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             } else if (item.getNombreParametro().contains("CODPRO") || item.getNombreParametro().contains("codpro") || item.getNombreParametro().contains("Codpro")) {
                                 parametros.put(item.getNombreParametro(), Integer.valueOf(item.getValorParametro()));
-                                log.info("Se insertó parámetro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parámetro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se inserto parametro Integer.valueOf item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se inserto parametro Integer.valueOf item.getValorParametro(): " + item.getValorParametro());
                             } else if (item.getNombreParametro().contains("CODMON") || item.getNombreParametro().contains("codmon") || item.getNombreParametro().contains("Codmon")) {
                                 if (item.getValorParametro().equals("S")) {
                                     parametros.put("P_CODMON", "S/.");
-                                    log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
-                                    log.info("Se insertó parámetro item.getValorParametro(): S/.");
+                                    log.info("Se inserto parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                    log.info("Se inserto parametro item.getValorParametro(): S/.");
                                 } else if (item.getValorParametro().equals("E")) {
                                     parametros.put("P_CODMON", "EU");
-                                    log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
-                                    log.info("Se insertó parámetro item.getValorParametro(): EU");
+                                    log.info("Se inserto parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                    log.info("Se inserto parametro item.getValorParametro(): EU");
                                 }
                             } else {
                                 parametros.put(item.getNombreParametro(), item.getValorParametro());
-                                log.info("Se insertó parámetro item.getNombreParametro(): " + item.getNombreParametro());
-                                log.info("Se insertó parámetro item.getValorParametro(): " + item.getValorParametro());
+                                log.info("Se inserto parametro item.getNombreParametro(): " + item.getNombreParametro());
+                                log.info("Se inserto parametro item.getValorParametro(): " + item.getValorParametro());
                             }
                         }
                     }
 
-                    // Parámetro Subreporte solo para BoletaEmpleados y Boleta Liquidación
-                    if (nombreJasper.equals("BoletaEmpTra") ||
-                            nombreJasper.equals("BoletaEmp") ||
-                            nombreJasper.equals("BoletaEmpTraLiq")) {
+                    // Parámetro Subreporte solo para BoletaEmpleados
+                    if (nombreJasper.equals("BoletaEmpTra") || nombreJasper.equals("BoletaEmp")) {
                         log.info("Sub report BoletaEmpleados");
-                        for (ParametroReport item2 : lspreport) {
-                            log.info("item.getNombreParametro(): " + item2.getNombreParametro());
-                            log.info("item.getValorParametro(): " + item2.getValorParametro());
-                            if (item2.getNombreParametro().equals("P_CODPRO")) {
+                        for (ParametroReport itemBolTra : lspreport) {
+                            log.info("item.getNombreParametro(): " + itemBolTra.getNombreParametro());
+                            log.info("item.getValorParametro(): " + itemBolTra.getValorParametro());
+                            if (itemBolTra.getNombreParametro().equals("P_CODPRO")) {
                                 log.info("Ingreso if cuando parametro es P_CODPRO");
 
-                                ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(item2.getValorParametro()));
+                                log.info("codciax: {} ", codciax);
+                                log.info("P_CODPRO: {} ", itemBolTra.getValorParametro());
+                                ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(itemBolTra.getValorParametro()));
                                 log.info("pro: {} ", pro);
 
-                                /* 1.Inicio Subreporte parámetros */
+                                /* 1.Inicio Subreporte1 parámetros */
                                 InputStream inputStreamParam = null;
                                 String reportejaspSubReportParam = pro.getRep_parameter();
                                 log.info("reportejaspSubReportParam: " + reportejaspSubReportParam);
@@ -626,9 +618,9 @@ public class AWS_FTP_FlgSourceController {
                                 inputStreamParam = o13.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
                                 parametros.put("SUBREPORT_DIR", inputStreamParam);
-                                /* Fin Subreporte parámetros */
+                                /* Fin Subreporte1 parámetros */
 
-                                /* 2.Inicio Subreporte Ingresos */
+                                /* 2.Inicio Subreporte2 Ingresos */
                                 InputStream inputStreamIngresos = null;
                                 String reportejaspSubReportIngresos = pro.getRep_ingresos();
                                 log.info("reportejaspSubReportIngresos: " + reportejaspSubReportIngresos);
@@ -640,9 +632,9 @@ public class AWS_FTP_FlgSourceController {
                                 inputStreamIngresos = o14.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
                                 parametros.put("SUBREPORT_DIR02", inputStreamIngresos);
-                                /* Fin Subreporte Ingresos */
+                                /* Fin Subreporte2 Ingresos */
 
-                                /* 3.Inicio Subreporte Descuentos */
+                                /* 3.Inicio Subreporte3 Descuentos */
                                 InputStream inputStreamDescuentos = null;
                                 String reportejaspSubReportDescuentos = pro.getRep_descuentos();
                                 log.info("reportejaspSubReportDescuentos: " + reportejaspSubReportDescuentos);
@@ -654,9 +646,9 @@ public class AWS_FTP_FlgSourceController {
                                 inputStreamDescuentos = o15.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
                                 parametros.put("SUBREPORT_DIR03", inputStreamDescuentos);
-                                /* Fin Subreporte Descuentos */
+                                /* Fin Subreporte3 Descuentos */
 
-                                /* 4.Inicio Subreporte Aportes */
+                                /* 4.Inicio Subreporte4 Aportes */
                                 InputStream inputStreamAportes = null;
                                 String reportejaspSubReportAportes = pro.getRep_aportes();
                                 log.info("reportejaspSubReportAportes: " + reportejaspSubReportAportes);
@@ -668,23 +660,7 @@ public class AWS_FTP_FlgSourceController {
                                 inputStreamAportes = o16.getObjectContent();
                                 log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
                                 parametros.put("SUBREPORT_DIR04", inputStreamAportes);
-                                /* Fin Subreporte Aportes */
-
-                                if (nombreJasper.equals("BoletaEmpTraLiq")) {
-                                    /* 5.Inicio Subreporte BoletaLiqParam */
-                                    InputStream inputStreamBoletaLiq = null;
-                                    String reportejaspSubReportBoletaLiq = "BoletaLiqParam";
-                                    log.info("reportejaspSubReportBoletaLiq: " + reportejaspSubReportBoletaLiq);
-                                    AmazonS3 s17 = null;
-                                    S3Object o17 = null;
-                                    s16 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-                                    fileName = "reportes/" + reportejaspSubReportBoletaLiq + ".jasper";
-                                    o16 = s16.getObject(bucket_name, fileName);
-                                    inputStreamBoletaLiq = o16.getObjectContent();
-                                    log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
-                                    parametros.put("SUBREPORT_DIR05", inputStreamBoletaLiq);
-                                    /* Fin Subreporte BoletaLiqParam */
-                                }
+                                /* Fin Subreporte4 Aportes */
                             }
                         }
                     }
@@ -708,6 +684,99 @@ public class AWS_FTP_FlgSourceController {
                     // Parámetro Subreporte solo para Boleta5taper
                     if (nombreJasper.equals("Boleta5taper")) {
                         parametros.put("SUBREPORT_DIR", "");
+                    }
+
+                    // Solo para Boleta Liquidación
+                    if (nombreJasper.equals("BoletaEmpTraLiq")) {
+                        log.info("BoletaLiquidacion");
+
+                        String nombreJasperLiq = "";
+
+                        for (ParametroReport itemBolLiq : lspreport) {
+                            log.info("item.getNombreParametro(): " + itemBolLiq.getNombreParametro());
+                            log.info("item.getValorParametro(): " + itemBolLiq.getValorParametro());
+                            if (itemBolLiq.getNombreParametro().equals("P_CODPRO")) {
+                                log.info("Ingreso if cuando parametro es P_CODPRO");
+
+                                log.info("P_CODPRO: {} ", itemBolLiq.getValorParametro());
+                                ProcesoPlanilla pro = procesoPlanillaService.recuperar(Integer.valueOf(itemBolLiq.getValorParametro()));
+                                log.info("pro: {} ", pro);
+
+                                if (!pro.getBolProcesoind().equals("")){
+                                    nombreJasperLiq = pro.getBolProcesoind();
+                                }else{
+                                    nombreJasperLiq = "BoletaEmpTra";
+                                }
+
+                                log.info("Nombre del jasper Final a buscar: " + nombreJasperLiq + ".jasper");
+
+                                /* Inicio Busca el primer Jasper  */
+                                AmazonS3 s18 = null;
+                                S3Object o18 = null;
+                                s18 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + nombreJasperLiq + ".jasper";
+                                o18 = s18.getObject(bucket_name, fileName);
+                                inputStreamRep = o18.getObjectContent();
+                                log.info("Obtiene Reporte jasper Path: " + fileName);
+                                /* Fin Busca el primer Jasper */
+
+                                /* 1.Inicio Subreporte1 BoletaLiqParams */
+                                InputStream inputStreamParam = null;
+                                String reportejaspSubReportParam = "BoletaLiqParam";
+                                log.info("reportejaspSubReportParam: " + reportejaspSubReportParam);
+                                AmazonS3 s19 = null;
+                                S3Object o19 = null;
+                                s19 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportParam + ".jasper";
+                                o19 = s19.getObject(bucket_name, fileName);
+                                inputStreamParam = o19.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+                                parametros.put("SUBREPORT_DIR", inputStreamParam);
+                                /* Fin Subreporte1 BoletaLiqParams */
+
+                                /* 2.Inicio Subreporte2 Ingresos */
+                                InputStream inputStreamIngresos = null;
+                                String reportejaspSubReportIngresos = "BoletaEmp_ingresos";
+                                log.info("reportejaspSubReportIngresos: " + reportejaspSubReportIngresos);
+                                AmazonS3 s20 = null;
+                                S3Object o20 = null;
+                                s20 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportIngresos + ".jasper";
+                                o20 = s20.getObject(bucket_name, fileName);
+                                inputStreamIngresos = o20.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+                                parametros.put("SUBREPORT_DIR02", inputStreamIngresos);
+                                /* Fin Subreporte2 Ingresos */
+
+                                /* 3.Inicio Subreporte3 Descuentos */
+                                InputStream inputStreamDescuentos = null;
+                                String reportejaspSubReportDescuentos = "BoletaEmp_descuentos";
+                                log.info("reportejaspSubReportDescuentos: " + reportejaspSubReportDescuentos);
+                                AmazonS3 s21 = null;
+                                S3Object o21 = null;
+                                s21 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportDescuentos + ".jasper";
+                                o21 = s21.getObject(bucket_name, fileName);
+                                inputStreamDescuentos = o21.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+                                parametros.put("SUBREPORT_DIR03", inputStreamDescuentos);
+                                /* Fin Subreporte3 Descuentos */
+
+                                /* 4.Inicio Subreporte4 Aportes */
+                                InputStream inputStreamAportes = null;
+                                String reportejaspSubReportAportes = "BoletaEmp_aportes";
+                                log.info("reportejaspSubReportAportes: " + reportejaspSubReportAportes);
+                                AmazonS3 s22 = null;
+                                S3Object o22 = null;
+                                s22 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                                fileName = "reportes/" + reportejaspSubReportAportes + ".jasper";
+                                o22 = s22.getObject(bucket_name, fileName);
+                                inputStreamAportes = o22.getObjectContent();
+                                log.info("Obtiene Sub_Reporte jasper Path: " + fileName);
+                                parametros.put("SUBREPORT_DIR04", inputStreamAportes);
+                                /* Fin Subreporte4 Aportes */
+                            }
+                        }
                     }
 
                     log.info("Ruta reporte:" + path);

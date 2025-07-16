@@ -26,22 +26,28 @@ public class ProcesoPlanillaServiceImpl implements ProcesoPlanillaService {
         return dao.listarProRegpla(codcia, regpla, permes);
     }
 
-    public void insertarProper(ProcesoPeriodo pperiodo){
+    public void insertarProper(ProcesoPeriodo pperiodo) {
         dao.insertarProper(pperiodo);
     }
 
-    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo){
-        return dao.recuperarPeriodo2(codcia,idproceso,pperiodo);
+    public ProcesoPeriodo recuperarPeriodo2(Integer codcia, Integer idproceso, String pperiodo) {
+        return dao.recuperarPeriodo2(codcia, idproceso, pperiodo);
     }
-    public void actualizarProper(ProcesoPeriodo pperiodo){
+
+    public void actualizarProper(ProcesoPeriodo pperiodo) {
         dao.actualizarProper(pperiodo);
     }
 
-    public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro){
-        return dao.recuperar_reporte(codcia,codpro);
+    public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro) {
+        return dao.recuperar_reporte(codcia, codpro);
     }
-    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon){
-        return dao.listarPlaNroper(codcia,perini,perfin,codcon);
+
+    public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
+        return dao.listarPlaNroper(codcia, perini, perfin, codcon);
+    }
+
+    public ProcesoPlanilla recuperar(Integer codpro) {
+        return dao.recuperar(codpro);
     }
 
 }

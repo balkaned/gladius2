@@ -262,7 +262,8 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
     public ProcesoPlanillaxCia recuperar_reporte(Integer codcia, Integer codpro) {
 
-        String sql = "select procodpro, " +
+        String sql = "select " +
+                "procodpro, " +
                 "bolproceso, " +
                 "bolproindividual, " +
                 "bolproresumen, " +
@@ -283,50 +284,6 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
 
         return proc;
     }
-
-    /*public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
-
-        String sql = "select " +
-                "d.iexcodcia, " +
-                "d.iexcodpro as procodpro, " +
-                "p.prodespro as despro, " +
-                "d.iexnroper, " +
-                "d.procodcon, " +
-                "c.coodescon, " +
-                "count(1) cantidad, " +
-                "sum(provalor) provalor " +
-                "from iexpropertra_nomina d, iexconcepto c, iexprocesos p " +
-                "where d.procodcon = c.coocodcon and " +
-                "d.iexcodcia = :codcia and " +
-                "d.iexcodpro = p.procodpro and " +
-                "d.procodcon in (:codcon) and " +
-                "d.iexnroper >= :perini and " +
-                "d.iexnroper <= :perfin and " +
-                "provalor <> 0 " +
-                "group by d.iexcodcia, d.iexcodpro, p.prodespro, d.iexnroper, d.procodcon, c.coodescon " +
-                "order by d.iexcodcia, d.iexnroper, d.iexcodpro, d.procodcon, c.coodescon asc ";
-
-        log.info("codcia: {} ", codcia);
-        log.info("codcon: {} ", codcon);
-        log.info("perini: {} ", perini);
-        log.info("perfin: {} ", perfin);
-
-        String finalPerini = "'" + perini + "'";
-        String finalPerfin = "'" + perfin + "'";
-
-        SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("codcia", codcia)
-                .addValue("codcon", codcon)
-                .addValue("perini", perini)
-                .addValue("perfin", perfin);
-
-        List<ConceptoxProcesoxTra> lsConcept = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(ConceptoxProcesoxTra.class));
-
-        log.info("lsconcept: {} ", lsConcept);
-
-        return lsConcept;
-    }*/
 
     public List<ConceptoxProcesoxTra> listarPlaNroper(Integer codcia, String perini, String perfin, String codcon) {
 
@@ -376,5 +333,31 @@ public class ProcesoPlanillaDaoImpl implements ProcesoPlanillaDao {
                 return lista;
             }
         });
+    }
+
+    public ProcesoPlanilla recuperar(Integer codpro) {
+
+        String sql = "select " +
+                "procodpro idProceso, " +
+                "prodespro desProceso, " +
+                "prodescorto desProcesoCorto, " +
+                "procodregimenlab idRegLab, " +
+                //"procodregimenlab desregimen, " +
+                "progrppro, " +
+                "bolproceso bolProceso, " +
+                "idtipproceso idTipProceso, " +
+                "bolprocesoind bolProcesoind, " +
+                "bolprocesores bolProcesores " +
+                "from iexprocesos p  " +
+                "where procodpro = :codpro " +
+                "order by 1 asc ";
+
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("codpro", codpro);
+
+        ProcesoPlanilla pro = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+                BeanPropertyRowMapper.newInstance(ProcesoPlanilla.class));
+
+        return pro;
     }
 }
