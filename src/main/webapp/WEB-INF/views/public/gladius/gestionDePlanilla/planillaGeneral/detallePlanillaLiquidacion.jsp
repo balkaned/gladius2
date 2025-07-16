@@ -226,7 +226,7 @@
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de cese </label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control datetimepicker" name="iexfeccese" id="iexfeccese" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                <input class="form-control datetimepicker" name="iexfeccese" id="iexfeccese" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
                                 <input class="form-control" id="iexfeccesehidden" type="hidden" value="${LstPlanillaRes.iexfeccese}" />
                             </div>
                             <div class="col-sm-6 col-md-1">
@@ -243,7 +243,7 @@
                             </div>
                             <div class="col-sm-6 col-md-5">
                                   <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de cese</label>
-                                  <select id="idxtipcese" name="idxtipcese" class="form-select" required>
+                                  <select id="idxtipcese" name="idxtipcese" class="form-select " required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} >
                                       <option value="" selected >Seleccionar</option>
                                       <c:forEach var="lstTipCese" items="${lstTipCese}">
                                           <option value="${lstTipCese.idLov}" ${lstTipCese.idLov == LstPlanillaRes.iextipcese ? 'selected' : ''}>${lstTipCese.desLov}</option>
@@ -251,39 +251,37 @@
                                   </select>
                             </div>
                             <div class="col-sm-6 col-md-2 mt-7">
-                                <input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" ${LstPlanillaRes.flgboltrunc == '1' ? 'checked=true' : ''}>
+                                <input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" ${LstPlanillaRes.flgboltrunc == '1' ? 'checked=true' : ''} required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} >
                                 <label class="form-check-label ms-2">Flag Boleta trunca</label>
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de pago</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                <input class="form-control datetimepicker" name="iexfecpago" id="iexfecpago" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                <input class="form-control datetimepicker" name="iexfecpago" id="iexfecpago" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
                                 <input class="form-control" id="iexfecpagohidden" type="hidden" value="${LstPlanillaRes.fecpago}" />
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Observación</label>
-                                <input class="form-control" id="txtobservacion" name="txtobservacion" type="text" value="${LstPlanillaRes.iexobscese}" placeholder="Ingrese observación aqui" required />
+                                <input class="form-control" id="txtobservacion" name="txtobservacion" type="text" value="${LstPlanillaRes.iexobscese}" placeholder="Ingrese observación aqui" required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Estado</label>
                                 <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                                    <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="Abierto" disabled />
+                                    <a class="form-control text-center bg-100 text-success disabled" ><span class="fas fa-unlock me-2"></span>Abierto</a>
                                 </c:if>
                                 <c:if test="${LstPlanillaRes.flgciedet=='3'}">
-                                    <input class="form-control text-center" name="iexnroiddep" type="text" placeholder="#" value="Cerrado" disabled />
+                                    <a class="form-control text-center bg-100 text-danger disabled" ><span class="fas fa-lock me-2"></span>Cerrado</a>
                                 </c:if>
                             </div>
                             <div class="col-12 gy-3">
                                 <div class="col-12">
                                     <a class="btn btn-phoenix-secondary btn-sm px-5 mt-1" href="listarDetallePlanillaGen@${iexcodreg}@${iexcodpro}@${iexperiodo}"><span class="fas fa-reply me-2"></span>Atras</a>
-                                    <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                                        <a class="btn btn-primary btn-sm mt-1" onclick="enviaForm('15')" href="#"><span class="fas fa-floppy-disk me-2"></span>Guardar datos</a>
-                                    </c:if>
+                                    <a class="btn btn-primary btn-sm mt-1 ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} " onclick="enviaForm('15')" href="#"><span class="fas fa-floppy-disk me-2"></span>Guardar datos</a>
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-4">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Concepto</label>
-                              <select id="slccodcon" name="slccodcon" class="form-select" required>
+                              <select id="slccodcon" name="slccodcon" class="form-select" required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} >
                                   <option value="" selected >Seleccionar</option>
                                   <c:forEach var="lovConcepProVar" items="${lovConcepProVar}">
                                      <option value="${lovConcepProVar.codConcepto}">[${lovConcepProVar.codConcepto}] - ${lovConcepProVar.desConcepto}</option>
@@ -292,12 +290,10 @@
                             </div>
                             <div class="col-sm-6 col-md-2">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe</label>
-                              <input class="form-control" name="txtimporte" id="txtimporte" maxlength="10" step=0.01 type="number" value="" placeholder="334.00" required/>
+                              <input class="form-control" name="txtimporte" id="txtimporte" maxlength="10" step=0.01 type="number" value="" placeholder="334.00" required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                                    <button class="btn btn-phoenix-primary btn-sm mt-5" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add variable</button>
-                                </c:if>
+                                <button class="btn btn-phoenix-primary btn-sm mt-5 ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} " type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add variable</button>
                             </div>
 
                             <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
