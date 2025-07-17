@@ -667,12 +667,32 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
+        log.info("iexcodpro: {}  ", iexcodpro);
+        log.info("iexcodtra: {}  ", iexcodtra);
+        log.info("iexperiodo: {}  ", iexperiodo);
+        log.info("xgrppla: {}  ", xgrppla);
+        log.info("iexcodreg: {}  ", iexcodreg);
+
         PlaProPeriodo plaperpro7 = null;
 
         if (xgrppla.equals("LIQ")) {
-            plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+            //plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+            plaperpro7 = planillaService.getLiqProper(
+                    idCompania,
+                    iexcodpro,
+                    iexperiodo,
+                    iexcodtra,
+                    iexcorrel,
+                    ""
+            );
         } else {
-            plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+            plaperpro7 = planillaService.listPlaProperTra(
+                    idCompania,
+                    iexcodpro,
+                    iexperiodo,
+                    iexcodtra,
+                    iexcorrel
+            );
         }
 
         log.info("plaperpro7: {} ", plaperpro7);
@@ -2144,10 +2164,14 @@ public class PlanillaController {
         String feccese = request.getParameter("txtfeccese");
         String flgboltrunc = request.getParameter("flgboltrunc");
 
+        log.info("flgboltrunc: {} ", flgboltrunc);
+
+        if (flgboltrunc == null) {
+            flgboltrunc = "0";
+        }
+
         if (flgboltrunc.equals("on")) {
             flgboltrunc = "1";
-        } else {
-            flgboltrunc = "0";
         }
 
         String result = planillaService.creaLiqPla(idCompania, iexcodpro, iexperiodo, idxtra, 0, tipcese, observ, feccese, usuario, flgboltrunc);
@@ -2247,10 +2271,12 @@ public class PlanillaController {
         log.info("txtimporte: {} ", feccese);
         log.info("grppla: {} ", grppla);
 
+        if (flgboltrunc == null) {
+            flgboltrunc = "0";
+        }
+
         if (flgboltrunc.equals("on")) {
             flgboltrunc = "1";
-        } else {
-            flgboltrunc = "0";
         }
 
         log.info("flgboltrunc: {} ", flgboltrunc);

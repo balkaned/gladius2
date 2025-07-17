@@ -355,13 +355,13 @@
                                   <th class="sort align-middle text-center pe-2 ps-2 white-space-nowrap" scope="col" data-sort="key">KEY</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="fecing">FECING</th>
                                   <th class="sort align-middle text-center ps-2 pe-2" scope="col" data-sort="feccese">FECCESE</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >TIPO CESE</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >AÑO S.</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >MESES S.</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >N° DE DIAS</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >BOL TRUNC</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col" >ESTADO</th>
-                                  <th class="sort align-middle text-center ps-2 pe-2" scope="col"></th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >TIPO CESE</th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >AÑO S.</th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >MESES S.</th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >N° DE DIAS</th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >BOL TRUNC</th>
+                                  <th class="sort align-middle text-center ps-1 pe-1" scope="col" >ESTADO</th>
+                                  <th class="sort align-middle text-center ps-1 pe-2" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody class="list" id="customer-order-table-body">
@@ -372,8 +372,8 @@
                                         <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" />
                                       </div>
                                     </td>
-                                    <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
-                                    <td class="trab align-middle text-start fw-semi-bold white-space-nowrap ps-1 pe-1text-1000">
+                                    <td class="id align-middle white-space-nowrap pe-0"><a class="fw-semi-bold" href="#">#${LstPlanillaRes.iexcodtra}</a></td>
+                                    <td class="trab align-middle text-start fw-semi-bold white-space-nowrap ps-0 pe-0 text-1000">
                                         ${LstPlanillaRes.destra}
                                     </td>
                                     <td class="key align-middle text-center fw-semi-bold text-1000 ps-0 pe-0 white-space-nowrap">${LstPlanillaRes.iexcorrel}</td>

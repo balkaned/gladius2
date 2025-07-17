@@ -117,7 +117,7 @@
                           <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Olvidó su contraseña?</a></div>
                         </div>
                         <!--<button type="submit" class="btn btn-primary w-100 mb-3" href="#"><span class="fas fa-rocket me-2"></span>Ingresar</button>-->
-                        <button type="submit" class="btn btn-primary ps-3 pe-3 mb-3" href="#">Iniciar sesión</button>
+                        <button type="submit" class="btn btn-primary ps-3 pe-3 mb-0" href="#">Iniciar sesión</button>
                         <!--<button class="btn btn-link text-900 me-4 px-0"><span class="fa-solid fa-file-export fs--1 me-2"></span>Export</button>
                         <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>-->
                         <!--<div class="text-center"><a class="fs--1 fw-bold" href="../../../pages/authentication/simple/sign-up.html">Create an account</a></div>-->
