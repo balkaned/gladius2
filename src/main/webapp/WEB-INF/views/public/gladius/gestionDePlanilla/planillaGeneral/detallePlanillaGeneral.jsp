@@ -395,7 +395,7 @@
                                         <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
                                             <a class="dropdown-item" href="detallePlanLiq@${iexcodreg}@${iexcodpro}@${iexperiodo}@${LstPlanillaRes.iexcodtra}@${LstPlanillaRes.iexcorrel}@${requestScope.xproplaper.desgrppla}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
-                                            <a id="dropdownmenutable" class="dropdown-item" onclick="generarBoleta('${iexcodpro}','${LstPlanillaRes.iexcodtra}','${iexperiodo}','1','${requestScope.xproplaper.desgrppla}','${iexcodreg}');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
+                                            <a id="dropdownmenutable" class="dropdown-item" onclick="generarBoleta('${iexcodpro}','${LstPlanillaRes.iexcodtra}','${iexperiodo}','${LstPlanillaRes.iexcorrel}','${requestScope.xproplaper.desgrppla}','${iexcodreg}');" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalGenerarBoleta" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fa-solid fa-window-restore me-2"></span>Boleta</a>
                                         </div>
                                       </div>
                                     </td>
@@ -522,8 +522,8 @@
 
                       <div class="row g-3">
                           <div class="col-auto">
-                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarReporte5ta(${idComp});" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
-                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1" onclick="descargarBoleta(${idComp});" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
+                              <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1 ${requestScope.xproplaper.desgrppla=='LIQ' ? 'disabled' : ''} " onclick="descargarReporte5ta(${idComp});" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
+                              <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1 ${requestScope.xproplaper.desgrppla=='LIQ' ? 'disabled' : ''} " onclick="descargarBoleta(${idComp});" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
                               <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>

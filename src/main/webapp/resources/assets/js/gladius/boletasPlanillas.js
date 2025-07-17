@@ -218,7 +218,8 @@ function obtenerData(){
 function descargarBoleta(idComp){
     var codtra = $("#idTrabBolHidden").val();
 
-    var iexcodpro = $("#iexcodpro").val();
+    //var iexcodpro = $("#iexcodpro").val();
+    var iexcodpro = "1";
     var iexperiodo = $("#iexperiodo").val();
     var iexcorrel = $("#iexcorrel").val();
 
@@ -228,8 +229,10 @@ function descargarBoleta(idComp){
 }
 
 function descargarReporte5ta(idComp){
+
     var codtra = $("#idTrabBolHidden").val();
-    var iexcodpro = $("#iexcodpro").val();
+    //var iexcodpro = $("#iexcodpro").val();
+    var iexcodpro = "1";
     var iexperiodo = $("#iexperiodo").val();
     var iexcorrel = $("#iexcorrel").val();
 

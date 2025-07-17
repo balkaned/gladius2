@@ -672,6 +672,7 @@ public class PlanillaController {
         log.info("iexperiodo: {}  ", iexperiodo);
         log.info("xgrppla: {}  ", xgrppla);
         log.info("iexcodreg: {}  ", iexcodreg);
+        log.info("iexcorrel: {}  ", iexcorrel);
 
         PlaProPeriodo plaperpro7 = null;
 

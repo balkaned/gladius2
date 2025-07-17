@@ -606,7 +606,7 @@ public class AWS_FTP_FlgSourceController {
                                 log.info("codciax: {} ", codciax);
                                 log.info("P_CODPRO: {} ", itemBolTra.getValorParametro());
                                 ProcesoPlanillaxCia pro = procesoPlanillaService.recuperar_reporte(Integer.valueOf(codciax), Integer.valueOf(itemBolTra.getValorParametro()));
-                                log.info("pro: {} ", pro);
+                                log.info("proxCia: {} ", pro);
 
                                 /* 1.Inicio Subreporte1 parámetros */
                                 InputStream inputStreamParam = null;
