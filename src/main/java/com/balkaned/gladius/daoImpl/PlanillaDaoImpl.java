@@ -985,7 +985,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     BeanPropertyRowMapper.newInstance(PlaProPeriodo.class));
             return plaProPeriodo;
         } catch (EmptyResultDataAccessException ex) {
-            log.info(CLASS_NAME + " listPlaProperTra, No se encontraron resultados" + ex.getMessage(), ex);
+            log.info(CLASS_NAME + " listPlaProperTra, No se encontraron resultados: " + ex.getMessage(), ex);
             return null;
         }
     }
@@ -1438,7 +1438,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
             return plapro;
         } catch (EmptyResultDataAccessException ex) {
-            log.info(CLASS_NAME + "getLiaProper: No se encontraron resultados.");
+            log.info(CLASS_NAME + " getLiqProper: No se encontraron resultados.");
             return null;
         }
     }

@@ -52,13 +52,17 @@
         }
      }
 
-     function actualizar(id,iexcodtra,iexcodpro,iexperiodo,iexcodcon,iexcodreg) {
+     function actualizar(id,iexcodtra,iexcodpro,iexperiodo,iexcodcon,iexcorrel,iexcodreg,grppla) {
          var opcion = confirm("Esta seguro de actualizar el item?");
 
          if (opcion == true) {
              var valorActualizar=$("#"+id+"_valor").val();
+             console.log("valorActualiza: "+valorActualizar);
              var id2="dropdownmenutable_"+id;
-             document.getElementById(id2).href="actualizarValorTrabConceptLiqVar@"+iexcodtra+"@"+iexcodpro+"@"+iexperiodo+"@"+iexcodcon+"@1@"+iexcodreg+"@"+valorActualizar;
+             console.log("id2: "+id2);
+             document.getElementById(id2).href="actualizarValorTrabConceptLiqVar@"+iexcodtra+"@"+iexcodpro+"@"+iexperiodo+"@"+iexcodcon+"@"+iexcorrel+"@"+iexcodreg+"@"+valorActualizar+"@"+grppla;
+
+             return true;
          } else {
              return false;
          }
@@ -100,7 +104,6 @@
                return false;
             }
           }else if(variable==16){
-
             var slccodcon = $("#slccodcon").val();
             if (slccodcon == "") {
               alert("Debe seleccionar un concepto");
@@ -142,7 +145,18 @@
                 } else {
                    return false;
                 }
+          } else if(variable==19){
+                var opcion = confirm("Esta seguro que desea procesar la planilla de liquidación para este trabajador?");
+
+                if (opcion == true) {
+                   document.getElementById("accion").value="EXEPROLIQ";
+                   document.getElementById("formLiqPlanillas").submit();
+                   return true;
+                } else {
+                   return false;
+                }
           }
+
      }
 
      function descargarBoletaLiq(idComp){
@@ -190,8 +204,8 @@
                             <input type="hidden" name="iexcodpro" id="iexcodpro" value="${requestScope.iexcodpro}">
                             <input type="hidden" name="iexperiodo" id="iexperiodo" value="${requestScope.iexperiodo}">
                             <input type="hidden" name="accion" id="accion" value="${requestScope.xaccion}" >
-                            <input type="hidden" name="iexcodtra" id="iexcodtra" value="${LstPlanillaRes.iexcodtra}">
-                            <input type="hidden" name="iexcorrel" id="iexcorrel" value="${LstPlanillaRes.iexcorrel}">
+                            <input type="hidden" name="iexcodtra" id="iexcodtra" value="${requestScope.iexcodtra}">
+                            <input type="hidden" name="iexcorrel" id="iexcorrel" value="${requestScope.iexcorrel}">
 
                             <input type="hidden" name="grppla" id="grppla" value="${requestScope.xgrppla}">
                             <input type="hidden" name="idcodcon" id="idcodcon" value="">
@@ -252,7 +266,7 @@
                                   </select>
                             </div>
                             <div class="col-sm-6 col-md-2 mt-7">
-                                <input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" ${LstPlanillaRes.flgboltrunc == '1' ? 'checked=true' : ''} required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} >
+                                <input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" ${LstPlanillaRes.flgboltrunc == '1' ? 'checked=true' : ''} ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} >
                                 <label class="form-check-label ms-2">Flag Boleta trunca</label>
                             </div>
                             <div class="col-sm-6 col-md-2">
@@ -382,17 +396,17 @@
                                              <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                              <div class="dropdown-menu dropdown-menu-end py-2">
                                                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                                                    <a id="dropdownmenutable_${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${fdatvar.iexcodtra}_${fdatvar.iexcodcon}','${fdatvar.iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                                    <a id="dropdownmenutable_${iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item" onclick="return actualizar('${iexcodtra}_${fdatvar.iexcodcon}','${iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcorrel}','${iexcodreg}','${xgrppla}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
                                                   </c:if>
                                                   <c:if test="${LstPlanillaRes.flgciedet=='3'}">
-                                                    <a id="dropdownmenutable_${fdatvar.iexcodtra}_${fdatvar.iexcodcon}" class="dropdown-item disabled" onclick="return actualizar('${fdatvar.iexcodtra}_${fdatvar.iexcodcon}','${fdatvar.iexcodtra}','${iexcodpro}','${iexperiodo}','${fdatvar.iexcodcon}','${iexcodreg}');" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
+                                                    <a id="" class="dropdown-item disabled" href="#"><span class="fa-solid fa-arrows-rotate me-2"></span>Actualizar</a>
                                                   </c:if>
                                                   <div class="dropdown-divider"></div>
                                                   <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                                                    <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${fdatvar.iexcodtra}@${fdatvar.iexcodcon}@${iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                    <a id="dropdownmenutable" class="dropdown-item" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${iexcodtra}@${fdatvar.iexcodcon}@${iexcorrel}@${xgrppla}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </c:if>
                                                   <c:if test="${LstPlanillaRes.flgciedet=='3'}">
-                                                    <a id="dropdownmenutable" class="dropdown-item disabled" onclick="return remove();" href="eliminarPlanConcepVarLiq@${iexcodpro}@${iexperiodo}@1@${fdatvar.iexcodtra}@${fdatvar.iexcodcon}@${iexcodreg}"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
+                                                    <a id="" class="dropdown-item disabled" onclick="return remove();" ><span class="fa-solid fa-trash me-2"></span>Eliminar</a>
                                                   </c:if>
                                              </div>
                                            </div>
@@ -416,10 +430,10 @@
                         </div>
                       </div>
                   </div>
-                  <c:if test="${LstPlanillaRes.flgciedet!='3'}">
-                    <a name="procesar" onclick="enviaForm('16')" class="btn btn-phoenix-success btn-sm"><span class="fas fa-wrench me-2"></span>Procesar</a>
-                  </c:if>
 
+                  <c:if test="${LstPlanillaRes.flgciedet!='3'}">
+                    <a name="procesar" onclick="enviaForm('19')" class="btn btn-phoenix-success btn-sm"><span class="fas fa-wrench me-2"></span>Procesar</a>
+                  </c:if>
                   <a id="botonDescargarBoletaTrabLiq" target="_blank"
                         onclick="descargarBoletaLiq(${idComp});"
                         class="btn btn-phoenix-secondary btn-sm"><span class="fas fa-calculator me-2"></span>Liq. Benef. sociales (LBS)</a>

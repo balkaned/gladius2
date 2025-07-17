@@ -2184,6 +2184,8 @@ public class PlanillaController {
         model.addAttribute("iexcodpro", codproceso);
         model.addAttribute("iexperiodo", periodo);
         model.addAttribute("xgrppla", grppla);
+        model.addAttribute("iexcorrel", correl);
+        model.addAttribute("iexcodtra", codtra);
 
         PlaProPeriodo plaperpro = planillaService.getLiqProper(idCompania, codproceso, periodo, Integer.parseInt(codtra), Integer.parseInt(correl), "");
         model.addAttribute("LstPlanillaRes", plaperpro);
@@ -2312,6 +2314,112 @@ public class PlanillaController {
             );
         }
 
+        if (accion.equals("EXEPROLIQ")) {
+            planillaService.iniPlaProper(
+                    idCompania,
+                    Integer.parseInt(codproceso),
+                    periodo,
+                    Integer.parseInt(codtra),
+                    Integer.parseInt(correl),
+                    grppla,
+                    usuario
+            );
+
+            Integer iexcodpro = Integer.parseInt(codproceso);
+            String iexperiodo = periodo;
+            Integer iexcodtra = Integer.parseInt(codtra);
+            String grupopla = grppla;
+            Integer iexcorrel = Integer.parseInt(correl);
+
+            planillaService.iniPlaProper_proc(idCompania, iexcodpro, iexperiodo, iexcodtra, 1, grupopla, user);
+
+            // Obtiene la lista de trabajadores
+            planillaService.timeIniexe(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+
+            // Obtener la lista de conceptos  de todos las personas
+            Date utilDate = new Date();
+            log.info("************** Inicia Proceso de planilla :" + utilDate + "  *****************");
+
+            // La lista de todas las personas
+            String txt_buscar = request.getParameter("txt_buscar");
+
+            if (txt_buscar == null) {
+                txt_buscar = "%";
+            }
+
+            // Obtiene el universo de trabajadores a procesar
+            List<PlaProPeriodo> lp_persona = planillaService.listPlaProper(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, txt_buscar);
+
+            // Ejecuta la formulacion
+            Iterator<PlaProPeriodo> pi;
+            PlaProPeriodo pi_persona = null;
+            Integer counter = 0;
+
+            List<PlaProPeriodo> lp_persona_s1 = new ArrayList<PlaProPeriodo>();
+            List<PlaProPeriodo> lp_persona_s2 = new ArrayList<PlaProPeriodo>();
+            List<PlaProPeriodo> lp_persona_s3 = new ArrayList<PlaProPeriodo>();
+            List<PlaProPeriodo> lp_persona_s4 = new ArrayList<PlaProPeriodo>();
+
+            pi = lp_persona.iterator();
+
+            while (pi.hasNext()) {
+                pi_persona = pi.next();
+
+                if (counter >= 0 && counter <= 350) {
+                    lp_persona_s1.add(pi_persona);
+                } else if (counter > 350 && counter <= 700) {
+                    lp_persona_s2.add(pi_persona);
+                } else if (counter > 700 && counter <= 1000) {
+                    lp_persona_s3.add(pi_persona);
+                } else if (counter > 1000 && counter <= 1350) {
+                    lp_persona_s4.add(pi_persona);
+                }
+
+                log.info(" MAESTRO ===>  <--------->  p_codtra =" + pi_persona.getDestra() + " ");
+                counter++;
+            }
+
+            ExecutorService executor = Executors.newFixedThreadPool(4);
+
+            log.info("idCompania: " + idCompania);
+            log.info("iexcodpro: " + iexcodpro);
+            log.info("iexperiodo: " + iexperiodo);
+            log.info("iexcodtra: " + iexcodtra);
+            log.info("iexcorrel: " + iexcorrel);
+            log.info("lp_persona_s1: " + lp_persona_s1);
+            log.info("lp_persona_s2: " + lp_persona_s2);
+            log.info("lp_persona_s3: " + lp_persona_s3);
+            log.info("lp_persona_s4: " + lp_persona_s4);
+
+            planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+
+            Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
+            executor.execute(worker);
+
+            Runnable worker2 = new WorkerThread("Hilo 2", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s2, 2);
+            executor.execute(worker2);
+
+            Runnable worker3 = new WorkerThread("Hilo 3", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s3, 3);
+            executor.execute(worker3);
+
+            Runnable worker4 = new WorkerThread("Hilo 4", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s4, 4);
+            executor.execute(worker4);
+
+            executor.shutdown();
+            while (!executor.isTerminated()) {
+
+            }
+
+            log.info("Finished all threads");
+
+            planillaService.guardarNomina2020(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+
+            Date utilDatef = new Date();
+            log.info("************** Fin de  Proceso de planilla :" + utilDatef + " **********************");
+
+            planillaService.timeFinexe(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
+        }
+
         model.addAttribute("iexcodreg", codreg);
         model.addAttribute("iexcodpro", codproceso);
         model.addAttribute("iexperiodo", periodo);
@@ -2346,17 +2454,25 @@ public class PlanillaController {
         );
         model.addAttribute("fdatvar", lstEmpDatVar);
 
+        model.addAttribute("iexcodreg", codreg);
+        model.addAttribute("iexcodpro", codproceso);
+        model.addAttribute("iexperiodo", periodo);
+        model.addAttribute("xgrppla", grppla);
+        model.addAttribute("iexcorrel", correl);
+        model.addAttribute("iexcodtra", codtra);
+
         return new ModelAndView("public/gladius/gestionDePlanilla/planillaGeneral/detallePlanillaLiquidacion");
     }
 
-    @RequestMapping("/eliminarPlanConcepVarLiq@{iexcodpro}@{iexperiodo}@{iexcorrel}@{iexcodtra}@{iexcodcon}@{iexcodreg}")
+    @RequestMapping("/eliminarPlanConcepVarLiq@{iexcodpro}@{iexperiodo}@{iexcodreg}@{iexcodtra}@{iexcodcon}@{iexcorrel}@{grppla}")
     public ModelAndView eliminarPlanConcepVarLiq(ModelMap model, HttpServletRequest request,
                                                  @PathVariable Integer iexcodpro,
                                                  @PathVariable String iexperiodo,
-                                                 @PathVariable Integer iexcorrel,
+                                                 @PathVariable Integer iexcodreg,
                                                  @PathVariable Integer iexcodtra,
                                                  @PathVariable String iexcodcon,
-                                                 @PathVariable String iexcodreg) {
+                                                 @PathVariable Integer iexcorrel,
+                                                 @PathVariable String grppla) {
         log.info("/eliminarPlanConcepVarLiq");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -2377,12 +2493,14 @@ public class PlanillaController {
         empdatvar3.setIexflgest("1");
         empdatvar3.setIexcorrel(iexcorrel);
 
+        log.info("empdatvar3: {} ", empdatvar3);
+
         sueldoService.eliminarEmpDatvar(empdatvar3);
 
-        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo + "@" + iexcodtra + "@" + iexcorrel);
+        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + iexcodpro + "@" + iexperiodo + "@" + iexcodtra + "@" + iexcorrel + "@" + grppla);
     }
 
-    @RequestMapping("/actualizarValorTrabConceptLiqVar@{codtra}@{codproceso}@{periodo}@{iexcodcon}@{iexcorrel}@{iexcodreg}@{valor}")
+    @RequestMapping("/actualizarValorTrabConceptLiqVar@{codtra}@{codproceso}@{periodo}@{iexcodcon}@{iexcorrel}@{iexcodreg}@{valor}@{grppla}")
     public ModelAndView actualizarValorTrabConceptLiqVar(ModelMap model, HttpServletRequest request,
                                                          @PathVariable String codtra,
                                                          @PathVariable Integer codproceso,
@@ -2390,7 +2508,8 @@ public class PlanillaController {
                                                          @PathVariable String iexcodcon,
                                                          @PathVariable Integer iexcorrel,
                                                          @PathVariable Integer iexcodreg,
-                                                         @PathVariable String valor) {
+                                                         @PathVariable String valor,
+                                                         @PathVariable String grppla) {
         log.info("/actualizarValorTrabConceptLiqVar");
 
         String user = (String) request.getSession().getAttribute("user");
@@ -2411,8 +2530,9 @@ public class PlanillaController {
         empdatvar2.setIexflgest("1");
         empdatvar2.setIexcorrel(iexcorrel);
 
+        log.info("empdatvar2: {} ", empdatvar2);
         sueldoService.actualizarEmpDatvar(empdatvar2);
 
-        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + codproceso + "@" + periodo + "@" + codtra + "@" + iexcorrel);
+        return new ModelAndView("redirect:/detallePlanLiq@" + iexcodreg + "@" + codproceso + "@" + periodo + "@" + codtra + "@" + iexcorrel + "@" + grppla);
     }
 }

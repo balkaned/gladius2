@@ -281,10 +281,17 @@ public class SueldosDaoImpl implements SueldoDao {
         String sql = "delete from iexdatavar " +
                 "where iexcodcia=? and " +
                 "iexcodpro=? and " +
-                "iexnroper=? " +
-                "and iexcorrel=? and " +
+                "iexnroper=? and " +
+                "iexcorrel=? and " +
                 "iexcodtra=? and " +
                 "iexcodcon=? ";
+
+        log.info("empdatvar.getIexcodcia(): {} ", empdatvar.getIexcodcia());
+        log.info("empdatvar.getIexcodpro(): {} ", empdatvar.getIexcodpro());
+        log.info("empdatvar.getIexnroper(): {} ", empdatvar.getIexnroper());
+        log.info("empdatvar.getIexcorrel(): {} ", empdatvar.getIexcorrel());
+        log.info("empdatvar.getIexcodtra(): {} ", empdatvar.getIexcodtra());
+        log.info("empdatvar.getIexcodcon(): {} ", empdatvar.getIexcodcon());
 
         jdbc.update(sql,
                 empdatvar.getIexcodcia(),

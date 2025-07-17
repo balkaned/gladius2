@@ -84,7 +84,7 @@
                       	  <input class="form-control" name="txtobservacion" type="text" value="" placeholder="Ingrese observación aqui" required />
                       	</div>
                       	<div class="col-sm-6 col-md-12">
-                      		<input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" required >
+                      		<input type="checkbox" name="flgboltrunc" id="flgboltrunc" class="form-check-input" >
                       		<label class="form-check-label ms-2">Flag de Boleta trunca</label>
                       	</div>
 
