@@ -71,7 +71,7 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                                         <div class="mt-2 col-auto">
                                             <button class="btn btn-primary btn-sm mt-1" type="submit"><span class="fa-solid fa-magnifying-glass me-2"></span>Buscar</button>
                                             <a class="btn btn-phoenix-secondary btn-sm mt-1" href="nuevaAfp"><span class="fas fa-plus me-2"></span>Add afp</a>
-                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-paste me-2"></span>Copiar periodo afp</a>
+                                            <a class="btn btn-phoenix-danger btn-sm mt-1" href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalCopiarPeriodoAfp" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-regular fa-copy me-2 fs-0"></span>Copiar periodo Afp</a>
                                         </div>
                                     </div>
                                 </form>
@@ -179,28 +179,28 @@ Author : Jan Quiroz Email : janquirozs@gmail.com --%>
                    <h5 class="modal-title text-1000 fs-2 lh-sm">Copiar datos periodo afp</h5>
                    <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-0"></span></button>
                 </div>
-                <div class="modal-body p-4">
+                <div class="modal-body p-0">
                   <div id="alertModalSuccessCopy" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
                       <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
                       <p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
                       <a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
                   </div>
 
-                  <div class="row mt-3">
+                  <div class="row mt-2 ps-3 pe-3 mb-2">
                       <div class="col-sm-6 col-md-12">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Copiar de periodo</label>
-                            <input class="form-control" name="idPeriodoCopy1" id="idPeriodoCopy1" type="text" maxlength="6" placeholder="yyyymm" required/>
+                            <input class="form-control" name="idPeriodoCopy1" id="idPeriodoCopy1" type="text" maxlength="6" placeholder="Ingrese periodo: yyyymm" required/>
                       </div>
                       <div class="col-sm-6 col-md-12 mt-2">
                             <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Pegar en periodo</label>
-                            <input class="form-control" name="idPeriodoCopy2" id="idPeriodoCopy2" type="text" maxlength="6" placeholder="yyyymm" required />
+                            <input class="form-control" name="idPeriodoCopy2" id="idPeriodoCopy2" type="text" maxlength="6" placeholder="Ingregse periodo: yyyymm" required />
                       </div>
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                     <a class="btn btn-sm btn-phoenix-primary px-3 my-0" data-bs-dismiss="modal" aria-label="Close">Cerrar</a>
                     <!--<button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" type="submit"><div class="spinner-border spinner-border-sm" style="height:13px; width:13px;" role="status"></div><span class="ms-2">Guardar Periodo</span></button>-->
-                    <button class="btn btn-sm btn-primary px-9 my-0 mt-1 ps-4 pe-4" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2">Copiar contenido afp</span></button>
+                    <button class="btn btn-sm btn-primary my-0 mt-1 ps-2 pe-2" onclick="mostrarAlertModalCopiarAfp();" type="submit"><span class="ms-2"><span class="fa-regular fa-copy fs-0 me-2"></span>Copiar conteniedo de Afp</span></button>
                 </div>
             </form>
           </div>

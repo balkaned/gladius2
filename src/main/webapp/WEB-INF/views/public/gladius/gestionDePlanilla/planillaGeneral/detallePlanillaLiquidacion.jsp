@@ -305,7 +305,7 @@
                             </div>
                             <div class="col-sm-6 col-md-2">
                               <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe</label>
-                              <input class="form-control" name="txtimporte" id="txtimporte" maxlength="10" step=0.01 type="number" value="" placeholder="334.00" required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
+                              <input class="form-control" name="txtimporte" id="txtimporte" maxlength="10" step=0.01 type="number" value="" placeholder="Ingrese importe: 00.00" required ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} />
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <button class="btn btn-phoenix-primary btn-sm mt-5 ${LstPlanillaRes.flgciedet == '3' ? 'disabled' : ''} " type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" ><span class="fas fa-plus me-2"></span>Add variable</button>

@@ -52,10 +52,10 @@
                   <h2 id="h2top" class="mb-2">Gestión de planillas </h2>
                   <div class="row col-12">
                       <div class="col-12">
-                        <span class="badge badge-tag me-2 mb-2">Regimen: ${requestScope.xproplaper.desregimen}</span>
+                        <span class="badge badge-tag me-2 mb-2">Regimen: (${iexcodreg}) ${requestScope.xproplaper.desregimen}</span>
                       </div>
                   </div>
-                  <p class="col-8 mb-0 mt-0 fs--1">Proceso: ${requestScope.xproplaper.desproceso} Periodo: ${requestScope.xproplaper.iexnroper} [${requestScope.xproplaper.timerfecini} - ${requestScope.xproplaper.timerfecfin}] &nbspGrupoPlanilla: ${requestScope.xproplaper.desgrppla}<span class="badge badge-phoenix fs--2 badge-phoenix-primary ms-2"><span class="badge-label">${requestScope.xproplaper.desestado}</span></p>
+                  <p class="col-8 mb-0 mt-0 fs--1">Proceso: (${iexcodpro}) ${requestScope.xproplaper.desproceso}, Periodo: ${requestScope.xproplaper.iexnroper} Desde [${requestScope.xproplaper.timerfecini} hasta ${requestScope.xproplaper.timerfecfin}], Grupo planilla: ${requestScope.xproplaper.desgrppla}<span class="badge badge-phoenix fs--2 badge-phoenix-primary ms-2"><span class="badge-label">${requestScope.xproplaper.desestado}</span></p>
                 </div>
               </div>
             </div>
@@ -524,7 +524,7 @@
                           <div class="col-auto">
                               <a id="botonDescargarRep5ta" class="btn btn-phoenix-secondary btn-sm mt-1 ${requestScope.xproplaper.desgrppla=='LIQ' ? 'disabled' : ''} " onclick="descargarReporte5ta(${idComp});" target="_blank" href="#"><span class="fas fa-download me-2"></span>Reporte de 5ta</a>
                               <a id="botonDescargarBoletaTrab" class="btn btn-phoenix-secondary btn-sm mt-1 ${requestScope.xproplaper.desgrppla=='LIQ' ? 'disabled' : ''} " onclick="descargarBoleta(${idComp});" target="_blank"  href="#"><span class="fas fa-download me-2"></span>Boleta</a>
-                              <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1" onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
+                              <a id="botonEliminarPlanTrab" class="btn btn-phoenix-danger btn-sm mt-1 ${requestScope.xproplaper.desgrppla=='LIQ' ? 'disabled' : ''} " onclick="eliminarPlanTrab();" href="#" ><span class="fas fa-trash me-2"></span>Eliminar planilla del trabajador</a>
                           </div>
                       </div>
                       <input class="form-control" name="iexcodproGenBol" id="iexcodproGenBol" type="hidden" value="" />
