@@ -523,17 +523,17 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo,
                                 Integer codtra, Integer correl, Integer thread) {
 
-        log.info("Inicio del metodo Dao ProcesarPla2020...");
+        log.info("*********** Inicio del metodo Dao ProcesarPla2020...***********");
 
         Integer v_salto = 0;
         Iterator<ProPeriodoDet> L_data = null;
         ProPeriodoDet data = null;
 
-        log.info("idproceso: {} ", idproceso);
+        //log.info("idproceso: {} ", idproceso);
 
         /* Carga las fórmulas desde base de datos para el proceso en curso */
         List<FormulaPlanilla> lstFormula = formularPlanillaDao.listar(idproceso.toString());
-        log.info("lstFormula: {} ", lstFormula);
+        //log.info("lstFormula: {} ", lstFormula);
 
         /* En esta variable se alojarán las variables concatenadas con los valores */
         String v_variables_concat = null;
@@ -594,12 +594,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
             for_det = l_formula.next();
             /* Se asigna valor de la lista al objeto Fórmula.
                Se verifica el identificador de la formula */
-            log.info("--Formula : {} ", for_det.getIdFormula());
+            //log.info("--Formula : {} ", for_det.getIdFormula());
 
             //borrar solo de prueba
             //for_det.setTipOut("2");
 
-            log.info("for_det.getTipOut(): {} ", for_det.getTipOut());
+            //log.info("for_det.getTipOut(): {} ", for_det.getTipOut());
             if (for_det.getTipOut().equals("1") || for_det.getTipOut().equals("3")) {
                 /* Selecciona los conceptos que son grupo de conceptos resultantes */
 
@@ -611,10 +611,10 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                 /* Guardar los valores del  resultado en una nueva concatenacion de variables */
                 sql_var_general = formularPlanillaDao.getListVars(idproceso, for_det.getDesVar());
-                log.info("sql_var_general: {} ", sql_var_general);
+                //log.info("sql_var_general: {} ", sql_var_general);
 
                 LoadGrpcon = formularPlanillaDao.obtenerListVariables_glb(idproceso, for_det.getDesVar());
-                log.info("LoadGrpcon: {} ", LoadGrpcon);
+                //log.info("LoadGrpcon: {} ", LoadGrpcon);
 
                 i_grpcon = LoadGrpcon.iterator();
 
@@ -631,7 +631,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
                 /* Inicia la iteración por persona */
                 LoadData2 = getMetanominaDatav3(codcia, idproceso, idPeriodo, codtra, sql_var_general, correl, thread_id);
-                log.info("LoadData2: {} ", LoadData2);
+                //log.info("LoadData2: {} ", LoadData2);
 
                 pi = Persona.iterator();
                 while (pi.hasNext()) {
@@ -648,10 +648,10 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     }
 
                     v_resultadoFinal = formularPlanillaDao.realEjecucion(for_det.getDesVar(), v_variables_concat, for_det.getDesFormula());
-                    log.info("v_resultadoFinal: {} ", v_resultadoFinal);
+                    //log.info("v_resultadoFinal: {} ", v_resultadoFinal);
 
                     guardarMetaTrav2(codcia, idproceso, pi_persona.getIexcodtra(), idPeriodo, for_det.getIdConcepto(), v_resultadoFinal, correl);
-                    log.info("Finalizo metodo guardarMetaTrav2...");
+                    //log.info("Finalizo metodo guardarMetaTrav2...");
                 }
             } else if (for_det.getTipOut().equals("2")) {
 
@@ -662,9 +662,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
                 //borrar solo de prueba
                 //for_det.setGrpeje("2");
 
-                log.info("for_det.getGrpeje(): {} ", for_det.getGrpeje());
+                //log.info("for_det.getGrpeje(): {} ", for_det.getGrpeje());
                 if (for_det.getGrpeje().equals("1")) {
-
                     log.info("Ejecucion de Procedure x Trabajador: {} ", for_det.getSqlprogram());
 
                     /* Grabar la data en la metanómina
@@ -718,6 +717,8 @@ public class PlanillaDaoImpl implements PlanillaDao {
             }
         }
         /* While de la fórmula */
+
+        log.info("*********** Finaliza metodo Dao ProcesarPla2020...*************");
 
         /* Verificar la lista de Actualiza estado del proceso */
     }
@@ -799,8 +800,6 @@ public class PlanillaDaoImpl implements PlanillaDao {
                     "order by 4,5 asc ";
         }
 
-        log.info("sql: {} ", sql);
-
         return jdbc.query(sql, new ResultSetExtractor<List<ProPeriodoDet>>() {
 
             public List<ProPeriodoDet> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -849,13 +848,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
 
     public void update_slq_program(String sql_program, Integer codcia, Integer codtra, Integer idproceso, String idPeriodo) {
 
-        log.info("sql_program: {} ", sql_program);
+        //log.info("sql_program: {} ", sql_program);
 
         if (sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
             log.info("update_slq_program, sql_pogram trae vacio, no se ejecutara el procedure...");
         } else {
             String sql = "call " + sql_program.trim() + " (?,?,?,?) ";
-            log.info("sql: {} ", sql);
 
             jdbc.update(sql,
                     codcia,
@@ -869,13 +867,12 @@ public class PlanillaDaoImpl implements PlanillaDao {
     public void update_slq_program_masivo(String sql_program, Integer codcia, Integer codtra, Integer idproceso,
                                           String idPeriodo) {
 
-        log.info("sql_program: {} ", sql_program);
+        //log.info("sql_program: {} ", sql_program);
 
         if (sql_program == null || sql_program.equals("") || sql_program.equals(" ")) {
             log.info("update_slq_program_masivo, sql_pogram trae vacio, no se ejecutara el procedure...");
         } else {
             String sql = "call " + sql_program.trim() + " (?,?,?,?) ";
-            log.info("sql: {} ", sql);
 
             jdbc.update(sql,
                     codcia,
@@ -907,6 +904,7 @@ public class PlanillaDaoImpl implements PlanillaDao {
     }
 
     public void update_iexproperiodo(Integer codcia, Integer idproceso, String idPeriodo) {
+
         String sql = "update iexproperiodo set flgestado='2' " +
                 "where iexcodcia=? and iexcodpro=? " +
                 "and iexnroper=? ";

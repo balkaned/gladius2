@@ -8,6 +8,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
+import com.balkaned.gladius.dao.PlanillaDao;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.services.*;
 import com.balkaned.gladius.servicesImpl.Sessionattributes;
@@ -52,6 +53,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 @Slf4j
@@ -88,6 +91,8 @@ public class PlanillaController {
     @Autowired
     EmpleadoService empleadoService;
 
+    @Autowired
+    PlanillaDao planillaDao;
 
     @RequestMapping("/listPlanillaGeneral")
     public ModelAndView listPlanillaGeneral(ModelMap model, HttpServletRequest request) {
@@ -366,11 +371,12 @@ public class PlanillaController {
                     lp_persona_s4.add(pi_persona);
                 }
 
-                log.info(" MAESTRO ===>  <--------->  p_codtra =" + pi_persona.getDestra() + " ");
+                log.info(" MAESTRO ===>  <--------->  p_codtra =" + "(" + pi_persona.getIexcodtra() + ") " + pi_persona.getDestra() + " ");
                 counter++;
             }
 
-            ExecutorService executor = Executors.newFixedThreadPool(4);
+            //ExecutorService executor = Executors.newFixedThreadPool(4);
+            //ThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(4);
 
             log.info("idCompania: " + idCompania);
             log.info("iexcodpro: " + iexcodpro);
@@ -382,24 +388,103 @@ public class PlanillaController {
             log.info("lp_persona_s3: " + lp_persona_s3);
             log.info("lp_persona_s4: " + lp_persona_s4);
 
-            planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+            Runnable runnable1 = new Runnable() {
+                @Override
+                public void run() {
+                    log.info(Thread.currentThread().getName() + " Start. Command = " + "Hilo1");
+                    log.info("Hilo1, Se procesaran los siguientes empleados, lp_persona_s1: " + lp_persona_s1);
+                    try {
+                        planillaDao.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+                    } catch (Exception e) {
+                        log.info("Error Exception, " + "Hilo1" + ": " + e.getMessage());
+                    }
+                    log.info(Thread.currentThread().getName() + " End. Command = " + "Hilo1");
+                }
+            };
+            //executor.execute(runnable1);
 
-            Runnable worker = new WorkerThread("Hilo 1", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s1, 1);
-            executor.execute(worker);
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public void run() {
+                    log.info(Thread.currentThread().getName() + " Start. Command = " + "Hilo2");
+                    log.info("Hilo2, Se procesaran los siguientes empleados, lp_persona_s2: " + lp_persona_s2);
+                    try {
+                        planillaDao.procesarPla2020(lp_persona_s2, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 2);
+                    } catch (Exception e) {
+                        log.info("Error Exception, " + "Hilo2" + ": " + e.getMessage());
+                    }
+                    log.info(Thread.currentThread().getName() + " End. Command = " + "Hilo2");
+                }
+            };
+            //executor.execute(runnable2);
 
-            Runnable worker2 = new WorkerThread("Hilo 2", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s2, 2);
-            executor.execute(worker2);
+            Runnable runnable3 = new Runnable() {
+                @Override
+                public void run() {
+                    log.info(Thread.currentThread().getName() + " Start. Command = " + "Hilo3");
+                    log.info("Hilo3, Se procesaran los siguientes empleados, lp_persona_s3: " + lp_persona_s3);
+                    try {
+                        planillaDao.procesarPla2020(lp_persona_s3, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 3);
+                    } catch (Exception e) {
+                        log.info("Error Exception, " + "Hilo3" + ": " + e.getMessage());
+                    }
+                    log.info(Thread.currentThread().getName() + " End. Command = " + "Hilo3");
+                }
+            };
+            //executor.execute(runnable3);
 
-            Runnable worker3 = new WorkerThread("Hilo 3", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s3, 3);
-            executor.execute(worker3);
+            Runnable runnable4 = new Runnable() {
+                @Override
+                public void run() {
+                    log.info(Thread.currentThread().getName() + " Start. Command = " + "Hilo4");
+                    log.info("Hilo4, Se procesaran los siguientes empleados, lp_persona_s4: " + lp_persona_s4);
+                    try {
+                        planillaDao.procesarPla2020(lp_persona_s4, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 4);
+                    } catch (Exception e) {
+                        log.info("Error Exception, " + "Hilo4" + ": " + e.getMessage());
+                    }
+                    log.info(Thread.currentThread().getName() + " End. Command = " + "Hilo4");
+                }
+            };
+            //executor.execute(runnable4);
 
-            Runnable worker4 = new WorkerThread("Hilo 4", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s4, 4);
-            executor.execute(worker4);
+            // Crear hilos
+            Thread thread1 = new Thread(runnable1);
+            Thread thread2 = new Thread(runnable2);
+            Thread thread3 = new Thread(runnable3);
+            Thread thread4 = new Thread(runnable4);
 
-            executor.shutdown();
+            // Iniciar hilos
+            thread1.start();
+            thread2.start();
+            thread3.start();
+            thread4.start();
+
+            thread1.run();
+            thread2.run();
+            thread3.run();
+            thread4.run();
+
+            thread1.stop();
+            thread2.stop();
+            thread3.stop();
+            thread4.stop();
+
+            //planillaService.procesarPla2020(lp_persona_s1, idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, 1);
+
+            /* Runnable runnable2 = new WorkerThread("Hilo 2", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s2, 2);
+            executor.execute(runnable2);
+
+            Runnable runnable3 = new WorkerThread("Hilo 3", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s3, 3);
+            executor.execute(runnable3);
+
+            Runnable runnable4 = new WorkerThread("Hilo 4", idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel, lp_persona_s4, 4);
+            executor.execute(runnable4);*/
+
+            /*executor.shutdown();
+
             while (!executor.isTerminated()) {
-
-            }
+            }*/
 
             log.info("Finished all threads");
 
@@ -667,17 +752,9 @@ public class PlanillaController {
         Integer iexcorrel = Integer.valueOf(request.getParameter("iexcorrel"));
         String iexcodreg = request.getParameter("iexcodreg");
 
-        log.info("iexcodpro: {}  ", iexcodpro);
-        log.info("iexcodtra: {}  ", iexcodtra);
-        log.info("iexperiodo: {}  ", iexperiodo);
-        log.info("xgrppla: {}  ", xgrppla);
-        log.info("iexcodreg: {}  ", iexcodreg);
-        log.info("iexcorrel: {}  ", iexcorrel);
-
         PlaProPeriodo plaperpro7 = null;
 
         if (xgrppla.equals("LIQ")) {
-            //plaperpro7 = planillaService.listPlaProperTra(idCompania, iexcodpro, iexperiodo, iexcodtra, iexcorrel);
             plaperpro7 = planillaService.getLiqProper(
                     idCompania,
                     iexcodpro,

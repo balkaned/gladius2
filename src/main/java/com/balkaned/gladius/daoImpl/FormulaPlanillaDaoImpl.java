@@ -66,9 +66,6 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("text", Integer.parseInt(text));
 
-        /*List<FormulaPlanilla> lsFormPlanilla = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));*/
-
         try {
             List<FormulaPlanilla> lsFormPlanilla = namedParameterJdbcTemplate.query(sql, namedParameters,
                     BeanPropertyRowMapper.newInstance(FormulaPlanilla.class));
@@ -78,8 +75,6 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
             log.info("No se encontraron resultados");
             return null;
         }
-
-        //return lsFormPlanilla;
     }
 
     public String getListVars(Integer idprod, String script) {
@@ -94,7 +89,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
         Pattern pattern = Pattern.compile("(\\$)(.*?)(\\$)");
         Matcher matcher = pattern.matcher(string);
-        log.info(string);
+        //log.info(string);
 
         List<String> listMatches = new ArrayList<>();
 
@@ -180,7 +175,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
         variable_sql = "( " + variable_sql + "'')";
 
-        log.info("variable_sql: {} ", variable_sql);
+        //log.info("variable_sql: {} ", variable_sql);
 
         List<ConceptoXProceso> listVariable2 = obtenerListVariablesConc(idprod, variable_sql);
 
@@ -188,28 +183,6 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
     }
 
     public List<ConceptoXProceso> obtenerListVariablesConc(Integer idprod, String variable_sql) {
-
-        /*String sql = "select " +
-                "coocodforvar, " +
-                "flg_agrupable, " +
-                "procodcon " +
-                "from iexproxconcepto, iexconcepto " +
-                "where procodcon = coocodcon and " +
-                "procodpro = :idprod and " +
-                "flg_agrupable = '1' and " +
-                "trim(coocodforvar) in :finalVariable_sql ";
-
-        String finalVariable_sql = "" + variable_sql + "";
-        log.info("finalVariable_sql: {} ", finalVariable_sql);
-
-        SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("idprod", idprod)
-                .addValue("finalVariable_sql", finalVariable_sql);
-
-        List<ConceptoXProceso> lsConceptxPro = namedParameterJdbcTemplate.query(sql, namedParameters,
-                BeanPropertyRowMapper.newInstance(ConceptoXProceso.class));
-
-        return lsConceptxPro;*/
 
         String sql = "select " +
                 "coocodforvar, " +
@@ -261,7 +234,7 @@ public class FormulaPlanillaDaoImpl implements FormulaPlanillaDao {
 
         vformula = v_script_dec + " " + v_script_ini + " " + v_script_body + " result2.setValue($resultado$); "
                 + " result3.setValue($salto$); ";
-        log.info("vformula: {} ", vformula);
+        //log.info("vformula: {} ", vformula);
 
         engine.put("result2", result2);
         engine.put("result3", result3);

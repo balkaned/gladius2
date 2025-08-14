@@ -538,7 +538,8 @@ public class AWS_FTP_FlgSourceController {
 
                     if (nombreJasper.equals("BoletaEmpTra") ||
                             nombreJasper.equals("Boleta5taper") ||
-                            nombreJasper.equals("CertiLiqTra")) {
+                            nombreJasper.equals("CertiLiqTra") ||
+                            nombreJasper.equals("BoletaEmp")) {
                         AmazonS3 s12 = null;
                         S3Object o12 = null;
                         s12 = AmazonS3ClientBuilder.standard().withRegion(clientRegion).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
