@@ -126,7 +126,7 @@
                              ${mensaje}
                        </span>-->
 
-                       <div class="col-xl-12">
+                       <div class="col-xl-12 mt-2">
                             <c:if test="${mensaje!=null}">
                                <div id="alert" class="alert alert-outline-danger bg-danger bg-opacity-10 d-flex align-items-center alert-dismissible fade show" role="alert">
                                     <span class="fa-regular fa-times-circle text-danger fs-0 me-3"></span>
