@@ -58,7 +58,7 @@
         <main class="main" id="top">
           <div class="container">
             <div class="row flex-center min-vh-100 py-5">
-              <div style="width:430px;" class="col-sm-12 col-md-4">
+              <div style="width:400px;" class="col-sm-12 col-md-4">
                 <!--<a class="d-flex flex-center text-decoration-none mb-2" href="../../../index.jsp">
                     <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
                         <img src="resources/assets/img/icons/logoLast3.png" alt="" width="58" />
