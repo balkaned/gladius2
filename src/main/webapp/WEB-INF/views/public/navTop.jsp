@@ -12,7 +12,7 @@
                 <div class="d-flex align-items-center">
                     <span style="font-weight:800; font-size:18px; color:white;">gladius</span><span style="font-weight:300; font-size:18px; color:white;">balkaned</span>
                     <!--<img class="ps-0" src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="19"/>-->
-                    <span id="spntop" class="ps-7 pe-3 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
+                    <span id="spntop" class="ps-5 pe-3 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                   <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->
                   <p style="color:white !important;font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
@@ -23,9 +23,9 @@
           </div>
 
           <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}' style="width:30rem;">
-            <form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
+            <!--<form class="position-relative text-center" data-bs-toggle="search" data-bs-display="static">
               <input class="bg-100 ms-2 form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Buscar..." aria-label="Buscar" />
-            </form>
+            </form>-->
 
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
               <button class="btn btn-link btn-close-falcon p-0" aria-label="Close"></button>
