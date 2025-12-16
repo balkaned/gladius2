@@ -11,7 +11,7 @@
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center">
                     <span style="font-weight:800; font-size:18px; color:white;">gladius</span><span style="font-weight:300; font-size:18px; color:white;">balkaned</span>
-                    <img class="ps-0" src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="19"/>
+                    <!--<img class="ps-0" src="resources/assets/img/icons/logoLast3.png" alt="phoenix" width="19"/>-->
                     <span id="spntop" class="ps-7 pe-3 "><span class="fa-solid fa-city me-2"></span>${nombreComp} </span><span id="spntop"><span class="fa-solid fa-address-card me-2"></span>Ruc: ${rucComp} </span>
                   <!--<p style="font-size:20px; font-weight:400;border:0px solid red;margin-right:2px;" class="logo-text ms-2 d-none d-sm-block text-black"></p>
                   <p style="font-size:20px; font-weight:800;border:0px solid green;margin:0px !important;" class="logo-text ms-2 d-none d-sm-block text-black"></p>-->
