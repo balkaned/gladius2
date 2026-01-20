@@ -82,59 +82,66 @@
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de retención</label>
-                                                <select class="form-select" name="iextipretjud" required >
-                                                  <option value="" selected >Seleccionar tipo retencion</option>
-                                                  <c:forEach var="lovTipretj" items="${lovTipretj}">
-                                                      <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov == requestScope.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-12">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Resolución</label>
-                                                <input class="form-control" name="iexresolucion" maxlength="50" type="text" placeholder="Ingrese resolución" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso planilla</label>
-                                                <select class="form-select" name="iexcodpro" required >
-                                                  <option value="" selected >Seleccionar proceso planilla</option>
-                                                  <c:forEach var="lovProcesos" items="${lovProcesos}">
-                                                      <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje %</label>
-                                                <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 placeholder="10%-> 10.0" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. fijo</label>
-                                                <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
-                                            </div>
+                                            <div class="col-12">
+                                              <div class="card mb-3">
+                                                <div class="card-body">
+                                                  <div class="row g-3">
+                                                    <div class="col-12 mb-2">
+                                                      <h5 class="mb-0"><strong>Datos de la retención</strong></h5>
+                                                    </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                                            	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                                            	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
-                                            </div>
-                                            <div class="col-12 gy-6">
-                                                <div class="row g-3 justify-content-end">
-                                                  <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
-                                                  </div>
-                                                  <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar retencion</button>
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de retención</label>
+                                                        <select class="form-select" name="iextipretjud" required >
+                                                          <option value="" selected >Seleccionar tipo retencion</option>
+                                                          <c:forEach var="lovTipretj" items="${lovTipretj}">
+                                                              <option value="${lovTipretj.idLov}"   ${lovTipretj.idLov == requestScope.iextipretjud ? 'selected' : ''}  >  ${lovTipretj.desLov} </option>
+                                                          </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-12">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Resolución</label>
+                                                        <input class="form-control" name="iexresolucion" maxlength="50" type="text" placeholder="Ingrese resolución" required />
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso planilla</label>
+                                                        <select class="form-select" name="iexcodpro" required >
+                                                          <option value="" selected >Seleccionar proceso planilla</option>
+                                                          <c:forEach var="lovProcesos" items="${lovProcesos}">
+                                                              <option value="${lovProcesos.idProceso}" >  ${lovProcesos.desProceso} </option>
+                                                          </c:forEach>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de inicio</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                        <input class="form-control datetimepicker" name="iexfecini" id="iexfecini" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha fin</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                        <input class="form-control datetimepicker" name="iexfecfin" id="iexfecfin" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-4">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Porcentaje %</label>
+                                                        <input class="form-control" name="iexpordesct" maxlength="10" type="number" step=0.01 placeholder="10%-> 10.0" required />
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Imp. fijo</label>
+                                                        <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="0.0" required />
+                                                    </div>
+
                                                   </div>
                                                 </div>
+                                              </div>
+
+
+
+                                              <div class="d-flex justify-content-end gap-2 mt-3">
+                                                <a class="btn btn-phoenix-primary" href="retencionJud@${idTrab}">Cancel</a>
+                                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar retencion</button>
+                                              </div>
+
                                             </div>
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                               <div class="modal-dialog modal-dialog-centered">
@@ -152,11 +159,13 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                            	  </div>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		</div>
                                             	</div>
                                               </div>
                                             </div>
+
+
                                      </form>
                                    </div>
                                  </div>

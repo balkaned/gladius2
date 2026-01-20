@@ -1,6 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
+import com.balkaned.gladius.empleado.Domain.Empleado;
 import com.balkaned.gladius.models.*;
 import java.util.List;
 

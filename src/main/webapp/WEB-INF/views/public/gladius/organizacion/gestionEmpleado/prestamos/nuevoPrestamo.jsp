@@ -76,83 +76,100 @@
                             </div>
 
                             <div class="row g-3">
-                                 <div class="col-xl-10">
+                                 <div class="col-12">
                                    <div class="row gx-3 gy-4">
                                      <form class="row g-3 mb-0 needs-validation" method="POST" action="insertarPrestamo" novalidate >
                                             <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
                                             <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
 
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de préstamo</label>
-                                                <select class="form-select" name="iextipprestamo" required >
-                                                  <option value="" selected >Seleccionar tipo prestamo</option>
-                                                  <c:forEach  var="lovTippres" items="${lovTippres}">
-                                                      <option value="${lovTippres.idLov}" >${lovTippres.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe bruto</label>
-                                                <input class="form-control" name="ieximpbruto" maxlength="10" step=0.01 type="number" placeholder="10000" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-3">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro cuotas</label>
-                                                <input class="form-control" name="iexnrocuota" maxlength="2" type="number" placeholder="48" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-5">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo interés</label>
-                                                <select class="form-select" name="iextipinteres" required >
-                                                  <option value="" selected >Seleccionar tipo interes</option>
-                                                  <c:forEach  var="lovTipInteres" items="${lovTipInteres}">
-                                                      <option value="${lovTipInteres.idLov}" >${lovTipInteres.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-3">
-                                                 <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interés %</label>
-                                                 <input class="form-control" name="iexinteres" maxlength="4" type="number" step=0.01 required placeholder="10% -> 10.0"/>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe total</label>
-                                                <input class="form-control" name="ieximptotal" maxlength="15" type="number" step=0.01 placeholder="12000" required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-8">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
-                                                <input class="form-control" name="iexglosa" maxlength="50" type="text" placeholder="Ingrese glosa" />
-                                            </div>
-                                            <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de préstamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                  <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-5">
-                                                  <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha ini vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-                                                  <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Frecuencia préstamo</label>
-                                                <select class="form-select" name="iexfrecuencia" required>
-                                                  <option value="" selected >Seleccionar frecuencia prestamo</option>
-                                                  <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
-                                                      <option value="${lovFrecPrestamo.idLov}" >${lovFrecPrestamo.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
+                                            <div class="col-12">
+                                              <div class="card mb-3">
+                                                <div class="card-body">
+                                                  <div class="row g-3">
+                                                    <div class="col-12 mb-2">
+                                                      <h5 class="mb-0"><strong>Datos del préstamo</strong></h5>
+                                                    </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                                            	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                                            	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
-                                            </div>
-                                            <div class="col-12 gy-6">
-                                                <div class="row g-3 justify-content-end">
-                                                  <div class="col-auto">
-                                                    <a class="btn btn-phoenix-primary" href="prestamos@${idTrab}">Cancel</a>
-                                                  </div>
-                                                  <div class="col-auto">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar prestamo</button>
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo de préstamo</label>
+                                                        <select class="form-select" name="iextipprestamo" required >
+                                                          <option value="" selected >Seleccionar tipo prestamo</option>
+                                                          <c:forEach  var="lovTippres" items="${lovTippres}">
+                                                              <option value="${lovTippres.idLov}" >${lovTippres.desLov}</option>
+                                                          </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe bruto</label>
+                                                        <div class="input-group">
+                                                          <input class="form-control" name="ieximpbruto" maxlength="10" step=0.01 type="number" placeholder="10000" required />
+                                                          <span class="input-group-text">S/.</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Nro cuotas</label>
+                                                        <input class="form-control" name="iexnrocuota" maxlength="2" type="number" placeholder="48" required />
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Tipo interés</label>
+                                                        <select class="form-select" name="iextipinteres" required >
+                                                          <option value="" selected >Seleccionar tipo interes</option>
+                                                          <c:forEach  var="lovTipInteres" items="${lovTipInteres}">
+                                                              <option value="${lovTipInteres.idLov}" >${lovTipInteres.desLov}</option>
+                                                          </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-3">
+                                                         <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Interés %</label>
+                                                         <div class="input-group">
+                                                           <input class="form-control" name="iexinteres" maxlength="4" type="number" step=0.01 required placeholder="10% -> 10.0"/>
+                                                           <span class="input-group-text">%</span>
+                                                         </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Importe total</label>
+                                                        <div class="input-group">
+                                                          <input class="form-control" name="ieximptotal" maxlength="15" type="number" step=0.01 placeholder="12000" required />
+                                                          <span class="input-group-text">S/.</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-8">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Glosa</label>
+                                                        <input class="form-control" name="iexglosa" maxlength="50" type="text" placeholder="Ingrese glosa" />
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-5">
+                                                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha de préstamo</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                          <input class="form-control datetimepicker" name="iexfecpres" id="iexfecpres" onchange="formatearFecha1();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5">
+                                                          <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Fecha ini vigencia</label><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+                                                          <input class="form-control datetimepicker" name="iexfecinivig" id="iexfecinivig" onchange="formatearFecha2();" type="text" placeholder="dd/mm/yyyy" data-options='{"disableMobile":true}' required />
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-6">
+                                                        <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Frecuencia préstamo</label>
+                                                        <select class="form-select" name="iexfrecuencia" required>
+                                                          <option value="" selected >Seleccionar frecuencia prestamo</option>
+                                                          <c:forEach  var="lovFrecPrestamo" items="${lovFrecPrestamo}">
+                                                              <option value="${lovFrecPrestamo.idLov}" >${lovFrecPrestamo.desLov}</option>
+                                                          </c:forEach>
+                                                        </select>
+                                                    </div>
+
                                                   </div>
                                                 </div>
+                                              </div>
+
+
+
+                                              <div class="d-flex justify-content-end gap-2 mt-3">
+                                                <a class="btn btn-phoenix-primary" href="prestamos@${idTrab}">Cancel</a>
+                                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent" >Guardar prestamo</button>
+                                              </div>
+
                                             </div>
+
                                             <div class="modal fade" id="confirmModal" tabindex="-1">
                                               <div class="modal-dialog modal-dialog-centered">
                                             	<div class="modal-content border">
@@ -169,11 +186,13 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9sss my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
-                                            	  </div>
-                                            	</div>
-                                              </div>
+                                             		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                             	  </div>
+                                             	</div>
                                             </div>
+                                            </div>
+
+
                                      </form>
                                    </div>
                                  </div>

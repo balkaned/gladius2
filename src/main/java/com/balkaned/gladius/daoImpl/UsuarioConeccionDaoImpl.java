@@ -1,6 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.models.Compania;
+import com.balkaned.gladius.companias.Domain.Compania;
 import com.balkaned.gladius.models.UsuarioConeccion;
 import com.balkaned.gladius.dao.UsuarioConeccionDao;
 import lombok.extern.slf4j.Slf4j;

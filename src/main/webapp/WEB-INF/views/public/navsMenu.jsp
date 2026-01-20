@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <nav id="navbar2a" class="bg-200 navbar navbar-vertical navbar-expand-lg border-end border-400" >
+    <nav id="navbar2a" class="bg-200 navbar navbar-vertical navbar-expand-lg border-end border-400 navbar-vibrant" >
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
           if (navbarStyle && navbarStyle !== 'transparent') {
@@ -30,7 +30,7 @@
              $('#'+menunav).addClass("active");
           });
         </script>
-        <div class="" id="navbarVerticalCollapse">
+        <div class="navbar-collapse" id="navbarVerticalCollapse">
           <!-- scrollbar removed-->
           <div class="navbar-vertical-content">
             <ul class="navbar-nav flex-column" id="navbarVerticalNav">
@@ -79,7 +79,7 @@
                     </c:if>
                     <c:if test="${usuxsysxopc.codsec != seccion_cur}">
                             <p class="navbar-vertical-label">${usuxsysxopc.dessecCapi}</p>
-                            <p id="p2" class="navbar-vertical-label">Menu de ${usuxsysxopc.dessecCapi}</p>
+                            <p id="p2" class="navbar-vertical-label">Menu de  ${usuxsysxopc.dessecCapi}</p>
                             <div class="nav-item-wrapper">
                                 <a class="nav-link dropdown-indicator label-1" href="#${usuxsysxopc.codsec}" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="${usuxsysxopc.dessecCapi}">
                                     <div class="d-flex align-items-center">
@@ -89,7 +89,7 @@
                                 <div class="parent-wrapper label-1">
                                     <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="${usuxsysxopc.codsec}">
                                           <li class="collapsed-nav-item-title d-none">${usuxsysxopc.dessecCapi}</li>
-                    </c:if>
+                                        </c:if>
 
                                           <li id="menunav" class="nav-item">
                                             <a class="nav-link" id="${usuxsysxopc.path}" href="${usuxsysxopc.path}" data-bs-toggle="" aria-expanded="false">
@@ -106,10 +106,10 @@
         </div>
 
         <div class="navbar-vertical-footer bg-200 border border-300">
-          <a id="btnMenuCollap" class="btn navbar-vertical-toggle fw-semi-bold w-100 white-space-nowrap d-flex align-items-center">
+          <a id="btnMenuCollap" class="btn navbar-vertical-toggle fw-semi-bold w-100 white-space-nowrap d-flex align-items-center justify-content-center" style="cursor: pointer;">
             <span class="uil uil-left-arrow-to-left fs-0"></span>
             <span class="uil uil-arrow-from-right fs-0"></span>
-            <span class="navbar-vertical-footer-text ms-2">Collapsed View</span>
+            <span class="navbar-vertical-footer-text ms-2">Colapsar menú</span>
           </a>
         </div>
     </nav>

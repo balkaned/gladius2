@@ -476,7 +476,7 @@
                             </div>
                             <div class="col col-md-auto">
                               <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
-                                <a  class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span class="fas fa-download me-1"></span>Exportar excel</a>
+                                <a class="btn btn-link px-2 text-900" target="_blank" href="AWSorFTP_flgsource@verReporteExcel@${idCom}@-1@null@null@BoletaEmpRes@3UP_CODPRO=${iexcodpro}UP_NROPER=${iexperiodo}UP_CORREL=1@null@null@null"><span class="fas fa-download me-1"></span>Exportar excel</a>
                                 <a class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse" href="#example-code" role="button" aria-controls="example-code" aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a onclick="traerDatosReporteEmbeddedResumenPlanilla();" class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2" data-feather="eye"></span>Preview</a>
                               </nav>
                             </div>

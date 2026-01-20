@@ -1,0 +1,19 @@
+package com.balkaned.gladius.usuarios.Infrastructure;
+
+
+import com.balkaned.gladius.usuarios.Domain.Usuario;
+
+import java.util.List;
+
+public interface UsuarioDao {
+    public List<Usuario> listar(String text, Integer pag, Integer numregs);
+
+    public void insertar(Usuario usuario);
+
+    public Usuario recuperar(Integer id);
+
+    public void actualizar(Usuario usuario);
+
+    public void eliminar(Integer id);
+
+}

@@ -1,6 +1,7 @@
 package com.balkaned.gladius.daoImpl;
 
 
+import com.balkaned.gladius.empleado.Domain.Empleado;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.TurnoDiarioDao;
 import com.balkaned.gladius.util.FormatterFecha;
@@ -19,7 +20,6 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j

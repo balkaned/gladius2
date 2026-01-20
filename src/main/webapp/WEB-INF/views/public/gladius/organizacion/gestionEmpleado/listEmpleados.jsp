@@ -13,9 +13,14 @@
   </head>
 
   <script>
-      function cargarinfoEmpl(){
-        $('#modalLoading').modal('show');
+    function cargarinfoEmpl(href, event){
+      if (event && (event.ctrlKey || event.metaKey || (event.which && event.which === 2))) {
+        return true;
       }
+      $('#modalLoading').modal('show');
+      setTimeout(function(){ window.location = href; }, 150);
+      return false;
+    }
   </script>
 
   <body>
@@ -110,11 +115,11 @@
                                   <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
                                 </div>
                               </td>
-                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" onclick="cargarinfoEmpl();"href="detalleEmpl@${empl.iexcodtra}">#${empl.iexcodtra}</a></td>
+                              <td class="id align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="detalleEmpl@${empl.iexcodtra}" onclick="return cargarinfoEmpl(this.href, event);">#${empl.iexcodtra}</a></td>
                               <td class="tipodoc align-middle text-center fw-semi-bold text-1000"><span class="badge badge-tag me-2 mb-2">${empl.iextipdocid}</span></td>
                               <td class="nrodoc align-middle fs-9 text-center"><span class="fa-regular fa-address-card me-2"></span>${empl.iexnrodoc}</td>
                               <td class="nombreyapp align-middle white-space-nowrap ps-8">
-                                <a class="d-flex align-items-center" href="#!">
+                                <a class="d-flex align-items-center" href="detalleEmpl@${empl.iexcodtra}" onclick="return cargarinfoEmpl(this.href, event);">
                                   <div class="avatar avatar-m">
                                     <div class="avatar-name rounded-circle"><span>${empl.letraIni}</span></div>
                                   </div>
@@ -133,7 +138,7 @@
                                  <div class="font-sans-serif btn-reveal-trigger position-static">
                                    <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a id="dropdownmenutable" class="dropdown-item" onclick="cargarinfoEmpl();" href="detalleEmpl@${empl.iexcodtra}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
+                                        <a id="dropdownmenutable" class="dropdown-item" href="detalleEmpl@${empl.iexcodtra}" onclick="return cargarinfoEmpl(this.href, event);"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
                                         <a id="dropdownmenutable" class="dropdown-item"
                                         href="AWSorFTP_flgsource@verReportePDF@${idComp}@${empl.iexcodtra}@null@null@FichaTrabajador@null@null@null@null"
                                         target="_blank"><span class="fa-solid fa-download  me-2"></span>Descargar ficha PDF</a>

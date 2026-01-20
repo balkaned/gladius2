@@ -98,46 +98,57 @@
                               </div>
                             </div>
 
-                            <div class="row g-3">
-                                 <div class="col-xl-8">
-                                   <div class="row gx-3 gy-4">
-                                     <form class="row g-3 mb-0 needs-validation" method="POST" action="verDataSueldoVar@${idTrab}" novalidate >
-                                            <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
-                                            <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
-
-                                            <div class="col-sm-6 col-md-10">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Regimen laboral</label>
-                                                <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
-                                                  <option value="" selected >Seleccionar regimen laboral</option>
-                                                  <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
-                                                      <option value="${Lovs_regimen.idLov}" >${Lovs_regimen.desLov}</option>
-                                                  </c:forEach>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-7">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Proceso de planilla</label>
-                                                <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required >
-                                                    <option value="">Seleccionar proceso planilla</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6">
-                                                <label class="form-label fs-0 text-1000 ps-0 text-none mb-2">Periodo</label>
-                                                <select class="form-select" name="iexperiodo" id="iexperiodo" required >
-                                                    <option value="">Seleccionar periodo</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-12 gy-6">
-                                                <div class="row g-3 justify-content-end">
-                                                  <div class="col-auto">
-                                                    <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
-                                                    <button class="btn btn-primary btn-sm" type="submit" ><span class="fas fa-search me-2"></span>Ver data</button>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                     </form>
-                                   </div>
-                                 </div>
+                            <div class="row g-3 mt-0">
+                              <div class="col-12">
+                                <form class="needs-validation" method="POST" action="verDataSueldoVar@${idTrab}" novalidate>
+                                  <input class="form-control" name="iexcodcia" type="hidden" value="${requestScope.emp.iexcodcia}" />
+                                  <input class="form-control" name="iexcodtra" type="hidden" value="${requestScope.emp.iexcodtra}" />
+                            
+                                  <!-- CARD: Filtros -->
+                                  <div class="card mb-4 shadow-sm">
+                                    <div class="card-header bg-light border-bottom">
+                                      <h5 class="mb-0 text-primary"><i class="fas fa-filter me-2"></i>Filtros</h5>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="row g-3">
+                                        <div class="col-md-4">
+                                          <label class="form-label fw-semibold">Regimen laboral</label>
+                                          <select class="form-select" name="iexcodreg" id="iexcodreg" onchange="regimen();" required>
+                                            <option value="">Seleccionar regimen</option>
+                                            <c:forEach var="Lovs_regimen" items="${Lovs_regimen}">
+                                              <option value="${Lovs_regimen.idLov}">${Lovs_regimen.desLov}</option>
+                                            </c:forEach>
+                                          </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <label class="form-label fw-semibold">Proceso de planilla</label>
+                                          <select class="form-select" name="iexcodpro" id="iexcodpro" onchange="procesoplanilla();" required>
+                                            <option value="">Seleccionar proceso</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <label class="form-label fw-semibold">Periodo</label>
+                                          <select class="form-select" name="iexperiodo" id="iexperiodo" required>
+                                            <option value="">Seleccionar periodo</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            
+                                  <!-- CARD: Acciones -->
+                                  <div class="card mb-0">
+                                    <div class="card-body d-flex justify-content-end gap-2">
+                                      <a class="btn btn-phoenix-secondary btn-sm" href="detalleEmpl@${idTrab}" onclick="return cargarinfoEmpl(this.href, event);">
+                                        <span class="fa-solid fa-reply me-2"></span>Atras
+                                      </a>
+                                      <button class="btn btn-primary btn-sm" type="submit">
+                                        <span class="fas fa-search me-2"></span>Ver data
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
                             </div>
                           </div>
                         </div>

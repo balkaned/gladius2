@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.models.Empleado;
+import com.balkaned.gladius.empleado.Domain.Empleado;
 import com.balkaned.gladius.models.UsuarioxRol;
 import com.balkaned.gladius.models.UsuxCompania;
 import com.balkaned.gladius.dao.UsuxCompaniaDao;

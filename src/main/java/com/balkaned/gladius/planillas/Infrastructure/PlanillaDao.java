@@ -1,0 +1,82 @@
+package com.balkaned.gladius.planillas.Infrastructure;
+
+import com.balkaned.gladius.banco.Domain.BancoResumenPer;
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoxProcesoxTra;
+import com.balkaned.gladius.empleado.Domain.EmpDatvar;
+import com.balkaned.gladius.models.*;
+
+import java.util.List;
+
+public interface PlanillaDao {
+
+    public List<PlaProPeriodo> listPla5ta(Integer codcia, String anio, Integer codtra);
+
+    public List<ConceptoxProcesoxTra> listPlaProperDetCon(Integer codcia, Integer idproceso, String perpro, String codcon);
+
+    public List<PlaProPeriodo> listAllPlaPerTra(Integer codcia, Integer codtra, String perini, String perfin);
+
+    public List<PlaProPeriodo> listAllPlaPerTraPro(Integer codcia, Integer codtra, Integer codpro, String perini, String perfin);
+
+    public void PlameExe(Integer codcia, String permes, String file);
+
+    public List<String> PlameMes(Integer codcia, String permes, String file);
+
+    public void AfpNetExe(Integer codcia, String permes);
+
+    public List<PlaProPeriodo> listPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
+
+    public List<PlaProPeriodo> listLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
+
+    public void iniPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public void calificacion_tiempo_mas(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);
+
+    public void iniPlaProper_proc(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public void timeIniexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+
+    public void procesarPla2020(List<PlaProPeriodo> Persona, Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl, Integer thread);
+
+    public void guardarNomina2020(Integer codcia, Integer idproceso, String idPeriodo, Integer codtra, Integer correl);
+
+    public void timeFinexe(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+
+    public void delPlaProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public PlaProPeriodo listPlaProperTra(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl);
+
+    public List<ConceptoxProcesoxTra> listProperconConZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
+
+    public List<ConceptoxProcesoxTra> listProperconConZerosBuscar(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon, String textbuscar);
+
+    public List<ConceptoxProcesoxTra> listProperconSinZeros(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String flgcon);
+
+    public List<BancoResumenPer> listBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl);
+
+    public void exeBankProper(Integer codcia, Integer idproceso, String perpro, Integer correl, String usu, Double tmcb, String fecpago);
+
+    public List<String> txtBancos(Integer codcia, Integer idproceso, String nroper, Integer correl, String codbank, String codmon);
+
+    public List<PlaProPerDet> iniPlaProper_vac(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public List<PlaProPerDet> iniPlaProper_aus(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public List<PlaProPerDet> iniPlaProper_prest(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public List<PlaProPerDet> iniPlaProper_prom(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String grppla, String usu);
+
+    public void migraTrabajador(Integer cia, Integer codpro, String nroper, Integer codtra, Integer correl);
+
+    public void migraInsertarPla(List<EmpDatvar> empdatvar);
+
+    public List<Asistencia> consultaMarka(Integer codcia, Integer codtra, String fecini, String fecfin);
+
+    public String creaLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc);
+
+    public PlaProPeriodo getLiqProper(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String txt);
+
+    public String updLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc, String fecpag);
+
+    public String cieLiqPla(Integer codcia, Integer idproceso, String perpro, Integer codtra, Integer correl, String tipcese, String observa, String fecese, String usu, String flgboltrunc);
+
+}

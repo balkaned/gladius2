@@ -1,6 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoxProcesoxTra;
 import com.balkaned.gladius.models.*;
 
 import java.util.List;

@@ -35,6 +35,20 @@
                   <h2 id="h2top" class="mb-0">Maestro de cuentas contables</h2>
                 </div>
               </div>
+
+              <div id="alertNotFound" class="alert alert-outline-warning bg-warning bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important; margin-top:12px;">
+                  <span class="fa-solid fa-triangle-exclamation text-warning fs-0 me-3"></span>
+                  <p class="mb-0 fw-semi-bold text-1000 col-11">Cuenta contable no encontrada</p>
+              </div>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                      const params = new URLSearchParams(window.location.search);
+                      if (params.get('notfound') === '1') {
+                          const div = document.getElementById('alertNotFound');
+                          if (div) { div.style.display = ''; setTimeout(function () { $("#alertNotFound").hide(6000); }, 5000); }
+                      }
+                  });
+              </script>
             </div>
             <div id="orderTable" data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
               <div class="mb-4">

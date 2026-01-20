@@ -14,6 +14,11 @@ $(document).ready(function(){
                     $("#iexdepart_origen1").html(opt);
                     $("#iexprovin_origen1").html("<option value='' >Seleccionar</option>");
                     $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
+
+                    // If the endpoint returned exactly one department, auto-select it to load provinces
+                    if (Array.isArray(data) && data.length === 1) {
+                        $("#iexdepart_origen1").val(data[0].idLov).trigger('change');
+                    }
                 }
          });
     });
@@ -32,6 +37,11 @@ $(document).ready(function(){
                          }
                     $("#iexprovin_origen1").html(opt);
                     $("#iexubigeo_dom1").html("<option value='' >Seleccionar</option>");
+
+                    // If exactly one province returned, auto-select it to load districts
+                    if (Array.isArray(data) && data.length === 1) {
+                        $("#iexprovin_origen1").val(data[0].idLov).trigger('change');
+                    }
                 }
          });
     });

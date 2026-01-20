@@ -136,11 +136,7 @@
                                                 <input class="form-control" name="ieximpfijo" maxlength="10" step=0.01 type="number" value="${requestScope.xRetenJudEmp.ieximpfijo}" value="0.0" required />
                                             </div>
 
-                                            <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center" role="alert" style="display:none !important;">
-                                            	<span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
-                                            	<p class="mb-0 fw-semi-bold text-1000 col-11">Se grabó exitosamente los cambios <a href="#">Mas información</a></p>
-                                            	<a class="text-success fs-0 fw-bold" href="#" data-bs-dismiss="alert" aria-label="Close">x</a>
-                                            </div>
+
                                             <div class="col-12 gy-6">
                                                 <div class="row g-3 justify-content-end">
                                                   <div class="col-auto">
@@ -167,7 +163,7 @@
                                             	  </form>
                                             	  <div class="modal-footer d-flex justify-content-end align-items-center px-0 pb-0 border-200 pt-0">
                                             		  <button class="btn btn-sm btn-phoenix-primary px-4 my-0 mt-1" type="button" data-bs-dismiss="modal" >Cancel</button>
-                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" onclick="mostrarAlert();" type="submit" data-bs-dismiss="modal" >Confirmar</button>
+                                            		  <button class="btn btn-sm btn-primary px-9 my-0 mt-1" type="submit" data-bs-dismiss="modal" >Confirmar</button>
                                             	  </div>
                                             	</div>
                                               </div>

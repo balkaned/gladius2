@@ -1,6 +1,6 @@
 package com.balkaned.gladius.dao;
 
-import com.balkaned.gladius.models.Compania;
+import com.balkaned.gladius.companias.Domain.Compania;
 import com.balkaned.gladius.models.UsuarioConeccion;
 import java.util.List;
 

@@ -58,7 +58,7 @@
       </div>
       <div class="row col-12 mt-2 ms-0">
         <div class="col-auto ps-2 pe-0">
-            <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañia</a>
+            <a class="btn btn-primary mb-1 btn-sm ms-0" href="#"><i class="fa-solid fa-plus me-2"></i>Add compañiaaaa</a>
         </div>
         <!--<div class="col-auto ps-2 pe-0">
             <a class="btn btn-phoenix-secondary mb-1 btn-sm" target="_blank" href="https://www.balkaned.com" ><span class="fas fa-earth-americas me-2"></span>Ir a sitio web</a>
@@ -88,7 +88,7 @@
 
     <div class="row mt-0">
         <c:forEach var="compList" items="${compList}">
-          <div class="card p-0 me-3 mt-3 border border-300" style="max-width:18rem;">
+          <div class="card p-0 me-3 mt-3 border border-300" style="max-width:18rem; cursor: pointer;" onclick="window.location.href='ingresarCompania@${compList.id_companias}@${compList.id_usuario}'">
             <!--<img class="card-img-top" src="resources/assets/img//generic/66.jpg" alt="..." />-->
             <img class="card-img-top" height="180" src="AWSorFTP_flgsource@verLogo@${compList.id_companias}@null@${compList.urlLogo}@null@null@null@null@null@null" />
             <div class="card-body bg-soft rounded-0 border-top" style="border-radius: 0px 0px 20px 20px !important">

@@ -1,5 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoxProcesoxTra;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.ProcesoPlanillaDao;
 import com.balkaned.gladius.util.CapitalizarCadena;

@@ -1,6 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
-import com.balkaned.gladius.models.EmpAcum;
+import com.balkaned.gladius.empleado.Domain.EmpAcum;
 import com.balkaned.gladius.dao.EmpAcumDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

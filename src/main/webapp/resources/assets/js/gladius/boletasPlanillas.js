@@ -218,27 +218,50 @@ function obtenerData(){
 function descargarBoleta(idComp){
     var codtra = $("#idTrabBolHidden").val();
 
-    //var iexcodpro = $("#iexcodpro").val();
-    var iexcodpro = "1";
+    // Obtener el valor real del proceso en lugar de hardcodear "1"
+    var iexcodpro = $("#iexcodpro").val();
+    if (!iexcodpro || iexcodpro === "") {
+        console.error("Error: iexcodpro no está definido");
+        alert("Error: No se pudo obtener el código del proceso. Por favor, recargue la página.");
+        return false;
+    }
+
     var iexperiodo = $("#iexperiodo").val();
     var iexcorrel = $("#iexcorrel").val();
 
     var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
 
-    document.getElementById("botonDescargarBoletaTrab").href="AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@BoletaEmpTra@"+params+"@null@null@null";
+    var url = "AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@BoletaEmpTra@"+params+"@null@null@null";
+    document.getElementById("botonDescargarBoletaTrab").href = url;
+
+    // Abrir en nueva ventana después de establecer el href
+    window.open(url, '_blank');
+    return false;
 }
 
 function descargarReporte5ta(idComp){
 
     var codtra = $("#idTrabBolHidden").val();
-    //var iexcodpro = $("#iexcodpro").val();
-    var iexcodpro = "1";
+
+    // Obtener el valor real del proceso en lugar de hardcodear "1"
+    var iexcodpro = $("#iexcodpro").val();
+    if (!iexcodpro || iexcodpro === "") {
+        console.error("Error: iexcodpro no está definido");
+        alert("Error: No se pudo obtener el código del proceso. Por favor, recargue la página.");
+        return false;
+    }
+
     var iexperiodo = $("#iexperiodo").val();
     var iexcorrel = $("#iexcorrel").val();
 
     var params="3UP_CODPRO="+iexcodpro+"UP_NROPER="+iexperiodo+"UP_CORREL="+iexcorrel;
 
-    document.getElementById("botonDescargarRep5ta").href="AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@Boleta5taper@"+params+"@null@null@null";
+    var url = "AWSorFTP_flgsource@verReportePDF@"+idComp+"@"+codtra+"@null@null@Boleta5taper@"+params+"@null@null@null";
+    document.getElementById("botonDescargarRep5ta").href = url;
+
+    // Abrir en nueva ventana después de establecer el href
+    window.open(url, '_blank');
+    return false;
 }
 
 function eliminarPlanTrab(){

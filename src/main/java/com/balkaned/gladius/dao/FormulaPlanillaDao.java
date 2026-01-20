@@ -1,7 +1,7 @@
 package com.balkaned.gladius.dao;
 
 
-import com.balkaned.gladius.models.ConceptoXProceso;
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoXProceso;
 import com.balkaned.gladius.models.FormulaPlanilla;
 import java.util.List;
 

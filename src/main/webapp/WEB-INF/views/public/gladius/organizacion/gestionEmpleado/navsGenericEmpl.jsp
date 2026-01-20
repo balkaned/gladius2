@@ -26,7 +26,7 @@
     }
 </script>
 
-    <div class="col-md-5 col-lg-5 col-xl-4">
+    <div class="col-md-4 col-lg-3 col-xl-3">
         <div class="sticky-leads-sidebar">
           <div class="bg-100 lead-details-offcanvas bg-soft scrollbar phoenix-offcanvas phoenix-offcanvas-fixed" id="productFilterColumn">
             <div class="d-flex justify-content-between align-items-center mb-2 d-md-none">

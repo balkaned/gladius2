@@ -1,6 +1,6 @@
 package com.balkaned.gladius.servicesImpl;
 
-import com.balkaned.gladius.models.ConceptoXProceso;
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoXProceso;
 import com.balkaned.gladius.models.FormulaPlanilla;
 import com.balkaned.gladius.dao.FormulaPlanillaDao;
 import com.balkaned.gladius.services.FormulaPlanillaService;

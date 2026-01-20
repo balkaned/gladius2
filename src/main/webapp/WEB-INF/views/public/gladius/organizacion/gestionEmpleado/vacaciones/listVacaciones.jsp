@@ -71,63 +71,60 @@
                                         <span class="fas fa-search search-box-icon"></span>
                                       </form>
                                     </div>
-                                    <div class="border-top border-bottom border-200" >
-                                      <div class="table-responsive scrollbar">
-                                        <table class="table table-sm fs--1 mb-0">
-                                          <thead>
-                                            <tr>
-                                              <th class="sort white-space-nowrap align-middle pe-3 ps-0 text-uppercase" scope="col" data-sort="perini" >Per. Inicio</th>
-                                              <th class="sort align-middle pe-4 text-uppercase text-center" scope="col" data-sort="perfin" >Per. Fin</th>
-                                              <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="fecini" >Fecha Inicio</th>
-                                              <th class="sort align-middle pe-2 text-center text-uppercase" scope="col" data-sort="fecfin" >Fecha Fin</th>
-                                              <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="dsald">Dias Saldo</th>
-                                              <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="">Dias Gan</th>
-                                              <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="">Dias Pag y Goz</th>
-                                              <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" data-sort="dvenc">Dias Ven</th>
-                                              <th class="sort align-middle pe-3 text-center text-uppercase" scope="col" ></th>
-                                            </tr>
-                                          </thead>
-                                          <tbody class="list" id="customer-order-table-body">
-                                            <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}">
-                                                <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                  <td class="perini align-middle white-space-nowrap ps-0 text-center">${LstVacacionesCtl.iexpermesini}</td>
-                                                  <td class="perfin align-middle text-center fw-semi-bold pe-20 text-1000">${LstVacacionesCtl.iexpermesfin}</td>
-                                                  <td class="fecini align-middle white-space-nowrap text-center fw-semi-bold ps-3 pe-3 text-1000"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecini}</td>
-                                                  <td class="fecfin align-middle white-space-nowrap text-center fw-semi-bold text-1000 ps-3 pe-3"><a href="#"><span class="fa-solid fa-calendar-days me-2"></span></a>${LstVacacionesCtl.iexfecfin}</td>
-                                                  <td class="align-middle white-space-nowrap text-center fw-bold text-1000 ">
-                                                      <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="dsald p-2 text-white bg-danger rounded-circle">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
-                                                      <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="dsald badge badge-phoenix fs--2 badge-phoenix-success"><span class="badge-label">+ ${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                    <div class="card mb-3 border-200 shadow-none">
+                                      <div class="card-header py-2 px-3 bg-100 d-flex justify-content-between align-items-center">
+                                        <small class="mb-0 fw-semi-bold text-900">Vacaciones — registros</small>
+                                        <small class="text-muted">Registros: <span data-list-info="data-list-info"></span></small>
+                                      </div>
+                                      <div class="card-body p-0">
+                                        <div class="table-responsive scrollbar">
+                                          <table class="table table-hover table-sm mb-0">
+                                            <thead class="bg-white">
+                                              <tr class="fs--2">
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="perini">Per. Inicio</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="perfin">Per. Fin</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="fecini">Fecha Inicio</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="fecfin">Fecha Fin</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="dsald">Dias Saldo</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col">Dias Gan</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col">Dias Pag y Goz</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col" data-sort="dvenc">Dias Ven</th>
+                                                <th class="align-middle ps-2 pe-2 text-uppercase text-center" scope="col"></th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="list" id="customer-order-table-body">
+                                              <c:forEach var="LstVacacionesCtl" items="${requestScope.LstVacacionesCtl}">
+                                                <tr class="hover-actions-trigger btn-reveal-trigger position-static align-middle">
+                                                  <td class="perini text-center py-1"><span class="badge bg-secondary text-white small">${LstVacacionesCtl.iexpermesini}</span></td>
+                                                  <td class="perfin text-center py-1"><span class="badge bg-secondary text-white small">${LstVacacionesCtl.iexpermesfin}</span></td>
+                                                  <td class="fecini text-center py-1"><span class="fa-solid fa-calendar-days me-2 text-muted"></span> ${LstVacacionesCtl.iexfecini}</td>
+                                                  <td class="fecfin text-center py-1"><span class="fa-solid fa-calendar-days me-2 text-muted"></span> ${LstVacacionesCtl.iexfecfin}</td>
+                                                  <td class="text-center py-1">
+                                                      <c:if test="${LstVacacionesCtl.iexdiassaldo<=0}"><span class="dsald p-1 text-white bg-danger rounded-circle">${LstVacacionesCtl.iexdiassaldo}</span></c:if>
+                                                      <c:if test="${LstVacacionesCtl.iexdiassaldo>0}"><span class="dsald badge badge-phoenix fs--2 badge-phoenix-success small"><span class="badge-label">+ ${LstVacacionesCtl.iexdiassaldo}</span></span></c:if>
                                                   </td>
-                                                  <td class="align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasgan}</td>
-                                                  <td class="align-middle white-space-nowrap fs--1 text-700 text-center ps-3 pe-3">${LstVacacionesCtl.iexdiasgoz}</td>
-                                                  <td class="dvenc align-middle white-space-nowrap text-center text-700 ps-3 pe-3">${LstVacacionesCtl.iexdiasven}</td>
-
-
-                                                  <td class="align-middle white-space-nowrap text-end pe-0 ps-5">
-                                                    <div class="font-sans-serif btn-reveal-trigger position-static">
-                                                      <button class="btn btn-phoenix-secondary btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2" type="button"
-                                                      data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                                      <span class="fas fa-plus"></span><span class="fas fa-caret-down ms-2"></span></button>
-                                                      <div class="dropdown-menu dropdown-menu-end py-2">
-                                                        <a id="dropdownmenutable" class="dropdown-item" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}"><span class="fa-solid fa-chart-bar me-2"></span>Detalle</a>
-                                                        <!--<div class="dropdown-divider"></div>
-                                                        <a id="dropdownmenutable" class="dropdown-item" href="#"><span class="fa-solid fa-trash me-2"></span>Eliminar</a>-->
-                                                      </div>
+                                                  <td class="text-center py-1 text-700">${LstVacacionesCtl.iexdiasgan}</td>
+                                                  <td class="text-center py-1 text-700">${LstVacacionesCtl.iexdiasgoz}</td>
+                                                  <td class="dvenc text-center py-1 text-700">${LstVacacionesCtl.iexdiasven}</td>
+                                                  <td class="text-end py-1">
+                                                    <div class="btn-group btn-group-sm">
+                                                      <a class="btn btn-outline-secondary btn-sm" href="verDetalleVac@${idTrab}@${LstVacacionesCtl.iexpermesini}@${LstVacacionesCtl.iexpermesfin}" title="Detalle"><span class="fa-solid fa-chart-bar"></span></a>
                                                     </div>
                                                   </td>
                                                 </tr>
-                                            </c:forEach>
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                      <div class="row align-items-center justify-content-between py-2 pe-0 fs--1">
-                                        <div class="col-auto d-flex">
-                                          <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900" data-list-info="data-list-info"></p><a class="fw-semi-bold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semi-bold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                              </c:forEach>
+                                            </tbody>
+                                          </table>
                                         </div>
-                                        <div class="col-auto d-flex">
-                                          <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                                          <ul class="mb-0 pagination"></ul>
-                                          <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                        <div class="row align-items-center justify-content-between py-1 px-3 fs--2">
+                                          <div class="col-auto">
+                                            <p class="mb-0 d-none d-sm-block text-muted" data-list-info="data-list-info"></p>
+                                          </div>
+                                          <div class="col-auto d-flex">
+                                            <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                            <ul class="mb-0 pagination"></ul>
+                                            <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>

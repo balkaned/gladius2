@@ -53,6 +53,10 @@
                                 <div>
                                   <div class="col-12 mt-4">
                                     <h2 class="mb-0">Acumulados</h2>
+                                    <div id="alert" class="alert alert-outline-success bg-success bg-opacity-10 d-flex align-items-center mt-3" role="alert" style="display:none;">
+                                      <span class="fa-regular fa-check-circle text-success fs-0 me-3"></span>
+                                      <p class="mb-0 fw-semi-bold text-1000">Se grabó exitosamente los cambios</p>
+                                    </div>
                                   </div>
                                   <div class="col-12 mt-4 mb-2 d-flex justify-content-end">
                                       <a class="btn btn-phoenix-secondary btn-sm px-5" href="detalleEmpl@${idTrab}"><span class="fa-solid fa-reply me-2"></span>Atras</a>
@@ -121,6 +125,19 @@
                   </div>
                 </div>
               </div>
+              <script>
+                (function(){
+                  function showSuccessAlertIfSaved(){
+                    var params = new URLSearchParams(window.location.search);
+                    if(params.get('saved') === '1'){
+                      var div = document.getElementById('alert');
+                      if(div){ div.style.removeProperty('display'); setTimeout(function(){ $(div).hide(6000); }, 3000); }
+                    }
+                  }
+                  document.addEventListener('DOMContentLoaded', showSuccessAlertIfSaved);
+                })();
+              </script>
+
               <jsp:include page="../../../../footer.jsp"></jsp:include>
           </div>
 

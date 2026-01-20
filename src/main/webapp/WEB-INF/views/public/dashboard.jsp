@@ -44,78 +44,136 @@
                     </div>
                   </div>
                 </div>
-                <div class="row mb-3 gy-6">
-                  <div class="col-12 col-xxl-2">
-                    <div class="row align-items-center g-3 g-xxl-0 h-100 align-content-between">
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
-                        <div class="d-flex align-items-center"><span class="fs-4 lh-1 uil uil-users-alt text-primary-500"></span>
-                          <div class="ms-2">
-                            <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">${cantEmpl}</h2><span class="fs-1 fw-semi-bold text-900">Empleados</span>
+                <div class="row g-3 mb-4">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-primary-subtle">
+                              <span class="fs-2 text-primary"><i class="uil uil-users-alt"></i></span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Empleados activos</p>
+                          </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantEmpl}</h3>
+                            <p class="fs--1 text-800 mb-0">Empleados</p>
                           </div>
                         </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Empleados activos</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
-                        <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-ticket text-success-500"></span>
-                          <div class="ms-2">
-                            <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">${cantFondos}</h2><span class="fs-1 fw-semi-bold text-900">Fondos</span>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-success-subtle">
+                              <span class="fs-2 text-success"><i class="fa-solid fa-ticket"></i></span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Fondos de pensión colectivos y de inversión</p>
+                          </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantFondos}</h3>
+                            <p class="fs--1 text-800 mb-0">Fondos</p>
                           </div>
                         </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Fondos de pensión</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
-                        <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-briefcase text-warning-500"></span>
-                          <div class="ms-2">
-                            <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">${cantAreas}</h2><span class="fs-1 fw-semi-bold text-900">Areas</span>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-warning-subtle">
+                              <span class="fs-2 text-warning"><i class="fa-solid fa-briefcase"></i></span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Total areas</p>
+                          </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantAreas}</h3>
+                            <p class="fs--1 text-800 mb-0">Áreas</p>
                           </div>
                         </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Total áreas</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12">
-                        <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-city text-danger-500"></span>
-                          <div class="ms-2">
-                            <div class="d-flex align-items-end">
-                              <h2 class="mb-0 me-2">${cantBancosHab}</h2><span class="fs-1 fw-semi-bold text-900">Bancos</span>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-danger-subtle">
+                              <span class="fs-2 text-danger"><i class="fa-solid fa-city"></i></span>
                             </div>
-                            <p class="text-800 fs--1 mb-0">Banco de haberes</p>
+                          </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantBancosHab}</h3>
+                            <p class="fs--1 text-800 mb-0">Bancos</p>
                           </div>
                         </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Banco de haberes</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
-                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-cash-register text-success-500"></span>
-                            <div class="ms-2">
-                              <div class="d-flex align-items-end">
-                                <h2 class="mb-0 me-2">${cantCcostos}</h2><span class="fs-1 fw-semi-bold text-900">C. costos</span>
-                              </div>
-                              <p class="text-800 fs--1 mb-0">Total centros de costos</p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-success-subtle">
+                              <span class="fs-2 text-success"><i class="fa-solid fa-cash-register"></i></span>
                             </div>
                           </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantCcostos}</h3>
+                            <p class="fs--1 text-800 mb-0">C. costos</p>
+                          </div>
+                        </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Centros de costos</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
-                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-house text-info-500"></span>
-                            <div class="ms-2">
-                              <div class="d-flex align-items-end">
-                                <h2 class="mb-0 me-2">${cantLocales}</h2><span class="fs-1 fw-semi-bold text-900">Locales</span>
-                              </div>
-                              <p class="text-800 fs--1 mb-0">Total Locales o sucursales</p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-info-subtle">
+                              <span class="fs-2 text-info"><i class="fa-solid fa-house"></i></span>
                             </div>
                           </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantLocales}</h3>
+                            <p class="fs--1 text-800 mb-0">Locales</p>
+                          </div>
+                        </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Locales o sucursales</p>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mt-4">
-                          <div class="d-flex align-items-center"><span class="fs-4 lh-1 fa-solid fa-user-nurse text-secondary-500"></span>
-                            <div class="ms-2">
-                              <div class="d-flex align-items-end">
-                                <h2 class="mb-0 me-2">${cantPuestos}</h2><span class="fs-1 fw-semi-bold text-900">Puestos</span>
-                              </div>
-                              <p class="text-800 fs--1 mb-0">Total puestos</p>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card h-100 shadow-sm hover-shadow-lg transition-all">
+                      <div class="card-body p-3">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="avatar avatar-2xl">
+                            <div class="avatar-name rounded-circle bg-secondary-subtle">
+                              <span class="fs-2 text-secondary"><i class="fa-solid fa-user-nurse"></i></span>
                             </div>
                           </div>
+                          <div class="ms-3">
+                            <h3 class="mb-0 text-900">${cantPuestos}</h3>
+                            <p class="fs--1 text-800 mb-0">Puestos</p>
+                          </div>
+                        </div>
+                        <p class="text-700 fs--2 mb-0 mt-2">Total puestos</p>
                       </div>
                     </div>
                   </div>

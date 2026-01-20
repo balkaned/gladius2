@@ -1,5 +1,6 @@
 package com.balkaned.gladius.daoImpl;
 
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoXProceso;
 import com.balkaned.gladius.models.*;
 import com.balkaned.gladius.dao.FormulaPlanillaDao;
 import lombok.extern.slf4j.Slf4j;

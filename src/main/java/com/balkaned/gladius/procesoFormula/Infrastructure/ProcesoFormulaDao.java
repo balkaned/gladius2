@@ -1,0 +1,31 @@
+package com.balkaned.gladius.procesoFormula.Infrastructure;
+
+import com.balkaned.gladius.conceptoXProceso.Domain.ConceptoXProceso;
+import com.balkaned.gladius.models.*;
+import com.balkaned.gladius.procesoFormula.Domain.ProcesoForm;
+
+import java.util.List;
+
+public interface ProcesoFormulaDao {
+    public List<ProcesoForm> listProcesoFormula();
+
+    public List<FormulaXConcepto> listFormulaXConcepto(String codpro);
+
+    public List<Proceso> listConcepto(String id);
+
+    public List<ConceptoXProceso> listConceptoXProceso(Integer idproceso, String tipcon);
+
+    public ConceptoXProceso getConceptoXProceso(Integer idproceso, String idconcepto);
+
+    public void insertar(ConceptoXProceso cproceso);
+
+    public void actualizar(ConceptoXProceso cproceso);
+
+    public void insertarProcesoFormula(ProcesoForm proFo);
+
+    public void eliminarProcesoFormula(Integer id);
+
+    public ProcesoPlanilla recuperar(Integer id);
+
+    public void actualizar(ProcesoPlanilla pplanilla);
+}
